@@ -114,16 +114,16 @@
                 <form class="p-3">
                     <div class="mb-3">
                         <div class="form-floating mb-0">
-                            <input type="namaDepan" class="form-control" id="floatingNamaDepan"
-                                placeholder="namaDepan" />
-                            <label for="floatingInput">Nama Provinsi</label>
+                            <input type="text" class="form-control" id="floatingNama"
+                                placeholder="" />
+                            <label for="floatingNama">Nama Provinsi</label>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-floating mb-0">
-                            <input type="namaBelakang" class="form-control" id="floatingNamaBelakang"
-                                placeholder="namaBelakang" />
-                            <label for="floatingNamaBelakang">Kode Wilayah</label>
+                            <input type="text" class="form-control" id="floatingKode"
+                                placeholder="" />
+                            <label for="floatingKode">Kode Wilayah</label>
                         </div>
                     </div>
 

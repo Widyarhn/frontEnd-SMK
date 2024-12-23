@@ -33,7 +33,14 @@
     <script src="https://ableproadmin.com/assets/js/tech-stack.js"></script>
     <link rel="stylesheet" href="https://ableproadmin.com/assets/css/style-preset.css" />
 </head>
-
+<style>
+    .welcome-banner::after {
+        opacity: 0.1;
+        background-position: bottom;
+        background-size: 600%;
+        
+    }
+    </style>
 <body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr"
     data-pc-theme_contrast="" data-pc-theme="light">
     <!-- [ Pre-loader ] start -->
@@ -46,17 +53,18 @@
 
     <div class="auth-main">
         <div class="auth-wrapper v2">
-            <div class="auth-sidecontent">
-                <img src="https://ableproadmin.com/assets/images/authentication/img-auth-sideimg.jpg" alt="images"
-                    class="img-fluid img-auth-side" />
+            <div class="auth-sidecontent welcome-banner"
+                style="width: 580px; height: 100vh; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); display: flex; justify-content: center; align-items: center; position: relative;">
+                <img src="{{ asset('assets') }}/images/logoapp.png" alt="images" style="width: 150px;" />
             </div>
             <div class="auth-form">
                 <div class="card my-5">
                     <div class="card-body">
                         <div class="text-center">
-                            <a href="#"><img src="https://ableproadmin.com/assets/images/logo-dark.svg" alt="img" /></a>
+                            <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img"
+                                style="width: 60px;" /></a>
                         </div>
-                        <h4 class="text-center mt-5">DAFTAR SMK-PAU</h4>
+                        <h4 class="text-center mt-4">DAFTAR SMK-PAU</h4>
                         <div class="saprator mb-5">
                             <span>Dinas Perhubungan Kabupaten</span>
                         </div>

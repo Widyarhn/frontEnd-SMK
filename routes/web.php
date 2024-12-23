@@ -32,6 +32,39 @@ Route::get('/kbli', function () {
 });
 
 //satuanKerja
-Route::get('/satuan-kerja', function ($id) {
+Route::get('/satuan-kerja', function () {
     return view('Administrator.MasterData.SatuanKerja.satuanKerja');
+});
+Route::get('/direktur-jendral', function () {
+    return view('Administrator.MasterData.SatuanKerja.direkturJendral');
+});
+Route::get('/nomor-sk', function () {
+    return view('Administrator.MasterData.SatuanKerja.noSk');
+});
+
+//element
+Route::get('/element-pemantauan/list', function () {
+    return view('Administrator.MasterData.Element.ElementPemantauan.list');
+});
+Route::get('/element-smk/list', function () {
+    return view('Administrator.MasterData.Element.ElementSmk.list');
+});
+
+//administrasi
+Route::get('/perusahaan', function () {
+    return view('Administrator.Administrasi.Perusahaan.list');
+});
+Route::get('/perusahaan/detail', function () {
+    return view('Administrator.Administrasi.Perusahaan.detail');
+});
+Route::get('/hak-akses', function () {
+    return view('Administrator.Administrasi.HakAkses.list');
+});
+Route::get('/user-manajemen', function () {
+    return view('Administrator.Administrasi.UserManagement.list');
+});
+
+//pengaturan
+Route::get('/pengaturan', function () {
+    return view('Administrator.Pengaturan.index');
 });

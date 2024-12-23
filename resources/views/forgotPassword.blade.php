@@ -33,7 +33,14 @@
     <script src="https://ableproadmin.com/assets/js/tech-stack.js"></script>
     <link rel="stylesheet" href="https://ableproadmin.com/assets/css/style-preset.css" />
 </head>
-
+<style>
+    .welcome-banner::after {
+        opacity: 0.1;
+        background-position: bottom;
+        background-size: 600%;
+        
+    }
+    </style>
 <body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr"
     data-pc-theme_contrast="" data-pc-theme="light">
     <!-- [ Pre-loader ] start -->
@@ -46,19 +53,18 @@
 
     <div class="auth-main">
         <div class="auth-wrapper v2">
-            <div class="auth-sidecontent">
-                <img src="https://ableproadmin.com/assets/images/authentication/img-auth-sideimg.jpg" alt="images"
-                    class="img-fluid img-auth-side" />
+            <div class="auth-sidecontent welcome-banner"
+                style="width: 580px; height: 100vh; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); display: flex; justify-content: center; align-items: center; position: relative;">
+                <img src="{{ asset('assets') }}/images/logoapp.png" alt="images" style="width: 150px;" />
             </div>
 
             <div class="auth-form">
                 <div class="card my-5">
                     <div class="card-body">
-                        <a href="#"><img src="https://ableproadmin.com/assets/images/logo-dark.svg"
-                                class="mb-4 img-fluid" alt="img" /></a>
+                        <a href="#"></a>
                         <div class="d-flex justify-content-between align-items-end mb-4">
                             <h3 class="mb-0"><b>Lupa Kata Sandi</b></h3>
-                            <a href="login.html" class="link-primary">Kembali ke Masuk</a>
+                            <a href="/" class="link-primary">Kembali ke Masuk</a>
                         </div>
                         <div class="mb-3">
                             <div class="form-floating mb-0">
@@ -67,7 +73,7 @@
                                 <label for="floatingInput">Email</label>
                             </div>
                         </div>
-                        <p class="mt-4 text-sm text-muted">Jangan lupa cek kotak SPAM.</p>
+                        <p class="mt-4 text-sm text-muted">*** Jangan lupa cek kotak SPAM.</p>
                         <div class="d-grid mt-5">
                             <button type="button" class="btn btn-primary">Kirim Email Reset Kata Sandi</button>
                         </div>

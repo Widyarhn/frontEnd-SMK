@@ -1,4 +1,4 @@
-@extends('.....index', ['title' => 'KBLI | Master Data'])
+@extends('.......index', ['title' => 'Nomor SK | Master Data Satuan Kerja'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
@@ -21,12 +21,13 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data KBLI</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Nomor SK</li>
                     </ul>
                 </div>
                 <div class="col-md-12 d-flex justify-content-between align-items-center">
                     <div class="page-header-title">
-                        <h2 class="mb-0">Data KBLI</h2>
+                        <h2 class="mb-0">Data Nomor SK</h2>
                     </div>
                     <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-1"
                         data-bs-toggle="modal" data-bs-target="#animateModal">
@@ -36,6 +37,10 @@
             </div>
         </div>
     </div>
+    <!-- [ breadcrumb ] end -->
+
+
+    <!-- [ Main Content ] start -->
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -48,105 +53,75 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode KBLI</th>
-                                            <th>Nama KBLI</th>
-                                            <th>Uraian KBLI</th>
-                                            <th>Tanggal Dibuat</th>
+                                            <th>Nomor SK</th>
+                                            <th>Tanggal</th>
+                                            <th>Instansi</th>
+                                            <th>Status</th>
                                             <th class="text-end">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>00293746</td>
+                                            <td>SK123-2024</td>
+                                            <td>05 September 2024</td>
                                             <td>
                                                 <div class="row align-items-center">
                                                     <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">Angkutan
-                                                                Bermotor</span> </h6>
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">dishub
+                                                                provinsi</span></h6>
                                                         <p class="f-12 mb-0"><a href="#!" class="text-muted"></a></p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>-</td>
-                                            <td>20-12-2024</td>
+                                            <td><span class="badge bg-light-danger">Tidak Aktif</span></td>
                                             <td class="text-end">
-                                                <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                                class="ti ti-eye f-20"></i></a>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                            class="avtar avtar-s btn-link-success btn-pc-default">
+                                                            <i class="fa-solid fa-user-check"></i></a>
                                                     </li>
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default"><i
+                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                            class="avtar avtar-s btn-link-warning btn-pc-default"><i
                                                                 class="ti ti-edit f-20"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"
+                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
                                                             class="avtar avtar-s btn-link-danger btn-pc-default"><i
                                                                 class="ti ti-trash f-20"></i></a></li>
-                                                </ul>
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td>2</td>
-                                            <td>00293746</td>
+                                            <td>SK-122024</td>
+                                            <td>20 Oktober 2024</td>
                                             <td>
                                                 <div class="row align-items-center">
                                                     <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">Angkutan
-                                                                Bermotor</span> </h6>
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">dishub
+                                                                provinsi</span></h6>
                                                         <p class="f-12 mb-0"><a href="#!" class="text-muted"></a></p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>-</td>
-                                            <td>20-12-2024</td>
+                                            <td><span class="badge bg-light-success">Aktif</span></td>
                                             <td class="text-end">
-                                                <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                                class="ti ti-eye f-20"></i></a>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                            class="avtar avtar-s btn-link-danger btn-pc-default">
+                                                            <i class="fas fa-user-times"></i></a>
                                                     </li>
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default"><i
+                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                            class="avtar avtar-s btn-link-warning btn-pc-default"><i
                                                                 class="ti ti-edit f-20"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"
+                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
                                                             class="avtar avtar-s btn-link-danger btn-pc-default"><i
                                                                 class="ti ti-trash f-20"></i></a></li>
-                                                </ul>
                                             </td>
                                         </tr>
-
-                                        <tr>
-                                            <td>3</td>
-                                            <td>00293746</td>
-                                            <td>
-                                                <div class="row align-items-center">
-                                                    <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">Angkutan
-                                                                Bermotor</span> </h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"></a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>-</td>
-                                            <td>20-12-2024</td>
-                                            <td class="text-end">
-                                                <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                                class="ti ti-eye f-20"></i></a>
-                                                    </li>
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default"><i
-                                                                class="ti ti-edit f-20"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                                class="ti ti-trash f-20"></i></a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-
 
                                     </tbody>
                                 </table>
@@ -157,33 +132,31 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-animate" id="animateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade modal-animate modal-animate-scrollable" data-bs-keyboard="false" tabindex="-1"
+        id="animateModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data KBLI</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    </button>
+                    <h5 class="modal-title">Tambah Data Nomor SK</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                     <form class="p-3">
                         <div class="mb-3">
                             <div class="form-floating mb-0">
-                                <input type="text" class="form-control" id="floatingkode" placeholder="kode" />
-                                <label for="floatingkode">Kode KBLI</label>
+                                <input type="kota" class="form-control" id="floatingKota" placeholder="kota" />
+                                <label for="floatingInput">Nomor SK</label>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <div class="form-floating mb-0">
-                                <input type="text" class="form-control" id="floatingnama"
-                                    placeholder="nama" />
-                                <label for="floatingnama">Nama KBLI</label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-floating mb-0">
-                                <textarea class="form-control" id="floatingdeskripsi" rows="3"></textarea>
-                                <label for="floatingdeskripsi">Deskripsi KBLI</label>
+                            <div class="form-floating">
+                                <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    <option selected>Pilih satuan kerja</option>
+                                    <option value="1">Kementrian Perhubungan Darat</option>
+                                    <option value="2">Dishub Jabar</option>
+                                </select>
+                                <label for="floatingSelect">Satuan Kerja</label>
                             </div>
                         </div>
                     </form>
