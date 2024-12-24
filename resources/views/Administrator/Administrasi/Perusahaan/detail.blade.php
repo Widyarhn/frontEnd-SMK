@@ -158,7 +158,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Education</h5>
+                                    <h5>Dokumen Perusahaan</h5>
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
@@ -201,53 +201,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>Employment</h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0 pt-0">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Senior</p>
-                                                    <p class="mb-0">Senior UI/UX designer (Year)</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Job Responsibility</p>
-                                                    <p class="mb-0">Perform task related to project manager with the 100+
-                                                        team under my observation. Team management is key role in this
-                                                        company.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Trainee cum Project Manager (Year)</p>
-                                                    <p class="mb-0">2017-2019</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Job Responsibility</p>
-                                                    <p class="mb-0">Team management is key role in this company.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item px-0 pb-0">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">School (Year)</p>
-                                                    <p class="mb-0">2009-2011</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Institute</p>
-                                                    <p class="mb-0">School of London, England</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -264,73 +217,218 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
-                                                            <th>Kode KBLI</th>
-                                                            <th>Nama KBLI</th>
+                                                            <th>KBLI</th>
                                                             <th>Uraian KBLI</th>
                                                             <th>Tanggal Dibuat</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>00293746</td>
+                                                            <td
+                                                                style="vertical-align: middle; text-align: center; width: 5%;">
+                                                                <div>1</div>
+                                                            </td>
                                                             <td>
-                                                                <div class="row align-items-center">
-                                                                    <div class="col">
-                                                                        <h6 class="mb-1"><span
-                                                                                class="text-truncate w-100">Angkutan
-                                                                                Bermotor</span> </h6>
-                                                                        <p class="f-12 mb-0"><a href="#!"
-                                                                                class="text-muted"></a></p>
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 1rem;">
+                                                                    <!-- Avatar -->
+                                                                    <div
+                                                                        style="background-color: #506b9f; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-file"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <!-- Informasi Perusahaan -->
+                                                                    <div>
+                                                                        <div style="font-weight: 600; font-size: 16px;">
+                                                                            Angkutan Bermotor</div>
+                                                                        <div
+                                                                            style="display: flex; align-items: center; gap: 0.5rem;">
+                                                                            <div
+                                                                                style="display: flex; align-items: center; gap: 0.25rem;">
+                                                                                <i class="fa fa-hashtag"
+                                                                                    style="color: #506b9f;"></i>
+                                                                                <span
+                                                                                    style="color: #6c757d; font-size: 14px;">Kode
+                                                                                    KBLI:</span>
+                                                                                <span
+                                                                                    style="font-weight: 600; font-size: 14px;">12345</span>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>-</td>
-                                                            <td>20-12-2024</td>
-
+                                                            <!-- Kolom Uraian KBLI -->
+                                                            <td
+                                                                style="vertical-align: middle; text-align: left; width: 40%; position: relative;">
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 0.5rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                                    <div
+                                                                        style="background-color: #506b9f; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-list"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <div title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt viverra lorem. Vivamus vitae diam egestas, molestie sapien non, porta augue."
+                                                                        style="color: #6c757d; font-size: 14px; cursor: pointer;">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                        elit. Integer tincidunt viverra lorem...
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <!-- Kolom Tanggal -->
+                                                            <td
+                                                                style="vertical-align: middle; text-align: center; width: 15%;">
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 0.5rem;">
+                                                                    <div
+                                                                        style="background-color: #36784c; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-calendar-day"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div style="color: #6c757d; font-size: 14px;">
+                                                                            06 Desember 2024</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
                                                         </tr>
-
                                                         <tr>
-                                                            <td>2</td>
-                                                            <td>00293746</td>
+                                                            <td
+                                                                style="vertical-align: middle; text-align: center; width: 5%;">
+                                                                <div>2</div>
+                                                            </td>
                                                             <td>
-                                                                <div class="row align-items-center">
-                                                                    <div class="col">
-                                                                        <h6 class="mb-1"><span
-                                                                                class="text-truncate w-100">Angkutan
-                                                                                Bermotor</span> </h6>
-                                                                        <p class="f-12 mb-0"><a href="#!"
-                                                                                class="text-muted"></a></p>
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 1rem;">
+                                                                    <!-- Avatar -->
+                                                                    <div
+                                                                        style="background-color: #36784c; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-file"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <!-- Informasi Perusahaan -->
+                                                                    <div>
+                                                                        <div style="font-weight: 600; font-size: 16px;">
+                                                                            Angkutan Bermotor</div>
+                                                                        <div
+                                                                            style="display: flex; align-items: center; gap: 0.5rem;">
+                                                                            <div
+                                                                                style="display: flex; align-items: center; gap: 0.25rem;">
+                                                                                <i class="fa fa-hashtag"
+                                                                                    style="color: #36784c;"></i>
+                                                                                <span
+                                                                                    style="color: #6c757d; font-size: 14px;">Kode
+                                                                                    KBLI:</span>
+                                                                                <span
+                                                                                    style="font-weight: 600; font-size: 14px;">12345</span>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>-</td>
-                                                            <td>20-12-2024</td>
-
+                                                            <!-- Kolom Uraian KBLI -->
+                                                            <td
+                                                                style="vertical-align: middle; text-align: left; width: 40%; position: relative;">
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 0.5rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                                    <div
+                                                                        style="background-color: #923c82; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-list"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <div title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt viverra lorem. Vivamus vitae diam egestas, molestie sapien non, porta augue."
+                                                                        style="color: #6c757d; font-size: 14px; cursor: pointer;">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                        elit. Integer tincidunt viverra lorem...
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <!-- Kolom Tanggal -->
+                                                            <td
+                                                                style="vertical-align: middle; text-align: center; width: 15%;">
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 0.5rem;">
+                                                                    <div
+                                                                        style="background-color: #923c82; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-calendar-day"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div style="color: #6c757d; font-size: 14px;">
+                                                                            06 Desember 2024</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
                                                         </tr>
-
                                                         <tr>
-                                                            <td>3</td>
-                                                            <td>00293746</td>
+                                                            <td
+                                                                style="vertical-align: middle; text-align: center; width: 5%;">
+                                                                <div>3</div>
+                                                            </td>
                                                             <td>
-                                                                <div class="row align-items-center">
-                                                                    <div class="col">
-                                                                        <h6 class="mb-1"><span
-                                                                                class="text-truncate w-100">Angkutan
-                                                                                Bermotor</span> </h6>
-                                                                        <p class="f-12 mb-0"><a href="#!"
-                                                                                class="text-muted"></a>
-                                                                        </p>
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 1rem;">
+                                                                    <!-- Avatar -->
+                                                                    <div
+                                                                        style="background-color: #923c82; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-file"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <!-- Informasi Perusahaan -->
+                                                                    <div>
+                                                                        <div style="font-weight: 600; font-size: 16px;">
+                                                                            Angkutan Bermotor</div>
+                                                                        <div
+                                                                            style="display: flex; align-items: center; gap: 0.5rem;">
+                                                                            <div
+                                                                                style="display: flex; align-items: center; gap: 0.25rem;">
+                                                                                <i class="fa fa-hashtag"
+                                                                                    style="color: #171c21;"></i>
+                                                                                <span
+                                                                                    style="color: #6c757d; font-size: 14px;">Kode
+                                                                                    KBLI:</span>
+                                                                                <span
+                                                                                    style="font-weight: 600; font-size: 14px;">12345</span>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>-</td>
-                                                            <td>20-12-2024</td>
-
+                                                            <!-- Kolom Uraian KBLI -->
+                                                            <td
+                                                                style="vertical-align: middle; text-align: left; width: 40%; position: relative;">
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 0.5rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                                    <div
+                                                                        style="background-color: #171c21; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-list"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <div title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt viverra lorem. Vivamus vitae diam egestas, molestie sapien non, porta augue."
+                                                                        style="color: #6c757d; font-size: 14px; cursor: pointer;">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                                        elit. Integer tincidunt viverra lorem...
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <!-- Kolom Tanggal -->
+                                                            <td
+                                                                style="vertical-align: middle; text-align: center; width: 15%;">
+                                                                <div
+                                                                    style="display: flex; align-items: center; gap: 0.5rem;">
+                                                                    <div
+                                                                        style="background-color: #171c21; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
+                                                                        <i class="fa-solid fa-calendar-day"
+                                                                            style="color: white; font-size: 24px;"></i>
+                                                                    </div>
+                                                                    <div>
+                                                                        <div style="color: #6c757d; font-size: 14px;">
+                                                                            06 Desember 2024</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
                                                         </tr>
-
-
                                                     </tbody>
+
                                                 </table>
                                             </div>
                                         </div>
