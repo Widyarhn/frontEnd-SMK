@@ -46,8 +46,15 @@ Route::get('/nomor-sk', function () {
 Route::get('/element-pemantauan/list', function () {
     return view('Administrator.MasterData.Element.ElementPemantauan.list');
 });
+Route::get('/element-pemantauan/create', function () {
+    return view('Administrator.MasterData.Element.ElementPemantauan.create');
+});
+
 Route::get('/element-smk/list', function () {
     return view('Administrator.MasterData.Element.ElementSmk.list');
+});
+Route::get('/element-smk/create', function () {
+    return view('Administrator.MasterData.Element.ElementSmk.create');
 });
 
 //administrasi

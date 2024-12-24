@@ -51,11 +51,11 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1 mx-3">
-                                    <h6 class="mb-0">SMK-POU</h6>
-                                    <p class="mb-0">Dishub Provinsi Jabar</p>
+                                    <h6 class="mb-0">SMK-PAU</h6>
+                                    <p class="mb-0">Dishub Provinsi Jabar | 01267766</p>
                                 </div>
                                 <div class="flex-shrink-0">
-                                    <button class="btn btn-sm btn-light-secondary"><i class="ti ti-edit"></i>
+                                    <button class="btn btn-md btn-light-warning"><i class="ti ti-edit"></i>
                                         Edit</button>
                                 </div>
                             </div>
@@ -96,16 +96,17 @@
                                                     <div class="mb-3">
                                                         <div class="form-floating mb-0">
                                                             <input type="text" class="form-control"
-                                                                id="namaAplikasi" placeholder="Masukkan Nama Aplikasi" value="SMK-POU" />
+                                                                id="namaAplikasi" placeholder="Masukkan Nama Aplikasi" value="SMK-PAU" />
                                                             <label for="namaAplikasi">Nama Belakang</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="row mb-3">
+                                                    <div class="mb-3">
                                                         <div class="form-floating mb-0">
-                                                            <textarea class="form-control" id="floatingdeskripsi" rows="3"></textarea>
-                                                            <label for="floatingdeskripsi">Deskripsi KBLI</label>
+                                                            <input type="text" class="form-control"
+                                                                id="noTelpHelpDesk" placeholder="" value="01267766" />
+                                                            <label for="noTelpHelpDesk">No. Telepon</label>
                                                         </div>
                                                     </div>
                                                 </div>

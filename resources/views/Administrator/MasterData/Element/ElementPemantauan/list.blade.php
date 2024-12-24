@@ -29,10 +29,9 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data Element Pemantauan</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-1"
-                        data-bs-toggle="modal" data-bs-target="">
+                    <a href="/element-pemantauan/create" class="btn btn-md btn-primary px-3 p-2">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -66,11 +65,11 @@
                                             <td><span class="badge bg-light-danger">Tidak Aktif</span></td>
                                             <td>05 September 2024</td>
                                             <td class="text-end">
-                                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default">
-                                                            <i class="fa-solid fa-user-check"></i></a>
-                                                    </li>
+                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-success btn-pc-default">
+                                                        <i class="fa-regular fa-square-check"></i></a>
+                                                </li>
                                                     <li class="list-inline-item"><a data-bs-toggle="modal"
                                                             data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
                                                             class="avtar avtar-s btn-link-info btn-pc-default"><i
@@ -89,10 +88,10 @@
                                             <td>20 Oktober 2024</td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default">
-                                                            <i class="fas fa-user-times"></i></a>
-                                                    </li>
+                                                    data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                    class="avtar avtar-s btn-link-danger btn-pc-default">
+                                                    <i class="fa-regular fa-rectangle-xmark"></i></a>
+                                            </li>
                                                     <li class="list-inline-item"><a data-bs-toggle="modal"
                                                             data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
                                                             class="avtar avtar-s btn-link-info btn-pc-default"><i

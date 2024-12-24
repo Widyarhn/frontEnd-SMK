@@ -1,4 +1,4 @@
-@extends('.......index', ['title' => 'Kota | Master Data Wilayah'])
+@extends('.......index', ['title' => 'Element SMK | Master Data Element'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
@@ -29,10 +29,9 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data Element SMK</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-1"
-                        data-bs-toggle="modal" data-bs-target="">
+                    <a href="/element-smk/create" class="btn btn-md btn-primary px-3 p-2">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -69,7 +68,7 @@
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
                                                             data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
                                                             class="avtar avtar-s btn-link-success btn-pc-default">
-                                                            <i class="fa-solid fa-user-check"></i></a>
+                                                            <i class="fa-regular fa-square-check"></i></a>
                                                     </li>
                                                     <li class="list-inline-item"><a data-bs-toggle="modal"
                                                             data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
@@ -91,7 +90,7 @@
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
                                                             data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
                                                             class="avtar avtar-s btn-link-danger btn-pc-default">
-                                                            <i class="fas fa-user-times"></i></a>
+                                                            <i class="fa-regular fa-rectangle-xmark"></i></a>
                                                     </li>
                                                     <li class="list-inline-item"><a data-bs-toggle="modal"
                                                             data-pc-animate="fade-in-scale" data-bs-target="#animateModal"

@@ -338,7 +338,7 @@
                                             <h6 class="mb-1"><span class="text-truncate w-100">123456</span> </h6>
                                         </td>
                                         <td>12 Desember 2024</td>
-                                        <td><span class="badge bg-light">? Status tidak diketahui</span></td>
+                                        <td><span class="badge bg-dark">Status tidak diketahui</span></td>
                                         <td> Mickie Melmoth </td>
                                         <td>15 Desember 2024</td>
                                         <td>Direktur</td>
