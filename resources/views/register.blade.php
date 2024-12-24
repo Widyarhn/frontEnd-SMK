@@ -161,7 +161,7 @@
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
-                                    <button type="submit" class="btn btn-success mb-2">Selanjutnya</button>
+                                    <button type="submit" class="btn btn-primary mb-2">Selanjutnya</button>
                                 </div>
                             </div>
                             <div class="wizard-step step-2" style="display: none;">
@@ -187,7 +187,7 @@
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
-                                    <button type="submit" class="btn btn-success mb-2">Selanjutnya</button>
+                                    <button type="submit" class="btn btn-primary mb-2">Selanjutnya</button>
                                     <button type="button" class="btn btn-outline-secondary prev-btn">Kembali</button>
                                 </div>
                             </div>

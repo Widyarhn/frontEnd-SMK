@@ -64,7 +64,7 @@
                         <a href="#"></a>
                         <div class="d-flex justify-content-between align-items-end mb-4">
                             <h3 class="mb-0"><b>Lupa Kata Sandi</b></h3>
-                            <a href="/" class="link-primary">Kembali ke Masuk</a>
+                            <a href="/" class="link-primary">Kembali ke Halaman Masuk</a>
                         </div>
                         <div class="mb-3">
                             <div class="form-floating mb-0">
