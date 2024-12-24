@@ -33,390 +33,1136 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row"><!-- [ sample-page ] start -->
         <div class="col-sm-12">
             <div class="card">
-                {{-- <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <div class="row align-items-center g-3">
-                                <div class="col-sm-6">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <img src="../assets/images/logo-dark.svg" class="img-fluid" alt="images" />
-                                        <span class="badge bg-light-secondary rounded-pill ms-2">Paid</span>
+                <div class="card-body py-0">
+                    <ul class="nav nav-tabs profile-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="profile-tab-1"
+                                data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="true"><i
+                                    class="ph-duotone ph-buildings me-2"></i>Profil Perusahaan</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-2" data-bs-toggle="tab"
+                                href="#profile-2" role="tab" aria-selected="false" tabindex="-1"><i
+                                    class="ti ti-file-text me-2"></i>KBLI Perusahaan</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-3" data-bs-toggle="tab"
+                                href="#profile-3" role="tab" aria-selected="false" tabindex="-1"><i
+                                    class="ti ti-file-analytics me-2"></i>Pengajuan Sertifikat</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-4" data-bs-toggle="tab"
+                                href="#profile-4" role="tab" aria-selected="false" tabindex="-1"><i
+                                    class="ti ti-lock me-2"></i>Laporan Tahunan</a></li>
+                        {{-- <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-5" data-bs-toggle="tab"
+                                href="#profile-5" role="tab" aria-selected="false" tabindex="-1"><i
+                                    class="ti ti-users me-2"></i>Role</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-6" data-bs-toggle="tab"
+                                href="#profile-6" role="tab" aria-selected="false" tabindex="-1"><i
+                                    class="ti ti-settings me-2"></i>Settings</a></li> --}}
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane show active" id="profile-1" role="tabpanel" aria-labelledby="profile-tab-1">
+                    <div class="row">
+                        <div class="col-lg-4 col-xxl-3">
+                            <div class="card">
+                                <div class="card-body position-relative">
+                                    <div class="position-absolute end-0 top-0 p-3"><span class="badge bg-primary">Pro</span>
                                     </div>
-                                    <p class="mb-0">INV - 000457</p>
+                                    <div class="text-center mt-3">
+                                        <div class="chat-avtar d-inline-flex mx-auto"><img
+                                                class="rounded-circle img-fluid wid-70"
+                                                src="../assets/images/user/avatar-5.jpg" alt="User image"></div>
+                                        <h5 class="mb-0">PT. NUSANTARA TECH INOVATOR</h5>
+                                        <p class="text-muted text-sm">Perusahaan</p>
+                                        <hr class="my-3 border border-secondary-subtle">
+                                        <div class="row g-3">
+                                            <div class="col-4">
+                                                <h5 class="mb-0">86</h5><small class="text-muted">AODT</small>
+                                            </div>
+                                            <div class="col-4 border border-top-0 border-bottom-0">
+                                                <h5 class="mb-0">40</h5><small class="text-muted">AOTDT</small>
+                                            </div>
+                                            <div class="col-4">
+                                                <h5 class="mb-0">4.5K</h5><small class="text-muted">AB</small>
+                                            </div>
+                                        </div>
+                                        <hr class="my-3 border border-secondary-subtle">
+                                        <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
+                                                class="ti ti-mail me-2"></i>
+                                            <p class="mb-0">anshan@gmail.com</p>
+                                        </div>
+                                        <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
+                                                class="ti ti-phone me-2"></i>
+                                            <p class="mb-0">(+1-876) 8654 239 581</p>
+                                        </div>
+                                        <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
+                                                class="ti ti-map-pin me-2"></i>
+                                            <p class="mb-0">New York</p>
+                                        </div>
+                                        <div class="d-inline-flex align-items-center justify-content-start w-100"><i
+                                                class="ti ti-link me-2"></i> <a href="#" class="link-primary">
+                                                <p class="mb-0">https://anshan.dh.url</p>
+                                            </a></div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-6 text-sm-end">
-                                    <h6>Date <span class="text-muted f-w-400">03/8/2023</span></h6>
-                                    <h6>Due Date <span class="text-muted f-w-400">10/8/2023</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-xxl-9">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Detail Perusahaan</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item px-0 pt-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Nama Direktur</p>
+                                                    <p class="mb-0">Anshan Handgun</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Father Name</p>
+                                                    <p class="mb-0">Mr. Deepen Handgun</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Phone</p>
+                                                    <p class="mb-0">(+1-876) 8654 239 581</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Country</p>
+                                                    <p class="mb-0">New York</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Email</p>
+                                                    <p class="mb-0">anshan.dh81@gmail.com</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Zip Code</p>
+                                                    <p class="mb-0">956 754</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0 pb-0">
+                                            <p class="mb-1 text-muted">Address</p>
+                                            <p class="mb-0">Street 110-B Kalians Bag, Dewan, M.P. New York</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Education</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item px-0 pt-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Master Degree (Year)</p>
+                                                    <p class="mb-0">2014-2017</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Institute</p>
+                                                    <p class="mb-0">-</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Bachelor (Year)</p>
+                                                    <p class="mb-0">2011-2013</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Institute</p>
+                                                    <p class="mb-0">Imperial College London</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0 pb-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">School (Year)</p>
+                                                    <p class="mb-0">2009-2011</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Institute</p>
+                                                    <p class="mb-0">School of London, England</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Employment</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item px-0 pt-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Senior</p>
+                                                    <p class="mb-0">Senior UI/UX designer (Year)</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Job Responsibility</p>
+                                                    <p class="mb-0">Perform task related to project manager with the 100+
+                                                        team under my observation. Team management is key role in this
+                                                        company.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Trainee cum Project Manager (Year)</p>
+                                                    <p class="mb-0">2017-2019</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Job Responsibility</p>
+                                                    <p class="mb-0">Team management is key role in this company.</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item px-0 pb-0">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">School (Year)</p>
+                                                    <p class="mb-0">2009-2011</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="mb-1 text-muted">Institute</p>
+                                                    <p class="mb-0">School of London, England</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="border rounded p-3">
-                                <h6 class="mb-0">From:</h6>
-                                <h5>Garcia-Cameron and Sons</h5>
-                                <p class="mb-0">8534 Saunders Hill Apt. 583</p>
-                                <p class="mb-0">(970) 982-3353</p>
-                                <p class="mb-0">brandon07@pierce.com</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="border rounded p-3">
-                                <h6 class="mb-0">To:</h6>
-                                <h5>Dickinson-Cummerata</h5>
-                                <p class="mb-0">55D Leatha Way Ernaburgh, NT 2146</p>
-                                <p class="mb-0">75-9079921</p>
-                                <p class="mb-0">kasandra.conn@borer.com</p>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
+                    <div class="row">
                         <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                                            aria-labelledby="analytics-tab-1" tabindex="0">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" id="pc-dt-simple-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Kode KBLI</th>
+                                                            <th>Nama KBLI</th>
+                                                            <th>Uraian KBLI</th>
+                                                            <th>Tanggal Dibuat</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>00293746</td>
+                                                            <td>
+                                                                <div class="row align-items-center">
+                                                                    <div class="col">
+                                                                        <h6 class="mb-1"><span
+                                                                                class="text-truncate w-100">Angkutan
+                                                                                Bermotor</span> </h6>
+                                                                        <p class="f-12 mb-0"><a href="#!"
+                                                                                class="text-muted"></a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>20-12-2024</td>
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>00293746</td>
+                                                            <td>
+                                                                <div class="row align-items-center">
+                                                                    <div class="col">
+                                                                        <h6 class="mb-1"><span
+                                                                                class="text-truncate w-100">Angkutan
+                                                                                Bermotor</span> </h6>
+                                                                        <p class="f-12 mb-0"><a href="#!"
+                                                                                class="text-muted"></a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>20-12-2024</td>
+
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>00293746</td>
+                                                            <td>
+                                                                <div class="row align-items-center">
+                                                                    <div class="col">
+                                                                        <h6 class="mb-1"><span
+                                                                                class="text-truncate w-100">Angkutan
+                                                                                Bermotor</span> </h6>
+                                                                        <p class="f-12 mb-0"><a href="#!"
+                                                                                class="text-muted"></a>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td>20-12-2024</td>
+
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="profile-3" role="tabpanel" aria-labelledby="profile-tab-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card table-card">
+                                <div class="card-body pt-3">
+                                    <div class="table-responsive">
+                                        <div
+                                            class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                            <div class="datatable-top">
+                                                <div class="datatable-dropdown">
+                                                    <label>
+                                                        <select class="datatable-selector" name="per-page">
+                                                            <option value="5">5</option>
+                                                            <option value="10" selected="">10</option>
+                                                            <option value="15">15</option>
+                                                            <option value="20">20</option>
+                                                            <option value="25">25</option>
+                                                        </select> entries per page
+                                                    </label>
+                                                </div>
+                                                <div class="datatable-search">
+                                                    <input class="datatable-input" placeholder="Search..." type="search"
+                                                        name="search" title="Search within table"
+                                                        aria-controls="pc-dt-simple">
+                                                </div>
+                                            </div>
+                                            <div class="datatable-container">
+                                                <table class="table table-hover datatable-table" id="pc-dt-simple">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-sortable="true" style="width: 24%;"><button
+                                                                    class="datatable-sorter">NAME</button></th>
+                                                            <th data-sortable="true" style="width: 13.777777777777779%;">
+                                                                <button class="datatable-sorter">MOBILE</button>
+                                                            </th>
+                                                            <th data-sortable="true" style="width: 16.666666666666664%;">
+                                                                <button class="datatable-sorter">QUALIFICATION</button>
+                                                            </th>
+                                                            <th data-sortable="true" style="width: 13%;"><button
+                                                                    class="datatable-sorter">EMAIL</button></th>
+                                                            <th data-sortable="true" style="width: 17.77777777777778%;">
+                                                                <button class="datatable-sorter">ADMISSION DATE</button>
+                                                            </th>
+                                                            <th data-sortable="true" style="width: 14.777777777777779%;">
+                                                                <button class="datatable-sorter">ACTION</button>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr data-index="0">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-1.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Airi Satou</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/09/12</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="1">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-2.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Ashton Cox</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/12/24</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="2">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-3.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Bradley Greer</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/09/19</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="3">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-4.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Brielle Williamson</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/08/22</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="4">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-5.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Airi Satou</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/09/12</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="5">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-6.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Ashton Cox</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/12/24</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="6">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-7.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Bradley Greer</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/09/19</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="7">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-8.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Brielle Williamson</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/08/22</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="8">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-9.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Brielle Williamson</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/08/22</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="9">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-10.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Airi Satou</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/09/12</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="datatable-bottom">
+                                                <div class="datatable-info">Showing 1 to 10 of 16 entries</div>
+                                                <nav class="datatable-pagination">
+                                                    <ul class="datatable-pagination-list">
+                                                        <li
+                                                            class="datatable-pagination-list-item datatable-hidden datatable-disabled">
+                                                            <button data-page="1"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">‹</button>
+                                                        </li>
+                                                        <li class="datatable-pagination-list-item datatable-active"><button
+                                                                data-page="1" class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">1</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">2</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">›</button></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="profile-4" role="tabpanel" aria-labelledby="profile-tab-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card table-card">
+                                <div class="card-body pt-3">
+                                    <div class="table-responsive">
+                                        <div
+                                            class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                            <div class="datatable-top">
+                                                <div class="datatable-dropdown">
+                                                    <label>
+                                                        <select class="datatable-selector" name="per-page">
+                                                            <option value="5">5</option>
+                                                            <option value="10" selected="">10</option>
+                                                            <option value="15">15</option>
+                                                            <option value="20">20</option>
+                                                            <option value="25">25</option>
+                                                        </select> entries per page
+                                                    </label>
+                                                </div>
+                                                <div class="datatable-search">
+                                                    <input class="datatable-input" placeholder="Search..." type="search"
+                                                        name="search" title="Search within table"
+                                                        aria-controls="pc-dt-simple">
+                                                </div>
+                                            </div>
+                                            <div class="datatable-container">
+                                                <table class="table table-hover datatable-table" id="pc-dt-simple">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-sortable="true" style="width: 24%;"><button
+                                                                    class="datatable-sorter">NAME</button></th>
+                                                            <th data-sortable="true" style="width: 13.777777777777779%;">
+                                                                <button class="datatable-sorter">MOBILE</button>
+                                                            </th>
+                                                            <th data-sortable="true" style="width: 16.666666666666664%;">
+                                                                <button class="datatable-sorter">QUALIFICATION</button>
+                                                            </th>
+                                                            <th data-sortable="true" style="width: 13%;"><button
+                                                                    class="datatable-sorter">EMAIL</button></th>
+                                                            <th data-sortable="true" style="width: 17.77777777777778%;">
+                                                                <button class="datatable-sorter">ADMISSION DATE</button>
+                                                            </th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr data-index="0">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-1.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Airi Satou</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/09/12</td>
+                                                        </tr>
+                                                        <tr data-index="1">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-2.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Ashton Cox</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/12/24</td>
+                                                        </tr>
+                                                        <tr data-index="2">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-3.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Bradley Greer</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/09/19</td>
+                                                        </tr>
+                                                        <tr data-index="3">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-4.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Brielle Williamson</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/08/22</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="datatable-bottom">
+                                                <div class="datatable-info">Showing 1 to 10 of 16 entries</div>
+                                                <nav class="datatable-pagination">
+                                                    <ul class="datatable-pagination-list">
+                                                        <li
+                                                            class="datatable-pagination-list-item datatable-hidden datatable-disabled">
+                                                            <button data-page="1"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">‹</button>
+                                                        </li>
+                                                        <li class="datatable-pagination-list-item datatable-active"><button
+                                                                data-page="1" class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">1</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">2</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">›</button></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="profile-5" role="tabpanel" aria-labelledby="profile-tab-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Invite Team Members</h5>
+                        </div>
+                        <div class="card-body">
+                            <h4>5/10 <small>members available in your plan.</small></h4>
+                            <hr class="my-3">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="mb-3"><label class="form-label">Email Address</label>
+                                        <div class="row">
+                                            <div class="col"><input type="email" class="form-control"></div>
+                                            <div class="col-auto"><button class="btn btn-primary">Send</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body table-card">
                             <div class="table-responsive">
-                                <table class="table table-hover mb-0">
+                                <table class="table mb-0">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th class="text-end">Qty</th>
-                                            <th class="text-end">Price</th>
-                                            <th class="text-end">Total Amount</th>
+                                            <th>MEMBER</th>
+                                            <th>ROLE</th>
+                                            <th class="text-end">STATUS</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mauris</td>
-                                            <td>Malesuada adipiscing</td>
-                                            <td class="text-end">2</td>
-                                            <td class="text-end">$80.00</td>
-                                            <td class="text-end">$160.00</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Addie Bass</h5>
+                                                        <p class="text-muted f-12 mb-0">mareva@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-primary">Owner</span></td>
+                                            <td class="text-end"><span class="badge bg-success">Joined</span></td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td>2</td>
-                                            <td>Vitae</td>
-                                            <td>Hac egestas</td>
-                                            <td class="text-end">3</td>
-                                            <td class="text-end">$40.00</td>
-                                            <td class="text-end">$120.00</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Agnes McGee</h5>
+                                                        <p class="text-muted f-12 mb-0">heba@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-light-info">Manager</span></td>
+                                            <td class="text-end"><a href="#" class="btn btn-link-danger">Resend</a>
+                                                <span class="badge bg-light-success">Invited</span>
+                                            </td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td>3</td>
-                                            <td>Mauris</td>
-                                            <td>Malesuada adipiscing</td>
-                                            <td class="text-end">4</td>
-                                            <td class="text-end">$80.00</td>
-                                            <td class="text-end">$320.00</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Agnes McGee</h5>
+                                                        <p class="text-muted f-12 mb-0">heba@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-light-warning">Staff</span></td>
+                                            <td class="text-end"><span class="badge bg-success">Joined</span></td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Addie Bass</h5>
+                                                        <p class="text-muted f-12 mb-0">mareva@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-primary">Owner</span></td>
+                                            <td class="text-end"><span class="badge bg-success">Joined</span></td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Agnes McGee</h5>
+                                                        <p class="text-muted f-12 mb-0">heba@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-light-info">Manager</span></td>
+                                            <td class="text-end"><a href="#" class="btn btn-link-danger">Resend</a>
+                                                <span class="badge bg-light-success">Invited</span>
+                                            </td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Agnes McGee</h5>
+                                                        <p class="text-muted f-12 mb-0">heba@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-light-warning">Staff</span></td>
+                                            <td class="text-end"><span class="badge bg-success">Joined</span></td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Addie Bass</h5>
+                                                        <p class="text-muted f-12 mb-0">mareva@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-primary">Owner</span></td>
+                                            <td class="text-end"><span class="badge bg-success">Joined</span></td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Agnes McGee</h5>
+                                                        <p class="text-muted f-12 mb-0">heba@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-light-info">Manager</span></td>
+                                            <td class="text-end"><a href="#" class="btn btn-link-danger">Resend</a>
+                                                <span class="badge bg-light-success">Invited</span>
+                                            </td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-auto pe-0"><img
+                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
+                                                            class="wid-40 rounded-circle"></div>
+                                                    <div class="col">
+                                                        <h5 class="mb-0">Agnes McGee</h5>
+                                                        <p class="text-muted f-12 mb-0">heba@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-light-warning">Staff</span></td>
+                                            <td class="text-end"><span class="badge bg-success">Joined</span></td>
+                                            <td class="text-end"><a href="#"
+                                                    class="avtar avtar-s btn-link-secondary"><i
+                                                        class="ti ti-dots f-18"></i></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-start">
-                                <hr class="mb-2 mt-1 border-secondary border-opacity-50" />
-                            </div>
                         </div>
-                        <div class="col-12">
-                            <div class="invoice-total ms-auto">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="text-muted mb-1 text-start">Sub Total :</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="mb-1 text-end">$20.00</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="text-muted mb-1 text-start">Discount :</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="mb-1 text-end text-success">$10.00</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="text-muted mb-1 text-start">Taxes :</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="mb-1 text-end">$5.000</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="f-w-600 mb-1 text-start">Grand Total :</p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="f-w-600 mb-1 text-end">$25.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label">Note</label>
-                            <p class="mb-0">It was a pleasure working with you and your team. We hope you will keep us in
-                                mind for future freelance projects.
-                                Thank You!</p>
-                        </div>
-                        <div class="col-12 text-end d-print-none">
-                            <button class="btn btn-outline-secondary btn-print-invoice">Download</button>
+                        <div class="card-footer text-end btn-page">
+                            <div class="btn btn-link-danger">Cancel</div>
+                            <div class="btn btn-primary">Update Profile</div>
                         </div>
                     </div>
-                </div> --}}
-                <div class="card-header">
-                    <h4 class="mb-0">Informasi</h4>
                 </div>
-                <div class="card-body p-4">
+                <div class="tab-pane" id="profile-6" role="tabpanel" aria-labelledby="profile-tab-6">
                     <div class="row">
-                        <!-- Left Column (Company Info) -->
-                        <div class="col-xxl-8 col-lg-8 col-md-8 col-sm-12 mb-3">
-                            <h6 class="mb-3"><i class="fas fa-building me-2"></i>Perusahaan</h6>
-                            <div class="card shadow-sm border-0 mb-3 p-3">
-                                <table class="table table-borderless mb-0">
-                                    <tbody>
-                                        <tr>
-                                            <td class="fw-bold d-flex align-items-center">
-                                                <i class="fas fa-building me-2"></i> Nama Perusahaan
-                                            </td>
-                                            <td class="company-name text-start">Nama Perusahaan XYZ</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold d-flex align-items-center">
-                                                <i class="fas fa-info-circle me-2"></i> NIB
-                                            </td>
-                                            <td class="company-nib text-start">1234567890</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold d-flex align-items-center">
-                                                <i class="fas fa-phone me-2"></i> Telepon
-                                            </td>
-                                            <td class="company-phone text-start">021-123456</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold d-flex align-items-center">
-                                                <i class="fas fa-envelope me-2"></i> E-mail
-                                            </td>
-                                            <td class="company-email text-start">email@perusahaan.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold d-flex align-items-center">
-                                                <i class="fas fa-map-marker-alt me-2"></i> Alamat
-                                            </td>
-                                            <td class="company-address text-start">Jalan Raya No. 123, Jakarta</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold d-flex align-items-center">
-                                                <i class="fas fa-briefcase me-2"></i> Jenis Layanan
-                                            </td>
-                                            <td class="text-start">
-                                                <ul class="list-unstyled mb-0 company-service-types">
-                                                    <li>Layanan A</li>
-                                                    <li>Layanan B</li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold d-flex align-items-center">
-                                                <i class="fas fa-calendar-day me-2"></i> Tanggal Terbit NIB
-                                            </td>
-                                            <td class="text-start company-nib">01-01-2022</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold d-flex align-items-center">
-                                                <i class="fas fa-calendar-check me-2"></i> Tanggal Bergabung
-                                            </td>
-                                            <td class="text-start company-joined-date">15-03-2022</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Email Settings</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="mb-4">Setup Email Notification</h6>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Email Notification</p>
+                                        </div>
+                                        <div class="form-check form-switch p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch" checked=""></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Send Copy To Personal Email</p>
+                                        </div>
+                                        <div class="form-check form-switch p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Updates from System Notification</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="mb-4">Email you with?</h6>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">News about PCT-themes products and feature updates
+                                            </p>
+                                        </div>
+                                        <div class="form-check p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch" checked=""></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Tips on getting more out of PCT-themes</p>
+                                        </div>
+                                        <div class="form-check p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch" checked=""></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Things you missed since you last logged into
+                                                PCT-themes</p>
+                                        </div>
+                                        <div class="form-check p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">News about products and other services</p>
+                                        </div>
+                                        <div class="form-check p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Tips and Document business products</p>
+                                        </div>
+                                        <div class="form-check p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Right Column -->
-                        <div class="col-xxl-4 col-lg-4 col-md-4 col-sm-12">
-                            <div class="mb-3">
-                                <h6 class="mb-3"><i class="fas fa-id-card me-2"></i>Penanggung Jawab</h6>
-                                <div class="card shadow-sm border-0 mb-4 p-3">
-                                    <table class="table table-borderless mb-0">
-                                        <tbody>
-                                            <tr>
-                                                <td class="fw-bold d-flex align-items-center">
-                                                    <i class="fas fa-id-card me-2"></i> Nama
-                                                </td>
-                                                <td class="text-start company-pic-name">John Doe</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold d-flex align-items-center">
-                                                    <i class="fas fa-phone me-2"></i> Telepon
-                                                </td>
-                                                <td class="text-start company-pic-phone">0812-3456-7890</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Activity Related Emails</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="mb-4">When to email?</h6>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Have new notifications</p>
+                                        </div>
+                                        <div class="form-check form-switch p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch" checked=""></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">You're sent a direct message</p>
+                                        </div>
+                                        <div class="form-check form-switch p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Someone adds you as a connection</p>
+                                        </div>
+                                        <div class="form-check form-switch p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch" checked=""></div>
+                                    </div>
+                                    <hr class="my-4 border border-secondary-subtle">
+                                    <h6 class="mb-4">When to escalate emails?</h6>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Upon new order</p>
+                                        </div>
+                                        <div class="form-check form-switch p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch" checked=""></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">New membership approval</p>
+                                        </div>
+                                        <div class="form-check form-switch p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch"></div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <div>
+                                            <p class="text-muted mb-0">Member registration</p>
+                                        </div>
+                                        <div class="form-check form-switch p-0"><input
+                                                class="m-0 form-check-input h5 position-relative" type="checkbox"
+                                                role="switch" checked=""></div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="mb-3">
-                                <h6 class="mb-3"><i class="fas fa-id-card me-2"></i>Pengguna</h6>
-                                <div class="card shadow-sm border-0 p-3">
-                                    <table class="table table-borderless mb-0">
-                                        <tbody>
-                                            <tr>
-                                                <td class="fw-bold d-flex align-items-center">
-                                                    <i class="fas fa-id-card me-2"></i> Username
-                                                </td>
-                                                <td class="text-start company-user-name">user_xyz</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold d-flex align-items-center">
-                                                    <i class="fas fa-phone me-2"></i> Telepon
-                                                </td>
-                                                <td class="text-start company-user-phone">0812-9876-5432</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="col-12 text-end btn-page">
+                            <div class="btn btn-outline-secondary">Cancel</div>
+                            <div class="btn btn-primary">Update Profile</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <ul class="nav nav-tabs invoice-tab border-bottom mb-3" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pengajuan-tab-1" data-bs-toggle="tab"
-                            data-bs-target="#pengajuan-tab-1-pane" type="button" role="tab"
-                            aria-controls="pengajuan-tab-1-pane" aria-selected="true">
-                            <span class="d-flex align-items-center gap-2">Pengajuan SMK</span>
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="laporan-tab-2" data-bs-toggle="tab"
-                            data-bs-target="#laporan-tab-2-pane" type="button" role="tab"
-                            aria-controls="laporan-tab-2-pane" aria-selected="false">
-                            <span class="d-flex align-items-center gap-2">Laporan Tahunan</span>
-                        </button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="pengajuan-tab-1-pane" role="tabpanel"
-                        aria-labelledby="pengajuan-tab-1" tabindex="0">
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="pc-dt-simple-1">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Nomor Pendaftaran</th>
-                                        <th>Tanggal Pengajuan</th>
-                                        <th>Status</th>
-                                        <th>Penilai</th>
-                                        <th>Jadwal Interview</th>
-                                        <th>Posisi</th>
-                                        <th class="text-end">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <h6 class="mb-1"><span class="text-truncate w-100">123456</span> </h6>
-                                        </td>
-                                        <td>12 Desember 2024</td>
-                                        <td><span class="badge bg-light-success">Paid</span></td>
-                                        <td> Mickie Melmoth </td>
-                                        <td>15 Desember 2024</td>
-                                        <td>Direktur</td>
-                                        <td class="text-end">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item"><a href="#"
-                                                        class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                            class="ti ti-eye f-20"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>
-                                            <h6 class="mb-1"><span class="text-truncate w-100">123456</span> </h6>
-                                        </td>
-                                        <td>12 Desember 2024</td>
-                                        <td><span class="badge bg-dark">Status tidak diketahui</span></td>
-                                        <td> Mickie Melmoth </td>
-                                        <td>15 Desember 2024</td>
-                                        <td>Direktur</td>
-                                        <td class="text-end">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item"><a href="#"
-                                                        class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                            class="ti ti-eye f-20"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="laporan-tab-2-pane" role="tabpanel"
-                        aria-labelledby="laporan-tab-2" tabindex="0">
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="pc-dt-simple-2">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Tahun Laporan</th>
-                                        <th>Tanggal Pelaporan</th>
-                                        <th>Status</th>
-                                        <th class="text-center" colspan="2">
-                                            Verifikasi
-                                            <table class="table-verifikasi p-0" style="margin: 0; width: 100%;">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="border: none;" >Tanggal</th>
-                                                        <th style="border: none;">Oleh</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </th>
-                                        <th class="text-end">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2024</td>
-                                        <td>2024-01-15</td>
-                                        <td><span class="badge bg-success">Diterima</span></td>
-                                        <td class="text-center">2024-01-20</td>
-                                        <td class="text-center">Admin 1</td>
-                                        <td class="text-end">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item"><a href="#"
-                                                        class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                            class="ti ti-eye f-20"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>2023</td>
-                                        <td>2023-12-10</td>
-                                        <td><span class="badge bg-warning">Menunggu</span></td>
-                                        <td class="text-center">2024-01-20</td>
-                                        <td class="text-center">Admin 1</td>
-                                        <td class="text-end">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item"><a href="#"
-                                                        class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                            class="ti ti-eye f-20"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div><!-- [ sample-page ] end -->
     </div>
 @endsection
 @section('scripts')
