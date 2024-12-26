@@ -211,66 +211,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0">Penilai Dengan Disposisi Terbanyak</h5>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover" id="pc-dt-simple">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Proses</th>
-                                    <th>Selesai</th>
-                                    <th>Total Disposisi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <h6 class="mb-2"><span class="text-truncate w-100">Foundations</span>
-                                                </h6>
-                                                <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                        Leather panels. Laces. Rounded toe. </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <h6 class="mb-2"><span class="text-truncate w-100">Foundations</span>
-                                                </h6>
-                                                <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                        Leather panels. Laces. Rounded toe. </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
