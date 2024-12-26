@@ -209,227 +209,146 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                                            aria-labelledby="analytics-tab-1" tabindex="0">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover" id="pc-dt-simple-1">
+                                    <div class="table-responsive">
+                                        <div
+                                            class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                            <!-- Top Controls: Entries Per Page and Search -->
+                                            <div class="datatable-top">
+                                                <div class="datatable-dropdown">
+                                                    <label>
+                                                        <select class="datatable-selector" name="per-page">
+                                                            <option value="5">5</option>
+                                                            <option value="10" selected="">10</option>
+                                                            <option value="15">15</option>
+                                                            <option value="20">20</option>
+                                                            <option value="25">25</option>
+                                                        </select> entries per page
+                                                    </label>
+                                                </div>
+                                                <div class="datatable-search">
+                                                    <input class="datatable-input" placeholder="Search..." type="search"
+                                                        name="search" title="Search within table"
+                                                        aria-controls="pc-dt-simple">
+                                                </div>
+                                            </div>
+
+                                            <!-- Table -->
+                                            <div class="datatable-container">
+                                                <table class="table table-hover datatable-table" id="pc-dt-simple">
                                                     <thead>
                                                         <tr>
-                                                            <th>No</th>
-                                                            <th>KBLI</th>
-                                                            <th>Uraian KBLI</th>
-                                                            <th>Tanggal Dibuat</th>
+                                                            <th style="width: 90%;">Klasifikasi Baku Lapangan Usaha
+                                                                Indonesia
+                                                                (KBLI)</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td
-                                                                style="vertical-align: middle; text-align: center; width: 5%;">
-                                                                <div>1</div>
-                                                            </td>
                                                             <td>
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 1rem;">
-                                                                    <!-- Avatar -->
-                                                                    <div
-                                                                        style="background-color: #506b9f; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-file"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <!-- Informasi Perusahaan -->
+                                                                <div class="d-flex align-items-start">
+                                                                    <img class="rounded-circle me-3"
+                                                                        src="../assets/images/user/avatar-1.jpg"
+                                                                        alt="User Avatar" width="60"
+                                                                        height="60" />
                                                                     <div>
-                                                                        <div style="font-weight: 600; font-size: 16px;">
-                                                                            Angkutan Bermotor</div>
-                                                                        <div
-                                                                            style="display: flex; align-items: center; gap: 0.5rem;">
-                                                                            <div
-                                                                                style="display: flex; align-items: center; gap: 0.25rem;">
-                                                                                <i class="fa fa-hashtag"
-                                                                                    style="color: #506b9f;"></i>
-                                                                                <span
-                                                                                    style="color: #6c757d; font-size: 14px;">Kode
-                                                                                    KBLI:</span>
-                                                                                <span
-                                                                                    style="font-weight: 600; font-size: 14px;">12345</span>
-                                                                            </div>
+                                                                        <h6 class="mb-1">KBLI 45111</h6>
+                                                                        <div class="h5 mt-3"> Theme customisation issue
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <!-- Kolom Uraian KBLI -->
-                                                            <td
-                                                                style="vertical-align: middle; text-align: left; width: 40%; position: relative;">
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 0.5rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                                                    <div
-                                                                        style="background-color: #506b9f; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-list"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <div title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt viverra lorem. Vivamus vitae diam egestas, molestie sapien non, porta augue."
-                                                                        style="color: #6c757d; font-size: 14px; cursor: pointer;">
-                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                        elit. Integer tincidunt viverra lorem...
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <!-- Kolom Tanggal -->
-                                                            <td
-                                                                style="vertical-align: middle; text-align: center; width: 15%;">
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 0.5rem;">
-                                                                    <div
-                                                                        style="background-color: #36784c; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-calendar-day"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div style="color: #6c757d; font-size: 14px;">
-                                                                            06 Desember 2024</div>
+                                                                        </p>
+                                                                        <p class="text-muted text-wrap"
+                                                                            style="word-break: break-word;">
+                                                                            Kegiatan ini meliputi perdagangan mobil baru,
+                                                                            termasuk
+                                                                            kendaraan penumpang dan kendaraan niaga ringan.
+                                                                            Fokusnya
+                                                                            adalah penjualan kendaraan langsung kepada
+                                                                            konsumen
+                                                                            melalui showroom atau agen resmi.
+                                                                        </p>
+
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td
-                                                                style="vertical-align: middle; text-align: center; width: 5%;">
-                                                                <div>2</div>
-                                                            </td>
                                                             <td>
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 1rem;">
-                                                                    <!-- Avatar -->
-                                                                    <div
-                                                                        style="background-color: #36784c; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-file"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <!-- Informasi Perusahaan -->
+                                                                <div class="d-flex align-items-start">
+                                                                    <img class="rounded-circle me-3"
+                                                                        src="../assets/images/user/avatar-1.jpg"
+                                                                        alt="User Avatar" width="60"
+                                                                        height="60" />
                                                                     <div>
-                                                                        <div style="font-weight: 600; font-size: 16px;">
-                                                                            Angkutan Bermotor</div>
-                                                                        <div
-                                                                            style="display: flex; align-items: center; gap: 0.5rem;">
-                                                                            <div
-                                                                                style="display: flex; align-items: center; gap: 0.25rem;">
-                                                                                <i class="fa fa-hashtag"
-                                                                                    style="color: #36784c;"></i>
-                                                                                <span
-                                                                                    style="color: #6c757d; font-size: 14px;">Kode
-                                                                                    KBLI:</span>
-                                                                                <span
-                                                                                    style="font-weight: 600; font-size: 14px;">12345</span>
-                                                                            </div>
+                                                                        <h6 class="mb-1">KBLI 45111</h6>
+                                                                        <div class="h5 mt-3"> Theme customisation issue
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <!-- Kolom Uraian KBLI -->
-                                                            <td
-                                                                style="vertical-align: middle; text-align: left; width: 40%; position: relative;">
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 0.5rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                                                    <div
-                                                                        style="background-color: #923c82; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-list"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <div title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt viverra lorem. Vivamus vitae diam egestas, molestie sapien non, porta augue."
-                                                                        style="color: #6c757d; font-size: 14px; cursor: pointer;">
-                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                        elit. Integer tincidunt viverra lorem...
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <!-- Kolom Tanggal -->
-                                                            <td
-                                                                style="vertical-align: middle; text-align: center; width: 15%;">
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 0.5rem;">
-                                                                    <div
-                                                                        style="background-color: #923c82; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-calendar-day"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div style="color: #6c757d; font-size: 14px;">
-                                                                            06 Desember 2024</div>
+                                                                        </p>
+                                                                        <p class="text-muted text-wrap"
+                                                                            style="word-break: break-word;">
+                                                                            Kegiatan ini meliputi perdagangan mobil baru,
+                                                                            termasuk
+                                                                            kendaraan penumpang dan kendaraan niaga ringan.
+                                                                            Fokusnya
+                                                                            adalah penjualan kendaraan langsung kepada
+                                                                            konsumen
+                                                                            melalui showroom atau agen resmi.
+                                                                        </p>
+
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td
-                                                                style="vertical-align: middle; text-align: center; width: 5%;">
-                                                                <div>3</div>
-                                                            </td>
                                                             <td>
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 1rem;">
-                                                                    <!-- Avatar -->
-                                                                    <div
-                                                                        style="background-color: #923c82; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-file"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <!-- Informasi Perusahaan -->
+                                                                <div class="d-flex align-items-start">
+                                                                    <img class="rounded-circle me-3"
+                                                                        src="../assets/images/user/avatar-1.jpg"
+                                                                        alt="User Avatar" width="60"
+                                                                        height="60" />
                                                                     <div>
-                                                                        <div style="font-weight: 600; font-size: 16px;">
-                                                                            Angkutan Bermotor</div>
-                                                                        <div
-                                                                            style="display: flex; align-items: center; gap: 0.5rem;">
-                                                                            <div
-                                                                                style="display: flex; align-items: center; gap: 0.25rem;">
-                                                                                <i class="fa fa-hashtag"
-                                                                                    style="color: #171c21;"></i>
-                                                                                <span
-                                                                                    style="color: #6c757d; font-size: 14px;">Kode
-                                                                                    KBLI:</span>
-                                                                                <span
-                                                                                    style="font-weight: 600; font-size: 14px;">12345</span>
-                                                                            </div>
+                                                                        <h6 class="mb-1">KBLI 45111</h6>
+                                                                        <div class="h5 mt-3"> Theme customisation issue
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <!-- Kolom Uraian KBLI -->
-                                                            <td
-                                                                style="vertical-align: middle; text-align: left; width: 40%; position: relative;">
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 0.5rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                                                    <div
-                                                                        style="background-color: #171c21; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-list"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <div title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tincidunt viverra lorem. Vivamus vitae diam egestas, molestie sapien non, porta augue."
-                                                                        style="color: #6c757d; font-size: 14px; cursor: pointer;">
-                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                        elit. Integer tincidunt viverra lorem...
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <!-- Kolom Tanggal -->
-                                                            <td
-                                                                style="vertical-align: middle; text-align: center; width: 15%;">
-                                                                <div
-                                                                    style="display: flex; align-items: center; gap: 0.5rem;">
-                                                                    <div
-                                                                        style="background-color: #171c21; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #e3e3e3;">
-                                                                        <i class="fa-solid fa-calendar-day"
-                                                                            style="color: white; font-size: 24px;"></i>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div style="color: #6c757d; font-size: 14px;">
-                                                                            06 Desember 2024</div>
+                                                                        </p>
+                                                                        <p class="text-muted text-wrap"
+                                                                            style="word-break: break-word;">
+                                                                            Kegiatan ini meliputi perdagangan mobil baru,
+                                                                            termasuk
+                                                                            kendaraan penumpang dan kendaraan niaga ringan.
+                                                                            Fokusnya
+                                                                            adalah penjualan kendaraan langsung kepada
+                                                                            konsumen
+                                                                            melalui showroom atau agen resmi.
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                     </tbody>
-
                                                 </table>
+                                            </div>
+
+                                            <!-- Pagination -->
+                                            <div class="datatable-bottom">
+                                                <div class="datatable-info">Showing 1 to 10 of 16 entries</div>
+                                                <nav class="datatable-pagination">
+                                                    <ul class="datatable-pagination-list">
+                                                        <li
+                                                            class="datatable-pagination-list-item datatable-hidden datatable-disabled">
+                                                            <button data-page="1"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">‹</button>
+                                                        </li>
+                                                        <li class="datatable-pagination-list-item datatable-active"><button
+                                                                data-page="1" class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">1</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">2</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">›</button></li>
+                                                    </ul>
+                                                </nav>
                                             </div>
                                         </div>
                                     </div>
@@ -438,6 +357,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="tab-pane" id="profile-3" role="tabpanel" aria-labelledby="profile-tab-3">
                     <div class="row">
                         <div class="col-12">
