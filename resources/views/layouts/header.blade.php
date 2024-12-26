@@ -203,25 +203,17 @@
                                 <a href="#" class="dropdown-item">
                                     <span>
                                         <svg class="pc-icon text-muted me-2">
-                                            <use xlink:href="#custom-setting-outline"></use>
-                                        </svg>
-                                        <span>Settings</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <span>
-                                        <svg class="pc-icon text-muted me-2">
                                             <use xlink:href="#custom-share-bold"></use>
                                         </svg>
-                                        <span>Share</span>
+                                        <span>Bagikan</span>
                                     </span>
                                 </a>
-                                <a href="#" class="dropdown-item">
+                                <a href="/profil-akun" class="dropdown-item">
                                     <span>
                                         <svg class="pc-icon text-muted me-2">
-                                            <use xlink:href="#custom-lock-outline"></use>
+                                            <use xlink:href="#custom-user"></use>
                                         </svg>
-                                        <span>Change Password</span>
+                                        <span>Profil Akun</span>
                                     </span>
                                 </a>
                                 <hr class="border-secondary border-opacity-50" />
@@ -229,7 +221,7 @@
                                     <button class="btn btn-primary">
                                         <svg class="pc-icon me-2">
                                             <use xlink:href="#custom-logout-1-outline"></use>
-                                        </svg>Logout
+                                        </svg>Keluar
                                     </button>
                                 </div>
                             </div>

@@ -28,7 +28,7 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data KBLI</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-1"
+                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2"
                         data-bs-toggle="modal" data-bs-target="#animateModal">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
                     </button>
@@ -58,13 +58,23 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>00293746</td>
+                                            <td>
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-success d-flex align-items-center justify-content-center">
+                                                            <i class="fa-solid fa-address-book text-white"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">00293746</span> </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="row align-items-center">
                                                     <div class="col">
                                                         <h6 class="mb-1"><span class="text-truncate w-100">Angkutan
                                                                 Bermotor</span> </h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"></a></p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -77,7 +87,7 @@
                                                                 class="ti ti-eye f-20"></i></a>
                                                     </li>
                                                     <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default"><i
+                                                            class="avtar avtar-s btn-link-warning btn-pc-default"><i
                                                                 class="ti ti-edit f-20"></i></a></li>
                                                     <li class="list-inline-item"><a href="#"
                                                             class="avtar avtar-s btn-link-danger btn-pc-default"><i
@@ -88,13 +98,23 @@
 
                                         <tr>
                                             <td>2</td>
-                                            <td>00293746</td>
+                                            <td>
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-success d-flex align-items-center justify-content-center">
+                                                            <i class="fa-solid fa-address-book text-white"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">00293746</span> </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="row align-items-center">
                                                     <div class="col">
                                                         <h6 class="mb-1"><span class="text-truncate w-100">Angkutan
                                                                 Bermotor</span> </h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"></a></p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -107,7 +127,7 @@
                                                                 class="ti ti-eye f-20"></i></a>
                                                     </li>
                                                     <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default"><i
+                                                            class="avtar avtar-s btn-link-warning btn-pc-default"><i
                                                                 class="ti ti-edit f-20"></i></a></li>
                                                     <li class="list-inline-item"><a href="#"
                                                             class="avtar avtar-s btn-link-danger btn-pc-default"><i
@@ -118,14 +138,23 @@
 
                                         <tr>
                                             <td>3</td>
-                                            <td>00293746</td>
+                                            <td>
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-success d-flex align-items-center justify-content-center">
+                                                            <i class="fa-solid fa-address-book text-white"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">00293746</span> </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="row align-items-center">
                                                     <div class="col">
                                                         <h6 class="mb-1"><span class="text-truncate w-100">Angkutan
                                                                 Bermotor</span> </h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"></a>
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -138,7 +167,7 @@
                                                                 class="ti ti-eye f-20"></i></a>
                                                     </li>
                                                     <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default"><i
+                                                            class="avtar avtar-s btn-link-warning btn-pc-default"><i
                                                                 class="ti ti-edit f-20"></i></a></li>
                                                     <li class="list-inline-item"><a href="#"
                                                             class="avtar avtar-s btn-link-danger btn-pc-default"><i
@@ -146,8 +175,6 @@
                                                 </ul>
                                             </td>
                                         </tr>
-
-
                                     </tbody>
                                 </table>
                             </div>

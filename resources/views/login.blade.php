@@ -34,12 +34,12 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
 </head>
 <style>
-.welcome-banner::after {
-    opacity: 0.1;
-    background-position: bottom;
-    background-size: 600%;
-    
-}
+    .welcome-banner::after {
+        opacity: 0.1;
+        background-position: bottom;
+        background-size: 600%;
+
+    }
 </style>
 
 <body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr"
@@ -60,7 +60,7 @@
             </div>
 
             <div class="auth-form">
-                <div class="card my-5">
+                <div class="card my-5" style="max-width:70%">
                     <div class="card-body">
                         <div class="text-center">
                             <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img"
@@ -87,7 +87,7 @@
                         </div>
                         <div class="d-flex mt-1 justify-content-between align-items-center">
                             <div class="form-check">
-                                <input class="form-check-input input-primary" type="checkbox" id="customCheckc1"/>
+                                <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" />
                                 <label class="form-check-label text-muted" for="customCheckc1">Ingatkan saya?</label>
                             </div>
                             <h6 class="text-secondary f-w-400 mb-0">
@@ -95,7 +95,7 @@
                             </h6>
                         </div>
                         <div class="d-grid mt-5">
-                            <a href="/dashboard" type="button" class="btn btn-primary">Masuk</a>
+                            <a href="/dashboard" type="button" class="btn btn-primary" style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Masuk</a>
                         </div>
                         <div class="d-flex justify-content-center align-items-end mt-3">
                             <h6 class="f-w-500 mb-0 me-2">Belum punya akun?</h6>

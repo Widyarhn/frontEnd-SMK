@@ -28,19 +28,20 @@ Route::get('/kota', function () {
 
 //kbli
 Route::get('/kbli', function () {
-    return view('Administrator.MasterData.kbli');
+    return view('Administrator.MasterData.KBLI.kbli');
+});
+Route::get('/penandatangan', function () {
+    return view('Administrator.MasterData.Penandatangan.direkturJendral');
+});
+Route::get('/nomor-sk', function () {
+    return view('Administrator.MasterData.NoBeritaAcara.noSk');
 });
 
 //satuanKerja
 Route::get('/satuan-kerja', function () {
     return view('Administrator.MasterData.SatuanKerja.satuanKerja');
 });
-Route::get('/direktur-jendral', function () {
-    return view('Administrator.MasterData.SatuanKerja.direkturJendral');
-});
-Route::get('/nomor-sk', function () {
-    return view('Administrator.MasterData.SatuanKerja.noSk');
-});
+
 
 //element
 Route::get('/element-pemantauan/list', function () {
@@ -57,13 +58,15 @@ Route::get('/element-smk/create', function () {
     return view('Administrator.MasterData.Element.ElementSmk.create');
 });
 
-//administrasi
+//perusahaan
 Route::get('/perusahaan', function () {
     return view('Administrator.Administrasi.Perusahaan.list');
 });
 Route::get('/perusahaan/detail', function () {
     return view('Administrator.Administrasi.Perusahaan.detail');
 });
+
+//administrasi
 Route::get('/hak-akses', function () {
     return view('Administrator.Administrasi.HakAkses.list');
 });
@@ -75,3 +78,25 @@ Route::get('/user-manajemen', function () {
 Route::get('/pengaturan', function () {
     return view('Administrator.Pengaturan.index');
 });
+Route::get('/profil-akun', function () {
+    return view('Administrator.ProfilAkun.index');
+});
+
+
+// Internal
+Route::get('/dashboard-internal', function () {
+    return view('Internal.dashboard');
+});
+
+
+
+
+// Company
+Route::get('/dashboard-company', function () {
+    return view('Company.dashboard');
+});
+
+
+
+
+

@@ -22,14 +22,14 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Direktur Jendral</li>
+                        <li class="breadcrumb-item" aria-current="page">Penandatangan</li>
                     </ul>
                 </div>
                 <div class="col-md-12 d-flex justify-content-between align-items-center">
                     <div class="page-header-title">
-                        <h2 class="mb-0">Data Direktur Jendral</h2>
+                        <h2 class="mb-0">Penandatangan</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-1"
+                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2"
                         data-bs-toggle="modal" data-bs-target="#animateModal">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
                     </button>
@@ -54,7 +54,6 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
-                                            <th>Satuan Kerja</th>
                                             <th>Tanggal Masuk</th>
                                             <th>Status</th>
                                             <th class="text-end">Aksi</th>
@@ -63,13 +62,16 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Bebas</td>
                                             <td>
                                                 <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                            <i class="fa-solid fa-user text-white"></i>
+                                                        </div>
+                                                    </div>
                                                     <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">dishub
-                                                                provinsi</span></h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"></a></p>
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">Anwar Meer</span></h6>
+                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted">Dishub Jabar</a></p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -77,30 +79,33 @@
                                             <td><span class="badge bg-light-danger">Tidak Aktif</span></td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default">
-                                                            <i class="fa-solid fa-user-check"></i></a>
-                                                    </li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-warning btn-pc-default"><i
-                                                                class="ti ti-edit f-20"></i></a></li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                                class="ti ti-trash f-20"></i></a></li>
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-success btn-pc-default">
+                                                        <i class="fa-solid fa-user-check"></i></a>
+                                                </li>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-warning btn-pc-default"><i
+                                                            class="ti ti-edit f-20"></i></a></li>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
+                                                            class="ti ti-trash f-20"></i></a></li>
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td>2</td>
-                                            <td>Bebas aja</td>
                                             <td>
                                                 <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                            <i class="fa-solid fa-user text-white"></i>
+                                                        </div>
+                                                    </div>
                                                     <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">dishub
-                                                                provinsi</span></h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"></a></p>
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">Anwar Udin</span></h6>
+                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted">Dishub Jabar</a></p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -108,18 +113,18 @@
                                             <td><span class="badge bg-light-success">Aktif</span></td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-danger btn-pc-default">
-                                                            <i class="fas fa-user-times"></i></a>
-                                                    </li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-warning btn-pc-default"><i
-                                                                class="ti ti-edit f-20"></i></a></li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                                class="ti ti-trash f-20"></i></a></li>
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-danger btn-pc-default">
+                                                        <i class="fas fa-user-times"></i></a>
+                                                </li>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-warning btn-pc-default"><i
+                                                            class="ti ti-edit f-20"></i></a></li>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
+                                                            class="ti ti-trash f-20"></i></a></li>
                                             </td>
                                         </tr>
 
@@ -137,7 +142,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data Direktur Jendral</h5>
+                    <h5 class="modal-title">Tambah Data Penandatangan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
@@ -145,8 +150,8 @@
                         <div class="mb-3">
                             <div class="form-floating">
                                 <select class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example">
-                                    <option selected>Pilih satuan kerja</option>
+                                    aria-label="Floating label select example" disabled>
+                                    <option selected>Dishub Jabar</option>
                                     <option value="1">Kementrian Perhubungan Darat</option>
                                     <option value="2">Dishub Jabar</option>
                                 </select>
@@ -177,6 +182,14 @@
                                 <label for="floatingInput">Nomor Identitas</label>
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label class="mb-2">Unggah Tanda Tangan</label>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" />
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -192,4 +205,5 @@
     <script src="https://ableproadmin.com/assets/js/plugins/apexcharts.min.js"></script>
     <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
     <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/dropzone-amd-module.min.js"></script>
 @endsection

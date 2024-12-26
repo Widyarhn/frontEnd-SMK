@@ -6,12 +6,13 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+
 @endsection
 
 @section('content')
@@ -40,12 +41,13 @@
                     <ul class="nav nav-pills nav-justified">
                         <li class="nav-item" data-target-form="#contactDetailForm">
                             <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                <span class="d-none d-sm-inline fw-bold f-18">1.1</span>
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield"></i></span>
                             </a>
                         </li>
                         <li class="nav-item" data-target-form="#jobDetailForm">
                             <a href="#2.2Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18">2.2</span>
+                                <span class="d-none d-sm-inline fw-bold f-18"><i
+                                        class="fa-solid fa-building-shield"></i></span>
                             </a>
                         </li>
                     </ul>
@@ -74,7 +76,8 @@
                                                 <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Uraian</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan Monitoring</th>
+                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan
+                                                    Monitoring</th>
                                                 <th class="text-center"><span class="text-danger">*</span>Ditampilkan</th>
                                                 <th class="text-center"><span class="text-danger">*</span>Wajib Diisi</th>
                                             </tr>
@@ -86,15 +89,19 @@
                                                 <td>Isam</td>
                                                 <td class="text-center">
                                                     <div class="btn-group" role="group" aria-label="Yes or No">
-                                                        <button type="button" class="btn btn-outline-success btn-yes">Iya</button>
-                                                        <button type="button" class="btn btn-outline-danger btn-no">Tidak</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success btn-yes">Iya</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-danger btn-no">Tidak</button>
                                                     </div>
                                                     <input type="hidden" class="response-value" value="" />
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group" role="group" aria-label="Yes or No">
-                                                        <button type="button" class="btn btn-outline-success btn-yes2">Iya</button>
-                                                        <button type="button" class="btn btn-outline-danger btn-no2">Tidak</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success btn-yes2">Iya</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-danger btn-no2">Tidak</button>
                                                     </div>
                                                     <input type="hidden" class="response-value2" value="" />
                                                 </td>
@@ -103,7 +110,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2" class="fw-bold" >Pertanyaan Tambahan</td>
+                                                <td colspan="2" class="fw-bold">Pertanyaan Tambahan</td>
                                                 <td colspan="4" class="text-center">
                                                     <textarea id="additional-question" class="form-control" rows="4" placeholder="Masukkan pertanyaan tambahan"></textarea>
                                                 </td>
@@ -128,7 +135,8 @@
                                                 <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Uraian</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan Monitoring</th>
+                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan
+                                                    Monitoring</th>
                                                 <th class="text-center"><span class="text-danger">*</span>Ditampilkan</th>
                                                 <th class="text-center"><span class="text-danger">*</span>Wajib Diisi</th>
                                             </tr>
@@ -140,15 +148,19 @@
                                                 <td>Isam</td>
                                                 <td class="text-center">
                                                     <div class="btn-group" role="group" aria-label="Yes or No">
-                                                        <button type="button" class="btn btn-outline-success btn-yes">Iya</button>
-                                                        <button type="button" class="btn btn-outline-danger btn-no">Tidak</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success btn-yes">Iya</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-danger btn-no">Tidak</button>
                                                     </div>
                                                     <input type="hidden" class="response-value" value="" />
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group" role="group" aria-label="Yes or No">
-                                                        <button type="button" class="btn btn-outline-success btn-yes2">Iya</button>
-                                                        <button type="button" class="btn btn-outline-danger btn-no2">Tidak</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-success btn-yes2">Iya</button>
+                                                        <button type="button"
+                                                            class="btn btn-outline-danger btn-no2">Tidak</button>
                                                     </div>
                                                     <input type="hidden" class="response-value2" value="" />
                                                 </td>
@@ -221,10 +233,10 @@
                             </div>
                             <div class="d-flex">
                                 <div class="previous me-2">
-                                    <a href="javascript:void(0);" class="btn btn-outline-secondary"> Back To Previous </a>
+                                    <button type="button" class="btn btn-secondary kembali"> Kembali </button>
                                 </div>
                                 <div class="next">
-                                    <a href="javascript:void(0);" class="btn btn-outline-primary"> Next Step </a>
+                                    <button type="button" class="btn btn-primary selanjutnya"> Selanjutnya </button>
                                 </div>
                             </div>
                             <div class="last">
@@ -243,19 +255,32 @@
     <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
     <script>
-        new Wizard('#basicwizard', {
-            validate: true,
-            progress: true
-        });
-        
-    </script>
-    <script>
+
         document.addEventListener("click", (e) => {
+            if (e.target.classList.contains('selanjutnya')) {
+                let currentTab = document.querySelector('.tab-pane.active');
+                let nextTab = currentTab.nextElementSibling;
+
+                if (nextTab) {
+                    currentTab.classList.remove('show', 'active');
+                    nextTab.classList.add('show', 'active');
+                }
+            }
+
+            if (e.target.classList.contains('kembali')) {
+                let currentTab = document.querySelector('.tab-pane.active');
+                let prevTab = currentTab.previousElementSibling;
+
+                if (prevTab) {
+                    currentTab.classList.remove('show', 'active');
+                    prevTab.classList.add('show', 'active');
+                }
+            }
             if (e.target.classList.contains("btn-yes") || e.target.classList.contains("btn-no")) {
                 const yesButton = e.target.closest(".btn-group").querySelector(".btn-yes");
                 const noButton = e.target.closest(".btn-group").querySelector(".btn-no");
                 const hiddenInput = e.target.closest("td").querySelector(".response-value");
-    
+
                 if (e.target.classList.contains("btn-yes")) {
                     yesButton.classList.add("active");
                     noButton.classList.remove("active");
@@ -270,7 +295,7 @@
                 const yesButton = e.target.closest(".btn-group").querySelector(".btn-yes2");
                 const noButton = e.target.closest(".btn-group").querySelector(".btn-no2");
                 const hiddenInput = e.target.closest("td").querySelector(".response-value2");
-    
+
                 if (e.target.classList.contains("btn-yes2")) {
                     yesButton.classList.add("active");
                     noButton.classList.remove("active");

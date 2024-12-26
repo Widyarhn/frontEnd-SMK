@@ -31,7 +31,7 @@
                     <h2 class="mb-0">Data Kota</h2>
                 </div>
                 <button type="button"
-                    class="btn btn-md btn-primary px-3 p-1" data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
+                    class="btn btn-md btn-primary px-3 p-2" data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
                     data-bs-target="#animateModal">
                     <i class="fas fa-plus-circle me-2"></i> Tambah Data
                 </button>
@@ -60,7 +60,18 @@
                                 <tbody>
                                     <tr>
                                         <td>1.</td>
-                                        <td>Tangerang</td>
+                                        <td>
+                                            <div class="row align-items-center">
+                                                <div class="col-auto pe-0">
+                                                    <div class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                                        <i class="fa-solid fa-city text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <h6 class="mb-1"><span class="text-truncate w-100">Tangerang</span></h6>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>Banten</td>
                                         <td>123</td>
                                         <td class="text-end">
@@ -79,7 +90,18 @@
                                     </tr>
                                     <tr>
                                         <td>2.</td>
-                                        <td>Sorong</td>
+                                        <td>
+                                            <div class="row align-items-center">
+                                                <div class="col-auto pe-0">
+                                                    <div class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                                        <i class="fa-solid fa-city text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <h6 class="mb-1"><span class="text-truncate w-100">Sorong</span></h6>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>Papua</td>
                                         <td>1223</td>
                                         <td class="text-end">

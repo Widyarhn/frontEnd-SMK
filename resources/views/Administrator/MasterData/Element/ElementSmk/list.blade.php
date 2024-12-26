@@ -61,7 +61,7 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Bebas</td>
+                                            <td class="fw-bold">Bebas</td>
                                             <td><span class="badge bg-light-danger">Tidak Aktif</span></td>
                                             <td>05 September 2024</td>
                                             <td class="text-end">
@@ -83,7 +83,7 @@
 
                                         <tr>
                                             <td>2</td>
-                                            <td>Bebas aja</td>
+                                            <td class="fw-bold">Bebas aja</td>
                                             <td><span class="badge bg-light-info">Aktif</span></td>
                                             <td>20 Oktober 2024</td>
                                             <td class="text-end">

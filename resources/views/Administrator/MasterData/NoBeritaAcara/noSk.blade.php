@@ -22,14 +22,14 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Nomor SK</li>
+                        <li class="breadcrumb-item" aria-current="page">No. Berita Acara</li>
                     </ul>
                 </div>
                 <div class="col-md-12 d-flex justify-content-between align-items-center">
                     <div class="page-header-title">
-                        <h2 class="mb-0">Data Nomor SK</h2>
+                        <h2 class="mb-0">No. Berita Acara</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-1"
+                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2"
                         data-bs-toggle="modal" data-bs-target="#animateModal">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
                     </button>
@@ -53,9 +53,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nomor SK</th>
+                                            <th>No. Berita Acara</th>
                                             <th>Tanggal</th>
-                                            <th>Instansi</th>
                                             <th>Status</th>
                                             <th class="text-end">Aksi</th>
                                         </tr>
@@ -63,17 +62,19 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>SK123-2024</td>
-                                            <td>05 September 2024</td>
                                             <td>
                                                 <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-light d-flex align-items-center justify-content-center">
+                                                            <i class="fa-solid fa-book-open-reader text-black"></i>
+                                                        </div>
+                                                    </div>
                                                     <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">dishub
-                                                                provinsi</span></h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"></a></p>
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">SK123-2024</span></h6>
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td>05 September 2024</td>
                                             <td><span class="badge bg-light-danger">Tidak Aktif</span></td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
@@ -91,20 +92,21 @@
                                                                 class="ti ti-trash f-20"></i></a></li>
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td>2</td>
-                                            <td>SK-122024</td>
-                                            <td>20 Oktober 2024</td>
                                             <td>
                                                 <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-light d-flex align-items-center justify-content-center">
+                                                            <i class="fa-solid fa-book-open-reader text-black"></i>
+                                                        </div>
+                                                    </div>
                                                     <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">dishub
-                                                                provinsi</span></h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"></a></p>
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">SK123-2024</span></h6>
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td>20 Oktober 2024</td>
                                             <td><span class="badge bg-light-success">Aktif</span></td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
@@ -137,26 +139,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data Nomor SK</h5>
+                    <h5 class="modal-title">Tambah Data Nomor Berita Acara</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                     <form class="p-3">
                         <div class="mb-3">
-                            <div class="form-floating mb-0">
-                                <input type="kota" class="form-control" id="floatingKota" placeholder="kota" />
-                                <label for="floatingInput">Nomor SK</label>
+                            <div class="form-floating">
+                                <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example" disabled>
+                                    <option selected>Dishub Jabar</option>
+                                    <option value="1">Kementrian Perhubungan Darat</option>
+                                    <option value="2"></option>
+                                </select>
+                                <label for="floatingSelect">Satuan Kerja</label>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <div class="form-floating">
-                                <select class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example">
-                                    <option selected>Pilih satuan kerja</option>
-                                    <option value="1">Kementrian Perhubungan Darat</option>
-                                    <option value="2">Dishub Jabar</option>
-                                </select>
-                                <label for="floatingSelect">Satuan Kerja</label>
+                            <div class="form-floating mb-0">
+                                <input type="kota" class="form-control" id="floatingKota" placeholder="kota" />
+                                <label for="floatingInput">No. Berita Acara</label>
                             </div>
                         </div>
                     </form>

@@ -77,7 +77,18 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Bebas</td>
+                                            <td>
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                            <i class="fas fa-user text-white"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">Admin</span></h6>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="form-check form-switch custom-switch-v1 switch-lg">
                                                     <input type="checkbox" class="form-check-input input-primary f-16"
@@ -119,7 +130,18 @@
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>Bebas</td>
+                                            <td>
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <div class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                            <i class="fas fa-user text-white"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">Asesor</span></h6>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="form-check form-switch custom-switch-v1 switch-lg">
                                                     <input type="checkbox" class="form-check-input input-primary f-16"

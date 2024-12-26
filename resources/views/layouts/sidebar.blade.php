@@ -40,19 +40,21 @@
                         <span class="pc-mtext">KBLI</span>
                     </a>
                 </li>
-                <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
+                <li class="pc-item">
+                    <a href="/nomor-sk" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fas fa-user-tie"></i>
+                            <i class="fa-solid fa-file-lines"></i>
                         </span>
-                        <span class="pc-mtext">Satuan Kerja</span>
-                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        <span class="pc-mtext">No. Berita Acara</span>
                     </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="/satuan-kerja">Satuan Kerja</a></li>
-                        <li class="pc-item"><a class="pc-link" href="/direktur-jendral">Direktur Jendral</a></li>
-                        <li class="pc-item"><a class="pc-link" href="/nomor-sk">Nomor SK</a></li>
-                    </ul>
+                </li>
+                <li class="pc-item">
+                    <a href="/penandatangan" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa-solid fa-signature"></i>
+                        </span>
+                        <span class="pc-mtext">Penandatangan</span>
+                    </a>
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
@@ -90,17 +92,108 @@
                         <span class="pc-mtext">Hak Akses</span>
                     </a>
                 </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Perusahaan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
                 <li class="pc-item">
                     <a href="/perusahaan" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fa-regular fa-building"></i>
+                            <i class="ph-duotone ph-buildings"></i>
                         </span>
-                        <span class="pc-mtext">Data Perusahaan</span>
+                        <span class="pc-mtext">Perusahaan</span>
                     </a>
                 </li>
 
                 <li class="pc-item pc-caption">
                     <label>Pengaturan Aplikasi</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <li class="pc-item">
+                    <a href="/pengaturan" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa fa-cogs"></i>
+                        </span>
+                        <span class="pc-mtext">Pengaturan</span>
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <p class="text-center">internal</p>
+            <hr>
+            <ul class="pc-navbar">
+                <li class="pc-item">
+                    <a href="/dashboard-internal" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Dashboard</span>
+                    </a>
+                </li>
+                <li class="pc-item pc-caption">
+                    <label>Perusahaan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <li class="pc-item">
+                    <a href="/perusahaan" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ph-duotone ph-buildings"></i>
+                        </span>
+                        <span class="pc-mtext">Perusahaan</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Pengaturan Akun</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <li class="pc-item">
+                    <a href="/pengaturan" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa fa-cogs"></i>
+                        </span>
+                        <span class="pc-mtext">Pengaturan</span>
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <p class="text-center">Company</p>
+            <hr>
+            <ul class="pc-navbar">
+                <li class="pc-item">
+                    <a href="/dashboard-company" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        <span class="pc-mtext">Dashboard</span>
+                    </a>
+                </li>
+                <li class="pc-item pc-caption">
+                    <label>Perusahaan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <li class="pc-item">
+                    <a href="/perusahaan" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ph-duotone ph-buildings"></i>
+                        </span>
+                        <span class="pc-mtext">Perusahaan</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Pengaturan Akun</label>
                     <svg class="pc-icon">
                         <use xlink:href="#custom-presentation-chart"></use>
                     </svg>

@@ -29,7 +29,7 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data Satuan Kerja</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-1"
+                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2"
                         data-bs-toggle="modal" data-bs-target="#animateModal">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
                     </button>

@@ -31,7 +31,7 @@
                     <h2 class="mb-0">Data Provinsi</h2>
                 </div>
                 <button data-pc-animate="fade-in-scale" type="button"
-                    class="btn btn-md btn-primary px-3 p-1" data-bs-toggle="modal"
+                    class="btn btn-md btn-primary px-3 p-2" data-bs-toggle="modal"
                     data-bs-target="#animateModal">
                     <i class="fas fa-plus-circle me-2"></i> Tambah Data
                 </button>
@@ -59,7 +59,18 @@
                                 <tbody>
                                     <tr>
                                         <td>1.</td>
-                                        <td>Banten</td>
+                                        <td>
+                                            <div class="row align-items-center">
+                                                <div class="col-auto pe-0">
+                                                    <div class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                                        <i class="fa-solid fa-map-location text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <h6 class="mb-1"><span class="text-truncate w-100">Banten</span></h6>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>123</td>
                                         <td class="text-end">
                                             <ul class="list-inline mb-0">
@@ -77,7 +88,18 @@
                                     </tr>
                                     <tr>
                                         <td>2.</td>
-                                        <td>Papua</td>
+                                        <td>
+                                            <div class="row align-items-center">
+                                                <div class="col-auto pe-0">
+                                                    <div class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                                        <i class="fa-solid fa-map-location text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <h6 class="mb-1"><span class="text-truncate w-100">Papua</span></h6>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>1223</td>
                                         <td class="text-end">
                                             <ul class="list-inline mb-0">

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    
 @endsection
 
 @section('content')
@@ -46,33 +47,44 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0">
-                                    <div class="avtar avtar-l btn-light-secondary rounded-circle">
-                                        <i class="ti ti-photo f-18"></i>
+                                    <div class="text-center">
+                                        <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img" style="width: 60px;" /></a>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1 mx-3">
-                                    <h6 class="mb-0">SMK-PAU</h6>
-                                    <p class="mb-0">Dishub Provinsi Jabar | 01267766</p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <button class="btn btn-md btn-light-warning"><i class="ti ti-edit"></i>
-                                        Edit</button>
+                                <div class="flex-grow-1 mx-5">
+                                    <h4 class="mb-0">SMK-PAU</h4>
+                                    <h6 class="mb-0">Dishub Provinsi Jabar</h6>
+                                    <p class="mb-0">8534 Saunders Hill Apt. 583</p>
+                                    <div class="d-flex align-items-center">
+                                        <p class="mb-0 me-2">
+                                            <span class="contact-icon">
+                                                <i class="fa fa-phone"></i>
+                                            </span>
+                                            01267766 
+                                        </p>
+                                        <span class="mx-2">|</span>
+                                        <p class="mb-0 ms-2">
+                                            <span class="contact-icon">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                            brandon07@pierce.com
+                                        </p>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
+                        
+                        
                         <div class="card-body">
                             <div class="row g-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="card shadow-none border mb-0 h-100">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-grow-1 me-3">
                                                     <h6 class="mb-0">Logo Aplikasi</h6>
                                                 </div>
-                                                {{-- <div class="flex-shrink-0">
-                                                    <button class="btn btn-sm btn-light-secondary"><i
-                                                            class="ti ti-edit"></i> Edit</button>
-                                                </div> --}}
                                             </div>
                                             <div class="mb-3 mt-3">
                                                 <form action="{{ asset('assets') }}/json/file-upload.php" class="dropzone">
@@ -81,13 +93,14 @@
                                                     </div>
                                                 </form>
                                                 <div class="text-end m-t-25">
-                                                    <button class="btn btn-sm btn-outline-primary">Unggah Logo</button>
+                                                    <button class="btn btn-sm btn-outline-primary p-2"
+                                                        style="border-radius:5px;">Simpan Perubahan</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <div class="card shadow-none border mb-0 h-100">
                                         <div class="card-body">
                                             <h6 class="mb-2">Informasi</h6>
@@ -95,25 +108,135 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <div class="form-floating mb-0">
-                                                            <input type="text" class="form-control"
-                                                                id="namaAplikasi" placeholder="Masukkan Nama Aplikasi" value="SMK-PAU" />
-                                                            <label for="namaAplikasi">Nama Belakang</label>
+                                                            <input type="email" class="form-control" id="email"
+                                                                placeholder="Masukkan Nama Aplikasi" value="dishub@co.id" />
+                                                            <label for="email">Email</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <div class="form-floating mb-0">
-                                                            <input type="text" class="form-control"
-                                                                id="noTelpHelpDesk" placeholder="" value="01267766" />
+                                                            <input type="text" class="form-control" id="noTelpHelpDesk"
+                                                                placeholder="" value="01267766" />
                                                             <label for="noTelpHelpDesk">No. Telepon</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="text-end m-t-15">
-                                                <button class="btn btn-sm btn-outline-primary">Simpan Perubahan</button>
+                                            <div class="row g-4">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="form-floating mb-0">
+                                                            <select class="form-select" id="floatingSelect"
+                                                                aria-label="Floating label select example" disabled>
+                                                                <option selected>Loh bener</option>
+                                                                <option value="1">Tangerang</option>
+                                                                <option value="2"></option>
+                                                            </select>
+                                                            <label for="floatingSelect">Kota</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="form-floating mb-0">
+                                                            <select class="form-select" id="floatingSelect"
+                                                                aria-label="Floating label select example" disabled>
+                                                                <option selected>Indramayu</option>
+                                                                <option value="1">Tangerang
+                                                                </option>
+                                                                <option value="2"></option>
+                                                            </select>
+                                                            <label for="floatingSelect">Kabupaten</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="row g-4">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="form-floating mb-0">
+                                                            <select class="form-select" id="floatingSelect"
+                                                                aria-label="Floating label select example" disabled>
+                                                                <option selected>Jawa Barat</option>
+                                                                <option value="1">Banten</option>
+                                                                <option value="2"></option>
+                                                            </select>
+                                                            <label for="floatingSelect">Provinsi</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="form-floating mb-0">
+                                                            <input type="text" class="form-control" id="kodePos"
+                                                                placeholder="" value="45281" />
+                                                            <label for="floatingSelect">Kode Pos</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="form-floating mb-0">
+                                                    <textarea class="form-control" id="floatingdeskripsi" rows="3"></textarea>
+                                                    <label for="floatingdeskripsi">Alamat</label>
+                                                </div>
+                                            </div>
+                                            <div class="row g-4">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="form-floating mb-0">
+                                                            <input type="text" class="form-control" id="namaAplikasi"
+                                                                placeholder="Masukkan Nama Aplikasi" value="SMK-PAU" />
+                                                            <label for="namaAplikasi">Nama Aplikasi</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="form-floating mb-0">
+                                                            <textarea class="form-control" id="floatingdeskripsi" rows="3"></textarea>
+                                                            <label for="floatingdeskripsi">Deskripsi</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-end m-t-15">
+                                                <button class="btn btn-sm btn-outline-primary p-2"
+                                                    style="border-radius:5px;">Simpan Perubahan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 ">
+                                <div class="card mt-4 shadow-none border mb-0 h-100">
+                                    <div class="card-body">
+                                        <h6 class="mb-4">Akun OSS</h6>
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <div class="form-floating mb-0">
+                                                        <input type="text" class="form-control" id="username"
+                                                            placeholder="Masukkan Nama Aplikasi" value="dishubJabar" />
+                                                        <label for="username">Username OSS</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <div class="form-floating mb-0">
+                                                        <input type="password" class="form-control" id="username"
+                                                            placeholder="Masukkan Nama Aplikasi" value="dishub@co.id" />
+                                                        <label for="username">Password OSS</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-end m-t-15">
+                                            <button class="btn btn-sm btn-outline-primary p-2"
+                                                style="border-radius:5px;">Simpan Perubahan</button>
                                         </div>
                                     </div>
                                 </div>
@@ -126,11 +249,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets') }}/js/plugins/popper.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/bootstrap.min.js"></script>
-    <script src="{{ asset('assets') }}/js/fonts/custom-font.js"></script>
-    <script src="{{ asset('assets') }}/js/pcoded.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/feather.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/dropzone-amd-module.min.js"></script>
 @endsection

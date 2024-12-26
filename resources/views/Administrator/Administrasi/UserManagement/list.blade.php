@@ -29,7 +29,7 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data Pengguna</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-1"
+                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2"
                         data-bs-toggle="modal" data-bs-target="#animateModal">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Pengguna
                     </button>
@@ -38,7 +38,6 @@
         </div>
     </div>
     <!-- [ breadcrumb ] end -->
-
 
     <!-- [ Main Content ] start -->
     <div class="row">
@@ -55,7 +54,6 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Nama Pengguna</th>
-                                            <th>Email</th>
                                             <th>NIP</th>
                                             <th>Peran</th>
                                             <th>Status</th>
@@ -66,18 +64,30 @@
                                     <tbody>
                                         <tr>
                                             <td>1.</td>
-                                            <td>DEVELOPER</td>
+                                            <td>
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <img src="../assets/images/user/avatar-5.jpg" alt="user-image"
+                                                            class="wid-40 hei-40 rounded-circle" />
+                                                    </div>
+                                                    <div class="col">
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">DEVELOPER</span> </h6>
+                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"><span
+                                                                    class="text-truncate w-100">developer@kemenhub.go.id</span></a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>developer</td>
-                                            <td>developer@kemenhub.go.id</td>
                                             <td>0000000000000001</td>
-                                            <td>Asesor</td>
-                                            <td><span class="badge bg-light-danger">Tidak Aktif</span></td>
+                                            <td><span class="badge text-bg-light fw-bold p-2"><i class="fa-solid fa-user me-2 fa-lg"></i>Asesor</span></td>
+                                            <td class="text-success"><i class="fas fa-circle f-10 m-r-10"></i>Aktif</td>
                                             <td class="f">05 September 2024</td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
                                                         data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-success btn-pc-default">
-                                                        <i class="fa-solid fa-user-check"></i></a>
+                                                        class="avtar avtar-s btn-link-danger btn-pc-default">
+                                                        <i class="fa-solid fa-user-xmark"></i></a>
                                                 </li>
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
                                                         data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
@@ -87,18 +97,30 @@
                                         </tr>
                                         <tr>
                                             <td>2.</td>
-                                            <td>DEVELOPER</td>
+                                            <td>
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto pe-0">
+                                                        <img src="../assets/images/user/avatar-9.jpg" alt="user-image"
+                                                            class="wid-40 hei-40 rounded-circle" />
+                                                    </div>
+                                                    <div class="col">
+                                                        <h6 class="mb-1"><span class="text-truncate w-100">DEVELOPER</span> </h6>
+                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted"><span
+                                                                    class="text-truncate w-100">developer@kemenhub.go.id</span></a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>developer</td>
-                                            <td>developer@kemenhub.go.id</td>
                                             <td>0000000000000001</td>
-                                            <td>Asesor</td>
-                                            <td><span class="badge bg-light-success">Aktif</span></td>
-                                            <td>20 Oktober 2024</td>
+                                            <td><span class="badge text-bg-light fw-bold p-2"><i class="fa-solid fa-user me-2 fa-lg"></i>Asesor</span></td>
+                                            <td class="text-danger"><i class="fas fa-circle f-10 m-r-10"></i> Tidak Aktif</td>
+                                            <td class="f">05 September 2024</td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
                                                         data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-danger btn-pc-default">
-                                                        <i class="fas fa-user-times"></i></a>
+                                                        class="avtar avtar-s btn-link-success btn-pc-default">
+                                                        <i class="fa-solid fa-user-check"></i></a>
                                                 </li>
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
                                                         data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
@@ -198,7 +220,7 @@
                             Symbol (?!@#$%^&*.)
                         </p>
                     </form>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Kembali</button>
@@ -210,7 +232,7 @@
 @endsection
 @section('scripts')
     <!-- [Page Specific JS] start -->
-    <script src="https://ableproadmin.com/assets/js/plugins/apexcharts.min.js"></script>
-    <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
-    <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
+    <script src="{{ asset('assets') }}/js/pages/invoice-list.js"></script>
 @endsection

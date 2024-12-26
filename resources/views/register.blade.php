@@ -35,7 +35,7 @@
 </head>
 <style>
     .welcome-banner::after {
-        opacity: 0.1;
+        opacity: 0.3;
         background-position: bottom;
         background-size: 600%;
 
@@ -59,7 +59,7 @@
                 <img src="{{ asset('assets') }}/images/logoapp.png" alt="images" style="width: 150px;" />
             </div>
             <div class="auth-form">
-                <div class="card my-5">
+                <div class="card my-5" style="max-width:70%">
                     <div class="card-body">
                         <div class="text-center">
                             <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img"
@@ -72,11 +72,33 @@
 
                         <form id="wizard-form">
                             <div class="wizard-step step-1">
-                                <h5 class="text-left mb-4" style="color:#214f96;"><i class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan</h5>
+                                <h5 class="text-left mb-4" style="color:#214f96;"><i
+                                        class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan</h5>
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold" for="nib">Nomor Induk Berusaha (NIB)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text"><i class="fa-solid fa-magnifying-glass text-dark"></i></div>
+                                        <input type="text" class="form-control" id="nib"
+                                            placeholder="Masukkan nomor induk berusaha" />
+                                    </div>
+                                </div>
+                                {{-- <div class="form-check form-switch custom-switch-v1 switch-lg">
+                                    <input type="checkbox" class="form-check-input input-primary f-16"
+                                        id="customCheckdefout2" />
+                                    <label class="form-check-label" for="customCheckdefout2">Sinkronisasi dengan akun OSS jika ada</label>
+                                </div> --}}
+                                <div class="d-grid mt-5">
+                                    <button type="submit" class="btn btn-primary mb-2" style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Cek NIB</button>
+                                </div>
+                            </div>
+                            <div class="wizard-step step-2">
+                                <h5 class="text-left mb-4" style="color:#214f96;"><i
+                                        class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan</h5>
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-0">
-                                            <input type="text" class="form-control" id="nib" placeholder="" />
+                                            <input type="text" class="form-control" id="nib"
+                                                placeholder="" />
                                             <label for="nib">NIB</label>
                                         </div>
                                     </div>
@@ -161,11 +183,12 @@
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
-                                    <button type="submit" class="btn btn-primary mb-2">Selanjutnya</button>
+                                    <button type="submit" class="btn btn-primary mb-2" style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Selanjutnya</button>
                                 </div>
                             </div>
-                            <div class="wizard-step step-2" style="display: none;">
-                                <h5 class="text-left mb-4" style="color:#214f96;"><i class="fa-solid fa-circle-info fa-lg me-2"></i>Penanggung Jawab (PIC)</h5>
+                            <div class="wizard-step step-3" style="display: none;">
+                                <h5 class="text-left mb-4" style="color:#214f96;"><i
+                                        class="fa-solid fa-circle-info fa-lg me-2"></i>Penanggung Jawab (PIC)</h5>
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -187,12 +210,13 @@
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
-                                    <button type="submit" class="btn btn-primary mb-2">Selanjutnya</button>
-                                    <button type="button" class="btn btn-outline-secondary prev-btn">Kembali</button>
+                                    <button type="submit" class="btn btn-primary mb-2" style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Selanjutnya</button>
+                                    <button type="button" class="btn btn-outline-secondary prev-btn" style="border-radius:5px;">Kembali</button>
                                 </div>
                             </div>
-                            <div class="wizard-step step-3" style="display: none;">
-                                <h5 class="text-left mb-4" style="color:#214f96;"><i class="fa-solid fa-circle-info fa-lg me-2"></i>Informasi Akun</h5>
+                            <div class="wizard-step step-4" style="display: none;">
+                                <h5 class="text-left mb-4" style="color:#214f96;"><i
+                                        class="fa-solid fa-circle-info fa-lg me-2"></i>Informasi Akun</h5>
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -223,11 +247,11 @@
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
-                                    <a href="/dashboard" class="btn btn-success mb-2">Simpan</a>
+                                    <a href="/dashboard" class="btn mb-2" style="border-radius:5px;background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;"">Simpan</a>
                                 </div>
                             </div>
                         </form>
-                        
+
                         <div class="d-flex justify-content-center align-items-end mt-3">
                             <h6 class="f-w-500 mb-0 me-2">Sudah punya akun?</h6>
                             <a href="/" class="link-primary">Masuk Sekarang!</a>
@@ -250,16 +274,16 @@
         document.addEventListener("DOMContentLoaded", () => {
             const steps = document.querySelectorAll(".wizard-step");
             let currentStep = 0;
-    
+
             const showStep = (index) => {
                 steps.forEach((step, idx) => {
                     step.style.display = idx === index ? "block" : "none";
                 });
             };
-    
+
             const nextButtons = document.querySelectorAll("button[type='submit']");
             const prevButtons = document.querySelectorAll(".prev-btn");
-    
+
             nextButtons.forEach((button, idx) => {
                 button.addEventListener("click", (event) => {
                     event.preventDefault(); // Hentikan pengiriman form
@@ -269,7 +293,7 @@
                     }
                 });
             });
-    
+
             prevButtons.forEach((button) => {
                 button.addEventListener("click", () => {
                     if (currentStep > 0) {
@@ -278,12 +302,12 @@
                     }
                 });
             });
-    
+
             // Tampilkan langkah pertama saat pertama kali halaman dimuat
             showStep(currentStep);
         });
     </script>
-    
+
 </body>
 
 </html>
