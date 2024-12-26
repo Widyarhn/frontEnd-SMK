@@ -1,4 +1,4 @@
-@extends('.......index', ['title' => 'Tambah Element SMK | Master Data Element'])
+@extends('...Administrator.index', ['title' => 'Tambah Element SMK | Master Data Element'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
@@ -20,8 +20,8 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/element-smk/list">Master Data Elemen</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/element-smk/list">Master Data Elemen</a></li>
                         <li class="breadcrumb-item" aria-current="page">Tambah Data Element SMK</li>
                     </ul>
                 </div>

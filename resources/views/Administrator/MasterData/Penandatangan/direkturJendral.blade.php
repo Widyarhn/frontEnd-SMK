@@ -1,4 +1,4 @@
-@extends('.......index', ['title' => 'Direktur Jendral | Master Satuan Kerja'])
+@extends('...Administrator.index', ['title' => 'Direktur Jendral | Master Satuan Kerja'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
@@ -20,7 +20,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
                         <li class="breadcrumb-item" aria-current="page">Penandatangan</li>
                     </ul>

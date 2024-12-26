@@ -1,4 +1,4 @@
-@extends('.......index', ['title' => 'Data Perusahaan'])
+@extends('...Administrator.index', ['title' => 'Data Perusahaan'])
 @section('asset_css')
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
@@ -32,7 +32,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                         <li class="breadcrumb-item" aria-current="page">Perusahaan</li>
                     </ul>
                 </div>
@@ -283,7 +283,7 @@
                                             </td>
                                             <td>14 Mei 2024</td>
                                             <td class="text-end sticky-end">
-                                                <li class="list-inline-item"><a href="/perusahaan/detail"
+                                                <li class="list-inline-item"><a href="/admin/perusahaan/detail"
                                                         class="avtar avtar-s btn-link-info btn-pc-default">
                                                         <i class="ti ti-eye f-20"></i></a>
                                                 </li>
@@ -339,7 +339,7 @@
                                             </td>
                                             <td>14 Mei 2024</td>
                                             <td class="text-end sticky-end">
-                                                <li class="list-inline-item"><a href="/perusahaan/detail"
+                                                <li class="list-inline-item"><a href="/admin/perusahaan/detail"
                                                         class="avtar avtar-s btn-link-info btn-pc-default">
                                                         <i class="ti ti-eye f-20"></i></a>
                                                 </li>

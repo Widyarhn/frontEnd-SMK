@@ -29,8 +29,8 @@
         </div>
     </div>
 
-    @include('layouts.sidebar')
-    @include('layouts.header')
+    @include('Administrator.layouts.sidebar')
+    @include('Administrator.layouts.header')
 
     <!-- [ Main Content ] start -->
     <div class="pc-container">
@@ -42,7 +42,7 @@
     </div>
     <!-- [ Main Content ] end -->
     
-    @include('layouts.footer')
+    @include('Administrator.layouts.footer')
 
     <!-- [Page Specific JS] start -->
     @yield('scripts')

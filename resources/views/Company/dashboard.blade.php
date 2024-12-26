@@ -1,4 +1,4 @@
-@extends('...index', ['title' => 'Dashboard'])
+@extends('Company.index', ['title' => 'Dashboard'])
 @section('asset_css')
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="p-4">
-                                <h2 class="text-white">Selamat Datang, Administrator</h2>
+                                <h2 class="text-white">Selamat Datang, Company</h2>
                                 <p class="text-white">Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam
                                     menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
                             </div>

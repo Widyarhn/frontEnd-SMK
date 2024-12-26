@@ -1,4 +1,4 @@
-@extends('.......index', ['title' => 'Provinsi | Master Data Wilayah'])
+@extends('...Administrator.index', ['title' => 'Provinsi | Master Data Wilayah'])
 @section('asset_css')
 <link rel="stylesheet" href="{{asset('assets')}}/css/plugins/style.css" />
 <link rel="icon" href="{{asset('assets')}}/images/favicon.svg" type="image/x-icon" />
@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a
-                            href="/dashboard">Home</a></li>
+                            href="/admin/dashboard">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data Wilayah</a></li>
                     <li class="breadcrumb-item" aria-current="page">Provinsi</li>
                 </ul>

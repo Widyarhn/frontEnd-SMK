@@ -9,7 +9,7 @@
         <div class="navbar-content">
             <ul class="pc-navbar">
                 <li class="pc-item">
-                    <a href="/dashboard" class="pc-link">
+                    <a href="/admin/dashboard" class="pc-link">
                         <span class="pc-micon">
                             <i class="fa fa-home"></i>
                         </span>
@@ -28,12 +28,12 @@
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="/provinsi">Provinsi</a></li>
-                        <li class="pc-item"><a class="pc-link" href="/kota">Kota</a></li>
+                        <li class="pc-item"><a class="pc-link" href="/admin/provinsi">Provinsi</a></li>
+                        <li class="pc-item"><a class="pc-link" href="/admin/kota">Kota</a></li>
                     </ul>
                 </li>
                 <li class="pc-item">
-                    <a href="/kbli" class="pc-link">
+                    <a href="/admin/kbli" class="pc-link">
                         <span class="pc-micon">
                             <i class="fas fa-list"></i>
                         </span>
@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="/nomor-sk" class="pc-link">
+                    <a href="/admin/nomor-sk" class="pc-link">
                         <span class="pc-micon">
                             <i class="fa-solid fa-file-lines"></i>
                         </span>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="/penandatangan" class="pc-link">
+                    <a href="/admin/penandatangan" class="pc-link">
                         <span class="pc-micon">
                             <i class="fa-solid fa-signature"></i>
                         </span>
@@ -65,8 +65,8 @@
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="/element-smk/list">Element SMK</a></li>
-                        <li class="pc-item"><a class="pc-link" href="/element-pemantauan/list">Element Pemantauan</a></li>
+                        <li class="pc-item"><a class="pc-link" href="/admin/element-smk/list">Element SMK</a></li>
+                        <li class="pc-item"><a class="pc-link" href="/admin/element-pemantauan/list">Element Pemantauan</a></li>
                     </ul>
                 </li>
 
@@ -77,7 +77,7 @@
                     </svg>
                 </li>
                 <li class="pc-item">
-                    <a href="/user-manajemen" class="pc-link">
+                    <a href="/admin/user-manajemen" class="pc-link">
                         <span class="pc-micon">
                             <i class="fa fa-users"></i>
                         </span>
@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="/hak-akses" class="pc-link">
+                    <a href="/admin/hak-akses" class="pc-link">
                         <span class="pc-micon">
                             <i class="fa fa-key"></i>
                         </span>
@@ -100,7 +100,7 @@
                     </svg>
                 </li>
                 <li class="pc-item">
-                    <a href="/perusahaan" class="pc-link">
+                    <a href="/admin/perusahaan" class="pc-link">
                         <span class="pc-micon">
                             <i class="ph-duotone ph-buildings"></i>
                         </span>
@@ -115,91 +115,7 @@
                     </svg>
                 </li>
                 <li class="pc-item">
-                    <a href="/pengaturan" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fa fa-cogs"></i>
-                        </span>
-                        <span class="pc-mtext">Pengaturan</span>
-                    </a>
-                </li>
-            </ul>
-            <hr>
-            <p class="text-center">internal</p>
-            <hr>
-            <ul class="pc-navbar">
-                <li class="pc-item">
-                    <a href="/dashboard-internal" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fa fa-home"></i>
-                        </span>
-                        <span class="pc-mtext">Dashboard</span>
-                    </a>
-                </li>
-                <li class="pc-item pc-caption">
-                    <label>Perusahaan</label>
-                    <svg class="pc-icon">
-                        <use xlink:href="#custom-presentation-chart"></use>
-                    </svg>
-                </li>
-                <li class="pc-item">
-                    <a href="/perusahaan" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="ph-duotone ph-buildings"></i>
-                        </span>
-                        <span class="pc-mtext">Perusahaan</span>
-                    </a>
-                </li>
-
-                <li class="pc-item pc-caption">
-                    <label>Pengaturan Akun</label>
-                    <svg class="pc-icon">
-                        <use xlink:href="#custom-presentation-chart"></use>
-                    </svg>
-                </li>
-                <li class="pc-item">
-                    <a href="/pengaturan" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fa fa-cogs"></i>
-                        </span>
-                        <span class="pc-mtext">Pengaturan</span>
-                    </a>
-                </li>
-            </ul>
-            <hr>
-            <p class="text-center">Company</p>
-            <hr>
-            <ul class="pc-navbar">
-                <li class="pc-item">
-                    <a href="/dashboard-company" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="fa fa-home"></i>
-                        </span>
-                        <span class="pc-mtext">Dashboard</span>
-                    </a>
-                </li>
-                <li class="pc-item pc-caption">
-                    <label>Perusahaan</label>
-                    <svg class="pc-icon">
-                        <use xlink:href="#custom-presentation-chart"></use>
-                    </svg>
-                </li>
-                <li class="pc-item">
-                    <a href="/perusahaan" class="pc-link">
-                        <span class="pc-micon">
-                            <i class="ph-duotone ph-buildings"></i>
-                        </span>
-                        <span class="pc-mtext">Perusahaan</span>
-                    </a>
-                </li>
-
-                <li class="pc-item pc-caption">
-                    <label>Pengaturan Akun</label>
-                    <svg class="pc-icon">
-                        <use xlink:href="#custom-presentation-chart"></use>
-                    </svg>
-                </li>
-                <li class="pc-item">
-                    <a href="/pengaturan" class="pc-link">
+                    <a href="/admin/pengaturan" class="pc-link">
                         <span class="pc-micon">
                             <i class="fa fa-cogs"></i>
                         </span>

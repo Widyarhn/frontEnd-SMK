@@ -1,4 +1,4 @@
-@extends('...index', ['title' => 'Dashboard'])
+@extends('Administrator.index', ['title' => 'Dashboard'])
 @section('asset_css')
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
