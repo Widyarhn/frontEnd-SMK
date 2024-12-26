@@ -201,6 +201,325 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Tipe Layanan Perusahaan</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <div
+                                            class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                            <div class="datatable-top">
+                                                <div class="datatable-dropdown">
+                                                    <label>
+                                                        <select class="datatable-selector" name="per-page">
+                                                            <option value="5">5</option>
+                                                            <option value="10" selected="">10</option>
+                                                            <option value="15">15</option>
+                                                            <option value="20">20</option>
+                                                            <option value="25">25</option>
+                                                        </select> entries per page
+                                                    </label>
+                                                </div>
+                                                <div class="datatable-search">
+                                                    <input class="datatable-input" placeholder="Search..." type="search"
+                                                        name="search" title="Search within table"
+                                                        aria-controls="pc-dt-simple">
+                                                </div>
+                                            </div>
+                                            <div class="datatable-container">
+                                                <table class="table table-hover datatable-table" id="pc-dt-simple">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-sortable="true" style="width: 24%;"><button
+                                                                    class="datatable-sorter">NAME</button></th>
+                                                            <th data-sortable="true" style="width: 13.777777777777779%;">
+                                                                <button class="datatable-sorter">MOBILE</button>
+                                                            </th>
+                                                            <th data-sortable="true" style="width: 16.666666666666664%;">
+                                                                <button class="datatable-sorter">QUALIFICATION</button>
+                                                            </th>
+                                                            <th data-sortable="true" style="width: 13%;"><button
+                                                                    class="datatable-sorter">EMAIL</button></th>
+                                                            <th data-sortable="true" style="width: 17.77777777777778%;">
+                                                                <button class="datatable-sorter">ADMISSION DATE</button>
+                                                            </th>
+                                                            <th data-sortable="true" style="width: 14.777777777777779%;">
+                                                                <button class="datatable-sorter">ACTION</button>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr data-index="0">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-1.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Airi Satou</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/09/12</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="1">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-2.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Ashton Cox</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/12/24</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="2">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-3.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Bradley Greer</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/09/19</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="3">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-4.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Brielle Williamson</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/08/22</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="4">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-5.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Airi Satou</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/09/12</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="5">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-6.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Ashton Cox</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/12/24</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="6">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-7.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Bradley Greer</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/09/19</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="7">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-8.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Brielle Williamson</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/08/22</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="8">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-9.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Brielle Williamson</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.A, B.C.A</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2022/08/22</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                        <tr data-index="9">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0"><img
+                                                                            src="../assets/images/user/avatar-10.jpg"
+                                                                            alt="user image" class="img-radius wid-40">
+                                                                    </div>
+                                                                    <div class="flex-grow-1 ms-3">
+                                                                        <h6 class="mb-0">Airi Satou</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>(123) 4567 890</td>
+                                                            <td>B.COM., M.COM.</td>
+                                                            <td>Info@123.com</td>
+                                                            <td>2023/09/12</td>
+                                                            <td><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
+                                                                    class="avtar avtar-xs btn-link-secondary"><i
+                                                                        class="ti ti-trash f-20"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="datatable-bottom">
+                                                <div class="datatable-info">Showing 1 to 10 of 16 entries</div>
+                                                <nav class="datatable-pagination">
+                                                    <ul class="datatable-pagination-list">
+                                                        <li
+                                                            class="datatable-pagination-list-item datatable-hidden datatable-disabled">
+                                                            <button data-page="1"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">‹</button>
+                                                        </li>
+                                                        <li class="datatable-pagination-list-item datatable-active"><button
+                                                                data-page="1" class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">1</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">2</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">›</button></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
