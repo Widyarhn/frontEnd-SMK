@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-
 @endsection
 @section('content')
     {{-- <div class="row">
@@ -388,276 +387,20 @@
             <div class="card">
                 <div class="card-body py-0">
                     <ul class="nav nav-tabs profile-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="profile-tab"
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="followers-tab" data-bs-toggle="tab"
+                            href="#followers" role="tab" aria-selected="false" tabindex="-1"><i
+                                class="ti ti-building me-2"></i> Informasi Perusahaan</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab"
                                 data-bs-toggle="tab" href="#profile" role="tab" aria-selected="true"><i
                                     class="ti ti-file me-2"></i> Sertifikat SMK</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="followers-tab" data-bs-toggle="tab"
-                                href="#followers" role="tab" aria-selected="false" tabindex="-1"><i
-                                    class="ti ti-building me-2"></i> Informasi Perusahaan</a></li>
+
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-xxl-9">
                     <div class="tab-content">
-                        <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-8">
-                                                    <h3 class="mb-1">Status</h3>
-                                                    <p class="text-muted mb-0">Aktif</p>
-                                                </div>
-                                                <div class="col-4 text-end">
-                                                    <i class="fa-regular fa-file-alt fa-lg text-primary f-36"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-8">
-                                                    <h3 class="mb-1">Tanggal Terbit</h3>
-                                                    <p class="text-muted mb-0">20 November 2024</p>
-                                                </div>
-                                                <div class="col-4 text-end">
-                                                    <i class="fa-regular fa-calendar-alt fa-lg text-primary f-36"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row align-items-center">
-                                                <div class="col-8">
-                                                    <h3 class="mb-1">Masa Berlaku</h3>
-                                                    <p class="text-muted mb-0">20 November 2029</p>
-                                                </div>
-                                                <div class="col-4 text-end">
-                                                    <i class="fa-solid fa-clock fa-lg text-primary f-36"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="chat-avtar"><img class="rounded-circle img-fluid wid-40"
-                                                src="../assets/images/user/avatar-1.jpg" alt="User image">
-                                            <div class="bg-success chat-badge"></div>
-                                        </div>
-                                        <div class="flex-grow-1 mx-2">
-                                            <h5 class="mb-0">John Doe</h5><span class="text-sm text-muted">Technical
-                                                Department</span>
-                                        </div>
-                                        <div class="dropdown"><a
-                                                class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
-                                                href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false"><i
-                                                    class="material-icons-two-tone f-18">more_vert</i></a>
-                                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
-                                                    href="#">Edit</a> <a class="dropdown-item"
-                                                    href="#">Delete</a></div>
-                                        </div>
-                                    </div>
-                                    <p class="my-4">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the
-                                        1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                                        specimen book. It has survived not only five centuries, but also the leap into
-                                        electronic typesetting, remaining essentially unchanged. It was popularised in the
-                                        1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                                        recently with desktop publishing software like Aldus PageMaker including versions of
-                                        Lorem Ipsum.</p>
-                                    <div class="row g-2">
-                                        <div class="col-md-6"><a class="img-post card"
-                                                data-lightbox="../assets/images/application/img-post-1.jpg"><img
-                                                    src="../assets/images/application/img-post-1.jpg" alt="img"
-                                                    class="card-img">
-                                                <div class="card-img-overlay"><i class="ti ti-search"></i></div>
-                                            </a></div>
-                                        <div class="col-md-6"><a class="img-post card"
-                                                data-lightbox="../assets/images/application/img-post-2.jpg"><img
-                                                    src="../assets/images/application/img-post-2.jpg" alt="img"
-                                                    class="card-img">
-                                                <div class="card-img-overlay"><i class="ti ti-search"></i></div>
-                                            </a></div>
-                                        <div class="col-md-6 col-xl-3"><a class="img-post card"
-                                                data-lightbox="../assets/images/application/img-post-3.jpg"><img
-                                                    src="../assets/images/application/img-post-3.jpg" alt="img"
-                                                    class="card-img">
-                                                <div class="card-img-overlay"><i class="ti ti-search"></i></div>
-                                            </a></div>
-                                        <div class="col-md-6 col-xl-3"><a class="img-post card"
-                                                data-lightbox="../assets/images/application/img-post-4.jpg"><img
-                                                    src="../assets/images/application/img-post-4.jpg" alt="img"
-                                                    class="card-img">
-                                                <div class="card-img-overlay"><i class="ti ti-search"></i></div>
-                                            </a></div>
-                                        <div class="col-md-6 col-xl-3"><a class="img-post card"
-                                                data-lightbox="../assets/images/application/img-post-5.jpg"><img
-                                                    src="../assets/images/application/img-post-5.jpg" alt="img"
-                                                    class="card-img">
-                                                <div class="card-img-overlay"><i class="ti ti-search"></i></div>
-                                            </a></div>
-                                        <div class="col-md-6 col-xl-3"><a class="img-post card"
-                                                data-lightbox="../assets/images/application/img-post-6.jpg"><img
-                                                    src="../assets/images/application/img-post-6.jpg" alt="img"
-                                                    class="card-img">
-                                                <div class="card-img-overlay"><i class="ti ti-search"></i></div>
-                                            </a></div>
-                                    </div>
-                                    <div class="row my-4">
-                                        <div class="col"><a href="#" class="btn btn-link-dark"><i
-                                                    class="material-icons-two-tone me-1">thumb_up_alt</i> 450K <small
-                                                    class="text-muted">Likes</small></a> <a href="#"
-                                                class="btn btn-link-secondary"><i
-                                                    class="material-icons-two-tone me-1">comment</i>500 <small
-                                                    class="text-muted">Comments</small></a> <a href="#"
-                                                class="btn btn-link-secondary"><i
-                                                    class="material-icons-two-tone me-1">share</i>100 <small
-                                                    class="text-muted">Share</small></a> <a href="#"
-                                                class="btn btn-link-secondary"><i
-                                                    class="material-icons-two-tone me-1">bookmarks</i>20 <small
-                                                    class="text-muted">Saved</small></a></div>
-                                        <div class="col-auto text-end">
-                                            <div class="d-flex align-items-center">
-                                                <p class="mb-0 me-2">30 Comments</p>
-                                                <div class="user-group post-user-group"><img
-                                                        src="../assets/images/user/avatar-1.jpg" alt="user-image"
-                                                        class="avtar"> <img src="../assets/images/user/avatar-2.jpg"
-                                                        alt="user-image" class="avtar"> <span
-                                                        class="avtar bg-danger text-white"><span
-                                                            class="f-12">K</span></span> <img
-                                                        src="../assets/images/user/avatar-3.jpg" alt="user-image"
-                                                        class="avtar"> <span class="avtar bg-success text-white"><svg
-                                                            class="pc-icon m-0">
-                                                            <use xlink:href="#custom-user"></use>
-                                                        </svg> </span><img src="../assets/images/user/avatar-4.jpg"
-                                                        alt="user-image" class="avtar"> <span
-                                                        class="avtar bg-light-primary text-primary"><span
-                                                            class="f-12">+2</span></span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-block">
-                                        <div class="comment">
-                                            <div class="d-flex align-items-start">
-                                                <div class="chat-avtar flex-shrink-0"><img
-                                                        class="rounded-circle img-fluid wid-40"
-                                                        src="../assets/images/user/avatar-1.jpg" alt="User image">
-                                                    <div class="bg-success chat-badge"></div>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <h5 class="mb-0">John Doe</h5><span class="text-sm text-muted">2
-                                                        hour ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="comment-content">
-                                                <p class="mb-2 mt-3">Lorem Ipsum is simply dummy text of the printing and
-                                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                                    text ever since the 1500s, when an unknown printer took a galley of type
-                                                    and scrambled it to make a type specimen book.</p><a href="#"
-                                                    class="link-primary mb-1">https://phoenixcoded.net/</a>
-                                            </div>
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="mb-4"><a href="#" class="btn btn-link-dark"><i
-                                                        class="material-icons-two-tone me-1 text-danger">favorite</i>
-                                                    450</a> <a href="#" class="btn btn-link-secondary"><i
-                                                        class="material-icons-two-tone me-1">share</i>100</a></div>
-                                        </div>
-                                        <div class="comment sub-comment">
-                                            <div class="d-flex align-items-start">
-                                                <div class="chat-avtar flex-shrink-0"><img
-                                                        class="rounded-circle img-fluid wid-40"
-                                                        src="../assets/images/user/avatar-1.jpg" alt="User image">
-                                                    <div class="bg-success chat-badge"></div>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <h5 class="mb-0">John Doe</h5><span class="text-sm text-muted">2
-                                                        hour ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="comment-content">
-                                                <div class="card mt-3 mb-0">
-                                                    <div class="card-body">
-                                                        <h6>Lorem Ipsum is simply dummy</h6>
-                                                        <p class="mb-2">Lorem Ipsum has been the industry's standard
-                                                            dummy text ever since the 1500s.</p><a href="#"
-                                                            class="link-primary mb-1">https://phoenixcoded.net/</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="mb-4"><a href="#" class="btn btn-link-dark"><i
-                                                        class="material-icons-two-tone me-1 text-danger">favorite</i>
-                                                    450</a> <a href="#" class="btn btn-link-secondary"><i
-                                                        class="material-icons-two-tone me-1">share</i>100</a></div>
-                                        </div>
-                                        <div class="comment">
-                                            <div class="d-flex align-items-start">
-                                                <div class="chat-avtar flex-shrink-0"><img
-                                                        class="rounded-circle img-fluid wid-40"
-                                                        src="../assets/images/user/avatar-1.jpg" alt="User image">
-                                                    <div class="bg-success chat-badge"></div>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <h5 class="mb-0">John Doe</h5><span class="text-sm text-muted">2
-                                                        hour ago</span>
-                                                </div>
-                                            </div>
-                                            <div class="comment-content">
-                                                <p class="mb-2 mt-3">Lorem Ipsum is simply dummy text of the printing and
-                                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                                    text ever since the 1500s, when an unknown printer took a galley of type
-                                                    and scrambled it to make a type specimen book.</p><a href="#"
-                                                    class="link-primary mb-1">https://phoenixcoded.net/</a>
-                                            </div>
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="mb-4"><a href="#" class="btn btn-link-dark"><i
-                                                        class="material-icons-two-tone me-1 text-danger">favorite</i>
-                                                    450</a> <a href="#" class="btn btn-link-secondary"><i
-                                                        class="material-icons-two-tone me-1">share</i>100</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center mt-3"><img
-                                            class="img-radius d-none d-sm-inline-flex me-3 wid-40 rounded-circle"
-                                            src="../assets/images/user/avatar-1.jpg" alt="User image">
-                                        <div class="flex-grow-1 me-3">
-                                            <div class="input-comment"><input type="email" class="form-control"
-                                                    placeholder="Type a something...">
-                                                <ul class="list-inline start-0 mb-0">
-                                                    <li class="list-inline-item border-end pe-2 me-2"><a href="#"
-                                                            class="avtar avtar-xs btn-link-warning"><i
-                                                                class="ti ti-mood-smile f-18"></i></a></li>
-                                                </ul>
-                                                <ul class="list-inline end-0 mb-0">
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-xs btn-link-secondary"><i
-                                                                class="ti ti-photo f-18"></i></a></li>
-                                                    <li class="list-inline-item"><a href="#"
-                                                            class="avtar avtar-xs btn-link-secondary"><i
-                                                                class="ti ti-paperclip f-18"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div><a href="#" class="avtar avtar-s btn btn-primary"><i
-                                                class="ti ti-send f-18"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="followers" role="tabpanel" aria-labelledby="followers-tab">
+                        <div class="tab-pane show active" id="followers" role="tabpanel" aria-labelledby="followers-tab">
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Tentang PT NUSANTARA TECH INOVATOR</h5>
@@ -908,6 +651,65 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col-8">
+                                                    <h3 class="mb-1">Status</h3>
+                                                    <p class="text-muted mb-0">Aktif</p>
+                                                </div>
+                                                <div class="col-4 text-end">
+                                                    <i class="fa-regular fa-file-alt fa-lg text-primary f-36"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col-8">
+                                                    <h3 class="mb-1">Tanggal Terbit</h3>
+                                                    <p class="text-muted mb-0">20 November 2024</p>
+                                                </div>
+                                                <div class="col-4 text-end">
+                                                    <i class="fa-regular fa-calendar-alt fa-lg text-primary f-36"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col-8">
+                                                    <h3 class="mb-1">Masa Berlaku</h3>
+                                                    <p class="text-muted mb-0">20 November 2029</p>
+                                                </div>
+                                                <div class="col-4 text-end">
+                                                    <i class="fa-solid fa-clock fa-lg text-primary f-36"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                                <div class="card-body" style="padding: 10px;">
+                                    <h5>Sertifikat 10/XVI/009/291/04/01</h5>
+                                    <div id="pdf-container"
+                                        style="width: 100%; height: 500px; border: 1px solid #ccc; overflow: auto;">
+                                        <div id="pdf-viewer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-4 col-xxl-3">
@@ -927,10 +729,9 @@
                     <div class="card">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <h5>Bio</h5>
-                            <div class="dropdown"><a
-                                    class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none" href="#"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                        class="material-icons-two-tone f-18">more_vert</i></a>
+                            <div class="dropdown"><a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
+                                    href="#" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"><i class="material-icons-two-tone f-18">more_vert</i></a>
                                 <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
                                         href="#">Edit</a> <a class="dropdown-item" href="#">Delete</a>
                                 </div>
@@ -984,8 +785,51 @@
     {{-- <script src="{{ asset('assets') }}/js/pages/dashboard-default.js"></script> -- --}}
     <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+
     {{-- <script src="{{ asset('assets') }}//js/pages/chart-apex.js"></script> --}}
     <script>
+        // IFRAME
+        const pdfUrl = 'https://storage.hubdat.dephub.go.id/tdbupj-dev/testing--yGywXxuU5hzB9256gu-c.pdf';
+
+        const loadingTask = pdfjsLib.getDocument(pdfUrl);
+        loadingTask.promise.then(function(pdf) {
+            const container = document.getElementById('pdf-viewer');
+            for (let i = 1; i <= pdf.numPages; i++) {
+                pdf.getPage(i).then(function(page) {
+                    const scale = 1.5;
+                    const viewport = page.getViewport({
+                        scale
+                    });
+
+                    // Create canvas element
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    canvas.style.borderBottom = '1px solid #ddd'; // Border between pages
+                    canvas.style.marginBottom = '10px'; // Margin between pages
+
+                    // Render PDF page on canvas
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport,
+                    };
+                    page.render(renderContext);
+
+                    // Append canvas to container
+                    container.appendChild(canvas);
+                });
+            }
+        }).catch(function(error) {
+            console.error('Error loading PDF:', error);
+            const errorMessage = document.createElement('p');
+            errorMessage.textContent = 'Failed to load PDF. Please try again later.';
+            document.getElementById('pdf-viewer').appendChild(errorMessage);
+        });
+
         // Set the countdown time (e.g., 5 minutes from now)
         const skIssueDate = new Date("2023-12-29"); // Tanggal terbit SK
         const nextReportDate = new Date(skIssueDate);
