@@ -1,4 +1,4 @@
-@extends('...Administrator.index', ['title' => 'Pengaturan Aplikasi'])
+@extends('...Administrator.index', ['title' => 'Pengaturan Aplikasi | Pengaturan'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
@@ -71,6 +71,15 @@
                                         </p>
                                     </div>
                                     
+                                </div>
+                                <div class="flex-shrink-0">
+                                    {{-- <button class="btn btn-sm btn-light-secondary"><i class="ti ti-edit"></i> Edit</button> --}}
+                                    <div class="form-check form-switch custom-switch-v1 switch-lg">
+                                        <input type="checkbox" class="form-check-input input-primary f-16"
+                                            id="customCheckdefout2" />
+                                        <label class="form-check-label" for="customCheckdefout2">Aktifkan Berbagi Data
+                                            role</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

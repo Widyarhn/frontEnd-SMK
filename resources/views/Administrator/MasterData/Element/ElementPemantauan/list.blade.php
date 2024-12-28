@@ -29,7 +29,7 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data Element Pemantauan</h2>
                     </div>
-                    <a href="/element-pemantauan/create" class="btn btn-md btn-primary px-3 p-2">
+                    <a href="/admin/element-pemantauan/create" class="btn btn-md btn-primary px-3 p-2">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
                     </a>
                 </div>

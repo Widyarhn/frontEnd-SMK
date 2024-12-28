@@ -29,7 +29,7 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data Element SMK</h2>
                     </div>
-                    <a href="/element-smk/create" class="btn btn-md btn-primary px-3 p-2">
+                    <a href="/admin/element-smk/create" class="btn btn-md btn-primary px-3 p-2">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
                     </a>
                 </div>
@@ -66,18 +66,18 @@
                                             <td>05 September 2024</td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-success btn-pc-default">
-                                                            <i class="fa-regular fa-square-check"></i></a>
-                                                    </li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                                class="ti ti-eye f-20"></i></a></li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                                class="ti ti-trash f-20"></i></a></li>
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-success btn-pc-default">
+                                                        <i class="fa-regular fa-square-check"></i></a>
+                                                </li>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-info btn-pc-default"><i
+                                                            class="ti ti-eye f-20"></i></a></li>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
+                                                            class="ti ti-trash f-20"></i></a></li>
                                             </td>
                                         </tr>
 
@@ -88,18 +88,18 @@
                                             <td>20 Oktober 2024</td>
                                             <td class="text-end">
                                                 <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-danger btn-pc-default">
-                                                            <i class="fa-regular fa-rectangle-xmark"></i></a>
-                                                    </li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                                class="ti ti-eye f-20"></i></a></li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                            class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                                class="ti ti-trash f-20"></i></a></li>
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-danger btn-pc-default">
+                                                        <i class="fa-regular fa-rectangle-xmark"></i></a>
+                                                </li>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-info btn-pc-default"><i
+                                                            class="ti ti-eye f-20"></i></a></li>
+                                                <li class="list-inline-item"><a data-bs-toggle="modal"
+                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
+                                                            class="ti ti-trash f-20"></i></a></li>
                                             </td>
                                         </tr>
 

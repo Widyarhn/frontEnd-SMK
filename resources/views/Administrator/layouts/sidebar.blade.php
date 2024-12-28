@@ -109,7 +109,7 @@
                 </li>
 
                 <li class="pc-item pc-caption">
-                    <label>Pengaturan Aplikasi</label>
+                    <label>Pengaturan</label>
                     <svg class="pc-icon">
                         <use xlink:href="#custom-presentation-chart"></use>
                     </svg>
@@ -119,7 +119,15 @@
                         <span class="pc-micon">
                             <i class="fa fa-cogs"></i>
                         </span>
-                        <span class="pc-mtext">Pengaturan</span>
+                        <span class="pc-mtext">Pengaturan Aplikasi</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="/admin/pengaturan-akun" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa-solid fa-gear"></i>
+                        </span>
+                        <span class="pc-mtext">Pengaturan Akun</span>
                     </a>
                 </li>
             </ul>

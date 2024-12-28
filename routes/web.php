@@ -77,6 +77,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/pengaturan', function () {
         return view('Administrator.Pengaturan.index');
     });
+    Route::get('/pengaturan-akun', function () {
+        return view('Administrator.Pengaturan.PengaturanAkun.index');
+    });
     Route::get('/profil-akun', function () {
         return view('Administrator.ProfilAkun.index');
     });
@@ -86,6 +89,31 @@ Route::prefix('admin')->group(function () {
 Route::prefix('internal')->group(function () {
     Route::get('/dashboard-internal', function () {
         return view('Internal.dashboard');
+    });
+
+    Route::get('/perusahaan-internal/list', function () {
+        return view('Internal.Perusahaan.list');
+    });
+    Route::get('/perusahaan-internal/detail', function () {
+        return view('Internal.Perusahaan.detail');
+    });
+
+    Route::get('/sertifikat/list', function () {
+        return view('Internal.SertifikatSmk.list');
+    });
+    Route::get('/sertifikat/detail', function () {
+        return view('Internal.SertifikatSmk.detail');
+    });
+
+    Route::get('/laporan-tahunan/list', function () {
+        return view('Internal.LaporanTahunan.list');
+    });
+    Route::get('/laporan-tahunan/detail', function () {
+        return view('Internal.LaporanTahunan.detail');
+    });
+
+    Route::get('/pengaturan-akun/index', function () {
+        return view('Internal.Pengaturan.PengaturanAkun.index');
     });
 });
 

@@ -199,8 +199,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-span">Manage</p>
-                                <a href="#" class="dropdown-item">
+                                {{-- <p class="text-span">Manage</p> --}}
+                                {{-- <a href="#" class="dropdown-item">
                                     <span>
                                         <svg class="pc-icon text-muted me-2">
                                             <use xlink:href="#custom-share-bold"></use>
@@ -215,8 +215,8 @@
                                         </svg>
                                         <span>Profil Akun</span>
                                     </span>
-                                </a>
-                                <hr class="border-secondary border-opacity-50" />
+                                </a> --}}
+                                {{-- <hr class="border-secondary border-opacity-50" /> --}}
                                 <div class="d-grid mb-3">
                                     <button class="btn btn-primary">
                                         <svg class="pc-icon me-2">

@@ -20,9 +20,9 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="p-4">
-                                <h2 class="text-white">Selamat Datang, Internal</h2>
+                                <h2 class="text-white">Selamat Datang, Penilai</h2>
                                 <p class="text-white">Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam
-                                    menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
+                                    menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja keselamatan secara berkelanjutan.
                             </div>
                         </div>
                         <div class="col-sm-6 text-center">

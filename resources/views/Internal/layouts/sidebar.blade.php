@@ -16,6 +16,37 @@
                         <span class="pc-mtext">Dashboard</span>
                     </a>
                 </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Permohonan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <li class="pc-item">
+                    <a href="/internal/sertifikat/list" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa-solid fa-certificate"></i>
+                        </span>
+                        <span class="pc-mtext">Sertifikat SMK</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Laporan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <li class="pc-item">
+                    <a href="/internal/laporan-tahunan/list" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ph-duotone ph-chart-bar"></i>
+                        </span>
+                        <span class="pc-mtext">Laporan Tahunan</span>
+                    </a>
+                </li>
+
                 <li class="pc-item pc-caption">
                     <label>Perusahaan</label>
                     <svg class="pc-icon">
@@ -23,7 +54,7 @@
                     </svg>
                 </li>
                 <li class="pc-item">
-                    <a href="/perusahaan" class="pc-link">
+                    <a href="/internal/perusahaan-internal/list" class="pc-link">
                         <span class="pc-micon">
                             <i class="ph-duotone ph-buildings"></i>
                         </span>
@@ -32,17 +63,17 @@
                 </li>
 
                 <li class="pc-item pc-caption">
-                    <label>Pengaturan Akun</label>
+                    <label>Pengaturan</label>
                     <svg class="pc-icon">
                         <use xlink:href="#custom-presentation-chart"></use>
                     </svg>
                 </li>
                 <li class="pc-item">
-                    <a href="/pengaturan" class="pc-link">
+                    <a href="/internal/pengaturan-akun/index" class="pc-link">
                         <span class="pc-micon">
                             <i class="fa fa-cogs"></i>
                         </span>
-                        <span class="pc-mtext">Pengaturan</span>
+                        <span class="pc-mtext">Pengaturan Akun</span>
                     </a>
                 </li>
             </ul>

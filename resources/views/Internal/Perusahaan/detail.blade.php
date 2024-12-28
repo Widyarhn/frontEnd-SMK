@@ -1,4 +1,4 @@
-@extends('...Administrator.index', ['title' => 'Detail | Data Perusahaan'])
+@extends('...Internal.index', ['title' => 'Detail | Data Perusahaan'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
@@ -20,13 +20,14 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/profil-akun">Profil Akun</a></li>
+                        <li class="breadcrumb-item"><a href="/internal/dashboard-internal">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/internal/perusahaan-internal/list">Perusahaan</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Detail Perusahaan</li>
                     </ul>
                 </div>
                 <div class="col-md-12 d-flex justify-content-between align-items-center">
                     <div class="page-header-title">
-                        <h2 class="mb-0">Profil Akun</h2>
+                        <h2 class="mb-0">Detail Perusahaan</h2>
                     </div>
                 </div>
             </div>
@@ -39,16 +40,22 @@
                     <ul class="nav nav-tabs profile-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation"><a class="nav-link active" id="profile-tab-1"
                                 data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="true"><i
-                                    class="ti ti-user me-2"></i>Profil</a></li>
+                                    class="ph-duotone ph-buildings me-2"></i>Profil Perusahaan</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-2" data-bs-toggle="tab"
                                 href="#profile-2" role="tab" aria-selected="false" tabindex="-1"><i
-                                    class="ti ti-id me-2"></i>Akun Saya</a></li>
-                        {{-- <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-3" data-bs-toggle="tab"
+                                    class="ti ti-file-text me-2"></i>KBLI Perusahaan</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-3" data-bs-toggle="tab"
                                 href="#profile-3" role="tab" aria-selected="false" tabindex="-1"><i
-                                    class="ti ti-lock me-2"></i>Ubah Kata Sandi</a></li>
+                                    class="ti ti-file-analytics me-2"></i>Pengajuan Sertifikat</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-4" data-bs-toggle="tab"
                                 href="#profile-4" role="tab" aria-selected="false" tabindex="-1"><i
-                                    class="ti ti-settings me-2"></i>Pengaturan</a></li> --}}
+                                    class="ti ti-lock me-2"></i>Laporan Tahunan</a></li>
+                        {{-- <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-5" data-bs-toggle="tab"
+                                href="#profile-5" role="tab" aria-selected="false" tabindex="-1"><i
+                                    class="ti ti-users me-2"></i>Role</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-6" data-bs-toggle="tab"
+                                href="#profile-6" role="tab" aria-selected="false" tabindex="-1"><i
+                                    class="ti ti-settings me-2"></i>Settings</a></li> --}}
                     </ul>
                 </div>
             </div>
@@ -63,7 +70,8 @@
                                     <div class="text-center mt-3">
                                         <div class="chat-avtar d-inline-flex mx-auto"><img
                                                 class="rounded-circle img-fluid wid-70"
-                                                src="../assets/images/user/avatar-5.jpg" alt="User image"></div>
+                                                src="{{ asset('assets') }}/images/user/avatar-5.jpg" alt="User image">
+                                        </div>
                                         <h5 class="mb-0">PT. NUSANTARA TECH INOVATOR</h5>
                                         <p class="text-muted text-sm">Perusahaan</p>
                                         <hr class="my-3 border border-secondary-subtle">
@@ -102,145 +110,107 @@
                         <div class="col-lg-8 col-xxl-9">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Detail Perusahaan</h5>
+                                    <h5>Informasi Perusahaan</h5>
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item px-0 pt-0">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Nama Direktur</p>
-                                                    <p class="mb-0">Anshan Handgun</p>
+                                                    <p class="mb-1 text-muted">Nama Perusahaan</p>
+                                                    <p class="mb-0">PT WIRASWASTA GEMILANG INDONESIA</p>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Father Name</p>
-                                                    <p class="mb-0">Mr. Deepen Handgun</p>
+                                                    <p class="mb-1 text-muted">NIB</p>
+                                                    <p class="mb-0">8120004962755</p>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="list-group-item px-0">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Phone</p>
+                                                    <p class="mb-1 text-muted">Telepon</p>
                                                     <p class="mb-0">(+1-876) 8654 239 581</p>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Country</p>
-                                                    <p class="mb-0">New York</p>
+                                                    <p class="mb-1 text-muted">Email</p>
+                                                    <p class="mb-0">info@ptwgi.com</p>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="list-group-item px-0">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Email</p>
-                                                    <p class="mb-0">anshan.dh81@gmail.com</p>
+                                                    <p class="mb-1 text-muted">Tanggal Terbit NIB</p>
+                                                    <p class="mb-0">12 Desember 2023</p>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Zip Code</p>
-                                                    <p class="mb-0">956 754</p>
+                                                    <p class="mb-1 text-muted">Jenis Layanan</p>
+                                                    <ol>
+                                                        <li>AJAP</li>
+                                                        <li>AKDP</li>
+                                                        <li>Angkutan B3</li>
+                                                        <li>Angkutan lintas batas negara</li>
+                                                    </ol>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="list-group-item px-0 pb-0">
-                                            <p class="mb-1 text-muted">Address</p>
-                                            <p class="mb-0">Street 110-B Kalians Bag, Dewan, M.P. New York</p>
+                                        <li class="list-group-item px-0">
+                                            <p class="mb-1 text-muted">Alamat</p>
+                                            <p class="mb-0">GEDUNG THE CITY TOWER LT.5 UNIT 1S JL.MH THAMRIN NO.81</p>
+                                        </li>
+                                        <li class="list-group-item px-0">
+                                            <p class="mb-1 text-muted">Tanggal Bergabung</p>
+                                            <p class="mb-0">12 Desember 2023</p>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Education</h5>
+                                    <h5>Informasi Penanggung Jawab</h5>
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item px-0 pt-0">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Master Degree (Year)</p>
-                                                    <p class="mb-0">2014-2017</p>
+                                                    <p class="mb-1 text-muted">Nama</p>
+                                                    <p class="mb-0">Uidn</p>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Institute</p>
+                                                    <p class="mb-1 text-muted">Telepon</p>
                                                     <p class="mb-0">-</p>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="list-group-item px-0">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Bachelor (Year)</p>
-                                                    <p class="mb-0">2011-2013</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Institute</p>
-                                                    <p class="mb-0">Imperial College London</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item px-0 pb-0">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">School (Year)</p>
-                                                    <p class="mb-0">2009-2011</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Institute</p>
-                                                    <p class="mb-0">School of London, England</p>
-                                                </div>
-                                            </div>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Employment</h5>
+                                    <h5>Informasi Pengguna</h5>
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item px-0 pt-0">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Senior</p>
-                                                    <p class="mb-0">Senior UI/UX designer (Year)</p>
+                                                    <p class="mb-1 text-muted">Username</p>
+                                                    <p class="mb-0">blalabla</p>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Job Responsibility</p>
-                                                    <p class="mb-0">Perform task related to project manager with the 100+
-                                                        team under my observation. Team management is key role in this
-                                                        company.</p>
+                                                    <p class="mb-1 text-muted">Telepon</p>
+                                                    <p class="mb-0">-</p>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="list-group-item px-0">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Trainee cum Project Manager (Year)</p>
-                                                    <p class="mb-0">2017-2019</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Job Responsibility</p>
-                                                    <p class="mb-0">Team management is key role in this company.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item px-0 pb-0">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">School (Year)</p>
-                                                    <p class="mb-0">2009-2011</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Institute</p>
-                                                    <p class="mb-0">School of London, England</p>
-                                                </div>
-                                            </div>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -249,82 +219,146 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                                            aria-labelledby="analytics-tab-1" tabindex="0">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover" id="pc-dt-simple-1">
+                                    <div class="table-responsive">
+                                        <div
+                                            class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                            <!-- Top Controls: Entries Per Page and Search -->
+                                            <div class="datatable-top">
+                                                <div class="datatable-dropdown">
+                                                    <label>
+                                                        <select class="datatable-selector" name="per-page">
+                                                            <option value="5">5</option>
+                                                            <option value="10" selected="">10</option>
+                                                            <option value="15">15</option>
+                                                            <option value="20">20</option>
+                                                            <option value="25">25</option>
+                                                        </select> entries per page
+                                                    </label>
+                                                </div>
+                                                <div class="datatable-search">
+                                                    <input class="datatable-input" placeholder="Search..." type="search"
+                                                        name="search" title="Search within table"
+                                                        aria-controls="pc-dt-simple">
+                                                </div>
+                                            </div>
+
+                                            <!-- Table -->
+                                            <div class="datatable-container">
+                                                <table class="table table-hover datatable-table" id="pc-dt-simple">
                                                     <thead>
                                                         <tr>
-                                                            <th>No</th>
-                                                            <th>Kode KBLI</th>
-                                                            <th>Nama KBLI</th>
-                                                            <th>Uraian KBLI</th>
-                                                            <th>Tanggal Dibuat</th>
+                                                            <th style="width: 90%;">Klasifikasi Baku Lapangan Usaha
+                                                                Indonesia
+                                                                (KBLI)</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>00293746</td>
                                                             <td>
-                                                                <div class="row align-items-center">
-                                                                    <div class="col">
-                                                                        <h6 class="mb-1"><span
-                                                                                class="text-truncate w-100">Angkutan
-                                                                                Bermotor</span> </h6>
-                                                                        <p class="f-12 mb-0"><a href="#!"
-                                                                                class="text-muted"></a></p>
+                                                                <div class="d-flex align-items-start">
+                                                                    <img class="rounded-circle me-3"
+                                                                        src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                                                        alt="User Avatar" width="60"
+                                                                        height="60" />
+                                                                    <div>
+                                                                        <h6 class="mb-1">KBLI 45111</h6>
+                                                                        <div class="h5 mt-3"> Theme customisation issue
+                                                                        </div>
+                                                                        </p>
+                                                                        <p class="text-muted text-wrap"
+                                                                            style="word-break: break-word;">
+                                                                            Kegiatan ini meliputi perdagangan mobil baru,
+                                                                            termasuk
+                                                                            kendaraan penumpang dan kendaraan niaga ringan.
+                                                                            Fokusnya
+                                                                            adalah penjualan kendaraan langsung kepada
+                                                                            konsumen
+                                                                            melalui showroom atau agen resmi.
+                                                                        </p>
+
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>-</td>
-                                                            <td>20-12-2024</td>
-
                                                         </tr>
-
                                                         <tr>
-                                                            <td>2</td>
-                                                            <td>00293746</td>
                                                             <td>
-                                                                <div class="row align-items-center">
-                                                                    <div class="col">
-                                                                        <h6 class="mb-1"><span
-                                                                                class="text-truncate w-100">Angkutan
-                                                                                Bermotor</span> </h6>
-                                                                        <p class="f-12 mb-0"><a href="#!"
-                                                                                class="text-muted"></a></p>
+                                                                <div class="d-flex align-items-start">
+                                                                    <img class="rounded-circle me-3"
+                                                                        src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                                                        alt="User Avatar" width="60"
+                                                                        height="60" />
+                                                                    <div>
+                                                                        <h6 class="mb-1">KBLI 45111</h6>
+                                                                        <div class="h5 mt-3"> Theme customisation issue
+                                                                        </div>
+                                                                        </p>
+                                                                        <p class="text-muted text-wrap"
+                                                                            style="word-break: break-word;">
+                                                                            Kegiatan ini meliputi perdagangan mobil baru,
+                                                                            termasuk
+                                                                            kendaraan penumpang dan kendaraan niaga ringan.
+                                                                            Fokusnya
+                                                                            adalah penjualan kendaraan langsung kepada
+                                                                            konsumen
+                                                                            melalui showroom atau agen resmi.
+                                                                        </p>
+
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>-</td>
-                                                            <td>20-12-2024</td>
-
                                                         </tr>
-
                                                         <tr>
-                                                            <td>3</td>
-                                                            <td>00293746</td>
                                                             <td>
-                                                                <div class="row align-items-center">
-                                                                    <div class="col">
-                                                                        <h6 class="mb-1"><span
-                                                                                class="text-truncate w-100">Angkutan
-                                                                                Bermotor</span> </h6>
-                                                                        <p class="f-12 mb-0"><a href="#!"
-                                                                                class="text-muted"></a>
+                                                                <div class="d-flex align-items-start">
+                                                                    <img class="rounded-circle me-3"
+                                                                        src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                                                        alt="User Avatar" width="60"
+                                                                        height="60" />
+                                                                    <div>
+                                                                        <h6 class="mb-1">KBLI 45111</h6>
+                                                                        <div class="h5 mt-3"> Theme customisation issue
+                                                                        </div>
+                                                                        </p>
+                                                                        <p class="text-muted text-wrap"
+                                                                            style="word-break: break-word;">
+                                                                            Kegiatan ini meliputi perdagangan mobil baru,
+                                                                            termasuk
+                                                                            kendaraan penumpang dan kendaraan niaga ringan.
+                                                                            Fokusnya
+                                                                            adalah penjualan kendaraan langsung kepada
+                                                                            konsumen
+                                                                            melalui showroom atau agen resmi.
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>-</td>
-                                                            <td>20-12-2024</td>
-
                                                         </tr>
-
-
                                                     </tbody>
                                                 </table>
+                                            </div>
+
+                                            <!-- Pagination -->
+                                            <div class="datatable-bottom">
+                                                <div class="datatable-info">Showing 1 to 10 of 16 entries</div>
+                                                <nav class="datatable-pagination">
+                                                    <ul class="datatable-pagination-list">
+                                                        <li
+                                                            class="datatable-pagination-list-item datatable-hidden datatable-disabled">
+                                                            <button data-page="1"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">‹</button>
+                                                        </li>
+                                                        <li class="datatable-pagination-list-item datatable-active"><button
+                                                                data-page="1" class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 1">1</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">2</button></li>
+                                                        <li class="datatable-pagination-list-item"><button data-page="2"
+                                                                class="datatable-pagination-list-item-link"
+                                                                aria-label="Page 2">›</button></li>
+                                                    </ul>
+                                                </nav>
                                             </div>
                                         </div>
                                     </div>
@@ -333,6 +367,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="tab-pane" id="profile-3" role="tabpanel" aria-labelledby="profile-tab-3">
                     <div class="row">
                         <div class="col-12">
@@ -364,20 +399,21 @@
                                                     <thead>
                                                         <tr>
                                                             <th data-sortable="true" style="width: 24%;"><button
-                                                                    class="datatable-sorter">NAME</button></th>
+                                                                    class="datatable-sorter">Nomor Pendaftaran</button>
+                                                            </th>
                                                             <th data-sortable="true" style="width: 13.777777777777779%;">
-                                                                <button class="datatable-sorter">MOBILE</button>
+                                                                <button class="datatable-sorter">Tanggal Pengajuan</button>
                                                             </th>
                                                             <th data-sortable="true" style="width: 16.666666666666664%;">
-                                                                <button class="datatable-sorter">QUALIFICATION</button>
+                                                                <button class="datatable-sorter">Penilai</button>
                                                             </th>
                                                             <th data-sortable="true" style="width: 13%;"><button
-                                                                    class="datatable-sorter">EMAIL</button></th>
+                                                                    class="datatable-sorter">Jadwal Interview</button></th>
                                                             <th data-sortable="true" style="width: 17.77777777777778%;">
-                                                                <button class="datatable-sorter">ADMISSION DATE</button>
+                                                                <button class="datatable-sorter">Posisi</button>
                                                             </th>
                                                             <th data-sortable="true" style="width: 14.777777777777779%;">
-                                                                <button class="datatable-sorter">ACTION</button>
+                                                                <button class="datatable-sorter">Aksi</button>
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -385,12 +421,19 @@
                                                         <tr data-index="0">
                                                             <td>
                                                                 <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-1.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
+                                                                    <div class="flex-shrink-0">
+                                                                        <div
+                                                                            class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                                            <i class="fa-solid fa-file text-white"></i>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Airi Satou</h6>
+                                                                        <h6 class="mb-1">1234568675</h6>
+                                                                        <p class="f-12 mb-0">
+                                                                            <a href="#!" class="text-muted"><span
+                                                                                    class="badge bg-primary">Wawancara
+                                                                                    terjadwal</span></a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -409,12 +452,18 @@
                                                         <tr data-index="1">
                                                             <td>
                                                                 <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-2.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
+                                                                    <div class="flex-shrink-0">
+                                                                        <div
+                                                                            class="wid-40 hei-40 rounded-circle bg-success d-flex align-items-center justify-content-center">
+                                                                            <i class="fa-solid fa-file text-white"></i>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Ashton Cox</h6>
+                                                                        <h6 class="mb-1">1234568675</h6>
+                                                                        <p class="f-12 mb-0">
+                                                                            <a href="#!" class="text-muted"><span
+                                                                                    class="badge bg-success">Selesai</span></a>
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -422,198 +471,6 @@
                                                             <td>B.COM., M.COM.</td>
                                                             <td>Info@123.com</td>
                                                             <td>2023/12/24</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="2">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-3.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Bradley Greer</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.A, B.C.A</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2022/09/19</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="3">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-4.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Brielle Williamson</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.A, B.C.A</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2022/08/22</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="4">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-5.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Airi Satou</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.COM., M.COM.</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2023/09/12</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="5">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-6.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Ashton Cox</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.COM., M.COM.</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2023/12/24</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="6">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-7.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Bradley Greer</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.A, B.C.A</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2022/09/19</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="7">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-8.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Brielle Williamson</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.A, B.C.A</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2022/08/22</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="8">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-9.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Brielle Williamson</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.A, B.C.A</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2022/08/22</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="9">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-10.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Airi Satou</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.COM., M.COM.</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2023/09/12</td>
                                                             <td><a href="#"
                                                                     class="avtar avtar-xs btn-link-secondary"><i
                                                                         class="ti ti-eye f-20"></i> </a><a href="#"
@@ -626,7 +483,7 @@
                                                 </table>
                                             </div>
                                             <div class="datatable-bottom">
-                                                <div class="datatable-info">Showing 1 to 10 of 16 entries</div>
+                                                <div class="datatable-info">Showing 1 to 2 of 2 entries</div>
                                                 <nav class="datatable-pagination">
                                                     <ul class="datatable-pagination-list">
                                                         <li
@@ -684,90 +541,54 @@
                                                 <table class="table table-hover datatable-table" id="pc-dt-simple">
                                                     <thead>
                                                         <tr>
-                                                            <th data-sortable="true" style="width: 24%;"><button
-                                                                    class="datatable-sorter">NAME</button></th>
-                                                            <th data-sortable="true" style="width: 13.777777777777779%;">
-                                                                <button class="datatable-sorter">MOBILE</button>
+                                                            <th>No.</th>
+                                                            <th>Tahun Laporan</th>
+                                                            <th>Tanggal Pelaporan</th>
+                                                            <th>Status</th>
+                                                            <th class="text-center" colspan="2">
+                                                                Verifikasi
+                                                                <table class="table-verifikasi p-0" style="margin: 0; width: 100%;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border: none;padding-left: 0px; padding-right:27px;" >Tanggal</th>
+                                                                            <th style="border: none;">Oleh</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
                                                             </th>
-                                                            <th data-sortable="true" style="width: 16.666666666666664%;">
-                                                                <button class="datatable-sorter">QUALIFICATION</button>
-                                                            </th>
-                                                            <th data-sortable="true" style="width: 13%;"><button
-                                                                    class="datatable-sorter">EMAIL</button></th>
-                                                            <th data-sortable="true" style="width: 17.77777777777778%;">
-                                                                <button class="datatable-sorter">ADMISSION DATE</button>
-                                                            </th>
-
+                                                            <th class="text-end">Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr data-index="0">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-1.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Airi Satou</h6>
-                                                                    </div>
-                                                                </div>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>2024</td>
+                                                            <td>2024-01-15</td>
+                                                            <td><span class="badge bg-success">Diterima</span></td>
+                                                            <td class="">2024-01-20</td>
+                                                            <td class="">Admin 1</td>
+                                                            <td class="text-end">
+                                                                <ul class="list-inline mb-0">
+                                                                    <li class="list-inline-item"><a href="#"
+                                                                            class="avtar avtar-s btn-link-info btn-pc-default"><i
+                                                                                class="ti ti-eye f-20"></i></a></li>
+                                                                </ul>
                                                             </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.COM., M.COM.</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2023/09/12</td>
                                                         </tr>
-                                                        <tr data-index="1">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-2.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Ashton Cox</h6>
-                                                                    </div>
-                                                                </div>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>2023</td>
+                                                            <td>2023-12-10</td>
+                                                            <td><span class="badge bg-warning">Menunggu</span></td>
+                                                            <td class="">2024-01-20</td>
+                                                            <td class="">Admin 1</td>
+                                                            <td class="text-end">
+                                                                <ul class="list-inline mb-0">
+                                                                    <li class="list-inline-item"><a href="#"
+                                                                            class="avtar avtar-s btn-link-info btn-pc-default"><i
+                                                                                class="ti ti-eye f-20"></i></a></li>
+                                                                </ul>
                                                             </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.COM., M.COM.</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2023/12/24</td>
-                                                        </tr>
-                                                        <tr data-index="2">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-3.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Bradley Greer</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.A, B.C.A</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2022/09/19</td>
-                                                        </tr>
-                                                        <tr data-index="3">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-4.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Brielle Williamson</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.A, B.C.A</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2022/08/22</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -836,8 +657,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Addie Bass</h5>
                                                         <p class="text-muted f-12 mb-0">mareva@gmail.com</p>
@@ -854,8 +675,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-4.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
                                                         <p class="text-muted f-12 mb-0">heba@gmail.com</p>
@@ -874,8 +695,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
                                                         <p class="text-muted f-12 mb-0">heba@gmail.com</p>
@@ -892,8 +713,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Addie Bass</h5>
                                                         <p class="text-muted f-12 mb-0">mareva@gmail.com</p>
@@ -910,8 +731,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-4.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
                                                         <p class="text-muted f-12 mb-0">heba@gmail.com</p>
@@ -930,8 +751,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
                                                         <p class="text-muted f-12 mb-0">heba@gmail.com</p>
@@ -948,8 +769,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Addie Bass</h5>
                                                         <p class="text-muted f-12 mb-0">mareva@gmail.com</p>
@@ -966,8 +787,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-4.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
                                                         <p class="text-muted f-12 mb-0">heba@gmail.com</p>
@@ -986,8 +807,8 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
-                                                            class="wid-40 rounded-circle"></div>
+                                                            src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                            alt="user-image" class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
                                                         <p class="text-muted f-12 mb-0">heba@gmail.com</p>
