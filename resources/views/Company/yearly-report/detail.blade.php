@@ -22,21 +22,12 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/company/dashboard">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/company/yearly-report/list">Laporan Tahunan</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Buat Laporan Tahunan</li>
+                        <li class="breadcrumb-item" aria-current="page">Detail Laporan Tahunan</li>
                     </ul>
                 </div>
                 <div class="col-md-12 d-flex justify-content-between align-items-center">
                     <div class="page-header-title">
                         <h2 class="mb-0">Laporan Tahunan</h2>
-                    </div>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-md btn-primary px-3 p-2 dropdown-toggle" id="dropdownTahun"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-plus-circle me-2"></i> Pilih tahun
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownTahun">
-                            <!-- List Tahun -->
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -96,30 +87,22 @@
                                                 <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
                                                     Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
                                                     semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                    <td>
-                                                        <div
-                                                            style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                            Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                            rutrum?
-                                                        </div>
-                                                        <div class="d-flex justify-content-center mt-2">
-                                                            <div class="btn-group" role="group" aria-label="Yes or No">
-                                                                <button type="button"
-                                                                    class="btn btn-outline-success btn-yes2">Iya</button>
-                                                                <button type="button"
-                                                                    class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                            </div>
-                                                        </div>
-                                                        <input type="hidden" class="response-value2" value="" />
-                                                    </td>
+                                                <td>
+                                                    <div
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
+                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
+                                                        rutrum?
+                                                    </div>
+                                                </td>
                                                 <td class="text-center">
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
+                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
+                                                    <div class="mt-2">
+                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                           class="me-2 btn btn-sm btn-light-primary">
+                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
+                                                        </a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -130,16 +113,16 @@
                                                 <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
                                                     Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
                                                     semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                    <td>
-                                                        <div
-                                                            style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                            Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                            rutrum?
-                                                        </div>
-                                                    </td>
+                                                <td>
+                                                    <div
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
+                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
+                                                        rutrum?
+                                                    </div>
+                                                </td>
                                                 <td class="text-center">
-
+                                                    <span class="badge bg-light-secondary" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Tidak ada perubahan</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -150,30 +133,24 @@
                                                 <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
                                                     Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
                                                     semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                    <td>
-                                                        <div
-                                                            style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                            Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                            rutrum?
-                                                        </div>
-                                                        <div class="d-flex justify-content-center mt-2">
-                                                            <div class="btn-group" role="group" aria-label="Yes or No">
-                                                                <button type="button"
-                                                                    class="btn btn-outline-success btn-yes2">Iya</button>
-                                                                <button type="button"
-                                                                    class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                            </div>
-                                                        </div>
-                                                        <input type="hidden" class="response-value2" value="" />
-                                                    </td>
+                                                <td>
+                                                    <div
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
+                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
+                                                        rutrum?
+                                                    </div>
+
+                                                    <input type="hidden" class="response-value2" value="" />
+                                                </td>
                                                 <td class="text-center">
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
+                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
+                                                    <div class="mt-2">
+                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                           class="me-2 btn btn-sm btn-light-primary">
+                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
+                                                        </a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -184,13 +161,14 @@
                                                     fringilla quam. Aenean finibus ipsum sit amet nisi semper, vitae commodo
                                                     metus condimentum.
                                                 </td>
-                                                <td>
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
+                                                <td class="text-center">
+                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
+                                                    <div class="mt-2">
+                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                           class="me-2 btn btn-sm btn-light-primary">
+                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
+                                                        </a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -234,25 +212,15 @@
                                                         Aliquam semper massa sit amet eros ultricies, eget accumsan enim
                                                         rutrum?
                                                     </div>
-                                                    <div class="d-flex justify-content-center mt-2">
-                                                        <div class="btn-group" role="group" aria-label="Yes or No">
-                                                            <button type="button"
-                                                                class="btn btn-outline-success btn-yes2">Iya</button>
-                                                            <button type="button"
-                                                                class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                        </div>
-                                                    </div>
-                                                    <input type="hidden" class="response-value2" value="" />
                                                 </td>
-
                                                 <td class="text-center">
-
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
+                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
+                                                    <div class="mt-2">
+                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                           class="me-2 btn btn-sm btn-light-primary">
+                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
+                                                        </a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -263,7 +231,7 @@
                                                 <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
                                                     Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
                                                     semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td class="text-center">
+                                                <td>
                                                     <div
                                                         style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
                                                         Interdum et malesuada fames ac ante ipsum primis in faucibus.
@@ -272,7 +240,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center">
-
+                                                    <span class="badge bg-light-secondary" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Tidak ada perubahan</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -290,23 +258,17 @@
                                                         Aliquam semper massa sit amet eros ultricies, eget accumsan enim
                                                         rutrum?
                                                     </div>
-                                                    <div class="d-flex justify-content-center mt-2">
-                                                        <div class="btn-group" role="group" aria-label="Yes or No">
-                                                            <button type="button"
-                                                                class="btn btn-outline-success btn-yes2">Iya</button>
-                                                            <button type="button"
-                                                                class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                        </div>
-                                                    </div>
+
                                                     <input type="hidden" class="response-value2" value="" />
                                                 </td>
                                                 <td class="text-center">
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
+                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
+                                                    <div class="mt-2">
+                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                           class="me-2 btn btn-sm btn-light-primary">
+                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
+                                                        </a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -317,13 +279,14 @@
                                                     fringilla quam. Aenean finibus ipsum sit amet nisi semper, vitae commodo
                                                     metus condimentum.
                                                 </td>
-                                                <td>
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
+                                                <td class="text-center">
+                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
+                                                    <div class="mt-2">
+                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                           class="me-2 btn btn-sm btn-light-primary">
+                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
+                                                        </a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>

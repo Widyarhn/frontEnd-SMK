@@ -27,9 +27,9 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Sertifikat SMK</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2">
+                    <a href="/company/pengajuan-sertifikat/create" data-pc-animate="fade-in-scale" class="btn btn-md btn-primary px-3 p-2">
                         <i class="fas fa-plus-circle me-2"></i> Buat Permohonan
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -151,12 +151,16 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="mt-2">
-                                                                            <button type="button" class="btn btn-primary"
+                                                                            <button type="button" class="me-2 btn btn-sm btn-light-danger"
                                                                                 data-bs-toggle="modal"
                                                                                 data-bs-target="#exampleModalCenter">
                                                                                 <i class="ti ti-eye me-1"></i> Lihat
                                                                                 Catatan
                                                                             </button>
+                                                                            <a href="/company/pengajuan-sertifikat/detail"
+                                                                            class="me-2 btn btn-sm btn-light-secondary"><i
+                                                                                class="feather icon-eye mx-1"></i>Lihat
+                                                                            Pengajuan</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -226,6 +230,11 @@
                                                                                 class="me-2 btn btn-sm btn-light-primary"><i
                                                                                     class="feather icon-eye mx-1"></i>Lihat
                                                                                 Dokumen</a>
+
+                                                                                <a href="/company/pengajuan-sertifikat/detail"
+                                                                                class="me-2 btn btn-sm btn-light-secondary"><i
+                                                                                    class="feather icon-eye mx-1"></i>Lihat
+                                                                                Pengajuan</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
