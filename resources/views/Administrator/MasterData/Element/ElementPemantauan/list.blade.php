@@ -70,8 +70,7 @@
                                                         class="avtar avtar-s btn-link-success btn-pc-default">
                                                         <i class="fa-regular fa-square-check"></i></a>
                                                 </li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                    <li class="list-inline-item"><a href="/admin/element-pemantauan/detail"
                                                             class="avtar avtar-s btn-link-info btn-pc-default"><i
                                                                 class="ti ti-eye f-20"></i></a></li>
                                                     <li class="list-inline-item"><a data-bs-toggle="modal"
@@ -92,8 +91,7 @@
                                                     class="avtar avtar-s btn-link-danger btn-pc-default">
                                                     <i class="fa-regular fa-rectangle-xmark"></i></a>
                                             </li>
-                                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
+                                                    <li class="list-inline-item"><a href="/admin/element-pemantauan/detail"
                                                             class="avtar avtar-s btn-link-info btn-pc-default"><i
                                                                 class="ti ti-eye f-20"></i></a></li>
                                                     <li class="list-inline-item"><a data-bs-toggle="modal"

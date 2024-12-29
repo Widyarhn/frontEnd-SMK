@@ -50,11 +50,17 @@ Route::prefix('admin')->group(function () {
     Route::get('/element-pemantauan/create', function () {
         return view('Administrator.MasterData.Element.ElementPemantauan.create');
     });
+    Route::get('/element-pemantauan/detail', function () {
+        return view('Administrator.MasterData.Element.ElementPemantauan.detail');
+    });
     Route::get('/element-smk/list', function () {
         return view('Administrator.MasterData.Element.ElementSmk.list');
     });
     Route::get('/element-smk/create', function () {
         return view('Administrator.MasterData.Element.ElementSmk.create');
+    });
+    Route::get('/element-smk/detail', function () {
+        return view('Administrator.MasterData.Element.ElementSmk.detail');
     });
 
     //perusahaan
@@ -121,5 +127,11 @@ Route::prefix('internal')->group(function () {
 Route::prefix('company')->group(function () {
     Route::get('/dashboard-company', function () {
         return view('Company.dashboard');
+    });
+    Route::get('/pengajuan-sertifikat/create', function () {
+        return view('Company.Pengajuan.create');
+    });
+    Route::get('/pengajuan-sertifikat/detail', function () {
+        return view('Company.Pengajuan.detail');
     });
 });
