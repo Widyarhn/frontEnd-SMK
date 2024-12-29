@@ -95,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-lg-6 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
@@ -189,16 +189,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Mixed Chart</h5>
-                    </div>
-                    <div class="my-2" id="mixed-chart-2"></div>
-                </div>
-            </div>
-        </div>
+       
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
