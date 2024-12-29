@@ -13,332 +13,6 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
 @endsection
 @section('content')
-    {{-- <div class="row">
-        <div class="col-12">
-            <div class="card welcome-banner bg-blue-800" style="background: #0f2a7d;">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="p-4">
-                                <h2 class="text-white">Selamat Datang, Company</h2>
-                                <p class="text-white">Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam
-                                    menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
-                            </div>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <div class="img-welcome-banner">
-                                <img src="{{ asset('assets') }}/images/logoapp.png" alt="img" class="img-fluid mt-2"
-                                    style="width: 100px;" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-1">2</h3>
-                            <p class="text-muted mb-0">Total Perusahaan</p>
-                        </div>
-                        <div class="col-4 text-end">
-                            <i class="fa-regular fa-building fa-lg text-primary f-36"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-1">200</h3>
-                            <p class="text-muted mb-0">Tidak Tersertifikasi</p>
-                        </div>
-                        <div class="col-4 text-end">
-                            <i class="fa-regular fa-rectangle-xmark fa-lg text-danger f-36"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-1">200</h3>
-                            <p class="text-muted mb-0">Proses Sertifikasi</p>
-                        </div>
-                        <div class="col-4 text-end">
-                            <i class="fa-solid fa-chalkboard-teacher fa-lg text-warning f-36"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-1">200</h3>
-                            <p class="text-muted mb-0">Tersertifikasi</p>
-                        </div>
-                        <div class="col-4 text-end">
-                            <i class="fa-regular fa-square-check fa-lg text-success f-36"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Proses Sertifikasi</h5>
-                    </div>
-                    <div id="pie-chart-2" style="width: 100%;"></div>
-                    <div class="row g-3 mt-3">
-                        <!-- Start of Cards -->
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-primary rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Pengajuan</p>
-                                <h6 class="mb-0">$23,876</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-warning rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Tidak Lulus Penilaian</p>
-                                <h6 class="mb-0">$23,876</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-success rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Lulus Penilaian</p>
-                                <h6 class="mb-0">$23,876</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-info rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Lulus Verifikasi Penilaian</p>
-                                <h6 class="mb-0">$23,876</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block rounded-circle"
-                                        style="width: 10px; height: 10px; background:#9B59B6;"></span>
-                                </div>
-                                <p class="mb-1">Wawancara Terjadwal</p>
-                                <h6 class="mb-0">$23,876</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block rounded-circle"
-                                        style="width: 10px; height: 10px; background:#006400;"></span>
-                                </div>
-                                <p class="mb-1">Verifikasi Direktur</p>
-                                <h6 class="mb-0">$23,876</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-danger rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Ditolak</p>
-                                <h6 class="mb-0">$23,876</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block rounded-circle"
-                                        style="width: 10px; height: 10px; background:#F4D03F;"></span>
-                                </div>
-                                <p class="mb-1">Kadaluwarsa</p>
-                                <h6 class="mb-0">$23,876</h6>
-                            </div>
-                        </div>
-                        <!-- End of Cards -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Mixed Chart</h5>
-                    </div>
-                    <div class="my-2" id="mixed-chart-2"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center mb-2">
-                        <div class="flex-grow-1">
-                            <h5 class="mb-0">Tipe Perusahaan</h5>
-                        </div>
-                    </div>
-                    <div class="my-2" id="bar-chart-3"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0">Penilai Dengan Disposisi Terbanyak</h5>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover" id="pc-dt-simple">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Proses</th>
-                                    <th>Selesai</th>
-                                    <th>Total Disposisi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <h6 class="mb-2"><span class="text-truncate w-100">Foundations</span>
-                                                </h6>
-                                                <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                        Leather panels. Laces. Rounded toe. </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <h6 class="mb-2"><span class="text-truncate w-100">Foundations</span>
-                                                </h6>
-                                                <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                        Leather panels. Laces. Rounded toe. </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0">Informasi Belum Laporan Tahunan</h5>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover" id="pc-dt-simple2">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Tahun</th>
-                                    <th>Tanggal Berakhir</th>
-                                    <th class="text-end">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <h6 class="mb-2"><span class="text-truncate w-100">Foundations</span>
-                                                </h6>
-                                                <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                        Leather panels. Laces. Rounded toe. </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>2024</td>
-                                    <td>3 Desember 2024</td>
-                                    <td>
-                                        <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                    class="ti ti-eye f-20"></i></a></li>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <h6 class="mb-2"><span class="text-truncate w-100">Foundations</span>
-                                                </h6>
-                                                <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                        Leather panels. Laces. Rounded toe. </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>2024</td>
-                                    <td>3 Desember 2024</td>
-                                    <td>
-                                        <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                    class="ti ti-eye f-20"></i></a></li>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
     <div class="row"><!-- [ sample-page ] start -->
         <div class="col-sm-12">
@@ -356,10 +30,7 @@
                                     <h5 class="mb-1">Selamat Datang</h5>
                                     <p class="mb-0">PT NUSANTARA TECH INOVATOR</p>
                                 </div>
-                                <div class="col-md-auto">
-                                    <button class="btn btn-primary me-3"><i class="fas fa-sync me-2"></i>Sinkronisasi
-                                        OSS</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -500,7 +171,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card">
+                            {{-- <div class="card">
                                 <div class="card-header">
                                     <h5>Tipe Layanan Perusahaan</h5>
                                 </div>
@@ -649,7 +320,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
@@ -782,11 +453,10 @@
 @section('scripts')
     <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    {{-- <script src="{{ asset('assets') }}/js/pages/dashboard-default.js"></script> -- --}}
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
 
 
     {{-- <script src="{{ asset('assets') }}//js/pages/chart-apex.js"></script> --}}

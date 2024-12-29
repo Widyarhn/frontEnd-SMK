@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/kota', function () {
         return view('Administrator.MasterData.Wilayah.kota');
     });
-    
+
     //kbli
     Route::get('/kbli', function () {
         return view('Administrator.MasterData.KBLI.kbli');
@@ -37,12 +37,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/nomor-sk', function () {
         return view('Administrator.MasterData.NoBeritaAcara.noSk');
     });
-    
+
     //satuanKerja
     Route::get('/satuan-kerja', function () {
         return view('Administrator.MasterData.SatuanKerja.satuanKerja');
     });
-    
+
     //element
     Route::get('/element-pemantauan/list', function () {
         return view('Administrator.MasterData.Element.ElementPemantauan.list');
@@ -127,6 +127,19 @@ Route::prefix('internal')->group(function () {
 Route::prefix('company')->group(function () {
     Route::get('/dashboard-company', function () {
         return view('Company.dashboard');
+    });
+
+    Route::prefix('certificate')->group(function () {
+        Route::get('/list', function () {
+            return view('Company.sertifikat-smk.list');
+        });
+
+    });
+    Route::prefix('yearly-report')->group(function () {
+        Route::get('/list', function () {
+            return view('Company.yearly-report.list');
+        });
+
     });
     Route::get('/pengajuan-sertifikat/create', function () {
         return view('Company.Pengajuan.create');

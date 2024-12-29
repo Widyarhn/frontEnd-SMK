@@ -23,7 +23,7 @@
                     </svg>
                 </li>
                 <li class="pc-item">
-                    <a href="/perusahaan" class="pc-link">
+                    <a href="/company/certificate/list" class="pc-link">
                         <span class="pc-micon">
                             <i class="ph-duotone ph-certificate"></i>
                         </span>
@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="/perusahaan" class="pc-link">
+                    <a href="/company/yearly-report/list" class="pc-link">
                         <span class="pc-micon">
                             <i class="ph-duotone ph-calendar"></i>
                         </span>

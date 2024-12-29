@@ -70,7 +70,7 @@
                                     <div class="text-center mt-3">
                                         <div class="chat-avtar d-inline-flex mx-auto"><img
                                                 class="rounded-circle img-fluid wid-70"
-                                                src="../assets/images/user/avatar-5.jpg" alt="User image"></div>
+                                                src="{{ asset('assets') }}/images/user/avatar-5.jpg" alt="User image"></div>
                                         <h5 class="mb-0">PT. NUSANTARA TECH INOVATOR</h5>
                                         <p class="text-muted text-sm">Perusahaan</p>
                                         <hr class="my-3 border border-secondary-subtle">
@@ -254,7 +254,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-1.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -278,7 +278,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-2.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-2.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -302,7 +302,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-3.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-3.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -398,7 +398,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-start">
                                                                     <img class="rounded-circle me-3"
-                                                                        src="../assets/images/user/avatar-1.jpg"
+                                                                        src="{{ asset('assets') }}/images/user/avatar-1.jpg"
                                                                         alt="User Avatar" width="60"
                                                                         height="60" />
                                                                     <div>
@@ -425,7 +425,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-start">
                                                                     <img class="rounded-circle me-3"
-                                                                        src="../assets/images/user/avatar-1.jpg"
+                                                                        src="{{ asset('assets') }}/images/user/avatar-1.jpg"
                                                                         alt="User Avatar" width="60"
                                                                         height="60" />
                                                                     <div>
@@ -452,7 +452,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-start">
                                                                     <img class="rounded-circle me-3"
-                                                                        src="../assets/images/user/avatar-1.jpg"
+                                                                        src="{{ asset('assets') }}/images/user/avatar-1.jpg"
                                                                         alt="User Avatar" width="60"
                                                                         height="60" />
                                                                     <div>
@@ -562,7 +562,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-1.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -586,7 +586,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-2.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-2.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -610,7 +610,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-3.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-3.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -634,7 +634,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-4.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-4.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -658,7 +658,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-5.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-5.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -682,7 +682,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-6.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-6.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -706,7 +706,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-7.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-7.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -730,7 +730,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-8.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-8.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -754,7 +754,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-9.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-9.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -778,7 +778,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-10.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-10.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -881,7 +881,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-1.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -898,7 +898,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-2.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-2.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -915,7 +915,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-3.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-3.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -932,7 +932,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-4.jpg"
+                                                                            src="{{ asset('assets') }}/images/user/avatar-4.jpg"
                                                                             alt="user image" class="img-radius wid-40">
                                                                     </div>
                                                                     <div class="flex-grow-1 ms-3">
@@ -1012,7 +1012,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Addie Bass</h5>
@@ -1030,7 +1030,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-4.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
@@ -1050,7 +1050,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-5.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
@@ -1068,7 +1068,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Addie Bass</h5>
@@ -1086,7 +1086,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-4.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
@@ -1106,7 +1106,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-5.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
@@ -1124,7 +1124,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-1.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Addie Bass</h5>
@@ -1142,7 +1142,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-4.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-4.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>
@@ -1162,7 +1162,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-auto pe-0"><img
-                                                            src="../assets/images/user/avatar-5.jpg" alt="user-image"
+                                                            src="{{ asset('assets') }}/images/user/avatar-5.jpg" alt="user-image"
                                                             class="wid-40 rounded-circle"></div>
                                                     <div class="col">
                                                         <h5 class="mb-0">Agnes McGee</h5>

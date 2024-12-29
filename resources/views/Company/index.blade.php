@@ -41,7 +41,7 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
-    
+
     @include('Company.layouts.footer')
 
     <!-- [Page Specific JS] start -->
