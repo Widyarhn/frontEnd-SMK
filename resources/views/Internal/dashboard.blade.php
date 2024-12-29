@@ -235,7 +235,7 @@
                                     </td>
                                     <td>2024</td>
                                     <td>3 Desember 2024</td>
-                                    <td>
+                                    <td class="text-end">
                                         <li class="list-inline-item"><a data-bs-toggle="modal"
                                                 data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
                                                 class="avtar avtar-s btn-link-info btn-pc-default"><i
@@ -257,7 +257,7 @@
                                     </td>
                                     <td>2024</td>
                                     <td>3 Desember 2024</td>
-                                    <td>
+                                    <td class="text-end">
                                         <li class="list-inline-item"><a data-bs-toggle="modal"
                                                 data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
                                                 class="avtar avtar-s btn-link-info btn-pc-default"><i

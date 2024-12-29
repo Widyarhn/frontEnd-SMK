@@ -48,8 +48,7 @@
                                 href="#profile-3" role="tab" aria-selected="false" tabindex="-1"><i
                                     class="ti ti-file-analytics me-2"></i>Pengajuan Sertifikat</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-4" data-bs-toggle="tab"
-                                href="#profile-4" role="tab" aria-selected="false" tabindex="-1"><i
-                                    class="ti ti-lock me-2"></i>Laporan Tahunan</a></li>
+                                href="#profile-4" role="tab" aria-selected="false" tabindex="-1"><i class="ph-duotone ph-chart-bar me-2"></i>Laporan Tahunan</a></li>
                         {{-- <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-5" data-bs-toggle="tab"
                                 href="#profile-5" role="tab" aria-selected="false" tabindex="-1"><i
                                     class="ti ti-users me-2"></i>Role</a></li>
