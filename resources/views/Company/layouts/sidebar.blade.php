@@ -30,12 +30,34 @@
                         <span class="pc-mtext">Sertifikat SMK</span>
                     </a>
                 </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Laporan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
                 <li class="pc-item">
                     <a href="/company/yearly-report/list" class="pc-link">
                         <span class="pc-micon">
                             <i class="ph-duotone ph-calendar"></i>
                         </span>
                         <span class="pc-mtext">Laporan Tahunan</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Pengaturan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <li class="pc-item">
+                    <a href="/company/pengaturan-akun/index" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa fa-cogs"></i>
+                        </span>
+                        <span class="pc-mtext">Pengaturan Akun</span>
                     </a>
                 </li>
             </ul>

@@ -154,4 +154,8 @@ Route::prefix('company')->group(function () {
     Route::get('/pengajuan-sertifikat/detail', function () {
         return view('Company.Pengajuan.detail');
     });
+
+    Route::get('/pengaturan-akun/index', function () {
+        return view('Company.PengaturanAkun.index');
+    });
 });
