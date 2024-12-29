@@ -42,28 +42,28 @@
                     <ul class="nav nav-pills nav-justified">
                         <li class="nav-item" data-target-form="#contactDetailForm">
                             <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield me-2">
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
                                     </i>1.1</span>
                             </a>
                         </li>
                         <li class="nav-item" data-target-form="#jobDetailForm">
                             <a href="#2.1Detail" data-bs-toggle="tab" data-toggle="tab"
                                 class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield me-2">
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
                                     </i>2.1</span>
                             </a>
                         </li>
                         <li class="nav-item" data-target-form="#educationForm">
                             <a href="#3.1Detail" data-bs-toggle="tab" data-toggle="tab"
                                 class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield me-2">
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
                                     </i>3.1</span>
                             </a>
                         </li>
                         <li class="nav-item" data-target-form="#jobDetailForm">
                             <a href="#4.1Detail" data-bs-toggle="tab" data-toggle="tab"
                                 class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield me-2">
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
                                     </i>4.1</span>
                             </a>
                         </li>
@@ -76,52 +76,44 @@
                         <div class="tab-pane show active" id="1.1Detail">
                             <form id="contactForm" method="get">
                                 <div class="text-center">
-                                    <h3 class="mb-2">Komitmen dan Kebijakan Keselamatan</h3>
+                                    <h3 class="mb-2">Fasilitas Pemeliharaan dan Perbaikan</h3>
                                 </div>
                                 <div class="table-responsive py-5">
                                     <table class="table table-hover mb-0">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawab</th>
-                                                <th>Kesesuaian</th>
-                                                <th>Keterangan</th>
+                                                <th>Uraian Element</th>
+                                                <th>Dokumen / Bukti Dukung Jawaban</th>
+                                                <th>File Yang Dilampirkan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>1.1</td>
-                                                <td>Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                    Ekspektasi, Implementasi, Prosedur Terkait)</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Fasilitas Pemeliharaan dan Perbaikan Persyaratan Ekspektasi Implementasi Prosedur Terkait</td>
                                                 <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>File Persyaratan Ekspektasi Implementasi Prosedur Terkait</td>
                                             </tr>
                                             <tr>
                                                 <td>1.2</td>
-                                                <td>Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>Tidak ada perubahan</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1.2</td>
-                                                <td>Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>
-                                                    <a href="">
-                                                        <p class="mb-0"><i
-                                                                class="fa-regular fa-file-pdf me-1"></i><label
-                                                                class="mb-0">Lihat Dokumen</label></p>
-                                                    </a>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Perusahaan melengkapi kegiatan operasional angkutan dengan menyediakan fasilitas pemeliharaan dan perbaikan kendaraan bermotor sebagai syarat utama keselamatan dan perbaikan kendaraan bermotor yang digunakan untuk mendukung kegiatan perusahaan
                                                 </td>
-                                                <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                <td>-</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Dokumen Check listSOP pemeriksaan kendaraan sebelum perjalanan sepanjang perjalanan dan setelah operasional</td>
+                                                <td>
+                                                    <ul>
+                                                        <li>File Prosedur Pengoperasian Kendaraan</li>
+                                                        <li>File Instruksi Kerja Ganti Filter Solar</li>
+                                                        <li>File Instruksi Kerja Ganti Ban</li>
+                                                        <li>File Kartu Inspeksi APAR</li>
+                                                        <li>File Form Pemeriksaan Kendaraan Bermotor</li>
+                                                        <li>File Form Pemeriksaan Kendaraan Bermotor Sebelum Operasi</li>
+                                                    </ul>
+                                                </td>
                                             </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -130,51 +122,44 @@
                         <div class="tab-pane" id="2.1Detail">
                             <form id="jobForm" method="post" action="#">
                                 <div class="text-center">
-                                    <h3 class="mb-2">Pengorganisasian</h3>
+                                    <h3 class="mb-2">Manajemen Bahaya dan Risiko</h3>
                                 </div>
                                 <div class="table-responsive py-5">
                                     <table class="table table-hover mb-0">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawab</th>
-                                                <th>Kesesuaian</th>
-                                                <th>Keterangan</th>
+                                                <th>Uraian Element</th>
+                                                <th>Dokumen / Bukti Dukung Jawaban</th>
+                                                <th>File Yang Dilampirkan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>2.1</td>
-                                                <td>Deskripsi Pengorganisasian</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Fasilitas Pemeliharaan dan Perbaikan Persyaratan Ekspektasi Implementasi Prosedur Terkait</td>
                                                 <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>File Persyaratan Ekspektasi Implementasi Prosedur Terkait</td>
                                             </tr>
                                             <tr>
                                                 <td>2.2</td>
-                                                <td>Perusahaan mempunyai struktur organisasi pengelolaan di bidang keselamatan, seperti Unit Manajemen Keselamatan atau Petugas Keselamatan</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>Tidak ada perubahan</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2.3</td>
-                                                <td>Perusahaan dapat menjabarkan uraian tugas dan fungsi di masing-masing jabatan pada struktur organisasi hubungan antar struktur organisasi tersebut</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>
-                                                    <a href="">
-                                                        <p class="mb-0"><i
-                                                                class="fa-regular fa-file-pdf me-1"></i><label
-                                                                class="mb-0">Lihat Dokumen</label></p>
-                                                    </a>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Perusahaan melengkapi kegiatan operasional angkutan dengan menyediakan fasilitas pemeliharaan dan perbaikan kendaraan bermotor sebagai syarat utama keselamatan dan perbaikan kendaraan bermotor yang digunakan untuk mendukung kegiatan perusahaan
                                                 </td>
-                                                <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                <td>-</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Dokumen Check listSOP pemeriksaan kendaraan sebelum perjalanan sepanjang perjalanan dan setelah operasional</td>
+                                                <td>
+                                                    <ul>
+                                                        <li>File Prosedur Pengoperasian Kendaraan</li>
+                                                        <li>File Instruksi Kerja Ganti Filter Solar</li>
+                                                        <li>File Instruksi Kerja Ganti Ban</li>
+                                                        <li>File Kartu Inspeksi APAR</li>
+                                                        <li>File Form Pemeriksaan Kendaraan Bermotor</li>
+                                                        <li>File Form Pemeriksaan Kendaraan Bermotor Sebelum Operasi</li>
+                                                    </ul>
+                                                </td>
                                             </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -312,10 +297,6 @@
                                     <button type="button" class="btn btn-primary selanjutnya"> Selanjutnya
                                     </button>
                                 </div>
-                                <div class="save">
-                                    <button type="button" class="btn btn-success simpan"> Simpan
-                                    </button>
-                                </div>
                             </div>
                         </div>
                         <!-- END: Define your controller buttons here-->
@@ -329,7 +310,7 @@
     <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
     
-    {{-- <script>
+    <script>
 
         document.addEventListener("click", (e) => {
             if (e.target.classList.contains('selanjutnya')) {
@@ -382,5 +363,5 @@
                 }
             }
         });
-    </script> --}}
+    </script>
 @endsection

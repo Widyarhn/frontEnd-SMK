@@ -256,7 +256,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>1.1</td>
-                                                        <td>Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
                                                             Ekspektasi, Implementasi, Prosedur Terkait)</td>
                                                         <td>-</td>
                                                         <td>-</td>
@@ -265,16 +265,16 @@
                                                     </tr>
                                                     <tr>
                                                         <td>1.2</td>
-                                                        <td>Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
-                                                        <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Apakah terdapat perubahan pada dokumen Komitmen</td>
                                                         <td>Tidak ada perubahan</td>
                                                         <td>-</td>
                                                         <td>-</td>
                                                     </tr>
                                                     <tr>
                                                         <td>1.2</td>
-                                                        <td>Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
-                                                        <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Apakah terdapat perubahan pada dokumen Komitmen</td>
                                                         <td>
                                                             <a href="">
                                                                 <p class="mb-0"><i
@@ -310,7 +310,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>2.1</td>
-                                                        <td>Deskripsi Pengorganisasian</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian</td>
                                                         <td>-</td>
                                                         <td>-</td>
                                                         <td>-</td>
@@ -318,16 +318,16 @@
                                                     </tr>
                                                     <tr>
                                                         <td>2.2</td>
-                                                        <td>Perusahaan mempunyai struktur organisasi pengelolaan di bidang keselamatan, seperti Unit Manajemen Keselamatan atau Petugas Keselamatan</td>
-                                                        <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai struktur organisasi pengelolaan di bidang keselamatan, seperti Unit Manajemen Keselamatan atau Petugas Keselamatan</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Apakah terdapat perubahan pada dokumen Komitmen</td>
                                                         <td>Tidak ada perubahan</td>
                                                         <td>-</td>
                                                         <td>-</td>
                                                     </tr>
                                                     <tr>
                                                         <td>2.3</td>
-                                                        <td>Perusahaan dapat menjabarkan uraian tugas dan fungsi di masing-masing jabatan pada struktur organisasi hubungan antar struktur organisasi tersebut</td>
-                                                        <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan dapat menjabarkan uraian tugas dan fungsi di masing-masing jabatan pada struktur organisasi hubungan antar struktur organisasi tersebut</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Apakah terdapat perubahan pada dokumen Komitmen</td>
                                                         <td>
                                                             <a href="">
                                                                 <p class="mb-0"><i
@@ -363,7 +363,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>3.1</td>
-                                                        <td>Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)</td>
                                                         <td>-</td>
                                                         <td>-</td>
                                                         <td>-</td>
@@ -371,16 +371,16 @@
                                                     </tr>
                                                     <tr>
                                                         <td>3.2</td>
-                                                        <td>Perusahaan telah memiliki prosedur identifikasi bahaya, penilaian dan pengendalian risiko secara komprehensif baik terhadap personel, sarana angkutan, penumpang maupun lingkungan untuk setiap tahapan operasi pengangkutan</td>
-                                                        <td>Apakah terdapat perubahan pada dokumen Struktur Organisasi</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan telah memiliki prosedur identifikasi bahaya, penilaian dan pengendalian risiko secara komprehensif baik terhadap personel, sarana angkutan, penumpang maupun lingkungan untuk setiap tahapan operasi pengangkutan</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Apakah terdapat perubahan pada dokumen Struktur Organisasi</td>
                                                         <td>Tidak ada perubahan</td>
                                                         <td>-</td>
                                                         <td>-</td>
                                                     </tr>
                                                     <tr>
                                                         <td>3.3</td>
-                                                        <td>Perusahaan telah melakukan identifikasi bahaya, penilaian dan pengendaliannya dengan metode yang sesuai dengan karakteristik bahaya yang ada, memiliki matrik penilaian bahaya dan risiko, matrik identifikasi bahaya, penilaian dan pengendalian risiko di kantor, bengkel dan operasional serta matrik identifikasi bahaya lalu lintas</td>
-                                                        <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan telah melakukan identifikasi bahaya, penilaian dan pengendaliannya dengan metode yang sesuai dengan karakteristik bahaya yang ada, memiliki matrik penilaian bahaya dan risiko, matrik identifikasi bahaya, penilaian dan pengendalian risiko di kantor, bengkel dan operasional serta matrik identifikasi bahaya lalu lintas</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Apakah terdapat perubahan pada dokumen Komitmen</td>
                                                         <td>
                                                             <a href="">
                                                                 <p class="mb-0"><i

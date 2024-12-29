@@ -43,28 +43,28 @@
                     <ul class="nav nav-pills nav-justified">
                         <li class="nav-item" data-target-form="#contactDetailForm">
                             <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield me-2">
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
                                     </i>1.1</span>
                             </a>
                         </li>
                         <li class="nav-item" data-target-form="#jobDetailForm">
                             <a href="#2.1Detail" data-bs-toggle="tab" data-toggle="tab"
                                 class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield me-2">
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
                                     </i>2.1</span>
                             </a>
                         </li>
                         <li class="nav-item" data-target-form="#educationForm">
                             <a href="#3.1Detail" data-bs-toggle="tab" data-toggle="tab"
                                 class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield me-2">
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
                                     </i>3.1</span>
                             </a>
                         </li>
                         <li class="nav-item" data-target-form="#jobDetailForm">
                             <a href="#4.1Detail" data-bs-toggle="tab" data-toggle="tab"
                                 class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield me-2">
+                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
                                     </i>4.1</span>
                             </a>
                         </li>
@@ -84,45 +84,32 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawab</th>
-                                                <th>Kesesuaian</th>
-                                                <th>Keterangan</th>
+                                                <th>Uraian Element</th>
+                                                <th>Pertanyaan Monitoring</th>
+                                                <th>Ditampilkan</th>
+                                                <th>Wajib Diisi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>1.1</td>
-                                                <td>Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                    Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1.2</td>
-                                                <td>Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>Tidak ada perubahan</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1.2</td>
-                                                <td>Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>
-                                                    <a href="">
-                                                        <p class="mb-0"><i
-                                                                class="fa-regular fa-file-pdf me-1"></i><label
-                                                                class="mb-0">Lihat Dokumen</label></p>
-                                                    </a>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)
                                                 </td>
-                                                <td><span class="badge bg-light-success">Sesuai</span></td>
                                                 <td>-</td>
+                                                <td>Tidak</td>
+                                                <td>Tidak</td>
                                             </tr>
+                                            <tr>
+                                                <td>1.2</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Seluruh pemegang kepentingan atau bagian dalam Perusahaan mempunyai peran serta dan keterlibatan aktif dalam meningkatkan kinerja keselamatan
+                                                </td>
+                                                <td>-</td>
+                                                <td>Tidak</td>
+                                                <td>Tidak</td>
+                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -138,44 +125,32 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawab</th>
-                                                <th>Kesesuaian</th>
-                                                <th>Keterangan</th>
+                                                <th>Uraian Element</th>
+                                                <th>Pertanyaan Monitoring</th>
+                                                <th>Ditampilkan</th>
+                                                <th>Wajib Diisi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>2.1</td>
-                                                <td>Deskripsi Pengorganisasian</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Deskripsi Pengorganisasian
+                                                </td>
                                                 <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>Tidak</td>
+                                                <td>Tidak</td>
                                             </tr>
                                             <tr>
                                                 <td>2.2</td>
-                                                <td>Perusahaan mempunyai struktur organisasi pengelolaan di bidang keselamatan, seperti Unit Manajemen Keselamatan atau Petugas Keselamatan</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>Tidak ada perubahan</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2.3</td>
-                                                <td>Perusahaan dapat menjabarkan uraian tugas dan fungsi di masing-masing jabatan pada struktur organisasi hubungan antar struktur organisasi tersebut</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>
-                                                    <a href="">
-                                                        <p class="mb-0"><i
-                                                                class="fa-regular fa-file-pdf me-1"></i><label
-                                                                class="mb-0">Lihat Dokumen</label></p>
-                                                    </a>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Perusahaan menetapkan Standard Operasional Prosedur (SOP) tentang kriteria penerimaan pengemudi,mekanik, dll
                                                 </td>
-                                                <td><span class="badge bg-light-success">Sesuai</span></td>
                                                 <td>-</td>
+                                                <td>Tidak</td>
+                                                <td>Tidak</td>
                                             </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -191,44 +166,32 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawab</th>
-                                                <th>Kesesuaian</th>
-                                                <th>Keterangan</th>
+                                                <th>Uraian Element</th>
+                                                <th>Pertanyaan Monitoring</th>
+                                                <th>Ditampilkan</th>
+                                                <th>Wajib Diisi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>3.1</td>
-                                                <td>Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)
+                                                </td>
                                                 <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>Tidak</td>
+                                                <td>Tidak</td>
                                             </tr>
                                             <tr>
                                                 <td>3.2</td>
-                                                <td>Perusahaan telah memiliki prosedur identifikasi bahaya, penilaian dan pengendalian risiko secara komprehensif baik terhadap personel, sarana angkutan, penumpang maupun lingkungan untuk setiap tahapan operasi pengangkutan</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Struktur Organisasi</td>
-                                                <td>Tidak ada perubahan</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3.3</td>
-                                                <td>Perusahaan telah melakukan identifikasi bahaya, penilaian dan pengendaliannya dengan metode yang sesuai dengan karakteristik bahaya yang ada, memiliki matrik penilaian bahaya dan risiko, matrik identifikasi bahaya, penilaian dan pengendalian risiko di kantor, bengkel dan operasional serta matrik identifikasi bahaya lalu lintas</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>
-                                                    <a href="">
-                                                        <p class="mb-0"><i
-                                                                class="fa-regular fa-file-pdf me-1"></i><label
-                                                                class="mb-0">Lihat Dokumen</label></p>
-                                                    </a>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)
                                                 </td>
-                                                <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                <td>-</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Pengemudi melaporkan dan mengkomunikasikan potensi bahaya disepanjang jalur yang dilalui kepada pimpinan perusahaan</td>
+                                                <td>Ya</td>
+                                                <td>Tidak</td>
                                             </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -244,65 +207,36 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawab</th>
-                                                <th>Kesesuaian</th>
-                                                <th>Keterangan</th>
+                                                <th>Uraian Element</th>
+                                                <th>Pertanyaan Monitoring</th>
+                                                <th>Ditampilkan</th>
+                                                <th>Wajib Diisi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>4.1</td>
-                                                <td>Deskripsi Fasilitas Pemeliharaan dan Perbaikan (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)
+                                                </td>
                                                 <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>Tidak</td>
+                                                <td>Tidak</td>
                                             </tr>
                                             <tr>
                                                 <td>4.2</td>
-                                                <td>Perusahaan melengkapi kegiatan operasional angkutan dengan menyediakan fasilitas pemeliharaan dan perbaikan kendaraan bermotor sebagai syarat utama keselamatan dan perbaikan kendaraan bermotor yang digunakan untuk mendukung kegiatan perusahaan</td>
-                                                <td>Apakah terdapat perubahan dokumen prosedur pengoperasian kendaraan</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4.3</td>
-                                                <td>Pemeliharaan dan perbaikan kendaraan dengan penyediaan sarana dan prasarana pendukung yang memadai untuk mendukung keselamatan seperti bengkel, klinik, ruang istirahat pengemudi, ruang parkir, fasilitas penyimpanan suku cadang dan lain-lain</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>
-                                                    <a href="">
-                                                        <p class="mb-0"><i
-                                                                class="fa-regular fa-file-pdf me-1"></i><label
-                                                                class="mb-0">Lihat Dokumen</label></p>
-                                                    </a>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)
                                                 </td>
-                                                <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                <td>-</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Pengemudi melaporkan dan mengkomunikasikan potensi bahaya disepanjang jalur yang dilalui kepada pimpinan perusahaan</td>
+                                                <td>Ya</td>
+                                                <td>Tidak</td>
                                             </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
                             </form>
-                        </div>
-                        <div class="tab-pane" id="finish">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-6">
-                                    <div class="text-center">
-                                        <i class="ph-duotone ph-gift f-50 text-danger"></i>
-                                        <h3 class="mt-4 mb-3">Thank you !</h3>
-                                        <div class="mb-3">
-                                            <div class="form-check d-inline-block">
-                                                <input type="checkbox" class="form-check-input"
-                                                    id="customCheck1" />
-                                                <label class="form-check-label" for="customCheck1">I agree with
-                                                    the Terms
-                                                    and Conditions</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="d-flex wizard justify-content-center flex-wrap gap-2 mt-3">
                             <div class="d-flex">
@@ -311,10 +245,6 @@
                                 </div>
                                 <div class="next me-2">
                                     <button type="button" class="btn btn-primary selanjutnya"> Selanjutnya
-                                    </button>
-                                </div>
-                                <div class="save">
-                                    <button type="button" class="btn btn-success simpan"> Simpan
                                     </button>
                                 </div>
                             </div>
@@ -330,7 +260,7 @@
     <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
     
-    {{-- <script>
+    <script>
 
         document.addEventListener("click", (e) => {
             if (e.target.classList.contains('selanjutnya')) {
@@ -383,5 +313,5 @@
                 }
             }
         });
-    </script> --}}
+    </script>
 @endsection

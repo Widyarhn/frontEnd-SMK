@@ -415,9 +415,9 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>1.1</td>
-                                                        <td>Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
                                                             Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                        <td>File Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
                                                             Ekspektasi, Implementasi, Prosedur Terkait)
                                                             <a href="">
                                                                 <p class="mb-0"><i
@@ -430,9 +430,9 @@
                                                     </tr>
                                                     <tr>
                                                         <td>1.2</td>
-                                                        <td>Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
                                                             Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                        <td>File Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
                                                             Ekspektasi, Implementasi, Prosedur Terkait)
                                                             <a href="">
                                                                 <p class="mb-0"><i
@@ -467,8 +467,8 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>2.1</td>
-                                                        <td>Deskripsi Pengorganisasian</td>
-                                                        <td>File Deskripsi Pengorganisasian
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian</td>
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Pengorganisasian
                                                             <a href="">
                                                                 <p class="mb-0"><i
                                                                         class="fa-regular fa-file-pdf me-1"></i><label
@@ -480,10 +480,10 @@
                                                     </tr>
                                                     <tr>
                                                         <td>2.2</td>
-                                                        <td>Perusahaan mempunyai struktur organisasi pengelolaan di bidang
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai struktur organisasi pengelolaan di bidang
                                                             keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
                                                             Keselamatan</td>
-                                                        <td>File Perusahaan mempunyai struktur organisasi pengelolaan di
+                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Perusahaan mempunyai struktur organisasi pengelolaan di
                                                             bidang keselamatan, seperti Unit Manajemen Keselamatan atau
                                                             Petugas Keselamatan
                                                             <a href="">

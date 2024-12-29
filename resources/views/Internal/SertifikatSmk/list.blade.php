@@ -123,7 +123,7 @@
     </div>
 
     <!-- Filter Download Form -->
-    <div id="collapseFilter" class="mt-1">
+    <div id="collapseFilter" class="collapse mt-1">
         <div class="card card-body mb-3">
             <h5 class="card-title mt-1 mb-2"><i class="fa-solid fa-filter fa-20"></i> Filter Download</h5>
             <form id="custom-filter">
@@ -146,7 +146,8 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-perusahaan">Perusahaan</label>
-                                <select class="form-control select2" name="input_perusahaan" id="input-perusahaan"></select>
+                                <select class="form-control select2" name="input_perusahaan"
+                                    id="input-perusahaan"></select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-status">Status Sertifikat</label>
@@ -201,7 +202,7 @@
         </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -308,6 +309,319 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                            aria-labelledby="analytics-tab-1" tabindex="0">
+                            <div class="table-responsive">
+                                <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
+                                    <div class="datatable-top">
+                                        <div class="datatable-dropdown">
+                                            <label>
+                                                <select class="datatable-selector">
+                                                    <option value="5">5</option>
+                                                    <option value="10" selected="">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="20">20</option>
+                                                    <option value="25">25</option>
+                                                </select> entries per page
+                                            </label>
+                                        </div>
+                                        <div class="datatable-search d-flex justify-content-between align-items-center">
+                                            <div class="btn-group btn-group-sm help-filter" role="group"
+                                                aria-label="button groups sm">
+                                                <a class="btn btn-light-secondary" onclick='noteNotShow()'
+                                                    style="border-top-left-radius: 5px !important;border-bottom-left-radius: 5px !important;"><i
+                                                        class="feather icon-align-justify m-0"></i></a>
+                                                <a class="btn btn-light-secondary" onclick='noteShow()'
+                                                    style="border-top-right-radius: 5px !important;border-bottom-right-radius: 5px !important;"><i
+                                                        class="feather icon-grid m-0"></i></a>
+                                            </div>
+                                            <a href="javascript:void(0)"
+                                                class="btn btn-outline-primary collapse-filter text-nowrap ms-3"
+                                                data-bs-toggle="collapse" href="#collapseFilter" role="button"
+                                                aria-expanded="false" aria-controls="collapseFilter">
+                                                <em class="d-none d-sm-inline icon ni ni-filter-alt"></em>
+                                                <i class="f-18 fa-solid fa-filter"></i> Filter Download
+                                            </a>
+
+                                            <!-- Input Search -->
+                                            <input class="datatable-input ms-3" placeholder="Search..." type="search"
+                                                title="Search within table" aria-controls="pc-dt-simple-1">
+
+                                        </div>
+                                    </div>
+                                    <div class="datatable-container">
+                                        <table class="table table-hover datatable-table" id="pc-dt-simple-1">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center;">Permohonan Penilaian E-SMK</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr data-index="0">
+                                                    <td>
+                                                        <div class="card ticket-card mt-3">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-sm-auto mb-3 mb-sm-0">
+                                                                        <div
+                                                                            class="d-sm-inline-block d-flex align-items-center">
+                                                                            {{-- <img class="media-object wid-60 img-radius"
+                                                                                src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                                                                alt="Generic placeholder image "> --}}
+                                                                                <div
+                                                                                class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                                                <i class="fa-solid fa-building text-white fa-2x"></i>
+                                                                            </div>
+                                                                            <div class="ms-3 ms-sm-0">
+                                                                                <ul
+                                                                                    class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
+                                                                                    <li class="list-unstyled-item"><a
+                                                                                            href="#"
+                                                                                            class="link-secondary">1
+                                                                                            Catatan</a></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="popup-trigger">
+                                                                            <div
+                                                                                class="d-flex justify-content-between align-items-center">
+                                                                                <div class="h4 font-weight-bold">
+                                                                                    No. Pendaftaran: 20240000030
+                                                                                    <small
+                                                                                        class="badge bg-light-primary ms-2">Pengajuan
+                                                                                        Baru</small>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <span
+                                                                                        class="badge bg-light-secondary px-3 py-2">Lama
+                                                                                        Proses: 2 Hari</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="help-sm-hidden">
+                                                                                <ul
+                                                                                    class="list-unstyled mt-2 mb-0 text-muted">
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
+                                                                                        <i
+                                                                                            class="ph-duotone ph-buildings me-1"></i>
+                                                                                        <b>PT TRISTAR JAVA TRANSINDO</b>
+                                                                                    </li>
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
+                                                                                        <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                            alt=""
+                                                                                            class="wid-20 rounded me-1 img-fluid">
+                                                                                        Diproses Oleh <b>Ahmad Syariffudin
+                                                                                            Putro</b>
+                                                                                    </li>
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
+                                                                                        <i
+                                                                                            class="fa-regular fa-calendar-days me-1"></i>Diajukan
+                                                                                        <b>23-12-2024 09:57:11</b>
+                                                                                    </li>
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1">
+                                                                                        <i
+                                                                                            class="fa-solid fa-calendar-day me-1"></i>Jadwal
+                                                                                        Interview : <b>Tidak ada
+                                                                                            wawancara</b>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div
+                                                                                class="d-flex justify-content-between align-items-center">
+                                                                                <div class="h6 font-weight-bold mt-3">
+                                                                                    Jenis Pelayanan : <p
+                                                                                        class="fw-normal mt-2">Angkutan B3,
+                                                                                        Angkutan barang umum</p>
+                                                                                </div>
+                                                                                <ul
+                                                                                    class="list-unstyled mt-2 mb-0 text-muted">
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
+                                                                                        <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                            alt=""
+                                                                                            class="wid-20 rounded me-1 img-fluid">
+                                                                                        Posisi : <b>Joko Kustanto</b>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div id="noteShow">
+                                                                                <div class="h5 mt-3"><i
+                                                                                        class="material-icons-two-tone f-16 me-1">notification_important</i>
+                                                                                    Catatan Permohonan</div>
+                                                                                <div class="help-md-hidden">
+                                                                                    <div class="bg-body mb-3 p-3">
+                                                                                        <h6><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                                alt=""
+                                                                                                class="wid-20 avatar me-2 rounded">Last
+                                                                                            comment from <a href="#"
+                                                                                                class="link-secondary">Robert
+                                                                                                alia:</a></h6>
+                                                                                        <p class="mb-0"><b>hello John
+                                                                                                lui</b>,<br>you need to
+                                                                                            create
+                                                                                            <b>"toolbar-options" div
+                                                                                                only</b>
+                                                                                            once in a page&nbsp;in your
+                                                                                            code,<br>this div fill found
+                                                                                            every
+                                                                                            "td" tag in your
+                                                                                            page,<br>just...
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="mt-3">
+                                                                            <a href="/internal/sertifikat/detail"
+                                                                                class="me-2 btn btn-sm btn-light-secondary"
+                                                                                style="border-radius:5px;"><i
+                                                                                    class="feather icon-eye mx-1"></i>Lihat
+                                                                                Detail</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr data-index="1">
+                                                    <td>
+                                                        <div class="card ticket-card mt-3">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-sm-auto mb-3 mb-sm-0">
+                                                                        <div
+                                                                            class="d-sm-inline-block d-flex align-items-center">
+                                                                            <div
+                                                                            class="wid-60 hei-60 rounded-circle bg-success d-flex align-items-center justify-content-center">
+                                                                            <i class="fa-solid fa-building text-white fa-2x"></i>
+                                                                        </div>
+                                                                            <div class="ms-3 ms-sm-0">
+                                                                                <ul
+                                                                                    class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
+                                                                                    <li class="list-unstyled-item"><a
+                                                                                            href="#"
+                                                                                            class="link-secondary">0
+                                                                                            Catatan</a></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="popup-trigger">
+                                                                            <div
+                                                                                class="d-flex justify-content-between align-items-center">
+                                                                                <div class="h4 font-weight-bold">
+                                                                                    No. Pendaftaran: 20240000030
+                                                                                    <small
+                                                                                        class="badge bg-light-success ms-2">Pengajuan
+                                                                                        Selesai</small>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <span
+                                                                                        class="badge bg-light-secondary px-3 py-2">Lama
+                                                                                        Proses: 2 Hari</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="help-sm-hidden">
+                                                                                <ul
+                                                                                    class="list-unstyled mt-2 mb-0 text-muted">
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
+                                                                                        <i
+                                                                                            class="ph-duotone ph-buildings me-1"></i>
+                                                                                        <b>PT TRISTAR JAVA TRANSINDO</b>
+                                                                                    </li>
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
+                                                                                        <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                            alt=""
+                                                                                            class="wid-20 rounded me-1 img-fluid">
+                                                                                        Diproses Oleh <b>Ahmad Syariffudin
+                                                                                            Putro</b>
+                                                                                    </li>
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
+                                                                                        <i
+                                                                                            class="fa-regular fa-calendar-days me-1"></i>Diajukan
+                                                                                        <b>23-12-2024 09:57:11</b>
+                                                                                    </li>
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1">
+                                                                                        <i
+                                                                                            class="fa-solid fa-calendar-day me-1"></i>Jadwal
+                                                                                        Interview : <b>13-12-2024</b>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div
+                                                                                class="d-flex justify-content-between align-items-center">
+                                                                                <div class="h6 font-weight-bold mt-3">
+                                                                                    Jenis Pelayanan : <p
+                                                                                        class="fw-normal mt-2">Angkutan B3,
+                                                                                        Angkutan barang umum</p>
+                                                                                </div>
+                                                                                <ul
+                                                                                    class="list-unstyled mt-2 mb-0 text-muted">
+                                                                                    <li
+                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
+                                                                                        <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                            alt=""
+                                                                                            class="wid-20 rounded me-1 img-fluid">
+                                                                                        Posisi : <b>Joko Kustanto</b>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            
+                                                                            <div class="h5 mt-3"><i class="fa-solid fa-file-pdf me-2"></i>insert_drive_file</i>
+                                                                                Nomor Serifikat SK/00912/99812</div>
+                                                                        </div>
+                                                                        <div class="mt-3">
+                                                                            <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                                                class="me-2 btn btn-sm btn-light-primary" style="border-radius:5px;"><i class="fa-solid fa-file-pdf me-2"></i>Lihat
+                                                                                Dokumen</a>
+
+                                                                            <a href="/internal/sertifikat/detail"
+                                                                                class="me-2 btn btn-sm btn-light-secondary"
+                                                                                style="border-radius:5px;"><i
+                                                                                    class="feather icon-eye mx-1"></i>Lihat
+                                                                                Detail</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="datatable-bottom">
+                                        <div class="datatable-info">Showing 1 to 9 of 9 entries</div>
+                                        <nav class="datatable-pagination">
+                                            <ul class="datatable-pagination-list"></ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('scripts')
@@ -403,5 +717,40 @@
         $(document).on("click", ".collapse-filter", function() {
             $("#collapseFilter").toggle(500);
         });
+        document.addEventListener("DOMContentLoaded", function() {
+            const noteElement = document.getElementById("noteShow");
+            const notShowButton = document.querySelector(".btn-group .btn:nth-child(1)");
+            const showButton = document.querySelector(".btn-group .btn:nth-child(2)");
+
+            if (noteElement) {
+                noteElement.style.display = "block"; // Default: tampilkan
+                if (showButton) showButton.classList.add("active"); // Set tombol 'noteShow' aktif secara default
+                if (notShowButton) notShowButton.classList.remove("active");
+            }
+        });
+
+        // Fungsi untuk menyembunyikan "noteShow"
+        function noteNotShow() {
+            const noteElement = document.getElementById("noteShow");
+            const notShowButton = document.querySelector(".btn-group .btn:nth-child(1)");
+            const showButton = document.querySelector(".btn-group .btn:nth-child(2)");
+
+            if (noteElement) noteElement.style.display = "none"; // Sembunyikan elemen
+
+            if (notShowButton) notShowButton.classList.add("active");
+            if (showButton) showButton.classList.remove("active");
+        }
+
+        // Fungsi untuk menampilkan "noteShow"
+        function noteShow() {
+            const noteElement = document.getElementById("noteShow");
+            const notShowButton = document.querySelector(".btn-group .btn:nth-child(1)");
+            const showButton = document.querySelector(".btn-group .btn:nth-child(2)");
+
+            if (noteElement) noteElement.style.display = "block"; // Tampilkan elemen
+
+            if (showButton) showButton.classList.add("active");
+            if (notShowButton) notShowButton.classList.remove("active");
+        }
     </script>
 @endsection
