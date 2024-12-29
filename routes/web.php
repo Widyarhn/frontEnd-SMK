@@ -139,6 +139,9 @@ Route::prefix('company')->group(function () {
         Route::get('/list', function () {
             return view('Company.yearly-report.list');
         });
+        Route::get('/create', function () {
+            return view('Company.yearly-report.create');
+        });
 
     });
     Route::get('/pengajuan-sertifikat/create', function () {
