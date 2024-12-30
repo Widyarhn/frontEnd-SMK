@@ -71,7 +71,7 @@
                 <li class="pc-item">
                     <a href="/internal/pengaturan-akun/index" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fa fa-cogs"></i>
+                            <i class="fa-solid fa-user-gear"></i>
                         </span>
                         <span class="pc-mtext">Pengaturan Akun</span>
                     </a>

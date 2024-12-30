@@ -98,10 +98,10 @@
                                                 class="ti ti-map-pin me-2"></i>
                                             <p class="mb-0">New York</p>
                                         </div>
-                                        <div class="d-inline-flex align-items-center justify-content-start w-100"><i
+                                        {{-- <div class="d-inline-flex align-items-center justify-content-start w-100"><i
                                                 class="ti ti-link me-2"></i> <a href="#" class="link-primary">
                                                 <p class="mb-0">https://anshan.dh.url</p>
-                                            </a></div>
+                                            </a></div> --}}
                                     </div>
                                 </div>
                             </div>

@@ -45,581 +45,530 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/internal/dashboard-internal">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/internal/sertifikat/list">Daftar Sertifikat</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Detail Pengajuan Permohonan Penilaian E-SMK</li>
+                        <li class="breadcrumb-item"><a href="/internal/sertifikat/list">Sertifikat SMK</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Detail SMK</li>
                     </ul>
                 </div>
                 <div class="col-md-12 d-flex justify-content-between align-items-center">
                     <div class="page-header-title">
-                        <h2 class="mb-0">Detail Pengajuan Permohonan Penilaian E-SMK</h2>
+                        <h2 class="mb-0">Detail Permohonan Penilaian E-SMK</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card">
-                {{-- <div class="card-header">
-                    <h5><i data-feather="lock" class="icon-svg-primary wid-20"></i><span class="p-l-5">Private Ticket
-                            #1831786</span></h5>
-                </div> --}}
-                <div class="card-body border-bottom py-2">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h4 class="d-inline-block my-3">Informasi Perusahaan</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-bottom card-body">
-                    <div class="row">
-                        <div class="col-sm-auto mb-3 mb-sm-0">
-                            <div class="d-sm-inline-block d-flex align-items-center">
-                                {{-- <img class="wid-60 img-radius mb-2" src="{{asset('assets')}}/images/user/avatar-4.jpg"
-                                    alt="Generic placeholder image " /> --}}
-                                <div
-                                    class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-building text-white fa-2x"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="">
-                                        <h4 class="d-inline-block">PT TRISTAR JAVA TRANSINDO</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <p class="mb-2"><b>NIB : 9120109831421</b></p>
-                                <ul class="list-group list-group-flush ">
-                                    <li class="list-group-item px-0">
-                                        <div class="row mt-1">
-                                            <div class="col-md-6">
-                                                <p class="mb-1 text-muted">Nomor Telepon</p>
-                                                <p class="mb-0">(+1-876) 8654 239 581</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="mb-1 text-muted">Email</p>
-                                                <p class="mb-0">anshan.dh81@gmail.com</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        <p class="mb-1 text-muted">Alamat</p>
-                                        <p class="mb-0">Street 110-B Kalians Bag, Dewan, M.P. New York</p>
-                                    </li>
-                                    <li class="list-group-item px-0 pb-0 mb-2">
-                                        <p class="mb-1 text-muted">Jenis Layanan</p>
-                                        <ol>
-                                            <li>AJAP</li>
-                                            <li>AKAP</li>
-                                        </ol>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body border-bottom py-2">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h4 class="d-inline-block my-3">Penanggung Jawab</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-bottom card-body">
-                    <div class="row">
-                        <div class="col-sm-auto mb-3 mb-sm-0">
-                            <div class="d-sm-inline-block d-flex align-items-center">
-                                {{-- <img class="wid-60 img-radius mb-2" src="{{asset('assets')}}/images/user/avatar-4.jpg"
-                                    alt="Generic placeholder image " /> --}}
-                                <div
-                                    class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-user-large text-white fa-2x"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="">
-                                        <h4 class="d-inline-block">ANG HOEY TIONG</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <p class="mb-3"><b>No. Telp : 0216281700</b></p>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body border-bottom py-2">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h4 class="d-inline-block my-3">Informasi Pengguna</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col px-5">
-                            <ul class="list-group list-group-flush ">
-                                <li class="list-group-item px-0">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <p class="mb-1 text-muted">Username</p>
-                                            <p class="mb-0">ANGHOEYTIONG</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="mb-1 text-muted">Email</p>
-                                            <p class="mb-0">admtjt26@gmail.comm</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0">
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <p class="mb-1 text-muted">Nomor Telepon</p>
-                                            <p class="mb-0">(+1-876) 8654 239 581</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="mb-1 text-muted">Tanggal Pengajuan</p>
-                                            <p class="mb-0">12 Desember 2024</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Detail Pengajuan</h5>
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-success d-block text-center text-uppercase"><i
-                            class="feather icon-check-circle mx-2"></i>Telah lulus penilaian</div>
-                    <div class="row mt-4">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                        aria-controls="flush-collapseOne"
-                                        style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">
-                                        Lihat Surat Permohonan
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">
-                                                <div class="media align-items-center">
-                                                    <label class="mb-2">Nomor Surat : </label>
-                                                    <div class="media-body">
-                                                        <p class="mb-0"><i class="fa-solid fa-file me-1"></i><label
-                                                                class="mb-0">12 Desember 2024</label></p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="media align-items-center">
-                                                    <label class="mb-2 wid-100">Tanggal Surat</label>
-                                                    <div class="media-body">
-                                                        <p class="mb-0"><i class="feather icon-calendar me-1"></i><label
-                                                                class="mb-0">12 Desember 2024</label></p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="media align-items-center">
-                                                    <div class="media-body">
-                                                        <a href="">
-                                                            <p class="mb-0"><i
-                                                                    class="fa-regular fa-file-pdf me-1"></i><label
-                                                                    class="mb-0">Lihat Dokumen</label></p>
-                                                        </a>
-
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo"
-                                        style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">
-                                        Riwayat Pengajuan
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <div class="task-card p-3">
-                                            <ul class="list-unstyled task-list">
-                                                <li>
-                                                    <i class="feather icon-check f-w-600 task-icon bg-success"></i>
-                                                    <p class="m-b-5">8:50</p>
-                                                    <h5 class="text-muted">Call to customer <span class="text-primary"> <a
-                                                                href="#!" class="text-primary">Jacob</a> </span> and
-                                                        discuss the
-                                                    </h5>
-                                                </li>
-                                                <li>
-                                                    <i class="task-icon bg-primary"></i>
-                                                    <p class="m-b-5">Sat, 5 Mar</p>
-                                                    <h5 class="text-muted">Design mobile Application</h5>
-                                                </li>
-                                                <li>
-                                                    <i class="task-icon bg-danger"></i>
-                                                    <p class="m-b-5">Sun, 17 Feb</p>
-                                                    <h5 class="text-muted"><span class="text-primary"><a href="#!"
-                                                                class="text-primary">Jeny</a></span>
-                                                        assign you a task
-                                                        <span class="text-primary"><a href="#!"
-                                                                class="text-primary">Mockup Design.</a></span>
-                                                    </h5>
-                                                </li>
-                                                <li>
-                                                    <i class="task-icon bg-warning"></i>
-                                                    <p class="m-b-5">Sat, 18 Mar</p>
-                                                    <h5 class="text-muted">Design logo</h5>
-                                                </li>
-                                                <li class="p-b-15 m-b-10">
-                                                    <i class="task-icon bg-success"></i>
-                                                    <p class="m-b-5">Sat, 22 Mar</p>
-                                                    <h5 class="text-muted">Design mobile Application</h5>
-                                                </li>
-                                            </ul>
-                                            <div class="text-end">
-                                                <a href="#!" class="b-b-primary text-primary">View Friend
-                                                    List</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="media align-items-center">
-                            <label class="mb-2 wid-100">Dispo oleh :</label>
-                            <div class="media-body d-flex align-items-center">
-                                <i class="fa-solid fa-user-circle me-2"
-                                    style="font-size: 30px; width: 30px; height: 30px; border-radius: 5px; background-color: #ffffff; display: inline-flex; align-items: center; justify-content: center;"></i>
-                                <a href="#" class="link-secondary">Joko Kustanto</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="media align-items-center">
-                            <label class="mb-2 wid-100">Dispo ke :</label>
-                            <div class="media-body">
-                                <p class="mb-0"><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                        alt="" class="wid-30 rounded me-2 img-fluid" /><a href="#"
-                                        class="link-secondary">Iqbal Firmansyah</a></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="media align-items-center">
-                            <label class="mb-2">Dibutuhkan Aksi :</label>
-                            <div class="media-body">
-                                <p class="mb-0"><strong><a href="#" class="link-secondary">Ketua Tim</a></strong>
-                                    | <span class="badge bg-success">Penilaian Lulus</span></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="media align-items-center">
-                            <label class="mb-2">Catatan verifikasi:</label>
-                            <div class="media-body">
-                                <p class="mb-0"><a href="#" class="link-secondary">-</a></p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="media align-items-center">
-                            <label class="mb-2">Terakhir diperbarui : </label>
-                            <div class="media-body">
-                                <p class="mb-0"><i class="feather icon-calendar me-1"></i><label class="mb-0">12
-                                        Desember 2024</label></p>
-                            </div>
-                        </div>
-                    </li>
-                    {{-- <li class="list-group-item py-3">
-                        <button type="button" class="btn btn-sm btn-light-warning me-2"><i
-                                class="mx-2 feather icon-thumbs-up"></i>Make Private</button>
-                        <button type="button" class="btn btn-sm btn-light-danger"><i
-                                class="mx-2 feather icon-trash-2"></i>Delete</button>
-                    </li> --}}
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-lg-8 col-12">
-            <div id="basicwizard" class="form-wizard row justify-content-center">
-                <div class="col-12 mt-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <ul class="nav nav-pills nav-justified">
-                                <li class="nav-item" data-target-form="#contactDetailForm">
-                                    <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                        <span class="d-none d-sm-inline fw-bold f-18"><i
-                                                class="fa-solid fa-shield"></i></span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" data-target-form="#jobDetailForm">
-                                    <a href="#2.2Detail" data-bs-toggle="tab" data-toggle="tab"
-                                        class="nav-link icon-btn">
-                                        <span class="d-none d-sm-inline fw-bold f-18"><i
-                                                class="fa-solid fa-building-shield"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="row align-items-center g-3">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="col-sm-auto mb-3 mb-sm-0 me-3">
+                                            <div class="d-sm-inline-block d-flex align-items-center">
+                                                <div
+                                                    class="wid-60 hei-60 rounded-circle bg-success d-flex align-items-center justify-content-center">
+                                                    <i class="fa-solid fa-building text-white fa-2x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-start">
+                                                <h4 class="d-inline-block mb-0 me-2">PT TRISTAR JAVA TRANSINDO |</h4>
+                                                <p class="mb-0"><b> NIB : 9120109831421</b></p>
+                                            </div>
+                                            <div class="help-sm-hidden">
+                                                <ul class="list-unstyled mt-0 mb-0 text-muted">
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-solid fa-phone me-1"></i>
+                                                        +6289 4562 8963
+                                                    </li>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-regular fa-envelope me-1"></i>
+                                                        tristarjava@mail.com
+                                                    </li>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <span class="badge bg-success">Penilaian Lulus</span>
+                                                    </li>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-solid fa-location-dot me-1"></i>
+                                                        Street 110-B Kalians Bag, Dewan, M.P. New York
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="tab-content">
-                                <div class="tab-pane show active" id="1.1Detail">
-                                    <form id="contactForm" method="get">
-                                        <div class="text-center">
-                                            <h3 class="mb-2">Komitmen dan Kebijakan Keselamatan</h3>
-                                        </div>
-                                        <div class="table-responsive py-5">
-                                            <table class="table table-hover mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Uraian</th>
-                                                        <th>Unggahan Perusahaan</th>
-                                                        <th>Nilai</th>
-                                                        <th>Keterangan</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1.1</td>
-                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                            Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                            Ekspektasi, Implementasi, Prosedur Terkait)
-                                                            <a href="">
-                                                                <p class="mb-0"><i
-                                                                        class="fa-regular fa-file-pdf me-1"></i><label
-                                                                        class="mb-0">Lihat Dokumen</label></p>
-                                                            </a>
-                                                        </td>
-                                                        <td>2.5</td>
-                                                        <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1.2</td>
-                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                            Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                            Ekspektasi, Implementasi, Prosedur Terkait)
-                                                            <a href="">
-                                                                <p class="mb-0"><i
-                                                                        class="fa-regular fa-file-pdf me-1"></i><label
-                                                                        class="mb-0">Lihat Dokumen</label></p>
-                                                            </a>
-                                                        </td>
-                                                        <td>2.5</td>
-                                                        <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </form>
+                        <div class="col-lg-4 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Detail Pengajuan</h5>
+                                <p class="mb-0"><i class="fa-solid fa-building-user me-2"></i>Dispo oleh <b>Ang
+                                        Hoey Tiong</b></p>
+                                <p class="mb-0"><i class="fa-solid fa-user-tie me-2"></i>Dispo ke <b>Iqbal
+                                        Firmansyah</b></p>
+                                <p class="mb-0"><i class="fa-solid fa-calendar-day me-2"></i>Diperbarui <b>12
+                                        Desember 2024</b></p>
+                                <p class="mb-0"><i class="fa-solid fa-user-large me-2"></i>Dibutuhkan Aksi
+                                    <b>Ketua Tim</b>
+                                </p>
+                                <p class="mb-0"><i class="fa-regular fa-note-sticky me-2"></i><a href="">Lihat
+                                    Catatan</a></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Surat Permohonan</h5>
+                                <div class="row">
+                                    <p class="mb-0"><i class="fa-solid fa-file me-2"></i>SRT-242024</p>
+                                    <p class="mb-0"><i class="fa-solid fa-calendar me-2"></i>12 Desember 2023</p>
+                                    <a href="">
+                                        <p class="mb-0"><i class="fa-regular fa-file-pdf me-2"></i>Lihat Dokumen</p>
+                                    </a>
                                 </div>
-                                <div class="tab-pane" id="2.2Detail">
-                                    <form id="jobForm" method="post" action="#">
-                                        <div class="text-center">
-                                            <h3 class="mb-2">Pengorganisasian</h3>
-                                        </div>
-                                        <div class="table-responsive py-5">
-                                            <table class="table table-hover mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Uraian</th>
-                                                        <th>Unggahan Perusahaan</th>
-                                                        <th>Nilai</th>
-                                                        <th>Keterangan</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>2.1</td>
-                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian</td>
-                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Pengorganisasian
-                                                            <a href="">
-                                                                <p class="mb-0"><i
-                                                                        class="fa-regular fa-file-pdf me-1"></i><label
-                                                                        class="mb-0">Lihat Dokumen</label></p>
-                                                            </a>
-                                                        </td>
-                                                        <td>2.5</td>
-                                                        <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2.2</td>
-                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai struktur organisasi pengelolaan di bidang
-                                                            keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
-                                                            Keselamatan</td>
-                                                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Perusahaan mempunyai struktur organisasi pengelolaan di
-                                                            bidang keselamatan, seperti Unit Manajemen Keselamatan atau
-                                                            Petugas Keselamatan
-                                                            <a href="">
-                                                                <p class="mb-0"><i
-                                                                        class="fa-regular fa-file-pdf me-1"></i><label
-                                                                        class="mb-0">Lihat Dokumen</label></p>
-                                                            </a>
-                                                        </td>
-                                                        <td>2.5</td>
-                                                        <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="tab-pane" id="educationDetail">
-                                    <form id="educationForm" method="post" action="#">
-                                        <div class="text-center">
-                                            <h3 class="mb-2">Tell us about your education</h3>
-                                            <small class="text-muted">Let us know your name and email address. Use an
-                                                address you
-                                                don't mind other users contacting you at</small>
-                                        </div>
-                                        <div class="row mt-4">
-                                            <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="schoolName">School Name</label>
-                                                    <input type="text" class="form-control" id="schoolName"
-                                                        placeholder="enter your school name" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="schoolLocation">School Location</label>
-                                                    <input type="text" class="form-control" id="schoolLocation"
-                                                        placeholder="enter your school location" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="tab-pane" id="finish">
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="col-lg-6">
-                                            <div class="text-center">
-                                                <i class="ph-duotone ph-gift f-50 text-danger"></i>
-                                                <h3 class="mt-4 mb-3">Thank you !</h3>
-                                                <div class="mb-3">
-                                                    <div class="form-check d-inline-block">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="customCheck1" />
-                                                        <label class="form-check-label" for="customCheck1">I agree with
-                                                            the Terms
-                                                            and Conditions</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex wizard justify-content-center flex-wrap gap-2 mt-3">
-                                    <div class="d-flex">
-                                        <div class="previous me-2">
-                                            <button type="button" class="btn btn-secondary kembali"> Kembali </button>
-                                        </div>
-                                        <div class="next">
-                                            <button type="button" class="btn btn-primary selanjutnya"> Selanjutnya
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END: Define your controller buttons here-->
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Jenis Pelayanan</h5>
+                                <ol>
+                                    <li>AJAP</li>
+                                    <li>Angkutan barang umum</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4 col-12">
-            <div class="card mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="navTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="task-tab" data-bs-toggle="tab" href="#task" role="tab"
+                                aria-controls="task" aria-selected="true">Riwayat Pengajuan</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#info" role="tab"
+                                aria-controls="task" aria-selected="true">Informasi Pengguna</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="navTabsContent">
+                        <div class="tab-pane fade show active" id="task" role="tabpanel"
+                            aria-labelledby="task-tab">
+                            <div class="task-card p-3" style="max-height: 200px; overflow-y: auto;">
+                                <ul class="list-unstyled task-list">
+                                    <li>
+                                        <i class="feather icon-check f-w-600 task-icon bg-success"></i>
+                                        <p class="m-b-5">8:50</p>
+                                        <h5 class="text-muted">Call to customer <span class="text-primary"> <a
+                                                    href="#!" class="text-primary">Jacob</a> </span> and discuss the
+                                        </h5>
+                                    </li>
+                                    <li>
+                                        <i class="task-icon bg-primary"></i>
+                                        <p class="m-b-5">Sat, 5 Mar</p>
+                                        <h5 class="text-muted">Design mobile Application</h5>
+                                    </li>
+                                    <li>
+                                        <i class="task-icon bg-danger"></i>
+                                        <p class="m-b-5">Sun, 17 Feb</p>
+                                        <h5 class="text-muted"><span class="text-primary"><a href="#!"
+                                                    class="text-primary">Jeny</a></span> assign you a task <span
+                                                class="text-primary"><a href="#!" class="text-primary">Mockup
+                                                    Design.</a></span></h5>
+                                    </li>
+                                    <li>
+                                        <i class="task-icon bg-warning"></i>
+                                        <p class="m-b-5">Sat, 18 Mar</p>
+                                        <h5 class="text-muted">Design logo</h5>
+                                    </li>
+                                    <li class="p-b-15 m-b-10">
+                                        <i class="task-icon bg-success"></i>
+                                        <p class="m-b-5">Sat, 22 Mar</p>
+                                        <h5 class="text-muted">Design mobile Application</h5>
+                                    </li>
+                                </ul>
+                                <div class="text-end">
+                                    <a href="#!" class="b-b-primary text-primary">View Friend List</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show" id="info" role="tabpanel"
+                            aria-labelledby="task-tab">
+                            <div class="task-card" style="max-height: 280px; overflow-y: auto;">
+                                <h5>Penanggung Jawab</h5>
+                                <p class="mb-0"><i class="fa-solid fa-user me-2"></i>Ang Hoey Tiong</p>
+                                <p class="mb-0"><i class="fa-solid fa-phone me-2"></i>(970) 982-3353</p>
+                                <h5 class="mt-4">Informasi Pengguna</h5>
+                                <p class="mb-0"><i class="fa-solid fa-circle-user me-2"></i>Anghoey</p>
+                                <p class="mb-0"><i class="fa-solid fa-phone me-2"></i>(970) 982-3353</p>
+                                <p class="mb-0"><i class="fa-solid fa-envelope me-2"></i>anghoey.conn@borer.com
+                                </p>
+                                <p class="mb-0"><i class="fa-solid fa-calendar-day me-2"></i>25 Maret 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- You can add more tab panes here -->
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-12">
+            <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">
-                            <div class="my-n4" style="width: 130px">
-                                <div id="total-earning-graph-1"></div>
+                            <div class="avtar bg-light-primary">
+                                <i class="fa-solid fa-file-lines"></i>
                             </div>
                         </div>
-                        <div class="flex-grow-1 mx-2">
+                        <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Total Dokumen Penilaian</p>
-                            <h6 class="mb-0">30</h6>
+                            <div class="d-flex align-items-start">
+                                <h4 class="mb-0 me-2">10</h4>
+                                <span class="fw-bold f-16">Dokumen</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-3 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">
-                            <div class="my-n4" style="width: 130px">
-                                <div id="total-earning-graph-2"></div>
+                            <div class="avtar bg-light-success">
+                                <i class="fa-solid fa-file-circle-check"></i>
                             </div>
                         </div>
-                        <div class="flex-grow-1 mx-2">
+                        <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Lulus Penilaian</p>
-                            <h6 class="mb-0">30</h6>
+                            <div class="d-flex align-items-start">
+                                <h4 class="mb-0 me-2">4</h4>
+                                <span class="fw-bold f-16">Lulus</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-3 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">
-                            <div class="my-n4" style="width: 130px">
-                                <div id="total-earning-graph-3"></div>
+                            <div class="avtar bg-light-danger">
+                                <i class="fa-solid fa-file-circle-exclamation"></i>
                             </div>
                         </div>
-                        <div class="flex-grow-1 mx-2">
+                        <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Tidak Lulus Penilaian</p>
-                            <h6 class="mb-0">30</h6>
+                            <div class="d-flex align-items-start">
+                                <h4 class="mb-0 me-2">3</h4>
+                                <span class="fw-bold f-16">Tidak Lulus</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-3 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">
-                            <div class="my-n4" style="width: 130px">
-                                <div id="total-earning-graph-4"></div>
+                            <div class="avtar bg-light-primary">
+                                <i class="fa-solid fa-percent"></i>
                             </div>
                         </div>
-                        <div class="flex-grow-1 mx-2">
-                            <p class="mb-1">Persentase Penilaian Lulus</p>
-                            <h6 class="mb-0">30</h6>
+                        <div class="flex-grow-1 ms-3">
+                            <p class="mb-1">Presentase Penilaian Lulus</p>
+                            <div class="d-flex align-items-start">
+                                <h4 class="mb-0 me-2">12%</h4>
+                                <span class="fw-bold f-16"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
+                            <div class="datatable-top">
+                                <div class="datatable-dropdown">
+                                    <label>
+                                        <select class="datatable-selector">
+                                            <option value="5">5</option>
+                                            <option value="10" selected="">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                        </select> entries per page
+                                    </label>
+                                </div>
+                                <div class="datatable-search">
+                                    <input class="datatable-input" placeholder="Search..." type="search"
+                                        title="Search within table" aria-controls="pc-dt-simple-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                            aria-labelledby="analytics-tab-1" tabindex="0">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
+                                            color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
+                                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                            
+                                            <i class="fa-regular fa-file-lines me-2"></i> 
+                                            <span class="fw-bold me-2 me-lg-0">1.1</span> &nbsp; 
+                                            <span class="text-uppercase">Komitmen dan Kebijakan Keselamatan</span>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Uraian</th>
+                                                            <th>Pertanyaan</th>
+                                                            <th>Jawab</th>
+                                                            <th>Kesesuaian</th>
+                                                            <th>Keterangan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1.1</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                                Ekspektasi, Implementasi, Prosedur Terkait)</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1.2</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
+                                                                terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan
+                                                                Perusahaan tertinggi sebagai langkah nyata terhadap aspek
+                                                                keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                            <td>Tidak ada perubahan</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1.3</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
+                                                                terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan
+                                                                Perusahaan tertinggi sebagai langkah nyata terhadap aspek
+                                                                keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                            <td>
+                                                                <a href="">
+                                                                    <p class="mb-0"><i class="fa-regular fa-file-pdf me-1"></i><label
+                                                                            class="mb-0">Lihat Dokumen</label></p>
+                                                                </a>
+                                                            </td>
+                                                            <td><span class="badge bg-success">Sesuai</span></td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"
+                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
+                                            color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
+                                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                            
+                                            <i class="fa-regular fa-file-lines me-2"></i> 
+                                            <span class="fw-bold me-2 me-lg-0">2.1</span> &nbsp; 
+                                            <span class="text-uppercase">Pengorganisasian</span>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Uraian</th>
+                                                            <th>Pertanyaan</th>
+                                                            <th>Jawab</th>
+                                                            <th>Kesesuaian</th>
+                                                            <th>Keterangan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>2.1</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Deskripsi Pengorganisasian</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2.2</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Perusahaan mempunyai struktur organisasi pengelolaan di bidang
+                                                                keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
+                                                                Keselamatan</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                            <td>Tidak ada perubahan</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2.3</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Perusahaan dapat menjabarkan uraian tugas dan fungsi di
+                                                                masing-masing jabatan pada struktur organisasi hubungan antar
+                                                                struktur organisasi tersebut</td>
+                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                            <td>
+                                                                <a href="">
+                                                                    <p class="mb-0"><i class="fa-regular fa-file-pdf me-1"></i><label
+                                                                            class="mb-0">Lihat Dokumen</label></p>
+                                                                </a>
+                                                            </td>
+                                                            <td><span class="badge bg-success">Sesuai</span></td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"
+                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
+                                            color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
+                                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                            
+                                            <i class="fa-regular fa-file-lines me-2"></i> 
+                                            <span class="fw-bold me-2 me-lg-0">3.1</span> &nbsp; 
+                                            <span class="text-uppercase">Manajemen Bahaya Dan Risiko</span>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Uraian</th>
+                                                            <th>Pertanyaan</th>
+                                                            <th>Jawab</th>
+                                                            <th>Kesesuaian</th>
+                                                            <th>Keterangan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>3.1</td>
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi,
+                                                                Implementasi, Prosedur Terkait)</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3.2</td>
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Perusahaan telah memiliki prosedur identifikasi bahaya,
+                                                                penilaian dan pengendalian risiko secara komprehensif baik
+                                                                terhadap personel, sarana angkutan, penumpang maupun lingkungan
+                                                                untuk setiap tahapan operasi pengangkutan</td>
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Apakah terdapat perubahan pada dokumen Struktur Organisasi</td>
+                                                            <td>Tidak ada perubahan</td>
+                                                            <td>-</td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3.3</td>
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Perusahaan telah melakukan identifikasi bahaya, penilaian dan
+                                                                pengendaliannya dengan metode yang sesuai dengan karakteristik
+                                                                bahaya yang ada, memiliki matrik penilaian bahaya dan risiko,
+                                                                matrik identifikasi bahaya, penilaian dan pengendalian risiko di
+                                                                kantor, bengkel dan operasional serta matrik identifikasi bahaya
+                                                                lalu lintas</td>
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                            <td>
+                                                                <a href="">
+                                                                    <p class="mb-0"><i
+                                                                            class="fa-regular fa-file-pdf me-1"></i><label
+                                                                            class="mb-0">Lihat Dokumen</label></p>
+                                                                </a>
+                                                            </td>
+                                                            <td><span class="badge bg-success">Sesuai</span></td>
+                                                            <td>-</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -44,9 +44,9 @@
             </div>
         </div>
     </div>
-    <div class = "row ">
+    <div class = "row">
         <div class="col-lg-3 col-12">
-            <div class="card" style="background-color: ">
+            <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">

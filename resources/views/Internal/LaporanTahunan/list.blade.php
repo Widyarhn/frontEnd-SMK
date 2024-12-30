@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -31,7 +31,81 @@
             </div>
         </div>
     </div>
-    <div class="collapse mt-3" id="collapseFilter">
+    <div class="row">
+        <div class="col-lg-4 col-12 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 me-3">
+                            <p class="mb-1 fw-medium text-muted">Total Laporan Tahunan</p>
+                            <h5 class="mb-1">9 Laporan</h5>
+                            {{-- <p class="mb-0 text-sm">May 23 - June 01 (2018)</p> --}}
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="avtar avtar-l bg-light-primary rounded-circle">
+                                <i class="ph-duotone ph-chart-bar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12 mb-2"> 
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 me-3">
+                            <p class="mb-1 fw-medium text-muted">Total Laporan Terverifikasi</p>
+                            <h5 class="mb-1">1 Terverifikasi</h5>
+                            {{-- <p class="mb-0 text-sm">May 23 - June 01 (2018)</p> --}}
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="avtar avtar-l bg-light-success rounded-circle">
+                                <i class="fa-solid fa-file-circle-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-12 mb-2"> 
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 me-3">
+                            <p class="mb-1 fw-medium text-muted">Total Laporan Direvisi</p>
+                            <h5 class="mb-1">2 Direvisi</h5>
+                            {{-- <p class="mb-0 text-sm">May 23 - June 01 (2018)</p> --}}
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="avtar avtar-l bg-light-warning rounded-circle">
+                                <i class="fa-solid fa-file-circle-exclamation"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="col-lg-3 col-12 mb-2"> 
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 me-3">
+                            <p class="mb-1 fw-medium text-muted">Permohonan Kadaluwarsa</p>
+                            <h5 class="mb-1">1 Kadaluwarsa</h5>
+                            {{-- <p class="mb-0 text-sm">May 23 - June 01 (2018)</p> 
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="avtar avtar-l bg-light-warning rounded-circle">
+                                <i class="fa-solid fa-file-circle-exclamation"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+    </div>
+    <div class="" id="collapseFilter">
         <div class="card card-body mb-3">
             <h5 class="card-title mt-1 mb-2"><i class="fa-solid fa-filter fa-20"></i> Filter Download</h5>
             <form id="custom-filter">
@@ -72,7 +146,7 @@
                                     <i class="fa-solid fa-eraser me-2"></i>Reset
                                 </button>
                             </div>
-                            <div class="col-12 mb-2">
+                            <div class="col-12 mb-2 mt-4">
                                 <div id="download-container">
                                     <!-- Tombol utama download sebagai dropdown -->
                                     <div class="dropdown w-100">
@@ -207,227 +281,170 @@
         </div>
     </div>
 </div> --}}
-    <div class="row"><!-- [ sample-page ] start -->
+
+    <div class="row">
         <div class="col-12 mt-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                            aria-labelledby="analytics-tab-1" tabindex="0">
-                            <div class="table-responsive">
-                                <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
-                                    <div class="datatable-top">
-                                        <div class="datatable-dropdown">
-                                            <label>
-                                                <select class="datatable-selector">
-                                                    <option value="5">5</option>
-                                                    <option value="10" selected="">10</option>
-                                                    <option value="15">15</option>
-                                                    <option value="20">20</option>
-                                                    <option value="25">25</option>
-                                                </select> entries per page
-                                            </label>
-                                        </div>
-                                        <div class="datatable-search d-flex justify-content-between align-items-center">
-
-                                            <a href="javascript:void(0)"
-                                                class="btn btn-outline-primary collapse-filter text-nowrap ms-3"
-                                                data-bs-toggle="collapse" href="#collapseFilter" role="button"
-                                                aria-expanded="false" aria-controls="collapseFilter">
-                                                <em class="d-none d-sm-inline icon ni ni-filter-alt"></em>
-                                                <i class="f-18 fa-solid fa-filter"></i> Filter Download
-                                            </a>
-
-                                            <!-- Input Search -->
-                                            <input class="datatable-input ms-3" placeholder="Search..." type="search"
-                                                title="Search within table" aria-controls="pc-dt-simple-1">
-
+            <div class="table-responsive">
+                <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
+                    <div class="datatable-top">
+                        <div class="datatable-dropdown">
+                            <label>
+                                <select class="datatable-selector">
+                                    <option value="5">5</option>
+                                    <option value="10" selected="">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select> entries per page
+                            </label>
+                        </div>
+                        <div class="datatable-search">
+                            <input class="datatable-input" placeholder="Search..." type="search"
+                                title="Search within table" aria-controls="pc-dt-simple-1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 help-main large-view">
+                    <div class="card ticket-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-auto mb-3 mb-sm-0">
+                                    <div class="d-sm-inline-block d-flex align-items-center">
+                                        <img class="media-object wid-60 img-radius"
+                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                            alt="Generic placeholder image">
+                                        <div class="ms-3 ms-sm-0">
+                                            <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
+                                                <li class="list-unstyled-item"><a href="#" class="link-secondary">1
+                                                        Catatan</a></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="datatable-container">
-                                        <table class="table table-hover datatable-table" id="pc-dt-simple-1">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center;">Daftar Laporan Tahunan</th>
-                                                </tr>
-
-                                            </thead>
-                                            <tbody>
-                                                <tr data-index="0">
-                                                    <td>
-                                                        <div class="card ticket-card mt-3">
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-sm-auto mb-3 mb-sm-0">
-                                                                        <div
-                                                                            class="d-sm-inline-block d-flex align-items-center">
-                                                                            {{-- <img class="media-object wid-60 img-radius"
-                                                                                src="{{ asset('assets') }}/images/user/avatar-1.jpg"
-                                                                                alt="Generic placeholder image "> --}}
-                                                                            <div
-                                                                                class="wid-60 hei-60 rounded-circle bg-warning d-flex align-items-center justify-content-center">
-                                                                                <i class="fa-solid fa-building text-white fa-2x"></i>
-                                                                            </div>
-                                                                            <div class="ms-3 ms-sm-0">
-                                                                                {{-- <ul
-                                                                                    class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
-                                                                                    <li class="list-unstyled-item"><a
-                                                                                            href="#"
-                                                                                            class="link-secondary">1
-                                                                                            Catatan</a></li>
-                                                                                </ul> --}}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="popup-trigger">
-                                                                            <div
-                                                                                class="d-flex justify-content-between align-items-center">
-                                                                                <div class="h4 font-weight-bold">
-                                                                                    PT TRISTAR JAVA TRANSINDO
-                                                                                    <small
-                                                                                        class="badge bg-light-warning ms-2">Laporan
-                                                                                        Direvisi</small>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a href="/internal/laporan-tahunan/detail"
-                                                                                        class="me-2 btn btn-sm btn-light-secondary"
-                                                                                        style="border-radius:5px;"><i
-                                                                                            class="feather icon-eye mx-1"></i>Lihat
-                                                                                        Detail</a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="help-sm-hidden">
-                                                                                <ul
-                                                                                    class="list-unstyled mt-2 mb-0 text-muted">
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
-                                                                                        <i
-                                                                                            class="fa-solid fa-calendar-day me-1"></i>
-                                                                                        Tahun Laporan : <b>2023</b>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
-                                                                                        <i
-                                                                                            class="fa-solid fa-calendar-day me-1"></i>
-                                                                                        Tanggal Verifikasi : <b>-</b>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
-                                                                                        <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                                            alt=""
-                                                                                            class="wid-20 rounded me-1 img-fluid">
-                                                                                        Diverifikasi Oleh <b>Joko
-                                                                                            Kustanto</b>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
-                                                                                        <i
-                                                                                            class="fa-regular fa-calendar-days me-1"></i>Dibuat
-                                                                                        pada
-                                                                                        <b>Jumat, 20 Desember 2024</b>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr data-index="1">
-                                                    <td>
-                                                        <div class="card ticket-card mt-3">
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-sm-auto mb-3 mb-sm-0">
-                                                                        <div
-                                                                            class="d-sm-inline-block d-flex align-items-center">
-                                                                            <div
-                                                                                class="wid-60 hei-60 rounded-circle bg-success d-flex align-items-center justify-content-center">
-                                                                                <i class="fa-solid fa-building text-white fa-2x"></i>
-                                                                            </div>
-                                                                            <div class="ms-3 ms-sm-0">
-                                                                                {{-- <ul
-                                                                                    class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
-                                                                                    <li class="list-unstyled-item"><a
-                                                                                            href="#"
-                                                                                            class="link-secondary">1
-                                                                                            Catatan</a></li>
-                                                                                </ul> --}}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="popup-trigger">
-                                                                            <div
-                                                                                class="d-flex justify-content-between align-items-center">
-                                                                                <div class="h4 font-weight-bold">
-                                                                                    PT JAYA BERSAMA HUTAMA
-                                                                                    <small
-                                                                                        class="badge bg-light-success ms-2"><i
-                                                                                            class="fa-regular fa-circle-check me-2"></i>Laporan
-                                                                                        Terverifikasi</small>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <a href="/internal/laporan-tahunan/detail"
-                                                                                        class="me-2 btn btn-sm btn-light-secondary"
-                                                                                        style="border-radius:5px;"><i
-                                                                                            class="feather icon-eye mx-1"></i>Lihat
-                                                                                        Detail</a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="help-sm-hidden">
-                                                                                <ul
-                                                                                    class="list-unstyled mt-2 mb-0 text-muted">
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
-                                                                                        <i
-                                                                                            class="fa-solid fa-calendar-day me-1"></i>
-                                                                                        Tahun Laporan : <b>2023</b>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
-                                                                                        <i
-                                                                                            class="fa-solid fa-calendar-day me-1"></i>
-                                                                                        Tanggal Verifikasi :
-                                                                                        <b>17-12-2024</b>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
-                                                                                        <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                                            alt=""
-                                                                                            class="wid-20 rounded me-1 img-fluid">
-                                                                                        Diverifikasi Oleh <b>Joko
-                                                                                            Kustanto</b>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1 me-2">
-                                                                                        <i
-                                                                                            class="fa-regular fa-calendar-days me-1"></i>Dibuat
-                                                                                        pada
-                                                                                        <b>Jumat, 20 Desember 2024</b>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                </div>
+                                <div class="col">
+                                    <div class="popup-trigger">
+                                        
+                                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                                            <!-- Nama Perusahaan dan Status -->
+                                            <div class="h4 font-weight-bold mb-2 mb-md-0">
+                                                PT JAYA BERSAMA HUTAMA
+                                                <small
+                                                    class="badge bg-light-warning ms-2">Laporan
+                                                    Direvisi</small>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="help-sm-hidden">
+                                            <ul
+                                                class="list-unstyled mt-2 mb-0 text-muted">
+                                                <li
+                                                    class="d-sm-inline-block d-block mt-1 me-2">
+                                                    <i
+                                                        class="fa-solid fa-calendar-day me-1"></i>
+                                                    Tahun Laporan : <b>2023</b>
+                                                </li>
+                                                <li
+                                                    class="d-sm-inline-block d-block mt-1 me-2">
+                                                    <i
+                                                        class="fa-solid fa-calendar-day me-1"></i>
+                                                    Tanggal Verifikasi : <b>-</b>
+                                                </li>
+                                                <li
+                                                    class="d-sm-inline-block d-block mt-1 me-2">
+                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                        alt=""
+                                                        class="wid-20 rounded me-1 img-fluid">
+                                                    Diverifikasi Oleh <b>Joko
+                                                        Kustanto</b>
+                                                </li>
+                                                <li
+                                                    class="d-sm-inline-block d-block mt-1 me-2">
+                                                    <i
+                                                        class="fa-regular fa-calendar-days me-1"></i>Dibuat
+                                                    pada
+                                                    <b>Jumat, 20 Desember 2024</b>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>   
+                                    <div class="mt-4">
+                                        <a href="/internal/laporan-tahunan/detail" class="me-2 btn btn-sm btn-light-secondary"
+                                            style="border-radius:5px;"><i class="feather icon-eye mx-1"></i>Lihat
+                                            Detail</a>
                                     </div>
-                                    <div class="datatable-bottom">
-                                        <div class="datatable-info">Showing 1 to 9 of 9 entries</div>
-                                        <nav class="datatable-pagination">
-                                            <ul class="datatable-pagination-list"></ul>
-                                        </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card ticket-card close-ticket">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-auto mb-3 mb-sm-0">
+                                    <div class="d-sm-inline-block d-flex align-items-center">
+                                        <img class="media-object wid-60 img-radius"
+                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                            alt="Generic placeholder image">
+                                        <div class="ms-3 ms-sm-0">
+                                            <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
+                                                <li class="list-unstyled-item"><a href="#" class="link-secondary">0
+                                                        Catatan</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="popup-trigger">
+                                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                                            <!-- Nama Perusahaan dan Status -->
+                                            <div class="h4 font-weight-bold mb-2 mb-md-0">
+                                                PT JAYA BERSAMA HUTAMA
+                                                <small class="badge bg-light-success ms-2">
+                                                    <i class="fa-regular fa-circle-check me-2"></i>Laporan Terverifikasi
+                                                </small>
+                                            </div>
+                                        </div>   
+                                        <div class="help-sm-hidden">
+                                            <ul
+                                                class="list-unstyled mt-2 mb-0 text-muted">
+                                                <li
+                                                    class="d-sm-inline-block d-block mt-1 me-2">
+                                                    <i
+                                                        class="fa-solid fa-calendar-day me-1"></i>
+                                                    Tahun Laporan : <b>2023</b>
+                                                </li>
+                                                <li
+                                                    class="d-sm-inline-block d-block mt-1 me-2">
+                                                    <i
+                                                        class="fa-solid fa-calendar-day me-1"></i>
+                                                    Tanggal Verifikasi :
+                                                    <b>17-12-2024</b>
+                                                </li>
+                                                <li
+                                                    class="d-sm-inline-block d-block mt-1 me-2">
+                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                        alt=""
+                                                        class="wid-20 rounded me-1 img-fluid">
+                                                    Diverifikasi Oleh <b>Joko
+                                                        Kustanto</b>
+                                                </li>
+                                                <li
+                                                    class="d-sm-inline-block d-block mt-1 me-2">
+                                                    <i
+                                                        class="fa-regular fa-calendar-days me-1"></i>Dibuat
+                                                    pada
+                                                    <b>Jumat, 20 Desember 2024</b>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <div class="mt-4">
+                                        <a href="/internal/laporan-tahunan/detail" class="me-2 btn btn-sm btn-light-secondary"
+                                            style="border-radius:5px;"><i class="feather icon-eye mx-1"></i>Lihat
+                                            Detail</a>
                                     </div>
                                 </div>
                             </div>
@@ -435,6 +452,16 @@
                     </div>
                 </div>
             </div>
+            {{-- <div class="card">
+               <div class="card-body my-0">
+                <div class="datatable-bottom">
+                    <div class="datatable-info">Showing 1 to 9 of 9 entries</div>
+                    <nav class="datatable-pagination">
+                        <ul class="datatable-pagination-list"></ul>
+                    </nav>
+                </div>
+               </div>
+            </div> --}}
         </div>
     </div>
 @endsection
@@ -445,91 +472,5 @@
     <script src="../assets/js/plugins/datepicker-full.min.js"></script>
     <script src="../assets/js/pages/ac-datepicker.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        var optionsLineChart = {
-            chart: {
-                type: 'line',
-                height: 350,
-                toolbar: {
-                    show: false
-                }
-            },
-            colors: ['#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#fd7e14', '#ffc107', '#28a745', '#20c997', '#17a2b8'],
-            stroke: {
-                width: 2,
-                curve: 'smooth'
-            },
-            markers: {
-                size: 5,
-                colors: ['#fff'],
-                strokeColors: ['#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#fd7e14', '#ffc107', '#28a745', '#20c997',
-                    '#17a2b8'
-                ],
-                strokeWidth: 2,
-            },
-            dataLabels: {
-                enabled: false
-            },
-            series: [{
-                    name: 'AJAP',
-                    data: [30, 40, 35, 50, 49, 60, 70, 0, 0, 0, 0, 0]
-                },
-                {
-                    name: 'AKAP',
-                    data: [20, 30, 25, 40, 45, 55, 65, 81, 0, 0, 120, 125]
-                },
-                {
-                    name: 'AKDP',
-                    data: [25, 35, 30, 45, 44, 50, 60, 80, 90, 95, 0, 110]
-                },
-                {
-                    name: 'Alat Berat',
-                    data: [15, 25, 20, 30, 35, 0, 50, 65, 75, 80, 85, 90]
-                },
-                {
-                    name: 'Angkot/Angdes',
-                    data: [10, 20, 15, 0, 30, 35, 45, 60, 70, 75, 80, 85]
-                },
-                {
-                    name: 'Angkutan B3',
-                    data: [5, 15, 10, 20, 25, 0, 40, 55, 65, 70, 75, 80]
-                },
-                {
-                    name: 'Angkutan Barang Umum',
-                    data: [12, 22, 18, 0, 32, 37, 0, 62, 72, 78, 83, 88]
-                },
-                {
-                    name: 'Angkutan Lintas Batas Negara',
-                    data: [18, 28, 25, 35, 38, 45, 55, 0, 80, 85, 90, 95]
-                },
-                {
-                    name: 'Pariwisata',
-                    data: [8, 18, 15, 25, 0, 33, 43, 58, 68, 73, 78, 83]
-                }
-            ],
-            xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                axisBorder: {
-                    show: true
-                },
-                axisTicks: {
-                    show: true
-                }
-            },
-            legend: {
-                position: 'bottom',
-                horizontalAlign: 'center'
-            },
-            grid: {
-                strokeDashArray: 4
-            }
-        };
-
-        var chartLine = new ApexCharts(document.querySelector('#line-chart'), optionsLineChart);
-        chartLine.render();
-
-        $(document).on("click", ".collapse-filter", function() {
-            $("#collapseFilter").toggle(500);
-        });
-    </script>
+    
 @endsection
