@@ -65,9 +65,9 @@
                         <div class="col-lg-4 col-xxl-3">
                             <div class="card">
                                 <div class="card-body position-relative">
-                                    <div class="position-absolute end-0 top-0 p-3"><span class="badge bg-primary">Pro</span>
+                                    <div class="position-absolute end-0 top-0 p-3"><span class="badge bg-primary">Wawancara Terjadwal</span>
                                     </div>
-                                    <div class="text-center mt-3">
+                                    <div class="text-center mt-5">
                                         <div class="chat-avtar d-inline-flex mx-auto"><img
                                                 class="rounded-circle img-fluid wid-70"
                                                 src="{{ asset('assets') }}/images/user/avatar-5.jpg" alt="User image"></div>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
         .table th.sticky-end,
         .table td.sticky-end {
@@ -44,7 +44,24 @@
             </div>
         </div>
     </div>
-    <div class ="row  mt-4">
+    <div class = "row ">
+        <div class="col-lg-3 col-12">
+            <div class="card" style="background-color: ">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="my-n4" style="width: 130px">
+                                <div id="total-earning-graph-1"></div>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 mx-2">
+                            <p class="mb-1">Perusahaan Terverifikasi</p>
+                            <h4>30</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-3 col-12">
             <div class="card">
                 <div class="card-body">
@@ -56,7 +73,7 @@
                         </div>
                         <div class="flex-shrink-0">
                             <div class="avtar avtar-l bg-light-primary rounded-circle">
-                                <i class="fa-solid fa-users"></i>
+                                <i class="ph-duotone ph-buildings"></i>
                             </div>
                         </div>
                     </div>
@@ -74,14 +91,14 @@
                         </div>
                         <div class="flex-shrink-0">
                             <div class="avtar avtar-l bg-light-success rounded-circle">
-                                <i class="fa-solid fa-user-check"></i>
+                                <i class="fa-solid fa-building-circle-check"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-9">
+        <div class="col-lg-3 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
@@ -92,34 +109,41 @@
                         </div>
                         <div class="flex-shrink-0">
                             <div class="avtar avtar-l bg-light-danger rounded-circle">
-                                <i class="fa-solid fa-user-xmark"></i>
+                                <i class="fa-solid fa-building-circle-xmark"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-3">
-            <div class="card bg-primary available-balance-card">
-                <div class="card-body p-3">
+
+    </div>
+
+    <div class="row">
+        <div class=" col-12 mb-lg-0 mb-4">
+            <div class="card ">
+                <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-0 text-white">Filter Download</h4>
-                            <p class="mt-2 text-white text-opacity-75">Silahkan klik icon <i class="fa-solid fa-filter"></i>
-                                untuk memulai filter</p>
-                        </div>
-                        <a href="javascript:void(0)" class="btn btn-white btn-dim btn-outline-light collapse-filter"
-                            data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false"
-                            aria-controls="collapseFilter">
-                            <em class="d-none d-sm-inline icon ni ni-filter-alt"></em>
-                            <i class="f-18 fa-solid fa-filter"></i>
-                        </a>
+                        <h5 class="mb-0">Total Tiap Tipe Layanan</h5>
                     </div>
+                    <div class="my-2" id="line-chart"></div>
                 </div>
             </div>
         </div>
+        {{-- <div class="col-lg-6 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-start justify-content-between">
+                        <div>
+                            <h5 class="mb-1">Perusahaan Terdaftar Spionam</h5>
+                        </div>
+                    </div>
+                    <div id="revenue-sales-chart"></div>
+                </div>
+            </div>
+        </div> --}}
     </div>
-    <div class="collapse" id="collapseFilter">
+    <div class="" id="collapseFilter">
         <div class="card card-body mb-3">
             <h5 class="card-title mt-1 mb-2"><i class="fa-solid fa-filter fa-20"></i> Filter Download</h5>
             <form id="custom-filter">
@@ -164,7 +188,7 @@
                                     <i class="fa-solid fa-eraser me-2"></i>Reset
                                 </button>
                             </div>
-                            <div class="col-12 mb-2">
+                            <div class="col-12 mb-2 mt-4">
                                 <div id="download-container">
                                     <!-- Tombol utama download sebagai dropdown -->
                                     <div class="dropdown w-100">
@@ -202,18 +226,8 @@
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-5 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Total Tiap Tipe Layanan</h5>
-                    </div>
-                    <div class="my-2" id="line-chart"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-7 col-12">
+    <div class="row ">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="tab-content" id="myTabContent">
@@ -369,7 +383,7 @@
         var optionsLineChart = {
             chart: {
                 type: 'line',
-                height: 350,
+                height: 400,
                 toolbar: {
                     show: false
                 }
@@ -448,16 +462,125 @@
         var chartLine = new ApexCharts(document.querySelector('#line-chart'), optionsLineChart);
         chartLine.render();
 
-        $(document).on("click", ".collapse-filter", function() {
-            // let $searchInput = $('.search-input');
-            $("#collapseFilter").toggle(500); // Animasi toggle
+        var options = {
+            chart: {
+                type: 'area',
+                height: 390,
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#e58a00', '#28a745'], // Warna untuk 'tidak terdaftar' (oren) dan 'terdaftar' (hijau)
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                show: true,
+                position: 'bottom'
+            },
+            markers: {
+                size: 1,
+                colors: ['#fff', '#fff', '#fff'],
+                strokeColors: ['#e58a00', '#4680ff'],
+                strokeWidth: 1,
+                shape: 'circle',
+                hover: {
+                    size: 4
+                }
+            },
+            stroke: {
+                width: 2,
+                curve: 'smooth'
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    type: 'vertical',
+                    inverseColors: false,
+                    opacityFrom: 0.5,
+                    opacityTo: 0
+                }
+            },
+            grid: {
+                show: false
+            },
+            series: [{
+                    name: 'Tidak Terdaftar',
+                    data: [275, 400, 400, 300, 440, 320, 320, 275, 275, 400, 300, 440] // Data 'tidak terdaftar'
+                },
+                {
+                    name: 'Terdaftar',
+                    data: [340, 320, 320, 400, 350, 250, 240, 300, 340, 320, 400, 350] // Data 'terdaftar'
+                }
+            ],
+            xaxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+                    'Dec'
+                ], // Label Bulan
+                labels: {
+                    hideOverlappingLabels: true
+                },
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                }
+            },
+        };
 
-            // if ($searchInput.is(':disabled')) {
-            //     $searchInput.removeAttr('disabled'); // Aktifkan input jika disabled
-            // } else {
-            //     $searchInput.attr('disabled', true); // Disable input jika aktif
-            // }
-            // $searchInput.val(''); // Reset nilai input
-        });
+        var chart = new ApexCharts(document.querySelector('#revenue-sales-chart'), options);
+        chart.render();
+
+        var options20 = {
+            series: [30],
+            chart: {
+                height: 140,
+                type: 'radialBar'
+            },
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 0,
+                        size: '60%',
+                        background: 'transparent',
+                        imageOffsetX: 0,
+                        imageOffsetY: 0,
+                        position: 'front'
+                    },
+                    track: {
+                        background: '#28A74550', // Warna latar belakang track tetap merah muda
+                        strokeWidth: '50%'
+                    },
+
+                    dataLabels: {
+                        show: true,
+                        name: {
+                            show: false
+                        },
+                        value: {
+                            formatter: function(val) {
+                                return parseInt(val);
+                            },
+                            offsetY: 7,
+                            color: '#006400', // Ubah warna teks menjadi hijau tua
+                            fontSize: '20px',
+                            fontWeight: '700',
+                            show: true
+                        }
+                    }
+                }
+            },
+            colors: ['#006400'], // Ubah warna grafik menjadi hijau tua
+            fill: {
+                type: 'solid'
+            },
+            stroke: {
+                lineCap: 'round'
+            }
+        };
+        var chart = new ApexCharts(document.querySelector('#total-earning-graph-1'), options20);
+        chart.render();
     </script>
 @endsection

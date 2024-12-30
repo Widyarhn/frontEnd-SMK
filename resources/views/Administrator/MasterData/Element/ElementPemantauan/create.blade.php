@@ -12,7 +12,39 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <style>
+        .custom-icon {
+            font-size: 30px !important;
+        }
 
+        .custom-text {
+            text-align: -webkit-left;
+        }
+
+        .number-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #6c757d;
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .nav-link .fw-bold {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav-link.active .number-box {
+            background: none;
+            font-size: 1.2rem;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -39,15 +71,22 @@
             <div class="card">
                 <div class="card-body p-3">
                     <ul class="nav nav-pills nav-justified">
-                        <li class="nav-item" data-target-form="#contactDetailForm">
+                        <li class="nav-item mb-lg-0 mb-3" data-target-form="#contactDetailForm">
                             <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield"></i></span>
+                                <div class="d-flex align-items-center">
+                                    <span class="number-box me-1">1.</span>
+                                    <span class="fw-bold f-16 ms-2 custom-text">Komitmen dan Kebijakan
+                                        Keselamatan</span>
+                                </div>
                             </a>
                         </li>
-                        <li class="nav-item" data-target-form="#jobDetailForm">
-                            <a href="#2.2Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i
-                                        class="fa-solid fa-building-shield"></i></span>
+                        <li class="nav-item mb-lg-0 mb-3" data-target-form="#jobDetailForm">
+                            <a href="#2.1Detail" data-bs-toggle="tab" data-toggle="tab"
+                                class="nav-link icon-btn">
+                                <div class="d-flex align-items-center">
+                                    <span class="number-box me-1">2.</span>
+                                    <span class="fw-bold f-16 ms-2 custom-text">Pengorganisasian</span>
+                                </div>
                             </a>
                         </li>
                     </ul>
@@ -121,7 +160,7 @@
                             </form>
                         </div>
                         <!-- end contact detail tab pane -->
-                        <div class="tab-pane" id="2.2Detail">
+                        <div class="tab-pane" id="2.1Detail">
                             <form id="jobForm" method="post" action="#">
                                 <div class="text-center">
                                     <h3 class="mb-2">Pengorganisasian</h3>
@@ -227,10 +266,7 @@
                         </div>
                         <!-- END: Define your tab pans here -->
                         <!-- START: Define your controller buttons here-->
-                        <div class="d-flex wizard justify-content-between flex-wrap gap-2 mt-3">
-                            <div class="first">
-                                <a href="javascript:void(0);" class="btn"> </a>
-                            </div>
+                        <div class="d-flex wizard justify-content-center flex-wrap gap-2 mt-3">
                             <div class="d-flex">
                                 <div class="previous me-2">
                                     <button type="button" class="btn btn-secondary kembali"> Kembali </button>

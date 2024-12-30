@@ -151,7 +151,7 @@
                                     <label>Deskripsi Elemen</label>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-sm btn-outline-primary btn-add-sub" data-target="${elementId}">
+                            <button type="button" class="btn btn-sm btn-outline-primary btn-add-sub" style="border-radius:5px;" data-target="${elementId}">
                                 Tambah Sub Element
                             </button>
                         </div>

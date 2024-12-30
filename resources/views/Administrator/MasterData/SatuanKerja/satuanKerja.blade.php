@@ -25,11 +25,11 @@
                         <li class="breadcrumb-item" aria-current="page">Satuan Kerja</li>
                     </ul>
                 </div>
-                <div class="col-md-12 d-flex justify-content-between align-items-center">
+                <div class="col-md-12 d-flex flex-column flex-md-row justify-content-between align-items-start">
                     <div class="page-header-title">
                         <h2 class="mb-0">Data Satuan Kerja</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2"
+                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0"
                         data-bs-toggle="modal" data-bs-target="#animateModal">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
                     </button>

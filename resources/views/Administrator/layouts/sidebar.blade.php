@@ -125,7 +125,7 @@
                 <li class="pc-item">
                     <a href="/admin/pengaturan-akun" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fa-solid fa-gear"></i>
+                            <i class="fa-solid fa-user-gear"></i>
                         </span>
                         <span class="pc-mtext">Pengaturan Akun</span>
                     </a>

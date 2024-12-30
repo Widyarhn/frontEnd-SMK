@@ -77,12 +77,12 @@
                                         </div>
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
                                             <i class="fa-regular fa-calendar-days me-2"></i>
-                                            <p class="mb-0">2024-12-07 00:11:55</p>
+                                            <p class="mb-0">Terdaftar: 7 Desember 2024</p>
                                         </div>
-                                        <div class="d-inline-flex align-items-center justify-content-start w-100"><i
+                                        {{-- <div class="d-inline-flex align-items-center justify-content-start w-100"><i
                                                 class="ti ti-link me-2"></i> <a href="#" class="link-primary">
                                                 <p class="mb-0">https://anshan.dh.url</p>
-                                            </a></div>
+                                            </a></div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -96,41 +96,44 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Old Password</label>
-                                                <input type="password" class="form-control" />
+                                                <div class="form-floating mb-0">
+                                                    <input type="password" class="form-control" id="password-old"
+                                                        placeholder="Masukkan Kata Sandi Lama" />
+                                                    <label for="password-old">Kata Sandi Lama</label>
+                                                </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">New Password</label>
-                                                <input type="password" class="form-control" />
+                                                <div class="form-floating mb-0">
+                                                    <input type="password" class="form-control" id="password"
+                                                        placeholder="Masukkan Kata Sandi Baru" />
+                                                    <label for="password">Kata Sandi Baru</label>
+                                                </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Confirm Password</label>
-                                                <input type="password" class="form-control" />
+                                                <div class="form-floating mb-0">
+                                                    <input type="password" class="form-control" id="confirmPassword"
+                                                        placeholder="Masukkan Kata Sandi Baru" />
+                                                    <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <h5>New password must contain:</h5>
+                                        <div class="col-sm-6 mt-5 mt-md-0">
+                                            <h5>Kata sandi yang baik mengandung:</h5>
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item"><i
-                                                        class="ti ti-circle-check text-success f-16 me-2"></i> At least 8
-                                                    characters</li>
+                                                        class="ti ti-circle-check text-success f-16 me-2"></i> Minimal 8
+                                                    karakter</li>
                                                 <li class="list-group-item"><i
-                                                        class="ti ti-circle-check text-success f-16 me-2"></i> At least 1
-                                                    lower
-                                                    letter (a-z)</li>
+                                                        class="ti ti-circle-check text-success f-16 me-2"></i> Huruf Besar
+                                                    & Huruf Kecil (Aa)</li>
                                                 <li class="list-group-item"><i
-                                                        class="ti ti-circle-check text-success f-16 me-2"></i> At least 1
-                                                    uppercase
-                                                    letter(A-Z)</li>
+                                                        class="ti ti-circle-check text-success f-16 me-2"></i> Angka
+                                                    (1234567890)</li>
                                                 <li class="list-group-item"><i
-                                                        class="ti ti-circle-check text-success f-16 me-2"></i> At least 1
-                                                    number
-                                                    (0-9)</li>
-                                                <li class="list-group-item"><i
-                                                        class="ti ti-circle-check text-success f-16 me-2"></i> At least 1
-                                                    special
-                                                    characters</li>
+                                                        class="ti ti-circle-check text-success f-16 me-2"></i> Symbol
+                                                    (?!@#$%^&*)</li>
                                             </ul>
+
                                         </div>
                                     </div>
                                 </div>
