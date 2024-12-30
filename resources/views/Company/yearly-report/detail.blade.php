@@ -1,4 +1,4 @@
-@extends('...Company.index', ['title' => 'Tambah Element SMK | Master Data Element'])
+@extends('...Company.index', ['title' => 'Laporan | Laporan Tahunan'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+@endsection
+
+@section('page_css')
+    <style>
+        .accordion-button:not(.collapsed) {
+            color: #0d6efd;
+            background-color: #f8f9fa;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -36,333 +45,334 @@
     <div id="basicwizard" class="form-wizard row justify-content-center">
         <div class="col-12">
             <div class="card">
-                <div class="card-body p-3">
-                    <ul class="nav nav-pills nav-justified">
-                        <li class="nav-item" data-target-form="#contactDetailForm">
-                            <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield"></i></span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-target-form="#jobDetailForm">
-                            <a href="#2.2Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i
-                                        class="fa-solid fa-building-shield"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card">
                 <div class="card-body">
-                    <div class="tab-content">
-                        <!-- START: Define your progress bar here -->
-                        <div id="bar" class="progress mb-3" style="height: 7px">
-                            <div class="bar progress-bar progress-bar-striped progress-bar-animated bg-success"></div>
-                        </div>
-                        <!-- END: Define your progress bar here -->
-                        <!-- START: Define your tab pans here -->
-                        <div class="tab-pane show active" id="1.1Detail">
-                            <form id="contactForm" method="get">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Komitmen dan Kebijakan Keselamatan</h3>
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Uraian</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan
-                                                    Monitoring</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Jawaban</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td>
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
-                                                    <div class="mt-2">
-                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                                           class="me-2 btn btn-sm btn-light-primary">
-                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td>
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light-secondary" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Tidak ada perubahan</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td>
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-
-                                                    <input type="hidden" class="response-value2" value="" />
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
-                                                    <div class="mt-2">
-                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                                           class="me-2 btn btn-sm btn-light-primary">
-                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="fw-bold">Pertanyaan Tambahan</td>
-                                                <td colspan="2"
-                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu
-                                                    fringilla quam. Aenean finibus ipsum sit amet nisi semper, vitae commodo
-                                                    metus condimentum.
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
-                                                    <div class="mt-2">
-                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                                           class="me-2 btn btn-sm btn-light-primary">
-                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end contact detail tab pane -->
-                        <div class="tab-pane" id="2.2Detail">
-                            <form id="jobForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Pengorganisasian</h3>
-                                    {{-- <small class="text-muted">Let us know your name and email address. Use an address you
-                                        don't mind other users contacting you at</small> --}}
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Uraian</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan
-                                                    Monitoring</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Jawaban</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td>
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
-                                                    <div class="mt-2">
-                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                                           class="me-2 btn btn-sm btn-light-primary">
-                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td>
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light-secondary" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Tidak ada perubahan</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td>
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-
-                                                    <input type="hidden" class="response-value2" value="" />
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
-                                                    <div class="mt-2">
-                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                                           class="me-2 btn btn-sm btn-light-primary">
-                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="fw-bold">Pertanyaan Tambahan</td>
-                                                <td colspan="2"
-                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu
-                                                    fringilla quam. Aenean finibus ipsum sit amet nisi semper, vitae commodo
-                                                    metus condimentum.
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge bg-light-success" style="font-size: 0.8rem; padding: 0.5em 0.75em;">Jawaban Terverifikasi</span>
-                                                    <div class="mt-2">
-                                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                                           class="me-2 btn btn-sm btn-light-primary">
-                                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end job detail tab pane -->
-                        <div class="tab-pane" id="educationDetail">
-                            <form id="educationForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Tell us about your education</h3>
-                                    <small class="text-muted">Let us know your name and email address. Use an address you
-                                        don't mind other users contacting you at</small>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="schoolName">School Name</label>
-                                            <input type="text" class="form-control" id="schoolName"
-                                                placeholder="enter your school name" />
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="row align-items-center g-3">
+                                <div class="col-lg-8 col-12">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="col-sm-auto mb-3 mb-sm-0 me-3">
+                                            <div class="d-sm-inline-block d-flex align-items-center">
+                                                <div class="wid-60 hei-60 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                                    <i class="fa-solid fa-building text-white fa-2x"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="schoolLocation">School Location</label>
-                                            <input type="text" class="form-control" id="schoolLocation"
-                                                placeholder="enter your school location" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end education detail tab pane -->
-                        <div class="tab-pane" id="finish">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-6">
-                                    <div class="text-center">
-                                        <i class="ph-duotone ph-gift f-50 text-danger"></i>
-                                        <h3 class="mt-4 mb-3">Thank you !</h3>
-                                        <div class="mb-3">
-                                            <div class="form-check d-inline-block">
-                                                <input type="checkbox" class="form-check-input" id="customCheck1" />
-                                                <label class="form-check-label" for="customCheck1">I agree with the Terms
-                                                    and Conditions</label>
+                                        <div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <h4 class="d-inline-block mb-0 me-2">PT TRISTAR JAVA TRANSINDO |</h4>
+                                                <p class="mb-0"><b>NIB : 9120109831421</b></p>
+                                            </div>
+
+
+
+                                            <!-- Nomor telepon dan informasi lainnya di bawah h4 dan p -->
+                                            <div class="help-sm-hidden">
+                                                <ul class="list-unstyled mt-0 mb-0 text-muted">
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-solid fa-phone me-1"></i>
+                                                        +6289 4562 8963
+                                                    </li>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-regular fa-envelope me-1"></i>
+                                                        tristarjava@mail.com
+                                                    </li>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-solid fa-location-dot me-1"></i>
+                                                        Street 110-B Kalians Bag, Dewan, M.P. New York
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-                        </div>
-                        <!-- END: Define your tab pans here -->
-                        <!-- START: Define your controller buttons here-->
-                        <div class="d-flex wizard justify-content-between flex-wrap gap-2 mt-3">
-                            <div class="first">
-                                <a href="javascript:void(0);" class="btn"> </a>
-                            </div>
-                            <div class="d-flex">
-                                <div class="previous me-2">
-                                    <button type="button" class="btn btn-secondary kembali"> Kembali </button>
-                                </div>
-                                <div class="next">
-                                    <button type="button" class="btn btn-primary selanjutnya"> Selanjutnya </button>
-                                </div>
-                            </div>
-                            <div class="last">
-                                <a href="javascript:void(0);" class="btn btn-success"> Simpan </a>
                             </div>
                         </div>
-                        <!-- END: Define your controller buttons here-->
+                        <div class="col-lg-4 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Jenis Pelayanan</h5>
+                                <ol>
+                                    <li>AJAP</li>
+                                    <li>Angkutan barang umum</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Penanggung Jawab</h5>
+                                <p class="mb-0"><i class="fa-solid fa-user me-2"></i>Ang Hoey Tiong</p>
+                                <p class="mb-0"><i class="fa-solid fa-phone me-2"></i>(970) 982-3353</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Sertifilat SMK</h5>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <p class="mb-0">No. Sertifikat</p>
+                                        <p class="mb-0"><i class="fa-solid fa-file me-2"></i>SK/90012/12/1299/XVI</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p class="mb-0">Tahun Laporan
+                                        </p>
+                                        <p class="mb-0"><i class="fa-solid fa-calendar-day me-2"></i>2023</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- end tab content-->
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                <i class="fas fa-file me-2"></i><strong>1. Komitmen dan Kebijakan Keselamatan</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <form id="contactForm" method="get">
+                                    <div class="table-responsive py-5">
+                                        <table class="table table-hover mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama</th>
+                                                    <th>Uraian</th>
+                                                    <th class="text-center">
+                                                        Pertanyaan Monitoring</th>
+                                                    <th class="text-center">
+                                                        Status</th>
+                                                    <th class="text-center"> Jawaban
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1.1</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.?</td>
+                                                    <td class="text-center">
+                                                        <span class="badge bg-light-success">Jawaban
+                                                            Terverifikasi</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="mt-2 text-center">
+                                                            <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                                class="btn btn-sm btn-primary"
+                                                                style="border-radius: 5px; padding: 6px 12px; font-size: 12px;">
+                                                                <i class="feather icon-eye me-2"></i>Lihat Dokumen
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1.2</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.?</td>
+                                                    <td class="text-center">
+                                                        <span class="badge bg-light-success">Jawaban
+                                                            Terverifikasi</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="mt-2 text-center">
+                                                            <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                                class="btn btn-sm btn-primary"
+                                                                style="border-radius: 5px; padding: 6px 12px; font-size: 12px;">
+                                                                <i class="feather icon-eye me-2"></i>Lihat Dokumen
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>1.2</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.?</td>
+                                                    <td class="text-center">
+                                                        <span class="badge bg-light-secondary">Tidak ada perubahan</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        -
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading2">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                <i class="fas fa-file me-2"></i><strong>2. Pengorganisasian</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="heading2"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <form id="jobForm" method="post" action="#">
+                                    <div class="table-responsive py-5">
+                                        <table class="table table-hover mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama</th>
+                                                    <th>Uraian</th>
+                                                    <th class="text-center">
+                                                        Pertanyaan Monitoring</th>
+                                                    <th class="text-center">
+                                                        Status</th>
+                                                    <th class="text-center"> Jawaban
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1.1</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.?</td>
+                                                    <td class="text-center">
+                                                        <span class="badge bg-light-success">Jawaban
+                                                            Terverifikasi</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="mt-2 text-center">
+                                                            <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                                class="btn btn-sm btn-primary"
+                                                                style="border-radius: 5px; padding: 6px 12px; font-size: 12px;">
+                                                                <i class="feather icon-eye me-2"></i>Lihat Dokumen
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1.2</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.?</td>
+                                                    <td class="text-center">
+                                                        <span class="badge bg-light-success">Jawaban
+                                                            Terverifikasi</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="mt-2 text-center">
+                                                            <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                                                class="btn btn-sm btn-primary"
+                                                                style="border-radius: 5px; padding: 6px 12px; font-size: 12px;">
+                                                                <i class="feather icon-eye me-2"></i>Lihat Dokumen
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>1.2</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.</td>
+                                                    <td
+                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                                        eget nisl nec turpis commodo pellentesque. Aliquam rhoncus risus
+                                                        sed mi vulputate, ac finibus ante bibendum.?</td>
+                                                    <td class="text-center">
+                                                        <span class="badge bg-light-secondary">Tidak ada perubahan</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        -
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 @endsection
@@ -370,6 +380,32 @@
     <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-button');
+            const collapseElements = document.querySelectorAll('.accordion-collapse');
+
+            // Pastikan semua accordion terbuka saat halaman dimuat
+            collapseElements.forEach((collapseElement) => {
+                if (!collapseElement.classList.contains('show')) {
+                    collapseElement.classList.add('show');
+                }
+            });
+
+            accordionItems.forEach((button) => {
+                button.addEventListener('click', function() {
+                    const collapseItem = this.getAttribute('data-bs-target');
+                    const collapseElement = document.querySelector(collapseItem);
+
+                    if (collapseElement.classList.contains('show')) {
+                        collapseElement.classList.remove('show');
+                    } else {
+                        collapseElement.classList.add('show');
+                    }
+                });
+            });
+        });
+
+
         document.addEventListener("DOMContentLoaded", function() {
             const dropdownMenu = document.querySelector("#dropdownTahun + .dropdown-menu");
             const currentYear = new Date().getFullYear();

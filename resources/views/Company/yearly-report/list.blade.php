@@ -140,14 +140,14 @@
                                         </div>
                                     </div>
                                     <div class="mt-2">
-                                        <button type="button"  class="me-2 btn btn-sm btn-light-danger"
+                                        <button type="button" style="border-radius: 5px;" class="me-2 btn btn-sm btn-light-danger"
                                             data-bs-toggle="modal"
                                             data-bs-target="#exampleModalCenter">
                                             <i class="ti ti-eye me-1"></i> Lihat
                                             Catatan
                                         </button>
                                         <a href="/company/yearly-report/detail"
-                                        class="me-2 btn btn-sm btn-light-secondary"><i
+                                        class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;"><i
                                             class="feather icon-eye mx-1"></i>Lihat
                                         Pengajuan</a>
                                     </div>
@@ -208,7 +208,7 @@
                                         </div>
                                         <div class="mt-2">
                                             <a href="/company/yearly-report/detail"
-                                            class="me-2 btn btn-sm btn-light-secondary"><i
+                                            class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;"><i
                                                 class="feather icon-eye mx-1"></i>Lihat
                                             Pengajuan</a>
                                         </div>
