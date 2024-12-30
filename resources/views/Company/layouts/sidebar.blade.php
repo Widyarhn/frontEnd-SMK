@@ -1,4 +1,5 @@
-<nav class="pc-sidebar mob-sidebar-active" style="background:white;">
+
+<nav class="pc-sidebar" style="background:white;">
     <div class="navbar-wrapper">
         <div class="m-header text-center">
             <a href="" class="b-brand text-primary">
@@ -16,6 +17,7 @@
                         <span class="pc-mtext">Dashboard</span>
                     </a>
                 </li>
+
                 <li class="pc-item pc-caption">
                     <label>Permohonan</label>
                     <svg class="pc-icon">
@@ -25,7 +27,7 @@
                 <li class="pc-item">
                     <a href="/company/certificate/list" class="pc-link">
                         <span class="pc-micon">
-                            <i class="ph-duotone ph-certificate"></i>
+                            <i class="fa-solid fa-certificate"></i>
                         </span>
                         <span class="pc-mtext">Sertifikat SMK</span>
                     </a>
@@ -40,7 +42,7 @@
                 <li class="pc-item">
                     <a href="/company/yearly-report/list" class="pc-link">
                         <span class="pc-micon">
-                            <i class="ph-duotone ph-calendar"></i>
+                            <i class="ph-duotone ph-chart-bar"></i>
                         </span>
                         <span class="pc-mtext">Laporan Tahunan</span>
                     </a>
@@ -64,3 +66,4 @@
         </div>
     </div>
 </nav>
+
