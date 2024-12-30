@@ -27,7 +27,8 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Sertifikat SMK</h2>
                     </div>
-                    <a href="/company/pengajuan-sertifikat/create" data-pc-animate="fade-in-scale" class="btn btn-md btn-primary px-3 p-2">
+                    <a href="/company/pengajuan-sertifikat/create" data-pc-animate="fade-in-scale"
+                        class="btn btn-md btn-primary px-3 p-2">
                         <i class="fas fa-plus-circle me-2"></i> Buat Permohonan
                     </a>
                 </div>
@@ -36,220 +37,162 @@
     </div>
     <div class="row"><!-- [ sample-page ] start -->
         <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                            aria-labelledby="analytics-tab-1" tabindex="0">
-                            <div class="table-responsive">
-                                <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
-                                    <div class="datatable-top">
-                                        <div class="datatable-dropdown">
-                                            <label>
-                                                <select class="datatable-selector">
-                                                    <option value="5">5</option>
-                                                    <option value="10" selected="">10</option>
-                                                    <option value="15">15</option>
-                                                    <option value="20">20</option>
-                                                    <option value="25">25</option>
-                                                </select> entries per page
-                                            </label>
-                                        </div>
-                                        <div class="datatable-search">
-                                            <input class="datatable-input" placeholder="Search..." type="search"
-                                                title="Search within table" aria-controls="pc-dt-simple-1">
+            <div class="table-responsive">
+                <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
+                    <div class="datatable-top">
+                        <div class="datatable-dropdown">
+                            <label>
+                                <select class="datatable-selector">
+                                    <option value="5">5</option>
+                                    <option value="10" selected="">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select> entries per page
+                            </label>
+                        </div>
+                        <div class="datatable-search">
+                            <input class="datatable-input" placeholder="Search..." type="search"
+                                title="Search within table" aria-controls="pc-dt-simple-1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 help-main large-view">
+                    <div class="card ticket-card open-ticket">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-auto mb-3 mb-sm-0">
+                                    <div class="d-sm-inline-block d-flex align-items-center">
+                                        <img class="media-object wid-60 img-radius"
+                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                            alt="Generic placeholder image">
+                                        <div class="ms-3 ms-sm-0">
+                                            <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
+                                                <li class="list-unstyled-item"><a href="#" class="link-secondary">1
+                                                        Catatan</a></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="datatable-container">
-                                        <table class="table table-hover datatable-table" id="pc-dt-simple-1">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center;">Permohonan Sertifikat</th>
-                                                </tr>
-
-                                            </thead>
-                                            <tbody>
-                                                <tr data-index="0">
-                                                    <td>
-                                                        <div class="card ticket-card">
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-sm-auto mb-3 mb-sm-0">
-                                                                        <div
-                                                                            class="d-sm-inline-block d-flex align-items-center">
-                                                                            <img class="media-object wid-60 img-radius"
-                                                                                src="{{ asset('assets') }}/images/user/avatar-1.jpg"
-                                                                                alt="Generic placeholder image ">
-                                                                            <div class="ms-3 ms-sm-0">
-                                                                                <ul
-                                                                                    class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
-                                                                                    <li class="list-unstyled-item"><a
-                                                                                            href="#"
-                                                                                            class="link-secondary">1
-                                                                                            Catatan</a></li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="popup-trigger">
-                                                                            <div class="h5 font-weight-bold">No. Surat
-                                                                                Permohonan : PMH/090/123/22212
-                                                                            </div>
-                                                                            <div class="help-sm-hidden">
-                                                                                <ul
-                                                                                    class="list-unstyled mt-2 mb-0 text-muted">
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1">
-                                                                                        <i
-                                                                                            class="ti ti-file-certificate"></i>
-                                                                                        <span
-                                                                                            class="badge bg-light-primary">Pengajuan
-                                                                                            Baru</span>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1">
-                                                                                        <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                                            alt=""
-                                                                                            class="wid-20 rounded me-2 img-fluid">Diproses
-                                                                                        Oleh <b>Penilai</b>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1">
-                                                                                        <i
-                                                                                            class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Diajukan
-                                                                                        1 hari yang lalu
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1">
-                                                                                        <i
-                                                                                            class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Terakhir
-                                                                                        diubah
-                                                                                        22 jam yang lalu
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                            <div class="h5 mt-3"><i
-                                                                                    class="material-icons-two-tone f-16 me-1">notification_important</i>
-                                                                                Catatan Permohonan</div>
-                                                                            <div class="help-md-hidden">
-                                                                                <div class="bg-body mb-3 p-3">
-                                                                                    <h6><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                                            alt=""
-                                                                                            class="wid-20 avatar me-2 rounded">Last
-                                                                                        comment from <a href="#"
-                                                                                            class="link-secondary">Robert
-                                                                                            alia:</a></h6>
-                                                                                    <p class="mb-0"><b>hello John
-                                                                                            lui</b>,<br>you need to create
-                                                                                        <b>"toolbar-options" div only</b>
-                                                                                        once in a page&nbsp;in your
-                                                                                        code,<br>this div fill found every
-                                                                                        "td" tag in your page,<br>just...
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mt-2">
-                                                                            <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#exampleModalCenter">
-                                                                                <i class="ti ti-eye me-1"></i> Lihat
-                                                                                Catatan
-                                                                            </button>
-                                                                            <a href="/company/pengajuan-sertifikat/detail"
-                                                                            class="me-2 btn btn-sm btn-light-secondary"><i
-                                                                                class="feather icon-eye mx-1"></i>Lihat
-                                                                            Pengajuan</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr data-index="1">
-                                                    <td>
-                                                        <div class="card ticket-card">
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-sm-auto mb-3 mb-sm-0">
-                                                                        <div
-                                                                            class="d-sm-inline-block d-flex align-items-center">
-                                                                            <img class="media-object wid-60 img-radius"
-                                                                                src="{{ asset('assets') }}/images/user/avatar-1.jpg"
-                                                                                alt="Generic placeholder image ">
-                                                                            <div class="ms-3 ms-sm-0">
-                                                                                <ul
-                                                                                    class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
-                                                                                    <li class="list-unstyled-item"><a
-                                                                                            href="#"
-                                                                                            class="link-secondary">0
-                                                                                            Catatan</a></li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="popup-trigger">
-                                                                            <div class="h5 font-weight-bold">No. Surat
-                                                                                Permohonan : PMH/110/998/499012
-                                                                            </div>
-                                                                            <div class="help-sm-hidden">
-                                                                                <ul
-                                                                                    class="list-unstyled mt-2 mb-0 text-muted">
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1">
-                                                                                        <i
-                                                                                            class="ti ti-file-certificate"></i>
-                                                                                        <span
-                                                                                            class="badge bg-light-success">Pengajuan
-                                                                                            Selesai</span>
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1">
-                                                                                        <i
-                                                                                            class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Diajukan
-                                                                                        1 tahun yang lalu
-                                                                                    </li>
-                                                                                    <li
-                                                                                        class="d-sm-inline-block d-block mt-1">
-                                                                                        <i
-                                                                                            class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Terakhir
-                                                                                        diubah
-                                                                                        1 tahun yang lalu
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                            <div class="h5 mt-3"><i
-                                                                                    class="material-icons-two-tone f-16 me-1">insert_drive_file</i>
-                                                                                Nomor Serifikat SK/00912/99812</div>
-                                                                        </div>
-                                                                        <div class="mt-2">
-                                                                            <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                                                                class="me-2 btn btn-sm btn-light-primary"><i
-                                                                                    class="feather icon-eye mx-1"></i>Lihat
-                                                                                Dokumen</a>
-
-                                                                                <a href="/company/pengajuan-sertifikat/detail"
-                                                                                class="me-2 btn btn-sm btn-light-secondary"><i
-                                                                                    class="feather icon-eye mx-1"></i>Lihat
-                                                                                Pengajuan</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                </div>
+                                <div class="col">
+                                    <div class="popup-trigger">
+                                        <div class="h5 font-weight-bold">No. Surat Permohonan:
+                                            PMH/090/123/22212</div>
+                                        <div class="help-sm-hidden">
+                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
+                                                <li class="d-sm-inline-block d-block mt-1">
+                                                    <i class="ti ti-file-certificate"></i>
+                                                    <span class="badge bg-light-primary">Pengajuan
+                                                        Baru</span>
+                                                </li>
+                                                <li class="d-sm-inline-block d-block mt-1">
+                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                        alt="" class="wid-20 rounded me-2 img-fluid">Diproses
+                                                    Oleh <b>Penilai</b>
+                                                </li>
+                                                <li class="d-sm-inline-block d-block mt-1">
+                                                    <i
+                                                        class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Diajukan
+                                                    1 hari yang lalu
+                                                </li>
+                                                <li class="d-sm-inline-block d-block mt-1">
+                                                    <i
+                                                        class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Terakhir
+                                                    diubah 22 jam yang lalu
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="h5 mt-3">
+                                            <i class="material-icons-two-tone f-16 me-1">notification_important</i>Catatan
+                                            Permohonan
+                                        </div>
+                                        <div class="help-md-hidden">
+                                            <div class="bg-body mb-3 p-3">
+                                                <h6>
+                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                        alt="" class="wid-20 avatar me-2 rounded">
+                                                    Last comment from <a href="#" class="link-secondary">Robert
+                                                        alia:</a>
+                                                </h6>
+                                                <p class="mb-0">
+                                                    <b>hello John lui</b>,<br>you need to create
+                                                    <b>"toolbar-options" div only</b> once in a
+                                                    page<br>in your code,<br>this div fill found
+                                                    every
+                                                    "td" tag in your page,<br>just...
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="datatable-bottom">
-                                        <div class="datatable-info">Showing 1 to 9 of 9 entries</div>
-                                        <nav class="datatable-pagination">
-                                            <ul class="datatable-pagination-list"></ul>
-                                        </nav>
+                                    <div class="mt-2">
+                                        <button type="button" class="me-2 btn btn-sm btn-light-danger"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
+                                        </button>
+                                        <a href="/company/pengajuan-sertifikat/detail"
+                                            class="me-2 btn btn-sm btn-light-secondary">
+                                            <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card ticket-card close-ticket">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-auto mb-3 mb-sm-0">
+                                    <div class="d-sm-inline-block d-flex align-items-center">
+                                        <img class="media-object wid-60 img-radius"
+                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
+                                            alt="Generic placeholder image">
+                                        <div class="ms-3 ms-sm-0">
+                                            <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
+                                                <li class="list-unstyled-item"><a href="#" class="link-secondary">0
+                                                        Catatan</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="popup-trigger">
+                                        <div class="h5 font-weight-bold">No. Surat Permohonan:
+                                            PMH/110/998/499012</div>
+                                        <div class="help-sm-hidden">
+                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
+                                                <li class="d-sm-inline-block d-block mt-1">
+                                                    <i class="ti ti-file-certificate"></i>
+                                                    <span class="badge bg-light-success">Pengajuan
+                                                        Selesai</span>
+                                                </li>
+                                                <li class="d-sm-inline-block d-block mt-1">
+                                                    <i
+                                                        class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Diajukan
+                                                    1 tahun yang lalu
+                                                </li>
+                                                <li class="d-sm-inline-block d-block mt-1">
+                                                    <i
+                                                        class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Terakhir
+                                                    diubah 1 tahun yang lalu
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="h5 mt-3">
+                                            <i class="material-icons-two-tone f-16 me-1">insert_drive_file</i>Nomor
+                                            Sertifikat SK/00912/99812
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
+                                            class="me-2 btn btn-sm btn-light-primary">
+                                            <i class="feather icon-eye mx-1"></i>Lihat Dokumen
+                                        </a>
+                                        <a href="/company/pengajuan-sertifikat/detail"
+                                            class="me-2 btn btn-sm btn-light-secondary">
+                                            <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
+                                        </a>
                                     </div>
                                 </div>
                             </div>
