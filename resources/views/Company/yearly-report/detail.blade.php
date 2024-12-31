@@ -160,27 +160,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
-                                <div class="datatable-top">
-                                    <div class="datatable-dropdown">
-                                        <label>
-                                            <select class="datatable-selector">
-                                                <option value="5">5</option>
-                                                <option value="10" selected="">10</option>
-                                                <option value="15">15</option>
-                                                <option value="20">20</option>
-                                                <option value="25">25</option>
-                                            </select> entries per page
-                                        </label>
-                                    </div>
-                                    <div class="datatable-search">
-                                        <input class="datatable-input" placeholder="Search..." type="search"
-                                            title="Search within table" aria-controls="pc-dt-simple-1">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
                                 aria-labelledby="analytics-tab-1" tabindex="0">
@@ -194,7 +173,7 @@
                                                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
 
                                                 <i class="fa-regular fa-file-lines me-2"></i>
-                                                <span class="fw-bold me-2 me-lg-0">1.1</span> &nbsp;
+                                                <span class="fw-bold me-2 me-lg-0">1.</span> &nbsp;
                                                 <span class="text-uppercase">Komitmen dan Kebijakan Keselamatan</span>
                                             </button>
                                         </h2>
@@ -270,7 +249,7 @@
                                                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
 
                                                 <i class="fa-regular fa-file-lines me-2"></i>
-                                                <span class="fw-bold me-2 me-lg-0">2.1</span> &nbsp;
+                                                <span class="fw-bold me-2 me-lg-0">2.</span> &nbsp;
                                                 <span class="text-uppercase">Pengorganisasian</span>
                                             </button>
                                         </h2>
@@ -343,7 +322,7 @@
                                                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
 
                                                 <i class="fa-regular fa-file-lines me-2"></i>
-                                                <span class="fw-bold me-2 me-lg-0">3.1</span> &nbsp;
+                                                <span class="fw-bold me-2 me-lg-0">3.</span> &nbsp;
                                                 <span class="text-uppercase">Manajemen Bahaya Dan Risiko</span>
                                             </button>
                                         </h2>
