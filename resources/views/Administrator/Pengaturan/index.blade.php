@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    
+
 @endsection
 
 @section('content')
@@ -58,7 +58,7 @@
                                             <span class="contact-icon">
                                                 <i class="fa fa-phone"></i>
                                             </span>
-                                            01267766 567238 
+                                            01267766 567238
                                         </p>
                                         <span class="mx-2">|</span>
                                         <p class="mb-0 ms-2">
@@ -77,7 +77,7 @@
                                 </div> --}}
                             </div>
                         </div>
-                        
+
                         <div class="card-body">
                             <div class="row g-3">
                                 <div class="col-md-4">
@@ -183,11 +183,11 @@
                                                         <div class="form-floating mb-0">
                                                             <select class="form-select" id="floatingSelect"
                                                                 aria-label="Floating label select example" disabled>
-                                                                <option selected>Loh bener</option>
-                                                                <option value="1">Tangerang</option>
+                                                                <option selected>Jawa Barat</option>
+                                                                <option value="1">Banten</option>
                                                                 <option value="2"></option>
                                                             </select>
-                                                            <label for="floatingSelect">Kota</label>
+                                                            <label for="floatingSelect">Provinsi</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -212,11 +212,11 @@
                                                         <div class="form-floating mb-0">
                                                             <select class="form-select" id="floatingSelect"
                                                                 aria-label="Floating label select example" disabled>
-                                                                <option selected>Jawa Barat</option>
-                                                                <option value="1">Banten</option>
+                                                                <option selected>Loh bener</option>
+                                                                <option value="1">Tangerang</option>
                                                                 <option value="2"></option>
                                                             </select>
-                                                            <label for="floatingSelect">Provinsi</label>
+                                                            <label for="floatingSelect">Kecamatan</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -236,7 +236,7 @@
                                                     <label for="floatingdeskripsi">Alamat</label>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="text-end m-t-15">
                                                 <button class="btn btn-sm btn-outline-primary p-2"
                                                     style="border-radius:5px;">Simpan Perubahan</button>
@@ -358,7 +358,7 @@
             });
 
             if (akunOssCheckbox.checked) {
-                formAkunOss.style.display = 'block';  
+                formAkunOss.style.display = 'block';
             }
         });
 
