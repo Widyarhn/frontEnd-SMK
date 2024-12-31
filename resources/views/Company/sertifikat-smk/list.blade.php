@@ -128,8 +128,8 @@
                                     </div>
                                     <div class="mt-2">
                                         <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                            <i class="ti ti-eye me-1" style="border-radius: 5px;"></i> Lihat Catatan
+                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter" style="border-radius: 5px;">
+                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
                                         </button>
                                         <a href="/company/pengajuan-sertifikat/detail"
                                             class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;">
@@ -186,11 +186,11 @@
                                     </div>
                                     <div class="mt-2">
                                         <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                            class="me-2 btn btn-sm btn-light-primary">
+                                            class="me-2 btn btn-sm btn-light-primary" style="border-radius: 5px;">
                                             <i class="feather icon-eye mx-1"></i>Lihat Dokumen
                                         </a>
                                         <a href="/company/pengajuan-sertifikat/detail"
-                                            class="me-2 btn btn-sm btn-light-secondary">
+                                            class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;">
                                             <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
                                         </a>
                                     </div>
