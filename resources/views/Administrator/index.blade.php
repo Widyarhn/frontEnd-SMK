@@ -14,6 +14,20 @@
         content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard" />
     <meta name="author" content="Phoenixcoded" />
 
+    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
+    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
+
+    <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js">></script>
     @yield('asset_css')
 
 </head>
@@ -41,19 +55,26 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
-    
+
     @include('Administrator.layouts.footer')
 
     <!-- [Page Specific JS] start -->
     @yield('scripts')
     <!-- [Page Specific JS] end -->
     <!-- Required Js -->
-    <script src="{{asset('assets')}}/js/plugins/popper.min.js"></script>
-    <script src="{{asset('assets')}}/js/plugins/simplebar.min.js"></script>
-    <script src="{{asset('assets')}}/js/plugins/bootstrap.min.js"></script>
-    <script src="{{asset('assets')}}/js/fonts/custom-font.js"></script>
-    <script src="{{asset('assets')}}/js/pcoded.js"></script>
-    <script src="{{asset('assets')}}/js/plugins/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/popper.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/bootstrap.min.js"></script>
+    <script src="{{ asset('assets') }}/js/fonts/custom-font.js"></script>
+    <script src="{{ asset('assets') }}/js/pcoded.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/feather.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js">></script>
+    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
+    <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
+    <script src="{{ asset('assets/js/axios.js') }}"></script>
+    <script src="{{ asset('assets/js/restAPI.js') }}"></script>
 
     <script>
         layout_change('light');
@@ -79,6 +100,31 @@
         main_layout_change('vertical');
     </script>
 
+    <div id="preloaderLoadingPage">
+        <div class="sk-three-bounce">
+            <div class="centerpreloader">
+                <div class="ui-loading"></div>
+                <center>
+                    <h6 style="color: white;">Harap Tunggu....</h6>
+                </center>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+          function loadingPage(show) {
+            if (show == true) {
+                document.getElementById('preloaderLoadingPage').style.display = '';
+            } else if (show == false){
+                document.getElementById('preloaderLoadingPage').style.display = 'none';
+            } else {
+                document.getElementById('preloaderLoadingPage').style.display = 'none';
+            }
+            return;
+        }
+    </script>
 
 </body>
 <!-- [Body] end -->
