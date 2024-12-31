@@ -1,0 +1,15 @@
+{
+    "error": false,
+    "message": "User details retrieved successfully",
+    "status_code": 200,
+    "data": {
+        "user": {
+            "id": 1,
+            "name": "Administrator",
+            "email": "admin@smk.com",
+            "role": [
+                "Super Admin"
+            ]
+        }
+    }
+}

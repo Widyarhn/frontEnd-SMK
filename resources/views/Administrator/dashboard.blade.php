@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="p-4">
-                                <h2 class="text-white">Selamat Datang, Administrator</h2>
+                                <h2 class="text-white internal-name"></h2>
                                 <p class="text-white">Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam
                                     menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
                             </div>
@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-1">2</h3>
+                            <h3 class="mb-1" id="totalperusahaan"></h3>
                             <p class="text-muted mb-0">Total Perusahaan</p>
                         </div>
                         <div class="col-4 text-end">
@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-1">200</h3>
+                            <h3 class="mb-1" id="totaltidakterverifikasi"></h3>
                             <p class="text-muted mb-0">Tidak Tersertifikasi</p>
                         </div>
                         <div class="col-4 text-end">
@@ -70,7 +70,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-1">200</h3>
+                            <h3 class="mb-1" id="totalprosessertivikasi"></h3>
                             <p class="text-muted mb-0">Proses Sertifikasi</p>
                         </div>
                         <div class="col-4 text-end">
@@ -85,7 +85,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-1">200</h3>
+                            <h3 class="mb-1" id="totaltersertifikasi"></h3>
                             <p class="text-muted mb-0">Tersertifikasi</p>
                         </div>
                         <div class="col-4 text-end">
@@ -229,8 +229,8 @@
                                     <th>Total Disposisi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="listData">
+                                {{-- <tr>
                                     <td>1.</td>
                                     <td>
                                         <div class="row align-items-center">
@@ -263,7 +263,7 @@
                                     <td>0</td>
                                     <td>0</td>
                                     <td>0</td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
@@ -343,10 +343,306 @@
 
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    {{-- <script src="{{ asset('assets') }}/js/pages/dashboard-default.js"></script> -- --}}
     <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
-    {{-- <script src="{{ asset('assets') }}//js/pages/chart-apex.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        let defaultLimitPage = 10;
+        let currentPage = 1;
+        let totalPage = 1;
+        let defaultAscending = 0;
+        let defaultSearch = '';
+        let defaultLimitPageReport = 10;
+        let currentPageReport = 1;
+        let totalPageReport = 1;
+        let defaultAscendingReport = 0;
+        let defaultSearchReport = '';
+        let customFilter = {};
+        let customFilterReport = {};
+        let getDataRestDashboard;
+        let isAdmin;
+
+        function getUserData() {
+            loadingPage(true);
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('GET', '{{ asset('dummy/internal/dashboard-admin/user_detail.json') }}', true);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    loadingPage(false);
+
+                    let responseData = JSON.parse(xhr.responseText);
+                    console.log(responseData);
+                    if (responseData.status_code == 200) {
+                        let handleDataResult = handleUserData(responseData.data);
+                        setUserData(handleDataResult);
+                    } else {
+                        notificationAlert('info', 'Pemberitahuan', 'Gagal mengambil data');
+                    }
+                }
+            };
+
+            xhr.onerror = function() {
+                loadingPage(false);
+                notificationAlert('error', 'Pemberitahuan', 'Terjadi kesalahan saat mengambil data');
+            };
+
+            xhr.send();
+        }
+
+        function handleUserData(data) {
+            const userData = data['user'];
+            const isActive = (userData['is_active'] === true) || (userData['is_active'] === 1);
+            let handleData = {
+                id: userData['id'] ?? '-',
+                name: userData['name'] ?? '-',
+                role: userData['role'] ?? []
+            };
+            return handleData;
+        }
+
+        function setUserData(data) {
+            $('.internal-name').html(`Selamat Datang, ${data.name}`);
+        }
+
+        function getDataAllCompany() {
+            loadingPage(true);
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('GET', '{{ asset('dummy/internal/dashboard-admin/data_dashboard.json') }}', true);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    loadingPage(false);
+
+                    let responseData = JSON.parse(xhr.responseText);
+                    console.log(responseData);
+                    if (responseData.status_code == 200) {
+                        let companies = responseData.data.companies || [];
+                        let certificateRequests = responseData.data.certificate_requests || [];
+                        let totalCompeny = companies.length;
+                        document.getElementById('totalperusahaan').innerText = totalCompeny;
+
+                        // Filter for valid statuses
+                        let validStatuses = [
+                            'request', 'disposition', 'not_passed_assessment',
+                            'revision', 'submission_revision', 'passed_assessment',
+                            'not_passed_assessment_verification', 'passed_assessment_verification',
+                            'scheduling_interview', 'scheduled_interview', 'completed_interview'
+                        ];
+                        let totalProcess = certificateRequests.filter(request => validStatuses.includes(request.status))
+                            .length;
+                        document.getElementById('totalprosessertivikasi').innerText = totalProcess;
+
+                        // Count companies without certification
+                        let totalWithoutCertification = companies.filter(company =>
+                            !certificateRequests.some(request => request.company_id === company.id)
+                        ).length;
+                        document.getElementById('totaltidakterverifikasi').innerText = totalWithoutCertification;
+
+                        // Count verified certificates
+                        let validStatusesverif = ['certificate_validation'];
+                        let totalverif = certificateRequests.filter(request => validStatusesverif.includes(request
+                                .status))
+                            .length;
+                        document.getElementById('totaltersertifikasi').innerText = totalverif;
+
+                        // Process service types and certification requests for charts
+                        let serviceTypes = responseData.data.service_types || [];
+                        setChart(serviceTypes);
+
+                        let certificateRequestschart = responseData.data.certificate_requests || [];
+                        setChartcertificateRequest(certificateRequestschart);
+                    } else {
+                        notificationAlert('info', 'Pemberitahuan', 'Gagal mengambil data');
+                    }
+                }
+            };
+
+            xhr.onerror = function() {
+                loadingPage(false);
+                notificationAlert('error', 'Pemberitahuan', 'Terjadi kesalahan saat mengambil data');
+            };
+
+            xhr.send();
+        }
+
+        function getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter) {
+            loadingPage(true);
+
+            // Default start and end date
+            // let defaultStartDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
+            // let defaultEndDate = moment().format('YYYY-MM-DD');
+            // let startDate = customFilter?.['start_date'] || defaultStartDate;
+            // let endDate = customFilter?.['end_date'] || defaultEndDate;
+
+            // // Parameter untuk request API
+            // let params =
+            //     `page=${currentPage}&limit=${defaultLimitPage}&ascending=${defaultAscending}&search=${defaultSearch}&date_from=${startDate}&date_to=${endDate}`;
+
+            // Menggunakan XMLHttpRequest untuk mengakses API
+            let xhr = new XMLHttpRequest();
+            // xhr.open('GET', `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/dashboard/listAsesor?${params}`,
+            xhr.open('GET', '{{ asset('dummy/internal/dashboard-admin/list_asesor.json') }}',
+            true);
+
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    loadingPage(false);
+
+                    // Parsing response data
+                    let responseData = JSON.parse(xhr.responseText);
+                    console.log("🚀 ~ getListData ~ responseData:", responseData)
+                    let data = responseData.data || [];
+                    let totalPage = responseData.pagination.total_pages;
+                    let totalItems = responseData.pagination.total;
+
+                    // Menampilkan pagination atau menyembunyikannya
+                    if (totalItems === 0) {
+                        $('#pagination-js').hide();
+                    } else {
+                        $('#pagination-js').show();
+                    }
+
+                    let display_from = (data.length > 0) ? ((defaultLimitPage * (currentPage - 1)) + 1) : 0;
+                    console.log("🚀 ~ getListData ~ display_from:", display_from)
+                    let display_to = (data.length > 0) ? Math.min(display_from + data.length - 1, totalItems) : 0;
+
+                    // Mengupdate total items dan halaman
+                    $('#totalPage').text(totalItems);
+                    $('#countPage').text(`${display_from} - ${display_to}`);
+
+                    // Mengupdate tampilan tabel
+                    let appendHtml = "";
+                    let index_loop = display_from;
+                    if (data.length > 0) {
+                        for (let index = 0; index < data.length; index++) {
+                            let element = data[index];
+                            appendHtml += `
+                        <tr>
+                            <td>${index_loop}.</td>
+                            <td>
+                                <div class="row align-items-center">
+                                    <div class="row">
+                                        <h6 class="mb-2"><span class="text-truncate w-100">${element.name || '-'}</span>
+                                        </h6>
+                                        <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
+                                            ${element.work_unit.name || '-'}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>${element.certificate_request_disposition_process_count || '0'}</td>
+                            <td>${element.certificate_request_completed_count || '0'}</td>
+                            <td>${element.certificate_request_disposisition_count || '0'}</td>
+                        </tr>`;
+                            index_loop++;
+                        }
+                    } else {
+                        appendHtml = `
+                    <tr class="nk-tb-item">
+                        <th class="nk-tb-col text-center" colspan="${$('.nk-tb-head th').length}">Tidak ada data.</th>
+                    </tr>`;
+                    }
+
+                    // Memasukkan data ke dalam elemen #listData
+                    $('#listData').html(appendHtml);
+                } else {
+                    loadingPage(false);
+                    notificationAlert('info', 'Pemberitahuan', 'Gagal mengambil data');
+                }
+            };
+
+            xhr.onerror = function() {
+                loadingPage(false);
+                notificationAlert('error', 'Pemberitahuan', 'Terjadi kesalahan saat mengambil data');
+            };
+
+            xhr.send();
+        }
+
+
+        async function performSearch() {
+            defaultSearch = $('.search-input').val();
+            defaultLimitPage = $("#limitPage").val();
+            currentPage = 1;
+            await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+        }
+
+        async function initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter) {
+            await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
+            await paginationDataOnTable(defaultLimitPage);
+        }
+        async function manipulationDataOnTable() {
+            $(document).on("change", "#limitPage", async function() {
+                defaultLimitPage = $(this).val();
+                currentPage = 1;
+                await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                await paginationDataOnTable(defaultLimitPage);
+            });
+
+            $(document).on("input", ".search-input", debounce(performSearch, 500));
+            await paginationDataOnTable(defaultLimitPage);
+        }
+
+        function paginationDataOnTable(isPageSize) {
+            $('#pagination-js').pagination({
+                dataSource: Array.from({
+                    length: totalPage
+                }, (_, i) => i + 1),
+                pageSize: isPageSize,
+                className: 'paginationjs-theme-blue',
+                afterPreviousOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                },
+                afterPageOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                },
+                afterNextOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                },
+            });
+        }
+
+        function debounce(func, wait, immediate) {
+            let timeout;
+            return function() {
+                let context = this,
+                    args = arguments;
+                let later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                let callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+
+        function initPageLoad() {
+            getUserData();
+            getDataAllCompany();
+            getListData();
+        }
+
+        document.addEventListener('DOMContentLoaded', initPageLoad);
+
+        function loadingPage(isLoading) {
+            const loaderElement = document.getElementById('loading-indicator');
+            if (loaderElement) {
+                loaderElement.style.display = isLoading ? 'block' : 'none';
+            }
+        }
+
+        function notificationAlert(type, title, message) {
+            alert(title + ": " + message);
+        }
+    </script>
+    
     <script>
         var options_bar_chart_3 = {
             chart: {
@@ -556,18 +852,81 @@
         var charts_mixed_chart_2 = new ApexCharts(document.querySelector('#mixed-chart-2'), options_mixed_chart_2);
         charts_mixed_chart_2.render();
 
-        const dataTable = new simpleDatatables.DataTable('#pc-dt-simple', {
-            sortable: false,
-            perPage: 5
-        });
-        const dataTable2 = new simpleDatatables.DataTable('#pc-dt-simple2', {
-            sortable: false,
-            perPage: 10
-        });
-        // new SimpleBar(document.querySelector('.sale-scroll'));
-        // new SimpleBar(document.querySelector('.feed-scroll'));
-        new SimpleBar(document.querySelector('.revenue-scroll'));
-        new SimpleBar(document.querySelector('.income-scroll'));
-        new SimpleBar(document.querySelector('.customer-scroll'));
+        // const dataTable = new simpleDatatables.DataTable('#pc-dt-simple', {
+        //     sortable: false,
+        //     perPage: 5
+        // });
+        // const dataTable2 = new simpleDatatables.DataTable('#pc-dt-simple2', {
+        //     sortable: false,
+        //     perPage: 10
+        // });
+        // // new SimpleBar(document.querySelector('.sale-scroll'));
+        // // new SimpleBar(document.querySelector('.feed-scroll'));
+        // new SimpleBar(document.querySelector('.revenue-scroll'));
+        // new SimpleBar(document.querySelector('.income-scroll'));
+        // new SimpleBar(document.querySelector('.customer-scroll'));
     </script>
+    {{-- <script>
+        let defaultLimitPage = 10;
+        let currentPage = 1;
+        let totalPage = 1;
+        let defaultAscending = 0;
+        let defaultSearch = '';
+        let defaultLimitPageReport = 10;
+        let currentPageReport = 1;
+        let totalPageReport = 1;
+        let defaultAscendingReport = 0;
+        let defaultSearchReport = '';
+        let customFilter = {};
+        let customFilterReport = {};
+        let getDataRestDashboard;
+        let isAdmin;
+
+
+        async function getUserData() {
+            loadingPage(true);
+            getDataRest = await CallAPI(
+                'GET', `{{ asset('dummy/internal/dashboard_admin_table.json') }}`
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+            console.log(getDataRest);
+            if (getDataRest.status == 200) {
+                loadingPage(false);
+                console.log(getDataRest);
+                // let handleDataResult = await handleUserData(getDataRest.data.data);
+                // await setUserData(handleDataResult);
+                // const userRole = handleDataResult.role || [];
+                // isAdmin = userRole.includes('Super Admin');
+
+                // if (!isAdmin) {
+                //     document.getElementById('widget-table-1').style.display = 'none';
+                //     const infoTableCol = document.getElementById('tahunan');
+                //     if (infoTableCol) {
+                //         infoTableCol.classList.remove('col-lg-6', 'col-md-12');
+                //         infoTableCol.classList.add('col-lg-12', 'col-md-12');
+                //     }
+
+                // }
+            }
+        }
+
+        async function initPageLoad() {
+            await getUserData();
+            // await getDataAllCompany(customFilter);
+            // await Promise.all([
+            //     initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter),
+            //     manipulationDataOnTable(),
+            //     initDataOnTableReport(defaultLimitPageReport, currentPageReport, defaultAscendingReport,
+            //         defaultSearchReport),
+            //     manipulationDataOnTableReport(),
+            //     customFilterTable(),
+            // ]);
+        }
+    </script> --}}
 @endsection
