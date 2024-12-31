@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="en">
-<!-- [Head] start -->
 
 <head>
     <title>{{ $title }}</title>
-    <!-- [Meta] -->
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -31,12 +30,10 @@
     @yield('asset_css')
 
 </head>
-<!-- [Head] end -->
-<!-- [Body] Start -->
 
 <body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr"
     data-pc-theme_contrast="" data-pc-theme="light">
-    <!-- [ Pre-loader ] start -->
+
     <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>
@@ -46,22 +43,21 @@
     @include('Administrator.layouts.sidebar')
     @include('Administrator.layouts.header')
 
-    <!-- [ Main Content ] start -->
+
     <div class="pc-container">
         <div class="pc-content">
-            <!-- [ Main Content ] start -->
+
             @yield('content')
-            <!-- [ Main Content ] end -->
+
         </div>
     </div>
-    <!-- [ Main Content ] end -->
+
 
     @include('Administrator.layouts.footer')
 
-    <!-- [Page Specific JS] start -->
+
     @yield('scripts')
-    <!-- [Page Specific JS] end -->
-    <!-- Required Js -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/popper.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
@@ -72,9 +68,9 @@
     <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js">></script>
     <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
-    <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
-    <script src="{{ asset('assets/js/axios.js') }}"></script>
-    <script src="{{ asset('assets/js/restAPI.js') }}"></script>
+    <script src="{{ asset('assets') }}/js/sweetalert2.js"></script>
+    <script src="{{ asset('assets') }}/js/axios.js"></script>
+    <script src="{{ asset('assets') }}/js/restAPI.js"></script>
 
     <script>
         layout_change('light');
@@ -110,16 +106,34 @@
             </div>
         </div>
     </div>
+    <script>
+        document.onreadystatechange = function() {
+            var state = document.readyState;
+            if (state == 'complete') {
+                document.getElementById('preloaderLoadingPage').style.display = 'none';
+                if (window.initPageLoad) {
+                    initPageLoad();
+                    setInterval(() => {
+                        if(Offline.state == "up") {
+                            document.getElementById('preloaderLoadingPage-network').style.display = 'none';
+                        } else {
+                            document.getElementById('preloaderLoadingPage-network').style.display = '';
+                        }
+                    }, 3000);
 
+                }
+            }
+        }
+    </script>
 
     <script type="text/javascript">
 
           function loadingPage(show) {
+
+
             if (show == true) {
                 document.getElementById('preloaderLoadingPage').style.display = '';
-            } else if (show == false){
-                document.getElementById('preloaderLoadingPage').style.display = 'none';
-            } else {
+            } else{
                 document.getElementById('preloaderLoadingPage').style.display = 'none';
             }
             return;
