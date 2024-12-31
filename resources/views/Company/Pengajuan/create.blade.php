@@ -163,10 +163,13 @@
                                         <tbody>
                                             <tr>
                                                 <td>1.1</td>
-                                                <td>Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan, Ekspektasi,
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan, Ekspektasi,
                                                     Implementasi, Prosedur Terkait)</td>
-                                                <td>Deskripsi Komitmen dan Kebijakan Keselamatan</td>
-                                                <td>File Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan,
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Deskripsi Komitmen dan Kebijakan Keselamatan</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    File Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan,
                                                     Ekspektasi, Implementasi, Prosedur Terkait
                                                     <div class="col-lg-6 col-12 mb-4">
                                                         <label class="mb-2">Upload Surat Permohonan Penilaian</label>
@@ -179,12 +182,15 @@
                                             </tr>
                                             <tr>
                                                 <td>1.2</td>
-                                                <td>Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
                                                     terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan
                                                     tertinggi sebagai lamngkah nyata terhadap aspek keselamatan yang
                                                     ditunjukkan dalam sikap sehari-hari</td>
-                                                <td>Bukti Pernyataan Dokumen (foto pernyataan komitmen)</td>
-                                                <td>File Dokumen Komitmen
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    Bukti Pernyataan Dokumen (foto pernyataan komitmen)</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                    File Dokumen Komitmen
                                                     <div class="col-lg-6 col-12 mb-4">
                                                         <label class="mb-2">Upload Surat Permohonan Penilaian</label>
                                                         <div class="mb-3">
@@ -218,10 +224,10 @@
                                         <tbody>
                                             <tr>
                                                 <td>2.1</td>
-                                                <td>Deskripsi Pengorganisasian</td>
-                                                <td>Deskripsi Pengorganisasian (Persyaratan, Ekspektasi, Implementasi,
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian</td>
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian (Persyaratan, Ekspektasi, Implementasi,
                                                     Prosedur Terkait)</td>
-                                                <td>File Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan,
+                                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan,
                                                     Ekspektasi, Implementasi, Prosedur Terkait
                                                     <div class="col-lg-6 col-12 mb-4">
                                                         <label class="mb-2">Upload Surat Permohonan Penilaian</label>
@@ -234,12 +240,12 @@
                                             </tr>
                                             <tr>
                                                 <td>2.2</td>
-                                                <td>Perusahaan mempunyai struktur organisasi pengelolaan di bidang
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai struktur organisasi pengelolaan di bidang
                                                     keselamatan, seperti Unit Manajemen Keselamatan atau Petugas Keselamatan
                                                 </td>
-                                                <td>Dokumen struktur organisasi Unit Manajemen Keselamatan Petugas
+                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Dokumen struktur organisasi Unit Manajemen Keselamatan Petugas
                                                     Keselamatan</td>
-                                                <td>File Struktur Organisasi
+                                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Struktur Organisasi
                                                     <div class="col-lg-6 col-12 mb-4">
                                                         <label class="mb-2">Upload Surat Permohonan Penilaian</label>
                                                         <div class="mb-3">
@@ -329,6 +335,5 @@
                 });
             });
         });
-        
     </script>
 @endsection
