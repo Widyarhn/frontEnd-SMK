@@ -66,224 +66,33 @@
             </div>
         </div>
     </div>
-    <div id="basicwizard" class="form-wizard row justify-content-center">
+    <div id="basicWizard" class="form-wizard row justify-content-center">
         <div class="col-12">
-            <div class="card">
+            <div class="card" style="border: 1px solid #ddd; margin-bottom: 20px;">
                 <div class="card-body p-3">
-                    <ul class="nav nav-pills nav-justified">
-                        <li class="nav-item mb-lg-0 mb-3" data-target-form="#contactDetailForm">
-                            <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                <div class="d-flex align-items-center">
-                                    <span class="number-box me-1">1.</span>
-                                    <span class="fw-bold f-16 ms-2 custom-text">Komitmen dan Kebijakan
-                                        Keselamatan</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item mb-lg-0 mb-3" data-target-form="#jobDetailForm">
-                            <a href="#2.1Detail" data-bs-toggle="tab" data-toggle="tab"
-                                class="nav-link icon-btn">
-                                <div class="d-flex align-items-center">
-                                    <span class="number-box me-1">2.</span>
-                                    <span class="fw-bold f-16 ms-2 custom-text">Pengorganisasian</span>
-                                </div>
-                            </a>
-                        </li>
+                    <ul class="nav nav-pills nav-justified" id="wizardTabs"
+                        style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px; border-bottom: 1px solid #ddd; padding: 10px; scrollbar-width: thin; -ms-overflow-style: none;">
                     </ul>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="border: 1px solid #ddd;">
                 <div class="card-body">
-                    <div class="tab-content">
-                        <!-- START: Define your progress bar here -->
-                        <div id="bar" class="progress mb-3" style="height: 7px">
-                            <div class="bar progress-bar progress-bar-striped progress-bar-animated bg-success"></div>
-                        </div>
-                        <!-- END: Define your progress bar here -->
-                        <!-- START: Define your tab pans here -->
-                        <div class="tab-pane show active" id="1.1Detail">
-                            <form id="contactForm" method="get">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Komitmen dan Kebijakan Keselamatan</h3>
-                                    {{-- <small class="text-muted">Let us know your name and email address. Use an address you
-                                        don't mind other users contacting you at</small> --}}
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Uraian</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan
-                                                    Monitoring</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Ditampilkan</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Wajib Diisi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Isam</td>
-                                                <td>Isam</td>
-                                                <td class="text-center">
-                                                    <div class="btn-group" role="group" aria-label="Yes or No">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-yes">Iya</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-danger btn-no">Tidak</button>
-                                                    </div>
-                                                    <input type="hidden" class="response-value" value="" />
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="btn-group" role="group" aria-label="Yes or No">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-yes2">Iya</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                    </div>
-                                                    <input type="hidden" class="response-value2" value="" />
-                                                </td>
-                                                <td class="text-center">
-                                                    <textarea class="form-control" rows="3" placeholder=""></textarea>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="fw-bold">Pertanyaan Tambahan</td>
-                                                <td colspan="4" class="text-center">
-                                                    <textarea id="additional-question" class="form-control" rows="4" placeholder="Masukkan pertanyaan tambahan"></textarea>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end contact detail tab pane -->
-                        <div class="tab-pane" id="2.1Detail">
-                            <form id="jobForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Pengorganisasian</h3>
-                                    {{-- <small class="text-muted">Let us know your name and email address. Use an address you
-                                        don't mind other users contacting you at</small> --}}
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Uraian</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan
-                                                    Monitoring</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Ditampilkan</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Wajib Diisi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Isam</td>
-                                                <td>Isam</td>
-                                                <td class="text-center">
-                                                    <div class="btn-group" role="group" aria-label="Yes or No">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-yes">Iya</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-danger btn-no">Tidak</button>
-                                                    </div>
-                                                    <input type="hidden" class="response-value" value="" />
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="btn-group" role="group" aria-label="Yes or No">
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-yes2">Iya</button>
-                                                        <button type="button"
-                                                            class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                    </div>
-                                                    <input type="hidden" class="response-value2" value="" />
-                                                </td>
-                                                <td class="text-center">
-                                                    <textarea class="form-control" rows="3" placeholder=""></textarea>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="fw-bold">Pertanyaan Tambahan</td>
-                                                <td colspan="4" class="text-center">
-                                                    <textarea id="additional-question" class="form-control" rows="4" placeholder="Masukkan pertanyaan tambahan"></textarea>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end job detail tab pane -->
-                        <div class="tab-pane" id="educationDetail">
-                            <form id="educationForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Tell us about your education</h3>
-                                    <small class="text-muted">Let us know your name and email address. Use an address you
-                                        don't mind other users contacting you at</small>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="schoolName">School Name</label>
-                                            <input type="text" class="form-control" id="schoolName"
-                                                placeholder="enter your school name" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="schoolLocation">School Location</label>
-                                            <input type="text" class="form-control" id="schoolLocation"
-                                                placeholder="enter your school location" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end education detail tab pane -->
-                        <div class="tab-pane" id="finish">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-6">
-                                    <div class="text-center">
-                                        <i class="ph-duotone ph-gift f-50 text-danger"></i>
-                                        <h3 class="mt-4 mb-3">Thank you !</h3>
-                                        <div class="mb-3">
-                                            <div class="form-check d-inline-block">
-                                                <input type="checkbox" class="form-check-input" id="customCheck1" />
-                                                <label class="form-check-label" for="customCheck1">I agree with the Terms
-                                                    and Conditions</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-                        </div>
-                        <!-- END: Define your tab pans here -->
-                        <!-- START: Define your controller buttons here-->
-                        <div class="d-flex wizard justify-content-center flex-wrap gap-2 mt-3">
-                            <div class="d-flex">
-                                <div class="previous me-2">
-                                    <button type="button" class="btn btn-secondary kembali"> Kembali </button>
-                                </div>
-                                <div class="next">
-                                    <button type="button" class="btn btn-primary selanjutnya"> Selanjutnya </button>
-                                </div>
-                            </div>
-                            <div class="last">
-                                <a href="javascript:void(0);" class="btn btn-success"> Simpan </a>
-                            </div>
-                        </div>
-                        <!-- END: Define your controller buttons here-->
-                    </div>
+                    <div class="tab-content" id="wizardTabContent" style="padding: 15px;"></div>
                 </div>
             </div>
-            <!-- end tab content-->
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                <!-- Tombol Simpan Draft -->
+                <button type="button" class="btn btn-warning" id="saveDraft" style="margin-right: 10px;">Simpan
+                    Draft</button>
+                <!-- Tombol Previous -->
+                <button type="button" class="btn btn-secondary" id="previousStep"
+                    style="margin-right: 10px;">Previous</button>
+                <!-- Tombol Next -->
+                <button type="button" class="btn btn-primary" id="nextStep" style="margin-left: 10px;">Next</button>
+                <!-- Tombol Simpan (hanya tampil di akhir) -->
+                <button type="button" class="btn btn-success" id="saveStep"
+                    style="display: none; margin-left: 10px;">Simpan</button>
+            </div>
         </div>
     </div>
 @endsection
@@ -291,6 +100,347 @@
     <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
     <script>
+        async function getListData() {
+            loadingPage(true);
+
+            // Memanggil API
+            const getDataRest = await CallAPI(
+                'GET',
+                '/dummy/get_smk_element.json'
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            loadingPage(false);
+
+            if (getDataRest.status === 200) {
+                smkElements = getDataRest.data.data.element_properties;
+
+                let wizardTabs = ``,
+                    wizardContent = ``,
+                    numbering = 1;
+
+                let questionSchema = smkElements.question_schema.properties,
+                    uiSchema = smkElements.ui_schema;
+
+                for (const [elementKey, elementValue] of Object.entries(uiSchema)) {
+                    let sortableSubElement = [];
+
+                    for (let a in uiSchema[elementKey]) {
+                        sortableSubElement.push([a, uiSchema[elementKey][a]]);
+                    }
+
+                    sortableSubElement.sort(function(a, b) {
+                        return a[1]['ui:order'] - b[1]['ui:order'];
+                    });
+
+                    wizardTabs += `
+                        <li class="nav-item" style="flex: 0 0 auto; margin-right: 20px; white-space: nowrap;">
+                            <a class="nav-link" id="step-${elementKey}" data-bs-toggle="tab" href="#stepContent-${elementKey}"
+                                style="padding: 10px 20px; text-align: center;">
+                                <div class="d-flex align-items-center">
+                                    <span class="number-box me-1">${numbering}.</span>
+                                    <span class="fw-bold f-16 ms-2">${questionSchema[elementKey]['title']}</span>
+                                </div>
+                            </a>
+                        </li>
+                    `;
+
+                    wizardContent += `
+                        <div class="tab-pane fade" id="stepContent-${elementKey}" role="tabpanel" aria-labelledby="step-${elementKey}">
+                            <form>
+                                <div class="text-center">
+                                    <h3 class="mb-2">${questionSchema[elementKey]['title']}</h3>
+                                </div>
+                                <div class="table-responsive py-5">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Uraian</th>
+                                                <th>Pertanyaan Monitoring</th>
+                                                <th>Ditampilkan</th>
+                                                <th>Wajib Diisi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                    `;
+
+                    let rowIndex = 1;
+                    sortableSubElement.forEach(function(subElement) {
+                        let question = questionSchema[elementKey]['properties'][subElement[0]],
+                            attachmentDoc = '',
+                            reportQuestionInput = '';
+
+                        // Check if the question has 'items'
+                        if (question['items']) {
+                            question['items'].forEach((item, i) => {
+                                let itemKey = Object.keys(item)[0];
+                                attachmentDoc =
+                                    `<div style="padding: 15px;">${item[itemKey]['name']}</div>`;
+
+                                let isMandatoryRadioButton = customRadioCheckHTML(
+                                    `isMandatory-${itemKey}`, {
+                                        yesOption: {
+                                            label: 'Ya',
+                                            id: `mandatory-${itemKey}`,
+                                            value: 'yes'
+                                        },
+                                        noOption: {
+                                            label: 'Tidak',
+                                            id: `notMandatory-${itemKey}`,
+                                            value: 'no'
+                                        }
+                                    });
+
+                                let isVisibilityRadioButton = customRadioCheckHTML(
+                                    `isVisibility-${itemKey}`, {
+                                        yesOption: {
+                                            label: 'Ya',
+                                            id: `visibility-${itemKey}`,
+                                            value: 'yes'
+                                        },
+                                        noOption: {
+                                            label: 'Tidak',
+                                            id: `notVisibility-${itemKey}`,
+                                            value: 'no'
+                                        }
+                                    });
+
+                                reportQuestionInput = textInputHTML(`report-question-${itemKey}`,
+                                    `reportQuestion-${itemKey}`);
+
+                                // First row handling for the question
+                                if (i === 0) {
+                                    wizardContent += `
+                                        <tr>
+                                            <td rowspan=${question['items'].length}>${numbering}.${rowIndex}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 200px;" rowspan=${question['items'].length}>${question['title']}</td>
+                                            <td style="padding: 0; word-wrap: break-word; white-space: normal; max-width: 150px;">${attachmentDoc}</td>
+                                            <td>${isVisibilityRadioButton}</td>
+                                            <td>${isMandatoryRadioButton}</td>
+                                            <td>${reportQuestionInput}</td>
+                                        </tr>
+                                    `;
+                                } else {
+                                    // Additional rows for remaining items
+                                    wizardContent += `
+                                        <tr>
+                                            <td style="padding: 0; word-wrap: break-word; white-space: normal; max-width: 150px;">${attachmentDoc}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${isVisibilityRadioButton}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${isMandatoryRadioButton}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${reportQuestionInput}</td>
+                                        </tr>
+                                    `;
+                                }
+
+                                // Add event listeners for visibility and mandatory logic
+                                $(document).on('change', `input:radio[name=isVisibility-${itemKey}]`,
+                                    function() {
+                                        if ($(this).val() === 'no') {
+                                            $(`#notMandatory-${itemKey}`).prop('checked', true)
+                                            $(`#reportQuestion-${itemKey}`).val('').prop('required',
+                                                false)
+
+                                            $(this).parent().parent().next().children().addClass(
+                                                'd-none')
+                                            $(this).parent().parent().next().next().children()
+                                                .addClass('d-none')
+                                        } else {
+                                            $(`#reportQuestion-${itemKey}`).prop('required', true)
+                                            $(this).parent().parent().next().children().removeClass(
+                                                'd-none')
+                                            $(this).parent().parent().next().next().children()
+                                                .removeClass('d-none')
+                                        }
+                                    });
+                            });
+                        } else {
+                            // Handling when no 'items' present
+                            attachmentDoc = `<div style="padding: 15px;">${question['attachmentName']}</div>`;
+                            reportQuestionInput = textInputHTML(`report-question-${subElement[0]}`,
+                                `reportQuestion-${subElement[0]}`);
+
+                            let isMandatoryRadioButton = customRadioCheckHTML(
+                                `isMandatory-${subElement[0]}`, {
+                                    yesOption: {
+                                        label: 'Ya',
+                                        id: `mandatory-${subElement[0]}`,
+                                        value: 'yes'
+                                    },
+                                    noOption: {
+                                        label: 'Tidak',
+                                        id: `notMandatory-${subElement[0]}`,
+                                        value: 'no'
+                                    }
+                                });
+
+                            let isVisibilityRadioButton = customRadioCheckHTML(
+                                `isVisibility-${subElement[0]}`, {
+                                    yesOption: {
+                                        label: 'Ya',
+                                        id: `visibility-${subElement[0]}`,
+                                        value: 'yes'
+                                    },
+                                    noOption: {
+                                        label: 'Tidak',
+                                        id: `notVisibility-${subElement[0]}`,
+                                        value: 'no'
+                                    }
+                                });
+
+                            // Single row rendering for no 'items' case
+                            wizardContent += `
+                                <tr>
+                                    <td>${numbering}.${rowIndex}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 200px;">${question['title']} (${smkElements.max_assesment[elementKey][subElement[0]]})</td>
+                                    <td style="padding: 0; word-wrap: break-word; white-space: normal; max-width: 150px;">${attachmentDoc}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${isVisibilityRadioButton}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${isMandatoryRadioButton}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${reportQuestionInput}</td>
+                                </tr>
+                            `;
+
+                            // Event listener for visibility
+                            $(document).on('change', `input:radio[name=isVisibility-${subElement[0]}]`,
+                                function() {
+                                    if ($(this).val() === 'no') {
+                                        $(`#notMandatory-${subElement[0]}`).prop('checked', true)
+                                        $(`#reportQuestion-${subElement[0]}`).val('').prop('required',
+                                            false)
+
+                                        $(this).parent().parent().next().children().addClass('d-none')
+                                        $(this).parent().parent().next().next().children().addClass(
+                                            'd-none')
+                                    } else {
+                                        $(`#reportQuestion-${subElement[0]}`).val('').prop('required', true)
+                                        $(this).parent().parent().next().children().removeClass('d-none')
+                                        $(this).parent().parent().next().next().children().removeClass(
+                                            'd-none')
+                                    }
+                                });
+                        }
+
+                        rowIndex++;
+                    });
+
+                    wizardContent += `
+                        <tr>
+                            <td style="word-wrap: break-word; white-space: normal; max-width: 200px;" colspan="2">Pertanyaan tambahan</td>
+                            <td colspan="4">
+                                <textarea class="form-control" id="additional_${elementKey}"></textarea>
+                            </td>
+                        </tr>
+                    `;
+
+                    wizardContent += `
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    `;
+
+                    numbering++;
+                }
+
+                // Render wizard tabs and content
+                document.getElementById('wizardTabs').innerHTML = wizardTabs;
+                document.getElementById('wizardTabs').setAttribute(
+                    'style',
+                    'display: flex; overflow-x: auto; white-space: nowrap; padding: 10px;'
+                );
+                document.getElementById('wizardTabContent').innerHTML = wizardContent;
+
+                let currentStep = 0;
+                const steps = Object.keys(uiSchema);
+
+                document.getElementById('nextStep').addEventListener('click', () => {
+                    if (currentStep < steps.length - 1) {
+                        currentStep++;
+                        updateWizardStep();
+                    }
+
+                    // Menampilkan tombol Simpan di wizard terakhir
+                    if (currentStep === steps.length - 1) {
+                        document.getElementById('nextStep').style.display = 'none';
+                        document.getElementById('saveStep').style.display = 'inline-block';
+                    }
+                });
+
+                document.getElementById('previousStep').addEventListener('click', () => {
+                    if (currentStep > 0) {
+                        currentStep--;
+                        updateWizardStep();
+                    }
+
+                    // Sembunyikan tombol Simpan jika tidak di wizard terakhir
+                    if (currentStep < steps.length - 1) {
+                        document.getElementById('nextStep').style.display = 'inline-block';
+                        document.getElementById('saveStep').style.display = 'none';
+                    }
+                });
+
+                function updateWizardStep() {
+                    const activeTab = document.getElementById(`step-${steps[currentStep]}`);
+                    const activeContent = document.getElementById(`stepContent-${steps[currentStep]}`);
+
+                    activeTab.classList.add('active');
+                    activeContent.classList.add('show', 'active');
+
+                    steps.forEach((step, index) => {
+                        if (index !== currentStep) {
+                            document.getElementById(`step-${step}`).classList.remove('active');
+                            document.getElementById(`stepContent-${step}`).classList.remove('show', 'active');
+                        }
+                    });
+                }
+
+                updateWizardStep();
+            }
+        }
+
+        function customRadioCheckHTML(inputName, properties, defaultValue = 'yes') {
+
+            let $customRadioButton =
+                `<div class="gap-2 d-flex">
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="${inputName}"
+                        value="${properties.yesOption.value}"
+                        id="${properties.yesOption.id}"
+                        ${defaultValue === 'yes' ? 'checked' : ''}>
+                    <label class="btn btn-outline-primary"
+                        for="${properties.yesOption.id}"
+                        style="width: 45%;">${properties.yesOption.label}</label>
+
+                    <input type="radio"
+                        class="btn-check"
+                        name="${inputName}"
+                        value="${properties.noOption.value}"
+                        id="${properties.noOption.id}"
+                        ${defaultValue === 'no' ? 'checked' : ''}>
+                    <label class="btn btn-outline-warning bg-opacity-50 bg-gradient"
+                        for="${properties.noOption.id}"
+                        style="width: 45%;">${properties.noOption.label}</label>
+                </div>`
+
+            return $customRadioButton
+        }
+
+        function textInputHTML(name, id) {
+            let $templateInput = `<textarea class="form-control" id="${id}" name="${name}" required></textarea>`
+
+            return $templateInput
+        }
+
 
         document.addEventListener("click", (e) => {
             if (e.target.classList.contains('selanjutnya')) {
@@ -343,5 +493,12 @@
                 }
             }
         });
+
+        async function initPageLoad() {
+            await Promise.all([
+                getListData(),
+                submitElement()
+            ]);
+        }
     </script>
 @endsection
