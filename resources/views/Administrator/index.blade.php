@@ -12,23 +12,24 @@
     <meta name="keywords"
         content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard" />
     <meta name="author" content="Phoenixcoded" />
-
+    
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/uikit.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
 
-    <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js">
-        >
-    </script>
+    <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js"></script>
+
     @yield('asset_css')
 
 </head>
@@ -87,9 +88,6 @@
     <script src="{{ asset('assets') }}/js/fonts/custom-font.js"></script>
     <script src="{{ asset('assets') }}/js/pcoded.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/feather.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js">
-        >
-    </script>
     <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/sweetalert2.all.min.js"></script>
