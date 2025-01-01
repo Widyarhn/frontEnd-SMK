@@ -1,5 +1,5 @@
 <script>
-    async function manipulationDataTable(paramsTable = {}, idPagination = '#paginationJs', limitPage = '#limitPage',
+    async function manipulationDataTable(paramsTable = {}, idPagination = '#pagination', limitPage = '#limitPage',
         searchInput = '#searchInput', dataFetcher, enableCustomFilter = false, customFilter = "#custom-filter") {
         // Default table parameters
         paramsTable = {

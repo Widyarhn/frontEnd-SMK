@@ -57,10 +57,6 @@
 
     @include('Administrator.layouts.footer')
 
-
-    @yield('scripts')
-
-
     <div id="preloaderLoadingPage-network" style="display: none">
         <div class="sk-three-bounce">
             <div class="centerpreloader-network">
@@ -85,7 +81,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/popper.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/bootstrap.min.js"></script>
@@ -144,8 +139,16 @@
             }
         }
     </script>
-
+    @yield('scripts')
     <script type="text/javascript">
+        function notificationAlert(tipe, title, message) {
+            swal(
+                title,
+                message,
+                tipe
+            );
+        }
+
         function loadingPage(show) {
             if (show == true) {
                 document.getElementById('preloaderLoadingPage').style.display = '';
@@ -155,7 +158,8 @@
             return;
         }
     </script>
-
+    @include('Administrator.partial-js')
+    @yield('page_js')
 </body>
 <!-- [Body] end -->
 
