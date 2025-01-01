@@ -162,9 +162,21 @@
                     for (let index = 0; index < dataTable.length; index++) {
                         let element = dataTable[index];
                         const elementData = JSON.stringify(element);
-                        let statusBadge = element.is_active ?
-                            '<span class="badge bg-light-success">Aktif</span>' :
-                            '<span class="badge bg-light-danger">Tidak Aktif</span>';
+
+                        const isActive = element.is_active === true;
+                        const statusBadge = isActive ?
+                            `<span class="badge bg-success d-flex align-items-center justify-content-center text-white" style="max-width: 100px; white-space: nowrap;"><i class="fa fa-check-circle me-2"></i> Aktif</span>` :
+                            `<span class="badge bg-danger d-flex align-items-center justify-content-center text-white" style="max-width: 100px; white-space: nowrap;"><i class="fa fa-times-circle me-2"></i> Tidak Aktif</span>`;
+
+                        const actionButton = isActive ?
+                            `<a class="avtar avtar-s btn-link-danger change-status" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Nonaktifkan Status ${element.title}" data-id="${element.id}" data-status="nonaktifkan">
+                                        <i class="fa-solid fa-square-xmark fa-lg"></i>
+                            </a>` :
+                            `<a class="avtar avtar-s btn-link-success change-status" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Aktifkan Status ${element.title}" data-id="${element.id}" data-status="aktifkan">
+                                    <i class="fa-solid fa-square-check fa-lg"></i>
+                                </a>`;
 
                         domTableHtml += `
                             <tr>
@@ -173,18 +185,15 @@
                                 <td class="text-start">${statusBadge}</td>
                                 <td class="text-start">${new Date(element.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}</td>
                                 <td class="text-end">
-                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                            class="avtar avtar-s btn-link-success btn-pc-default">
-                                            <i class="fa-regular fa-square-check"></i></a>
+                                    <li class="list-inline-item">
+                                        ${actionButton}
                                     </li>
-                                    <li class="list-inline-item"><a href="/admin/element-smk/detail"
+                                      <li class="list-inline-item"><a href="/admin/element-smk/detail"
                                             class="avtar avtar-s btn-link-info btn-pc-default"><i
                                                 class="ti ti-eye f-20"></i></a></li>
-                                    <li class="list-inline-item"><a data-bs-toggle="modal"
-                                            data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                            class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                class="ti ti-trash f-20"></i></a></li>
+                                    <li class="list-inline-item">
+                                        ${getDeleteButton(elementData, element)}
+                                    </li>
                                 </td>
                             </tr>
                         `;
@@ -200,6 +209,89 @@
             }
         }
 
+        function getDeleteButton(elementData, element) {
+            return `
+                <a class="avtar avtar-s btn-link-danger btn-pc-default delete-data"
+                    data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Hapus Data ${element.title}"
+                    data='${elementData}'
+                    data-id="${element.id}"
+                    data-name="${element.title}">
+                    <i class="ti ti-trash f-20"></i>
+                </a>`;
+        }
+
+        async function deleteData() {
+            $(document).on("click", ".delete-data", async function() {
+                isActionForm = "destroy";
+                let id = $(this).attr("data-id");
+                let name = $(this).attr("data-name");
+                Swal.fire({
+                    icon: "question",
+                    title: `Hapus Data ${name}`,
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    showCancelButton: true,
+                    confirmButtonText: "Ya, Hapus!",
+                    cancelButtonText: "Tidak, Batal!",
+                    reverseButtons: true
+                }).then(async (result) => {
+                    let postDataRest = console.log(id);
+                    loadingPage(false);
+                    if (result.isConfirmed == true) {
+                        setTimeout(async () => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Pemberitahuan',
+                                text: 'Data berhasil dihapus!',
+                                confirmButtonText: 'OK'
+                            }).then(async () => {
+                                await initDataOnTable(defaultLimitPage,
+                                    currentPage,
+                                    defaultAscending, defaultSearch);
+                            });
+                        }, 100);
+                    }
+                }).catch(swal.noop);
+            })
+        }
+
+        async function setStatus() {
+            $(document).on("click", ".change-status", async function() {
+                let id = $(this).attr("data-id");
+                let status = $(this).attr("data-status");
+                await setStatusAction(id, status);
+            });
+        }
+
+        async function setStatusAction(id, status) {
+            Swal.fire({
+                icon: "info",
+                title: "Pemberitahuan",
+                text: "Apakah anda yakin mengganti status data ini?",
+                showCancelButton: true,
+                confirmButtonText: "Ya, Saya Yakin!",
+                cancelButtonText: "Batal",
+                reverseButtons: true
+            }).then(async (result) => {
+                loadingPage(true)
+                let postDataRest = console.log(id);
+                loadingPage(false);
+                if (result.isConfirmed == true) {
+                    setTimeout(async () => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Status berhasil dirubah!',
+                            confirmButtonText: 'OK'
+                        }).then(async () => {
+                            await initDataOnTable(defaultLimitPage,
+                                currentPage,
+                                defaultAscending, defaultSearch);
+                        });
+                    }, 100);
+                }
+            }).catch(swal.noop);
+        }
 
         async function initPageLoad() {
 
@@ -212,7 +304,15 @@
             };
 
             await manipulationDataTable(paramsTable, '#pagination', '#limitPage',
-                '#searchInput', getListData); // Memanggil getListDataBidang
+                '#searchInput', getListData);
+
+            await Promise.all([
+                // selectList('#input_satuan_kerja_id',
+                //     '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
+                //     'Pilih Satuan Kerja', true),
+                setStatus(),
+                deleteData(),
+            ])
         }
     </script>
     @include('Administrator.partial-js')
