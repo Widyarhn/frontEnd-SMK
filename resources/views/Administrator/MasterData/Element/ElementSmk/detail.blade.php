@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-
 @endsection
 
 @section('content')
@@ -34,273 +33,11 @@
             </div>
         </div>
     </div>
-    
-    <div id="basicwizard" class="form-wizard row justify-content-center">
-        <div class="col-12 mt-4">
-            <div class="card">
-                <div class="card-body p-3">
-                    <ul class="nav nav-pills nav-justified">
-                        <li class="nav-item" data-target-form="#contactDetailForm">
-                            <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
-                                    </i>1.1</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-target-form="#jobDetailForm">
-                            <a href="#2.1Detail" data-bs-toggle="tab" data-toggle="tab"
-                                class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
-                                    </i>2.1</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-target-form="#educationForm">
-                            <a href="#3.1Detail" data-bs-toggle="tab" data-toggle="tab"
-                                class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
-                                    </i>3.1</span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-target-form="#jobDetailForm">
-                            <a href="#4.1Detail" data-bs-toggle="tab" data-toggle="tab"
-                                class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-regular fa-folder-open me-2"></i>
-                                    </i>4.1</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane show active" id="1.1Detail">
-                            <form id="contactForm" method="get">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Fasilitas Pemeliharaan dan Perbaikan</h3>
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Uraian Element</th>
-                                                <th>Dokumen / Bukti Dukung Jawaban</th>
-                                                <th>File Yang Dilampirkan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1.1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Fasilitas Pemeliharaan dan Perbaikan Persyaratan Ekspektasi Implementasi Prosedur Terkait</td>
-                                                <td>-</td>
-                                                <td>File Persyaratan Ekspektasi Implementasi Prosedur Terkait</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1.2</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Perusahaan melengkapi kegiatan operasional angkutan dengan menyediakan fasilitas pemeliharaan dan perbaikan kendaraan bermotor sebagai syarat utama keselamatan dan perbaikan kendaraan bermotor yang digunakan untuk mendukung kegiatan perusahaan
-                                                </td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Dokumen Check listSOP pemeriksaan kendaraan sebelum perjalanan sepanjang perjalanan dan setelah operasional</td>
-                                                <td>
-                                                    <ul>
-                                                        <li>File Prosedur Pengoperasian Kendaraan</li>
-                                                        <li>File Instruksi Kerja Ganti Filter Solar</li>
-                                                        <li>File Instruksi Kerja Ganti Ban</li>
-                                                        <li>File Kartu Inspeksi APAR</li>
-                                                        <li>File Form Pemeriksaan Kendaraan Bermotor</li>
-                                                        <li>File Form Pemeriksaan Kendaraan Bermotor Sebelum Operasi</li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="2.1Detail">
-                            <form id="jobForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Manajemen Bahaya dan Risiko</h3>
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Uraian Element</th>
-                                                <th>Dokumen / Bukti Dukung Jawaban</th>
-                                                <th>File Yang Dilampirkan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2.1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Fasilitas Pemeliharaan dan Perbaikan Persyaratan Ekspektasi Implementasi Prosedur Terkait</td>
-                                                <td>-</td>
-                                                <td>File Persyaratan Ekspektasi Implementasi Prosedur Terkait</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2.2</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Perusahaan melengkapi kegiatan operasional angkutan dengan menyediakan fasilitas pemeliharaan dan perbaikan kendaraan bermotor sebagai syarat utama keselamatan dan perbaikan kendaraan bermotor yang digunakan untuk mendukung kegiatan perusahaan
-                                                </td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Dokumen Check listSOP pemeriksaan kendaraan sebelum perjalanan sepanjang perjalanan dan setelah operasional</td>
-                                                <td>
-                                                    <ul>
-                                                        <li>File Prosedur Pengoperasian Kendaraan</li>
-                                                        <li>File Instruksi Kerja Ganti Filter Solar</li>
-                                                        <li>File Instruksi Kerja Ganti Ban</li>
-                                                        <li>File Kartu Inspeksi APAR</li>
-                                                        <li>File Form Pemeriksaan Kendaraan Bermotor</li>
-                                                        <li>File Form Pemeriksaan Kendaraan Bermotor Sebelum Operasi</li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="3.1Detail">
-                            <form id="educationForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Manajemen Bahaya Dan Risiko</h3>
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawab</th>
-                                                <th>Kesesuaian</th>
-                                                <th>Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>3.1</td>
-                                                <td>Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3.2</td>
-                                                <td>Perusahaan telah memiliki prosedur identifikasi bahaya, penilaian dan pengendalian risiko secara komprehensif baik terhadap personel, sarana angkutan, penumpang maupun lingkungan untuk setiap tahapan operasi pengangkutan</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Struktur Organisasi</td>
-                                                <td>Tidak ada perubahan</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3.3</td>
-                                                <td>Perusahaan telah melakukan identifikasi bahaya, penilaian dan pengendaliannya dengan metode yang sesuai dengan karakteristik bahaya yang ada, memiliki matrik penilaian bahaya dan risiko, matrik identifikasi bahaya, penilaian dan pengendalian risiko di kantor, bengkel dan operasional serta matrik identifikasi bahaya lalu lintas</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>
-                                                    <a href="">
-                                                        <p class="mb-0"><i
-                                                                class="fa-regular fa-file-pdf me-1"></i><label
-                                                                class="mb-0">Lihat Dokumen</label></p>
-                                                    </a>
-                                                </td>
-                                                <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                <td>-</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="4.1Detail">
-                            <form id="jobForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Fasilitas Pemeliharaan Dan Perbaikan</h3>
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawab</th>
-                                                <th>Kesesuaian</th>
-                                                <th>Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>4.1</td>
-                                                <td>Deskripsi Fasilitas Pemeliharaan dan Perbaikan (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4.2</td>
-                                                <td>Perusahaan melengkapi kegiatan operasional angkutan dengan menyediakan fasilitas pemeliharaan dan perbaikan kendaraan bermotor sebagai syarat utama keselamatan dan perbaikan kendaraan bermotor yang digunakan untuk mendukung kegiatan perusahaan</td>
-                                                <td>Apakah terdapat perubahan dokumen prosedur pengoperasian kendaraan</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4.3</td>
-                                                <td>Pemeliharaan dan perbaikan kendaraan dengan penyediaan sarana dan prasarana pendukung yang memadai untuk mendukung keselamatan seperti bengkel, klinik, ruang istirahat pengemudi, ruang parkir, fasilitas penyimpanan suku cadang dan lain-lain</td>
-                                                <td>Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                <td>
-                                                    <a href="">
-                                                        <p class="mb-0"><i
-                                                                class="fa-regular fa-file-pdf me-1"></i><label
-                                                                class="mb-0">Lihat Dokumen</label></p>
-                                                    </a>
-                                                </td>
-                                                <td><span class="badge bg-light-success">Sesuai</span></td>
-                                                <td>-</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="finish">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-6">
-                                    <div class="text-center">
-                                        <i class="ph-duotone ph-gift f-50 text-danger"></i>
-                                        <h3 class="mt-4 mb-3">Thank you !</h3>
-                                        <div class="mb-3">
-                                            <div class="form-check d-inline-block">
-                                                <input type="checkbox" class="form-check-input"
-                                                    id="customCheck1" />
-                                                <label class="form-check-label" for="customCheck1">I agree with
-                                                    the Terms
-                                                    and Conditions</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex wizard justify-content-center flex-wrap gap-2 mt-3">
-                            <div class="d-flex">
-                                <div class="previous me-2">
-                                    <button type="button" class="btn btn-secondary kembali"> Kembali </button>
-                                </div>
-                                <div class="next me-2">
-                                    <button type="button" class="btn btn-primary selanjutnya"> Selanjutnya
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END: Define your controller buttons here-->
-                    </div>
+                    <div id="accordionExample" class="accordion"></div>
                 </div>
             </div>
         </div>
@@ -309,59 +46,165 @@
 @section('scripts')
     <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
-    
+@endsection
+
+@section('page_js')
     <script>
+        let defaultLimitPage = 10;
+        let currentPage = 1;
+        let totalPage = 1;
+        let defaultAscending = 0;
+        let defaultSearch = '';
 
-        document.addEventListener("click", (e) => {
-            if (e.target.classList.contains('selanjutnya')) {
-                let currentTab = document.querySelector('.tab-pane.active');
-                let nextTab = currentTab.nextElementSibling;
+        let pathArray = window.location.pathname.split('/');
+        let referenceId = pathArray[pathArray.length - 1];
 
-                if (nextTab) {
-                    currentTab.classList.remove('show', 'active');
-                    nextTab.classList.add('show', 'active');
+        async function getListData(id) {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+                'GET',
+                '/dummy/smk_element_detail.json'
+                // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/smk-element/detail', {
+                //     id: id
+                // }
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            if (getDataRest && getDataRest.data) {
+                loadingPage(false);
+                let data = getDataRest.data.data.element_properties;
+                let elements = data.question_schema.properties;
+                let uiSchema = data.ui_schema;
+
+                // Paginate the data
+                let elementKeys = Object.keys(elements);
+                let totalData = elementKeys.length;
+                let totalPage = Math.ceil(totalData / defaultLimitPage);
+                let startIndex = (currentPage - 1) * defaultLimitPage;
+                let endIndex = Math.min(startIndex + defaultLimitPage, totalData);
+                let paginatedKeys = elementKeys.slice(startIndex, endIndex);
+
+                let display_from = startIndex + 1;
+                let display_to = endIndex;
+
+                $('#totalPage').text(totalData);
+                $('#countPage').text(`${display_from} - ${display_to}`);
+
+                let appendHtml = "";
+                let subCounter = startIndex;
+
+                // Generate accordion structure with the updated style
+                for (let elementKey of paginatedKeys) {
+                    let element = elements[elementKey];
+                    let id = `element${subCounter}`;
+                    let ariaExpanded = subCounter === startIndex ? "true" : "false";
+                    let expandedClass = subCounter === startIndex ? "show" : "";
+
+                    appendHtml += `
+                        <div class="accordion-item shadow-sm border-0 mb-4">
+                            <h2 class="accordion-header" id="flush-heading${id}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapse${id}" aria-expanded="${ariaExpanded}" aria-controls="flush-collapse${id}"
+                                    style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%);
+                                    color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px;
+                                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                    <i class="fa-regular fa-file-lines me-2"></i>
+                                    <span class="fw-bold me-2 me-lg-0">${subCounter + 1}. ${element.title}</span>
+                                </button>
+                            </h2>
+                            <div id="flush-collapse${id}" class="accordion-collapse collapse ${expandedClass}" aria-labelledby="flush-heading${id}">
+                                <div class="accordion-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Uraian Element</th>
+                                                    <th>Dokumen / Bukti Dukung Jawaban</th>
+                                                    <th>File Yang Dilampirkan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>`;
+
+                                let subNumber = 1;
+
+                                // Loop through the uiSchema to get sub-elements
+                                let sortableSubElement = [];
+                                for (let a in uiSchema[elementKey]) {
+                                    sortableSubElement.push([a, uiSchema[elementKey][a]]);
+                                }
+                                sortableSubElement.sort((a, b) => a[1]['ui:order'] - b[1]['ui:order']);
+
+                                for (let subElement of sortableSubElement) {
+                                    let subElementKey = subElement[0];
+                                    let detail = elements[elementKey].properties[subElementKey];
+
+                                    let filesHtml = '';
+
+                                    // Handle type "array"
+                                    if (detail.type === "array" && Array.isArray(detail.items)) {
+                                        let itemObjects = detail.items;
+                                        for (let item of itemObjects) {
+                                            // Loop through dynamic keys in each item
+                                            for (let key in item) {
+                                                if (item[key].name) {
+                                                    filesHtml += `<li>${item[key].name}</li>`;
+                                                }
+                                            }
+                                        }
+                                        filesHtml = `<ul>${filesHtml}</ul>`;
+                                    } else if (detail.type === "string") {
+                                        // Handle type "string"
+                                        filesHtml = detail.attachmentName || '-';
+                                    }
+
+                                    appendHtml += `
+                            <tr>
+                                <td>${subCounter + 1}.${subNumber}</td>
+                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${detail.title || ''}</td>
+                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${detail.description || ''}</td>
+                                <td>${filesHtml}</td>
+                            </tr>`;
+                                    subNumber++;
+                                }
+
+                                appendHtml += `
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    subCounter++;
                 }
-            }
 
-            if (e.target.classList.contains('kembali')) {
-                let currentTab = document.querySelector('.tab-pane.active');
-                let prevTab = currentTab.previousElementSibling;
-
-                if (prevTab) {
-                    currentTab.classList.remove('show', 'active');
-                    prevTab.classList.add('show', 'active');
+                if (totalData === 0) {
+                    appendHtml = `
+                        <div class="accordion-item">
+                            <div class="accordion-header text-center" colspan="4">Tidak ada data.</div>
+                        </div>
+                    `;
+                    $('#countPage').text("0 - 0");
                 }
-            }
-            if (e.target.classList.contains("btn-yes") || e.target.classList.contains("btn-no")) {
-                const yesButton = e.target.closest(".btn-group").querySelector(".btn-yes");
-                const noButton = e.target.closest(".btn-group").querySelector(".btn-no");
-                const hiddenInput = e.target.closest("td").querySelector(".response-value");
 
-                if (e.target.classList.contains("btn-yes")) {
-                    yesButton.classList.add("active");
-                    noButton.classList.remove("active");
-                    hiddenInput.value = "Iya";
-                } else if (e.target.classList.contains("btn-no")) {
-                    noButton.classList.add("active");
-                    yesButton.classList.remove("active");
-                    hiddenInput.value = "Tidak";
-                }
-            }
-            if (e.target.classList.contains("btn-yes2") || e.target.classList.contains("btn-no2")) {
-                const yesButton = e.target.closest(".btn-group").querySelector(".btn-yes2");
-                const noButton = e.target.closest(".btn-group").querySelector(".btn-no2");
-                const hiddenInput = e.target.closest("td").querySelector(".response-value2");
+                $('#accordionExample').html(appendHtml);
 
-                if (e.target.classList.contains("btn-yes2")) {
-                    yesButton.classList.add("active");
-                    noButton.classList.remove("active");
-                    hiddenInput.value = "Iya";
-                } else if (e.target.classList.contains("btn-no2")) {
-                    noButton.classList.add("active");
-                    yesButton.classList.remove("active");
-                    hiddenInput.value = "Tidak";
-                }
             }
-        });
+        }
+
+        async function initPageLoad() {
+            await Promise.all([
+                getListData(),
+                // initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
+            ]);
+        }
     </script>
+    @include('Administrator.partial-js')
 @endsection
