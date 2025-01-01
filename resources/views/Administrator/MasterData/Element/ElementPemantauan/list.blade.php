@@ -119,7 +119,7 @@
             // Memanggil API untuk mendapatkan data bidang
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/monitoring_element.json`,
+                    `/dummy/monitoring_element_list.json`,
                 )
                 .then(response => response)
                 .catch(error => {
@@ -179,7 +179,7 @@
                                             class="avtar avtar-s btn-link-success btn-pc-default">
                                             <i class="fa-regular fa-square-check"></i></a>
                                     </li>
-                                    <li class="list-inline-item"><a href="/admin/element-smk/detail"
+                                    <li class="list-inline-item"><a href="/admin/element-pemantauan/detail"
                                             class="avtar avtar-s btn-link-info btn-pc-default"><i
                                                 class="ti ti-eye f-20"></i></a></li>
                                     <li class="list-inline-item"><a data-bs-toggle="modal"
