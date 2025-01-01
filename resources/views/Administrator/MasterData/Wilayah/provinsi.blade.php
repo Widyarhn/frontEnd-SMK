@@ -52,7 +52,7 @@
                                         </div>
                                     </div>
                                     <div class="datatable-container">
-                                        <table class="table table-hover datatable-table" id="">
+                                        <table class="table table-hover datatable-table">
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" reset-all"
+                        <button type="button" class="btn btn-outline-secondary reset-all"
                             data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary shadow-2">Simpan</button>
                     </div>
@@ -295,17 +295,20 @@
                 const postDataRest = console.log(data);
                 loadingPage(false);
                 $("#modal-form").modal("hide");
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Pemberitahuan',
-                    text: 'Data berhasil dikirim!',
-                    confirmButtonText: 'OK'
-                }).then(async () => {
-                    await initDataOnTable(defaultLimitPage, currentPage, defaultAscending,
-                        defaultSearch);
-                    $(this).trigger("reset");
-                    $("#modal-form").modal("hide");
-                });
+                setTimeout(async () => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pemberitahuan',
+                        text: 'Data berhasil dikirim!',
+                        confirmButtonText: 'OK'
+                    }).then(async () => {
+                        await initDataOnTable(defaultLimitPage, currentPage,
+                            defaultAscending,
+                            defaultSearch);
+                        $(this).trigger("reset");
+                        $("#modal-form").modal("hide");
+                    });
+                }, 100);
             });
         }
 
@@ -325,42 +328,47 @@
                 }).then(async (result) => {
                     let postDataRest = console.log(id);
                     loadingPage(false);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Pemberitahuan',
-                        text: 'Data berhasil dihapus!',
-                        confirmButtonText: 'OK'
-                    }).then(async () => {
-                        await initDataOnTable(defaultLimitPage, currentPage,
-                            defaultAscending,
-                            defaultSearch);
-                    });
+                    if (result.isConfirmed == true) {
+                        setTimeout(async () => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Pemberitahuan',
+                                text: 'Data berhasil dihapus!',
+                                confirmButtonText: 'OK'
+                            }).then(async () => {
+                                await initDataOnTable(defaultLimitPage,
+                                    currentPage,
+                                    defaultAscending,
+                                    defaultSearch);
+                            });
+                        }, 100);
+                    }
                 }).catch(swal.noop);
             })
         }
 
         function getEditButton(elementData, element) {
             return `
-                <button class="avtar avtar-s btn-link-warning btn-pc-default edit-data"
-                    data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                <a class="avtar avtar-s btn-link-warning btn-pc-default edit-data"
+                data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Edit Data ${element.name}"
                     data='${elementData}'
                     data-id="${element.id}"
                     data-name="${element.name}">
-                    <i class="ti ti-eye f-20"></i>
-                </button>`;
+                    <i class="ti ti-edit f-20"></i>
+                </a>`;
         }
 
         function getDeleteButton(elementData, element) {
             return `
-                <button class="avtar avtar-s btn-link-danger btn-pc-default delete-data"
+                <a class="avtar avtar-s btn-link-danger btn-pc-default delete-data"
                     data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Hapus Data ${element.name}"
                     data='${elementData}'
                     data-id="${element.id}"
                     data-name="${element.name}">
-                    <i class="ti ti-trash f-20"></i></a></li>
-                </button>`;
+                    <i class="ti ti-trash f-20"></i>
+                </a>`;
         }
 
         async function performSearch() {
@@ -396,17 +404,14 @@
                 className: 'paginationjs-theme-blue',
                 afterPreviousOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    console.log("🚀 ~ paginationDataOnTable ~ currentPage:", currentPage)
                     getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
                 },
                 afterPageOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    console.log("🚀 ~ paginationDataOnTable ~ currentPage2:", currentPage)
                     getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
                 },
                 afterNextOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    console.log("🚀 ~ paginationDataOnTable ~ currentPage3:", currentPage)
                     getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
                 },
             });

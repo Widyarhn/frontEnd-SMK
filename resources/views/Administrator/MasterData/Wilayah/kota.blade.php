@@ -1,64 +1,72 @@
 @extends('...Administrator.index', ['title' => 'Kota | Master Data Wilayah'])
 @section('asset_css')
-<link rel="stylesheet" href="{{asset('assets')}}/css/plugins/style.css" />
-<link rel="icon" href="{{asset('assets')}}/images/favicon.svg" type="image/x-icon" />
-<link rel="stylesheet" href="{{asset('assets')}}/fonts/inter/inter.css" id="main-font-link" />
-<link rel="stylesheet" href="{{asset('assets')}}/fonts/phosphor/duotone/style.css" />
-<link rel="stylesheet" href="{{asset('assets')}}/fonts/tabler-icons.min.css" />
-<link rel="stylesheet" href="{{asset('assets')}}/fonts/feather.css" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-<link rel="stylesheet" href="{{asset('assets')}}/fonts/material.css" />
-<link rel="stylesheet" href="{{asset('assets')}}/css/style.css" id="main-style-link" />
-<script src="{{asset('assets')}}/js/tech-stack.js"></script>
-<link rel="stylesheet" href="{{asset('assets')}}/css/style-preset.css" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}"> --}}
 @endsection
 
 @section('content')
-<div class="page-header">
-    <div class="page-block">
-        <div class="row align-items-center">
-            <div class="col-md-12">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a
-                            href="/admin/dashboard">Home</a></li>
-                    <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data Wilayah</a></li>
-                    <li class="breadcrumb-item" aria-current="page">Kota</li>
-                </ul>
-            </div>
-            <div class="col-md-12 d-flex flex-column flex-md-row justify-content-between align-items-start">
-                <div class="page-header-title">
-                    <h2 class="mb-0">Data Kota</h2>
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data Wilayah</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Kota</li>
+                    </ul>
                 </div>
-                <button type="button"
-                    class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0" data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
-                    data-bs-target="#animateModal">
-                    <i class="fas fa-plus-circle me-2"></i> Tambah Data
-                </button>
+                <div class="col-md-12 d-flex flex-column flex-md-row justify-content-between align-items-start">
+                    <div class="page-header-title">
+                        <h2 class="mb-0">Data Kota</h2>
+                    </div>
+                    <a href="javascript:void(0)" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0 add-data"
+                        id="add-data">
+                        <i class="fas fa-plus-circle me-2"></i> Tambah Data
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                        aria-labelledby="analytics-tab-1" tabindex="0">
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="pc-dt-simple-1">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Nama Kota</th>
-                                        <th>Provinsi</th>
-                                        <th>Kode Wilayah</th>
-                                        <th class="text-end">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="listData"></tbody>
-                                {{-- <tbody>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                            aria-labelledby="analytics-tab-1" tabindex="0">
+                            <div class="table-responsive">
+                                <div
+                                    class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                    <div class="datatable-top">
+                                        <div class="datatable-dropdown">
+                                            <label>
+                                                <select class="datatable-selector" id="limitPage" name="per-page">
+                                                    <option value="5">5</option>
+                                                    <option value="10" selected="">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="20">20</option>
+                                                    <option value="25">25</option>
+                                                </select> entries per page
+                                            </label>
+                                        </div>
+                                        <div class="datatable-search">
+                                            <input class="datatable-input search-input" placeholder="Search..."
+                                                type="search" name="search" title="Search within table"
+                                                aria-controls="pc-dt-simple">
+                                        </div>
+                                    </div>
+                                    <div class="datatable-container">
+                                        <table class="table table-hover datatable-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Nama Kota</th>
+                                                    <th>Provinsi</th>
+                                                    <th>Kode Wilayah</th>
+                                                    <th class="text-end">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="listData"></tbody>
+                                            {{-- <tbody>
                                     <tr>
                                         <td>1.</td>
                                         <td>
@@ -120,74 +128,85 @@
                                         </td>
                                     </tr>
                                 </tbody> --}}
-                            </table>
+                                        </table>
+                                        <div class="datatable-bottom">
+                                            <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                                                dari <span id="totalPage">0</span> data</div>
+                                            <nav class="datatable-pagination">
+                                                <ul id="pagination-js" class="datatable-pagination-list">
+                                                </ul>
+                                            </nav>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade modal-animate" id="animateModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tambah Data Kota</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="p-3">
-                    <div class="mb-3">
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <select class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example" disabled>
-                                    <option selected>Banten</option>
-                                    <option value="1">Jabar</option>
-                                    <option value="2">Jatim</option>
-                                    <option value="3">Banten</option>
-                                </select>
-                                <label for="floatingSelect">Provinsi</label>
-                            </div>
-                        </div>
+    <form id="form-create">
+        <div class="modal fade modal-animate" id="modal-form" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
                     </div>
-                    <div class="row g-4">
-                        <div class="col-md-6">
+                    <div class="modal-body">
+                        <form class="p-3">
                             <div class="mb-3">
-                                <div class="form-floating mb-0">
-                                    <input type="kota" class="form-control" id="floatingKota"
-                                        placeholder="kota" />
-                                    <label for="floatingInput">Nama Kota</label>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect" id="input_province_id"
+                                            name="input_province_id" aria-label="Floating label select example" readonly>
+                                            <option value="1" selected>Jawa Barat</option>
+                                        </select>
+                                        <label for="floatingSelect">Provinsi</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <div class="form-floating mb-0">
-                                    <input type="kode" class="form-control" id="floatingKode"
-                                        placeholder="kode" />
-                                    <label for="floatingNamaBelakang">Kode Wilayah</label>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <div class="form-floating mb-0">
+                                            <input type="kota" class="form-control" name="input_name" id="input_name"
+                                                placeholder="kota" required />
+                                            <label for="input_name">Nama Kota</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <div class="form-floating mb-0">
+                                            <input type="text" class="form-control form-control-lg"
+                                                name="input_administrative_code" id="input_administrative_code"
+                                                placeholder="Masukkan kode wilayah" autocomplete="off" required
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '')">
+                                            <label for="input_administrative_code">Kode Wilayah</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary"
-                    data-bs-dismiss="modal">Kembali</button>
-                <button type="button" class="btn btn-primary shadow-2">Simpan</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary reset-all"
+                            data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary shadow-2">Simpan</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </form>
 @endsection
 @section('scripts')
-    <!-- [Page Specific JS] start -->
-    <script src="https://ableproadmin.com/assets/js/plugins/apexcharts.min.js"></script>
-    {{-- <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script> --}}
-    <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
+    <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script> --}}
     <script>
         let env = '{{ env('ESMK_SERVICE_BASE_URL') }}';
         let menu = 'Kota';
@@ -205,9 +224,10 @@
                 $("#modal-title").html(`Form Tambah ${menu}`);
                 isActionForm = "store";
                 $("#modal-form").modal("show");
-                $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
 
-                $("#form-create").data("action-url", `${env}/internal/admin-panel/kota/store`);
+                // $("#form-create").data("action-url", `${env}/internal/admin-panel/kota/store`);
+                $("#form-create").data("action-url", ``);
             });
         }
 
@@ -225,7 +245,7 @@
 
                 $("#modal-title").html(modalTitle);
                 $("#modal-form").modal("show");
-                $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
 
 
                 $("#input_name").val(data.name);
@@ -243,7 +263,9 @@
                 $("#input_is_ministry").val(data.is_ministry);
 
 
-                $("#form-create").data("action-url", `${env}/internal/admin-panel/kota/update`);
+                // $("#form-create").data("action-url", `${env}/internal/admin-panel/kota/update`);
+                $("#form-create").data("action-url",
+                    `{{ asset('dummy/internal/md-wilayah/edit_kota.json') }}`);
                 $("#form-create").data("id_user", id);
             });
         }
@@ -267,28 +289,22 @@
                 }
 
                 let method = isActionForm === "store" ? 'POST' : 'PUT';
-                try {
-                    let postData = await CallAPI(method, actionUrl, formData);
+                // let postData = await CallAPI(method, actionUrl, formData);
 
-                    loadingPage(false);
-                    if (postData.status >= 200 && postData.status <
-                        300) { // Check for status codes in the success range
-                        let rest_data = postData.data;
-                        notificationAlert('success', 'Berhasil', rest_data.message);
-                        setTimeout(async function() {
-                            await getListData();
-                        }, 500);
-                        $("#modal-form").modal("hide");
-                    } else {
+                let postDataRest = console.log(formData);
+                loadingPage(false);
+                $("#modal-form").modal("hide");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Pemberitahuan',
+                    text: 'Data berhasil dikirim!',
+                    confirmButtonText: 'OK'
+                }).then(async () => {
+                    await getListData();
+                    $(this).trigger("reset");
+                    $("#modal-form").modal("hide");
+                });
 
-                        notificationAlert('info', 'Pemberitahuan', postData.message || 'Terjadi kesalahan');
-                    }
-                } catch (error) {
-                    loadingPage(false);
-                    console.error('API Call Error:', error);
-                    let resp = error.response || {};
-                    notificationAlert('info', 'Pemberitahuan', resp.data?.message || 'Terjadi kesalahan');
-                }
             });
         }
 
@@ -298,43 +314,35 @@
                 isActionForm = "destroy";
                 let id = $(this).attr("data-id");
                 let name = $(this).attr("data-name");
-                swal({
+
+                const result = await Swal.fire({
+                    icon: "question",
                     title: `Hapus Data ${name}`,
                     text: "Anda tidak akan dapat mengembalikannya!",
-                    type: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Ya, Hapus!",
                     cancelButtonText: "Tidak, Batal!",
                     reverseButtons: true
-                }).then(async (result) => {
-                    let postDataRest = await CallAPI(
-                        'DELETE',
-                        `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/kota/${isActionForm}`, {
-                            "id": id
-                        }
-                    ).then(function(response) {
-                        return response;
-                    }).catch(function(error) {
-                        loadingPage(false);
-                        let resp = error.response;
-                        notificationAlert('info', 'Pemberitahuan', resp.data
-                            .message);
-                        return resp;
-                    });
+                });
 
-                    if (postDataRest.status == 200) {
-                        loadingPage(false);
-                        setTimeout(async function() {
+                if (result.isConfirmed) {
+                    console.log(id);
+                    setTimeout(async () => {
+                        loadingPage(false); 
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Data berhasil dihapus!',
+                            confirmButtonText: 'OK'
+                        }).then(async () => {
                             await initDataOnTable(defaultLimitPage, currentPage,
                                 defaultAscending, defaultSearch);
-                        }, 500);
-                        notificationAlert('success', 'Pemberitahuan', postDataRest.data
-                            .message);
-                    }
-                    // }
-                }).catch(swal.noop);
-            })
+                        });
+                    }, 100); 
+                }
+            });
         }
+
 
         async function getListData(limit = 10, page = 1, ascending = 0, search = '') {
             loadingPage(true);
@@ -343,8 +351,7 @@
                 getDataRest = await CallAPI(
                     'GET',
                     // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/kota/list', 
-                    '{{ asset('dummy/internal/md-wilayah/list_kota.json') }}',
-                    {
+                    '{{ asset('dummy/internal/md-wilayah/list_kota.json') }}', {
                         page: page,
                         limit: limit,
                         ascending: ascending,
@@ -416,14 +423,11 @@
                     <td class="text-end">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
-                                <a data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
-                                data-bs-target="#animateModal"
-                                    class="avtar avtar-s btn-link-warning btn-pc-default"><i
-                                        class="ti ti-edit f-20"></i></a></li>
-                            <li class="list-inline-item"><a data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
-                                data-bs-target="#animateModal"
-                                    class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                        class="ti ti-trash f-20"></i></a></li>
+                                    ${getEditButton(elementData, element)}
+                            </li>
+                            <li class="list-inline-item">
+                                ${getDeleteButton(elementData, element)}
+                            </li>
                         </ul>
                     </td>
                 </tr>`;
@@ -432,9 +436,9 @@
 
             if (totalPage == 0 || dataList.length === 0) {
                 getDataTable = `
-        <tr class="nk-tb-item">
-            <th class="nk-tb-col text-center" colspan="${$('.nk-tb-head th').length}"> Tidak ada data. </th>
-        </tr>`;
+                <tr>
+                    <th class="text-center" colspan="5"> Tidak ada data. </th>
+                </tr>`;
                 $('#countPage').text("0 - 0");
             }
 
@@ -448,26 +452,26 @@
 
         function getEditButton(elementData, element) {
             return `
-                <button class="btn btn-secondary border-white btn-dim btn-outline-light edit-data uniform-button"
-                    data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                <a class="avtar avtar-s btn-link-warning btn-pc-default edit-data"
+                data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Edit Data ${element.name}"
                     data='${elementData}'
                     data-id="${element.id}"
                     data-name="${element.name}">
-                    <i class="fa fa-edit text-warning me-1"></i>Edit
-                </button>`;
+                    <i class="ti ti-edit f-20"></i>
+                </a>`;
         }
 
         function getDeleteButton(elementData, element) {
             return `
-                <button class="btn btn-secondary border-white btn-dim btn-outline-light delete-data uniform-button"
+                <a class="avtar avtar-s btn-link-danger btn-pc-default delete-data"
                     data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Hapus Data ${element.name}"
                     data='${elementData}'
                     data-id="${element.id}"
                     data-name="${element.name}">
-                    <i class="fa fa-trash text-danger me-1"></i>Hapus
-                </button>`;
+                    <i class="ti ti-trash f-20"></i>
+                </a>`;
         }
 
         async function performSearch() {
@@ -580,8 +584,9 @@
         async function initPageLoad() {
             await Promise.all([
                 // selectList('#input_province_id',
-                //     '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/provinsi/list',
-                //     'Pilih Provinsi', true),
+                //     // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/provinsi/list',
+                //     '{{ asset('dummy/internal/md-wilayah/select_provinsi.json') }}',
+                //     'Jawa Barat', true),
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
                 manipulationDataOnTable(),
                 addData(),
