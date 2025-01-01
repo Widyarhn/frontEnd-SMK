@@ -1,18 +1,4 @@
 @extends('...Administrator.index', ['title' => 'Direktur Jendral | Master Satuan Kerja'])
-@section('asset_css')
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-@endsection
 
 @section('content')
     <div class="page-header">
@@ -29,12 +15,12 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Penandatangan</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0"
-                        data-bs-toggle="modal" data-bs-target="#animateModal">
+                    <a href="javascript:void(0)" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0 add-data"
+                        id="add-data">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Data
-                    </button>
+                    </a>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -50,87 +36,51 @@
                         <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
                             aria-labelledby="analytics-tab-1" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="pc-dt-simple-1">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Tanggal Masuk</th>
-                                            <th>Status</th>
-                                            <th class="text-end">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="listData">
-                                        {{-- <tr>
-                                            <td>1</td>
-                                            <td>
-                                                <div class="row align-items-center">
-                                                    <div class="col-auto pe-0">
-                                                        <div class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                                            <i class="fa-solid fa-user text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">Anwar Meer</span></h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted">Dishub Jabar</a></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>05 September 2024</td>
-                                            <td><span class="badge bg-light-danger">Tidak Aktif</span></td>
-                                            <td class="text-end">
-                                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-success btn-pc-default">
-                                                        <i class="fa-solid fa-user-check"></i></a>
-                                                </li>
-                                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-warning btn-pc-default"><i
-                                                            class="ti ti-edit f-20"></i></a></li>
-                                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                            class="ti ti-trash f-20"></i></a></li>
-                                            </td>
-                                        </tr>
+                                <div
+                                    class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                    <div class="datatable-top">
+                                        <div class="datatable-dropdown">
+                                            <label>
+                                                <select class="datatable-selector" id="limitPage" name="per-page">
+                                                    <option value="5">5</option>
+                                                    <option value="10" selected="">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="20">20</option>
+                                                    <option value="25">25</option>
+                                                </select> entries per page
+                                            </label>
+                                        </div>
+                                        <div class="datatable-search">
+                                            <input class="datatable-input search-input" placeholder="Search..."
+                                                type="search" name="search" title="Search within table"
+                                                aria-controls="pc-dt-simple">
+                                        </div>
+                                    </div>
+                                    <div class="datatable-container">
+                                        <table class="table table-hover datatable-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama</th>
+                                                    <th>Tanggal Masuk</th>
+                                                    <th>Status</th>
+                                                    <th class="text-end">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="listData">
+                                            </tbody>
+                                        </table>
+                                        <div class="datatable-bottom">
+                                            <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                                                dari <span id="totalPage">0</span> data</div>
+                                            <nav class="datatable-pagination">
+                                                <ul id="pagination-js" class="datatable-pagination-list">
+                                                </ul>
+                                            </nav>
+                                        </div>
 
-                                        <tr>
-                                            <td>2</td>
-                                            <td>
-                                                <div class="row align-items-center">
-                                                    <div class="col-auto pe-0">
-                                                        <div class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                                            <i class="fa-solid fa-user text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">Anwar Udin</span></h6>
-                                                        <p class="f-12 mb-0"><a href="#!" class="text-muted">Dishub Jabar</a></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>20 Oktober 2024</td>
-                                            <td><span class="badge bg-light-success">Aktif</span></td>
-                                            <td class="text-end">
-                                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-danger btn-pc-default">
-                                                        <i class="fas fa-user-times"></i></a>
-                                                </li>
-                                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-warning btn-pc-default"><i
-                                                            class="ti ti-edit f-20"></i></a></li>
-                                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                            class="ti ti-trash f-20"></i></a></li>
-                                            </td>
-                                        </tr> --}}
-
-                                    </tbody>
-                                </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -138,74 +88,74 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-animate modal-animate-scrollable" data-bs-keyboard="false" tabindex="-1"
-        id="animateModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data Penandatangan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                    <form class="p-3">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                                <select class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example" disabled>
-                                    <option selected>Dishub Jabar</option>
-                                    <option value="1">Kementrian Perhubungan Darat</option>
-                                    <option value="2">Dishub Jabar</option>
-                                </select>
-                                <label for="floatingSelect">Instansi</label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-floating mb-0">
-                                <input type="kota" class="form-control" id="floatingKota" placeholder="kota" />
-                                <label for="floatingInput">Nama Penandatangan</label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-floating mb-0">
-                                <input type="kota" class="form-control" id="floatingKota" placeholder="kota" />
-                                <label for="floatingInput">Jabatan</label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-floating mb-0">
-                                <input type="kota" class="form-control" id="floatingKota" placeholder="kota" />
-                                <label for="floatingInput">Tipe Identitas</label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-floating mb-0">
-                                <input type="kota" class="form-control" id="floatingKota" placeholder="kota" />
-                                <label for="floatingInput">Nomor Identitas</label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="mb-2">Unggah Tanda Tangan</label>
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <input class="form-control" type="file" />
+    <form id="form-create">
+        <div class="modal fade modal-animate" id="modal-form" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                        <form class="p-3">
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select" id="floatingSelect" name="input_satuan_kerja_id"
+                                        id="input_satuan_kerja_id" aria-label="Floating label select example" readonly>
+                                        <option value="dishub jabar" selected>Dishub Jabar</option>
+                                    </select>
+                                    <label for="floatingSelect">Instansi</label>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Kembali</button>
-                    <button type="button" class="btn btn-primary shadow-2">Simpan</button>
+                            <div class="mb-3">
+                                <div class="form-floating mb-0">
+                                    <input type="text" class="form-control" name="input_sk_number"
+                                        id="input_signer_name" placeholder=""/>
+                                    <label for="input_sk_number">Nama Penandatangan</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-floating mb-0">
+                                    <input type="text" class="form-control" name="input_signer_position"
+                                        id="input_signer_position" placeholder=""/>
+                                    <label for="input_signer_position">Jabatan</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-floating mb-0">
+                                    <input type="text" class="form-control" id="input_signer_type_identity" placeholder=""/>
+                                    <label for="input_signer_type_identity">Tipe Identitas</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-floating mb-0">
+                                    <input type="text" class="form-control" id="input_signer_identity_number" placeholder=""/>
+                                    <label for="input_signer_identity_number">Nomor Identitas</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="mb-2">Unggah Tanda Tangan</label>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <input class="form-control" type="file" id="file_penandatangan" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary reset-all"
+                            data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-primary shadow-2">Simpan</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 @endsection
 @section('scripts')
-    <!-- [Page Specific JS] start -->
-    <script src="https://ableproadmin.com/assets/js/plugins/apexcharts.min.js"></script>
-    <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
-    <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
+    <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/plugins/dropzone-amd-module.min.js"></script>
     <script>
         let defaultLimitPage = 10;
@@ -226,8 +176,7 @@
                 getDataRest = await CallAPI(
                     'GET',
                     // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/list', 
-                    '{{ asset('dummy/internal/md-penandatangan/list_penandatangan.json') }}',
-                    {
+                    '{{ asset('dummy/internal/md-penandatangan/list_penandatangan.json') }}', {
                         page: currentPage,
                         limit: defaultLimitPage,
                         ascending: defaultAscending,
@@ -255,28 +204,24 @@
                 for (let index = 0; index < dataList.length; index++) {
                     let element = dataList[index];
                     const elementData = JSON.stringify(element);
-                    // <td class="nk-tb-col align-top text-end" style="width:150px;">
-                    //             <ul class="nk-tb-actions">
-                    //                 <li class="hovering p-1">${actionButton}</li>
-                    //                 <li class="hovering p-1">${getEditButton(elementData, element)}</li>
-                    //                 <li class="hovering p-1">${getDeleteButton(elementData, element)}</li>
-                    //             </ul>
-                    //         </td>
+
                     const isActive = element.is_active === true;
                     const statusBadge = isActive ?
                         `<span class="badge bg-success d-flex align-items-center justify-content-center text-white" style="max-width: 100px; white-space: nowrap;"><i class="fa fa-check-circle me-2"></i> Aktif</span>` :
                         `<span class="badge bg-danger d-flex align-items-center justify-content-center text-white" style="max-width: 100px; white-space: nowrap;"><i class="fa fa-times-circle me-2"></i> Tidak Aktif</span>`;
 
                     const actionButton = isActive ?
-                        `<button class="btn btn-primary border-white btn-dim btn-outline-light change-status uniform-button" data-id="${element.id}" data-status="nonaktifkan">
-                            <i class="fa fa-circle-xmark text-danger me-1"></i>Nonaktifkan
-                        </button>` :
-                        `<button class="btn btn-primary border-white btn-dim btn-outline-light change-status uniform-button" data-id="${element.id}" data-status="aktifkan">
-                            <i class="fa fa-circle-check text-success me-1"></i>Aktifkan
-                        </button>`;
+                        `<a class="avtar avtar-s btn-link-danger change-status" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Nonaktifkan Status ${element.name}" data-id="${element.id}" data-status="nonaktifkan">
+                            <i class="fa-solid fa-square-xmark fa-lg"></i>
+                        </a>` :
+                        `<a class="avtar avtar-s btn-link-success change-status" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Aktifkan Status ${element.name}" data-id="${element.id}" data-status="aktifkan">
+                            <i class="fa-solid fa-square-check fa-lg"></i>
+                        </a>`;
 
                     appendHtml += `
-                        <tr class="nk-tb-item">
+                        <tr >
                             <td>${index_loop}.</td>
                             <td>
                                 <div class="row align-items-center">
@@ -296,19 +241,15 @@
                                 ${statusBadge}
                             </td>
                             <td class="text-end">
-                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                        class="avtar avtar-s btn-link-success btn-pc-default">
-                                        <i class="fa-solid fa-user-check"></i></a>
+                                <li class="list-inline-item">
+                                    ${actionButton}
                                 </li>
-                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                        class="avtar avtar-s btn-link-warning btn-pc-default"><i
-                                            class="ti ti-edit f-20"></i></a></li>
-                                <li class="list-inline-item"><a data-bs-toggle="modal"
-                                        data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                            class="ti ti-trash f-20"></i></a></li>
+                                <li class="list-inline-item">
+                                        ${getEditButton(elementData, element)}
+                                </li>
+                                <li class="list-inline-item">
+                                    ${getDeleteButton(elementData, element)}
+                                </li>
                             </td>
                         </tr>`;
                     index_loop++;
@@ -329,82 +270,32 @@
 
                 $('#listData').html(appendHtml);
                 $('#totalPage').text(totalPage);
+                $('[data-bs-toggle="tooltip"]').tooltip();
             }
-        }
-
-
-        function getChangeStatusButton(element) {
-            return `
-                <button class="btn btn-primary border-white btn-dim btn-outline-light change-status uniform-button"
-                    data-id="${element.id}"
-                    data-status="${element.is_active.init}">
-                    <i class="${element.is_active.icon_action} me-1"></i>${element.is_active.text_action}
-                </button>`;
         }
 
         function getEditButton(elementData, element) {
             return `
-                <button class="btn btn-secondary border-white btn-dim btn-outline-light edit-data uniform-button"
-                    data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                <a class="avtar avtar-s btn-link-warning btn-pc-default edit-data"
+                data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Edit Data ${element.name}"
                     data='${elementData}'
                     data-id="${element.id}"
                     data-name="${element.name}">
-                    <i class="fa fa-edit text-warning me-1"></i>Edit
-                </button>`;
+                    <i class="ti ti-edit f-20"></i>
+                </a>`;
         }
 
         function getDeleteButton(elementData, element) {
             return `
-                <button class="btn btn-secondary border-white btn-dim btn-outline-light delete-data uniform-button"
+                <a class="avtar avtar-s btn-link-danger btn-pc-default delete-data"
                     data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Hapus Data ${element.name}"
                     data='${elementData}'
                     data-id="${element.id}"
                     data-name="${element.name}">
-                    <i class="fa fa-trash text-danger me-1"></i>Hapus
-                </button>`;
-        }
-
-        async function deleteData() {
-            $(document).on("click", ".delete-data", async function() {
-                isActionForm = "destroy";
-                let id = $(this).attr("data-id");
-                swal({
-                    title: "Pemberitahuan",
-                    text: "Anda tidak akan dapat mengembalikannya!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Ya, Hapus!",
-                    cancelButtonText: "Tidak, Batal!",
-                    reverseButtons: true
-                }).then(async (result) => {
-                    if (result) {
-                        const postDataRest = await CallAPI(
-                            'DELETE',
-                            `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/${isActionForm}`, {
-                                "id": id
-                            }
-                        ).then(function(response) {
-                            return response;
-                        }).catch(function(error) {
-                            loadingPage(false);
-                            let resp = error.response;
-                            notificationAlert('info', 'Pemberitahuan', resp.data
-                                .message);
-                            return resp;
-                        });
-                        if (postDataRest.status == 200) {
-                            loadingPage(false);
-                            window.location.reload();
-                            notificationAlert('success', 'Pemberitahuan',
-                                'Data Berhasil Dihapus');
-                        }
-                    } else {
-                        notificationAlert('info', 'Pemberitahuan', "Data Anda aman :)");
-                    }
-                }).catch(swal.noop);
-            });
+                    <i class="ti ti-trash f-20"></i>
+                </a>`;
         }
 
         async function addData() {
@@ -412,9 +303,73 @@
                 $("#modal-title").html(`Form Tambah ${menu}`);
                 isActionForm = "store";
                 $("#modal-form").modal("show");
-                $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
 
-                $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/create`);
+                $("#form-create").data("action-url", ``);
+                // $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/create`);
+            });
+        }
+
+        async function editData() {
+            $(document).on("click", ".edit-data", async function() {
+                loadingPage(false);
+
+                let modalTitle = `Form Perbarui ${menu}`;
+                let data = $(this).attr("data");
+                data = JSON.parse(data);
+                let id = $(this).attr("data-id");
+
+                $("#modal-title").html(modalTitle);
+                $("#modal-form").modal("show");
+
+                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
+
+                $("#input_signer_name").val(data.name);
+                $("#input_signer_position").val(data.position);
+                $("#input_signer_type_identity").val(data.identity_type);
+                $("#input_signer_identity_number").val(data.identity_number);
+
+                let workUnit = data.work_unit.id;
+                $("#input_satuan_kerja_id").val(null).trigger('change');
+                $('#input_satuan_kerja_id').append(new Option(data.work_unit.name, workUnit, true, true));
+                $("#input_satuan_kerja_id").trigger('change');
+
+                // $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/update`);
+                $("#form-create").data("action-url", `{{ asset('dummy/internal/md-penandatangan/edit_penandatangan.json') }}`);
+                $("#form-create").data("id_user", id);
+            });
+        }
+
+        async function deleteData() {
+            $(document).on("click", ".delete-data", async function() {
+                isActionForm = "destroy";
+                let id = $(this).attr("data-id");
+                Swal.fire({
+                    icon: "question",
+                    title: `Hapus Data ${name}`,
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    showCancelButton: true,
+                    confirmButtonText: "Ya, Hapus!",
+                    cancelButtonText: "Tidak, Batal!",
+                    reverseButtons: true
+                }).then(async (result) => {
+                    let postDataRest = console.log(id);
+                    loadingPage(false);
+                    if (result.isConfirmed == true) {
+                        setTimeout(async () => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Pemberitahuan',
+                                text: 'Data berhasil dihapus!',
+                                confirmButtonText: 'OK'
+                            }).then(async () => {
+                                await initDataOnTable(defaultLimitPage,
+                                    currentPage,
+                                    defaultAscending, defaultSearch);
+                            });
+                        }, 100);
+                    }
+                }).catch(swal.noop);
             });
         }
 
@@ -433,30 +388,26 @@
                 };
 
                 let id_user = $("#form-create").data("id_user");
-                console.log(id_user);
                 if (id_user) {
                     formData.id = id_user;
                 }
                 let method = id_user ? 'PUT' : 'POST';
-                try {
-                    let postData = await CallAPI(method, actionUrl, formData);
+                // let postData = await CallAPI(method, actionUrl, formData);
+                let postDataRest = console.log(formData);
+                loadingPage(false);
+                $("#modal-form").modal("hide");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Pemberitahuan',
+                    text: 'Data berhasil disimpan!',
+                    confirmButtonText: 'OK'
+                }).then(async () => {
+                    await initDataOnTable(defaultLimitPage, currentPage,
+                        defaultAscending, defaultSearch);
+                    $(this).trigger("reset");
+                    $("#modal-form").modal("hide");
+                });
 
-                    loadingPage(false);
-                    if (postData.status >= 200 && postData.status <
-                        300) { // Check for status codes in the success range
-                        let rest_data = postData.data;
-                        notificationAlert('success', 'Berhasil', rest_data.message);
-                        setTimeout(async function() {
-                            window.location.reload();
-                        }, 1500);
-                        $("#modal-form").modal("hide");
-                    }
-
-                } catch (error) {
-                    loadingPage(false);
-                    const errors = error.response?.data?.errors || {};
-                    notificationAlert('info', 'Pemberitahuan', errors || 'Terjadi kesalahan');
-                }
             });
             $('#modal-form').on('hidden.bs.modal', function() {
                 $("#form-create").data("id_user", null); // Reset ID to null
@@ -474,77 +425,34 @@
         }
 
         async function setStatusAction(id, status) {
-            swal({
+            Swal.fire({
+                icon: "info",
                 title: "Pemberitahuan",
-                text: "Apakah anda yakin mengganti status Data ini?",
-                type: "info",
+                text: "Apakah anda yakin mengganti status data ini?",
                 showCancelButton: true,
-                confirmButtonText: "Ya, Setujui",
+                confirmButtonText: "Ya, Saya Yakin!",
                 cancelButtonText: "Batal",
                 reverseButtons: true
             }).then(async (result) => {
                 loadingPage(true)
-                let notes = result ? result : "";
-                let env = `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral`;
-                if (status == 1 || status == 'true' || status == 'nonaktifkan') {
-                    env = `${env}/inactive`
-                }
-                if (status == 0 || status == 'false' || status == 'aktifkan') {
-                    env = `${env}/active`
-                }
-                let dataRest = await CallAPI(
-                    'GET',
-                    `${env}`, {
-                        id: id,
-                    }
-                ).then(function(response) {
-                    loadingPage(false)
-                    return response;
-                }).catch(function(error) {
-                    loadingPage(false);
-                    let resp = error.response;
-                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                    return resp;
-                });
-                if (dataRest.status == 200) {
-                    loadingPage(false);
-                    setTimeout(async function() {
-                        window.location.reload();
-                    }, 500);
-                    notificationAlert('success', 'Sukses', dataRest.data.message);
+                let postDataRest = console.log(id);
+                loadingPage(false);
+                if (result.isConfirmed == true) {
+                    setTimeout(async () => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Status berhasil dirubah!',
+                            confirmButtonText: 'OK'
+                        }).then(async () => {
+                            await initDataOnTable(defaultLimitPage,
+                                currentPage,
+                                defaultAscending, defaultSearch);
+                        });
+                    }, 100);
                 }
             }).catch(swal.noop);
         }
-
-        async function editData() {
-            $(document).on("click", ".edit-data", async function() {
-                loadingPage(false);
-
-                let modalTitle = `Form Perbaharui ${menu}`;
-                let data = $(this).attr("data");
-                data = JSON.parse(data);
-                let id = $(this).attr("data-id");
-
-                $("#modal-title").html(modalTitle);
-                $("#modal-form").modal("show");
-
-                $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
-
-                $("#input_signer_name").val(data.name);
-                $("#input_signer_position").val(data.position);
-                $("#input_signer_type_identity").val(data.identity_type);
-                $("#input_signer_identity_number").val(data.identity_number);
-
-                let workUnit = data.work_unit.id;
-                $("#input_satuan_kerja_id").val(null).trigger('change');
-                $('#input_satuan_kerja_id').append(new Option(data.work_unit.name, workUnit, true, true));
-                $("#input_satuan_kerja_id").trigger('change');
-
-                $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/update`);
-                $("#form-create").data("id_user", id);
-            });
-        }
-
 
         async function selectList(id, isUrl, placeholder, isModal = false) {
             let select2Options = {
@@ -671,13 +579,12 @@
                 editData(),
                 submitForm(),
                 deleteData(),
-                selectList('#input_satuan_kerja_id',
-                    '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
-                    'Pilih Satuan Kerja', true),
+                // selectList('#input_satuan_kerja_id',
+                //     '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
+                //     'Pilih Satuan Kerja', true),
             ]);
 
         }
 
-        document.addEventListener('DOMContentLoaded', initPageLoad);
     </script>
 @endsection
