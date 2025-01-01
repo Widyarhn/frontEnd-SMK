@@ -2,392 +2,297 @@
     "status": true,
     "message": "Data Ditemukan",
     "data": {
-        "request_status": "certificate_validation",
+        "request_status": "completed_interview",
         "assessment_status": "passed_assessment_verification",
         "element_properties": {
             "ui_schema": {
-                "element_35gkk3bwp1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_fdkohb5ap1733741490403": {
-                        "ui:order": 0.17639718628459589,
+                "element_1": {
+                    "deskripsiKomitmenDanKebijakanKeselamatan": {
+                        "ui:order": 1,
                         "ui:widget": "file",
                         "ui:options": {
-                            "accept": "pdf"
+                            "accept": ".pdf"
+                        }
+                    },
+                    "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": {
+                        "ui:order": 4,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": ".pdf"
+                        }
+                    },
+                    "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
+                        "ui:order": 2,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": ".pdf"
+                        }
+                    },
+                    "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": {
+                        "ui:order": 3,
+                        "ui:widget": "files",
+                        "ui:options": {
+                            "accept": ".pdf"
                         }
                     }
                 },
-                "element_4vrmn04rd1733741490402": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wycqttjsz1733741490402": {
-                        "ui:order": 0.5779547578135966,
+                "element_2": {
+                    "deskripsiPengorganisasian": {
+                        "ui:order": 1,
                         "ui:widget": "file",
                         "ui:options": {
-                            "accept": "pdf"
+                            "accept": ".pdf"
                         }
-                    }
-                },
-                "element_7wlhtcu881733741490402": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_414rezn3m1733741490403": {
-                        "ui:order": 0.8752061164178822,
-                        "ui:widget": "file",
+                    },
+                    "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": {
+                        "ui:order": 4,
+                        "ui:widget": "files",
                         "ui:options": {
-                            "accept": "pdf"
+                            "accept": ".pdf"
                         }
-                    }
-                },
-                "element_dg48kt46h1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wjmngpvlt1733741490403": {
-                        "ui:order": 0.3975641518566386,
+                    },
+                    "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": {
+                        "ui:order": 2,
                         "ui:widget": "file",
                         "ui:options": {
-                            "accept": "pdf"
+                            "accept": ".pdf"
                         }
-                    }
-                },
-                "element_ianukpqqv1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_r5dzchwp61733741490403": {
-                        "ui:order": 0.4554352676295079,
+                    },
+                    "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": {
+                        "ui:order": 3,
                         "ui:widget": "file",
                         "ui:options": {
-                            "accept": "pdf"
-                        }
-                    }
-                },
-                "element_iv8aypvb61733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_885d0xryv1733741490403": {
-                        "ui:order": 0.2236455532459067,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": "pdf"
-                        }
-                    }
-                },
-                "element_mahb1nxvw1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_915cxko6l1733741490403": {
-                        "ui:order": 0.38129260256822506,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": "pdf"
-                        }
-                    }
-                },
-                "element_o1zqyuld81733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_p1vswh8lf1733741490403": {
-                        "ui:order": 0.5047155766848277,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": "pdf"
-                        }
-                    }
-                },
-                "element_tl724nb7l1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_01paxed3d1733741490403": {
-                        "ui:order": 0.8636395003698702,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": "pdf"
+                            "accept": ".pdf"
                         }
                     }
                 }
             },
             "max_assesment": {
-                "element_35gkk3bwp1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_fdkohb5ap1733741490403": "2"
+                "element_1": {
+                    "deskripsiKomitmenDanKebijakanKeselamatan": "2.5",
+                    "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": "2.5",
+                    "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": "2.5",
+                    "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": "2.5"
                 },
-                "element_4vrmn04rd1733741490402": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wycqttjsz1733741490402": "2"
-                },
-                "element_7wlhtcu881733741490402": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_414rezn3m1733741490403": "2"
-                },
-                "element_dg48kt46h1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wjmngpvlt1733741490403": "2"
-                },
-                "element_ianukpqqv1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_r5dzchwp61733741490403": "2"
-                },
-                "element_iv8aypvb61733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_885d0xryv1733741490403": "2"
-                },
-                "element_mahb1nxvw1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_915cxko6l1733741490403": "2"
-                },
-                "element_o1zqyuld81733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_p1vswh8lf1733741490403": "2"
-                },
-                "element_tl724nb7l1733741490403": {
-                    "loremIpsumDolorSitAmetConsecteturAdipiscingEli_01paxed3d1733741490403": "2"
+                "element_2": {
+                    "deskripsiPengorganisasian": "2.5",
+                    "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": "2.5",
+                    "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": "2.5",
+                    "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": "2.5"
                 }
             },
             "question_schema": {
                 "properties": {
-                    "element_35gkk3bwp1733741490403": {
-                        "type": "object",
-                        "title": "PENINGKATAN KOMPETENSI DAN PELATIHAN",
-                        "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingElifdkohb5ap1733741490403"
-                        ],
-                        "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_fdkohb5ap1733741490403": {
-                                "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                            }
-                        },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                    },
-                    "element_4vrmn04rd1733741490402": {
-                        "type": "object",
-                        "title": "PENGUKURAN KINERJA",
-                        "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEliwycqttjsz1733741490402"
-                        ],
-                        "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wycqttjsz1733741490402": {
-                                "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                            }
-                        },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing elim Lorem ipsum dolor sit amet consectetur adipiscing eli Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                    },
-                    "element_7wlhtcu881733741490402": {
-                        "type": "object",
-                        "title": "MONITORING DAN EVALUASI",
-                        "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli414rezn3m1733741490403"
-                        ],
-                        "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_414rezn3m1733741490403": {
-                                "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                            }
-                        },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli Lorem ipsum dolor sit amet consectetur adipiscing eli Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                    },
-                    "element_dg48kt46h1733741490403": {
-                        "type": "object",
-                        "title": "TANGGAP DARURAT",
-                        "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEliwjmngpvlt1733741490403"
-                        ],
-                        "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wjmngpvlt1733741490403": {
-                                "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                            }
-                        },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                    },
-                    "element_ianukpqqv1733741490403": {
-                        "type": "object",
-                        "title": "DOKUMENTASI DAN DATA",
-                        "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingElir5dzchwp61733741490403"
-                        ],
-                        "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_r5dzchwp61733741490403": {
-                                "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                            }
-                        },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                    },
-                    "element_iv8aypvb61733741490403": {
+                    "element_1": {
                         "type": "object",
                         "title": "KOMITMEN DAN KEBIJAKAN KESELAMATAN",
                         "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli885d0xryv1733741490403"
+                            "deskripsiKomitmenDanKebijakanKeselamatan",
+                            "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari",
+                            "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan",
+                            "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan"
                         ],
                         "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_885d0xryv1733741490403": {
+                            "deskripsiKomitmenDanKebijakanKeselamatan": {
                                 "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
+                                "title": "Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)",
+                                "format": "data-url",
+                                "description": "Deskripsi Komitmen dan Kebijakan Keselamatan",
+                                "attachmentName": "Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
+                            },
+                            "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": {
+                                "type": "string",
+                                "title": "Seluruh pemegang kepentingan atau bagian dalam Perusahaan mempunyai peran serta dan keterlibatan aktif dalam meningkatkan kinerja keselamatan",
+                                "format": "data-url",
+                                "description": "Dokumen\/foto-foto rapat terkait\/yang mendukung keselamatan",
+                                "attachmentName": "Laporan Kegiatan Sosialisasi"
+                            },
+                            "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
+                                "type": "string",
+                                "title": "Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai lamngkah nyata terhadap aspek keselamatan  yang ditunjukkan dalam sikap sehari-hari",
+                                "format": "data-url",
+                                "description": "Bukti Pernyataan Dokumen (foto pernyataan komitmen)",
+                                "attachmentName": "Dokumen Komitmen"
+                            },
+                            "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "dokumenKebijakan": {
+                                            "name": "Dokumen Kebijakan",
+                                            "type": "string",
+                                            "format": "data-url"
+                                        }
+                                    },
+                                    {
+                                        "dokumenVisiMisi": {
+                                            "name": "Dokumen Visi Misi",
+                                            "type": "string",
+                                            "format": "data-url"
+                                        }
+                                    }
+                                ],
+                                "title": "Perusahaan mempunyai kebijakan keselamatan tertulis dari manajemen yang memuat  visi, misi dan tujuan yang hendak dicapai dan mempunyai sasaran keselamatan untuk mendukung perwujudan kebijakan keselamatan perusahaan menuju peningkatan berkelanjutan",
+                                "description": "Bukti Pernyataan Dokumen (foto pernyataan kebijakan dan Visi Misi)"
                             }
                         },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
+                        "description": "-"
                     },
-                    "element_mahb1nxvw1733741490403": {
+                    "element_2": {
                         "type": "object",
-                        "title": "PELAPORAN KECELAKAAN INTERNAL",
+                        "title": "PENGORGANISASIAN",
                         "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli915cxko6l1733741490403"
+                            "deskripsiPengorganisasian",
+                            "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan",
+                            "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut",
+                            "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanik"
                         ],
                         "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_915cxko6l1733741490403": {
+                            "deskripsiPengorganisasian": {
                                 "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
+                                "title": "Deskripsi Pengorganisasian",
+                                "format": "data-url",
+                                "description": "Deskripsi Pengorganisasian (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)",
+                                "attachmentName": "Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
+                            },
+                            "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "prosedurPengemudi": {
+                                            "name": "Prosedur Pengemudi",
+                                            "type": "string",
+                                            "format": "data-url"
+                                        }
+                                    },
+                                    {
+                                        "prosedurMekanik": {
+                                            "name": "Prosedur Mekanik",
+                                            "type": "string",
+                                            "format": "data-url"
+                                        }
+                                    }
+                                ],
+                                "title": "Perusahaan menetapkan Standard Operasional Prosedur (SOP) tentang kriteria penerimaan pengemudi,mekanik, dll",
+                                "description": "Dokumen SOP penerimaan pengemudi, mekanik, dll"
+                            },
+                            "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": {
+                                "type": "string",
+                                "title": "Perusahaan mempunyai struktur organisasi pengelolaan di bidang keselamatan, seperti Unit Manajemen Keselamatan atau Petugas Keselamatan",
+                                "format": "data-url",
+                                "description": "Dokumen struktur organisasi Unit Manajemen Keselamatan Petugas Keselamatan",
+                                "attachmentName": "Struktur Organisasi"
+                            },
+                            "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": {
+                                "type": "string",
+                                "title": "Perusahaan dapat menjabarkan uraian tugas dan fungsi di masing-masing jabatan pada struktur organisasi hubungan antar struktur organisasi tersebut",
+                                "format": "data-url",
+                                "description": "Dokumen tugas dan fungsi uraian tugas",
+                                "attachmentName": "Prosedur Pengorganisasian"
                             }
                         },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                    },
-                    "element_o1zqyuld81733741490403": {
-                        "type": "object",
-                        "title": "FASILITAS PEMELIHARAAN DAN PERBAIKAN",
-                        "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingElip1vswh8lf1733741490403"
-                        ],
-                        "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_p1vswh8lf1733741490403": {
-                                "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                            }
-                        },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                    },
-                    "element_tl724nb7l1733741490403": {
-                        "type": "object",
-                        "title": "MANAJEMEN BAHAYA DAN RISIKO",
-                        "required": [
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli01paxed3d1733741490403"
-                        ],
-                        "properties": {
-                            "loremIpsumDolorSitAmetConsecteturAdipiscingEli_01paxed3d1733741490403": {
-                                "type": "string",
-                                "title": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "format": "dataurl",
-                                "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli",
-                                "attachmentName": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
-                            }
-                        },
-                        "description": "Lorem ipsum dolor sit amet consectetur adipiscing eli"
+                        "description": "Deskripsi Pengorganisasian (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)"
                     }
                 }
             }
         },
         "answers": {
-            "element_35gkk3bwp1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_fdkohb5ap1733741490403": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%285%29-EdlNtZX1RGv862E0CfQF-.pdf"
+            "element_1": {
+                "deskripsiKomitmenDanKebijakanKeselamatan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-wEdNI1PP9xiSvlZUo-sUb.pdf",
+                "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-bdwFwb30o9xhZdhvdMHP9.pdf",
+                "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-dmtdOivGMfr50EagVq7dK.pdf",
+                "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": [
+                    {
+                        "dokumenKebijakan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-euPwtRIxl6BbYHreC6THH.pdf"
+                    },
+                    {
+                        "dokumenVisiMisi": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-bnoWczOyrzn1K1XAwYyQM.pdf"
+                    }
+                ]
             },
-            "element_4vrmn04rd1733741490402": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wycqttjsz1733741490402": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%285%29-JNMM0UtAI2hKa-9hGjNEV.pdf"
-            },
-            "element_7wlhtcu881733741490402": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_414rezn3m1733741490403": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%283%29-zn7zl_pClfxE7x_SPn2x7.pdf"
-            },
-            "element_dg48kt46h1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wjmngpvlt1733741490403": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%281%29-Bp7RL7DLEuSbZ6CYicmlf.pdf"
-            },
-            "element_ianukpqqv1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_r5dzchwp61733741490403": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%285%29-Tw-EXLrmVgKbHu5bDPa6b.pdf"
-            },
-            "element_iv8aypvb61733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_885d0xryv1733741490403": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%285%29-z-KiKfPe5-jyHFoLKvKQK.pdf"
-            },
-            "element_mahb1nxvw1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_915cxko6l1733741490403": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%286%29-iqrSZEMJPeSiNqlKBZ9aB.pdf"
-            },
-            "element_o1zqyuld81733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_p1vswh8lf1733741490403": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%286%29-56SCAT6qL-UVl42cFwjml.pdf"
-            },
-            "element_tl724nb7l1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_01paxed3d1733741490403": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%286%29-tMvk1DFyvku6cB0iKeLkN.pdf"
+            "element_2": {
+                "deskripsiPengorganisasian": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-6zYCv38vTVBLVlN5K5hfw.pdf",
+                "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": [
+                    {
+                        "prosedurPengemudi": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-0HmhYfIg6la5JC58eL-hP.pdf"
+                    },
+                    {
+                        "prosedurMekanik": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-8tuLPfK9t6yNuw_W0LnC0.pdf"
+                    }
+                ],
+                "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/t_e_s_t_i_n_g_-b3Jhp6pBsI9bm3ygtj8J0.pdf",
+                "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-oKFjGutgFlUnv3SacfoCj.pdf"
             }
         },
         "assessments": {
-            "element_35gkk3bwp1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_fdkohb5ap1733741490403": {
-                    "value": "2"
-                }
-            },
-            "element_4vrmn04rd1733741490402": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wycqttjsz1733741490402": {
-                    "value": "2"
-                }
-            },
-            "element_7wlhtcu881733741490402": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_414rezn3m1733741490403": {
-                    "value": "2"
-                }
-            },
-            "element_dg48kt46h1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_wjmngpvlt1733741490403": {
-                    "value": "2",
+            "element_1": {
+                "deskripsiKomitmenDanKebijakanKeselamatan": {
+                    "value": "2.5",
+                    "reason": null
+                },
+                "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": {
+                    "value": "2.5",
+                    "reason": null
+                },
+                "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
+                    "value": "1",
+                    "reason": "kurang lengkap"
+                },
+                "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": {
+                    "value": "2.5",
                     "reason": null
                 }
             },
-            "element_ianukpqqv1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_r5dzchwp61733741490403": {
-                    "value": "2",
+            "element_2": {
+                "deskripsiPengorganisasian": {
+                    "value": "2.5",
                     "reason": null
-                }
-            },
-            "element_iv8aypvb61733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_885d0xryv1733741490403": {
-                    "value": "2",
+                },
+                "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": {
+                    "value": "2.5",
                     "reason": null
-                }
-            },
-            "element_mahb1nxvw1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_915cxko6l1733741490403": {
+                },
+                "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": {
                     "value": "2",
-                    "reason": null
-                }
-            },
-            "element_o1zqyuld81733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_p1vswh8lf1733741490403": {
-                    "value": "2",
-                    "reason": null
-                }
-            },
-            "element_tl724nb7l1733741490403": {
-                "loremIpsumDolorSitAmetConsecteturAdipiscingEli_01paxed3d1733741490403": {
-                    "value": "2",
+                    "reason": "perbaiki"
+                },
+                "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": {
+                    "value": "2.5",
                     "reason": null
                 }
             }
         },
         "assessment_interviews": {
-            "id": 118,
-            "certificate_request_id": 163,
+            "id": 30,
+            "certificate_request_id": 29,
             "assessor_head": {
-                "id": 9,
-                "name": "Joko Kustanto",
+                "id": 10,
+                "name": "Diah",
                 "nip": null
             },
             "assessor_1": 3,
-            "assessor_2": 4388,
+            "assessor_2": 4397,
             "interview_type": "offline",
-            "schedule": "2024-12-10 00:00:00",
+            "schedule": "2024-12-24 00:00:00",
             "location": null,
             "notes": null,
-            "photos_of_event": "[\"https:\/\/storage.hubdat.dephub.go.id\/esmk\/screencapture-127-0-0-1-3005-apps-tdbupj-internal-pengajuan-detail-2024-12-06-10_06_06-rkbw6ZndDVtwduuVoRyHd.png\", \"https:\/\/storage.hubdat.dephub.go.id\/esmk\/screencapture-127-0-0-1-3005-apps-tdbupj-company-pengajuan-detail-2024-12-06-10_16_14-P5shssRvLEhePrzO7O2lx.png\"]",
-            "photos_of_attendance_list": "[\"https:\/\/storage.hubdat.dephub.go.id\/esmk\/screencapture-127-0-0-1-3005-apps-tdbupj-company-pengajuan-index-2024-12-06-17_20_23-llxzjNHDiZQSucIMbHG-Q.png\", \"https:\/\/storage.hubdat.dephub.go.id\/esmk\/1283309%281%29-Wl-_sqzJn5XU6XnAQMsCu.jpg\"]",
+            "photos_of_event": "[\"https:\/\/storage.hubdat.dephub.go.id\/esmk\/1-_g_p_s-jmeHQCFjQVQHQuC_T8SkL.jpg\"]",
+            "photos_of_attendance_list": "[\"https:\/\/storage.hubdat.dephub.go.id\/esmk\/1-_g_p_s-7QZk3vQgVPF_QRbXZ3CO3.jpg\"]",
             "name_of_participants": null,
             "is_active": 1,
             "status": "completed",
-            "created_at": "2024-12-09 18:52:10",
-            "updated_at": "2024-12-09 18:59:37",
-            "number_of_letter": "SK-001231",
+            "created_at": "2024-12-23 08:21:54",
+            "updated_at": "2024-12-23 08:24:04",
+            "number_of_letter": "SK-123",
             "certificate_request": {
-                "id": 163,
-                "company_id": 1,
+                "id": 29,
+                "company_id": 20,
                 "disposition_by": 9,
                 "disposition_to": 3,
-                "status": "certificate_validation",
+                "status": "completed_interview",
                 "is_active": true,
-                "created_at": "2024-12-09 16:59:47",
-                "updated_at": "2024-12-17 05:08:45",
+                "created_at": "2024-12-23 07:28:16",
+                "updated_at": "2024-12-23 08:24:04",
                 "application_letter": null
             },
             "assessor1": {
@@ -396,49 +301,49 @@
                 "nip": null
             },
             "assessor2": {
-                "id": 4388,
-                "name": "Shendy Revilla Putri",
+                "id": 4397,
+                "name": "Iqbal Firmansyah",
                 "nip": null
             }
         },
         "rejected_note": null,
-        "number_of_application_letter": "SURAT10001",
-        "date_of_application_letter": "2024-12-09",
-        "file_of_application_letter": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_pengajuan_penilaian_e-_s_m_k%282_desember2024-9_desember2024%29%285%29-DNT4zE6EfA3jf9IiXr21R.pdf",
+        "number_of_application_letter": "SRT-09",
+        "date_of_application_letter": "2024-12-12",
+        "file_of_application_letter": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/testing-WHYOJpMOCuT2YBG9dX8Od.pdf",
         "company_info": {
-            "id": 1,
-            "name": "PT Cahaya AKAP",
-            "username": "cahaya",
-            "phone_number": "081207380001",
-            "email": "cahaya@mail.com",
+            "id": 20,
+            "name": "GARIN CITRA MANDIRI",
+            "username": "HADI IWAWAN",
+            "phone_number": "085230297776",
+            "email": "gar_rin@yahoo.co.id",
             "email_verified_at": null,
-            "nib": "1165411111",
+            "nib": "9120200722406",
             "nib_file": "-",
-            "province_id": 31,
-            "city_id": 3173,
-            "address": "jl Tegal Parang no 14",
-            "company_phone_number": "22232222",
-            "pic_name": "Pak Cahaya 1",
-            "pic_phone": "081207380001",
-            "request_date": "2023-11-30 09:41:21",
-            "approved_at": "2023-11-30 09:41:21",
-            "approved_by": 3,
+            "province_id": 35,
+            "city_id": 3515,
+            "address": "PONDOK JATI BLOK CL - 03",
+            "company_phone_number": "081332232375",
+            "pic_name": "HERY SUDARMONO",
+            "pic_phone": "-",
+            "request_date": "2023-11-30 15:46:12",
+            "approved_at": null,
+            "approved_by": null,
             "is_active": false,
-            "created_at": "2023-11-30 02:41:21",
-            "updated_at": null,
+            "created_at": "2023-11-30 01:46:12",
+            "updated_at": "2024-01-15 04:44:43",
             "deleted_at": null,
-            "established": "2020-02-01",
+            "established": "2021-05-01",
             "exist_spionam": true,
             "service_types": [
                 {
-                    "id": 2,
-                    "name": "AKDP",
-                    "created_at": "2024-07-23T00:47:32.000000Z",
+                    "id": 4,
+                    "name": "Pariwisata",
+                    "created_at": "2024-07-22T17:47:32.000000Z",
                     "updated_at": null,
                     "deleted_at": null,
                     "pivot": {
-                        "company_id": 1,
-                        "service_type_id": 2
+                        "company_id": 20,
+                        "service_type_id": 4
                     }
                 }
             ]
