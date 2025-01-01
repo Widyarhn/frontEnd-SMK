@@ -299,7 +299,7 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Pemberitahuan',
-                        text: 'Data berhasil dikirim!',
+                        text: 'Data berhasil disimpan!',
                         confirmButtonText: 'OK'
                     }).then(async () => {
                         await initDataOnTable(defaultLimitPage, currentPage,

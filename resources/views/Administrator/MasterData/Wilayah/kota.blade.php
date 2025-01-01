@@ -66,68 +66,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="listData"></tbody>
-                                            {{-- <tbody>
-                                    <tr>
-                                        <td>1.</td>
-                                        <td>
-                                            <div class="row align-items-center">
-                                                <div class="col-auto pe-0">
-                                                    <div class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
-                                                        <i class="fa-solid fa-city text-white"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="mb-1"><span class="text-truncate w-100">Tangerang</span></h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>Banten</td>
-                                        <td>123</td>
-                                        <td class="text-end">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item">
-                                                    <a data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
-                                                    data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-warning btn-pc-default"><i
-                                                            class="ti ti-eye f-20"></i></a></li>
-                                                <li class="list-inline-item"><a data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
-                                                    data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                            class="ti ti-trash f-20"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.</td>
-                                        <td>
-                                            <div class="row align-items-center">
-                                                <div class="col-auto pe-0">
-                                                    <div class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
-                                                        <i class="fa-solid fa-city text-white"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <h6 class="mb-1"><span class="text-truncate w-100">Sorong</span></h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>Papua</td>
-                                        <td>1223</td>
-                                        <td class="text-end">
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item">
-                                                    <a data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
-                                                    data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-warning btn-pc-default"><i
-                                                            class="ti ti-eye f-20"></i></a></li>
-                                                <li class="list-inline-item"><a data-bs-toggle="modal" data-pc-animate="fade-in-scale" 
-                                                    data-bs-target="#animateModal"
-                                                        class="avtar avtar-s btn-link-danger btn-pc-default"><i
-                                                            class="ti ti-trash f-20"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                </tbody> --}}
                                         </table>
                                         <div class="datatable-bottom">
                                             <div class="datatable-info">Menampilkan <span id="countPage">0</span>
@@ -297,14 +235,13 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Pemberitahuan',
-                    text: 'Data berhasil dikirim!',
+                    text: 'Data berhasil disimpan!',
                     confirmButtonText: 'OK'
                 }).then(async () => {
                     await getListData();
                     $(this).trigger("reset");
                     $("#modal-form").modal("hide");
                 });
-
             });
         }
 
@@ -328,7 +265,7 @@
                 if (result.isConfirmed) {
                     console.log(id);
                     setTimeout(async () => {
-                        loadingPage(false); 
+                        loadingPage(false);
                         Swal.fire({
                             icon: 'success',
                             title: 'Pemberitahuan',
@@ -338,7 +275,7 @@
                             await initDataOnTable(defaultLimitPage, currentPage,
                                 defaultAscending, defaultSearch);
                         });
-                    }, 100); 
+                    }, 100);
                 }
             });
         }
@@ -391,16 +328,6 @@
             for (let index = 0; index < dataList.length; index++) {
                 let element = dataList[index];
                 const elementData = JSON.stringify(element);
-                // <td>
-                //         <ul class="nk-tb-actions">
-                //             <li class="hovering p-1">
-                //                 ${getEditButton(elementData, element)}
-                //             </li>
-                //             <li class="hovering p-1">
-                //                 ${getDeleteButton(elementData, element)}
-                //             </li>
-                //         </ul>
-                //     </td>
                 getDataTable += `
                 <tr>
                     <td>${index_loop}.</td>
@@ -595,6 +522,5 @@
                 deleteData(),
             ])
         }
-        document.addEventListener('DOMContentLoaded', initPageLoad);
     </script>
 @endsection
