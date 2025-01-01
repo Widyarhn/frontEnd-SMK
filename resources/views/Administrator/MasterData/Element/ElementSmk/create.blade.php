@@ -236,35 +236,35 @@
 
         function htmlSubElementHeader(elementID, subElementNumber) {
             let $template = $(`
-        <div class="card-header">
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                    <h6 class="card-title mb-0">
-                        <i class="ri-gift-line align-middle me-1 lh-1"></i>
-                        Sub Elemen <span class="text-secondary sub-element-number">${subElementNumber}</span>
-                    </h6>
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="card-title mb-0">
+                                <i class="ri-gift-line align-middle me-1 lh-1"></i>
+                                Sub Elemen <span class="text-secondary sub-element-number">${subElementNumber}</span>
+                            </h6>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <ul class="list-inline card-toolbar-menu d-flex align-items-center mb-0">
+                                <li class="list-inline-item">
+                                    <a class="align-middle minimize-card"
+                                        data-bs-toggle="collapse"
+                                        href="#collapseElement${elementID}"
+                                        role="button"
+                                        aria-expanded="true"
+                                        aria-controls="collapseElement${elementID}">
+                                        <i class="mdi mdi-plus align-middle plus"></i>
+                                        <i class="mdi mdi-minus align-middle minus"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button type="button" class="btn-close fs-10 align-middle remove-sub-element"></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex-shrink-0">
-                    <ul class="list-inline card-toolbar-menu d-flex align-items-center mb-0">
-                        <li class="list-inline-item">
-                            <a class="align-middle minimize-card"
-                                data-bs-toggle="collapse"
-                                href="#collapseElement${elementID}"
-                                role="button"
-                                aria-expanded="true"
-                                aria-controls="collapseElement${elementID}">
-                                <i class="mdi mdi-plus align-middle plus"></i>
-                                <i class="mdi mdi-minus align-middle minus"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <button type="button" class="btn-close fs-10 align-middle remove-sub-element"></button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    `);
+            `);
 
             return $template.prop("outerHTML");
         }
@@ -332,17 +332,17 @@
 
         function htmlAttachmentFile(isFirstElement = false, isMultiple = false) {
             let $template = $(`
-        <div class="row mb-3 attachmentFiles">
-            <div class="col-3">
-                <label class="form-label">
-                    Dokumen yang dilampirkan
-                </label>
-            </div>
-            <div class="col-9">
-                ${htmlAttachmentFileInput(isFirstElement, isMultiple)}
-            </div>
-        </div>
-    `);
+                <div class="row mb-3 attachmentFiles">
+                    <div class="col-3">
+                        <label class="form-label">
+                            Dokumen yang dilampirkan
+                        </label>
+                    </div>
+                    <div class="col-9">
+                        ${htmlAttachmentFileInput(isFirstElement, isMultiple)}
+                    </div>
+                </div>
+            `);
 
             return $template.prop("outerHTML");
         }
@@ -624,7 +624,12 @@
 
         $(document).ready(async function() {
             // Inisialisasi halaman
+            loadingPage(true);
+
+            loadingPage(false)
             await initPageLoad();
+
+
 
             // Attach event listener untuk submit
             $('#form-data').off('submit').on('submit', async function(e) {
@@ -645,7 +650,12 @@
                         title: uniqueTitle,
                         element_properties: smkElements
                     };
-
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pemberitahuan',
+                        text: 'Data berhasil disimpan!',
+                        confirmButtonText: 'OK'
+                    })
                     // Log hasil form ke console
                     console.log('Form Data:', formData);
 
