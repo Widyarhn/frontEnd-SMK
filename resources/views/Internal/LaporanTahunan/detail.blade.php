@@ -43,7 +43,6 @@
             background: none;
             font-size: 1.5rem;
         }
-
         .accordion-button {
             color: white !important;
         }
@@ -157,288 +156,265 @@
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
-                            <div class="datatable-top">
-                                <div class="datatable-dropdown">
-                                    <label>
-                                        <select class="datatable-selector">
-                                            <option value="5">5</option>
-                                            <option value="10" selected="">10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
-                                            <option value="25">25</option>
-                                        </select> entries per page
-                                    </label>
-                                </div>
-                                <div class="datatable-search">
-                                    <input class="datatable-input" placeholder="Search..." type="search"
-                                        title="Search within table" aria-controls="pc-dt-simple-1">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
+                                <div class="datatable-top">
+                                    <div class="datatable-dropdown">
+                                        <label>
+                                            <select class="datatable-selector">
+                                                <option value="5">5</option>
+                                                <option value="10" selected="">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                                <option value="25">25</option>
+                                            </select> entries per page
+                                        </label>
+                                    </div>
+                                    <div class="datatable-search">
+                                        <input class="datatable-input" placeholder="Search..." type="search"
+                                            title="Search within table" aria-controls="pc-dt-simple-1">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                            aria-labelledby="analytics-tab-1" tabindex="0">
-                            <div class="accordion accordion-flush" id="accordionFlushExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                            aria-expanded="false" aria-controls="flush-collapseOne"
-                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                                aria-labelledby="analytics-tab-1" tabindex="0">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+                                                style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
                                                 color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
                                                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-
-                                            <i class="fa-regular fa-file-lines me-2"></i>
-                                            <span class="fw-bold me-2 me-lg-0">1.1</span> &nbsp;
-                                            <span class="text-uppercase">Komitmen dan Kebijakan Keselamatan</span>
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Uraian</th>
-                                                            <th>Pertanyaan</th>
-                                                            <th>Jawab</th>
-                                                            <th>Kesesuaian</th>
-                                                            <th>Keterangan</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1.1</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                                Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1.2</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
-                                                                terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan
-                                                                Perusahaan tertinggi sebagai langkah nyata terhadap aspek
-                                                                keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                            <td>Tidak ada perubahan</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1.3</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
-                                                                terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan
-                                                                Perusahaan tertinggi sebagai langkah nyata terhadap aspek
-                                                                keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                            <td>
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                
+                                                <i class="fa-regular fa-file-lines me-2"></i> 
+                                                <span class="fw-bold me-2 me-lg-0">1.1</span> &nbsp; 
+                                                <span class="text-uppercase">Komitmen dan Kebijakan Keselamatan</span>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Uraian</th>
+                                                                <th>Pertanyaan</th>
+                                                                <th>Jawab</th>
+                                                                <th>Kesesuaian</th>
+                                                                <th>Keterangan</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>1.1</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                                    Ekspektasi, Implementasi, Prosedur Terkait)</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1.2</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
+                                                                    terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan
+                                                                    Perusahaan tertinggi sebagai langkah nyata terhadap aspek
+                                                                    keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                                <td>Tidak ada perubahan</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>1.3</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
+                                                                    terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan
+                                                                    Perusahaan tertinggi sebagai langkah nyata terhadap aspek
+                                                                    keselamatan yang ditunjukkan dalam sikap sehari-hari</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                                <td>
+                                                                    <a href="">
+                                                                        <p class="mb-0"><i class="fa-regular fa-file-pdf me-1"></i><label
+                                                                                class="mb-0">Lihat Dokumen</label></p>
+                                                                    </a>
+                                                                </td>
+                                                                <td><span class="badge bg-success">Sesuai</span></td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTwo">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
-                                            aria-expanded="false" aria-controls="flush-collapseTwo"
-                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"
+                                                style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
                                                 color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
                                                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-
-                                            <i class="fa-regular fa-file-lines me-2"></i>
-                                            <span class="fw-bold me-2 me-lg-0">2.1</span> &nbsp;
-                                            <span class="text-uppercase">Pengorganisasian</span>
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse show"
-                                        aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Uraian</th>
-                                                            <th>Pertanyaan</th>
-                                                            <th>Jawab</th>
-                                                            <th>Kesesuaian</th>
-                                                            <th>Keterangan</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>2.1</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Deskripsi Pengorganisasian</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2.2</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Perusahaan mempunyai struktur organisasi pengelolaan di
-                                                                bidang
-                                                                keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
-                                                                Keselamatan</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                            <td>Tidak ada perubahan</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2.3</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Perusahaan dapat menjabarkan uraian tugas dan fungsi di
-                                                                masing-masing jabatan pada struktur organisasi hubungan
-                                                                antar
-                                                                struktur organisasi tersebut</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                            <td>
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                
+                                                <i class="fa-regular fa-file-lines me-2"></i> 
+                                                <span class="fw-bold me-2 me-lg-0">2.1</span> &nbsp; 
+                                                <span class="text-uppercase">Pengorganisasian</span>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Uraian</th>
+                                                                <th>Pertanyaan</th>
+                                                                <th>Jawab</th>
+                                                                <th>Kesesuaian</th>
+                                                                <th>Keterangan</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>2.1</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Deskripsi Pengorganisasian</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2.2</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Perusahaan mempunyai struktur organisasi pengelolaan di bidang
+                                                                    keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
+                                                                    Keselamatan</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                                <td>Tidak ada perubahan</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2.3</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Perusahaan dapat menjabarkan uraian tugas dan fungsi di
+                                                                    masing-masing jabatan pada struktur organisasi hubungan antar
+                                                                    struktur organisasi tersebut</td>
+                                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                                <td>
+                                                                    <a href="">
+                                                                        <p class="mb-0"><i class="fa-regular fa-file-pdf me-1"></i><label
+                                                                                class="mb-0">Lihat Dokumen</label></p>
+                                                                    </a>
+                                                                </td>
+                                                                <td><span class="badge bg-success">Sesuai</span></td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingThree">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                            aria-expanded="false" aria-controls="flush-collapseThree"
-                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="flush-headingThree">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"
+                                                style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
                                                 color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
                                                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-
-                                            <i class="fa-regular fa-file-lines me-2"></i>
-                                            <span class="fw-bold me-2 me-lg-0">3.1</span> &nbsp;
-                                            <span class="text-uppercase">Manajemen Bahaya Dan Risiko</span>
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse show"
-                                        aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Uraian</th>
-                                                            <th>Pertanyaan</th>
-                                                            <th>Jawab</th>
-                                                            <th>Kesesuaian</th>
-                                                            <th>Keterangan</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>3.1</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Deskripsi Manajemen Bahaya dan Risiko (Persyaratan,
-                                                                Ekspektasi,
-                                                                Implementasi, Prosedur Terkait)</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3.2</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Perusahaan telah memiliki prosedur identifikasi bahaya,
-                                                                penilaian dan pengendalian risiko secara komprehensif baik
-                                                                terhadap personel, sarana angkutan, penumpang maupun
-                                                                lingkungan
-                                                                untuk setiap tahapan operasi pengangkutan</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Apakah terdapat perubahan pada dokumen Struktur Organisasi
-                                                            </td>
-                                                            <td>Tidak ada perubahan</td>
-                                                            <td>-</td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3.3</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Perusahaan telah melakukan identifikasi bahaya, penilaian
-                                                                dan
-                                                                pengendaliannya dengan metode yang sesuai dengan
-                                                                karakteristik
-                                                                bahaya yang ada, memiliki matrik penilaian bahaya dan
-                                                                risiko,
-                                                                matrik identifikasi bahaya, penilaian dan pengendalian
-                                                                risiko di
-                                                                kantor, bengkel dan operasional serta matrik identifikasi
-                                                                bahaya
-                                                                lalu lintas</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Apakah terdapat perubahan pada dokumen Komitmen</td>
-                                                            <td>
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                            <td>-</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                
+                                                <i class="fa-regular fa-file-lines me-2"></i> 
+                                                <span class="fw-bold me-2 me-lg-0">3.1</span> &nbsp; 
+                                                <span class="text-uppercase">Manajemen Bahaya Dan Risiko</span>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseThree" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Uraian</th>
+                                                                <th>Pertanyaan</th>
+                                                                <th>Jawab</th>
+                                                                <th>Kesesuaian</th>
+                                                                <th>Keterangan</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>3.1</td>
+                                                                <td
+                                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi,
+                                                                    Implementasi, Prosedur Terkait)</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3.2</td>
+                                                                <td
+                                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Perusahaan telah memiliki prosedur identifikasi bahaya,
+                                                                    penilaian dan pengendalian risiko secara komprehensif baik
+                                                                    terhadap personel, sarana angkutan, penumpang maupun lingkungan
+                                                                    untuk setiap tahapan operasi pengangkutan</td>
+                                                                <td
+                                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Apakah terdapat perubahan pada dokumen Struktur Organisasi</td>
+                                                                <td>Tidak ada perubahan</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3.3</td>
+                                                                <td
+                                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Perusahaan telah melakukan identifikasi bahaya, penilaian dan
+                                                                    pengendaliannya dengan metode yang sesuai dengan karakteristik
+                                                                    bahaya yang ada, memiliki matrik penilaian bahaya dan risiko,
+                                                                    matrik identifikasi bahaya, penilaian dan pengendalian risiko di
+                                                                    kantor, bengkel dan operasional serta matrik identifikasi bahaya
+                                                                    lalu lintas</td>
+                                                                <td
+                                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                    Apakah terdapat perubahan pada dokumen Komitmen</td>
+                                                                <td>
+                                                                    <a href="">
+                                                                        <p class="mb-0"><i
+                                                                                class="fa-regular fa-file-pdf me-1"></i><label
+                                                                                class="mb-0">Lihat Dokumen</label></p>
+                                                                    </a>
+                                                                </td>
+                                                                <td><span class="badge bg-success">Sesuai</span></td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
