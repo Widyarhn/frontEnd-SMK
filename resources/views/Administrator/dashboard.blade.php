@@ -1,5 +1,24 @@
 @extends('Administrator.index', ['title' => 'Dashboard'])
+@section('asset_css')
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            /* Make it fill the available space */
+            height: 300px;
+            /* Set an appropriate height for the chart */
+        }
 
+        @media (max-width: 768px) {
+
+            /* For mobile devices, make sure the chart adjusts */
+            .chart-container {
+                height: 200px;
+                /* Adjust the height for smaller screens */
+            }
+        }
+    </style>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -87,106 +106,118 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Proses Sertifikasi</h5>
+                        <h5 class="mb-5">Proses Sertifikasi</h5>
                     </div>
-                    <div id="pie-chart-2" style="width: 100%;"></div>
-                    <div class="row g-3 mt-3">
-                        <!-- Start of Cards -->
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-primary rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
+
+                    <!-- Flex container for chart and cards -->
+                    <div class="row g-3 mx-3">
+                        <!-- Chart container taking 4 columns -->
+                        <div class="col-lg-4 col-12">
+                            <div id="pie-chart-2" style="width: 100%; height: 350px;"></div>
+                        </div>
+
+                        <!-- Cards container taking 8 columns -->
+                        <div class="col-lg-8 col-12">
+                            <div class="row g-3 mt-3">
+                                <!-- Start of Cards -->
+                                <div class="col-sm-3 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100">
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="d-block bg-primary rounded-circle"
+                                                style="width: 10px; height: 10px;"></span>
+                                        </div>
+                                        <p class="mb-1">Pengajuan</p>
+                                        <h6 class="mb-0" id="pengajuan"></h6>
+                                    </div>
                                 </div>
-                                <p class="mb-1">Pengajuan</p>
-                                <h6 class="mb-0" id="pengajuan"></h6>
+                                <div class="col-sm-3 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100">
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="d-block bg-warning rounded-circle"
+                                                style="width: 10px; height: 10px;"></span>
+                                        </div>
+                                        <p class="mb-1">Tidak Lulus Penilaian</p>
+                                        <h6 class="mb-0" id="tidakLulusPenilaian"></h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100">
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="d-block bg-success rounded-circle"
+                                                style="width: 10px; height: 10px;"></span>
+                                        </div>
+                                        <p class="mb-1">Lulus Penilaian</p>
+                                        <h6 class="mb-0" id="lulusPenilaian"></h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100">
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="d-block bg-info rounded-circle"
+                                                style="width: 10px; height: 10px;"></span>
+                                        </div>
+                                        <p class="mb-1">Lulus Verifikasi Penilaian</p>
+                                        <h6 class="mb-0" id="lulusVerifikasiPenilaian"></h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100">
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="d-block rounded-circle"
+                                                style="width: 10px; height: 10px; background:#9B59B6;"></span>
+                                        </div>
+                                        <p class="mb-1">Wawancara Terjadwal</p>
+                                        <h6 class="mb-0" id="wawancaraTerjadwal"></h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100">
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="d-block rounded-circle"
+                                                style="width: 10px; height: 10px; background:#006400;"></span>
+                                        </div>
+                                        <p class="mb-1">Verifikasi Direktur</p>
+                                        <h6 class="mb-0" id="verifikasiDirektur"></h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100">
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="d-block bg-danger rounded-circle"
+                                                style="width: 10px; height: 10px;"></span>
+                                        </div>
+                                        <p class="mb-1">Ditolak</p>
+                                        <h6 class="mb-0" id="ditolak"></h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 d-flex mb-4 mb-lg-0">
+                                    <div class="bg-body p-3 rounded text-center w-100">
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="d-block rounded-circle"
+                                                style="width: 10px; height: 10px; background:#F4D03F;"></span>
+                                        </div>
+                                        <p class="mb-1">Kadaluwarsa</p>
+                                        <h6 class="mb-0" id="kadaluwarsa"></h6>
+                                    </div>
+                                </div>
+                                <!-- End of Cards -->
                             </div>
                         </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-warning rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Tidak Lulus Penilaian</p>
-                                <h6 class="mb-0" id="tidakLulusPenilaian"></h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-success rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Lulus Penilaian</p>
-                                <h6 class="mb-0" id="lulusPenilaian"></h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-info rounded-circle" style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Lulus Verifikasi Penilaian</p>
-                                <h6 class="mb-0" id="lulusVerifikasiPenilaian"></h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block rounded-circle"
-                                        style="width: 10px; height: 10px; background:#9B59B6;"></span>
-                                </div>
-                                <p class="mb-1">Wawancara Terjadwal</p>
-                                <h6 class="mb-0" id="wawancaraTerjadwal"></h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block rounded-circle"
-                                        style="width: 10px; height: 10px; background:#006400;"></span>
-                                </div>
-                                <p class="mb-1">Verifikasi Direktur</p>
-                                <h6 class="mb-0" id="verifikasiDirektur"></h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block bg-danger rounded-circle"
-                                        style="width: 10px; height: 10px;"></span>
-                                </div>
-                                <p class="mb-1">Ditolak</p>
-                                <h6 class="mb-0" id="ditolak"></h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 d-flex">
-                            <div class="bg-body p-3 rounded text-center w-100">
-                                <div class="d-flex align-items-center justify-content-center mb-2">
-                                    <span class="d-block rounded-circle"
-                                        style="width: 10px; height: 10px; background:#F4D03F;"></span>
-                                </div>
-                                <p class="mb-1">Kadaluwarsa</p>
-                                <h6 class="mb-0" id="kadaluwarsa"></h6>
-                            </div>
-                        </div>
-                        <!-- End of Cards -->
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Mixed Chart</h5>
+                        <h5 class="mb-0">Total Proses Penilaian Setiap Bulan</h5>
                     </div>
-                    <div class="my-2" id="mixed-chart-2"></div>
+                    <div class="my-2" id="mixed-chart-2" class="chart-container"></div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
@@ -194,23 +225,24 @@
                             <h5 class="mb-0">Tipe Perusahaan</h5>
                         </div>
                     </div>
-                    <div class="my-2" id="bar-chart-3"></div>
+                    <div class="my-2" id="bar-chart-3" class="chart-container"></div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-6">
+
+        <div class="col-lg-6 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h5 class="mb-0">Penilai Dengan Disposisi Terbanyak</h5>
                     </div>
                     <div class="table-responsive">
-                        <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
+                        <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
                             <div class="datatable-top">
                                 <div class="datatable-dropdown">
                                     <label>
-                                        <select class="datatable-selector" id="limitPage">
+                                        <select class="datatable-selector" id="limitPage" name="per-page">
                                             <option value="5">5</option>
                                             <option value="10" selected="">10</option>
                                             <option value="15">15</option>
@@ -221,114 +253,87 @@
                                 </div>
                                 <div class="datatable-search">
                                     <input class="datatable-input search-input" placeholder="Search..." type="search"
-                                        title="Search within table" aria-controls="pc-dt-simple-1">
+                                        name="search" title="Search within table" aria-controls="pc-dt-simple">
                                 </div>
                             </div>
+                            <div class="datatable-container">
+                                <table class="table table-hover datatable-table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Proses</th>
+                                            <th>Selesai</th>
+                                            <th>Total Disposisi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listData">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="datatable-bottom">
+                                <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                                    dari <span id="totalPage">0</span> data</div>
+                                <nav class="datatable-pagination">
+                                    <ul id="pagination-js" class="datatable-pagination-list">
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
-                        <table class="table table-hover" id="pc-dt-simple">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Proses</th>
-                                    <th>Selesai</th>
-                                    <th>Total Disposisi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="listData">
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="datatable-bottom">
-                        <div class="datatable-info">Menampilkan <span id="countPage">0</span> dari <span
-                                id="totalPage">0</span> data</div>
-                        <nav class="datatable-pagination">
-                            {{-- <ul class="datatable-pagination-list">
-                                <li
-                                    class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-                                    <button data-page="1"
-                                        class="datatable-pagination-list-item-link"
-                                        aria-label="Page 1">‹</button>
-                                </li>
-                                <li class="datatable-pagination-list-item datatable-active"><button
-                                        data-page="1" class="datatable-pagination-list-item-link"
-                                        aria-label="Page 1">1</button></li>
-                                <li class="datatable-pagination-list-item"><button data-page="2"
-                                        class="datatable-pagination-list-item-link"
-                                        aria-label="Page 2">2</button></li>
-                                <li class="datatable-pagination-list-item"><button data-page="2"
-                                        class="datatable-pagination-list-item-link"
-                                        aria-label="Page 2">›</button></li>
-                            </ul> --}}
-                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h5 class="mb-0">Informasi Belum Laporan Tahunan</h5>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover" id="pc-dt-simple2">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Tahun</th>
-                                    <th>Tanggal Berakhir</th>
-                                    <th class="text-end">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="listData2">
-                                <tr>
-                                    <td>1.</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <h6 class="mb-2"><span class="text-truncate w-100">Foundations</span>
-                                                </h6>
-                                                <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                        Leather panels. Laces. Rounded toe. </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>2024</td>
-                                    <td>3 Desember 2024</td>
-                                    <td>
-                                        <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                    class="ti ti-eye f-20"></i></a></li>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="row">
-                                                <h6 class="mb-2"><span class="text-truncate w-100">Foundations</span>
-                                                </h6>
-                                                <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                        Leather panels. Laces. Rounded toe. </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>2024</td>
-                                    <td>3 Desember 2024</td>
-                                    <td>
-                                        <li class="list-inline-item"><a data-bs-toggle="modal"
-                                                data-pc-animate="fade-in-scale" data-bs-target="#animateModal"
-                                                class="avtar avtar-s btn-link-info btn-pc-default"><i
-                                                    class="ti ti-eye f-20"></i></a></li>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                            <div class="datatable-top">
+                                <div class="datatable-dropdown">
+                                    <label>
+                                        <select class="datatable-selector" id="limitPageReport" name="per-page">
+                                            <option value="5">5</option>
+                                            <option value="10" selected="">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                        </select> entries per page
+                                    </label>
+                                </div>
+                                <div class="datatable-search">
+                                    <input class="datatable-input .search-input-report" placeholder="Search..."
+                                        type="search" name="search" title="Search within table"
+                                        aria-controls="pc-dt-simple">
+                                </div>
+                            </div>
+                            <div class="datatable-container">
+                                <table class="table table-hover datatable-table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Tahun</th>
+                                            <th>Tanggal Berakhir</th>
+                                            <th class="text-end">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listData2">
+                                    </tbody>
+                                </table>
+                                <div class="datatable-bottom">
+                                    <div class="datatable-info">Menampilkan <span id="countPageReport">0</span>
+                                        dari <span id="totalPageReport">0</span> data</div>
+                                    <nav class="datatable-pagination">
+                                        <ul id="pagination-js-report" class="datatable-pagination-list">
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -337,6 +342,8 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
+
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
 
     <script>
@@ -459,7 +466,7 @@
 
                 let certificateRequestschart = getDataRest.data.data.certificate_requests || [];
                 setChartcertificateRequest(certificateRequestschart);
-                setChartVersus();
+                
 
                 // Menghitung jumlah untuk setiap status yang akan ditampilkan di kartu
                 let statusMapping = {
@@ -519,48 +526,55 @@
         }
 
         async function setChart(serviceTypes) {
-            let labels = serviceTypes.map(item => item.name);
-            let dataPoints = serviceTypes.map(item => item.companies.length);
+    let labels = serviceTypes.map(item => item.name);
+    let dataPoints = serviceTypes.map(item => item.companies.length);
 
-            var options_bar_chart_3 = {
-                chart: {
-                    height: 350,
-                    type: 'bar'
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: true,
-                        dataLabels: {
-                            position: 'top'
-                        }
-                    }
-                },
-                colors: ['#4680FF'],
+    // Get the minimum and maximum value from the dataPoints array
+    let minValue = Math.min(...dataPoints);
+    let maxValue = Math.max(...dataPoints);
+
+    var options_bar_chart_3 = {
+        chart: {
+            height: 350,
+            width: '90%',
+            type: 'bar'
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true,
                 dataLabels: {
-                    enabled: true,
-                    offsetX: -6,
-                    style: {
-                        fontSize: '12px',
-                        colors: ['#fff']
-                    }
-                },
-                stroke: {
-                    show: true,
-                    width: 1,
-                    colors: ['#fff']
-                },
-                series: [{
-                    name: 'Perusahaan',
-                    data: dataPoints
-                }],
-                xaxis: {
-                    categories: labels
+                    position: 'top'
                 }
-            };
-
-            var chart_bar_chart_3 = new ApexCharts(document.querySelector('#bar-chart-3'), options_bar_chart_3);
-            chart_bar_chart_3.render();
+            }
+        },
+        colors: ['#4680FF'],
+        dataLabels: {
+            enabled: true,
+            offsetX: -6,
+            style: {
+                fontSize: '12px',
+                colors: ['#fff']
+            }
+        },
+        stroke: {
+            show: true,
+            width: 1,
+            colors: ['#fff']
+        },
+        series: [{
+            name: 'Perusahaan',
+            data: dataPoints
+        }],
+        xaxis: {
+            categories: labels,
+            min: minValue, // Set dynamic minimum
+            max: maxValue, // Set dynamic maximum
         }
+    };
+
+    var chart_bar_chart_3 = new ApexCharts(document.querySelector('#bar-chart-3'), options_bar_chart_3);
+    chart_bar_chart_3.render();
+}
 
         async function setChartcertificateRequest(certificateRequestschart) {
             if (!Array.isArray(certificateRequestschart)) {
@@ -656,8 +670,9 @@
             chart_pie_chart_2.render();
         }
 
+
+
         async function setChartVersus() {
-            // Data from API response
             const data = [{
                     name: "test admin 12",
                     certificate_request_disposisition_count: 0,
@@ -718,6 +733,7 @@
                 chart: {
                     height: 350,
                     type: 'line',
+                    width: '90%', 
                     stacked: false
                 },
                 stroke: {
@@ -729,7 +745,7 @@
                         columnWidth: '50%'
                     }
                 },
-                colors: ['#DC2626', '#4680FF', '#E58A00'],
+                colors: ['#E58A00', '#4680FF', '#009340'], // Update colors: Yellow, Blue, Green
                 series: [{
                         name: 'Proses Selesai',
                         type: 'column',
@@ -741,7 +757,7 @@
                         data: data.map(item => item.certificate_request_disposition_process_count)
                     },
                     {
-                        name: 'Total Completed',
+                        name: 'Total Selesai', // Change the name from 'Completed' to 'Selesai'
                         type: 'line',
                         data: data.map(item => item.certificate_request_completed_count)
                     }
@@ -757,12 +773,16 @@
                         stops: [0, 100, 100, 100]
                     }
                 },
-                labels: data.map(item => item.name),
+                labels: [
+                    '01/01/2025', '02/01/2025', '03/01/2025', '04/01/2025',
+                    '05/01/2025', '06/01/2025', '07/01/2025', '08/01/2025',
+                    '09/01/2025', '10/01/2025', '11/01/2025', '12/01/2025'
+                ],
                 markers: {
                     size: 0
                 },
                 xaxis: {
-                    categories: data.map(item => item.name),
+                    type: 'datetime'
                 },
                 yaxis: {
                     min: 0
@@ -786,110 +806,12 @@
                 }
             };
 
+
             var charts_mixed_chart_2 = new ApexCharts(document.querySelector('#mixed-chart-2'), options_mixed_chart_2);
             charts_mixed_chart_2.render();
+            
         }
 
-        // async function setChartVersus() {
-        //     var options_mixed_chart_2 = {
-        //         chart: {
-        //             height: 350,
-        //             type: 'line',
-        //             stacked: false
-        //         },
-        //         stroke: {
-        //             width: [0, 2, 5],
-        //             curve: 'smooth'
-        //         },
-        //         plotOptions: {
-        //             bar: {
-        //                 columnWidth: '50%'
-        //             }
-        //         },
-        //         colors: ['#DC2626', '#4680FF', '#E58A00'],
-        //         series: [{
-        //                 name: 'Facebook',
-        //                 type: 'column',
-        //                 data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
-        //             },
-        //             {
-        //                 name: 'Vine',
-        //                 type: 'area',
-        //                 data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
-        //             },
-        //             {
-        //                 name: 'Dribbble',
-        //                 type: 'line',
-        //                 data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
-        //             }
-        //         ],
-        //         fill: {
-        //             opacity: [0.85, 0.25, 1],
-        //             gradient: {
-        //                 inverseColors: false,
-        //                 shade: 'light',
-        //                 type: 'vertical',
-        //                 opacityFrom: 0.85,
-        //                 opacityTo: 0.55,
-        //                 stops: [0, 100, 100, 100]
-        //             }
-        //         },
-        //         labels: [
-        //             '01/01/2003',
-        //             '02/01/2003',
-        //             '03/01/2003',
-        //             '04/01/2003',
-        //             '05/01/2003',
-        //             '06/01/2003',
-        //             '07/01/2003',
-        //             '08/01/2003',
-        //             '09/01/2003',
-        //             '10/01/2003',
-        //             '11/01/2003'
-        //         ],
-        //         markers: {
-        //             size: 0
-        //         },
-        //         xaxis: {
-        //             type: 'datetime'
-        //         },
-        //         yaxis: {
-        //             min: 0
-        //         },
-        //         tooltip: {
-        //             shared: true,
-        //             intersect: false,
-        //             y: {
-        //                 formatter: function(y) {
-        //                     if (typeof y !== 'undefined') {
-        //                         return y.toFixed(0) + ' views';
-        //                     }
-        //                     return y;
-        //                 }
-        //             }
-        //         },
-        //         legend: {
-        //             labels: {
-        //                 useSeriesColors: true
-        //             },
-        //             markers: {
-        //                 customHTML: [
-        //                     function() {
-        //                         return '';
-        //                     },
-        //                     function() {
-        //                         return '';
-        //                     },
-        //                     function() {
-        //                         return '';
-        //                     }
-        //                 ]
-        //             }
-        //         }
-        //     };
-        //     var charts_mixed_chart_2 = new ApexCharts(document.querySelector('#mixed-chart-2'), options_mixed_chart_2);
-        //     charts_mixed_chart_2.render();
-        // }
 
         async function fetchData(url, params) {
             try {
@@ -1018,7 +940,8 @@
                 if (data.length > 0) {
                     for (let index = 0; index < data.length; index++) {
                         let element = data[index];
-                        let companyName = element.company ? element.company.name : 'N/A';
+                        let companyName = element.company ? element.company.name : '-';
+                        let nib = element.company ? element.company.nib : '-';
 
                         appendHtml += `
                             <tr>
@@ -1028,13 +951,17 @@
                                         <div class="row">
                                             <h6 class="mb-2"><span class="text-truncate w-100">${companyName}</span>
                                             </h6>
+                                            <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
+                                                    ${nib}</span>
+                                            </p>
                                         </div>
                                     </div>
                                 </td>
+                                
                                 <td>${element.year || 'N/A'}</td>
                                 <td>${element.due_date || 'N/A'}</td>
                                 <td>
-                                    <a type="button" href="" class="btn btn-primary">
+                                    <a type="button" href="" class="avtar avtar-s btn-link-primary">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -1274,6 +1201,7 @@
         async function initPageLoad() {
             await getUserData();
             await getDataAllCompany();
+            await setChartVersus();
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter),
                 manipulationDataOnTable(),

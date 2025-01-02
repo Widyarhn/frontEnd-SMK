@@ -1,16 +1,5 @@
 @extends('...Administrator.index', ['title' => 'Data Perusahaan'])
 @section('asset_css')
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
         .table th.sticky-end,
         .table td.sticky-end {
@@ -44,7 +33,7 @@
             </div>
         </div>
     </div>
-    <div class = "row">
+    <div class ="row">
         <div class="col-lg-3 col-12">
             <div class="card">
                 <div class="card-body">
@@ -359,8 +348,6 @@
                                                 </li>
                                             </td>
                                         </tr>
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -374,11 +361,9 @@
 @section('scripts')
     <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
-    <script src="{{ asset('assets') }}/js/pages/invoice-list.js"></script>
-    <script src="../assets/js/plugins/datepicker-full.min.js"></script>
-    <script src="../assets/js/pages/ac-datepicker.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/datepicker-full.min.js"></script>
+    <script src="{{ asset('assets') }}/js/pages/ac-datepicker.js"></script>
+    <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
     <script>
         var optionsLineChart = {
             chart: {
