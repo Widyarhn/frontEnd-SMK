@@ -445,13 +445,6 @@
                 // Tab Navigation Logic
                 let currentTab = 0;
 
-                $('#wizardTabs .nav-link').click(function() {
-                    const index = $(this).data('index');
-                    currentTab = index;
-                    updateTabContent();
-                });
-
-                // Update Tab Content Based on Current Tab
                 function updateTabContent() {
                     $('#wizardTabs .nav-link').removeClass('active');
                     $('#wizardContent .tab-pane').removeClass('show active');
@@ -459,17 +452,15 @@
                     $(`#wizardTabs .nav-link[data-index="${currentTab}"]`).addClass('active');
                     $(`#wizardContent .tab-pane:eq(${currentTab})`).addClass('show active');
 
-                    // Update Buttons for Last Tab
                     if (currentTab === $('#wizardTabs .nav-link').length - 1) {
-                        $('#saveStep').show();
-                        $('#nextStep').hide();
+                        $('#saveStep').removeClass('d-none');
+                        $('#nextStep').addClass('d-none');
                     } else {
-                        $('#saveStep').hide();
-                        $('#nextStep').show();
+                        $('#saveStep').addClass('d-none');
+                        $('#nextStep').removeClass('d-none');
                     }
                 }
 
-                // Previous and Next Buttons
                 $('#previousStep').click(function() {
                     if (currentTab > 0) {
                         currentTab--;
@@ -484,17 +475,15 @@
                     }
                 });
 
-                // Save Draft Button
                 $('#saveStep').click(function() {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Pemberitahuan',
-                        text: 'Berhasil!',
-                        confirmButtonText: 'OK'
-                    });
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Berhasil!',
+                            confirmButtonText: 'OK'
+                        });
                 });
 
-                updateTabContent();
 
             }
         }
@@ -609,7 +598,6 @@
 
             await Promise.all([
                 getMonitoringElement(),
-                updateTabContent(),
                 setReportYear(),
             ])
 
