@@ -3,7 +3,7 @@
     "message": "Successfully",
     "status_code": 200,
     "data": {
-        "title": "smk_elements_1734480336941",
+        "title": "smk_elements_1734481296687",
         "element_properties": {
             "ui_schema": {
                 "element_0": {
@@ -148,6 +148,128 @@
                             "accept": "pdf"
                         }
                     }
+                },
+                "element_5": {
+                    "Deskripsi_Peningkatan_Kompetensi_dan_Pelatihan__5_0": {
+                        "ui:order": 0,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_memiliki_Standar_operasional_prosedur__SOP__pelatihan_dan_kompetensi_untuk_seluruh_karyawan_perusahaan__5_1": {
+                        "ui:order": 1,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_melakukan_program_pembinaan_dan_pelatihan_bagi_tenaga_kerjanya_secara_berkala_sesuai_dengan_kebutuhan_khususnya_yang_mengandung_risiko_tinggi__5_2": {
+                        "ui:order": 2,
+                        "ui:widget": "files",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    }
+                },
+                "element_6": {
+                    "Deskripsi_Tanggap_Darurat__6_0": {
+                        "ui:order": 0,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Tersedianya_peralatan_emergency_di_kendaraan__6_2": {
+                        "ui:order": 2,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_memiliki_Standar_Operasional_Prosedur__SOP__keadaan_darurat_yang_mungkin_timbul_dalam_kegiatan_operasi_perusahaan__6_1": {
+                        "ui:order": 1,
+                        "ui:widget": "files",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    }
+                },
+                "element_7": {
+                    "Deskripsi_Pelaporan_Kecelakaan_Internal__7_0": {
+                        "ui:order": 0,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_mempunyai_Fomulir_Standar_Pelaporan_Kecelakaan__7_2": {
+                        "ui:order": 2,
+                        "ui:widget": "files",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_memiliki_Memiliki_Standar_Operasional_Prosedur_Pelaporan_dan_Investigasi_Kecelakaan__7_1": {
+                        "ui:order": 1,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    }
+                },
+                "element_8": {
+                    "Deskripsi_Monitoring_dan_Evaluasi__8_0": {
+                        "ui:order": 0,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_melakukan_evaluasi_dari_hasil_monitoring_Sistem_Manajemen_Keselamatan_dan_Laporan_hasil_audit_internal__8_2": {
+                        "ui:order": 2,
+                        "ui:widget": "files",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_melakukan_Prosedur_Monitoring_Sistem_Manajemen_Keselamatan_secara_berkala_pada_perusahaan_dan_Prosedur_ketidaksesuaian__8_1": {
+                        "ui:order": 1,
+                        "ui:widget": "files",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    }
+                },
+                "element_9": {
+                    "Deskripsi_Pengukuran_Kinerja__9_0": {
+                        "ui:order": 0,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_memiliki_prosedur_pengukuran_kinerja__9_1": {
+                        "ui:order": 1,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_melakukan_pengukuran_kinerja_tingkat_keselamatan_dengan_menghitung_Severity_Index__9_3": {
+                        "ui:order": 3,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    },
+                    "Perusahaan_telah_melakukan_pengukuran_kinerja_tingkat_keselamatan_pelayanan_angkutan_dengan_menghitung_Accident_Rate__AR___9_2": {
+                        "ui:order": 2,
+                        "ui:widget": "file",
+                        "ui:options": {
+                            "accept": "pdf"
+                        }
+                    }
                 }
             },
             "max_assesment": {
@@ -179,6 +301,32 @@
                     "Deskripsi_Dokumentasi_dan_Data__4_0": "2",
                     "Dokumentasi_dan_data_mencakup_keselamatan__4_2": "2",
                     "Memiliki_Standar_operasional_prosedur__SOP__terkait_dokumentasi_dan_data__4_1": "2"
+                },
+                "element_5": {
+                    "Deskripsi_Peningkatan_Kompetensi_dan_Pelatihan__5_0": "2",
+                    "Perusahaan_telah_memiliki_Standar_operasional_prosedur__SOP__pelatihan_dan_kompetensi_untuk_seluruh_karyawan_perusahaan__5_1": "2",
+                    "Perusahaan_melakukan_program_pembinaan_dan_pelatihan_bagi_tenaga_kerjanya_secara_berkala_sesuai_dengan_kebutuhan_khususnya_yang_mengandung_risiko_tinggi__5_2": "2"
+                },
+                "element_6": {
+                    "Deskripsi_Tanggap_Darurat__6_0": "2",
+                    "Tersedianya_peralatan_emergency_di_kendaraan__6_2": "2",
+                    "Perusahaan_telah_memiliki_Standar_Operasional_Prosedur__SOP__keadaan_darurat_yang_mungkin_timbul_dalam_kegiatan_operasi_perusahaan__6_1": "2"
+                },
+                "element_7": {
+                    "Deskripsi_Pelaporan_Kecelakaan_Internal__7_0": "2",
+                    "Perusahaan_telah_mempunyai_Fomulir_Standar_Pelaporan_Kecelakaan__7_2": "2",
+                    "Perusahaan_telah_memiliki_Memiliki_Standar_Operasional_Prosedur_Pelaporan_dan_Investigasi_Kecelakaan__7_1": "2"
+                },
+                "element_8": {
+                    "Deskripsi_Monitoring_dan_Evaluasi__8_0": "2",
+                    "Perusahaan_telah_melakukan_evaluasi_dari_hasil_monitoring_Sistem_Manajemen_Keselamatan_dan_Laporan_hasil_audit_internal__8_2": "2",
+                    "Perusahaan_telah_melakukan_Prosedur_Monitoring_Sistem_Manajemen_Keselamatan_secara_berkala_pada_perusahaan_dan_Prosedur_ketidaksesuaian__8_1": "2"
+                },
+                "element_9": {
+                    "Deskripsi_Pengukuran_Kinerja__9_0": "2",
+                    "Perusahaan_telah_memiliki_prosedur_pengukuran_kinerja__9_1": "2",
+                    "Perusahaan_telah_melakukan_pengukuran_kinerja_tingkat_keselamatan_dengan_menghitung_Severity_Index__9_3": "2",
+                    "Perusahaan_telah_melakukan_pengukuran_kinerja_tingkat_keselamatan_pelayanan_angkutan_dengan_menghitung_Accident_Rate__AR___9_2": "2"
                 }
             },
             "question_schema": {
@@ -204,7 +352,7 @@
                                 "type": "string",
                                 "title": "Seluruh pemegang kepentingan atau bagian dalam Perusahaan mempunyai peran serta dan keterlibatan aktif dalam meningkatkan kinerja keselamatan",
                                 "format": "dataurl",
-                                "description": "Seluruh pemegang kepentingan atau bagian dalam Perusahaan mempunyai peran serta dan keterlibatan aktif dalam meningkatkan kinerja keselamatan",
+                                "description": "Dokumen atau fotofoto rapat terkait atau yang mendukung keselamatan",
                                 "attachmentName": "File Laporan Kegiatan Sosialisasi"
                             },
                             "Perusahaan_mempunyai_komitmen_yang_kuat_dari_Manajemen_yang_terdokumentasikan__tertulis_dan_ditandatangani_oleh_Pimpinan_Perusahaan_tertinggi_sebagai_langkah_nyata_terhadap_aspek_keselamatan_yang_ditunjukkan_dalam_sikap_sehari-hari__0_1": {
@@ -236,7 +384,7 @@
                                 "description": "Bukti Pernyataan Dokumen"
                             }
                         },
-                        "description": "Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan Ekspektasi Implementasi Prosedur Terkait"
+                        "description": ""
                     },
                     "element_1": {
                         "type": "object",
@@ -291,7 +439,7 @@
                                 "attachmentName": "File Prosedur Pengorganisasian"
                             }
                         },
-                        "description": "Deskripsi Pengorganisasian"
+                        "description": ""
                     },
                     "element_2": {
                         "type": "object",
@@ -375,7 +523,7 @@
                                 "description": "Lampirkan Dokumen Matrik Penilian Bahaya dan Risiko Matrik Identifikasi Bahaya Penilaian dan Pengendalian Risiko Matrik Identifikasi Bahaya Lalu Lintas"
                             }
                         },
-                        "description": "MANAJEMEN BAHAYA DAN RISIKO"
+                        "description": ""
                     },
                     "element_3": {
                         "type": "object",
@@ -537,6 +685,284 @@
                                 "format": "dataurl",
                                 "description": "Dokumen SOP",
                                 "attachmentName": "File Prosedur Dokumentasi dan Data"
+                            }
+                        },
+                        "description": ""
+                    },
+                    "element_5": {
+                        "type": "object",
+                        "title": "PENINGKATAN KOMPETENSI DAN PELATIHAN",
+                        "required": [
+                            "DeskripsiPeningkatanKompetensidanPelatihan50",
+                            "PerusahaantelahmemilikiStandaroperasionalprosedurSOPpelatihandankompetensiuntukseluruhkaryawanperusahaan51",
+                            "Perusahaanmelakukanprogrampembinaandanpelatihanbagitenagakerjanyasecaraberkalasesuaidengankebutuhankhususnyayangmengandungrisikotinggi52"
+                        ],
+                        "properties": {
+                            "Deskripsi_Peningkatan_Kompetensi_dan_Pelatihan__5_0": {
+                                "type": "string",
+                                "title": "Deskripsi Peningkatan Kompetensi dan Pelatihan",
+                                "format": "dataurl",
+                                "description": "Persyaratan Ekspektasi Implementasi Prosedur Terkait",
+                                "attachmentName": "File Persyaratan Ekspektasi Implementasi Prosedur Terkait"
+                            },
+                            "Perusahaan_telah_memiliki_Standar_operasional_prosedur__SOP__pelatihan_dan_kompetensi_untuk_seluruh_karyawan_perusahaan__5_1": {
+                                "type": "string",
+                                "title": "Perusahaan telah memiliki Standar operasional prosedur (SOP) pelatihan dan kompetensi untuk seluruh karyawan perusahaan",
+                                "format": "dataurl",
+                                "description": "Dokumen SOP Pelatihan dan kompetensi",
+                                "attachmentName": "File Prosedur Kompetensi dan Pelatihan"
+                            },
+                            "Perusahaan_melakukan_program_pembinaan_dan_pelatihan_bagi_tenaga_kerjanya_secara_berkala_sesuai_dengan_kebutuhan_khususnya_yang_mengandung_risiko_tinggi__5_2": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "File_Rencana_Training_5_2_0": {
+                                            "name": "File Rencana Training",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Matrix_Training_5_2_1": {
+                                            "name": "File Matrix Training",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Evaluasi_Kompetensi_5_2_2": {
+                                            "name": "File Evaluasi Kompetensi",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    }
+                                ],
+                                "title": "Perusahaan melakukan program pembinaan dan pelatihan bagi tenaga kerjanya secara berkala sesuai dengan kebutuhan khususnya yang mengandung risiko tinggi",
+                                "description": "Jadwal  time schedule maupun jenis pelatihan yang dibutuhkan untuk pengemudi maupun mekanik dan seluruh karyawan"
+                            }
+                        },
+                        "description": ""
+                    },
+                    "element_6": {
+                        "type": "object",
+                        "title": "TANGGAP DARURAT",
+                        "required": [
+                            "DeskripsiTanggapDarurat60",
+                            "PerusahaantelahmemilikiStandarOperasionalProsedurSOPkeadaandaruratyangmungkintimbuldalamkegiatanoperasiperusahaan61",
+                            "Tersedianyaperalatanemergencydikendaraan62"
+                        ],
+                        "properties": {
+                            "Deskripsi_Tanggap_Darurat__6_0": {
+                                "type": "string",
+                                "title": "Deskripsi Tanggap Darurat",
+                                "format": "dataurl",
+                                "description": "",
+                                "attachmentName": "File Persyaratan Ekspektasi Implementasi Prosedur Terkait"
+                            },
+                            "Tersedianya_peralatan_emergency_di_kendaraan__6_2": {
+                                "type": "string",
+                                "title": "Tersedianya peralatan emergency di kendaraan",
+                                "format": "dataurl",
+                                "description": "Foto dan Rincian Alat Emergency",
+                                "attachmentName": "File Form Check List Alat Tanggap Darurat Kendaraan"
+                            },
+                            "Perusahaan_telah_memiliki_Standar_Operasional_Prosedur__SOP__keadaan_darurat_yang_mungkin_timbul_dalam_kegiatan_operasi_perusahaan__6_1": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "File_Prosedur_Tanggap_Darurat_6_1_0": {
+                                            "name": "File Prosedur Tanggap Darurat",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Struktur_Tanggap_Darurat_6_1_1": {
+                                            "name": "File Struktur Tanggap Darurat",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Daftar_Nomor_Telp__Tanggap_Darurat_6_1_2": {
+                                            "name": "File Daftar Nomor Telp Tanggap Darurat",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Form_Evaluasi_Simulasi_Tanggap_Darurat_6_1_3": {
+                                            "name": "File Form Evaluasi Simulasi Tanggap Darurat",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    }
+                                ],
+                                "title": "Perusahaan telah memiliki Standar Operasional Prosedur (SOP) keadaan darurat yang mungkin timbul dalam kegiatan operasi perusahaan",
+                                "description": "Dokumen SOP masingmasing kegiatan tanggap darurat"
+                            }
+                        },
+                        "description": ""
+                    },
+                    "element_7": {
+                        "type": "object",
+                        "title": "PELAPORAN KECELAKAAN INTERNAL",
+                        "required": [
+                            "DeskripsiPelaporanKecelakaanInternal70",
+                            "PerusahaantelahmemilikiMemilikiStandarOperasionalProsedurPelaporandanInvestigasiKecelakaan71",
+                            "PerusahaantelahmempunyaiFomulirStandarPelaporanKecelakaan72"
+                        ],
+                        "properties": {
+                            "Deskripsi_Pelaporan_Kecelakaan_Internal__7_0": {
+                                "type": "string",
+                                "title": "Deskripsi Pelaporan Kecelakaan Internal",
+                                "format": "dataurl",
+                                "description": "",
+                                "attachmentName": "File Persyaratan Ekspektasi Implementasi Prosedur Terkait"
+                            },
+                            "Perusahaan_telah_mempunyai_Fomulir_Standar_Pelaporan_Kecelakaan__7_2": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "File_Form_Pelaporan_Kecelakaan_Kerja_7_2_0": {
+                                            "name": "File Form Pelaporan Kecelakaan Kerja",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Form_Pelaporan_Kecelakaan_7_2_1": {
+                                            "name": "File Form Pelaporan Kecelakaan",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    }
+                                ],
+                                "title": "Perusahaan telah mempunyai Fomulir Standar Pelaporan Kecelakaan",
+                                "description": "Lampirkan Fomulir"
+                            },
+                            "Perusahaan_telah_memiliki_Memiliki_Standar_Operasional_Prosedur_Pelaporan_dan_Investigasi_Kecelakaan__7_1": {
+                                "type": "string",
+                                "title": "Perusahaan telah memiliki Memiliki Standar Operasional Prosedur Pelaporan dan Investigasi Kecelakaan",
+                                "format": "dataurl",
+                                "description": "Dokumen SOP pelaporan dan penyelidikan masingmasing sebab kejadian kecelakaan",
+                                "attachmentName": "File Prosedur Pelaporan dan Investigasi Kecelakaan"
+                            }
+                        },
+                        "description": ""
+                    },
+                    "element_8": {
+                        "type": "object",
+                        "title": "MONITORING DAN EVALUASI",
+                        "required": [
+                            "DeskripsiMonitoringdanEvaluasi80",
+                            "PerusahaantelahmelakukanProsedurMonitoringSistemManajemenKeselamatansecaraberkalapadaperusahaandanProsedurketidaksesuaian81",
+                            "PerusahaantelahmelakukanevaluasidarihasilmonitoringSistemManajemenKeselamatandanLaporanhasilauditinternal82"
+                        ],
+                        "properties": {
+                            "Deskripsi_Monitoring_dan_Evaluasi__8_0": {
+                                "type": "string",
+                                "title": "Deskripsi Monitoring dan Evaluasi",
+                                "format": "dataurl",
+                                "description": "",
+                                "attachmentName": "File Persyaratan Ekspektasi Implementasi Prosedur Terkait"
+                            },
+                            "Perusahaan_telah_melakukan_evaluasi_dari_hasil_monitoring_Sistem_Manajemen_Keselamatan_dan_Laporan_hasil_audit_internal__8_2": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "File_Form_Permintaan_Tindakan_Perbaikan_dan_Pencegahan_8_2_0": {
+                                            "name": "File Form Permintaan Tindakan Perbaikan dan Pencegahan",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Form_Laporan_Audit_Internal_8_2_1": {
+                                            "name": "File Form Laporan Audit Internal",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    }
+                                ],
+                                "title": "Perusahaan telah melakukan evaluasi dari hasil monitoring Sistem Manajemen Keselamatan dan Laporan hasil audit internal",
+                                "description": "Lampirkan Dokumen Permintaan Tindakan Perbaikan dan Pencegahan serta Form Laporan Audit Internal"
+                            },
+                            "Perusahaan_telah_melakukan_Prosedur_Monitoring_Sistem_Manajemen_Keselamatan_secara_berkala_pada_perusahaan_dan_Prosedur_ketidaksesuaian__8_1": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "File_Prosedur_Monitoring_dan_Evaluasi_Melalui_Audit_Internal_8_1_0": {
+                                            "name": "File Prosedur Monitoring dan Evaluasi Melalui Audit Internal",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Prosedur_Ketidak_sesuaian_8_1_1": {
+                                            "name": "File Prosedur Ketidak sesuaian",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Form_Jadwal_Audit_Internal_8_1_2": {
+                                            "name": "File Form Jadwal Audit Internal",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    },
+                                    {
+                                        "File_Form_Daftar_laporan_Ketidaksesuaian_8_1_3": {
+                                            "name": "File Form Daftar laporan Ketidaksesuaian",
+                                            "type": "string",
+                                            "format": "dataurl"
+                                        }
+                                    }
+                                ],
+                                "title": "Perusahaan telah melakukan Prosedur Monitoring Sistem Manajemen Keselamatan secara berkala pada perusahaan dan Prosedur ketidaksesuaian",
+                                "description": "Lampirkan Dokumen SOP Form Audit Internal dan Form Ketidaksesuaian"
+                            }
+                        },
+                        "description": ""
+                    },
+                    "element_9": {
+                        "type": "object",
+                        "title": "PENGUKURAN KINERJA",
+                        "required": [
+                            "DeskripsiPengukuranKinerja90",
+                            "Perusahaantelahmemilikiprosedurpengukurankinerja91",
+                            "PerusahaantelahmelakukanpengukurankinerjatingkatkeselamatanpelayananangkutandenganmenghitungAccidentRateAR92",
+                            "PerusahaantelahmelakukanpengukurankinerjatingkatkeselamatandenganmenghitungSeverityIndex93"
+                        ],
+                        "properties": {
+                            "Deskripsi_Pengukuran_Kinerja__9_0": {
+                                "type": "string",
+                                "title": "Deskripsi Pengukuran Kinerja",
+                                "format": "dataurl",
+                                "description": "",
+                                "attachmentName": "File Persyaratan Ekspektasi Implementasi Prosedur Terkait"
+                            },
+                            "Perusahaan_telah_memiliki_prosedur_pengukuran_kinerja__9_1": {
+                                "type": "string",
+                                "title": "Perusahaan telah memiliki prosedur pengukuran kinerja",
+                                "format": "dataurl",
+                                "description": "Lampirkan Dokumen SOP Pengkuruan Kinerja",
+                                "attachmentName": "File Prosedur Pengukuran Kinerja"
+                            },
+                            "Perusahaan_telah_melakukan_pengukuran_kinerja_tingkat_keselamatan_dengan_menghitung_Severity_Index__9_3": {
+                                "type": "string",
+                                "title": "Perusahaan telah melakukan pengukuran kinerja tingkat keselamatan dengan menghitung Severity Index",
+                                "format": "dataurl",
+                                "description": "Lampirkan Hasil Nilai Severity Index",
+                                "attachmentName": "File Formulir Statistik Kecelakaan Severity Index"
+                            },
+                            "Perusahaan_telah_melakukan_pengukuran_kinerja_tingkat_keselamatan_pelayanan_angkutan_dengan_menghitung_Accident_Rate__AR___9_2": {
+                                "type": "string",
+                                "title": "Perusahaan telah melakukan pengukuran kinerja tingkat keselamatan pelayanan angkutan dengan menghitung Accident Rate (AR)",
+                                "format": "dataurl",
+                                "description": "Lampirkan Hasil Nilai Accident Rate AR",
+                                "attachmentName": "File Formulir Statistik Kecelakaan AR"
                             }
                         },
                         "description": ""

@@ -43,432 +43,582 @@
         </div>
     </div>
     <div id="basicwizard" class="form-wizard row justify-content-center">
-        <div class="col-12">
+        <div class="col-12 mt-4">
             <div class="card">
                 <div class="card-body p-3">
-                    <ul class="nav nav-pills nav-justified">
-                        <li class="nav-item" data-target-form="#contactDetailForm">
-                            <a href="#1.1Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link active">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i class="fa-solid fa-shield"></i></span>
-                            </a>
-                        </li>
-                        <li class="nav-item" data-target-form="#jobDetailForm">
-                            <a href="#2.2Detail" data-bs-toggle="tab" data-toggle="tab" class="nav-link icon-btn">
-                                <span class="d-none d-sm-inline fw-bold f-18"><i
-                                        class="fa-solid fa-building-shield"></i></span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="nav-wrapper" style="overflow-x: auto; white-space: nowrap;">
+                        <ul class="nav nav-pills nav-justified" id="wizardTabs"
+                            style="display: flex; overflow-x: auto; padding-bottom: 10px;">
+                            <!-- Tab Dinamis Akan Dimasukkan di Sini -->
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <div class="tab-content">
-                        <!-- START: Define your progress bar here -->
-                        <div id="bar" class="progress mb-3" style="height: 7px">
-                            <div class="bar progress-bar progress-bar-striped progress-bar-animated bg-success"></div>
-                        </div>
-                        <!-- END: Define your progress bar here -->
-                        <!-- START: Define your tab pans here -->
-                        <div class="tab-pane show active" id="1.1Detail">
-                            <form id="contactForm" method="get">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Komitmen dan Kebijakan Keselamatan</h3>
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Uraian</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan
-                                                    Monitoring</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Jawaban</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                    <td>
-                                                        <div
-                                                            style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                            Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                            rutrum?
-                                                        </div>
-                                                        <div class="d-flex justify-content-center mt-2">
-                                                            <div class="btn-group" role="group" aria-label="Yes or No">
-                                                                <button type="button"
-                                                                    class="btn btn-outline-success btn-yes2">Iya</button>
-                                                                <button type="button"
-                                                                    class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                            </div>
-                                                        </div>
-                                                        <input type="hidden" class="response-value2" value="" />
-                                                    </td>
-                                                <td class="text-center">
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                    <td>
-                                                        <div
-                                                            style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                            Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                            rutrum?
-                                                        </div>
-                                                    </td>
-                                                <td class="text-center">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                    <td>
-                                                        <div
-                                                            style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                            Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                            rutrum?
-                                                        </div>
-                                                        <div class="d-flex justify-content-center mt-2">
-                                                            <div class="btn-group" role="group" aria-label="Yes or No">
-                                                                <button type="button"
-                                                                    class="btn btn-outline-success btn-yes2">Iya</button>
-                                                                <button type="button"
-                                                                    class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                            </div>
-                                                        </div>
-                                                        <input type="hidden" class="response-value2" value="" />
-                                                    </td>
-                                                <td class="text-center">
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="fw-bold">Pertanyaan Tambahan</td>
-                                                <td colspan="2"
-                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu
-                                                    fringilla quam. Aenean finibus ipsum sit amet nisi semper, vitae commodo
-                                                    metus condimentum.
-                                                </td>
-                                                <td>
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end contact detail tab pane -->
-                        <div class="tab-pane" id="2.2Detail">
-                            <form id="jobForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Pengorganisasian</h3>
-                                    {{-- <small class="text-muted">Let us know your name and email address. Use an address you
-                                        don't mind other users contacting you at</small> --}}
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Uraian</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Pertanyaan
-                                                    Monitoring</th>
-                                                <th class="text-center"><span class="text-danger">*</span>Jawaban</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td>
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-                                                    <div class="d-flex justify-content-center mt-2">
-                                                        <div class="btn-group" role="group" aria-label="Yes or No">
-                                                            <button type="button"
-                                                                class="btn btn-outline-success btn-yes2">Iya</button>
-                                                            <button type="button"
-                                                                class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                        </div>
-                                                    </div>
-                                                    <input type="hidden" class="response-value2" value="" />
-                                                </td>
-
-                                                <td class="text-center">
-
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td class="text-center">
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam
-                                                    semper massa sit amet eros ultricies, eget accumsan enim rutrum.</td>
-                                                <td>
-                                                    <div
-                                                        style="word-wrap: break-word; white-space: normal; max-width: 300px; text-align: left; margin: 0 auto;">
-                                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                                                        Aliquam semper massa sit amet eros ultricies, eget accumsan enim
-                                                        rutrum?
-                                                    </div>
-                                                    <div class="d-flex justify-content-center mt-2">
-                                                        <div class="btn-group" role="group" aria-label="Yes or No">
-                                                            <button type="button"
-                                                                class="btn btn-outline-success btn-yes2">Iya</button>
-                                                            <button type="button"
-                                                                class="btn btn-outline-danger btn-no2">Tidak</button>
-                                                        </div>
-                                                    </div>
-                                                    <input type="hidden" class="response-value2" value="" />
-                                                </td>
-                                                <td class="text-center">
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" class="fw-bold">Pertanyaan Tambahan</td>
-                                                <td colspan="2"
-                                                    style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu
-                                                    fringilla quam. Aenean finibus ipsum sit amet nisi semper, vitae commodo
-                                                    metus condimentum.
-                                                </td>
-                                                <td>
-                                                    <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                        class="dropzone">
-                                                        <div class="fallback">
-                                                            <input name="file" type="file" multiple />
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end job detail tab pane -->
-                        <div class="tab-pane" id="educationDetail">
-                            <form id="educationForm" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Tell us about your education</h3>
-                                    <small class="text-muted">Let us know your name and email address. Use an address you
-                                        don't mind other users contacting you at</small>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="schoolName">School Name</label>
-                                            <input type="text" class="form-control" id="schoolName"
-                                                placeholder="enter your school name" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="schoolLocation">School Location</label>
-                                            <input type="text" class="form-control" id="schoolLocation"
-                                                placeholder="enter your school location" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end education detail tab pane -->
-                        <div class="tab-pane" id="finish">
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-lg-6">
-                                    <div class="text-center">
-                                        <i class="ph-duotone ph-gift f-50 text-danger"></i>
-                                        <h3 class="mt-4 mb-3">Thank you !</h3>
-                                        <div class="mb-3">
-                                            <div class="form-check d-inline-block">
-                                                <input type="checkbox" class="form-check-input" id="customCheck1" />
-                                                <label class="form-check-label" for="customCheck1">I agree with the Terms
-                                                    and Conditions</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-                        </div>
-                        <!-- END: Define your tab pans here -->
-                        <!-- START: Define your controller buttons here-->
-                        <div class="d-flex wizard justify-content-between flex-wrap gap-2 mt-3">
-                            <div class="first">
-                                <a href="javascript:void(0);" class="btn"> </a>
-                            </div>
-                            <div class="d-flex">
-                                <div class="previous me-2">
-                                    <button type="button" class="btn btn-secondary kembali"> Kembali </button>
-                                </div>
-                                <div class="next">
-                                    <button type="button" class="btn btn-primary selanjutnya"> Selanjutnya </button>
-                                </div>
-                            </div>
-                            <div class="last">
-                                <a href="javascript:void(0);" class="btn btn-success"> Simpan </a>
-                            </div>
-                        </div>
-                        <!-- END: Define your controller buttons here-->
+                    <div class="tab-content" id="wizardContent">
+                        <!-- Konten Dinamis Akan Dimasukkan di Sini -->
                     </div>
                 </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" id="previousStep"
+                        style="margin-right: 10px;">Kembali</button>
+                    <button type="button" class="btn btn-primary" id="nextStep"
+                        style="margin-left: 10px;">Selanjutnya</button>
+                    <button type="button" class="btn btn-success" id="saveStep"
+                        style="display: none; margin-left: 10px;">Simpan</button>
+                </div>
             </div>
-            <!-- end tab content-->
         </div>
     </div>
 @endsection
 @section('scripts')
-    <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
+@endsection
+
+@section('page_js')
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const dropdownMenu = document.querySelector("#dropdownTahun + .dropdown-menu");
-            const currentYear = new Date().getFullYear();
+        let monitoringElementID
+        let monitoringElement
+        let responseData;
+        let resp
 
-            // Menambahkan hanya 5 tahun terakhir
-            for (let i = 0; i < 5; i++) {
-                const year = currentYear - i;
-                const li = document.createElement("li");
-                li.innerHTML = `<a class="dropdown-item" href="#">${year}</a>`;
-                dropdownMenu.appendChild(li);
-            }
-        });
-        document.addEventListener("click", (e) => {
-            if (e.target.classList.contains('selanjutnya')) {
-                let currentTab = document.querySelector('.tab-pane.active');
-                let nextTab = currentTab.nextElementSibling;
+        function yearPicker(minYear, maxYear, isReportMonth, publishYear, latestReportYear, currentYear) {
+            $('#iReportYear').yearpicker({
+                startYear: minYear,
+                endYear: maxYear,
+                selectedClass: 'text-primary',
+                disabled: !isReportMonth // Disable if not in the report month
+            });
 
-                if (nextTab) {
-                    currentTab.classList.remove('show', 'active');
-                    nextTab.classList.add('show', 'active');
+            $('#iReportYear').on('change', function() {
+                let selectedYear = parseInt($(this).val());
+
+                if (selectedYear === publishYear) {
+                    notificationAlert('info', 'Pemberitahuan', 'Tahun pengesahan sertifikat tidak bisa dipilih!');
+                    $('#iReportYear').val(''); // Reset selection
+                } else if (selectedYear === latestReportYear) {
+                    notificationAlert('info', 'Pemberitahuan', 'Sudah ada pengajuan laporan!');
+                    $('#iReportYear').val(''); // Reset selection
+                } else if (selectedYear > currentYear) {
+                    notificationAlert('info', 'Pemberitahuan', 'Belum waktunya laporan tahunan!');
+                    $('#iReportYear').val(''); // Reset selection
+                } else if (selectedYear < publishYear) {
+                    notificationAlert('info', 'Pemberitahuan', 'Tidak ada pengesahan sertifikat pada tahun ini!');
+                    $('#iReportYear').val(''); // Reset selection
                 }
+            });
+
+            if (!isReportMonth) {
+                $('#iReportYear').prop('disabled', true); // Explicitly disable input
+            } else {
+                $('#iReportYear').prop('disabled', false); // Enable input when it's the report month
             }
+        }
 
-            if (e.target.classList.contains('kembali')) {
-                let currentTab = document.querySelector('.tab-pane.active');
-                let prevTab = currentTab.previousElementSibling;
+        async function setReportYear() {
+            let smkCertificate = await getSmkCertificate(),
+                currentYear = new moment().year(),
+                currentMonth = new moment().month(), // Get current month (0-11)
+                publishYear = moment(smkCertificate.data.data.publish_date).year(),
+                reportMonth = moment(smkCertificate.data.data.publish_date).month(),
+                minYear = currentYear,
+                latestReportYear = null;
 
-                if (prevTab) {
-                    currentTab.classList.remove('show', 'active');
-                    prevTab.classList.add('show', 'active');
+            if (smkCertificate.data.data !== null) {
+                let latestReport = await getLatestReportYear();
+
+                if (Object.keys(latestReport.data).length > 0) {
+                    minYear = latestReport.data.year + 1;
+                    latestReportYear = latestReport.data.year;
+                } else {
+                    minYear = publishYear + 1;
                 }
+            } else {
+                minYear++;
             }
-            if (e.target.classList.contains("btn-yes") || e.target.classList.contains("btn-no")) {
-                const yesButton = e.target.closest(".btn-group").querySelector(".btn-yes");
-                const noButton = e.target.closest(".btn-group").querySelector(".btn-no");
-                const hiddenInput = e.target.closest("td").querySelector(".response-value");
 
-                if (e.target.classList.contains("btn-yes")) {
-                    yesButton.classList.add("active");
-                    noButton.classList.remove("active");
-                    hiddenInput.value = "Iya";
-                } else if (e.target.classList.contains("btn-no")) {
-                    noButton.classList.add("active");
-                    yesButton.classList.remove("active");
-                    hiddenInput.value = "Tidak";
-                }
-            }
-            if (e.target.classList.contains("btn-yes2") || e.target.classList.contains("btn-no2")) {
-                const yesButton = e.target.closest(".btn-group").querySelector(".btn-yes2");
-                const noButton = e.target.closest(".btn-group").querySelector(".btn-no2");
-                const hiddenInput = e.target.closest("td").querySelector(".response-value2");
+            // Check if it's the report month and the publish year is not the current year
+            let isReportMonth = (currentMonth === reportMonth) && (publishYear < currentYear);
+            toggleSubmitButton(isReportMonth);
 
-                if (e.target.classList.contains("btn-yes2")) {
-                    yesButton.classList.add("active");
-                    noButton.classList.remove("active");
-                    hiddenInput.value = "Iya";
-                } else if (e.target.classList.contains("btn-no2")) {
-                    noButton.classList.add("active");
-                    yesButton.classList.remove("active");
-                    hiddenInput.value = "Tidak";
-                }
+            yearPicker(minYear, currentYear, isReportMonth, publishYear, latestReportYear, currentYear);
+        }
+
+        async function getSmkCertificate() {
+            loadingPage(true);
+            let getDataRest;
+
+            try {
+                getDataRest = await CallAPI(
+                    'GET',
+                    '/dummy/company/laporanTahunan/certificate.json'
+                    // `{{ env('ESMK_SERVICE_BASE_URL') }}/company/documents/certificate`
+                );
+            } catch (error) {
+                loadingPage(false);
+                const resp = error.response;
+                const errorMessage = resp?.data?.message;
+                notificationAlert('info', 'Pemberitahuan', errorMessage);
+                return resp;
             }
-        });
+
+            return getDataRest;
+        }
+
+        async function getLatestReportYear() {
+            loadingPage(true);
+            let getDataRest;
+
+            try {
+                getDataRest = await CallAPI(
+                    'GET',
+                    '/dummy/company/laporanTahunan/latest.json'
+                    // `{{ env('ESMK_SERVICE_BASE_URL') }}/company/laporan-tahunan/latest`
+                );
+                loadingPage(false);
+
+            } catch (error) {
+                loadingPage(false);
+                const resp = error.response;
+                const errorMessage = resp?.data?.message || 'Terjadi kesalahan saat mengambil data laporan tahunan.';
+                notificationAlert('info', 'Pemberitahuan', errorMessage);
+                return resp;
+            }
+
+            return getDataRest;
+        }
+
+        function toggleSubmitButton(isVisible) {
+            const submitButton = document.querySelector('#saveStep'); // Tombol "Simpan"
+            if (isVisible) {
+                submitButton.style.display = 'inline-flex'; // Tampilkan tombol
+            } else {
+                submitButton.style.display = 'none'; // Sembunyikan tombol
+            }
+        }
+
+        async function getMonitoringElement() {
+            loadingPage(true);
+            let getDataRest;
+
+            try {
+                getDataRest = await CallAPI(
+                    'GET',
+                    '/dummy/company/laporanTahunan/get-monitoring-element.json'
+                );
+            } catch (error) {
+                loadingPage(false);
+                let resp = error.response;
+                errorMessage = resp.data.message || errorMessage;
+                notificationAlert('info', 'Pemberitahuan', errorMessage);
+                getDataRest = resp;
+            }
+
+            loadingPage(false);
+            if (getDataRest.status == 200) {
+                const responseData = getDataRest.data;
+                const monitoringElementID = responseData.data.id;
+                const monitoringElement = responseData.data.monitoring_elements;
+                const elementProperties = responseData.data.element_properties;
+                const questionSchema = elementProperties.question_schema.properties;
+                const uiSchema = elementProperties.ui_schema;
+
+                let numbering = 1;
+
+                // Clear wizard tabs and content containers
+                $('#wizardTabs').empty();
+                $('#wizardContent').empty();
+
+                let tabNav = '';
+                let tabContent = '';
+
+                for (const [elementKey, elementValue] of Object.entries(uiSchema)) {
+                    const tabId = `tab-${elementKey}`;
+                    tabNav += `
+                            <li class="nav-item">
+                                <a href="#${tabId}" data-bs-toggle="pill" class="nav-link ${numbering === 1 ? 'active' : ''}" data-index="${numbering - 1}">
+                                    <span class="fw-bold f-18"><i class="fa-solid fa-shield me-2"></i>${numbering}. ${questionSchema[elementKey].title}</span>
+                                </a>
+                            </li>
+                            `;
+
+                    let sortableSubElement = [];
+                    for (let subElement in uiSchema[elementKey]) {
+                        sortableSubElement.push([subElement, uiSchema[elementKey][subElement]]);
+                    }
+                    sortableSubElement.sort((a, b) => a[1]['ui:order'] - b[1]['ui:order']);
+
+                    let rowIndex = 1;
+                    // Replace or update your tab content generation to reflect improved styles
+                    tabContent += `
+                        <div class="tab-pane fade ${numbering === 1 ? 'show active' : ''}" id="${tabId}">
+                            <form id="${tabId}" method="post">
+                                <div class="text-center mb-4">
+                                    <h3 class="mb-2">${questionSchema[elementKey].title}</h3>
+                                    <small style="color: blue">Maksimal ukuran file yang diunggah 5 MB.</small>
+                                </div>
+                                <div class="table-responsive py-4">
+                                    <table class="table table-hover table-bordered mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th class="text-center" style="width: 5%;">No</th>
+                                                <th style="width: 35%; white-space: nowrap;">Uraian</th>
+                                                <th style="width: 30%; white-space: nowrap;">Pertanyaan</th>
+                                                <th style="width: 30%; white-space: nowrap;">Jawaban</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>`;
+
+                    sortableSubElement.forEach(function(subElement) {
+                        let questionProperties = questionSchema[elementKey]['properties'][subElement[0]];
+
+                        if (questionProperties['items']) {
+                            for (let i in questionProperties['items']) {
+                                let isAnyChangedButton = '',
+                                    itemKey = Object.keys(questionProperties['items'][i])[0],
+                                    isMandatory = monitoringElement[elementKey][subElement[0]][i][itemKey][
+                                        'isMandatoryValue'
+                                    ],
+                                    isVisibility = monitoringElement[elementKey][subElement[0]][i][itemKey][
+                                        'isVisibilityValue'
+                                    ],
+                                    reportQuestion = monitoringElement[elementKey][subElement[0]][i][itemKey][
+                                        'questionValue'
+                                    ] || '';
+
+                                if (isVisibility && !isMandatory) {
+                                    isAnyChangedButton = customRadioCheckHTML(
+                                        `isAnyChanged-${itemKey}`, {
+                                            yesOption: {
+                                                label: 'Ya',
+                                                id: `changed-${itemKey}`,
+                                                value: 'yes'
+                                            },
+                                            noOption: {
+                                                label: 'Tidak',
+                                                id: `noChanged-${itemKey}`,
+                                                value: 'no'
+                                            },
+                                        },
+                                        'no'
+                                    );
+                                }
+
+                                let inputProperties = {
+                                    id: `${elementKey}_${itemKey}`,
+                                    name: `${elementKey}_${itemKey}`,
+                                    inputType: subElement[1]['ui:widget']
+                                };
+
+                                let answerForm = '';
+
+                                if (isVisibility) {
+                                    answerForm = `${generateFormInput(inputProperties, isMandatory)}`;
+                                }
+
+                                if (i == 0) {
+                                    tabContent += `
+                                        <tr>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;" rowspan="${questionProperties['items'].length}">${numbering}.${rowIndex}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;" rowspan="${questionProperties['items'].length}">${questionSchema[elementKey]['properties'][subElement[0]]['title']}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;"><p>${reportQuestion}</p>${isAnyChangedButton}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${answerForm}</td>
+                                        </tr>`;
+                                } else {
+                                    tabContent += `
+                                        <tr>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;"><p>${reportQuestion}</p>${isAnyChangedButton}</td>
+                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${answerForm}</td>
+                                        </tr>`;
+                                }
+
+                                $(document).on('change', `input:radio[name=isAnyChanged-${itemKey}]`,
+                                    function() {
+                                        let buttonValue = $(this).val();
+
+                                        if (buttonValue === 'yes') {
+                                            $(this).parent().parent().next().find(
+                                                `#${elementKey}_${itemKey}File`).removeClass('d-none');
+                                            $(this).parent().parent().next().find('.filepond--browser')
+                                                .each(function() {
+                                                    $(this).prop('required', true);
+                                                });
+                                        } else {
+                                            $(this).parent().parent().next().find(
+                                                `#${elementKey}_${itemKey}File`).addClass('d-none');
+                                            $(this).parent().parent().next().find('.filepond--browser')
+                                                .each(function() {
+                                                    $(this).prop('required', false);
+                                                });
+                                        }
+                                    });
+                            }
+                        } else {
+                            let isAnyChangedButton = '',
+                                isMandatory = monitoringElement[elementKey][subElement[0]]['isMandatoryValue'],
+                                isVisibility = monitoringElement[elementKey][subElement[0]][
+                                    'isVisibilityValue'
+                                ],
+                                reportQuestion = monitoringElement[elementKey][subElement[0]][
+                                    'questionValue'
+                                ] || '';
+
+
+                            if (isVisibility && !isMandatory) {
+                                isAnyChangedButton = customRadioCheckHTML(
+                                    `isAnyChanged-${subElement[0]}`, {
+                                        yesOption: {
+                                            label: 'Ya',
+                                            id: `changed-${subElement[0]}`,
+                                            value: 'yes'
+                                        },
+                                        noOption: {
+                                            label: 'Tidak',
+                                            id: `noChanged-${subElement[0]}`,
+                                            value: 'no'
+                                        },
+                                    },
+                                    'no'
+                                );
+                            }
+
+                            let inputProperties = {
+                                id: `${elementKey}_${subElement[0]}`,
+                                name: `${elementKey}_${subElement[0]}`,
+                                inputType: subElement[1]['ui:widget']
+                            };
+
+                            let answerForm = '';
+
+                            if (isVisibility) {
+                                answerForm = `${generateFormInput(inputProperties, isMandatory)}`;
+                            }
+
+                            tabContent += `
+                                <tr>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${numbering}.${rowIndex}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${questionSchema[elementKey]['properties'][subElement[0]]['title']}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;"><p>${reportQuestion}</p>${isAnyChangedButton}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${answerForm}</td>
+                                </tr>`;
+
+                            $(document).on('change', `input:radio[name=isAnyChanged-${subElement[0]}]`,
+                                function() {
+                                    let buttonValue = $(this).val();
+
+                                    if (buttonValue === 'yes') {
+                                        $(this).parent().parent().next().find(
+                                            `#${elementKey}_${subElement[0]}File`).removeClass('d-none');
+                                        $(this).parent().parent().next().find('.filepond--browser').each(
+                                            function() {
+                                                $(this).prop('required', true);
+                                            });
+                                    } else {
+                                        $(this).parent().parent().next().find(
+                                            `#${elementKey}_${subElement[0]}File`).addClass('d-none');
+                                        $(this).parent().parent().next().find('.filepond--browser').each(
+                                            function() {
+                                                $(this).prop('required', false);
+                                            });
+                                    }
+                                });
+                        }
+
+                        rowIndex++;
+                    });
+
+                    tabContent += `
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>`;
+
+                    numbering++;
+                }
+
+                $('#wizardTabs').html(tabNav);
+                $('#wizardContent').html(tabContent);
+
+                // Tab Navigation Logic
+                let currentTab = 0;
+
+                $('#wizardTabs .nav-link').click(function() {
+                    const index = $(this).data('index');
+                    currentTab = index;
+                    updateTabContent();
+                });
+
+                // Update Tab Content Based on Current Tab
+                function updateTabContent() {
+                    $('#wizardTabs .nav-link').removeClass('active');
+                    $('#wizardContent .tab-pane').removeClass('show active');
+
+                    $(`#wizardTabs .nav-link[data-index="${currentTab}"]`).addClass('active');
+                    $(`#wizardContent .tab-pane:eq(${currentTab})`).addClass('show active');
+
+                    // Update Buttons for Last Tab
+                    if (currentTab === $('#wizardTabs .nav-link').length - 1) {
+                        $('#saveStep').show();
+                        $('#nextStep').hide();
+                    } else {
+                        $('#saveStep').hide();
+                        $('#nextStep').show();
+                    }
+                }
+
+                // Previous and Next Buttons
+                $('#previousStep').click(function() {
+                    if (currentTab > 0) {
+                        currentTab--;
+                        updateTabContent();
+                    }
+                });
+
+                $('#nextStep').click(function() {
+                    if (currentTab < $('#wizardTabs .nav-link').length - 1) {
+                        currentTab++;
+                        updateTabContent();
+                    }
+                });
+
+                // Save Draft Button
+                $('#saveStep').click(function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pemberitahuan',
+                        text: 'Berhasil!',
+                        confirmButtonText: 'OK'
+                    });
+                });
+
+                updateTabContent();
+
+            }
+        }
+
+        function sortableSubElementByUiOrder(uiSchema, elementKey) {
+            let sortable = []
+
+            for (let a in uiSchema[elementKey]) {
+                sortable.push([a, uiSchema[elementKey][a]]);
+            }
+
+            sortable.sort(function(a, b) {
+                return a[1]['ui:order'] - b[1]['ui:order'];
+            });
+
+            return sortable
+        }
+
+        function customRadioCheckHTML(inputName, properties, defaultValue = 'yes') {
+            let $customRadioButton = `
+                    <div class="d-flex gap-2">
+                        <input
+                            type="radio"
+                            class="btn-check"
+                            name="${inputName}"
+                            value="${properties.yesOption.value}"
+                            id="${properties.yesOption.id}"
+                            ${defaultValue === 'yes' ? 'checked' : ''}>
+                        <label class="btn btn-outline-primary"
+                            for="${properties.yesOption.id}"
+                            style="width: 100px; text-align: center; padding: 0.5rem 1rem; border-radius: 0.375rem; display: flex; align-items: center; justify-content: center;">
+                            ${properties.yesOption.label}
+                        </label>
+
+                        <input
+                            type="radio"
+                            class="btn-check"
+                            name="${inputName}"
+                            value="${properties.noOption.value}"
+                            id="${properties.noOption.id}"
+                            ${defaultValue === 'no' ? 'checked' : ''}>
+                        <label class="btn btn-outline-warning bg-opacity-50 bg-gradient"
+                            for="${properties.noOption.id}"
+                            style="width: 100px; text-align: center; padding: 0.5rem 1rem; border-radius: 0.375rem; display: flex; align-items: center; justify-content: center;">
+                            ${properties.noOption.label}
+                        </label>
+                    </div>`;
+
+            return $customRadioButton;
+        }
+
+        function generateFormInput(inputProperties, isVisibility = false) {
+            let $htmlInput = ''
+
+            switch (inputProperties.inputType) {
+                case 'files':
+                    $htmlInput += `
+                <input type="file"
+                    class="filepond form-control smk-element-file ${isVisibility ? '' : 'd-none'}"
+                    id="${inputProperties.id}File"
+                    accept="application/pdf">
+                <input type="hidden"
+                    class="answer-element"
+                    name="${inputProperties.name}"
+                    id="${inputProperties.id}"
+                    ${isVisibility ? 'required' : ''}>
+                `
+                    break;
+                case 'file':
+                    $htmlInput += `
+                <input type="file"
+                    class="filepond form-control smk-element-file ${isVisibility ? '' : 'd-none'}"
+                    id="${inputProperties.id}File"
+                    accept="application/pdf">
+                <input type="hidden"
+                    class="answer-element"
+                    name="${inputProperties.name}"
+                    id="${inputProperties.id}"
+                    ${isVisibility ? 'required' : ''}>
+                `
+                    break;
+                case 'image':
+                    $htmlInput = `
+                    <input type="file"
+                        class="filepond form-control smk-element-file ${isVisibility ? '' : 'd-none'}"
+                        id="${inputProperties.id}File"
+                        accept="image/png, image/jpeg"
+                        required>
+                    <input type="hidden"
+                        class="answer-element"
+                        name="${inputProperties.name}"
+                        id="${inputProperties.id}"
+                        required>
+                `
+                    break;
+                default:
+                    $htmlInput = `
+                    <input type="text ${isVisibility ? '' : 'd-none'}"
+                        class="form-control answer-element"
+                        id="${inputProperties.id}"
+                        name="${inputProperties.name}">
+                `
+                    break;
+            }
+
+            return $htmlInput
+
+        }
+
+
+        async function initPageLoad() {
+
+            await Promise.all([
+                getMonitoringElement(),
+                updateTabContent(),
+                setReportYear(),
+            ])
+
+            // Inisialisasi tombol submit
+            $('#submitButton').on('click', async function() {
+                await addData(); // Panggil addData saat tombol diklik
+            });
+
+            $('.filepond--credits').remove();
+        }
     </script>
 @endsection
