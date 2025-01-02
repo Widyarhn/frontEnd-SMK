@@ -699,6 +699,7 @@
                                             <th>Uraian Element</th>
                                             <th>Dokumen / Bukti Dukung Jawaban</th>
                                             <th>File Yang Dilampirkan</th>
+                                            <th>Penilaian</th>
                                         </tr>
                                     </thead>
                                     <tbody>
