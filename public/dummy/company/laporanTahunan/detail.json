@@ -148,7 +148,7 @@
                 "properties": {
                     "element_1": {
                         "type": "object",
-                        "title": "1. KOMITMEN DAN KEBIJAKAN KESELAMATAN",
+                        "title": "KOMITMEN DAN KEBIJAKAN KESELAMATAN",
                         "required": [
                             "deskripsiKomitmenDanKebijakanKeselamatan",
                             "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari",
@@ -203,7 +203,7 @@
                     },
                     "element_2": {
                         "type": "object",
-                        "title": "2. PENGORGANISASIAN",
+                        "title": "PENGORGANISASIAN",
                         "required": [
                             "deskripsiPengorganisasian",
                             "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan",

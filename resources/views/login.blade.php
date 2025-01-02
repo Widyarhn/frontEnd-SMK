@@ -95,7 +95,7 @@
                             </h6>
                         </div>
                         <div class="d-grid mt-5">
-                            <a href="/dashboard" type="button" class="btn btn-primary" style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Masuk</a>
+                            <a href="/admin/dashboard" type="button" class="btn btn-primary" style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Masuk</a>
                         </div>
                         <div class="d-flex justify-content-center align-items-end mt-3">
                             <h6 class="f-w-500 mb-0 me-2">Belum punya akun?</h6>
