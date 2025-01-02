@@ -240,7 +240,8 @@
                         </table>
                     </div>
                     <div class="datatable-bottom">
-                        <div class="datatable-info">Menampilkan <span id="countPage">0</span> dari <span id="totalPage">0</span> data</div>
+                        <div class="datatable-info">Menampilkan <span id="countPage">0</span> dari <span
+                                id="totalPage">0</span> data</div>
                         <nav class="datatable-pagination">
                             {{-- <ul class="datatable-pagination-list">
                                 <li
@@ -656,6 +657,63 @@
         }
 
         async function setChartVersus() {
+            // Data from API response
+            const data = [{
+                    name: "test admin 12",
+                    certificate_request_disposisition_count: 0,
+                    certificate_request_disposition_process_count: 0,
+                    certificate_request_completed_count: 0
+                },
+                {
+                    name: "Shendy Revilla Putri",
+                    certificate_request_disposisition_count: 0,
+                    certificate_request_disposition_process_count: 0,
+                    certificate_request_completed_count: 0
+                },
+                {
+                    name: "Penilai_2",
+                    certificate_request_disposisition_count: 0,
+                    certificate_request_disposition_process_count: 0,
+                    certificate_request_completed_count: 0
+                },
+                {
+                    name: "Penilai",
+                    certificate_request_disposisition_count: 5,
+                    certificate_request_disposition_process_count: 4,
+                    certificate_request_completed_count: 1
+                },
+                {
+                    name: "Ketua Tim",
+                    certificate_request_disposisition_count: 0,
+                    certificate_request_disposition_process_count: 0,
+                    certificate_request_completed_count: 0
+                },
+                {
+                    name: "Iqbal Firmansyah",
+                    certificate_request_disposisition_count: 2,
+                    certificate_request_disposition_process_count: 1,
+                    certificate_request_completed_count: 1
+                },
+                {
+                    name: "Direktur Jenderal",
+                    certificate_request_disposisition_count: 0,
+                    certificate_request_disposition_process_count: 0,
+                    certificate_request_completed_count: 0
+                },
+                {
+                    name: "DEVELOPER",
+                    certificate_request_disposisition_count: 0,
+                    certificate_request_disposition_process_count: 0,
+                    certificate_request_completed_count: 0
+                },
+                {
+                    name: "Aji",
+                    certificate_request_disposisition_count: 0,
+                    certificate_request_disposition_process_count: 0,
+                    certificate_request_completed_count: 0
+                }
+            ];
+
             var options_mixed_chart_2 = {
                 chart: {
                     height: 350,
@@ -673,19 +731,19 @@
                 },
                 colors: ['#DC2626', '#4680FF', '#E58A00'],
                 series: [{
-                        name: 'Facebook',
+                        name: 'Proses Selesai',
                         type: 'column',
-                        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+                        data: data.map(item => item.certificate_request_disposisition_count)
                     },
                     {
-                        name: 'Vine',
+                        name: 'Total Disposisi',
                         type: 'area',
-                        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+                        data: data.map(item => item.certificate_request_disposition_process_count)
                     },
                     {
-                        name: 'Dribbble',
+                        name: 'Total Completed',
                         type: 'line',
-                        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+                        data: data.map(item => item.certificate_request_completed_count)
                     }
                 ],
                 fill: {
@@ -699,24 +757,12 @@
                         stops: [0, 100, 100, 100]
                     }
                 },
-                labels: [
-                    '01/01/2003',
-                    '02/01/2003',
-                    '03/01/2003',
-                    '04/01/2003',
-                    '05/01/2003',
-                    '06/01/2003',
-                    '07/01/2003',
-                    '08/01/2003',
-                    '09/01/2003',
-                    '10/01/2003',
-                    '11/01/2003'
-                ],
+                labels: data.map(item => item.name),
                 markers: {
                     size: 0
                 },
                 xaxis: {
-                    type: 'datetime'
+                    categories: data.map(item => item.name),
                 },
                 yaxis: {
                     min: 0
@@ -727,7 +773,7 @@
                     y: {
                         formatter: function(y) {
                             if (typeof y !== 'undefined') {
-                                return y.toFixed(0) + ' views';
+                                return y.toFixed(0) + ' counts';
                             }
                             return y;
                         }
@@ -736,25 +782,114 @@
                 legend: {
                     labels: {
                         useSeriesColors: true
-                    },
-                    markers: {
-                        customHTML: [
-                            function() {
-                                return '';
-                            },
-                            function() {
-                                return '';
-                            },
-                            function() {
-                                return '';
-                            }
-                        ]
                     }
                 }
             };
+
             var charts_mixed_chart_2 = new ApexCharts(document.querySelector('#mixed-chart-2'), options_mixed_chart_2);
             charts_mixed_chart_2.render();
         }
+
+        // async function setChartVersus() {
+        //     var options_mixed_chart_2 = {
+        //         chart: {
+        //             height: 350,
+        //             type: 'line',
+        //             stacked: false
+        //         },
+        //         stroke: {
+        //             width: [0, 2, 5],
+        //             curve: 'smooth'
+        //         },
+        //         plotOptions: {
+        //             bar: {
+        //                 columnWidth: '50%'
+        //             }
+        //         },
+        //         colors: ['#DC2626', '#4680FF', '#E58A00'],
+        //         series: [{
+        //                 name: 'Facebook',
+        //                 type: 'column',
+        //                 data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+        //             },
+        //             {
+        //                 name: 'Vine',
+        //                 type: 'area',
+        //                 data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+        //             },
+        //             {
+        //                 name: 'Dribbble',
+        //                 type: 'line',
+        //                 data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+        //             }
+        //         ],
+        //         fill: {
+        //             opacity: [0.85, 0.25, 1],
+        //             gradient: {
+        //                 inverseColors: false,
+        //                 shade: 'light',
+        //                 type: 'vertical',
+        //                 opacityFrom: 0.85,
+        //                 opacityTo: 0.55,
+        //                 stops: [0, 100, 100, 100]
+        //             }
+        //         },
+        //         labels: [
+        //             '01/01/2003',
+        //             '02/01/2003',
+        //             '03/01/2003',
+        //             '04/01/2003',
+        //             '05/01/2003',
+        //             '06/01/2003',
+        //             '07/01/2003',
+        //             '08/01/2003',
+        //             '09/01/2003',
+        //             '10/01/2003',
+        //             '11/01/2003'
+        //         ],
+        //         markers: {
+        //             size: 0
+        //         },
+        //         xaxis: {
+        //             type: 'datetime'
+        //         },
+        //         yaxis: {
+        //             min: 0
+        //         },
+        //         tooltip: {
+        //             shared: true,
+        //             intersect: false,
+        //             y: {
+        //                 formatter: function(y) {
+        //                     if (typeof y !== 'undefined') {
+        //                         return y.toFixed(0) + ' views';
+        //                     }
+        //                     return y;
+        //                 }
+        //             }
+        //         },
+        //         legend: {
+        //             labels: {
+        //                 useSeriesColors: true
+        //             },
+        //             markers: {
+        //                 customHTML: [
+        //                     function() {
+        //                         return '';
+        //                     },
+        //                     function() {
+        //                         return '';
+        //                     },
+        //                     function() {
+        //                         return '';
+        //                     }
+        //                 ]
+        //             }
+        //         }
+        //     };
+        //     var charts_mixed_chart_2 = new ApexCharts(document.querySelector('#mixed-chart-2'), options_mixed_chart_2);
+        //     charts_mixed_chart_2.render();
+        // }
 
         async function fetchData(url, params) {
             try {
@@ -1132,7 +1267,7 @@
 
                 await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
                     customFilter);
-                await getDataAllCompany(customFilter); // Reset data tanpa filter
+                await getDataAllCompany(customFilter);
             });
         }
 
@@ -1148,7 +1283,5 @@
                 customFilterTable(),
             ]);
         }
-
-        document.addEventListener('DOMContentLoaded', initPageLoad);
     </script>
 @endsection

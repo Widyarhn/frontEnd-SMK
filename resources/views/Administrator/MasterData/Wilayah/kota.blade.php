@@ -96,7 +96,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="p-3">
+                        <div class="p-3">
                             <div class="mb-3">
                                 <div class="col-md-12">
                                     <div class="form-floating">
@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary reset-all"

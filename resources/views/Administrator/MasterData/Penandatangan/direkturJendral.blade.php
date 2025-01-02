@@ -98,7 +98,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                        <form class="p-3">
+                        <div class="p-3">
                             <div class="mb-3">
                                 <div class="form-floating">
                                     <select class="form-select" id="floatingSelect" name="input_satuan_kerja_id"
@@ -142,7 +142,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary reset-all"
