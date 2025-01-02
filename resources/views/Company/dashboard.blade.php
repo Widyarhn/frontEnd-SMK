@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
 @endsection
 @section('content')
-
     <div class="row"><!-- [ sample-page ] start -->
         <div class="col-sm-12">
             <div class="card social-profile" style="position:relative;">
@@ -28,7 +27,7 @@
                             <div class="row justify-content-between align-items-end">
                                 <div class="col-md-auto soc-profile-data">
                                     <h5 class="mb-1">Selamat Datang</h5>
-                                    <p class="mb-0">PT NUSANTARA TECH INOVATOR</p>
+                                    <p class="company-name mb-0"></p>
                                 </div>
 
                             </div>
@@ -58,23 +57,23 @@
             <div class="card">
                 <div class="card-body py-0">
                     <ul class="nav nav-tabs profile-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="followers-tab" data-bs-toggle="tab"
-                            href="#followers" role="tab" aria-selected="false" tabindex="-1"><i
-                                class="ti ti-building me-2"></i> Informasi Perusahaan</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab"
-                                data-bs-toggle="tab" href="#profile" role="tab" aria-selected="true"><i
-                                    class="ti ti-file me-2"></i> Sertifikat SMK</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="followers-tab"
+                                data-bs-toggle="tab" href="#followers" role="tab" aria-selected="false"
+                                tabindex="-1"><i class="ti ti-building me-2"></i> Informasi Perusahaan</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                href="#profile" role="tab" aria-selected="true"><i class="ti ti-file me-2"></i>
+                                Sertifikat SMK</a></li>
 
                     </ul>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-xxl-9">
+                <div class="col-lg-12 col-xxl-12">
                     <div class="tab-content">
                         <div class="tab-pane show active" id="followers" role="tabpanel" aria-labelledby="followers-tab">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Tentang PT NUSANTARA TECH INOVATOR</h5>
+                                    <h5 class="company-name"></h5>
                                 </div>
                             </div>
                             <div class="card">
@@ -86,24 +85,24 @@
                                         <li class="list-group-item px-0 pt-0">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Nama Direktur</p>
-                                                    <p class="mb-0">Anshan Handgun</p>
+                                                    <p class="mb-1 text-muted">NIB Perusahaan</p>
+                                                    <p class="company-nib mb-0"></p>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Father Name</p>
-                                                    <p class="mb-0">Mr. Deepen Handgun</p>
+                                                    <p class="mb-1 text-muted">Nama Penanggung Jawab</p>
+                                                    <p class="company-pic-name mb-0"></p>
                                                 </div>
                                             </div>
                                         </li>
                                         <li class="list-group-item px-0">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Phone</p>
-                                                    <p class="mb-0">(+1-876) 8654 239 581</p>
+                                                    <p class="mb-1 text-muted">Telepon</p>
+                                                    <p class="company-phone mb-0"></p>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p class="mb-1 text-muted">Country</p>
-                                                    <p class="mb-0">New York</p>
+                                                    <p class="mb-1 text-muted">Kota</p>
+                                                    <p class="company-city mb-0"></p>
                                                 </div>
                                             </div>
                                         </li>
@@ -111,7 +110,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <p class="mb-1 text-muted">Email</p>
-                                                    <p class="mb-0">anshan.dh81@gmail.com</p>
+                                                    <p class="company-email mb-0">anshan.dh81@gmail.com</p>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p class="mb-1 text-muted">Zip Code</p>
@@ -120,8 +119,8 @@
                                             </div>
                                         </li>
                                         <li class="list-group-item px-0 pb-0">
-                                            <p class="mb-1 text-muted">Address</p>
-                                            <p class="mb-0">Street 110-B Kalians Bag, Dewan, M.P. New York</p>
+                                            <p class="mb-1 text-muted">Alamat</p>
+                                            <p class="company-address mb-0"></p>
                                         </li>
                                     </ul>
                                 </div>
@@ -171,156 +170,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            {{-- <div class="card">
-                                <div class="card-header">
-                                    <h5>Tipe Layanan Perusahaan</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <div
-                                            class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-                                            <div class="datatable-top">
-                                                <div class="datatable-dropdown">
-                                                    <label>
-                                                        <select class="datatable-selector" name="per-page">
-                                                            <option value="5">5</option>
-                                                            <option value="10" selected="">10</option>
-                                                            <option value="15">15</option>
-                                                            <option value="20">20</option>
-                                                            <option value="25">25</option>
-                                                        </select> entries per page
-                                                    </label>
-                                                </div>
-                                                <div class="datatable-search">
-                                                    <input class="datatable-input" placeholder="Search..." type="search"
-                                                        name="search" title="Search within table"
-                                                        aria-controls="pc-dt-simple">
-                                                </div>
-                                            </div>
-                                            <div class="datatable-container">
-                                                <table class="table table-hover datatable-table" id="pc-dt-simple">
-                                                    <thead>
-                                                        <tr>
-                                                            <th data-sortable="true" style="width: 24%;"><button
-                                                                    class="datatable-sorter">NAME</button></th>
-                                                            <th data-sortable="true" style="width: 13.777777777777779%;">
-                                                                <button class="datatable-sorter">MOBILE</button>
-                                                            </th>
-                                                            <th data-sortable="true" style="width: 16.666666666666664%;">
-                                                                <button class="datatable-sorter">QUALIFICATION</button>
-                                                            </th>
-                                                            <th data-sortable="true" style="width: 13%;"><button
-                                                                    class="datatable-sorter">EMAIL</button></th>
-                                                            <th data-sortable="true" style="width: 17.77777777777778%;">
-                                                                <button class="datatable-sorter">ADMISSION DATE</button>
-                                                            </th>
-                                                            <th data-sortable="true" style="width: 14.777777777777779%;">
-                                                                <button class="datatable-sorter">ACTION</button>
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr data-index="0">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-1.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Airi Satou</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.COM., M.COM.</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2023/09/12</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="1">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-2.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Ashton Cox</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.COM., M.COM.</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2023/12/24</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                        <tr data-index="2">
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="flex-shrink-0"><img
-                                                                            src="../assets/images/user/avatar-3.jpg"
-                                                                            alt="user image" class="img-radius wid-40">
-                                                                    </div>
-                                                                    <div class="flex-grow-1 ms-3">
-                                                                        <h6 class="mb-0">Bradley Greer</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>(123) 4567 890</td>
-                                                            <td>B.A, B.C.A</td>
-                                                            <td>Info@123.com</td>
-                                                            <td>2022/09/19</td>
-                                                            <td><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-eye f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-edit f-20"></i> </a><a href="#"
-                                                                    class="avtar avtar-xs btn-link-secondary"><i
-                                                                        class="ti ti-trash f-20"></i></a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="datatable-bottom">
-                                                <div class="datatable-info">Showing 1 to 10 of 16 entries</div>
-                                                <nav class="datatable-pagination">
-                                                    <ul class="datatable-pagination-list">
-                                                        <li
-                                                            class="datatable-pagination-list-item datatable-hidden datatable-disabled">
-                                                            <button data-page="1"
-                                                                class="datatable-pagination-list-item-link"
-                                                                aria-label="Page 1">‹</button>
-                                                        </li>
-                                                        <li class="datatable-pagination-list-item datatable-active"><button
-                                                                data-page="1" class="datatable-pagination-list-item-link"
-                                                                aria-label="Page 1">1</button></li>
-                                                        <li class="datatable-pagination-list-item"><button data-page="2"
-                                                                class="datatable-pagination-list-item-link"
-                                                                aria-label="Page 2">2</button></li>
-                                                        <li class="datatable-pagination-list-item"><button data-page="2"
-                                                                class="datatable-pagination-list-item-link"
-                                                                aria-label="Page 2">›</button></li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
@@ -330,7 +179,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Status</h3>
-                                                    <p class="text-muted mb-0">Aktif</p>
+                                                    <p class="sertificate-status text-muted mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-file-alt fa-lg text-primary f-36"></i>
@@ -345,7 +194,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Tanggal Terbit</h3>
-                                                    <p class="text-muted mb-0">20 November 2024</p>
+                                                    <p class="sertificate-publish text-muted mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-calendar-alt fa-lg text-primary f-36"></i>
@@ -360,7 +209,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Masa Berlaku</h3>
-                                                    <p class="text-muted mb-0">20 November 2029</p>
+                                                    <p class="sertificate-expired text-muted mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-solid fa-clock fa-lg text-primary f-36"></i>
@@ -372,76 +221,13 @@
                             </div>
                             <div class="card" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
                                 <div class="card-body" style="padding: 10px;">
-                                    <h5>Sertifikat 10/XVI/009/291/04/01</h5>
+                                    <h5>Sertifikat <span class="sertificate-number"></span></h5>
                                     <div id="pdf-container"
                                         style="width: 100%; height: 500px; border: 1px solid #ccc; overflow: auto;">
                                         <div id="pdf-viewer"></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xxl-3">
-                    <div class="card border-0 shadow-none drp-upgrade-card"
-                        style="background-image: url(../assets/images/layout/img-profile-card.jpg)">
-                        <div class="card-body">
-                            <div class="user-group"><img src="../assets/images/user/avatar-1.jpg" alt="user-image"
-                                    class="avtar"> <img src="../assets/images/user/avatar-2.jpg" alt="user-image"
-                                    class="avtar"> <img src="../assets/images/user/avatar-3.jpg" alt="user-image"
-                                    class="avtar"> <img src="../assets/images/user/avatar-4.jpg" alt="user-image"
-                                    class="avtar"> <img src="../assets/images/user/avatar-5.jpg" alt="user-image"
-                                    class="avtar"> <span class="avtar bg-light-primary text-primary">+20</span></div>
-                            <h3 class="mt-2 mb-4 text-secondary">245.3k <small class="text-muted">Followers</small></h3>
-                            <h5 class="mb-0 text-secondary">People Stebin Ben Follows</h5>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header d-flex align-items-center justify-content-between">
-                            <h5>Bio</h5>
-                            <div class="dropdown"><a class="avtar avtar-xs btn-link-secondary dropdown-toggle arrow-none"
-                                    href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"><i class="material-icons-two-tone f-18">more_vert</i></a>
-                                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
-                                        href="#">Edit</a> <a class="dropdown-item" href="#">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="mb-0">It is a long established fact that a reader will be distracted by the
-                                readable content of a page when looking at its layout.</p>
-                            <hr class="my-3 border border-secondary-subtle">
-                            <ul class="list-unstyled mb-0">
-                                <li><a class="d-flex align-items-center text-muted text-hover-primary mb-2"
-                                        href="https://phoenixcoded.net/" target="_blank">
-                                        <div class="avtar avtar-xs bg-light-secondary flex-shrink-0 me-2"><i
-                                                class="material-icons-two-tone text-secondary f-16">language</i></div>
-                                        <span class="text-truncate w-100">https://phoenixcoded.net/</span>
-                                    </a></li>
-                                <li>
-                                    <div class="d-flex align-items-center text-muted mb-2">
-                                        <div class="avtar avtar-xs bg-light-secondary flex-shrink-0 me-2"><i
-                                                class="material-icons-two-tone text-secondary f-16">home</i></div><span
-                                            class="text-truncate w-100">Hanoi, Vietnam</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex align-items-center text-muted mb-2">
-                                        <div class="avtar avtar-xs bg-light-secondary flex-shrink-0 me-2"><i
-                                                class="material-icons-two-tone text-secondary f-16">calendar_today</i>
-                                        </div><span class="text-truncate w-100">Auguest, 21,1996</span>
-                                    </div>
-                                </li>
-                                <li><a class="d-flex align-items-center text-muted text-hover-primary mb-2"
-                                        href="mailto:demo123@mail.com" target="_blank">
-                                        <div class="avtar avtar-xs bg-light-secondary flex-shrink-0 me-2"><i
-                                                class="material-icons-two-tone text-secondary f-16">email</i></div><span
-                                            class="text-truncate w-100">demo123@mail.com</span>
-                                    </a></li>
-                            </ul>
-                            <hr class="my-3 border border-secondary-subtle">
-
                         </div>
                     </div>
                 </div>
@@ -453,52 +239,220 @@
 @section('scripts')
     <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/date-language-format.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
+@endsection
 
-
-    {{-- <script src="{{ asset('assets') }}//js/pages/chart-apex.js"></script> --}}
+@section('page_js')
     <script>
         // IFRAME
         const pdfUrl = 'https://storage.hubdat.dephub.go.id/tdbupj-dev/testing--yGywXxuU5hzB9256gu-c.pdf';
 
-        const loadingTask = pdfjsLib.getDocument(pdfUrl);
-        loadingTask.promise.then(function(pdf) {
-            const container = document.getElementById('pdf-viewer');
-            for (let i = 1; i <= pdf.numPages; i++) {
-                pdf.getPage(i).then(function(page) {
-                    const scale = 1.5;
-                    const viewport = page.getViewport({
-                        scale
-                    });
+        async function getUserData() {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+                'GET',
+                '/dummy/company/dashboard/company.json'
+                // '{{ env('ESMK_SERVICE_BASE_URL') }}/company/dashboard/company/perusahaan',
 
-                    // Create canvas element
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-                    canvas.style.borderBottom = '1px solid #ddd'; // Border between pages
-                    canvas.style.marginBottom = '10px'; // Margin between pages
-
-                    // Render PDF page on canvas
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport,
-                    };
-                    page.render(renderContext);
-
-                    // Append canvas to container
-                    container.appendChild(canvas);
-                });
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+            loadingPage(false);
+            if (getDataRest.status == 200) {
+                let handleDataResult = await handleUserData(getDataRest.data.data);
+                console.log("🚀 ~ getUserData ~ handleDataResult:", handleDataResult)
+                await setUserData(handleDataResult);
             }
-        }).catch(function(error) {
-            console.error('Error loading PDF:', error);
-            const errorMessage = document.createElement('p');
-            errorMessage.textContent = 'Failed to load PDF. Please try again later.';
-            document.getElementById('pdf-viewer').appendChild(errorMessage);
-        });
+        }
+
+        async function handleUserData(data) {
+            const isActive = (data['is_active'] === true) || (data['is_active'] === 1);
+
+            let handleData = {
+                id: data['id'] ?? '-',
+                name: data['name'] ?? '-',
+                username: data['username'] ?? '-',
+                phone_number: data['phone_number'] ?? '-',
+                email: data['email'] ?? '-',
+                email_verified_at: data['email_verified_at'] ?? '-',
+                nib: data['nib'] ?? '-',
+                address: data['address'] ?? '-',
+                company_phone_number: data['company_phone_number'] ?? '-',
+                pic_name: data['pic_name'] ?? '-',
+                pic_phone: data['pic_phone'] ?? '-',
+                request_date: data['request_date'] ?? '-',
+                approved_at: data['approved_at'] ?? '-',
+                approved_by: data['approved_by'] ?? '-',
+                created_at: data['created_at'] ?? '-',
+                updated_at: data['updated_at'] ?? '-',
+                established: data['established'] ?? '-',
+                exist_spionam: data['exist_spionam'] ?? '-',
+                province_name: (data['province'] && data['province']['name']) ? data['province']['name'] : '-',
+                city_name: (data['city'] && data['city']['name']) ? data['city']['name'] : '-',
+                is_active: {
+                    init: data['is_active'] ?? '-',
+                    color: isActive ? "text-success" : "text-danger",
+                    text_status: isActive ? "Aktif" : "Tidak Aktif",
+                    icon_status: isActive ? "fas fa-circle-check" : "fas fa-circle-xmark",
+                },
+                service_types: (data['service_types']?.map(service => service['name']).join(', ')) ?? '-'
+            };
+
+            return handleData;
+        }
+
+        async function setUserData(data) {
+            console.log("🚀 ~ setUserData ~ data:", data)
+            $('.company-name').html(data.name);
+            $('.company-province').html(data.province_name);
+            $('.company-city').html(data.city_name);
+            $('.company-phone').html(data.company_phone_number);
+            $('.company-email').html(data.email);
+            $('.company-address').html(data.address);
+            $('.company-service-types').html(`<li class="list-item">${data.service_types}</li>`);
+            $('.company-nib').html(data.nib);
+            $('.company-joined-date').html(formatTanggalIndo(data.created_at != '-' || data.created_at == null ? data
+                .created_at : data.request_date));
+            $('.company-pic-name').html(data.pic_name);
+            $('.company-pic-phone').html(data.pic_phone);
+            $('.company-user-name').html(data.username);
+            $('.company-user-phone').html(data.phone_number);
+            $('.company-is-active').addClass(`${data.is_active.icon_status} ${data.is_active.color}`);
+        }
+
+        async function getSertifikatData() {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+                'GET',
+                '/dummy/company/dashboard/getSMK.json'
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            loadingPage(false);
+            if (getDataRest.status == 200) {
+                let handleDataResult = await handleSertifikatData(getDataRest.data.data);
+                await setSertifikatData(handleDataResult);
+            }
+        }
+
+        async function handleSertifikatData(data) {
+            const isActive = (data['is_active'] === true) || (data['is_active'] === 1);
+            const today = new Date();
+            const expiredDate = new Date(data['expired_date']);
+            let statusText = '';
+            let colorClass = '';
+
+            if (expiredDate < today) {
+                statusText = "Kadaluarsa";
+                colorClass = "bg-danger";
+            } else if ((expiredDate - today) < (30 * 24 * 60 * 60 * 1000)) {
+                statusText = "Segera Kadaluarsa";
+                colorClass = "bg-warning text-dark"; // Tambahkan `text-dark` untuk `bg-warning`
+            } else {
+                statusText = "Aktif";
+                colorClass = "bg-success";
+            }
+
+            let handleData = {
+                id: data['id'] ?? '-',
+                certificate_file: data['certificate_file'] ?? '-',
+                publish_date: data['publish_date'] ? dateLanguageFormat(data['publish_date']) : 'Belum Terdaftar',
+                expired_date: data['expired_date'] ? dateLanguageFormat(data['expired_date']) : 'Belum Terdaftar',
+                number_of_certificate: data['number_of_certificate'] ?? '-',
+                is_active: {
+                    init: data['is_active'] ?? '-',
+                    color: isActive ? "text-white bg-success" : "text-white bg-danger",
+                    text_status: isActive ? "Aktif" : "Tidak Aktif",
+                    icon_status: isActive ? "fas fa-circle-check" : "fas fa-circle-xmark",
+                },
+                expired: {
+                    text_status: statusText,
+                    color: `${colorClass} text-white`, // Pastikan semua teks berwarna putih
+                }
+            };
+
+            return handleData;
+        }
+
+
+        async function loadPDF(url) {
+            const loadingTask = pdfjsLib.getDocument(url);
+            const pdf = await loadingTask.promise;
+
+            const container = document.getElementById('pdf-viewer');
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            let scale = 1.5;
+            let currentPage = 1;
+
+            const renderPage = async (pageNum) => {
+                const page = await pdf.getPage(pageNum);
+                const viewport = page.getViewport({
+                    scale: scale
+                });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                container.innerHTML = '';
+                container.appendChild(canvas);
+
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                await page.render(renderContext).promise;
+            };
+
+            await renderPage(currentPage);
+
+            container.style.overflow = 'auto';
+            container.style.maxHeight = '100%';
+            container.style.position = 'relative';
+            canvas.style.maxWidth = '100%';
+            canvas.style.height = 'auto';
+        }
+
+        async function setSertifikatData(data) {
+            const certificatePdfContainer = $('#certificate-pdf');
+
+            if (data.certificate_file && data.certificate_file !== '-') {
+                certificatePdfContainer.html(`
+                <div id="pdf-viewer-container" style="width: 100%; height: 400px; position: relative; overflow: auto;"></div>
+            `);
+                await loadPDF(data.certificate_file);
+            } else {
+                certificatePdfContainer.html(`
+                <h4 class="mt-4 fw-semibold">Sertifikat belum ada</h4>
+                <p class="text-muted mt-3">Silahkan lengkapi proses pengajuan sertifikat SMK <a href="javascript:void(0)">Disini</a></p>
+                <div class="mt-4">
+                    <div class="row justify-content-center mt-5 mb-2">
+                        <div class="col-sm-7 col-8 mb-4">
+                            <img src="{{ asset('assets/images/verification-img.png') }}" alt="Informasi Sertifikat" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            `);
+            }
+            console.log(data.number_of_certificate)
+            $('.sertificate-number').html(data.number_of_certificate);
+            $('.sertificate-status').html(data.is_active.text_status).addClass(`badge ${data.is_active.color}`);
+            $('.sertificate-publish').html(data.publish_date);
+            $('.sertificate-expired').html(data.expired_date).addClass(`badge ${data.expired.color}`);
+        }
 
         // Set the countdown time (e.g., 5 minutes from now)
         const skIssueDate = new Date("2023-12-29"); // Tanggal terbit SK
@@ -544,230 +498,15 @@
             }
         }
 
-        // Update countdown setiap detik
-        setInterval(updateCountdown, 1000);
+        async function initPageLoad() {
+            await Promise.all([
+                getUserData(),
+                getSertifikatData()
+            ])
 
-
-        var options_bar_chart_3 = {
-            chart: {
-                height: 350,
-                type: 'bar'
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-                    dataLabels: {
-                        position: 'top'
-                    }
-                }
-            },
-            colors: ['#4680FF', '#2CA87F'],
-            dataLabels: {
-                enabled: true,
-                offsetX: -6,
-                style: {
-                    fontSize: '12px',
-                    colors: ['#fff']
-                }
-            },
-            stroke: {
-                show: true,
-                width: 1,
-                colors: ['#fff']
-            },
-            series: [{
-                    data: [44, 55, 41, 64, 22, 43, 21, 35, 50]
-                },
-                {
-                    data: [53, 32, 33, 52, 13, 44, 32, 40, 120]
-                }
-            ],
-            xaxis: {
-                categories: [
-                    'AJAP',
-                    'AKAP',
-                    'AKDP',
-                    'Alat Berat',
-                    'Angkot/Angdes',
-                    'Angkutan B3',
-                    'Angkutan Barang Umum',
-                    'Angkutan Lintas Batas Negara',
-                    'Pariwisata'
-                ]
-            }
-        };
-        var chart_bar_chart_3 = new ApexCharts(document.querySelector('#bar-chart-3'), options_bar_chart_3);
-        chart_bar_chart_3.render();
-
-
-        var options_pie_chart_2 = {
-            chart: {
-                height: 320,
-                type: 'donut'
-            },
-            series: [44, 55, 41, 17, 15, 23, 30, 22], // Tambahkan total sesuai jumlah data
-            colors: ['#4680FF', '#E58A00', '#2CA87F', '#3EC9D6', '#9B59B6', '#006400', '#DC2626',
-                '#F4D03F'
-            ], // Warna tambahan
-            labels: [
-                'Pengajuan',
-                'Tidak Lulus Penilaian',
-                'Lulus Penilaian',
-                'Lulus Verifikasi Penilaian',
-                'Wawancara Terjadwal',
-                'Verifikasi Direktur',
-                'Ditolak',
-                'Kadaluwarsa'
-            ], // Tambahkan label untuk mencocokkan data
-            legend: {
-                show: false,
-                position: 'bottom'
-            },
-            plotOptions: {
-                pie: {
-                    donut: {
-                        labels: {
-                            show: true,
-                            name: {
-                                show: false
-                            },
-                            value: {
-                                show: true
-                            }
-                        }
-                    }
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                dropShadow: {
-                    enabled: false
-                }
-            },
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }]
-        };
-        var chart_pie_chart_2 = new ApexCharts(document.querySelector('#pie-chart-2'), options_pie_chart_2);
-        chart_pie_chart_2.render();
-
-
-        var options_mixed_chart_2 = {
-            chart: {
-                height: 350,
-                type: 'line',
-                stacked: false
-            },
-            stroke: {
-                width: [0, 2, 5],
-                curve: 'smooth'
-            },
-            plotOptions: {
-                bar: {
-                    columnWidth: '50%'
-                }
-            },
-            colors: ['#DC2626', '#4680FF', '#E58A00'],
-            series: [{
-                    name: 'Facebook',
-                    type: 'column',
-                    data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
-                },
-                {
-                    name: 'Vine',
-                    type: 'area',
-                    data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
-                },
-                {
-                    name: 'Dribbble',
-                    type: 'line',
-                    data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
-                }
-            ],
-            fill: {
-                opacity: [0.85, 0.25, 1],
-                gradient: {
-                    inverseColors: false,
-                    shade: 'light',
-                    type: 'vertical',
-                    opacityFrom: 0.85,
-                    opacityTo: 0.55,
-                    stops: [0, 100, 100, 100]
-                }
-            },
-            labels: [
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003'
-            ],
-            markers: {
-                size: 0
-            },
-            xaxis: {
-                type: 'datetime'
-            },
-            yaxis: {
-                min: 0
-            },
-            tooltip: {
-                shared: true,
-                intersect: false,
-                y: {
-                    formatter: function(y) {
-                        if (typeof y !== 'undefined') {
-                            return y.toFixed(0) + ' views';
-                        }
-                        return y;
-                    }
-                }
-            },
-            legend: {
-                labels: {
-                    useSeriesColors: true
-                },
-                markers: {
-                    customHTML: [
-                        function() {
-                            return '';
-                        },
-                        function() {
-                            return '';
-                        },
-                        function() {
-                            return '';
-                        }
-                    ]
-                }
-            }
-        };
-        var charts_mixed_chart_2 = new ApexCharts(document.querySelector('#mixed-chart-2'), options_mixed_chart_2);
-        charts_mixed_chart_2.render();
-
-        const dataTable = new simpleDatatables.DataTable('#pc-dt-simple', {
-            sortable: false,
-            perPage: 5
-        });
-        const dataTable2 = new simpleDatatables.DataTable('#pc-dt-simple2', {
-            sortable: false,
-            perPage: 10
-        });
-        // new SimpleBar(document.querySelector('.sale-scroll'));
-        // new SimpleBar(document.querySelector('.feed-scroll'));
-        new SimpleBar(document.querySelector('.revenue-scroll'));
-        new SimpleBar(document.querySelector('.income-scroll'));
-        new SimpleBar(document.querySelector('.customer-scroll'));
+            // Update countdown setiap detik
+            setInterval(updateCountdown, 1000);
+        }
     </script>
+    @include('Company.partial-js')
 @endsection
