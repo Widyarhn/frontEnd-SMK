@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}//feather.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/yearpicker.css" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
 @endsection
@@ -29,23 +31,28 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Laporan Tahunan</h2>
                     </div>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-md btn-primary px-3 p-2 dropdown-toggle" id="dropdownTahun"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-plus-circle me-2"></i> Pilih tahun
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownTahun">
-                            <!-- List Tahun -->
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div id="basicwizard" class="form-wizard row justify-content-center">
         <div class="col-12 mt-4">
+            <div class="mb-4">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label class="form-label" for="iReportYear"
+                        style="font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; display: block;">
+                        Tahun Laporan
+                    </label>
+                    <div class="col-3 md-3">
+                        <input type="text" class="flatpickr-input form-control text-center"
+                            name="report_year" id="iReportYear" placeholder="Pilih tahun" readonly="readonly"
+                            required>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body p-3">
+
                     <div class="nav-wrapper" style="overflow-x: auto; white-space: nowrap;">
                         <ul class="nav nav-pills nav-justified" id="wizardTabs"
                             style="display: flex; overflow-x: auto; padding-bottom: 10px;">
@@ -75,6 +82,7 @@
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/yearpicker/yearpicker.js"></script>
 @endsection
 
 @section('page_js')
@@ -477,11 +485,11 @@
 
                 $('#saveStep').click(function() {
                     Swal.fire({
-                            icon: 'success',
-                            title: 'Pemberitahuan',
-                            text: 'Berhasil!',
-                            confirmButtonText: 'OK'
-                        });
+                        icon: 'success',
+                        title: 'Pemberitahuan',
+                        text: 'Berhasil!',
+                        confirmButtonText: 'OK'
+                    });
                 });
 
 
