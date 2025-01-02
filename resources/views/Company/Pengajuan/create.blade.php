@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.js" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
@@ -62,32 +63,81 @@
             <div class="card">
                 <div class="card-body p-3">
                     <div class="nav-wrapper" style="overflow-x: auto; white-space: nowrap;">
-                        <ul class="nav nav-pills nav-justified" id="wizardTabs">
-                            <li class="nav-item" data-target-form="#formDocuments">
-                                <a href="#formDocuments" data-bs-toggle="tab" class="nav-link active">
-                                    <span class="fw-bold f-18"><i class="fa-solid fa-file-lines me-2"></i>Dokumen</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" data-target-form="#1detail">
-                                <a href="#1.1Detail" data-bs-toggle="tab" class="nav-link">
-                                    <span class="fw-bold f-18"><i class="fa-solid fa-shield me-2"></i>1.1</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" data-target-form="#2detail">
-                                <a href="#2.1Detail" data-bs-toggle="tab" class="nav-link">
-                                    <span class="fw-bold f-18"><i class="fa-solid fa-shield me-2"></i>2.1</span>
-                                </a>
-                            </li>
-                            <!-- Dynamically add more tabs here -->
+                        <ul class="nav nav-pills nav-justified" id="wizardTabs"
+                            style="display: flex; overflow-x: auto; padding-bottom: 10px;">
+                            <!-- Tab Dinamis Akan Dimasukkan di Sini -->
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane show active" id="formDocuments">
-                            <form id="formDocuments" method="get">
+                    <div class="tab-content" id="tabContent">
+                        <!-- Konten Dinamis Akan Dimasukkan di Sini -->
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" id="previousStep"
+                        style="margin-right: 10px;">Previous</button>
+                    <button type="button" class="btn btn-primary" id="nextStep" style="margin-left: 10px;">Next</button>
+                    <button type="button" class="btn btn-success" id="saveStep"
+                        style="display: none; margin-left: 10px;">Simpan</button>
+                    <button type="button" class="btn btn-warning" id="saveDraft" style="margin-left: 10px;">Simpan
+                        Draft</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    <!-- [Page Specific JS] start -->
+    <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
+@endsection
+
+@section('page_js')
+    <script>
+        let menu = 'Pengajuan Sertifikat';
+        let smkElements;
+        let answerElement;
+        async function getListData(limit = 10, page = 1, ascending = 0, search = '') {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+                    'GET',
+                    '/dummy/company/sertifikatSMK/create.json'
+                )
+                .then(function(response) {
+                    return response;
+                })
+                .catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                    return resp;
+                });
+
+            loadingPage(false);
+
+            if (getDataRest.status == 200) {
+                smkElements = getDataRest.data.data.element_properties;
+                const answerElement = getDataRest.data.data.answers;
+                const questionSchema = smkElements.question_schema.properties;
+                const uiSchema = smkElements.ui_schema;
+
+                let tabContent = '';
+                let tabNav = '';
+                let numbering = 1;
+
+                // Hardcoded Tab and Content
+                tabNav += `
+            <li class="nav-item">
+                <a href="#hardcodeTab" data-bs-toggle="pill" class="nav-link active" data-index="0">
+                    <span class="fw-bold f-18"><i class="fa-solid fa-file-alt me-2"></i>DOKUMEN PERMOHONAN</span>
+                </a>
+            </li>`;
+                tabContent += `
+            <div class="tab-pane show active" id="hardcodeTab">
+               <form id="formDocuments" method="get">
                                 <div class="text-center">
                                     <h3 class="mb-4">Dokumen/Form Yang Harus Dilengkapi</h3>
                                 </div>
@@ -143,197 +193,319 @@
 
                                 </div>
                             </form>
+            </div>`;
+
+                // Dynamic Tabs and Content
+                let currentTabIndex = 1;
+                for (const [elementKey, elementValue] of Object.entries(uiSchema)) {
+                    let sortableSubElement = sortableSubElementByUiOrder(uiSchema, elementKey);
+                    const numberedElementKey = `${numbering}.${elementKey}`;
+                    let rowIndex = 1;
+
+                    // Tab Navigation
+                    tabNav += `
+                <li class="nav-item">
+                    <a href="#${numberedElementKey}" data-bs-toggle="pill" class="nav-link" data-index="${currentTabIndex}">
+                        <span class="fw-bold f-18"><i class="fa-solid fa-shield me-2"></i>${numbering}. ${questionSchema[elementKey].title}</span>
+                    </a>
+                </li>`;
+
+                    // Tab Content
+                    tabContent += `
+                <div class="tab-pane" id="${numberedElementKey}">
+                    <form id="${numberedElementKey}" method="post" action="#">
+                        <div class="text-center">
+                            <h3 class="mb-2">${questionSchema[elementKey].title}</h3>
+                            <small style="color: blue">Maksimal ukuran file yang diunggah 5 MB.</small>
                         </div>
-                        <div class="tab-pane" id="1.1Detail">
-                            <form id="1detail" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Komitmen dan Kebijakan Keselamatan</h3>
-                                    <small style="color: blue">Maksimal ukuran file yang diunggah 5 MB.</small>
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Dokumen / Bukti Dukungan Jawaban</th>
-                                                <th>Jawaban</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1.1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan, Ekspektasi,
-                                                    Implementasi, Prosedur Terkait)</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Deskripsi Komitmen dan Kebijakan Keselamatan</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    File Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan,
-                                                    Ekspektasi, Implementasi, Prosedur Terkait
-                                                    <div class="col-lg-6 col-12 mb-4">
-                                                        <label class="mb-2">Upload Surat Permohonan Penilaian</label>
-                                                        <div class="mb-3">
-                                                            <input class="form-control" type="file" />
-                                                            <small class="text-muted">Maksimal ukuran file 5 MB.</small>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1.2</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Perusahaan mempunyai komitmen yang kuat dari Manajemen yang
-                                                    terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan
-                                                    tertinggi sebagai lamngkah nyata terhadap aspek keselamatan yang
-                                                    ditunjukkan dalam sikap sehari-hari</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    Bukti Pernyataan Dokumen (foto pernyataan komitmen)</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                    File Dokumen Komitmen
-                                                    <div class="col-lg-6 col-12 mb-4">
-                                                        <label class="mb-2">Upload Surat Permohonan Penilaian</label>
-                                                        <div class="mb-3">
-                                                            <input class="form-control" type="file" />
-                                                            <small class="text-muted">Maksimal ukuran file 5 MB.</small>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="2.1Detail">
-                            <form id="2detail" method="post" action="#">
-                                <div class="text-center">
-                                    <h3 class="mb-2">Pengorganisasian</h3>
-                                    <small style="color: blue">Maksimal ukuran file yang diunggah 5 MB.</small>
-                                </div>
-                                <div class="table-responsive py-5">
-                                    <table class="table table-hover mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Dokumen / Bukti Dukungan Jawaban</th>
-                                                <th>Jawaban</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2.1</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian (Persyaratan, Ekspektasi, Implementasi,
-                                                    Prosedur Terkait)</td>
-                                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan,
-                                                    Ekspektasi, Implementasi, Prosedur Terkait
-                                                    <div class="col-lg-6 col-12 mb-4">
-                                                        <label class="mb-2">Upload Surat Permohonan Penilaian</label>
-                                                        <div class="mb-3">
-                                                            <input class="form-control" type="file" />
-                                                            <small class="text-muted">Maksimal ukuran file 5 MB.</small>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2.2</td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai struktur organisasi pengelolaan di bidang
-                                                    keselamatan, seperti Unit Manajemen Keselamatan atau Petugas Keselamatan
-                                                </td>
-                                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Dokumen struktur organisasi Unit Manajemen Keselamatan Petugas
-                                                    Keselamatan</td>
-                                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Struktur Organisasi
-                                                    <div class="col-lg-6 col-12 mb-4">
-                                                        <label class="mb-2">Upload Surat Permohonan Penilaian</label>
-                                                        <div class="mb-3">
-                                                            <input class="form-control" type="file" />
-                                                            <small class="text-muted">Maksimal ukuran file 5 MB.</small>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Dynamically add more tab panes here -->
-                        <div class="d-flex wizard justify-content-between flex-wrap gap-2 mt-3">
-                            <div class="first">
-                                <button type="button" class="btn btn-light">Simpan Sebagai Draft</button>
-                            </div>
-                            <div class="d-flex">
-                                <div class="previous me-2">
-                                    <button type="button" class="btn btn-secondary kembali">Kembali</button>
-                                </div>
-                                <div class="next">
-                                    <button type="button" class="btn btn-primary selanjutnya">Selanjutnya</button>
-                                </div>
-                            </div>
-                            <div class="last">
-                                <button type="button" class="btn btn-success">Kirim Pengajuan</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <div class="table-responsive py-5">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Uraian</th>
+                                        <th>Dokumen / Bukti Dukungan Jawaban</th>
+                                        <th>Jawaban</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+                    sortableSubElement.forEach(function(subElement) {
+                        let questionProperties = questionSchema[elementKey]['properties'][subElement[0]];
+                        let formInputHtml = generateFormInput(
+                            subElement[1]['ui:widget'],
+                            `${elementKey}`,
+                            `${subElement[0]}`
+                        );
 
-        </div>
-    </div>
-@endsection
-@section('scripts')
-    <!-- [Page Specific JS] start -->
-    <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
-
-    <script>
-        document.addEventListener("click", (e) => {
-            if (e.target.classList.contains('selanjutnya')) {
-                let currentTab = document.querySelector('.tab-pane.active');
-                let nextTab = currentTab.nextElementSibling;
-
-                if (nextTab) {
-                    currentTab.classList.remove('show', 'active');
-                    nextTab.classList.add('show', 'active');
-                }
-            }
-
-            if (e.target.classList.contains('kembali')) {
-                let currentTab = document.querySelector('.tab-pane.active');
-                let prevTab = currentTab.previousElementSibling;
-
-                if (prevTab) {
-                    currentTab.classList.remove('show', 'active');
-                    prevTab.classList.add('show', 'active');
-                }
-            }
-        });
-        document.addEventListener("DOMContentLoaded", function() {
-            const wizardTabs = document.getElementById("wizardTabs");
-
-            // Scroll to active tab on load
-            const activeTab = wizardTabs.querySelector(".nav-link.active");
-            if (activeTab) {
-                activeTab.scrollIntoView({
-                    behavior: "smooth",
-                    block: "nearest",
-                    inline: "center"
-                });
-            }
-
-            // Add event listener to tabs for active scrolling
-            const tabs = wizardTabs.querySelectorAll(".nav-link");
-            tabs.forEach(tab => {
-                tab.addEventListener("click", function() {
-                    this.scrollIntoView({
-                        behavior: "smooth",
-                        block: "nearest",
-                        inline: "center"
+                        tabContent += `
+                    <tr>
+                        <td>${numbering}.${rowIndex}</td>
+                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${questionProperties['title']}</td>
+                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${questionProperties['description']}</td>
+                        <td>${formInputHtml}</td>
+                    </tr>`;
+                        rowIndex++;
                     });
+
+                    tabContent += `
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>`;
+                    numbering++;
+                    currentTabIndex++;
+                }
+
+                // Append Tabs and Content to the DOM
+                $('#wizardTabs').html(tabNav);
+                $('#tabContent').html(tabContent);
+
+                // Tab Navigation Logic
+                let currentTab = 0;
+
+                $('#wizardTabs .nav-link').click(function() {
+                    const index = $(this).data('index');
+                    currentTab = index;
+                    updateTabContent();
                 });
+
+                // Update Tab Content Based on Current Tab
+                function updateTabContent() {
+                    $('#wizardTabs .nav-link').removeClass('active');
+                    $('#tabContent .tab-pane').removeClass('show active');
+
+                    $(`#wizardTabs .nav-link[data-index="${currentTab}"]`).addClass('active');
+                    $(`#tabContent .tab-pane:eq(${currentTab})`).addClass('show active');
+
+                    // Update Buttons for Last Tab
+                    if (currentTab === $('#wizardTabs .nav-link').length - 1) {
+                        $('#saveStep').show();
+                        $('#nextStep').hide();
+                    } else {
+                        $('#saveStep').hide();
+                        $('#nextStep').show();
+                    }
+                }
+
+                // Previous and Next Buttons
+                $('#previousStep').click(function() {
+                    if (currentTab > 0) {
+                        currentTab--;
+                        updateTabContent();
+                    }
+                });
+
+                $('#nextStep').click(function() {
+                    if (currentTab < $('#wizardTabs .nav-link').length - 1) {
+                        currentTab++;
+                        updateTabContent();
+                    }
+                });
+
+                // Save Draft Button
+                $('#saveStep').click(function() {
+                    Swal.fire({
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Berhasil!',
+                            confirmButtonText: 'OK'
+                        });
+                });
+                
+
+                // Initialize Content
+                updateTabContent();
+            }
+        }
+
+
+
+        function sortableSubElementByUiOrder(uiSchema, elementKey) {
+            let sortable = []
+
+            for (let a in uiSchema[elementKey]) {
+                sortable.push([a, uiSchema[elementKey][a]]);
+            }
+
+            sortable.sort(function(a, b) {
+                return a[1]['ui:order'] - b[1]['ui:order'];
             });
-        });
+
+            return sortable
+        }
+
+        function generateFormInput(inputType, elementName, subElementName) {
+            let $htmlInput = '';
+            let questionProperties = smkElements['question_schema']['properties'][elementName]['properties'][
+                subElementName
+            ];
+            let previousFiles = answerElement?.[elementName]?.[subElementName] ?? [];
+            // Handle 'files' type input (array of files)
+            if (inputType === 'files') {
+                let items = questionProperties['items'];
+
+                for (let i in items) {
+                    let fileKey = Object.keys(items[i])[0];
+                    let fileName = items[i][fileKey]['name'];
+
+                    $htmlInput += `
+                        <label class="form-label">File ${fileName}</label>
+                        ${Array.isArray(previousFiles) ?
+                            previousFiles.map(file => `<a href="${file.url || file}" target="_blank">${file.name || 'Download File'}</a><br>`).join('') :
+                            ''
+                        }
+                        <input type="file"
+                            class="filepond form-control smk-element-file"
+                            id="${fileKey}File"
+                            accept="application/pdf">
+                        <input type="hidden" class="answer-element" name="${elementName}_${fileKey}" id="${elementName}_${fileKey}" required>
+                    `;
+                }
+            }
+            // Handle single 'file' type input
+            else if (inputType === 'file') {
+                $htmlInput = `
+                    <label class="form-label">File ${questionProperties['attachmentName']}</label>
+                    ${Array.isArray(previousFiles) ?
+                        previousFiles.map(file => `<a href="${file.url || file}" target="_blank">${file.name || 'Download File'}</a><br>`).join('') :
+                        `<a href="${previousFiles}" target="_blank">Download File</a>`
+                    }
+                    <input type="file"
+                        class="filepond form-control smk-element-file"
+                        id="${subElementName}File"
+                        accept="application/pdf">
+                    <input type="hidden"
+                        class="answer-element"
+                        name="${elementName}_${subElementName}"
+                        id="${elementName}_${subElementName}"
+                        required>
+                `;
+            }
+            // Handle image input type
+            else if (inputType === 'image') {
+                $htmlInput = `
+                    <label class="form-label">File</label>
+                    ${Array.isArray(previousFiles) ?
+                        previousFiles.map(file => `<img src="${file.url || file}" alt="${file.name || 'Image'}" style="max-width: 100px;"><br>`).join('') :
+                        `<img src="${previousFiles}" alt="Image" style="max-width: 100px;"><br>`
+                    }
+                    <input type="file"
+                        class="filepond form-control smk-element-file"
+                        id="${subElementName}File"
+                        accept="image/png, image/jpeg">
+                    <input type="hidden"
+                        class="answer-element"
+                        name="${elementName}_${subElementName}"
+                        id="${elementName}_${subElementName}"
+                        required>
+                `;
+            }
+            // Handle text inputs
+            else {
+                let previousValue = Array.isArray(previousFiles) && previousFiles.length > 0 ? previousFiles[0].name :
+                    ''; // default to the first file name if available
+
+                $htmlInput = `
+                    <label class="form-label">Inputan</label>
+                    <input type="text"
+                        class="form-control answer-element"
+                        id="${elementName}_${subElementName}Text"
+                        name="${elementName}_${subElementName}Text"
+                        value="${previousValue}">
+                `;
+            }
+
+            return $htmlInput;
+        }
+
+        function inputDate() {
+            flatpickr("#date_of_application_letter", {
+                altInput: true,
+                dateFormat: "YYYY-MM-DD",
+                altFormat: 'DD MMMM YYYY',
+                parseDate: (datestr, format) => {
+                    return moment(datestr, format, true).toDate();
+                },
+                formatDate: (date, format, locale) => {
+                    return moment(date).format(format);
+                },
+            });
+
+            //uploadFile('application_letter_show', 'application_letter')
+        }
+
+
+        async function addData() {
+            // const form = document.getElementById('fCreate');
+            // form.addEventListener("submit", (e) => {
+            //     e.preventDefault(); // Mencegah submit default
+
+            //     const formParsley = $('#fCreate').parsley(); // Validasi menggunakan Parsley
+            //     formParsley.validate();
+
+            //     if (!formParsley.isValid()) return false; // Berhenti jika validasi gagal
+
+            //     // Ambil data dari form sebagai array dan konversi menjadi objek manual
+            //     let dataArray = $("#fCreate").serializeArray(),
+            //         formObject = {}; // Gantikan AjaxHelper dengan konversi manual
+
+            //     // Loop melalui dataArray untuk mengubahnya menjadi objek
+            //     dataArray.forEach((field) => {
+            //         formObject[field.name] = field.value;
+            //     });
+
+
+            //     // Cek apakah field wajib kosong
+            //     if (!formObject.number_of_application_letter) {
+            //         loadingPage(false);
+            //         notificationAlert('info', 'Pemberitahuan', 'Nomor surat permohonan wajib diisi')
+            //         return;
+            //     }
+
+            //     if (!formObject.date_of_application_letter) {
+            //         loadingPage(false);
+            //         notificationAlert('info', 'Pemberitahuan', 'Tanggal surat permohonan wajib diisi')
+            //         return;
+            //     }
+
+            //     if (!formObject.file_of_application_letter) {
+            //         loadingPage(false);
+            //         notificationAlert('info', 'Pemberitahuan', 'File surat permohonan wajib diisi')
+            //         return;
+            //     }
+
+            //     // Membangun skema jawaban
+            //     let answerSchema = buildAnswerSchema();
+
+            //     // Mengumpulkan semua data form
+            //     let formData = {
+            //         element_properties: smkElements, // Asumsikan smkElements sudah didefinisikan
+            //         answers: answerSchema,
+            //         status: 'request',
+            //         number_of_application_letter: formObject.number_of_application_letter,
+            //         date_of_application_letter: formObject.date_of_application_letter,
+            //         file_of_application_letter: formObject.file_of_application_letter,
+            //     };
+
+            //     // Kirim data ke server
+            //     submitData(formData, 'Berhasil mengirim pengajuan');
+            // });
+        }
+        async function initPageLoad() {
+            // FilePond.registerPlugin(
+            //     FilePondPluginFileEncode,
+            //     FilePondPluginImagePreview,
+            //     FilePondPluginPdfPreview,
+            //     FilePondPluginFileValidateSize,
+            //     FilePondPluginFileValidateType
+            // )
+            await Promise.all([
+                getListData(),
+                inputDate(),
+                addData(),
+            ])
+            $('.filepond--credits').remove()
+        }
     </script>
 @endsection
