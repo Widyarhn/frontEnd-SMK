@@ -92,7 +92,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="p-3">
+                        <div class="p-3">
                             <div class="mb-3">
                                 <div class="form-floating mb-0">
                                     <input type="text" class="form-control" name="input_kode_kbli" id="input_kode_kbli"
@@ -113,7 +113,7 @@
                                     <label for="input_deskripsi_kbli">Deskripsi KBLI</label>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary reset-all"

@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/uikit.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
+    <link href="https://cdn.jsdelivr.net/gh/creativetimofficial/nucleo-icons/css/nucleo-icons.css" rel="stylesheet">
 
     <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js"></script>
 
