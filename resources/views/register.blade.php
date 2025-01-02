@@ -247,7 +247,7 @@
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
-                                    <a href="/dashboard" class="btn mb-2" style="border-radius:5px;background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;"">Simpan</a>
+                                    <a href="/admin/dashboard" class="btn mb-2" style="border-radius:5px;background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;"">Simpan</a>
                                 </div>
                             </div>
                         </form>
