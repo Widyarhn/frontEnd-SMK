@@ -466,7 +466,7 @@
 
                 let certificateRequestschart = getDataRest.data.data.certificate_requests || [];
                 setChartcertificateRequest(certificateRequestschart);
-                
+
 
                 // Menghitung jumlah untuk setiap status yang akan ditampilkan di kartu
                 let statusMapping = {
@@ -526,55 +526,55 @@
         }
 
         async function setChart(serviceTypes) {
-    let labels = serviceTypes.map(item => item.name);
-    let dataPoints = serviceTypes.map(item => item.companies.length);
+            let labels = serviceTypes.map(item => item.name);
+            let dataPoints = serviceTypes.map(item => item.companies.length);
 
-    // Get the minimum and maximum value from the dataPoints array
-    let minValue = Math.min(...dataPoints);
-    let maxValue = Math.max(...dataPoints);
+            // Get the minimum and maximum value from the dataPoints array
+            let minValue = Math.min(...dataPoints);
+            let maxValue = Math.max(...dataPoints);
 
-    var options_bar_chart_3 = {
-        chart: {
-            height: 350,
-            width: '90%',
-            type: 'bar'
-        },
-        plotOptions: {
-            bar: {
-                horizontal: true,
+            var options_bar_chart_3 = {
+                chart: {
+                    height: 350,
+                    width: '90%',
+                    type: 'bar'
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        dataLabels: {
+                            position: 'top'
+                        }
+                    }
+                },
+                colors: ['#4680FF'],
                 dataLabels: {
-                    position: 'top'
+                    enabled: true,
+                    offsetX: -6,
+                    style: {
+                        fontSize: '12px',
+                        colors: ['#fff']
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#fff']
+                },
+                series: [{
+                    name: 'Perusahaan',
+                    data: dataPoints
+                }],
+                xaxis: {
+                    categories: labels,
+                    min: minValue, // Set dynamic minimum
+                    max: maxValue, // Set dynamic maximum
                 }
-            }
-        },
-        colors: ['#4680FF'],
-        dataLabels: {
-            enabled: true,
-            offsetX: -6,
-            style: {
-                fontSize: '12px',
-                colors: ['#fff']
-            }
-        },
-        stroke: {
-            show: true,
-            width: 1,
-            colors: ['#fff']
-        },
-        series: [{
-            name: 'Perusahaan',
-            data: dataPoints
-        }],
-        xaxis: {
-            categories: labels,
-            min: minValue, // Set dynamic minimum
-            max: maxValue, // Set dynamic maximum
-        }
-    };
+            };
 
-    var chart_bar_chart_3 = new ApexCharts(document.querySelector('#bar-chart-3'), options_bar_chart_3);
-    chart_bar_chart_3.render();
-}
+            var chart_bar_chart_3 = new ApexCharts(document.querySelector('#bar-chart-3'), options_bar_chart_3);
+            chart_bar_chart_3.render();
+        }
 
         async function setChartcertificateRequest(certificateRequestschart) {
             if (!Array.isArray(certificateRequestschart)) {
@@ -733,7 +733,7 @@
                 chart: {
                     height: 350,
                     type: 'line',
-                    width: '90%', 
+                    width: '90%',
                     stacked: false
                 },
                 stroke: {
@@ -809,7 +809,7 @@
 
             var charts_mixed_chart_2 = new ApexCharts(document.querySelector('#mixed-chart-2'), options_mixed_chart_2);
             charts_mixed_chart_2.render();
-            
+
         }
 
 
