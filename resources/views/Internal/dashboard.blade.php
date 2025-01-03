@@ -8,11 +8,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
 @endsection
 @section('content')
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-4 offset-md-8 d-flex justify-content-end">
+                    <div class="input-group">
+                        <input type="text" id="pc-date_range_picker-2" class="form-control"
+                            placeholder="Pilih rentang tanggal" />
+                        <span class="input-group-text"><i class="feather icon-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-12">
             <div class="card welcome-banner bg-blue-800" style="background: #0f2a7d;">
@@ -22,7 +38,8 @@
                             <div class="p-4">
                                 <h2 class="text-white">Selamat Datang, Penilai</h2>
                                 <p class="text-white">Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam
-                                    menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja keselamatan secara berkelanjutan.
+                                    menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
+                                    keselamatan secara berkelanjutan.
                             </div>
                         </div>
                         <div class="col-sm-6 text-center">
@@ -189,7 +206,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
@@ -275,10 +292,10 @@
 
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    {{-- <script src="{{ asset('assets') }}/js/pages/dashboard-default.js"></script> -- --}}
     <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
-    {{-- <script src="{{ asset('assets') }}//js/pages/chart-apex.js"></script> --}}
+    <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
+
     <script>
         var options_bar_chart_3 = {
             chart: {
@@ -501,5 +518,11 @@
         new SimpleBar(document.querySelector('.revenue-scroll'));
         new SimpleBar(document.querySelector('.income-scroll'));
         new SimpleBar(document.querySelector('.customer-scroll'));
+
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr(document.querySelector('#pc-date_range_picker-2'), {
+                mode: 'range'
+            });
+        });
     </script>
 @endsection
