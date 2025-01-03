@@ -412,7 +412,7 @@
                                                                                                             data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
                                                                                                             <i class="ti ti-eye me-1"></i> Lihat Catatan
                                                                                                         </button>` : ''}
-                                                <a href="/company/yearly-report/detail"
+                                                <a href="/internal/laporan-tahunan/detail"
                                                     class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;">
                                                     <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
                                                 </a>

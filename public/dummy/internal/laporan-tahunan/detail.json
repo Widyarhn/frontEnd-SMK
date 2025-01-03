@@ -4,67 +4,78 @@
     "status_code": 200,
     "data": {
         "company": {
-            "id": 38,
-            "name": "PT JAYA BERSAMA HUTAMA",
-            "username": "jaya",
-            "phone_number": "08967542719",
-            "email": "jb_hutama78@yahoo.com",
+            "id": 1,
+            "name": "PT Cahaya AKAP",
+            "username": "cahaya",
+            "phone_number": "081207380001",
+            "email": "cahaya@mail.com",
             "email_verified_at": null,
-            "nib": "2208230181037",
+            "nib": "1165411111",
             "nib_file": "-",
-            "province_id": 32,
-            "city_id": 3273,
-            "address": "Dusun I Nomor 18",
-            "company_phone_number": "081278466999",
-            "pic_name": "ANDY IRAWAN HALIM",
-            "pic_phone": "085268360000",
-            "request_date": "2024-01-16 13:42:40",
-            "approved_at": null,
-            "approved_by": null,
+            "province_id": 31,
+            "city_id": 3173,
+            "address": "jl Tegal Parang no 14",
+            "company_phone_number": "22232222",
+            "pic_name": "Pak Cahaya 1",
+            "pic_phone": "081207380001",
+            "request_date": "2023-11-30 09:41:21",
+            "approved_at": "2023-11-30 09:41:21",
+            "approved_by": 3,
             "is_active": false,
-            "created_at": "2024-01-15 23:42:40",
-            "updated_at": "2024-01-15 23:44:39",
+            "created_at": "2023-11-30 02:41:21",
+            "updated_at": null,
             "deleted_at": null,
-            "established": "2017-04-25",
-            "exist_spionam": false,
+            "established": "2020-02-01",
+            "exist_spionam": true,
             "service_types": [
                 {
-                    "id": 1,
-                    "name": "AKAP",
-                    "created_at": "2024-07-22T17:47:32.000000Z",
+                    "id": 2,
+                    "name": "AKDP",
+                    "created_at": "2024-07-23T00:47:32.000000Z",
                     "updated_at": null,
                     "deleted_at": null,
                     "pivot": {
-                        "company_id": 38,
-                        "service_type_id": 1
+                        "company_id": 1,
+                        "service_type_id": 2
                     }
                 },
                 {
-                    "id": 6,
-                    "name": "Angkutan barang umum",
-                    "created_at": "2024-07-22T17:47:32.000000Z",
+                    "id": 2,
+                    "name": "AJAP",
+                    "created_at": "2024-07-23T00:47:32.000000Z",
                     "updated_at": null,
                     "deleted_at": null,
                     "pivot": {
-                        "company_id": 38,
-                        "service_type_id": 6
+                        "company_id": 1,
+                        "service_type_id": 2
+                    }
+                },
+                {
+                    "id": 2,
+                    "name": "Angkutan Barang Khusus",
+                    "created_at": "2024-07-23T00:47:32.000000Z",
+                    "updated_at": null,
+                    "deleted_at": null,
+                    "pivot": {
+                        "company_id": 1,
+                        "service_type_id": 2
                     }
                 }
             ],
             "province": {
-                "id": 32,
-                "name": "Jawa Barat",
-                "administrative_code": "32",
-                "created_at": "2024-07-22T17:47:31.000000Z",
-                "updated_at": "2024-07-22T17:47:31.000000Z"
+                "id": 31,
+                "name": "DKI Jakarta",
+                "administrative_code": "31",
+                "created_at": "2024-07-23T00:47:31.000000Z",
+                "updated_at": "2024-07-23T00:47:31.000000Z"
             },
             "city": {
-                "id": 3273,
-                "province_id": 32,
-                "name": "Kota Bandung",
-                "administrative_code": "32.73",
-                "created_at": "2024-07-22T17:47:31.000000Z",
-                "updated_at": "2024-07-22T17:47:31.000000Z"
+                "id": 3173,
+                "province_id": 31,
+                "name": "Kota Adm. Jakarta Pusat",
+                "administrative_code": "31.71",
+                "created_at": "2024-07-23T00:47:31.000000Z",
+                "updated_at": "2024-07-23T00:47:31.000000Z"
             }
         },
         "year": 2024,
@@ -76,427 +87,62 @@
                     "isVisibilityValue": false
                 },
                 "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": {
-                    "questionValue": "Lampirkan bentuk sosialiasi komitment kebijakan terbaru, notulensi daftart hadir dan foto sosilaisasi",
-                    "isMandatoryValue": true,
-                    "isVisibilityValue": true
-                },
-                "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
-                    "questionValue": "Apakah terdapat perubahan pada dokumen Komitmen",
+                    "questionValue": null,
                     "isMandatoryValue": false,
-                    "isVisibilityValue": true
+                    "isVisibilityValue": false
+                },
+                "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
+                    "questionValue": null,
+                    "isMandatoryValue": false,
+                    "isVisibilityValue": false
                 },
                 "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": [
                     {
                         "dokumenKebijakan": {
-                            "questionValue": "Apakah terdapat perubahan pada dokumen Kebijakan",
+                            "questionValue": null,
                             "isMandatoryValue": false,
-                            "isVisibilityValue": true
+                            "isVisibilityValue": false
                         }
                     },
                     {
                         "dokumenVisiMisi": {
-                            "questionValue": "Apakah terdapat perubahan pada dokumen Visi Misi",
+                            "questionValue": null,
                             "isMandatoryValue": false,
-                            "isVisibilityValue": true
+                            "isVisibilityValue": false
                         }
                     }
                 ]
             },
             "element_2": {
                 "deskripsiPengorganisasian": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
+                    "questionValue": "at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,",
+                    "isMandatoryValue": true,
+                    "isVisibilityValue": true
                 },
                 "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": [
                     {
                         "prosedurPengemudi": {
-                            "questionValue": "Apakah terdapat perubahan pada dokumen prosedur penerimaan pengemudi",
+                            "questionValue": null,
                             "isMandatoryValue": false,
-                            "isVisibilityValue": true
+                            "isVisibilityValue": false
                         }
                     },
                     {
                         "prosedurMekanik": {
-                            "questionValue": "Apakah terdapat perubahan pada dokumen prosedur penerimaan mekanik",
+                            "questionValue": "at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,",
                             "isMandatoryValue": false,
                             "isVisibilityValue": true
                         }
                     }
                 ],
                 "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": {
-                    "questionValue": "Apakah terdapat perubahan pada dokumen Struktur Organisasi",
+                    "questionValue": null,
                     "isMandatoryValue": false,
-                    "isVisibilityValue": true
+                    "isVisibilityValue": false
                 },
                 "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": {
-                    "questionValue": "Apakah terdapat perubahan pada dokumen prosedur pengorganisasian",
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": true
-                }
-            },
-            "element_3": {
-                "deskripsiManajemenBahayaDanRisikoPersyaratanEkspektasiImplementasiProsedurTerkait": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "pengemudiMelaporkanDanMengkomunikasikanPotensiBahayaDisepanjangJalurYangDilaluiKepadaPimpinanPerusahaan": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "semuaPotensiBahayaTelahDicatatDilaporkanDanDikomunikasikanKepadaSemuaPihakYangBerhubunganDenganKeselamatan": {
-                    "questionValue": "Lampirkan dokumen perubahan pada pelaporan pengemudi terhadap potensi bahaya, (1 tahun terakhir)",
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": true
-                },
-                "perusahaanTelahMemilikiProsedurIdentifikasiBahayaPenilaianDanPengendalianRisikoSecaraKomprehensifBaikTerhadapPersonelSaranaAngkutanPenumpangMaupunLingkunganUntukSetiapTahapanOperasiPengangkutan": {
-                    "questionValue": "Apakah terdapat perubahan pada dokumen prosedur manajemen bahaya dan risiko",
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": true
-                },
-                "perusahaanTelahMelakukanIdentifikasiBahayaPenilaianDanPengendaliannyaDenganMetodeYangSesuaiDenganKarakteristikBahayaYangAdaMemilikiMatrikPenilaianBahayaDanRisikoMatrikIdentifikasiBahayaPenilaianDanPengendalianRisikoDiKantorBengkelDanOperasionalSertaMatrikIdentifikasiBahayaLaluLintas": [
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiKantor": {
-                            "questionValue": "Apakah terdapat perubahan pada dokumen identifikasi bahaya, penilaian dan pengendalian risiko di Kantor",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiBengkel": {
-                            "questionValue": "Apakah terdapat perubahan pada dokumen identifikasi bahaya, penilaian dan pengendalian risiko di bengkel",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiOperasional": {
-                            "questionValue": "Apakah terdapat perubahan pada dokumen identifikasi bahaya, penilaian dan pengendalian risiko operasional",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "matrikPenilaianBahayaDanRisiko": {
-                            "questionValue": "Apakah terdapat perubahan pada matrik penilaian bahaya dan risiko",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "matrikIdentifikasiBahayaLaluLintas": {
-                            "questionValue": "Apakah terdapat perubahan pada matrik identifikasi bahaya Lalu lintas",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    }
-                ]
-            },
-            "element_4": {
-                "deskripsiFasilitasPemeliharaanDanPerbaikanPersyaratanEkspektasiImplementasiProsedurTerkait": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "pemeliharaanDanPerbaikanKendaraanDenganPenyediaanSaranaDanPrasaranaPendukungYangMemadaiUntukMendukungKeselamatanSepertiBengkelKlinikRuangIstirahatPengemudiRuangParkirFasilitasPenyimpananSukuCadangDanLain-lain": {
-                    "questionValue": "Apakah terdapat perubahan fasilitas pemeliharaan dan perbaikan",
+                    "questionValue": "at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,",
                     "isMandatoryValue": true,
-                    "isVisibilityValue": true
-                },
-                "perusahaanMelengkapiKegiatanOperasionalAngkutanDenganMenyediakanFasilitasPemeliharaanDanPerbaikanKendaraanBermotorSebagaiSyaratUtamaKeselamatanDanPerbaikanKendaraanBermotorYangDigunakanUntukMendukungKegiatanPerusahaan": [
-                    {
-                        "prosedurPengoperasianKendaraan": {
-                            "questionValue": "Apakah terdapat perubahan dokumen prosedur pengoperasian kendaraan",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "instruksiKerjaGantiFilterSolar": {
-                            "questionValue": "Apakah terdapat perubahan dokumen instruksi kerja ganti filter solar",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "instruksiKerjaGantiBan": {
-                            "questionValue": "Apakah terdapat perubahan dokumen intruksi kerja ganti ban",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "kartuInspeksiAPAR": {
-                            "questionValue": "Apakah terdapat perubahan dokumen kartu inspeksi APAR",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "formPemeriksaanKendaraanBermotor": {
-                            "questionValue": "Apakah terdapat perubahan dokumen pemeriksaan kendaraan bermotor",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "formPemeriksaanKendaraanBermotorSebelumOperasi": {
-                            "questionValue": "Apakah terdapat perubahan dokumen pemeriksaan kendaraan bermotor sebelum operasi",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    }
-                ]
-            },
-            "element_5": {
-                "deskripsiDokumentasiDanData": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "dokumentasiDanDataMencakupKeselamatan": [
-                    {
-                        "dokumentasiDanDataKecelakaan": {
-                            "questionValue": "Lampirkan data kecelakaan 1 tahun terakhir",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataKendaraan": {
-                            "questionValue": "Lampirkan data kendaraan 1 tahun terkahir",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataMekanik": {
-                            "questionValue": "Lampirkan data mekanik 1 tahun terkahir beserta kompetensi yang dimilki",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataPelanggaranLaluLintas": {
-                            "questionValue": "Lampirkan data pelanggaran lalu lintas 1 tahun terakhir",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataPemeriksaanKesehatan": {
-                            "questionValue": "Lampirkan data pemeriksaan kesehatan 1 tahun terakhir",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataPengemudi": {
-                            "questionValue": "Lampirkan data pengemudi 1 tahun terakhir besertan kompetensi yang dimiliki",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataPerbaikanKendaraan": {
-                            "questionValue": "Lampirkan data perbaikan kendaraan 1 tahun terakhir",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataUjiBerkalaKendaraan": {
-                            "questionValue": "Lampirkan Data Uji Berkala (KIR) 1 Tahun terakhir",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    }
-                ],
-                "memilikiStandarOperasionalProsedurSOPTerkaitDokumentasiDanData": {
-                    "questionValue": "Apakah terdapat perubahan dokumen Prosedur Dokumentasi dan Data",
-                    "isMandatoryValue": true,
-                    "isVisibilityValue": true
-                }
-            },
-            "element_6": {
-                "deskripsiPeningkatanKompetensiDanPelatihan": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "perusahaanTelahMemilikiStandarOperasionalProsedurSOPPelatihanDanKompetensiUntukSeluruhKaryawanPerusahaan": {
-                    "questionValue": "Apakah terdapat perubahan dokumen Prosedur Kompetensi dan Pelatihan",
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": true
-                },
-                "perusahaanMelakukanProgramPembinaanDanPelatihanBagiTenagaKerjanyaSecaraBerkalaSesuaiDenganKebutuhanKhususnyaYangMengandungRisikoTinggi": [
-                    {
-                        "rencanaTraining": {
-                            "questionValue": "Lampirkan dokumentasi foto kegiatan atau sertifikat training",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "matrixTraining": {
-                            "questionValue": "Apakah terdapat perubahan pada dokumen matriks training",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "evaluasiKompetensi": {
-                            "questionValue": "Lampirkan evaluasi training 1 tahun terakhir",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    }
-                ]
-            },
-            "element_7": {
-                "deskripsiTanggapDarurat": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "tersedianyaPeralatanEmergencyDiKendaraan": {
-                    "questionValue": "Apakah terdapat perubahan Form Check List Alat Tanggap Darurat Kendaraan",
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": true
-                },
-                "perusahaanTelahMemilikiStandarOperasionalProsedurSOPKeadaanDaruratYangMungkinTimbulDalamKegiatanOperasiPerusahaan": [
-                    {
-                        "prosedurTanggapDarurat": {
-                            "questionValue": "Apakah terdapat perubahan dokumen Prosedur Tanggap Darurat",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "strukturTanggapDarurat": {
-                            "questionValue": "Apakah terdapat perubahan dokumen Struktur Tanggap Darurat",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "daftarNomorTelpTanggapDarurat": {
-                            "questionValue": "Apakah terdapat perubahan Daftar Nomor Telepon Tanggap Darurat",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "formEvaluasiSimulasiTanggapDarurat": {
-                            "questionValue": "Apakah terdapat perubahan Form Evaluasi Simulasi Tanggap Darurat",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    }
-                ]
-            },
-            "element_8": {
-                "deskripsiPelaporanKecelakaanInternal": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "perusahaanTelahMempunyaiFomulirStandarPelaporanKecelakaan": [
-                    {
-                        "formPelaporanKecelakaanKerja": {
-                            "questionValue": "Apakah terdapat perubahan Form Pelaporan Kecelakaan Kerja",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "formPelaporanKecelakaan": {
-                            "questionValue": "Apakah terdapat perubahan Form Pelaporan Kecelakaan",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    }
-                ],
-                "perusahaanTelahMemilikiMemilikiStandarOperasionalProsedurPelaporanDanInvestigasiKecelakaan": {
-                    "questionValue": "Apakah terdapat perubahan Prosedur Pelaporan dan Investigasi Kecelakaan",
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": true
-                }
-            },
-            "element_9": {
-                "deskripsiMonitoringDanEvaluasi": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "perusahaanTelahMelakukanEvaluasiDariHasilMonitoringSistemManajemenKeselamatanDanLaporanHasilAuditInternal": [
-                    {
-                        "formPermintaanTindakanPerbaikanDanPencegahan": {
-                            "questionValue": "Lampirkan isian form permintaan tindakan perbaikan dan pencegahan",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "formLaporanAuditInternal": {
-                            "questionValue": "Lampirkan update dokumen form laporan audit internal 1 tahun terakhir",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    }
-                ],
-                "perusahaanTelahMelakukanProsedurMonitoringSistemManajemenKeselamatanSecaraBerkalaPadaPerusahaanDanProsedurKetidaksesuaian": [
-                    {
-                        "prosedurMonitoringDanEvaluasiMelaluiAuditInternal": {
-                            "questionValue": "Apakah terdapat perubahan dokumen Prosedur Monitoring dan Evaluasi Melalui Audit Internal",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "prosedurKetidakSesuaian": {
-                            "questionValue": "Apakah terdapat perubahan dokumen Prosedur Ketidaksesuaian",
-                            "isMandatoryValue": false,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "formJadwalAuditInternal": {
-                            "questionValue": "Lampirkan jadwal audit internal terkait implementasi SMK PAU dari tiap tiap elemen",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    },
-                    {
-                        "formDaftarLaporanKetidaksesuaian": {
-                            "questionValue": "Lampirkan daftar isian laporan ketidaksesuaian dari proses audit internal",
-                            "isMandatoryValue": true,
-                            "isVisibilityValue": true
-                        }
-                    }
-                ]
-            },
-            "element_10": {
-                "deskripsiPengukuranKinerja": {
-                    "questionValue": null,
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": false
-                },
-                "perusahaanTelahMemilikiProsedurPengukuranKinerja": {
-                    "questionValue": "Apakah terdapat perubahan dokumen Prosedur Pengukuran Kinerja",
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": true
-                },
-                "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanDenganMenghitungSeverityIndex": {
-                    "questionValue": "Apakah terdapat perubahan dokumen Formulir Statistik Kecelakaan Saverity Index",
-                    "isMandatoryValue": false,
-                    "isVisibilityValue": true
-                },
-                "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanPelayananAngkutanDenganMenghitungAccidentRateAR": {
-                    "questionValue": "Apakah terdapat perubahan dokumen Formulir Statistik Kecelakaan AR",
-                    "isMandatoryValue": false,
                     "isVisibilityValue": true
                 }
             }
@@ -518,7 +164,7 @@
                             "accept": ".pdf"
                         }
                     },
-                    "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
+                    "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
                         "ui:order": 2,
                         "ui:widget": "file",
                         "ui:options": {
@@ -562,218 +208,13 @@
                             "accept": ".pdf"
                         }
                     }
-                },
-                "element_3": {
-                    "deskripsiManajemenBahayaDanRisikoPersyaratanEkspektasiImplementasiProsedurTerkait": {
-                        "ui:order": 1,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "pengemudiMelaporkanDanMengkomunikasikanPotensiBahayaDisepanjangJalurYangDilaluiKepadaPimpinanPerusahaan": {
-                        "ui:order": 5,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "semuaPotensiBahayaTelahDicatatDilaporkanDanDikomunikasikanKepadaSemuaPihakYangBerhubunganDenganKeselamatan": {
-                        "ui:order": 4,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMemilikiProsedurIdentifikasiBahayaPenilaianDanPengendalianRisikoSecaraKomprehensifBaikTerhadapPersonelSaranaAngkutanPenumpangMaupunLingkunganUntukSetiapTahapanOperasiPengangkutan": {
-                        "ui:order": 2,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMelakukanIdentifikasiBahayaPenilaianDanPengendaliannyaDenganMetodeYangSesuaiDenganKarakteristikBahayaYangAdaMemilikiMatrikPenilaianBahayaDanRisikoMatrikIdentifikasiBahayaPenilaianDanPengendalianRisikoDiKantorBengkelDanOperasionalSertaMatrikIdentifikasiBahayaLaluLintas": {
-                        "ui:order": 3,
-                        "ui:widget": "files",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    }
-                },
-                "element_4": {
-                    "deskripsiFasilitasPemeliharaanDanPerbaikanPersyaratanEkspektasiImplementasiProsedurTerkait": {
-                        "ui:order": 1,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "pemeliharaanDanPerbaikanKendaraanDenganPenyediaanSaranaDanPrasaranaPendukungYangMemadaiUntukMendukungKeselamatanSepertiBengkelKlinikRuangIstirahatPengemudiRuangParkirFasilitasPenyimpananSukuCadangDanLain-lain": {
-                        "ui:order": 3,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanMelengkapiKegiatanOperasionalAngkutanDenganMenyediakanFasilitasPemeliharaanDanPerbaikanKendaraanBermotorSebagaiSyaratUtamaKeselamatanDanPerbaikanKendaraanBermotorYangDigunakanUntukMendukungKegiatanPerusahaan": {
-                        "ui:order": 2,
-                        "ui:widget": "files",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    }
-                },
-                "element_5": {
-                    "deskripsiDokumentasiDanData": {
-                        "ui:order": 1,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "dokumentasiDanDataMencakupKeselamatan": {
-                        "ui:order": 3,
-                        "ui:widget": "files",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "memilikiStandarOperasionalProsedurSOPTerkaitDokumentasiDanData": {
-                        "ui:order": 2,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    }
-                },
-                "element_6": {
-                    "deskripsiPeningkatanKompetensiDanPelatihan": {
-                        "ui:order": 1,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMemilikiStandarOperasionalProsedurSOPPelatihanDanKompetensiUntukSeluruhKaryawanPerusahaan": {
-                        "ui:order": 2,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanMelakukanProgramPembinaanDanPelatihanBagiTenagaKerjanyaSecaraBerkalaSesuaiDenganKebutuhanKhususnyaYangMengandungRisikoTinggi": {
-                        "ui:order": 3,
-                        "ui:widget": "files",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    }
-                },
-                "element_7": {
-                    "deskripsiTanggapDarurat": {
-                        "ui:order": 1,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "tersedianyaPeralatanEmergencyDiKendaraan": {
-                        "ui:order": 3,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMemilikiStandarOperasionalProsedurSOPKeadaanDaruratYangMungkinTimbulDalamKegiatanOperasiPerusahaan": {
-                        "ui:order": 2,
-                        "ui:widget": "files",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    }
-                },
-                "element_8": {
-                    "deskripsiPelaporanKecelakaanInternal": {
-                        "ui:order": 1,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMempunyaiFomulirStandarPelaporanKecelakaan": {
-                        "ui:order": 3,
-                        "ui:widget": "files",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMemilikiMemilikiStandarOperasionalProsedurPelaporanDanInvestigasiKecelakaan": {
-                        "ui:order": 2,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    }
-                },
-                "element_9": {
-                    "deskripsiMonitoringDanEvaluasi": {
-                        "ui:order": 1,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMelakukanEvaluasiDariHasilMonitoringSistemManajemenKeselamatanDanLaporanHasilAuditInternal": {
-                        "ui:order": 3,
-                        "ui:widget": "files",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMelakukanProsedurMonitoringSistemManajemenKeselamatanSecaraBerkalaPadaPerusahaanDanProsedurKetidaksesuaian": {
-                        "ui:order": 2,
-                        "ui:widget": "files",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    }
-                },
-                "element_10": {
-                    "deskripsiPengukuranKinerja": {
-                        "ui:order": 1,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMemilikiProsedurPengukuranKinerja": {
-                        "ui:order": 2,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanDenganMenghitungSeverityIndex": {
-                        "ui:order": 4,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    },
-                    "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanPelayananAngkutanDenganMenghitungAccidentRateAR": {
-                        "ui:order": 3,
-                        "ui:widget": "file",
-                        "ui:options": {
-                            "accept": ".pdf"
-                        }
-                    }
                 }
             },
             "max_assesment": {
                 "element_1": {
                     "deskripsiKomitmenDanKebijakanKeselamatan": "2.5",
                     "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": "2.5",
-                    "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": "2.5",
+                    "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": "2.5",
                     "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": "2.5"
                 },
                 "element_2": {
@@ -781,56 +222,13 @@
                     "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": "2.5",
                     "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": "2.5",
                     "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": "2.5"
-                },
-                "element_3": {
-                    "deskripsiManajemenBahayaDanRisikoPersyaratanEkspektasiImplementasiProsedurTerkait": "2",
-                    "pengemudiMelaporkanDanMengkomunikasikanPotensiBahayaDisepanjangJalurYangDilaluiKepadaPimpinanPerusahaan": "2",
-                    "semuaPotensiBahayaTelahDicatatDilaporkanDanDikomunikasikanKepadaSemuaPihakYangBerhubunganDenganKeselamatan": "2",
-                    "perusahaanTelahMemilikiProsedurIdentifikasiBahayaPenilaianDanPengendalianRisikoSecaraKomprehensifBaikTerhadapPersonelSaranaAngkutanPenumpangMaupunLingkunganUntukSetiapTahapanOperasiPengangkutan": "2",
-                    "perusahaanTelahMelakukanIdentifikasiBahayaPenilaianDanPengendaliannyaDenganMetodeYangSesuaiDenganKarakteristikBahayaYangAdaMemilikiMatrikPenilaianBahayaDanRisikoMatrikIdentifikasiBahayaPenilaianDanPengendalianRisikoDiKantorBengkelDanOperasionalSertaMatrikIdentifikasiBahayaLaluLintas": "2"
-                },
-                "element_4": {
-                    "deskripsiFasilitasPemeliharaanDanPerbaikanPersyaratanEkspektasiImplementasiProsedurTerkait": "3.3",
-                    "pemeliharaanDanPerbaikanKendaraanDenganPenyediaanSaranaDanPrasaranaPendukungYangMemadaiUntukMendukungKeselamatanSepertiBengkelKlinikRuangIstirahatPengemudiRuangParkirFasilitasPenyimpananSukuCadangDanLain-lain": "3.3",
-                    "perusahaanMelengkapiKegiatanOperasionalAngkutanDenganMenyediakanFasilitasPemeliharaanDanPerbaikanKendaraanBermotorSebagaiSyaratUtamaKeselamatanDanPerbaikanKendaraanBermotorYangDigunakanUntukMendukungKegiatanPerusahaan": "3.4"
-                },
-                "element_5": {
-                    "deskripsiDokumentasiDanData": "3.3",
-                    "dokumentasiDanDataMencakupKeselamatan": "3.4",
-                    "memilikiStandarOperasionalProsedurSOPTerkaitDokumentasiDanData": "3.3"
-                },
-                "element_6": {
-                    "deskripsiPeningkatanKompetensiDanPelatihan": "3.3",
-                    "perusahaanTelahMemilikiStandarOperasionalProsedurSOPPelatihanDanKompetensiUntukSeluruhKaryawanPerusahaan": "3.3",
-                    "perusahaanMelakukanProgramPembinaanDanPelatihanBagiTenagaKerjanyaSecaraBerkalaSesuaiDenganKebutuhanKhususnyaYangMengandungRisikoTinggi": "3.4"
-                },
-                "element_7": {
-                    "deskripsiTanggapDarurat": "3.3",
-                    "tersedianyaPeralatanEmergencyDiKendaraan": "3.3",
-                    "perusahaanTelahMemilikiStandarOperasionalProsedurSOPKeadaanDaruratYangMungkinTimbulDalamKegiatanOperasiPerusahaan": "3.4"
-                },
-                "element_8": {
-                    "deskripsiPelaporanKecelakaanInternal": "3.3",
-                    "perusahaanTelahMempunyaiFomulirStandarPelaporanKecelakaan": "3.4",
-                    "perusahaanTelahMemilikiMemilikiStandarOperasionalProsedurPelaporanDanInvestigasiKecelakaan": "3.3"
-                },
-                "element_9": {
-                    "deskripsiMonitoringDanEvaluasi": "3.3",
-                    "perusahaanTelahMelakukanEvaluasiDariHasilMonitoringSistemManajemenKeselamatanDanLaporanHasilAuditInternal": "3.3",
-                    "perusahaanTelahMelakukanProsedurMonitoringSistemManajemenKeselamatanSecaraBerkalaPadaPerusahaanDanProsedurKetidaksesuaian": "3.4"
-                },
-                "element_10": {
-                    "deskripsiPengukuranKinerja": "2.5",
-                    "perusahaanTelahMemilikiProsedurPengukuranKinerja": "2.5",
-                    "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanDenganMenghitungSeverityIndex": "2.5",
-                    "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanPelayananAngkutanDenganMenghitungAccidentRateAR": "2.5"
                 }
             },
             "question_schema": {
                 "properties": {
                     "element_1": {
                         "type": "object",
-                        "title": "1. KOMITMEN DAN KEBIJAKAN KESELAMATAN",
+                        "title": "KOMITMEN DAN KEBIJAKAN KESELAMATAN",
                         "required": [
                             "deskripsiKomitmenDanKebijakanKeselamatan",
                             "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari",
@@ -843,18 +241,18 @@
                                 "title": "Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)",
                                 "format": "data-url",
                                 "description": "Deskripsi Komitmen dan Kebijakan Keselamatan",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
+                                "attachmentName": "Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
                             },
                             "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": {
                                 "type": "string",
                                 "title": "Seluruh pemegang kepentingan atau bagian dalam Perusahaan mempunyai peran serta dan keterlibatan aktif dalam meningkatkan kinerja keselamatan",
                                 "format": "data-url",
-                                "description": "Dokumen atau foto-foto rapat terkait atau yang mendukung keselamatan",
+                                "description": "Dokumen\/foto-foto rapat terkait\/yang mendukung keselamatan",
                                 "attachmentName": "Laporan Kegiatan Sosialisasi"
                             },
-                            "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
+                            "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLamngkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
                                 "type": "string",
-                                "title": "Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai langkah nyata terhadap aspek keselamatan  yang ditunjukkan dalam sikap sehari-hari",
+                                "title": "Perusahaan mempunyai komitmen yang kuat dari Manajemen yang terdokumentasikan, tertulis dan ditandatangani oleh Pimpinan Perusahaan tertinggi sebagai lamngkah nyata terhadap aspek keselamatan  yang ditunjukkan dalam sikap sehari-hari",
                                 "format": "data-url",
                                 "description": "Bukti Pernyataan Dokumen (foto pernyataan komitmen)",
                                 "attachmentName": "Dokumen Komitmen"
@@ -878,27 +276,27 @@
                                     }
                                 ],
                                 "title": "Perusahaan mempunyai kebijakan keselamatan tertulis dari manajemen yang memuat  visi, misi dan tujuan yang hendak dicapai dan mempunyai sasaran keselamatan untuk mendukung perwujudan kebijakan keselamatan perusahaan menuju peningkatan berkelanjutan",
-                                "description": "Bukti Pernyataan Dokumen"
+                                "description": "Bukti Pernyataan Dokumen (foto pernyataan kebijakan dan Visi Misi)"
                             }
                         },
                         "description": "-"
                     },
                     "element_2": {
                         "type": "object",
-                        "title": "2. PENGORGANISASIAN",
+                        "title": "PENGORGANISASIAN",
                         "required": [
                             "deskripsiPengorganisasian",
                             "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan",
                             "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut",
-                            "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll"
+                            "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanik"
                         ],
                         "properties": {
                             "deskripsiPengorganisasian": {
                                 "type": "string",
                                 "title": "Deskripsi Pengorganisasian",
                                 "format": "data-url",
-                                "description": "Deskripsi Pengorganisasian",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
+                                "description": "Deskripsi Pengorganisasian (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)",
+                                "attachmentName": "Deskripsi Komitmen dan Kebijakan Keselamatan Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
                             },
                             "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": {
                                 "type": "array",
@@ -925,7 +323,7 @@
                                 "type": "string",
                                 "title": "Perusahaan mempunyai struktur organisasi pengelolaan di bidang keselamatan, seperti Unit Manajemen Keselamatan atau Petugas Keselamatan",
                                 "format": "data-url",
-                                "description": "Dokumen struktur organisasi atau Unit Manajemen Keselamatan atau Petugas Keselamatan",
+                                "description": "Dokumen struktur organisasi Unit Manajemen Keselamatan Petugas Keselamatan",
                                 "attachmentName": "Struktur Organisasi"
                             },
                             "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": {
@@ -936,577 +334,39 @@
                                 "attachmentName": "Prosedur Pengorganisasian"
                             }
                         },
-                        "description": "-"
-                    },
-                    "element_3": {
-                        "type": "object",
-                        "title": "3. MANAJEMEN BAHAYA DAN RISIKO",
-                        "required": [
-                            "deskripsiManajemenBahayaDanRisikoPersyaratanEkspektasiImplementasiProsedurTerkait",
-                            "perusahaanTelahMemilikiProsedurIdentifikasiBahayaPenilaianDanPengendalianRisikoSecaraKomprehensifBaikTerhadapPersonelSaranaAngkutanPenumpangMaupunLingkunganUntukSetiapTahapanOperasiPengangkutan",
-                            "perusahaanTelahMelakukanIdentifikasiBahayaPenilaianDanPengendaliannyaDenganMetodeYangSesuaiDenganKarakteristikBahayaYangAdaMemilikiMatrikPenilaianBahayaDanRisikoMatrikIdentifikasiBahayaPenilaianDanPengendalianRisikoDiKantorBengkelDanOperasionalSertaMatrikIdentifikasiBahayaLaluLintas",
-                            "semuaPotensiBahayaTelahDicatatDilaporkanDanDikomunikasikanKepadaSemuaPihakYangBerhubunganDenganKeselamatan",
-                            "pengemudiMelaporkanDanMengkomunikasikanPotensiBahayaDisepanjangJalurYangDilaluiKepadaPimpinanPerusahaan"
-                        ],
-                        "properties": {
-                            "deskripsiManajemenBahayaDanRisikoPersyaratanEkspektasiImplementasiProsedurTerkait": {
-                                "type": "string",
-                                "title": "Deskripsi Manajemen Bahaya dan Risiko (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)",
-                                "format": "data-url",
-                                "description": "-",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
-                            },
-                            "pengemudiMelaporkanDanMengkomunikasikanPotensiBahayaDisepanjangJalurYangDilaluiKepadaPimpinanPerusahaan": {
-                                "type": "string",
-                                "title": "Pengemudi melaporkan dan mengkomunikasikan potensi bahaya disepanjang jalur yang dilalui kepada pimpinan perusahaan",
-                                "format": "data-url",
-                                "description": "Dokumen atau laporan pengemudi",
-                                "attachmentName": "Form Pelaporan Pengemudi Terhadap Potensi Bahaya"
-                            },
-                            "semuaPotensiBahayaTelahDicatatDilaporkanDanDikomunikasikanKepadaSemuaPihakYangBerhubunganDenganKeselamatan": {
-                                "type": "string",
-                                "title": "Semua potensi bahaya telah dicatat, dilaporkan dan dikomunikasikan kepada semua pihak yang berhubungan dengan keselamatan",
-                                "format": "data-url",
-                                "description": "Notulen rapat dan Foto kegiatan",
-                                "attachmentName": "Notulen Rapat Sosialisasi"
-                            },
-                            "perusahaanTelahMemilikiProsedurIdentifikasiBahayaPenilaianDanPengendalianRisikoSecaraKomprehensifBaikTerhadapPersonelSaranaAngkutanPenumpangMaupunLingkunganUntukSetiapTahapanOperasiPengangkutan": {
-                                "type": "string",
-                                "title": "Perusahaan telah memiliki prosedur identifikasi bahaya, penilaian dan pengendalian risiko secara komprehensif baik terhadap personel, sarana angkutan, penumpang  maupun lingkungan untuk setiap tahapan operasi pengangkutan",
-                                "format": "data-url",
-                                "description": "Lampirkan Dokumen SOP Manajemen Bahaya dan Risiko",
-                                "attachmentName": "Prosedur Manajemen Bahaya dan Risiko"
-                            },
-                            "perusahaanTelahMelakukanIdentifikasiBahayaPenilaianDanPengendaliannyaDenganMetodeYangSesuaiDenganKarakteristikBahayaYangAdaMemilikiMatrikPenilaianBahayaDanRisikoMatrikIdentifikasiBahayaPenilaianDanPengendalianRisikoDiKantorBengkelDanOperasionalSertaMatrikIdentifikasiBahayaLaluLintas": {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiKantor": {
-                                            "name": "Identifikasi Bahaya, Penilaian dan Pengendalian Risiko di Kantor",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiBengkel": {
-                                            "name": "Identifikasi Bahaya, Penilaian dan Pengendalian Risiko di Bengkel",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiOperasional": {
-                                            "name": "Identifikasi Bahaya, Penilaian dan Pengendalian Risiko di Operasional",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "matrikPenilaianBahayaDanRisiko": {
-                                            "name": "Matrik Penilaian Bahaya dan Risiko",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "matrikIdentifikasiBahayaLaluLintas": {
-                                            "name": "Matrik Identifikasi Bahaya Lalu Lintas",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    }
-                                ],
-                                "title": "Perusahaan telah melakukan identifikasi bahaya, penilaian dan pengendaliannya dengan metode yang sesuai dengan karakteristik bahaya yang ada, memiliki matrik penilaian bahaya dan risiko, matrik identifikasi bahaya, penilaian dan pengendalian risiko di kantor, bengkel dan operasional  serta matrik identifikasi bahaya lalu lintas",
-                                "description": "Lampirkan Dokumen Matrik Penilian Bahaya dan Risiko, Matrik Identifikasi Bahaya, Penilaian dan Pengendalian Risiko, Matrik Identifikasi Bahaya Lalu Lintas"
-                            }
-                        },
-                        "description": "-"
-                    },
-                    "element_4": {
-                        "type": "object",
-                        "title": "4.FASILITAS PEMELIHARAAN DAN PERBAIKAN",
-                        "required": [
-                            "deskripsiFasilitasPemeliharaanDanPerbaikanPersyaratanEkspektasiImplementasiProsedurTerkait",
-                            "perusahaanMelengkapiKegiatanOperasionalAngkutanDenganMenyediakanFasilitasPemeliharaanDanPerbaikanKendaraanBermotorSebagaiSyaratUtamaKeselamatanDanPerbaikanKendaraanBermotorYangDigunakanUntukMendukungKegiatanPerusahaan",
-                            "pemeliharaanDanPerbaikanKendaraanDenganPenyediaanSaranaDanPrasaranaPendukungYangMemadaiUntukMendukungKeselamatanSepertiBengkelKlinikRuangIstirahatPengemudiRuangParkirFasilitasPenyimpananSukuCadangDanLain-lain"
-                        ],
-                        "properties": {
-                            "deskripsiFasilitasPemeliharaanDanPerbaikanPersyaratanEkspektasiImplementasiProsedurTerkait": {
-                                "type": "string",
-                                "title": "Deskripsi Fasilitas Pemeliharaan dan Perbaikan (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait",
-                                "format": "data-url",
-                                "description": "-",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
-                            },
-                            "pemeliharaanDanPerbaikanKendaraanDenganPenyediaanSaranaDanPrasaranaPendukungYangMemadaiUntukMendukungKeselamatanSepertiBengkelKlinikRuangIstirahatPengemudiRuangParkirFasilitasPenyimpananSukuCadangDanLain-lain": {
-                                "type": "string",
-                                "title": "Pemeliharaan dan perbaikan kendaraan dengan penyediaan sarana dan prasarana pendukung yang memadai untuk mendukung keselamatan seperti bengkel, klinik, ruang istirahat pengemudi, ruang parkir, fasilitas penyimpanan suku cadang dan lain-lain",
-                                "format": "data-url",
-                                "description": "Dokumen, denah lokasi perusahaan, foto-foto",
-                                "attachmentName": "Foto Fasilitas Pemeliharaan dan Perbaikan"
-                            },
-                            "perusahaanMelengkapiKegiatanOperasionalAngkutanDenganMenyediakanFasilitasPemeliharaanDanPerbaikanKendaraanBermotorSebagaiSyaratUtamaKeselamatanDanPerbaikanKendaraanBermotorYangDigunakanUntukMendukungKegiatanPerusahaan": {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "prosedurPengoperasianKendaraan": {
-                                            "name": "Prosedur Pengoperasian Kendaraan",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "instruksiKerjaGantiFilterSolar": {
-                                            "name": "Instruksi Kerja Ganti Filter Solar",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "instruksiKerjaGantiBan": {
-                                            "name": "Instruksi kerja Ganti Ban",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "kartuInspeksiAPAR": {
-                                            "name": "Kartu Inspeksi APAR",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "formPemeriksaanKendaraanBermotor": {
-                                            "name": "Form Pemeriksaan Kendaraan Bermotor",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "formPemeriksaanKendaraanBermotorSebelumOperasi": {
-                                            "name": "Form Pemeriksaan Kendaraan Bermotor Sebelum Operasi",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    }
-                                ],
-                                "title": "Perusahaan melengkapi kegiatan operasional angkutan dengan menyediakan fasilitas pemeliharaan dan perbaikan kendaraan bermotor sebagai syarat utama keselamatan dan perbaikan kendaraan bermotor yang digunakan untuk mendukung kegiatan perusahaan",
-                                "description": "Dokumen \/Check list\/SOP pemeriksaan kendaraan sebelum perjalanan, sepanjang perjalanan dan setelah operasional"
-                            }
-                        },
-                        "description": "-"
-                    },
-                    "element_5": {
-                        "type": "object",
-                        "title": "5. DOKUMENTASI DAN DATA",
-                        "required": [
-                            "deskripsiDokumentasiDanData",
-                            "memilikiStandarOperasionalProsedurSOPTerkaitDokumentasiDanData",
-                            "dokumentasiDanDataMencakupKeselamatan"
-                        ],
-                        "properties": {
-                            "deskripsiDokumentasiDanData": {
-                                "type": "string",
-                                "title": "Deskripsi Dokumentasi dan Data",
-                                "format": "data-url",
-                                "description": "-",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
-                            },
-                            "dokumentasiDanDataMencakupKeselamatan": {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "dokumentasiDanDataKecelakaan": {
-                                            "name": "Dokumentasi dan Data Kecelakaan",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "dokumentasiDanDataKendaraan": {
-                                            "name": "Dokumentasi dan Data Kendaraan",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "dokumentasiDanDataMekanik": {
-                                            "name": "Dokumentasi dan Data Mekanik",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "dokumentasiDanDataPelanggaranLaluLintas": {
-                                            "name": "Dokumentasi dan Data Pelanggaran lalu Lintas",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "dokumentasiDanDataPemeriksaanKesehatan": {
-                                            "name": "Dokumentasi dan Data Pemeriksaan Kesehatan",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "dokumentasiDanDataPengemudi": {
-                                            "name": "Dokumentasi dan Data Pengemudi",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "dokumentasiDanDataPerbaikanKendaraan": {
-                                            "name": "Dokumentasi dan Data Perbaikan Kendaraan",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "dokumentasiDanDataUjiBerkalaKendaraan": {
-                                            "name": "Dokumentasi dan Data Uji Berkala Kendaraan",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    }
-                                ],
-                                "title": "Dokumentasi dan data mencakup keselamatan",
-                                "description": "Lampirkan dokumen pendukung berupa data maupun rekapitulasi masing-masing data dimaksud"
-                            },
-                            "memilikiStandarOperasionalProsedurSOPTerkaitDokumentasiDanData": {
-                                "type": "string",
-                                "title": "Memiliki Standar operasional prosedur (SOP) terkait dokumentasi dan data",
-                                "format": "data-url",
-                                "description": "Dokumen SOP",
-                                "attachmentName": "Prosedur Dokumentasi dan Data"
-                            }
-                        },
-                        "description": "-"
-                    },
-                    "element_6": {
-                        "type": "object",
-                        "title": "6.PENINGKATAN KOMPETENSI DAN PELATIHAN",
-                        "required": [
-                            "deskripsiPeningkatanKompetensiDanPelatihan",
-                            "perusahaanTelahMemilikiStandarOperasionalProsedurSOPPelatihanDanKompetensiUntukSeluruhKaryawanPerusahaan",
-                            "perusahaanMelakukanProgramPembinaanDanPelatihanBagiTenagaKerjanyaSecaraBerkalaSesuaiDenganKebutuhanKhususnyaYangMengandungRisikoTinggi"
-                        ],
-                        "properties": {
-                            "deskripsiPeningkatanKompetensiDanPelatihan": {
-                                "type": "string",
-                                "title": "Deskripsi Peningkatan Kompetensi dan Pelatihan",
-                                "format": "data-url",
-                                "description": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
-                            },
-                            "perusahaanTelahMemilikiStandarOperasionalProsedurSOPPelatihanDanKompetensiUntukSeluruhKaryawanPerusahaan": {
-                                "type": "string",
-                                "title": "Perusahaan  telah memiliki Standar operasional prosedur (SOP) pelatihan dan kompetensi untuk seluruh karyawan perusahaan",
-                                "format": "data-url",
-                                "description": "Dokumen SOP Pelatihan dan kompetensi",
-                                "attachmentName": "Prosedur Kompetensi dan Pelatihan"
-                            },
-                            "perusahaanMelakukanProgramPembinaanDanPelatihanBagiTenagaKerjanyaSecaraBerkalaSesuaiDenganKebutuhanKhususnyaYangMengandungRisikoTinggi": {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "rencanaTraining": {
-                                            "name": "Rencana Training",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "matrixTraining": {
-                                            "name": "Matrix Training",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "evaluasiKompetensi": {
-                                            "name": "Evaluasi Kompetensi",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    }
-                                ],
-                                "title": "Perusahaan melakukan program pembinaan dan pelatihan bagi tenaga kerjanya secara berkala sesuai dengan kebutuhan khususnya yang mengandung risiko tinggi",
-                                "description": "Jadwal \/ time schedule maupun jenis pelatihan yang dibutuhkan untuk pengemudi maupun mekanik dan seluruh karyawan"
-                            }
-                        },
-                        "description": "-"
-                    },
-                    "element_7": {
-                        "type": "object",
-                        "title": "7.TANGGAP DARURAT",
-                        "required": [
-                            "deskripsiTanggapDarurat",
-                            "perusahaanTelahMemilikiStandarOperasionalProsedurSOPKeadaanDaruratYangMungkinTimbulDalamKegiatanOperasiPerusahaan",
-                            "tersedianyaPeralatanEmergencyDiKendaraan"
-                        ],
-                        "properties": {
-                            "deskripsiTanggapDarurat": {
-                                "type": "string",
-                                "title": "Deskripsi Tanggap Darurat",
-                                "format": "data-url",
-                                "description": "-",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
-                            },
-                            "tersedianyaPeralatanEmergencyDiKendaraan": {
-                                "type": "string",
-                                "title": "Tersedianya peralatan emergency di kendaraan",
-                                "format": "data-url",
-                                "description": "Foto dan Rincian Alat Emergency",
-                                "attachmentName": "Form Check List Alat Tanggap Darurat Kendaraan"
-                            },
-                            "perusahaanTelahMemilikiStandarOperasionalProsedurSOPKeadaanDaruratYangMungkinTimbulDalamKegiatanOperasiPerusahaan": {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "prosedurTanggapDarurat": {
-                                            "name": "Prosedur Tanggap Darurat",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "strukturTanggapDarurat": {
-                                            "name": "Struktur Tanggap Darurat",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "daftarNomorTelpTanggapDarurat": {
-                                            "name": "Daftar Nomor Telp. Tanggap Darurat",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "formEvaluasiSimulasiTanggapDarurat": {
-                                            "name": "Form Evaluasi Simulasi Tanggap Darurat",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    }
-                                ],
-                                "title": "Perusahaan telah memiliki Standar Operasional Prosedur (SOP) keadaan darurat yang mungkin timbul dalam kegiatan operasi perusahaan",
-                                "description": "Dokumen SOP masing-masing kegiatan tanggap darurat"
-                            }
-                        },
-                        "description": "-"
-                    },
-                    "element_8": {
-                        "type": "object",
-                        "title": "8. PELAPORAN KECELAKAAN INTERNAL",
-                        "required": [
-                            "deskripsiPelaporanKecelakaanInternal",
-                            "perusahaanTelahMemilikiMemilikiStandarOperasionalProsedurPelaporanDanInvestigasiKecelakaan",
-                            "perusahaanTelahMempunyaiFomulirStandarPelaporanKecelakaan"
-                        ],
-                        "properties": {
-                            "deskripsiPelaporanKecelakaanInternal": {
-                                "type": "string",
-                                "title": "Deskripsi Pelaporan Kecelakaan Internal",
-                                "format": "data-url",
-                                "description": "-",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
-                            },
-                            "perusahaanTelahMempunyaiFomulirStandarPelaporanKecelakaan": {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "formPelaporanKecelakaanKerja": {
-                                            "name": "Form Pelaporan Kecelakaan Kerja",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "formPelaporanKecelakaan": {
-                                            "name": "Form Pelaporan Kecelakaan",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    }
-                                ],
-                                "title": "Perusahaan telah mempunyai Fomulir Standar Pelaporan Kecelakaan",
-                                "description": "Lampirkan Fomulir"
-                            },
-                            "perusahaanTelahMemilikiMemilikiStandarOperasionalProsedurPelaporanDanInvestigasiKecelakaan": {
-                                "type": "string",
-                                "title": "Perusahaan  telah memiliki Memiliki Standar Operasional Prosedur Pelaporan dan Investigasi Kecelakaan",
-                                "format": "data-url",
-                                "description": "Dokumen SOP pelaporan dan penyelidikan masing-masing sebab kejadian kecelakaan",
-                                "attachmentName": "Prosedur Pelaporan dan Investigasi Kecelakaan"
-                            }
-                        },
-                        "description": "-"
-                    },
-                    "element_9": {
-                        "type": "object",
-                        "title": "9. MONITORING DAN EVALUASI",
-                        "required": [
-                            "deskripsiMonitoringDanEvaluasi",
-                            "perusahaanTelahMelakukanProsedurMonitoringSistemManajemenKeselamatanSecaraBerkalaPadaPerusahaanDanProsedurKetidaksesuaian",
-                            "perusahaanTelahMelakukanEvaluasiDariHasilMonitoringSistemManajemenKeselamatanDanLaporanHasilAuditInternal"
-                        ],
-                        "properties": {
-                            "deskripsiMonitoringDanEvaluasi": {
-                                "type": "string",
-                                "title": "Deskripsi Monitoring dan Evaluasi",
-                                "format": "data-url",
-                                "description": "-",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
-                            },
-                            "perusahaanTelahMelakukanEvaluasiDariHasilMonitoringSistemManajemenKeselamatanDanLaporanHasilAuditInternal": {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "formPermintaanTindakanPerbaikanDanPencegahan": {
-                                            "name": "Form Permintaan Tindakan Perbaikan dan Pencegahan",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "formLaporanAuditInternal": {
-                                            "name": "Form Laporan Audit Internal",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    }
-                                ],
-                                "title": "Perusahaan telah melakukan evaluasi dari hasil monitoring Sistem Manajemen Keselamatan dan Laporan hasil audit internal",
-                                "description": "Lampirkan Dokumen Permintaan Tindakan Perbaikan dan Pencegahan serta Form Laporan Audit Internal"
-                            },
-                            "perusahaanTelahMelakukanProsedurMonitoringSistemManajemenKeselamatanSecaraBerkalaPadaPerusahaanDanProsedurKetidaksesuaian": {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "prosedurMonitoringDanEvaluasiMelaluiAuditInternal": {
-                                            "name": "Prosedur Monitoring dan Evaluasi Melalui Audit Internal",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "prosedurKetidakSesuaian": {
-                                            "name": "Prosedur Ketidak sesuaian",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "formJadwalAuditInternal": {
-                                            "name": "Form Jadwal Audit Internal",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    },
-                                    {
-                                        "formDaftarLaporanKetidaksesuaian": {
-                                            "name": "Form Daftar laporan Ketidaksesuaian",
-                                            "type": "string",
-                                            "format": "data-url"
-                                        }
-                                    }
-                                ],
-                                "title": "Perusahaan telah melakukan Prosedur Monitoring Sistem Manajemen Keselamatan secara berkala pada perusahaan dan Prosedur ketidaksesuaian",
-                                "description": "Lampirkan Dokumen SOP, Form Audit Internal dan Form Ketidaksesuaian"
-                            }
-                        },
-                        "description": "-"
-                    },
-                    "element_10": {
-                        "type": "object",
-                        "title": "10. PENGUKURAN KINERJA",
-                        "required": [
-                            "deskripsiPengukuranKinerja",
-                            "perusahaanTelahMemilikiProsedurPengukuranKinerja",
-                            "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanPelayananAngkutanDenganMenghitungAccidentRateAR",
-                            "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanDenganMenghitungSeverityIndex"
-                        ],
-                        "properties": {
-                            "deskripsiPengukuranKinerja": {
-                                "type": "string",
-                                "title": "Deskripsi Pengukuran Kinerja",
-                                "format": "data-url",
-                                "description": "-",
-                                "attachmentName": "Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait"
-                            },
-                            "perusahaanTelahMemilikiProsedurPengukuranKinerja": {
-                                "type": "string",
-                                "title": "Perusahaan telah memiliki prosedur pengukuran kinerja",
-                                "format": "data-url",
-                                "description": "Lampirkan Dokumen SOP Pengkuruan Kinerja",
-                                "attachmentName": "Prosedur Pengukuran Kinerja"
-                            },
-                            "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanDenganMenghitungSeverityIndex": {
-                                "type": "string",
-                                "title": "Perusahaan telah melakukan pengukuran kinerja tingkat keselamatan dengan menghitung Severity Index",
-                                "format": "data-url",
-                                "description": "Lampirkan Hasil Nilai Severity Index",
-                                "attachmentName": "Formulir Statistik Kecelakaan Severity Index"
-                            },
-                            "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanPelayananAngkutanDenganMenghitungAccidentRateAR": {
-                                "type": "string",
-                                "title": "Perusahaan telah melakukan pengukuran kinerja tingkat keselamatan pelayanan angkutan dengan menghitung Accident Rate (AR)",
-                                "format": "data-url",
-                                "description": "Lampirkan Hasil Nilai Accident Rate (AR)",
-                                "attachmentName": "Formulir Statistik Kecelakaan AR"
-                            }
-                        },
-                        "description": "-"
+                        "description": "Deskripsi Pengorganisasian (Persyaratan, Ekspektasi, Implementasi, Prosedur Terkait)"
                     }
                 }
             }
         },
         "additional_questions": {
-            "element_1": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 1 Komitmen dan Kebijakan",
-            "element_2": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 2 Pengorganisasian",
-            "element_3": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 3 Manajemen Bahaya dan Risiko",
-            "element_4": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 4 Fasilitas Pemeliharaan dan Perbaikan",
-            "element_5": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 5 Dokumentasi dan Data",
-            "element_6": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 6 Peningkatan Kompetensi dan Pelatihan",
-            "element_7": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 7 Tanggap Darurat",
-            "element_8": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 8 Pelaporan Kecelakaan Internal",
-            "element_9": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 9 Monitoring dan Evaluasi",
-            "element_10": "Apakah terdapat kesulitan dan kendala yang dihadapi dalam menerapkan Elemen 10 Pengukuran Kinerja"
+            "element_1": "at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,",
+            "element_2": "at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,at, tempor at orci. Vivamus dignissim nulla a lectus scelerisque,"
         },
         "status": "verified",
         "assessor": 9,
         "assessments": {
             "element_1": {
-                "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
-                "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
                 "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": [
                     {
                         "dokumenKebijakan": {
-                            "assessmentValue": true,
+                            "assessmentValue": null,
                             "assessmentReason": null
                         }
                     },
                     {
                         "dokumenVisiMisi": {
-                            "assessmentValue": true,
+                            "assessmentValue": null,
                             "assessmentReason": null
                         }
                     }
                 ]
             },
             "element_2": {
+                "deskripsiPengorganisasian": {
+                    "assessmentValue": true,
+                    "assessmentReason": null
+                },
                 "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": [
                     {
                         "prosedurPengemudi": {
@@ -1521,287 +381,7 @@
                         }
                     }
                 ],
-                "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
                 "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                }
-            },
-            "element_3": {
-                "semuaPotensiBahayaTelahDicatatDilaporkanDanDikomunikasikanKepadaSemuaPihakYangBerhubunganDenganKeselamatan": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
-                "perusahaanTelahMemilikiProsedurIdentifikasiBahayaPenilaianDanPengendalianRisikoSecaraKomprehensifBaikTerhadapPersonelSaranaAngkutanPenumpangMaupunLingkunganUntukSetiapTahapanOperasiPengangkutan": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
-                "perusahaanTelahMelakukanIdentifikasiBahayaPenilaianDanPengendaliannyaDenganMetodeYangSesuaiDenganKarakteristikBahayaYangAdaMemilikiMatrikPenilaianBahayaDanRisikoMatrikIdentifikasiBahayaPenilaianDanPengendalianRisikoDiKantorBengkelDanOperasionalSertaMatrikIdentifikasiBahayaLaluLintas": [
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiKantor": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiBengkel": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiOperasional": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "matrikPenilaianBahayaDanRisiko": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "matrikIdentifikasiBahayaLaluLintas": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    }
-                ]
-            },
-            "element_4": {
-                "pemeliharaanDanPerbaikanKendaraanDenganPenyediaanSaranaDanPrasaranaPendukungYangMemadaiUntukMendukungKeselamatanSepertiBengkelKlinikRuangIstirahatPengemudiRuangParkirFasilitasPenyimpananSukuCadangDanLain-lain": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
-                "perusahaanMelengkapiKegiatanOperasionalAngkutanDenganMenyediakanFasilitasPemeliharaanDanPerbaikanKendaraanBermotorSebagaiSyaratUtamaKeselamatanDanPerbaikanKendaraanBermotorYangDigunakanUntukMendukungKegiatanPerusahaan": [
-                    {
-                        "prosedurPengoperasianKendaraan": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "instruksiKerjaGantiFilterSolar": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "instruksiKerjaGantiBan": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "kartuInspeksiAPAR": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "formPemeriksaanKendaraanBermotor": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "formPemeriksaanKendaraanBermotorSebelumOperasi": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    }
-                ]
-            },
-            "element_5": {
-                "dokumentasiDanDataMencakupKeselamatan": [
-                    {
-                        "dokumentasiDanDataKecelakaan": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataKendaraan": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataMekanik": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataPelanggaranLaluLintas": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataPemeriksaanKesehatan": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataPengemudi": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataPerbaikanKendaraan": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "dokumentasiDanDataUjiBerkalaKendaraan": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    }
-                ],
-                "memilikiStandarOperasionalProsedurSOPTerkaitDokumentasiDanData": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                }
-            },
-            "element_6": {
-                "perusahaanTelahMemilikiStandarOperasionalProsedurSOPPelatihanDanKompetensiUntukSeluruhKaryawanPerusahaan": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
-                "perusahaanMelakukanProgramPembinaanDanPelatihanBagiTenagaKerjanyaSecaraBerkalaSesuaiDenganKebutuhanKhususnyaYangMengandungRisikoTinggi": [
-                    {
-                        "rencanaTraining": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "matrixTraining": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "evaluasiKompetensi": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    }
-                ]
-            },
-            "element_7": {
-                "tersedianyaPeralatanEmergencyDiKendaraan": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
-                "perusahaanTelahMemilikiStandarOperasionalProsedurSOPKeadaanDaruratYangMungkinTimbulDalamKegiatanOperasiPerusahaan": [
-                    {
-                        "prosedurTanggapDarurat": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "strukturTanggapDarurat": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "daftarNomorTelpTanggapDarurat": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "formEvaluasiSimulasiTanggapDarurat": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    }
-                ]
-            },
-            "element_8": {
-                "perusahaanTelahMempunyaiFomulirStandarPelaporanKecelakaan": [
-                    {
-                        "formPelaporanKecelakaanKerja": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "formPelaporanKecelakaan": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    }
-                ],
-                "perusahaanTelahMemilikiMemilikiStandarOperasionalProsedurPelaporanDanInvestigasiKecelakaan": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                }
-            },
-            "element_9": {
-                "perusahaanTelahMelakukanEvaluasiDariHasilMonitoringSistemManajemenKeselamatanDanLaporanHasilAuditInternal": [
-                    {
-                        "formPermintaanTindakanPerbaikanDanPencegahan": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "formLaporanAuditInternal": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    }
-                ],
-                "perusahaanTelahMelakukanProsedurMonitoringSistemManajemenKeselamatanSecaraBerkalaPadaPerusahaanDanProsedurKetidaksesuaian": [
-                    {
-                        "prosedurMonitoringDanEvaluasiMelaluiAuditInternal": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "prosedurKetidakSesuaian": {
-                            "assessmentValue": null,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "formJadwalAuditInternal": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    },
-                    {
-                        "formDaftarLaporanKetidaksesuaian": {
-                            "assessmentValue": true,
-                            "assessmentReason": null
-                        }
-                    }
-                ]
-            },
-            "element_10": {
-                "perusahaanTelahMemilikiProsedurPengukuranKinerja": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
-                "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanDenganMenghitungSeverityIndex": {
-                    "assessmentValue": true,
-                    "assessmentReason": null
-                },
-                "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanPelayananAngkutanDenganMenghitungAccidentRateAR": {
                     "assessmentValue": true,
                     "assessmentReason": null
                 }
@@ -1809,175 +389,23 @@
         },
         "answers": {
             "element_1": {
-                "seluruhPemegangKepentinganAtauBagianDalamPerusahaanMempunyaiPeranSertaDanKeterlibatanAktifDalamMeningkatkanKinerjaKeselamatan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-guMy93nLWr2BPq2RoaYxb.pdf",
-                "perusahaanMempunyaiKomitmenYangKuatDariManajemenYangTerdokumentasikanTertulisDanDitandatanganiOlehPimpinanperusahaanTertinggiSebagaiLangkahNyataTerhadapAspekKeselamatanYangDitunjukkanDalamSikapSehari-hari": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-dC7iSAfpVr4UiuUXpJAOQ.pdf",
                 "perusahaanMempunyaiKebijakanKeselamatanTertulisDariManajemenYangMemuatVisiMisiDanTujuanYangHendakDicapaiDanMempunyaiSasaranKeselamatanUntukMendukungPerwujudanKebijakanKeselamatanPerusahaanMenujuPeningkatanBerkelanjutan": [
-                    {
-                        "dokumenKebijakan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-T0di8fCy3f7A7GwHW_LTG.pdf"
-                    },
-                    {
-                        "dokumenVisiMisi": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-Y6PSBMOxEv5TQtyPxzeKt.pdf"
-                    }
+                    [],
+                    []
                 ]
             },
             "element_2": {
+                "deskripsiPengorganisasian": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/daftar_log_aktivitas_detail_andalalin%2812_desember2024%2C07.00.00%29-bb76oEbcDS8u8kY8c7_pW.pdf",
                 "perusahaanMenetapkanStandardOperasionalProsedurSOPTentangKriteriaPenerimaanPengemudimekanikDll": [
-                    {
-                        "prosedurPengemudi": null
-                    },
+                    [],
                     {
                         "prosedurMekanik": null
                     }
                 ],
-                "perusahaanMempunyaiStrukturOrganisasiPengelolaanDiBidangKeselamatanSepertiUnitManajemenKeselamatanAtauPetugasKeselamatan": null,
-                "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": null
-            },
-            "element_3": {
-                "semuaPotensiBahayaTelahDicatatDilaporkanDanDikomunikasikanKepadaSemuaPihakYangBerhubunganDenganKeselamatan": null,
-                "perusahaanTelahMemilikiProsedurIdentifikasiBahayaPenilaianDanPengendalianRisikoSecaraKomprehensifBaikTerhadapPersonelSaranaAngkutanPenumpangMaupunLingkunganUntukSetiapTahapanOperasiPengangkutan": null,
-                "perusahaanTelahMelakukanIdentifikasiBahayaPenilaianDanPengendaliannyaDenganMetodeYangSesuaiDenganKarakteristikBahayaYangAdaMemilikiMatrikPenilaianBahayaDanRisikoMatrikIdentifikasiBahayaPenilaianDanPengendalianRisikoDiKantorBengkelDanOperasionalSertaMatrikIdentifikasiBahayaLaluLintas": [
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiKantor": null
-                    },
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiBengkel": null
-                    },
-                    {
-                        "identifikasiBahayaPenilaianDanPengendalianRisikoDiOperasional": null
-                    },
-                    {
-                        "matrikPenilaianBahayaDanRisiko": null
-                    },
-                    {
-                        "matrikIdentifikasiBahayaLaluLintas": null
-                    }
-                ]
-            },
-            "element_4": {
-                "pemeliharaanDanPerbaikanKendaraanDenganPenyediaanSaranaDanPrasaranaPendukungYangMemadaiUntukMendukungKeselamatanSepertiBengkelKlinikRuangIstirahatPengemudiRuangParkirFasilitasPenyimpananSukuCadangDanLain-lain": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-n1nHuedIPgAlOim1XZsqs.pdf",
-                "perusahaanMelengkapiKegiatanOperasionalAngkutanDenganMenyediakanFasilitasPemeliharaanDanPerbaikanKendaraanBermotorSebagaiSyaratUtamaKeselamatanDanPerbaikanKendaraanBermotorYangDigunakanUntukMendukungKegiatanPerusahaan": [
-                    {
-                        "prosedurPengoperasianKendaraan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-tC7g9X2HX_KpXBMIAqY6d.pdf"
-                    },
-                    {
-                        "instruksiKerjaGantiFilterSolar": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-foUvXF4iBtUDPkayy3WHU.pdf"
-                    },
-                    {
-                        "instruksiKerjaGantiBan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-SGOYcXmLZzoLHFk6jLu6L.pdf"
-                    },
-                    {
-                        "kartuInspeksiAPAR": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-uTW37jGzjdtgV86xnFSeB.pdf"
-                    },
-                    {
-                        "formPemeriksaanKendaraanBermotor": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-Dc3FZ9FaOXsvwo-HLkgaO.pdf"
-                    },
-                    {
-                        "formPemeriksaanKendaraanBermotorSebelumOperasi": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-TUeZgA5eAd5SNBgf6mvLc.pdf"
-                    }
-                ]
-            },
-            "element_5": {
-                "dokumentasiDanDataMencakupKeselamatan": [
-                    {
-                        "dokumentasiDanDataKecelakaan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-4I-h8EDK9YjtpWPxJc0pk.pdf"
-                    },
-                    {
-                        "dokumentasiDanDataKendaraan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-CGlRNPaDMO9mHI2wwFtug.pdf"
-                    },
-                    {
-                        "dokumentasiDanDataMekanik": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-7VH4sLl8HH2PKxQs_QsfZ.pdf"
-                    },
-                    {
-                        "dokumentasiDanDataPelanggaranLaluLintas": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-BRGFXb1777XaIOL8FXDQz.pdf"
-                    },
-                    {
-                        "dokumentasiDanDataPemeriksaanKesehatan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-nnZ62z0acC3-QdA-pqw1G.pdf"
-                    },
-                    {
-                        "dokumentasiDanDataPengemudi": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-tgMyoo6_AoHgPft1rgeyn.pdf"
-                    },
-                    {
-                        "dokumentasiDanDataPerbaikanKendaraan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-0vFMLEgCrZqZ_SADER56e.pdf"
-                    },
-                    {
-                        "dokumentasiDanDataUjiBerkalaKendaraan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-gJipCHbafAOVoID1yg7Au.pdf"
-                    }
-                ],
-                "memilikiStandarOperasionalProsedurSOPTerkaitDokumentasiDanData": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-97oaVsLx_MhaIrcP-RGo5.pdf"
-            },
-            "element_6": {
-                "perusahaanTelahMemilikiStandarOperasionalProsedurSOPPelatihanDanKompetensiUntukSeluruhKaryawanPerusahaan": null,
-                "perusahaanMelakukanProgramPembinaanDanPelatihanBagiTenagaKerjanyaSecaraBerkalaSesuaiDenganKebutuhanKhususnyaYangMengandungRisikoTinggi": [
-                    {
-                        "rencanaTraining": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-e2H119_wcfhShuI-Lzpce.pdf"
-                    },
-                    {
-                        "matrixTraining": null
-                    },
-                    {
-                        "evaluasiKompetensi": null
-                    }
-                ]
-            },
-            "element_7": {
-                "tersedianyaPeralatanEmergencyDiKendaraan": null,
-                "perusahaanTelahMemilikiStandarOperasionalProsedurSOPKeadaanDaruratYangMungkinTimbulDalamKegiatanOperasiPerusahaan": [
-                    {
-                        "prosedurTanggapDarurat": null
-                    },
-                    {
-                        "strukturTanggapDarurat": null
-                    },
-                    {
-                        "daftarNomorTelpTanggapDarurat": null
-                    },
-                    {
-                        "formEvaluasiSimulasiTanggapDarurat": null
-                    }
-                ]
-            },
-            "element_8": {
-                "perusahaanTelahMempunyaiFomulirStandarPelaporanKecelakaan": [
-                    {
-                        "formPelaporanKecelakaanKerja": null
-                    },
-                    {
-                        "formPelaporanKecelakaan": null
-                    }
-                ],
-                "perusahaanTelahMemilikiMemilikiStandarOperasionalProsedurPelaporanDanInvestigasiKecelakaan": null
-            },
-            "element_9": {
-                "perusahaanTelahMelakukanEvaluasiDariHasilMonitoringSistemManajemenKeselamatanDanLaporanHasilAuditInternal": [
-                    {
-                        "formPermintaanTindakanPerbaikanDanPencegahan": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-IB8ym4C5beWHyJUB_LPX0.pdf"
-                    },
-                    {
-                        "formLaporanAuditInternal": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-SkRxdakpwLbBsj3Hhepxp.pdf"
-                    }
-                ],
-                "perusahaanTelahMelakukanProsedurMonitoringSistemManajemenKeselamatanSecaraBerkalaPadaPerusahaanDanProsedurKetidaksesuaian": [
-                    {
-                        "prosedurMonitoringDanEvaluasiMelaluiAuditInternal": null
-                    },
-                    {
-                        "prosedurKetidakSesuaian": null
-                    },
-                    {
-                        "formJadwalAuditInternal": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-V7vauk_5OxdyefZdHaC20.pdf"
-                    },
-                    {
-                        "formDaftarLaporanKetidaksesuaian": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/test_dokumen-TcEGMcpne3J_lTlI67Whx.pdf"
-                    }
-                ]
-            },
-            "element_10": {
-                "perusahaanTelahMemilikiProsedurPengukuranKinerja": null,
-                "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanDenganMenghitungSeverityIndex": null,
-                "perusahaanTelahMelakukanPengukuranKinerjaTingkatKeselamatanPelayananAngkutanDenganMenghitungAccidentRateAR": null
+                "perusahaanDapatMenjabarkanUraianTugasDanFungsiDiMasing-masingJabatanPadaStrukturOrganisasiHubunganAntarStrukturOrganisasiTersebut": "https:\/\/storage.hubdat.dephub.go.id\/esmk\/contoh_s_k_t_d_b_u__p_p_j_signed-69qcwr11r_m_r_ez_g_prxhr_nd-Juv_p1OePDhUlBLbOgsj9.pdf"
             }
         },
-        "approved_at": "2024-12-17 21:44:55",
-        "created_at": "2024-12-17T14:44:08.000000Z"
+        "approved_at": "2025-01-02 02:00:21",
+        "created_at": "2025-01-01T18:59:50.000000Z"
     }
 }
