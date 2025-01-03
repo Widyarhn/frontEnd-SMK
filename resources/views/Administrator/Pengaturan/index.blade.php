@@ -43,20 +43,26 @@
                                     style="width: 60px;" /></a>
                         </div>
                         <div class="flex-grow-1 mx-5 text-center text-sm-start">
-                            <h4 class="mb-0">SMK-PAU</h4>
-                            <h6 class="mb-0">Dishub Provinsi Jabar</h6>
-                            <p class="mb-0"><i class="fa-solid fa-location-dot me-2"></i>8534 Saunders Hill Apt.
-                                583</p>
+                            <!-- Nama Aplikasi -->
+                            <h4 id="namaAplikasi" class="mb-0"></h4>
+                            <!-- Deskripsi Aplikasi -->
+                            <h6 class="mb-0">Dishub <span id="provinsi"></span></h6>
+                            <!-- Alamat -->
+                            <p id="alamat" class="mb-0">
+                                <i class="fa-solid fa-location-dot me-2"></i>
+                            </p>
                             <div
                                 class="d-flex flex-column flex-sm-row align-items-center justify-content-center justify-content-sm-start">
-                                <p class="mb-0 me-2">
+                                <!-- No. WA Helpdesk -->
+                                <p id="noWaHelpdesk" class="mb-0 me-2">
                                     <span class="contact-icon">
                                         <i class="fa fa-phone"></i>
                                     </span>
                                     01267766 567238
                                 </p>
                                 <span class="mx-2">|</span>
-                                <p class="mb-0 ms-2">
+                                <!-- Email Helpdesk -->
+                                <p id="email" class="mb-0 ms-2">
                                     <span class="contact-icon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
@@ -64,6 +70,7 @@
                                 </p>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -385,6 +392,16 @@
                 document.getElementById('noWaHelpdesk').value = appData.helpdesk_whatsapp;
                 document.getElementById('kodePos').value = appData.post_code;
                 document.getElementById('alamat').value = appData.address;
+
+
+                document.getElementById('namaAplikasi').innerText = appData.apps_name;
+                document.getElementById('email').innerText = appData.helpdesk_mail;
+                document.getElementById('noWaHelpdesk').innerText = appData.helpdesk_whatsapp;
+                document.getElementById('alamat').innerText = appData.address;
+                document.getElementById('provinsi').innerText = appData.province_name;
+                document.getElementById('noWaHelpdesk').innerText = appData.helpdesk_whatsapp;
+                document.getElementById('email').innerText = appData.helpdesk_mail;
+
 
                 // Jika ada dropdown disabled, update value-nya
                 const provinsiSelect = document.querySelector('#select_provinsi');
