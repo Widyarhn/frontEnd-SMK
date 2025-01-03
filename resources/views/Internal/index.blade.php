@@ -4,6 +4,7 @@
 <head>
     <title>{{ $title }}</title>
 
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,17 +26,18 @@
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
     <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/creativetimofficial/nucleo-icons/css/nucleo-icons.css" rel="stylesheet">
-    
+
 
     {{-- <link rel="stylesheet" href="{{ asset('assets') }}/css/uikit.css" /> --}}
     {{-- <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" /> --}}
-   
+
     @yield('asset_css')
 
 </head>
 
 <body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr"
     data-pc-theme_contrast="" data-pc-theme="light">
+
 
     <div class="loader-bg">
         <div class="loader-track">
@@ -49,7 +51,9 @@
     <div class="pc-container">
         <div class="pc-content">
 
+
             @yield('content')
+
 
         </div>
     </div>
