@@ -1,16 +1,5 @@
-@extends('...Internal.index', ['title' => 'Detail | Data Perusahaan'])
+@extends('Internal.index', ['title' => 'Detail | Data Perusahaan'])
 @section('asset_css')
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
         .table th.sticky-end,
         .table td.sticky-end {
@@ -117,7 +106,7 @@
                                     <b>Ketua Tim</b>
                                 </p>
                                 <p class="mb-0"><i class="fa-regular fa-note-sticky me-2"></i><a href="">Lihat
-                                    Catatan</a></p>
+                                        Catatan</a></p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12 d-flex">
@@ -162,8 +151,7 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="navTabsContent">
-                        <div class="tab-pane fade show active" id="task" role="tabpanel"
-                            aria-labelledby="task-tab">
+                        <div class="tab-pane fade show active" id="task" role="tabpanel" aria-labelledby="task-tab">
                             <div class="task-card p-3" style="max-height: 200px; overflow-y: auto;">
                                 <ul class="list-unstyled task-list">
                                     <li>
@@ -202,8 +190,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade show" id="info" role="tabpanel"
-                            aria-labelledby="task-tab">
+                        <div class="tab-pane fade show" id="info" role="tabpanel" aria-labelledby="task-tab">
                             <div class="task-card" style="max-height: 280px; overflow-y: auto;">
                                 <h5>Penanggung Jawab</h5>
                                 <p class="mb-0"><i class="fa-solid fa-user me-2"></i>Ang Hoey Tiong</p>
@@ -304,7 +291,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <div class="row">
         <div class="col-12">
@@ -337,22 +324,23 @@
                             <div class="accordion accordion-flush" id="accordionFlushExample">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne"
                                             style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
                                             color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
                                             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-                                            
-                                            <i class="fa-regular fa-file-lines me-2"></i> 
-                                            <span class="fw-bold me-2 me-lg-0">1.1</span> &nbsp; 
+
+                                            <i class="fa-regular fa-file-lines me-2"></i>
+                                            <span class="fw-bold me-2 me-lg-0">1.1</span> &nbsp;
                                             <span class="text-uppercase">Komitmen dan Kebijakan Keselamatan</span>
                                         </button>
                                     </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
-                                        data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="flush-headingOne">
                                         <div class="accordion-body">
                                             <div class="table-responsive">
-                                                <table class="table table-hover" >
+                                                <table class="table table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -365,9 +353,14 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>1.1</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
                                                                 Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                File Deskripsi Komitmen dan Kebijakan Keselamatan
+                                                                (Persyaratan,
                                                                 Ekspektasi, Implementasi, Prosedur Terkait)
                                                                 <a href="">
                                                                     <p class="mb-0"><i
@@ -380,9 +373,14 @@
                                                         </tr>
                                                         <tr>
                                                             <td>1.2</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
                                                                 Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                File Deskripsi Komitmen dan Kebijakan Keselamatan
+                                                                (Persyaratan,
                                                                 Ekspektasi, Implementasi, Prosedur Terkait)
                                                                 <a href="">
                                                                     <p class="mb-0"><i
@@ -401,22 +399,23 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo"
                                             style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
                                             color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
                                             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-                                            
-                                            <i class="fa-regular fa-file-lines me-2"></i> 
-                                            <span class="fw-bold me-2 me-lg-0">2.1</span> &nbsp; 
+
+                                            <i class="fa-regular fa-file-lines me-2"></i>
+                                            <span class="fw-bold me-2 me-lg-0">2.1</span> &nbsp;
                                             <span class="text-uppercase">Pengorganisasian</span>
                                         </button>
                                     </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo"
-                                        data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse show"
+                                        aria-labelledby="flush-headingTwo">
                                         <div class="accordion-body">
                                             <div class="table-responsive">
-                                                <table class="table table-hover" >
+                                                <table class="table table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -429,8 +428,12 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>2.1</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Pengorganisasian
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Deskripsi Pengorganisasian</td>
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                File Deskripsi Pengorganisasian
                                                                 <a href="">
                                                                     <p class="mb-0"><i
                                                                             class="fa-regular fa-file-pdf me-1"></i><label
@@ -442,10 +445,15 @@
                                                         </tr>
                                                         <tr>
                                                             <td>2.2</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai struktur organisasi pengelolaan di bidang
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Perusahaan mempunyai struktur organisasi pengelolaan di
+                                                                bidang
                                                                 keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
                                                                 Keselamatan</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Perusahaan mempunyai struktur organisasi pengelolaan di
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                File Perusahaan mempunyai struktur organisasi pengelolaan di
                                                                 bidang keselamatan, seperti Unit Manajemen Keselamatan atau
                                                                 Petugas Keselamatan
                                                                 <a href="">
@@ -465,22 +473,23 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingThree">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                            aria-expanded="false" aria-controls="flush-collapseThree"
                                             style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
                                             color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
                                             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-                                            
-                                            <i class="fa-regular fa-file-lines me-2"></i> 
-                                            <span class="fw-bold me-2 me-lg-0">3.1</span> &nbsp; 
+
+                                            <i class="fa-regular fa-file-lines me-2"></i>
+                                            <span class="fw-bold me-2 me-lg-0">3.1</span> &nbsp;
                                             <span class="text-uppercase">Manajemen Bahaya Dan Risiko</span>
                                         </button>
                                     </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree"
-                                        data-bs-parent="#accordionFlushExample">
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse show"
+                                        aria-labelledby="flush-headingThree">
                                         <div class="accordion-body">
                                             <div class="table-responsive">
-                                                <table class="table table-hover" >
+                                                <table class="table table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -493,8 +502,12 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>3.1</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Deskripsi Pengorganisasian</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Deskripsi Pengorganisasian
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Deskripsi Pengorganisasian</td>
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                File Deskripsi Pengorganisasian
                                                                 <a href="">
                                                                     <p class="mb-0"><i
                                                                             class="fa-regular fa-file-pdf me-1"></i><label
@@ -506,10 +519,15 @@
                                                         </tr>
                                                         <tr>
                                                             <td>3.2</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">Perusahaan mempunyai struktur organisasi pengelolaan di bidang
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                Perusahaan mempunyai struktur organisasi pengelolaan di
+                                                                bidang
                                                                 keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
                                                                 Keselamatan</td>
-                                                            <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">File Perusahaan mempunyai struktur organisasi pengelolaan di
+                                                            <td
+                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
+                                                                File Perusahaan mempunyai struktur organisasi pengelolaan di
                                                                 bidang keselamatan, seperti Unit Manajemen Keselamatan atau
                                                                 Petugas Keselamatan
                                                                 <a href="">
@@ -536,12 +554,6 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
-    <script src="{{ asset('assets') }}/js/pages/invoice-list.js"></script>
-    <script src="../assets/js/plugins/datepicker-full.min.js"></script>
-    <script src="../assets/js/pages/ac-datepicker.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var options17 = {
             series: [30],
