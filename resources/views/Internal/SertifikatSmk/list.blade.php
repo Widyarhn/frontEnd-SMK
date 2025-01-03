@@ -1,16 +1,7 @@
 @extends('...Internal.index', ['title' => 'Detail | Data Perusahaan'])
 @section('asset_css')
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
     <style>
         .table th.sticky-end,
         .table td.sticky-end {
@@ -58,8 +49,8 @@
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Total Permohonan Sertifikat</p>
                             <div class="d-flex align-items-start">
-                                <h4 class="mb-0 me-2">3</h4>
-                                <span class="fw-bold f-16">Permohonan</span>
+                                <h4 class="mb-0 me-2" id="total_permohonan">3</h4>
+                                <span class="fw-bold f-16" id="ket_total">Permohonan</span>
                             </div>
                         </div>
                     </div>
@@ -78,8 +69,8 @@
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Permohonan Berlangsung</p>
                             <div class="d-flex align-items-start">
-                                <h4 class="mb-0 me-2">1</h4>
-                                <span class="fw-bold f-16">Berlangsung</span>
+                                <h4 class="mb-0 me-2" id="total_proses">1</h4>
+                                <span class="fw-bold f-16 ket_proses">Berlangsung</span>
                             </div>
                         </div>
                     </div>
@@ -91,15 +82,15 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">
-                            <div class="avtar bg-light-warning">
+                            <div class="avtar bg-light-dark">
                                 <i class="fa-solid fa-file-circle-exclamation"></i>
                             </div>
                         </div>
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Permohonan Kadaluwarsa</p>
                             <div class="d-flex align-items-start">
-                                <h4 class="mb-0 me-2">1</h4>
-                                <span class="fw-bold f-16">Kadaluwarsa</span>
+                                <h4 class="mb-0 me-2" id="total_kadaluwarsa">1</h4>
+                                <span class="fw-bold f-16 ket_kadaluwarsa">Kadaluwarsa</span>
                             </div>
                         </div>
                     </div>
@@ -118,8 +109,8 @@
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Permohonan Selesai</p>
                             <div class="d-flex align-items-start">
-                                <h4 class="mb-0 me-2">1</h4>
-                                <span class="fw-bold f-16">Selesai</span>
+                                <h4 class="mb-0 me-2" id="total_verified">1</h4>
+                                <span class="fw-bold f-16 ket_verified">Selesai</span>
                             </div>
                         </div>
                     </div>
@@ -137,11 +128,10 @@
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="daterange">Rentang Tanggal <sup
                                         class="text-danger">*</sup></label>
-                                <div class="input-daterange input-group" id="datepicker_range">
-                                    <input type="text" class="form-control text-left" placeholder="Tanggal Mulai"
-                                        name="range-start" />
-                                    <input type="text" class="form-control text-end" placeholder="Tanggal Berakhir"
-                                        name="range-end" />
+                                <div class="input-group">
+                                    <input type="text" id="pc-date_range_picker-2" class="form-control"
+                                        placeholder="Pilih rentang tanggal" />
+                                    <span class="input-group-text"><i class="feather icon-calendar"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -205,143 +195,24 @@
             </form>
         </div>
     </div>
-
-    {{-- list tabel biasa
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                            aria-labelledby="analytics-tab-1" tabindex="0">
-                            <div class="table-responsive">
-                                <table class="table table-hover" id="pc-dt-simple-1">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>No. Pendaftaran</th>
-                                            <th>Nama Perusahaan</th>
-                                            <th>Jenis Pelayanan</th>
-                                            <th>Lama Proses</th>
-                                            <th>Penilai</th>
-                                            <th>Jadwal Interviw</th>
-                                            <th>Posisi</th>
-                                            <th>Tanggal Pengajuan</th>
-                                            <th class="text-end sticky-end">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2024123</td>
-                                            <td>
-                                                <div class="row align-items-center">
-                                                    <div class="col-auto pe-0">
-                                                        <div
-                                                            class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                                            <i class="fa-solid fa-building text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">PT WIRASWASTA
-                                                                GEMILANG INDONESIA</span> </h6>
-                                                                <p class="f-12 mb-0">
-                                                                    <a href="#!" class="text-muted"><span
-                                                                            class="badge bg-primary">Wawancara</span></a>
-                                                                </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>AJAP</td>
-                                            <td>2 hari</td>
-                                            <td>Ahmad Str.</td>
-                                            <td>14 Mei 2024</td>
-                                            <td>Direktur</td>
-                                            <td>13 Mei 2024</td>
-                                            
-                                            <td class="text-end sticky-end">
-                                                <li class="list-inline-item"><a
-                                                        href="/internal/sertifikat/detail"
-                                                        class="avtar avtar-s btn-link-info btn-pc-default">
-                                                        <i class="ti ti-eye f-20"></i></a>
-                                                </li>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-
-                                            <td>2024123</td>
-                                            <td>
-                                                <div class="row align-items-center">
-                                                    <div class="col-auto pe-0">
-                                                        <div
-                                                            class="wid-40 hei-40 rounded-circle bg-success d-flex align-items-center justify-content-center">
-                                                            <i class="fa-solid fa-building text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">PT AGUNG
-                                                                JAYA</span> </h6>
-                                                        <p class="f-12 mb-0">
-                                                            <a href="#!" class="text-muted"><span
-                                                                    class="badge bg-success">Selesai</span></a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>AKAP</td>
-                                            <td>2 hari</td>
-                                            <td>Ahmad Str.</td>
-                                            <td>14 Mei 2024</td>
-                                            <td>Direktur</td>
-                                            <td>13 Mei 2024</td>
-                                            
-                                            <td class="text-end sticky-end">
-                                                <li class="list-inline-item"><a
-                                                        href="/internal/sertifikat/detail"
-                                                        class="avtar avtar-s btn-link-info btn-pc-default">
-                                                        <i class="ti ti-eye f-20"></i></a>
-                                                </li>
-                                            </td>
-                                        </tr>
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    <div class="row">
-        <div class="col-12 mt-4">
             <div class="table-responsive">
                 <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
                     <div class="datatable-top">
                         <div class="datatable-dropdown">
                             <label>
-                                <select class="datatable-selector">
+                                <select class="datatable-selector" style="width: auto;min-width: unset;" id="limitPage">
                                     <option value="5">5</option>
                                     <option value="10" selected="">10</option>
                                     <option value="15">15</option>
                                     <option value="20">20</option>
                                     <option value="25">25</option>
-                                </select> entries per page
+                                </select>
                             </label>
                         </div>
-                        <div class="datatable-search d-flex justify-content-between align-items-center">
-                            <div class="btn-group btn-group-sm help-filter" role="group" aria-label="button groups sm">
-                                <a class="btn btn-light-secondary" onclick='noteNotShow()'
-                                    style="border-top-left-radius: 5px !important;border-bottom-left-radius: 5px !important;"><i
-                                        class="feather icon-align-justify m-0 fa-4x"></i></a>
-                                <a class="btn btn-light-secondary" onclick='noteShow()'
-                                    style="border-top-right-radius: 5px !important;border-bottom-right-radius: 5px !important;"><i
-                                        class="feather icon-grid m-0 fa-4x"></i></a>
-                            </div>
-                            <input class="ms-3 datatable-input" placeholder="Search..." type="search"
+                        <div class="datatable-search">
+                            <input class="datatable-input searchInput" placeholder="Search..." type="search"
                                 title="Search within table" aria-controls="pc-dt-simple-1">
                         </div>
                     </div>
@@ -349,365 +220,424 @@
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 help-main large-view">
-                    <div class="card ticket-card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-auto mb-3 mb-sm-0">
-                                    <div class="d-sm-inline-block d-flex align-items-center">
-                                        {{-- <img class="media-object wid-60 img-radius"
-                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
-                                            alt="Generic placeholder image "> --}}
-                                        <div
-                                            class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                            <i class="fa-solid fa-building text-white fa-2x"></i>
-                                        </div>
-                                        <div class="ms-3 ms-sm-0">
-                                            <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
-                                                <li class="list-unstyled-item"><a href="#" class="link-secondary">1
-                                                        Catatan</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="popup-trigger">
-                                        <div
-                                            class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                                            <div class="h4 font-weight-bold mb-2 mb-md-0">
-                                                No. Pendaftaran: 20240000030
-                                                <small class="badge bg-light-primary ms-2">Pengesahan sertifikat</small>
-                                            </div>
-                                            <div>
-                                                <span class="badge bg-light-secondary px-3 py-2 mb-3 mb-md-0">Lama Proses:
-                                                    2 Hari</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="help-sm-hidden">
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="ph-duotone ph-buildings me-1"></i>
-                                                    <b>PT TRISTAR JAVA TRANSINDO</b>
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                        alt="" class="wid-20 rounded me-1 img-fluid">
-                                                    Diproses Oleh <b>Ahmad Syariffudin
-                                                        Putro</b>
-                                                </li>
-                                            </ul>
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-regular fa-calendar-days me-1"></i>Diajukan
-                                                    <b>23-12-2024 09:57:11</b>
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-solid fa-calendar-day me-1"></i><b>Jadwal
-                                                        Interview : </b>Tidak ada
-                                                    wawancara
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                        alt="" class="wid-20 rounded me-1 img-fluid">
-                                                    Posisi : <b>Joko Kustanto</b>
-                                                </li>
-                                            </ul>
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-solid fa-clipboard-list me-1"></i><b>Jenis Pelayanan :
-                                                    </b>
-                                                    Angkutan B3, Angkutan barang umum
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="noteShow">
-                                            <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
-                                                Catatan Permohonan</div>
-                                            <div class="help-md-hidden">
-                                                <div class="bg-body mb-3 p-3">
-                                                    <h6><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                            alt="" class="wid-20 avatar me-2 rounded">Last
-                                                        comment from <a href="#" class="link-secondary">Robert
-                                                            alia:</a></h6>
-                                                    <p class="mb-0"><b>hello John
-                                                            lui</b>,<br>you need to
-                                                        create
-                                                        <b>"toolbar-options" div
-                                                            only</b>
-                                                        once in a page&nbsp;in your
-                                                        code,<br>this div fill found
-                                                        every
-                                                        "td" tag in your
-                                                        page,<br>just...
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-4">
-                                        <a href="/internal/sertifikat/detail" class="me-2 btn btn-sm btn-light-secondary"
-                                            style="border-radius:5px;"><i class="feather icon-eye mx-1"></i>Lihat
-                                            Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card ticket-card open-ticket">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-auto mb-3 mb-sm-0">
-                                    <div class="d-sm-inline-block d-flex align-items-center">
-                                        {{-- <img class="media-object wid-60 img-radius"
-                                            src="{{ asset('assets') }}/images/user/avatar-1.jpg"
-                                            alt="Generic placeholder image "> --}}
-                                        <div
-                                            class="wid-60 hei-60 rounded-circle bg-danger d-flex align-items-center justify-content-center">
-                                            <i class="fa-solid fa-building text-white fa-2x"></i>
-                                        </div>
-                                        <div class="ms-3 ms-sm-0">
-                                            <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
-                                                <li class="list-unstyled-item"><a href="#" class="link-secondary">1
-                                                        Catatan</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="popup-trigger">
-                                        <div
-                                            class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                                            <div class="h4 font-weight-bold mb-2 mb-md-0">
-                                                No. Pendaftaran: 20240000030
-                                                <small class="badge bg-light-danger ms-2">Revisi</small>
-                                            </div>
-                                            <div>
-                                                <span class="badge bg-light-secondary px-3 py-2 mb-3 mb-md-0">Lama Proses:
-                                                    2 Hari</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="help-sm-hidden">
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="ph-duotone ph-buildings me-1"></i>
-                                                    <b>PT TRISTAR JAVA TRANSINDO</b>
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                        alt="" class="wid-20 rounded me-1 img-fluid">
-                                                    Diproses Oleh <b>Ahmad Syariffudin
-                                                        Putro</b>
-                                                </li>
-                                            </ul>
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-regular fa-calendar-days me-1"></i>Diajukan
-                                                    <b>23-12-2024 09:57:11</b>
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-solid fa-calendar-day me-1"></i><b>Jadwal
-                                                        Interview : </b>Tidak ada
-                                                    wawancara
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                        alt="" class="wid-20 rounded me-1 img-fluid">
-                                                    Posisi : <b>Joko Kustanto</b>
-                                                </li>
-                                            </ul>
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-solid fa-clipboard-list me-1"></i><b>Jenis Pelayanan :
-                                                    </b>
-                                                    Angkutan B3, Angkutan barang umum
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="noteShow">
-                                            <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
-                                                Catatan Permohonan</div>
-                                            <div class="help-md-hidden">
-                                                <div class="bg-body mb-3 p-3">
-                                                    <h6><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                            alt="" class="wid-20 avatar me-2 rounded">Last
-                                                        comment from <a href="#" class="link-secondary">Robert
-                                                            alia:</a></h6>
-                                                    <p class="mb-0"><b>hello John
-                                                            lui</b>,<br>you need to
-                                                        create
-                                                        <b>"toolbar-options" div
-                                                            only</b>
-                                                        once in a page&nbsp;in your
-                                                        code,<br>this div fill found
-                                                        every
-                                                        "td" tag in your
-                                                        page,<br>just...
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-3">
-                                        <a href="/internal/sertifikat/detail" class="me-2 btn btn-sm btn-light-secondary"
-                                            style="border-radius:5px;"><i class="feather icon-eye mx-1"></i>Lihat
-                                            Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card ticket-card close-ticket">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-auto mb-3 mb-sm-0">
-                                    <div class="d-sm-inline-block d-flex align-items-center">
-                                        <div
-                                            class="wid-60 hei-60 rounded-circle bg-success d-flex align-items-center justify-content-center">
-                                            <i class="fa-solid fa-building text-white fa-2x"></i>
-                                        </div>
-                                        <div class="ms-3 ms-sm-0">
-                                            <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
-                                                <li class="list-unstyled-item"><a href="#" class="link-secondary">0
-                                                        Catatan</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="popup-trigger">
-                                        <div
-                                            class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                                            <div class="h4 font-weight-bold mb-2 mb-md-0">
-                                                No. Pendaftaran: 20240000030
-                                                <small class="badge bg-light-primary ms-2">Pengesahan sertifikat</small>
-                                            </div>
-                                            <div>
-                                                <span class="badge bg-light-secondary px-3 py-2 mb-3 mb-md-0">Lama Proses:
-                                                    2 Hari</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="help-sm-hidden">
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="ph-duotone ph-buildings me-1"></i>
-                                                    <b>PT TRISTAR JAVA TRANSINDO</b>
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                        alt="" class="wid-20 rounded me-1 img-fluid">
-                                                    Diproses Oleh <b>Ahmad Syariffudin
-                                                        Putro</b>
-                                                </li>
-                                            </ul>
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-regular fa-calendar-days me-1"></i>Diajukan
-                                                    <b>23-12-2024 09:57:11</b>
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-solid fa-calendar-day me-1"></i><b>Jadwal
-                                                        Interview : </b>Tidak ada
-                                                    wawancara
-                                                </li>
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                        alt="" class="wid-20 rounded me-1 img-fluid">
-                                                    Posisi : <b>Joko Kustanto</b>
-                                                </li>
-                                            </ul>
-                                            <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                    <i class="fa-solid fa-clipboard-list me-1"></i><b>Jenis Pelayanan :
-                                                    </b>
-                                                    Angkutan B3, Angkutan barang umum
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="noteShow">
-                                            <div class="h5 my-4">
-                                                <i class="fa-solid fa-file-pdf me-2"></i>
-                                                Nomor Serifikat SK/00912/99812
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-4">
-                                        <a href="https://storage.hubdat.dephub.go.id/esmk/dokumen_tanpa_judul-dwXyWCrfeJKwMZZYxuGNs.pdf"
-                                            class="me-2 btn btn-sm btn-light-primary" style="border-radius:5px;"><i
-                                                class="fa-solid fa-file-pdf me-2"></i>Lihat
-                                            Dokumen</a>
-
-                                        <a href="/internal/sertifikat/detail" class="me-2 btn btn-sm btn-light-secondary"
-                                            style="border-radius:5px;"><i class="feather icon-eye mx-1"></i>Lihat
-                                            Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="submission-card"></div>
                 </div>
             </div>
-            {{-- <div class="card">
-               <div class="card-body my-0">
-                <div class="datatable-bottom">
-                    <div class="datatable-info">Showing 1 to 9 of 9 entries</div>
-                    <nav class="datatable-pagination">
-                        <ul class="datatable-pagination-list"></ul>
-                    </nav>
-                </div>
-               </div>
-            </div> --}}
         </div>
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
-    <script src="{{ asset('assets') }}/js/pages/invoice-list.js"></script>
-    <script src="../assets/js/plugins/datepicker-full.min.js"></script>
-    <script src="../assets/js/pages/ac-datepicker.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
+    <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/date/moment.js') }}"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const noteElements = document.querySelectorAll(".noteShow");
-            const notShowButton = document.querySelector(".btn-group .btn:nth-child(1)");
-            const showButton = document.querySelector(".btn-group .btn:nth-child(2)");
+        function calculateBusinessDays(startDate, endDate) {
+            let count = 0;
+            let curDate = moment(startDate).startOf('day'); // Mulai dari hari pertama
+            let lastDate = moment(endDate).startOf('day'); // Sampai dengan hari terakhir
 
-            // Menyembunyikan atau menampilkan semua elemen dengan kelas 'noteShow'
-            if (noteElements.length > 0) {
-                noteElements.forEach(noteElement => {
-                    noteElement.style.display = "block"; // Menampilkan semua catatan
-                });
-                if (showButton) showButton.classList.add("active"); // Set tombol 'noteShow' aktif secara default
-                if (notShowButton) notShowButton.classList.remove("active");
+            while (curDate.isSameOrBefore(lastDate)) {
+                // Exclude weekend (Saturday = 6, Sunday = 7)
+                if (curDate.isoWeekday() !== 6 && curDate.isoWeekday() !== 7) {
+                    count++;
+                }
+                curDate.add(1, 'days');
             }
-        });
 
-        function noteNotShow() {
-            const noteElements = document.querySelectorAll(".noteShow");
-            const notShowButton = document.querySelector(".btn-group .btn:nth-child(1)");
-            const showButton = document.querySelector(".btn-group .btn:nth-child(2)");
-
-            noteElements.forEach(noteElement => {
-                noteElement.style.display = "none"; // Sembunyikan semua elemen
-            });
-
-            if (notShowButton) notShowButton.classList.add("active");
-            if (showButton) showButton.classList.remove("active");
+            return count;
         }
 
-        function noteShow() {
-            const noteElements = document.querySelectorAll(".noteShow");
-            const notShowButton = document.querySelector(".btn-group .btn:nth-child(1)");
-            const showButton = document.querySelector(".btn-group .btn:nth-child(2)");
+        async function getListData() {
+            loadingPage(true);
+            let card = $('#submission-card');
 
-            noteElements.forEach(noteElement => {
-                noteElement.style.display = "block"; // Tampilkan semua elemen
+            // Memanggil API untuk mendapatkan data bidang
+            const getDataRest = await CallAPI(
+                    'GET',
+                    `/dummy/internal/sertifikat/list_sertifikat.json`,
+                )
+                .then(response => response)
+                .catch(error => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Pemberitahuan',
+                        text: resp.data.message,
+                        confirmButtonColor: '#28a745',
+                    });
+                    return resp;
+                });
+
+            if (getDataRest.status === 200) {
+                loadingPage(false);
+                let data = getDataRest.data;
+                document.getElementById('total_permohonan').innerText = data.pagination.total || '-';
+                document.getElementById('ket_total').innerText = data.pagination.total ? 'Permohonan' : '';
+
+                let dataTable = data.data;
+                if (dataTable.length === 0) {
+                    card.html(`
+                        <tr>
+                            <th class="text-center" colspan="5">Tidak ada data.</th>
+                        </tr>
+                    `);
+                } else {
+                    let domTableHtml = "";
+                    const processStatuses = [
+                        'request',
+                        'disposition',
+                        'not_passed_assessment',
+                        'submission_revision',
+                        'passed_assessment',
+                        'not_passed_assessment_verification',
+                        'assessment_revision',
+                        'passed_assessment_verification',
+                        'scheduling_interview',
+                        'scheduled_interview',
+                        'not_passed_interview',
+                        'completed_interview',
+                        'verification_director'
+                    ];
+                    let totalInProcess = dataTable.filter(item => processStatuses.includes(item.status)).length;
+
+                    const expStatuses = [
+                        'expired'
+                    ];
+                    let totalExpired = dataTable.filter(item => expStatuses.includes(item.status)).length;
+
+                    const verifiedStatuses = [
+                        'certificate_validation'
+                    ];
+                    let totalVerified = dataTable.filter(item => verifiedStatuses.includes(item.status)).length;
+
+                    document.getElementById('total_proses').innerText = totalInProcess || '-';
+                    document.querySelector('.ket_proses').innerText = totalInProcess ? 'Berlangsung' : '';
+                    document.getElementById('total_kadaluwarsa').innerText = totalExpired || '-';
+                    document.querySelector('.ket_kadaluwarsa').innerText = totalExpired ? 'Kadaluwarsa' : '';
+                    document.getElementById('total_verified').innerText = totalVerified || '-';
+                    document.querySelector('.ket_verified').innerText = totalVerified ? 'Selesai' : '';
+
+                    const statusLabels = {
+                        'draft': 'Draft',
+                        'request': 'Pengajuan',
+                        'disposition': 'Disposisi',
+                        'not_passed_assessment': 'Tidak lulus penilaian',
+                        'submission_revision': 'Revisi pengajuan',
+                        'passed_assessment': 'Lulus penilaian',
+                        'not_passed_assessment_verification': 'Penilaian tidak lulus verifikasi',
+                        'assessment_revision': 'Revisi penilaian',
+                        'passed_assessment_verification': 'Penilaian terverifikasi',
+                        'scheduling_interview': 'Penjadwalan wawancara',
+                        'scheduled_interview': 'Wawancara Terjadwal',
+                        'not_passed_interview': 'Tidak lulus wawancara',
+                        'completed_interview': 'Wawancara selesai',
+                        'verification_director': 'Validasi direktur',
+                        'certificate_validation': 'Pengesahan sertifikat',
+                        'rejected': 'Pengajuan ditolak',
+                        'cancelled': 'Pengajuan dibatalkan',
+                        'expired': 'Pengajuan kedaluwarsa'
+                    };
+                    for (let index = 0; index < dataTable.length; index++) {
+                        let element = dataTable[index];
+                        let colorBage = 'primary';
+                        if (element.status.includes('draft')) {
+                            colorBage = 'secondary';
+                        }
+                        if (element.status.includes('not')) {
+                            colorBage = 'warning';
+                        }
+                        if (element.status.includes('expired')) {
+                            colorBage = 'dark';
+                        }
+                        if (element.status.includes('complete') || element.status.includes('passed_assessment_') ||
+                            element.status == 'certificate_validation') {
+                            colorBage = 'success';
+                        }
+                        if (element.status.includes('expired') ||
+                            element.status.includes('cancelled') ||
+                            element.status.includes('rejected') || (element.rejection_notes && element.rejection_notes.length > 0 )
+                        ) {
+                            colorBage = 'danger';
+                        }
+                        let badgeStatus =
+                            `<small class="badge bg-light-${colorBage} ms-2 f-14">${statusLabels[element.status]}</small>`;
+
+                        let created_at = moment(element.created_at, 'YYYY-MM-DD');
+                        let current = moment();
+                        let lastUpdated = element.updated_at ? moment(element.updated_at, 'YYYY-MM-DD') : current;
+
+                        let weekDays = calculateBusinessDays(created_at, current);
+
+                        // Jika status 'certificate_validation', hitung dari updated_at hingga sekarang
+                        if (element.status === 'certificate_validation') {
+                            weekDays = calculateBusinessDays(lastUpdated, created_at);
+                        }
+                        let progressLabel = `${weekDays} hari`;
+                        let statusBadge = element.is_active ?
+                            '<span class="badge bg-light-success">Aktif</span>' :
+                            '<span class="badge bg-light-danger">Tidak Aktif</span>';
+
+                        let statusLabel = element.status === "disposition" ?
+                            '<span class="badge bg-light-primary">Pengajuan Baru</span>' :
+                            '<span class="badge bg-light-success">Draft</span>';
+
+                        let lastUpdate = new Date(element.updated_at).toLocaleDateString();
+                        let createdDate = new Date(element.created_at).toLocaleDateString();
+
+                        let cardClass = element.status === 'certificate_validation' ? 'ticket-card close-ticket' :
+                            (element.rejection_notes && element.rejection_notes.length > 0 ? 'ticket-card open-ticket' :
+                                'ticket-card');
+
+                        let profileClass = element.status === 'certificate_validation' ? 'bg-success' :
+                            (element.rejection_notes && element.rejection_notes.length > 0 ? 'bg-danger' :
+                                'bg-primary');
+
+                        let truncatedNotes = element.rejection_notes && element.rejection_notes.length !== null ?
+                            element.rejection_notes.substring(0, 100) + '...' : element.rejection_notes || '';
+
+                        domTableHtml += `
+                            <div class="card ${cardClass}">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-auto mb-3 mb-sm-0">
+                                            <div class="d-sm-inline-block d-flex align-items-center">
+                                                <div
+                                                    class="wid-60 hei-60 rounded-circle bg-${colorBage} d-flex align-items-center justify-content-center">
+                                                    <i class="fa-solid fa-file-lines text-white fa-2x"></i>
+                                                </div>
+                                                <div class="ms-3 ms-sm-0">
+                                                    <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
+                                                        <li class="list-unstyled-item"><a href="#" class="link-secondary">${element.notes_count ? element.notes_count + ' Catatan' : ''}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="col">
+                                            <div class="popup-trigger">
+                                                <div
+                                                    class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                                                    <div class="h4 font-weight-bold mb-2 mb-md-0">
+                                                        No. Pendaftaran: ${element.regnumber || '-'}
+                                                        ${badgeStatus}
+                                                    </div>
+                                                    <div>
+                                                        <span class="badge bg-light-dark px-3 py-2 mb-3 mb-md-0">Lama Proses:
+                                                            ${progressLabel}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="help-sm-hidden">
+                                                    <ul class="list-unstyled mt-2 mb-0 text-muted">
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <i class="ph-duotone ph-buildings me-1"></i>
+                                                            <b>${element.company_name || '-'}</b>
+                                                        </li>
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                alt="" class="wid-20 rounded me-1 img-fluid">
+                                                            Penilai : <b>${element.disposition_to ? element.disposition_to.name : '-'}</b>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="list-unstyled mt-2 mb-0 text-muted">
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <i class="fa-regular fa-calendar-days me-1"></i>Diajukan
+                                                            <b>${element.created_at? formatTanggalIndo(element.created_at) : ''}</b>
+                                                        </li>
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <i class="fa-solid fa-calendar-day me-1"></i><b>Jadwal
+                                                                Interview : </b>${element.schedule_interview ? formatTanggalIndo(element.schedule_interview) : 'Tidak ada wawancara'}</li>
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                alt="" class="wid-20 rounded me-1 img-fluid">
+                                                            Posisi : <b>${element.disposition_by ? element.disposition_by.name : '-'}</b>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="list-unstyled mt-2 mb-0 text-muted">
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <i class="fa-solid fa-clipboard-list me-1"></i><b>Jenis Pelayanan :
+                                                            </b>
+                                                            ${element.company?.service_types?.map(service => service.name).join(', ') || '-'}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                ${element.rejection_notes ? `
+                                                                        <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
+                                                                            Catatan Permohonan</div>
+                                                                        <div class="help-md-hidden">
+                                                                            <div class="bg-body mb-3 p-3">
+                                                                                <h6><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                        alt="" class="wid-20 avatar me-2 rounded">Catatan terakhir dari <a href="#" class="link-secondary">${element.updated_by}</a></h6>
+                                                                                <p class="mb-0">
+                                                                                    ${truncatedNotes}
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>`
+                                                    : 
+                                                ''}
+                                            </div>
+                                            <div class="mt-4">
+                                                ${element.rejection_notes ? `
+                                                                        <button type="button" class="me-2 btn btn-sm btn-light-danger"
+                                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
+                                                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
+                                                                        </button>` : ''}
+                                                <a href="/internal/sertifikat/detail" class="me-2 btn btn-sm btn-light-secondary"
+                                                    style="border-radius:5px;"><i class="feather icon-eye mx-1 me-2"></i>Lihat
+                                                    Detail</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+                    }
+
+                    card.empty();
+                    card.html(domTableHtml);
+                    $('[data-toggle="tooltip"]').tooltip();
+                }
+            }
+        }
+
+        function showModalNotes(notes) {
+            $('#exampleModalCenter .modal-body').html(`<p>${notes}</p>`);
+            $('#exampleModalCenter').modal('show');
+        }
+
+        async function selectFilterStatus(id, placeholder) {
+            // Mapping status values to Select2 options
+            let statusMapping = {
+                request: 'Pengajuan',
+                disposition: 'Disposisi',
+                not_passed_assessment: 'Tidak lulus penilaian',
+                submission_revision: 'Perbaikan dokumen',
+                passed_assessment: 'Lulus penilaian',
+                not_passed_assessment_verification: 'Tidak lulus verifikasi penilaian',
+                assessment_revision: 'Perbaikan penilaian',
+                passed_assessment_verification: 'Lulus verifikasi penilaian',
+                scheduling_interview: 'Penjadwalan wawancara',
+                scheduled_interview: 'Wawancara terjadwal',
+                completed_interview: 'Wawancara selesai',
+                verification_director: 'Verifikasi direktur',
+                certificate_validation: 'Pengesahan Sertifikat',
+                rejected: 'Ditolak',
+                cancelled: 'Dibatalkan',
+                expired: 'Kedaluarsa',
+                draft: 'Draft'
+            };
+
+            // Convert statusMapping to an array of objects with 'id' and 'text' for Select2
+            let statusOptions = Object.keys(statusMapping).map(key => {
+                return {
+                    id: key,
+                    text: statusMapping[key]
+                };
             });
 
-            if (showButton) showButton.classList.add("active");
-            if (notShowButton) notShowButton.classList.remove("active");
+            // Add an empty option at the beginning for placeholder
+            statusOptions.unshift({
+                id: '',
+                text: ''
+            });
+
+            // Initialize Select2 with local data
+            $(id).select2({
+                data: statusOptions, // Use the mapped data
+                allowClear: true,
+                placeholder: placeholder,
+            });
+        }
+
+
+        async function selectFilter(id) {
+            if (id === '#input-perusahaan') {
+                $(id).select2({
+                    // language: languageIndonesian,
+                    ajax: {
+                        url: `/dummy/internal/sertifikat/select_perusahaan.json`,
+                        dataType: 'json',
+                        delay: 500,
+                        headers: {
+                            Authorization: `Bearer ${Cookies.get('auth_token')}`
+                        },
+                        data: function(params) {
+                            let query = {
+                                search: params.term,
+                                page: 1,
+                                limit: 30,
+                                ascending: 1
+                            }
+                            return query;
+                        },
+                        processResults: function(res) {
+                            let data = res.data
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+                                        id: item.id,
+                                        text: item.name
+                                    }
+                                })
+                            };
+                        },
+                    },
+                    allowClear: true,
+                    placeholder: 'Pilih perusahaan'
+                });
+            }
+            if (id === '#input-penilai') {
+                $(id).select2({
+                    // language: languageIndonesian,
+                    ajax: {
+                        // url: `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/assessor-list`,
+                        url: `/dummy/internal/sertifikat/select_penilai.json`,
+                        dataType: 'json',
+                        delay: 500,
+                        headers: {
+                            Authorization: `Bearer ${Cookies.get('auth_token')}`
+                        },
+                        data: function(params) {
+                            let query = {
+                                keyword: params.term,
+                                page: 1,
+                                limit: 30,
+                                ascending: 1
+                            }
+                            return query;
+                        },
+                        processResults: function(res) {
+                            let data = res.data
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+
+                                        text: item.name,
+                                        id: item.id
+                                    }
+                                })
+                            };
+                        },
+                    },
+                    allowClear: true,
+                    placeholder: 'Pilih Penilai'
+                });
+            }
+
+        }
+
+        async function initPageLoad() {
+            flatpickr(document.querySelector('#pc-date_range_picker-2'), {
+                mode: 'range'
+            });
+            await Promise.all([
+                getListData(),
+                selectFilterStatus('#input-status', 'Pilih status sertifikat'),
+                selectFilter('#input-perusahaan'),
+                selectFilter('#input-penilai'),
+            ]);
         }
     </script>
+    @include('Company.partial-js')
 @endsection
