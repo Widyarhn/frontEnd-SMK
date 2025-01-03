@@ -537,7 +537,10 @@
                 chart: {
                     height: 350,
                     width: '90%',
-                    type: 'bar'
+                    type: 'bar',
+                    toolbar: {
+                        show: false // Menonaktifkan toolbar
+                    }
                 },
                 plotOptions: {
                     bar: {
@@ -626,7 +629,10 @@
             var options_pie_chart_2 = {
                 chart: {
                     height: 320,
-                    type: 'donut'
+                    type: 'donut',
+                    toolbar: {
+                        show: false // Menonaktifkan toolbar
+                    }
                 },
                 series: dataPoints,
                 colors: ['#4680FF', '#E58A00', '#2CA87F', '#3EC9D6', '#9B59B6', '#006400', '#DC2626', '#F4D03F'],
@@ -734,7 +740,10 @@
                     height: 350,
                     type: 'line',
                     width: '90%',
-                    stacked: false
+                    stacked: false,
+                    toolbar: {
+                        show: false // Menonaktifkan toolbar
+                    }
                 },
                 stroke: {
                     width: [0, 2, 5],
@@ -786,18 +795,6 @@
                 },
                 yaxis: {
                     min: 0
-                },
-                tooltip: {
-                    shared: true,
-                    intersect: false,
-                    y: {
-                        formatter: function(y) {
-                            if (typeof y !== 'undefined') {
-                                return y.toFixed(0) + ' counts';
-                            }
-                            return y;
-                        }
-                    }
                 },
                 legend: {
                     labels: {

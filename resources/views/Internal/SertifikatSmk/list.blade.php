@@ -212,7 +212,7 @@
                             </label>
                         </div>
                         <div class="datatable-search">
-                            <input class="datatable-input searchInput" placeholder="Search..." type="search"
+                            <input class="datatable-input searchInput" placeholder="Cari..." type="search"
                                 title="Search within table" aria-controls="pc-dt-simple-1">
                         </div>
                     </div>
@@ -221,6 +221,24 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 help-main large-view">
                     <div id="submission-card"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="exampleModalCenter" class="modal fade" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Catatan Pengajuan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
