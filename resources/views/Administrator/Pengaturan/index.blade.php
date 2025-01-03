@@ -58,7 +58,6 @@
                                     <span class="contact-icon">
                                         <i class="fa fa-phone"></i>
                                     </span>
-                                    01267766 567238
                                 </p>
                                 <span class="mx-2">|</span>
                                 <!-- Email Helpdesk -->
@@ -66,7 +65,6 @@
                                     <span class="contact-icon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    brandon07@pierce.com
                                 </p>
                             </div>
                         </div>
@@ -114,8 +112,8 @@
                                         <div class="col-md-6">
                                             <div class="">
                                                 <div class="form-floating mb-0">
-                                                    <input type="text" class="form-control" id="namaAplikasi"
-                                                        placeholder="Masukkan Nama Aplikasi" value="SMK-PAU" />
+                                                    <input type="text" class="form-control" id="input_nama"
+                                                        placeholder="Masukkan Nama Aplikasi"/>
                                                     <label for="namaAplikasi">Nama Aplikasi</label>
                                                 </div>
                                             </div>
@@ -133,8 +131,8 @@
                                         <div class="col-md-6">
                                             <div class="">
                                                 <div class="form-floating mb-0">
-                                                    <input type="email" class="form-control" id="email"
-                                                        placeholder="Masukkan Nama Aplikasi" value="dishub@co.id" />
+                                                    <input type="email" class="form-control" id="input_email"
+                                                        placeholder="Masukkan Email Helpdesk" />
                                                     <label for="email">Email Helpdesk</label>
                                                 </div>
                                             </div>
@@ -142,8 +140,8 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <div class="form-floating mb-0">
-                                                    <input type="text" class="form-control" id="noWaHelpdesk"
-                                                        placeholder="" value="01267766" />
+                                                    <input type="text" class="form-control" id="input_wa"
+                                                        placeholder="No WhatsApp Helpdesk" />
                                                     <label for="noWaHelpdesk">No. WhatsApp Helpdesk</label>
                                                 </div>
                                             </div>
@@ -176,7 +174,7 @@
                                             <div class="mb-3">
                                                 <div class="form-floating mb-0">
                                                     <input type="text" class="form-control" id="kodePos"
-                                                        placeholder="" value="45281" />
+                                                        placeholder="Masukkan Kode POS" />
                                                     <label for="floatingSelect">Kode Pos</label>
                                                 </div>
                                             </div>
@@ -185,7 +183,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-">
                                                 <div class="form-floating mb-0">
-                                                    <textarea class="form-control" id="alamat" rows="3"></textarea>
+                                                    <textarea class="form-control" id="input_alamat" rows="3"></textarea>
                                                     <label for="alamat">Alamat</label>
                                                 </div>
                                             </div>
@@ -201,7 +199,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 ">
+                    <div class="col-12">
                         <div class="card mt-4 shadow-none border mb-0 h-100">
                             <div class="card-body">
                                 <h6 class="mb-3">Akun OSS</h6>
@@ -386,12 +384,13 @@
                 // Ambil data dari response
                 const appData = getDataRest.data.data;
 
-                document.getElementById('namaAplikasi').value = appData.apps_name;
+
+                document.getElementById('input_nama').value = appData.apps_name;
                 document.getElementById('deskripsiAplikasi').value = appData.apps_desc;
-                document.getElementById('email').value = appData.helpdesk_mail;
-                document.getElementById('noWaHelpdesk').value = appData.helpdesk_whatsapp;
+                document.getElementById('input_email').value = appData.helpdesk_mail;
+                document.getElementById('input_wa').value = appData.helpdesk_whatsapp;
                 document.getElementById('kodePos').value = appData.post_code;
-                document.getElementById('alamat').value = appData.address;
+                document.getElementById('input_alamat').value = appData.address;
 
 
                 document.getElementById('namaAplikasi').innerText = appData.apps_name;
@@ -426,7 +425,6 @@
             const noWaHelpdesk = document.getElementById('noWaHelpdesk').value;
             const kodePos = document.getElementById('kodePos').value;
             const alamat = document.getElementById('alamat').value;
-
             const provinsi = document.getElementById('select_provinsi').value;
             const kota = document.getElementById('select_kota').value;
 
