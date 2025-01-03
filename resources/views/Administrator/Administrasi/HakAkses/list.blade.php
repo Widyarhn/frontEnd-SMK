@@ -1,4 +1,4 @@
-@extends('...Administrator.index', ['title' => 'Hak Akses | Administrasi'])
+@extends('...Administrator.index', ['title' => 'Administrasi | Hak Akses'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css" />
     <style>
-        .datatable-top{
+        .datatable-top {
             display: none;
         }
     </style>
@@ -34,8 +35,9 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Manajemen Peran</h2>
                     </div>
-                    <button data-pc-animate="fade-in-scale" type="button" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0"
-                        data-bs-toggle="modal" data-bs-target="#animateModal">
+                    <button data-pc-animate="fade-in-scale" type="button"
+                        class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0" data-bs-toggle="modal"
+                        data-bs-target="#animateModal">
                         <i class="fas fa-plus-circle me-2"></i> Tambah Peran Baru
                     </button>
                 </div>
@@ -53,21 +55,16 @@
                 <div class="card-body">
                     <div class="col-lg-4 mt-2">
                         <div class="mb-3">
-                            <div class="form-floating">
-                                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                    <option selected>Pilih Peran</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Asesor</option>
-                                </select>
-                                <label for="floatingSelect">Pencarian Peran</label>
-                            </div>
+                            <label class="fw-bold mb-2" for="input-role">Pencarian Peran</label>
+                            <select class="form-control select2" name="input_role" id="input-role"></select>
+
                         </div>
                     </div>
                     <div class="tab-content mt-5" id="myTabContent">
                         <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
                             aria-labelledby="analytics-tab-1" tabindex="0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="pc-dt-simple-1">
+                                <table class="table table-hover" id="datatable">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -75,114 +72,7 @@
                                             <th>Izin</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>
-                                                <div class="row align-items-center">
-                                                    <div class="col-auto pe-0">
-                                                        <div class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                                            <i class="fas fa-user text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">Admin</span></h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout1" />
-                                                    <label class="form-check-label" for="customCheckdefout1">Lihat
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout2" />
-                                                    <label class="form-check-label" for="customCheckdefout2">Buat
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout2" />
-                                                    <label class="form-check-label" for="customCheckdefout2">Ubah
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout2" />
-                                                    <label class="form-check-label" for="customCheckdefout2">Hapus
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout2" />
-                                                    <label class="form-check-label" for="customCheckdefout2">Hapus
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout4" checked />
-                                                    <label class="form-check-label" for="customCheckdefout4">Ubah role
-                                                        permissions</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>
-                                                <div class="row align-items-center">
-                                                    <div class="col-auto pe-0">
-                                                        <div class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                                            <i class="fas fa-user text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h6 class="mb-1"><span class="text-truncate w-100">Asesor</span></h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout1" checked />
-                                                    <label class="form-check-label" for="customCheckdefout1">Lihat
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout2" />
-                                                    <label class="form-check-label" for="customCheckdefout2">Buat
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout2" />
-                                                    <label class="form-check-label" for="customCheckdefout2">Ubah
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout2" />
-                                                    <label class="form-check-label" for="customCheckdefout2">Hapus
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout2" />
-                                                    <label class="form-check-label" for="customCheckdefout2">Hapus
-                                                        role</label>
-                                                </div>
-                                                <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                                        id="customCheckdefout4" />
-                                                    <label class="form-check-label" for="customCheckdefout4">Ubah role
-                                                        permissions</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </div>
@@ -191,8 +81,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-animate modal-animate-scrollable" data-bs-keyboard="false" tabindex="-1"
-        id="animateModal" aria-hidden="true">
+    <div class="modal fade modal-animate modal-animate-scrollable" data-bs-keyboard="false" tabindex="-1" id="animateModal"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -211,8 +101,7 @@
                             <label class="form-check-label mt-2" for="customCheckinl1" style="font-weight: 500;">Peran
                                 Status</label><br>
                             <div class="form-check form-switch custom-switch-v1 form-check-inline mt-2">
-                                <input type="checkbox" class="form-check-input input-primary me-2"
-                                    id="customCheckinl1" />
+                                <input type="checkbox" class="form-check-input input-primary me-2" id="customCheckinl1" />
                                 <label class="form-check-label" style="color: rgba(0, 0, 0, 0.625)"
                                     for="customCheckinl1">Centang jika peran ini aktif.</label>
                             </div>
@@ -232,15 +121,185 @@
     <!-- [Page Specific JS] start -->
     <script src="https://ableproadmin.com/assets/js/plugins/apexcharts.min.js"></script>
     <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
-    <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
+    <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
+    <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
+@endsection
+
+@section('page_js')
     <script>
-        $(document).ready(function() {
-            $('#pc-dt-simple-1').DataTable({
-                "searching": false, // Disable search
-                "paging": true, // Enable pagination if needed
-                "info": false, // Disable the "Showing X to Y of Z entries" text
-                "lengthChange": false // Disable the page length change dropdown
+        async function getPermissions() {
+            loadingPage(true);
+
+            const getDataRest = await CallAPI(
+                    'GET',
+                    `/dummy/hakAkses/group_permission.json`,
+                )
+                .then(response => response)
+                .catch(error => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Pemberitahuan',
+                        text: resp.data.message,
+                        confirmButtonColor: '#28a745',
+                    });
+                    return resp;
+                });
+
+            if (getDataRest.status === 200) {
+                loadingPage(false);
+                let data = getDataRest.data.data
+                let $rowTable = '';
+                for (let idxData in data) {
+                    let $tdPermissions = ``
+                    for (let idxPermission in data[idxData]) {
+                        let permission = data[idxData][idxPermission]
+                        $tdPermissions += `
+                            <div class="form-check form-switch form-switch-lg">
+                                <input type="checkbox" name="status" class="form-check-input checkbox-permission" id="checkbox-permission-${permission.id}" value="${permission.id}" style="left: 0;">
+                                <label class="form-check-label" for="checkbox-status" style="margin-left: 10px;">${permission.name}</label>
+                            </div>
+                        `
+                    }
+
+                    $rowTable += `
+                        <tr>
+                            <td style="text-align: center">
+                                ${Object.keys(data).indexOf(idxData) + 1}
+                            </td>
+                            <td>
+                                ${idxData}
+                            </td>
+                            <td>
+                                ${$tdPermissions}
+                            </td>
+                        </tr>
+                    `
+                }
+                $('#datatable').find('tbody').append($rowTable)
+            }
+        }
+
+        async function selectFilter(id) {
+            $('#input-role').select2({
+                ajax: {
+                    url: `/dummy/hakAkses/role.json`,
+                    dataType: 'json',
+                    delay: 500,
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('auth_token')}`
+                    },
+                    data: function(params) {
+                        let query = {
+                            search: params.term,
+                            page: 1,
+                            limit: 30,
+                            ascending: 1
+                        }
+                        return query;
+                    },
+                    processResults: function(res) {
+                        let data = res.data;
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name
+                                }
+                            })
+                        };
+                    },
+                },
+                allowClear: true,
+                placeholder: 'Pilih peran'
             });
-        });
+        }
+
+        async function getPermissionsByRoleID() {
+            loadingPage(true);
+
+            const getDataRest = await CallAPI(
+                    'GET',
+                    `/dummy/hakAkses/permission.json`,
+                )
+                .then(response => response)
+                .catch(error => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Pemberitahuan',
+                        text: resp.data.message,
+                        confirmButtonColor: '#28a745',
+                    });
+                    return resp;
+                });
+
+            if (getDataRest.status === 200) {
+                loadingPage(false);
+                let data = getDataRest.data.data
+                for (let i in data) {
+                    $(`#checkbox-permission-${data[i].id}`).prop('checked', true)
+                }
+            }
+        }
+
+
+        $(document).on('change', '.checkbox-permission', function() {
+            let permissionID = $(this).val()
+            let isAssign = $(this).prop('checked')
+
+            let getDataRest = CallAPI(
+                    'GET',
+                    `/dummy/hakAkses/sync_permission.json`, {
+                        isAssign: isAssign,
+                        permission: parseInt(permissionID),
+
+                    }
+                )
+                .then(response => response)
+                .catch(error => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Pemberitahuan',
+                        text: resp.data.message,
+                        confirmButtonColor: '#28a745',
+                    });
+                    return resp;
+                });
+
+            if (getDataRest.status === 200) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Pemberitahuan',
+                    text: "Berhasil merubah role",
+                    confirmButtonColor: '#28a745',
+                });
+            }
+        })
+
+
+        $('#input-role').on('change', function() {
+            $('.checkbox-permission').each(function() {
+                $(this).prop('checked', false)
+            })
+
+            selectedRole = $(this).val()
+            getPermissionsByRoleID($(this).val())
+        })
+
+        async function initPageLoad() {
+
+            await Promise.all([
+                getPermissions(),
+                getPermissionsByRoleID(),
+                selectFilter('#input-role'),
+            ]);
+
+        }
     </script>
+    @include('Administrator.partial-js')
 @endsection
