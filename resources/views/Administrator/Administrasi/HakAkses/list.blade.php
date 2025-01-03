@@ -181,41 +181,6 @@
             }
         }
 
-        async function selectFilter(id) {
-            $('#input-role').select2({
-                ajax: {
-                    url: `/dummy/hakAkses/role.json`,
-                    dataType: 'json',
-                    delay: 500,
-                    headers: {
-                        Authorization: `Bearer ${Cookies.get('auth_token')}`
-                    },
-                    data: function(params) {
-                        let query = {
-                            search: params.term,
-                            page: 1,
-                            limit: 30,
-                            ascending: 1
-                        }
-                        return query;
-                    },
-                    processResults: function(res) {
-                        let data = res.data;
-                        return {
-                            results: $.map(data, function(item) {
-                                return {
-                                    id: item.id,
-                                    text: item.name
-                                }
-                            })
-                        };
-                    },
-                },
-                allowClear: true,
-                placeholder: 'Pilih peran'
-            });
-        }
-
         async function getPermissionsByRoleID() {
             loadingPage(true);
 
@@ -280,6 +245,61 @@
                 });
             }
         })
+
+        async function selectFilter(id) {
+            $('#input-role').select2({
+                ajax: {
+                    url: `/dummy/hakAkses/role.json`,
+                    dataType: 'json',
+                    delay: 500,
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('auth_token')}`
+                    },
+                    data: function(params) {
+                        let query = {
+                            search: params.term,
+                            page: 1,
+                            limit: 30,
+                            ascending: 1
+                        };
+                        return query;
+                    },
+                    processResults: function(res) {
+                        let data = res.data;
+
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name
+                                };
+                            })
+                        };
+                    },
+                },
+                allowClear: true,
+                placeholder: 'Pilih peran'
+            });
+
+            // Fetch the first item and set it as default
+            $.ajax({
+                url: `/dummy/hakAkses/role.json`,
+                headers: {
+                    Authorization: `Bearer ${Cookies.get('auth_token')}`
+                },
+                success: function(res) {
+                    if (res.data && res.data.length > 0) {
+                        const firstItem = res.data[0];
+
+                        // Set the first item as selected
+                        const option = new Option(firstItem.name, firstItem.id, true, true);
+                        $('#input-role').append(option).trigger('change');
+                    }
+                }
+            });
+        }
+
+
 
 
         $('#input-role').on('change', function() {
