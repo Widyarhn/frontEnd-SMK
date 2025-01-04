@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/yearpicker.css" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/js/libs/filepond/filepond.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.css">
 @endsection
 
 @section('content')
@@ -35,8 +40,8 @@
             </div>
         </div>
     </div>
-    <div id="basicwizard" class="form-wizard row justify-content-center">
-        <div class="col-12 mt-4">
+    <div class="row">
+        <div class="col-12">
             <div class="mb-4">
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                     <label class="form-label" for="iReportYear"
@@ -44,36 +49,28 @@
                         Tahun Laporan
                     </label>
                     <div class="col-3 md-3">
-                        <input type="text" class="flatpickr-input form-control text-center"
-                            name="report_year" id="iReportYear" placeholder="Pilih tahun" readonly="readonly"
-                            required>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body p-3">
-
-                    <div class="nav-wrapper" style="overflow-x: auto; white-space: nowrap;">
-                        <ul class="nav nav-pills nav-justified" id="wizardTabs"
-                            style="display: flex; overflow-x: auto; padding-bottom: 10px;">
-                            <!-- Tab Dinamis Akan Dimasukkan di Sini -->
-                        </ul>
+                        <input type="text" class="flatpickr-input form-control text-center" name="report_year"
+                            id="iReportYear" placeholder="Pilih tahun" readonly="readonly" required>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body">
-                    <div class="tab-content" id="wizardContent">
-                        <!-- Konten Dinamis Akan Dimasukkan di Sini -->
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                            aria-labelledby="analytics-tab-1" tabindex="0">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                            </div>
+                            <div class="mt-4 text-center col-12">
+                                <button type="submit" class="btn btn-primary"
+                                    style="padding: 0.5rem; font-size: 1rem; border-radius: 0.375rem; border: 1px solid #ced4da; width: 100%; text-align: center; line-height: 1.5; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                    <em class="icon ni ni-save" style="margin-right: 2px;"></em>Simpan
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-                    <button type="button" class="btn btn-secondary" id="previousStep"
-                        style="margin-right: 10px;">Kembali</button>
-                    <button type="button" class="btn btn-primary" id="nextStep"
-                        style="margin-left: 10px;">Selanjutnya</button>
-                    <button type="button" class="btn btn-success" id="saveStep"
-                        style="display: none; margin-left: 10px;">Simpan</button>
                 </div>
             </div>
         </div>
@@ -83,6 +80,22 @@
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/yearpicker/yearpicker.js"></script>
+
+
+    <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
+    </script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js">
+    </script>
 @endsection
 
 @section('page_js')
@@ -206,7 +219,6 @@
                 submitButton.style.display = 'none'; // Sembunyikan tombol
             }
         }
-
         async function getMonitoringElement() {
             loadingPage(true);
             let getDataRest;
@@ -219,38 +231,47 @@
             } catch (error) {
                 loadingPage(false);
                 let resp = error.response;
-                errorMessage = resp.data.message || errorMessage;
+                let errorMessage = resp?.data?.message || 'Terjadi kesalahan';
                 notificationAlert('info', 'Pemberitahuan', errorMessage);
-                getDataRest = resp;
+                return;
             }
 
             loadingPage(false);
             if (getDataRest.status == 200) {
-                const responseData = getDataRest.data;
-                const monitoringElementID = responseData.data.id;
-                const monitoringElement = responseData.data.monitoring_elements;
-                const elementProperties = responseData.data.element_properties;
-                const questionSchema = elementProperties.question_schema.properties;
-                const uiSchema = elementProperties.ui_schema;
+                let responseData = getDataRest.data;
+                let monitoringElementID = responseData.data.id;
+                let monitoringElement = responseData.data.monitoring_elements;
+                let elementProperties = responseData.data.element_properties;
+                let questionSchema = elementProperties.question_schema.properties;
+                let uiSchema = elementProperties.ui_schema;
 
                 let numbering = 1;
+                let accordionHtml = '';
 
-                // Clear wizard tabs and content containers
-                $('#wizardTabs').empty();
-                $('#wizardContent').empty();
+                for (let [elementKey, elementValue] of Object.entries(uiSchema)) {
+                    let panelId = `panel-${elementKey}`;
+                    accordionHtml += `
+                        <div class="accordion-item shadow-sm border-0 mb-4">
+                            <h2 class="accordion-header" id="heading-${elementKey}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${panelId}" aria-expanded="true" aria-controls="${panelId}" style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                    ${numbering}. ${questionSchema[elementKey].title}
+                                </button>
+                            </h2>
+                            <div id="${panelId}" class="accordion-collapse collapse show" aria-labelledby="heading-${elementKey}">
+                                <div class="accordion-body">
+                                    <div class="table-responsive py-4">
+                                        <table class="table table-hover table-bordered mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="text-center" style="width: 5%;">No</th>
+                                                    <th style="width: 35%; white-space: nowrap;">Uraian</th>
+                                                    <th style="width: 30%; white-space: nowrap;">Pertanyaan</th>
+                                                    <th style="width: 30%; white-space: nowrap;">Jawaban</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>`;
 
-                let tabNav = '';
-                let tabContent = '';
 
-                for (const [elementKey, elementValue] of Object.entries(uiSchema)) {
-                    const tabId = `tab-${elementKey}`;
-                    tabNav += `
-                            <li class="nav-item">
-                                <a href="#${tabId}" data-bs-toggle="pill" class="nav-link ${numbering === 1 ? 'active' : ''}" data-index="${numbering - 1}">
-                                    <span class="fw-bold f-18"><i class="fa-solid fa-shield me-2"></i>${numbering}. ${questionSchema[elementKey].title}</span>
-                                </a>
-                            </li>
-                            `;
 
                     let sortableSubElement = [];
                     for (let subElement in uiSchema[elementKey]) {
@@ -259,25 +280,6 @@
                     sortableSubElement.sort((a, b) => a[1]['ui:order'] - b[1]['ui:order']);
 
                     let rowIndex = 1;
-                    // Replace or update your tab content generation to reflect improved styles
-                    tabContent += `
-                        <div class="tab-pane fade ${numbering === 1 ? 'show active' : ''}" id="${tabId}">
-                            <form id="${tabId}" method="post">
-                                <div class="text-center mb-4">
-                                    <h3 class="mb-2">${questionSchema[elementKey].title}</h3>
-                                    <small style="color: blue">Maksimal ukuran file yang diunggah 5 MB.</small>
-                                </div>
-                                <div class="table-responsive py-4">
-                                    <table class="table table-hover table-bordered mb-0">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th class="text-center" style="width: 5%;">No</th>
-                                                <th style="width: 35%; white-space: nowrap;">Uraian</th>
-                                                <th style="width: 30%; white-space: nowrap;">Pertanyaan</th>
-                                                <th style="width: 30%; white-space: nowrap;">Jawaban</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>`;
 
                     sortableSubElement.forEach(function(subElement) {
                         let questionProperties = questionSchema[elementKey]['properties'][subElement[0]];
@@ -327,7 +329,7 @@
                                 }
 
                                 if (i == 0) {
-                                    tabContent += `
+                                    accordionHtml += `
                                         <tr>
                                             <td style="word-wrap: break-word; white-space: normal; max-width: 300px;" rowspan="${questionProperties['items'].length}">${numbering}.${rowIndex}</td>
                                             <td style="word-wrap: break-word; white-space: normal; max-width: 300px;" rowspan="${questionProperties['items'].length}">${questionSchema[elementKey]['properties'][subElement[0]]['title']}</td>
@@ -335,7 +337,7 @@
                                             <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${answerForm}</td>
                                         </tr>`;
                                 } else {
-                                    tabContent += `
+                                    accordionHtml += `
                                         <tr>
                                             <td style="word-wrap: break-word; white-space: normal; max-width: 300px;"><p>${reportQuestion}</p>${isAnyChangedButton}</td>
                                             <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${answerForm}</td>
@@ -404,7 +406,7 @@
                                 answerForm = `${generateFormInput(inputProperties, isMandatory)}`;
                             }
 
-                            tabContent += `
+                            accordionHtml += `
                                 <tr>
                                     <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${numbering}.${rowIndex}</td>
                                     <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${questionSchema[elementKey]['properties'][subElement[0]]['title']}</td>
@@ -437,62 +439,18 @@
                         rowIndex++;
                     });
 
-                    tabContent += `
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>`;
 
+                    accordionHtml += `
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
                     numbering++;
                 }
 
-                $('#wizardTabs').html(tabNav);
-                $('#wizardContent').html(tabContent);
-
-                // Tab Navigation Logic
-                let currentTab = 0;
-
-                function updateTabContent() {
-                    $('#wizardTabs .nav-link').removeClass('active');
-                    $('#wizardContent .tab-pane').removeClass('show active');
-
-                    $(`#wizardTabs .nav-link[data-index="${currentTab}"]`).addClass('active');
-                    $(`#wizardContent .tab-pane:eq(${currentTab})`).addClass('show active');
-
-                    if (currentTab === $('#wizardTabs .nav-link').length - 1) {
-                        $('#saveStep').removeClass('d-none');
-                        $('#nextStep').addClass('d-none');
-                    } else {
-                        $('#saveStep').addClass('d-none');
-                        $('#nextStep').removeClass('d-none');
-                    }
-                }
-
-                $('#previousStep').click(function() {
-                    if (currentTab > 0) {
-                        currentTab--;
-                        updateTabContent();
-                    }
-                });
-
-                $('#nextStep').click(function() {
-                    if (currentTab < $('#wizardTabs .nav-link').length - 1) {
-                        currentTab++;
-                        updateTabContent();
-                    }
-                });
-
-                $('#saveStep').click(function() {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Pemberitahuan',
-                        text: 'Berhasil!',
-                        confirmButtonText: 'OK'
-                    });
-                });
-
-
+                $('#accordionFlushExample').html(accordionHtml);
             }
         }
 
@@ -549,51 +507,51 @@
             switch (inputProperties.inputType) {
                 case 'files':
                     $htmlInput += `
-                <input type="file"
-                    class="filepond form-control smk-element-file ${isVisibility ? '' : 'd-none'}"
-                    id="${inputProperties.id}File"
-                    accept="application/pdf">
-                <input type="hidden"
-                    class="answer-element"
-                    name="${inputProperties.name}"
-                    id="${inputProperties.id}"
-                    ${isVisibility ? 'required' : ''}>
-                `
+            <input type="file"
+                class="filepond form-control smk-element-file ${isVisibility ? '' : 'd-none'}"
+                id="${inputProperties.id}File"
+                accept="application/pdf">
+            <input type="hidden"
+                class="answer-element"
+                name="${inputProperties.name}"
+                id="${inputProperties.id}"
+                ${isVisibility ? 'required' : ''}>
+            `
                     break;
                 case 'file':
                     $htmlInput += `
+            <input type="file"
+                class="filepond form-control smk-element-file ${isVisibility ? '' : 'd-none'}"
+                id="${inputProperties.id}File"
+                accept="application/pdf">
+            <input type="hidden"
+                class="answer-element"
+                name="${inputProperties.name}"
+                id="${inputProperties.id}"
+                ${isVisibility ? 'required' : ''}>
+            `
+                    break;
+                case 'image':
+                    $htmlInput = `
                 <input type="file"
                     class="filepond form-control smk-element-file ${isVisibility ? '' : 'd-none'}"
                     id="${inputProperties.id}File"
-                    accept="application/pdf">
+                    accept="image/png, image/jpeg"
+                    required>
                 <input type="hidden"
                     class="answer-element"
                     name="${inputProperties.name}"
                     id="${inputProperties.id}"
-                    ${isVisibility ? 'required' : ''}>
-                `
-                    break;
-                case 'image':
-                    $htmlInput = `
-                    <input type="file"
-                        class="filepond form-control smk-element-file ${isVisibility ? '' : 'd-none'}"
-                        id="${inputProperties.id}File"
-                        accept="image/png, image/jpeg"
-                        required>
-                    <input type="hidden"
-                        class="answer-element"
-                        name="${inputProperties.name}"
-                        id="${inputProperties.id}"
-                        required>
-                `
+                    required>
+            `
                     break;
                 default:
                     $htmlInput = `
-                    <input type="text ${isVisibility ? '' : 'd-none'}"
-                        class="form-control answer-element"
-                        id="${inputProperties.id}"
-                        name="${inputProperties.name}">
-                `
+                <input type="text ${isVisibility ? '' : 'd-none'}"
+                    class="form-control answer-element"
+                    id="${inputProperties.id}"
+                    name="${inputProperties.name}">
+            `
                     break;
             }
 
@@ -601,8 +559,80 @@
 
         }
 
+        function uploadFile(sourceElement, inputTarget, isRequired) {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content')
+
+            let removeButton = $(`#${sourceElement}`).closest('td').prev().find("[type=radio]")
+            if (removeButton[1]) {
+                removeButton[1].addEventListener('click', () => {
+                    customUpload.removeFiles();
+                })
+            }
+
+            let customUpload = FilePond.create(
+                document.querySelector(`#${sourceElement}`)
+            );
+            customUpload.setOptions({
+                server: {
+                    process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+
+                        const formData = new FormData()
+                        formData.append('file', file, file.name)
+
+                        const request = new XMLHttpRequest()
+                        request.open('POST',
+                            '{{ env('ESMK_SERVICE_BASE_URL') }}/company/documents/upload-file')
+                        request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
+                        request.setRequestHeader('Accept', 'application/json')
+                        request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
+                        request.responseType = 'json';
+
+                        request.onload = function() {
+                            if (request.status >= 200 && request.status < 300) {
+                                const resp = request.response
+                                load(request.response);
+
+                                $(`#${inputTarget}`).val(resp.file_url)
+                            } else {
+                                error('oh no, Internal Server Error');
+                            }
+                        };
+
+                        request.send(formData);
+
+                        return {
+                            abort: () => {
+                                request.abort();
+
+                                abort();
+                            }
+                        }
+                    },
+                    revert: (uniqueFileId, load, error) => {
+                        $(`#${inputTarget}`).val('')
+
+                        error('oh my goodness');
+
+                        load();
+                    }
+                },
+                labelIdle: '<span class="filepond--label-action"> Pilih File </span>',
+                maxFiles: 1,
+                required: isRequired,
+                checkValidity: true,
+            })
+
+        }
+
 
         async function initPageLoad() {
+            FilePond.registerPlugin(
+                FilePondPluginFileEncode,
+                FilePondPluginImagePreview,
+                FilePondPluginPdfPreview,
+                FilePondPluginFileValidateSize,
+                FilePondPluginFileValidateType
+            )
 
             await Promise.all([
                 getMonitoringElement(),
