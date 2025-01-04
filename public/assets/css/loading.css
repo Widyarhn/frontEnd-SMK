@@ -19,7 +19,7 @@
     transform: translate(-50%, -50%);
 }
 
-.ui-loading {
+/* .ui-loading {
     background: url('../images/loading-page.png') no-repeat 50% 50%;
     width: 80px;
     height: 80px;
@@ -30,6 +30,13 @@
     -webkit-animation-duration: 2.84s;
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
+} */
+
+.ui-loading {
+    background: url('../images/bus-loading.gif') no-repeat center center;
+    background-size: contain;
+    width: 200px;
+    height: 200px;
 }
 
 @-webkit-keyframes ckw {
