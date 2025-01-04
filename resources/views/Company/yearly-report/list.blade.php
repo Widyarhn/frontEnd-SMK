@@ -159,9 +159,9 @@
                                 <div class="row">
                                     <div class="col-sm-auto mb-3 mb-sm-0">
                                         <div class="d-sm-inline-block d-flex align-items-center">
-                                            <img class="media-object wid-60 img-radius"
-                                                src="{{ asset('assets') }}/images/user/avatar-1.jpg"
-                                                alt="Generic placeholder image">
+                                           <div class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                    <i class="fa-solid fa-calendar text-white fa-2x"></i>
+                                                </div>
                                             <div class="ms-3 ms-sm-0">
                                                 <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
                                                     <li class="list-unstyled-item"><a href="#" class="link-secondary">${element.notes_count || 0} Catatan</a></li>

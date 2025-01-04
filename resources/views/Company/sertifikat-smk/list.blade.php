@@ -37,27 +37,6 @@
     </div>
     <div class="row"><!-- [ sample-page ] start -->
         <div class="col-12">
-            <div class="table-responsive">
-                <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
-                    <div class="datatable-top">
-                        <div class="datatable-dropdown">
-                            <label>
-                                <select class="datatable-selector">
-                                    <option value="5">5</option>
-                                    <option value="10" selected="">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                </select> entries per page
-                            </label>
-                        </div>
-                        <div class="datatable-search">
-                            <input class="datatable-input" placeholder="Search..." type="search"
-                                title="Search within table" aria-controls="pc-dt-simple-1">
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 help-main large-view">
                     <div id="submission-card"></div>
@@ -160,9 +139,9 @@
                                     <div class="row">
                                         <div class="col-sm-auto mb-3 mb-sm-0">
                                             <div class="d-sm-inline-block d-flex align-items-center">
-                                                <img class="media-object wid-60 img-radius"
-                                                    src="{{ asset('assets') }}/images/user/avatar-1.jpg"
-                                                    alt="Generic placeholder image">
+                                                <div class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                    <i class="fa-solid fa-file-alt text-white fa-2x"></i>
+                                                </div>
                                                 <div class="ms-3 ms-sm-0">
                                                     <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
                                                         <li class="list-unstyled-item"><a href="#" class="link-secondary">${element.notes_count || 0} Catatan</a></li>
