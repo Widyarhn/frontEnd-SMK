@@ -42,37 +42,39 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="mb-4">
-                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <label class="form-label" for="iReportYear"
-                        style="font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; display: block;">
-                        Tahun Laporan
-                    </label>
-                    <div class="col-3 md-3">
-                        <input type="text" class="flatpickr-input form-control text-center" name="report_year"
-                            id="iReportYear" placeholder="Pilih tahun" readonly="readonly" required>
+            <form id="fCreate">
+                <div class="mb-4">
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label class="form-label" for="iReportYear"
+                            style="font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; display: block;">
+                            Tahun Laporan
+                        </label>
+                        <div class="col-3 md-3">
+                            <input type="text" class="flatpickr-input form-control text-center" name="report_year"
+                                id="iReportYear" placeholder="Pilih tahun" readonly="readonly" required>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
 
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                            aria-labelledby="analytics-tab-1" tabindex="0">
-                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                                aria-labelledby="analytics-tab-1" tabindex="0">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
 
-                            </div>
-                            <div class="mt-4 text-center col-12">
-                                <button type="submit" class="btn btn-primary"
-                                    style="padding: 0.5rem; font-size: 1rem; border-radius: 0.375rem; border: 1px solid #ced4da; width: 100%; text-align: center; line-height: 1.5; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;">
-                                    <em class="icon ni ni-save" style="margin-right: 2px;"></em>Simpan
-                                </button>
+                                </div>
+                                <div class="mt-4 text-center col-12">
+                                    <button type="submit" class="btn btn-primary"
+                                        style="padding: 0.5rem; font-size: 1rem; border-radius: 0.375rem; border: 1px solid #ced4da; width: 100%; text-align: center; line-height: 1.5; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                        <em class="icon ni ni-save" style="margin-right: 2px;"></em>Simpan
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection
@@ -96,14 +98,16 @@
     <script
         src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs/dist/parsley.min.js"></script>
 @endsection
 
 @section('page_js')
     <script>
-        let monitoringElementID
-        let monitoringElement
+        let monitoringElementID;
+        let monitoringElement;
         let responseData;
-        let resp
+        let resp;
+        let elementProperties;
 
         function yearPicker(minYear, maxYear, isReportMonth, publishYear, latestReportYear, currentYear) {
             $('#iReportYear').yearpicker({
@@ -212,7 +216,7 @@
         }
 
         function toggleSubmitButton(isVisible) {
-            const submitButton = document.querySelector('#saveStep'); // Tombol "Simpan"
+            const submitButton = document.querySelector('button[type="submit"]');
             if (isVisible) {
                 submitButton.style.display = 'inline-flex'; // Tampilkan tombol
             } else {
@@ -241,7 +245,7 @@
                 let responseData = getDataRest.data;
                 let monitoringElementID = responseData.data.id;
                 let monitoringElement = responseData.data.monitoring_elements;
-                let elementProperties = responseData.data.element_properties;
+                elementProperties = responseData.data.element_properties;
                 let questionSchema = elementProperties.question_schema.properties;
                 let uiSchema = elementProperties.ui_schema;
 
@@ -584,7 +588,7 @@
 
                         const request = new XMLHttpRequest()
                         request.open('POST',
-                            '{{ env('ESMK_SERVICE_BASE_URL') }}/company/documents/upload-file')
+                            'dummy/upload_file.json')
                         request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
                         request.setRequestHeader('Accept', 'application/json')
                         request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
@@ -626,6 +630,85 @@
             })
 
         }
+
+        document.getElementById('fCreate').addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formParsley = $('#fCreate').parsley();
+            formParsley.validate();
+
+            if (!formParsley.isValid()) return false;
+
+            // Membuat schema jawaban
+            let formData = {
+                year: $('#iReportYear').val(),
+                monitoring_element_id: monitoringElementID,
+                answers: buildAnswerSchmema(),
+            };
+
+            loadingPage(true); // Menampilkan loading page
+
+            try {
+                // Memanggil API untuk mengirim data
+                const postData = await CallAPI(
+                    'POST',
+                    'https://jsonplaceholder.typicode.com/posts/1',
+                    formData
+                );
+
+                // Jika sukses, tampilkan notifikasi dan refresh halaman
+                if (postData.status === 200) {
+                    notificationAlert('success', 'Berhasil', "Berhasil melakukan laporan tahunan")
+                        .then(() => {
+                            window.location.reload();
+                        });
+                }
+            } catch (error) {
+                // Menangani error dengan menampilkan notifikasi
+                notificationAlert('info', 'Pemberitahuan', "Error");
+            } finally {
+                loadingPage(false); // Menghilangkan loading page
+            }
+        });
+
+
+        function buildAnswerSchmema() {
+            let elements = {}
+
+            $.each(elementProperties.max_assesment, function(elementKey, elementValue) {
+                const rowData = {}
+
+                $.each(elementValue, function(subElementKey) {
+                    let newData, question = elementProperties['question_schema']['properties'][elementKey][
+                        'properties'
+                    ][subElementKey]
+
+                    if (question['items']) {
+                        newData = []
+
+                        for (let i in question['items']) {
+
+                            let itemKey = Object.keys(question['items'][i])[0],
+                                answerValue = $(`#${elementKey}_${itemKey}`).val()
+
+                            newData.push({
+                                [itemKey]: answerValue
+                            })
+                        }
+                        rowData[subElementKey] = newData
+                    } else {
+
+                        rowData[subElementKey] = $(`#${elementKey}_${subElementKey}`).val()
+                    }
+
+                })
+                elements[elementKey] = rowData
+            })
+
+            return elements
+        }
+
+
 
 
         async function initPageLoad() {
