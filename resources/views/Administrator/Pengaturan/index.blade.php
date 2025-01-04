@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/js/libs/filepond/filepond.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.css">
 @endsection
 
 @section('content')
@@ -83,11 +88,8 @@
                                         </div>
                                     </div>
                                     <div class="mb-5 mt-3">
-                                        <form action="{{ asset('assets') }}/json/file-upload.php" class="dropzone">
-                                            <div class="fallback">
-                                                <input name="file" type="file" multiple />
-                                            </div>
-                                        </form>
+                                        <input type="file" id="faviconUpload" />
+                                        <input type="hidden" id="faviconFileUrl" name="favicon_file_url" />
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 me-3">
@@ -95,15 +97,13 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 mt-3">
-                                        <form action="{{ asset('assets') }}/json/file-upload.php" class="dropzone">
-                                            <div class="fallback">
-                                                <input name="file" type="file" multiple />
-                                            </div>
-                                        </form>
+                                        <input type="file" id="logoUpload" />
+                                        <input type="hidden" id="logoFileUrl" name="logo_file_url" />
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-8">
                             <div class="card shadow-none border mb-0 h-100">
                                 <div class="card-body">
@@ -113,7 +113,7 @@
                                             <div class="">
                                                 <div class="form-floating mb-0">
                                                     <input type="text" class="form-control" id="input_nama"
-                                                        placeholder="Masukkan Nama Aplikasi"/>
+                                                        placeholder="Masukkan Nama Aplikasi" />
                                                     <label for="namaAplikasi">Nama Aplikasi</label>
                                                 </div>
                                             </div>
@@ -214,7 +214,7 @@
                                             <div class="mb-3">
                                                 <div class="form-floating mb-0">
                                                     <input type="text" class="form-control" id="username"
-                                                        placeholder="Masukkan Nama Aplikasi" value="dishubJabar" />
+                                                        placeholder="Masukkan Nama Aplikasi" />
                                                     <label for="username">Username OSS</label>
                                                 </div>
                                             </div>
@@ -222,9 +222,9 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <div class="form-floating mb-0">
-                                                    <input type="password" class="form-control" id="username"
-                                                        placeholder="Masukkan Nama Aplikasi" value="dishub@co.id" />
-                                                    <label for="username">Password OSS</label>
+                                                    <input type="password" class="form-control" id="password"
+                                                        placeholder="Masukkan Nama Aplikasi" />
+                                                    <label for="password">Password OSS</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -232,13 +232,12 @@
                                     <div class="mb-5">
                                         <div class="form-floating mb-0">
                                             <input type="text" class="form-control" id="urlOss"
-                                                placeholder="Masukkan url"
-                                                value="https://oss.go.id/informasi/kbli-detail/640d2ba5-b059-4ce0-9324-ec17c5df4a12" />
-                                            <label for="username">URL OSS</label>
+                                                placeholder="Masukkan url" />
+                                            <label for="urlOss">URL OSS</label>
                                         </div>
                                     </div>
                                     <div class="text-end m-t-15">
-                                        <button class="btn btn-sm btn-outline-primary p-2"
+                                        <button class="btn btn-sm btn-outline-primary p-2" onclick="updateDataOSS()"
                                             style="border-radius:5px;">Simpan Perubahan</button>
                                     </div>
                                 </div>
@@ -357,6 +356,23 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/dropzone-amd-module.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
+    </script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js">
+    </script>
+@endsection
+
+@section('page_js')
     <script>
         async function getDataApps() {
             loadingPage(true);
@@ -369,12 +385,7 @@
                 .catch(error => {
                     loadingPage(false);
                     let resp = error.response;
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Pemberitahuan',
-                        text: "Error",
-                        confirmButtonColor: '#28a745',
-                    });
+                    notificationAlert('info', 'Pemberitahuan', 'Error')
                     return resp;
                 });
 
@@ -391,6 +402,13 @@
                 document.getElementById('input_wa').value = appData.helpdesk_whatsapp;
                 document.getElementById('kodePos').value = appData.post_code;
                 document.getElementById('input_alamat').value = appData.address;
+
+                // Inisialisasi untuk Logo Favicon
+                uploadFile('faviconUpload', 'faviconFileUrl', true);
+
+                // Inisialisasi untuk Logo Aplikasi
+                uploadFile('logoUpload', 'logoFileUrl', true);
+
 
 
                 document.getElementById('namaAplikasi').innerText = appData.apps_name;
@@ -445,26 +463,137 @@
                 .catch((error) => {
                     loadingPage(false);
                     let resp = error.response;
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Pemberitahuan',
-                        text: "Error",
-                        confirmButtonColor: '#28a745',
-                    });
+                    notificationAlert('info', 'Pemberitahuan', 'Error')
                     return resp;
                 });
 
             if (getDataRest && getDataRest.status === 200) {
                 loadingPage(false);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil',
-                    text: "Data berhasil diubah",
-                    confirmButtonColor: '#28a745',
-                });
+                notificationAlert('success', 'Pemberitahuan', 'Data berhasil diubah')
             }
         }
 
+
+        async function getDataOSS() {
+            loadingPage(true);
+
+            const getDataRest = await CallAPI(
+                    'GET',
+                    `/dummy/data_oss.json`
+                )
+                .then(response => response)
+                .catch(error => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', 'Error')
+                    return resp;
+                });
+
+            if (getDataRest.status === 200) {
+                loadingPage(false);
+
+                // Ambil data dari response
+                const appData = getDataRest.data.data;
+
+                document.getElementById('username').value = appData.oss_username;
+                document.getElementById('password').value = appData.oss_password;
+                document.getElementById('urlOss').value = appData.oss_url;
+            }
+        }
+
+        async function updateDataOSS() {
+            loadingPage(true);
+            // Ambil nilai inputan dari formulir
+            const ossUsername = document.getElementById('username').value;
+            const ossPassword = document.getElementById('password').value;
+            const ossUrl = document.getElementById('urlOss').value;
+
+            // Persiapkan data untuk dikirim
+            const payload = {
+                oss_username: ossUsername,
+                oss_password: ossPassword,
+                oss_url: ossUrl,
+            };
+
+            const getDataRest = await CallAPI('PUT', 'https://jsonplaceholder.typicode.com/posts/1', payload)
+                .then((response) => response)
+                .catch((error) => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', 'Error')
+                    return resp;
+                });
+
+            if (getDataRest && getDataRest.status === 200) {
+                loadingPage(false);
+                notificationAlert('success', 'Pemberitahuan', 'Data berhasil diubah')
+            }
+        }
+
+        function uploadFile(sourceElement, inputTarget, isRequired) {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content')
+
+            let removeButton = $(`#${sourceElement}`).closest('td').prev().find("[type=radio]")
+            if (removeButton[1]) {
+                removeButton[1].addEventListener('click', () => {
+                    customUpload.removeFiles();
+                })
+            }
+
+            let customUpload = FilePond.create(
+                document.querySelector(`#${sourceElement}`)
+            );
+            customUpload.setOptions({
+                server: {
+                    process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+
+                        const formData = new FormData()
+                        formData.append('file', file, file.name)
+
+                        const request = new XMLHttpRequest()
+                        request.open('POST',
+                            'https://jsonplaceholder.typicode.com/posts/1')
+                        request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
+                        request.setRequestHeader('Accept', 'application/json')
+                        request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
+                        request.responseType = 'json';
+
+                        request.onload = function() {
+                            if (request.status >= 200 && request.status < 300) {
+                                const resp = request.response
+                                load(request.response);
+
+                                $(`#${inputTarget}`).val(resp.file_url)
+                            } else {
+                                error('oh no, Internal Server Error');
+                            }
+                        };
+
+                        request.send(formData);
+
+                        return {
+                            abort: () => {
+                                request.abort();
+
+                                abort();
+                            }
+                        }
+                    },
+                    revert: (uniqueFileId, load, error) => {
+                        $(`#${inputTarget}`).val('')
+
+                        error('oh my goodness');
+
+                        load();
+                    }
+                },
+                labelIdle: '<span class="filepond--label-action"> Pilih File </span>',
+                maxFiles: 1,
+                required: isRequired,
+                checkValidity: true,
+            })
+
+        }
 
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -504,7 +633,8 @@
         async function initPageLoad() {
 
             await Promise.all([
-                getDataApps()
+                getDataApps(),
+                getDataOSS()
             ]);
 
         }

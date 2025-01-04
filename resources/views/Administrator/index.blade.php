@@ -12,7 +12,7 @@
     <meta name="keywords"
         content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard" />
     <meta name="author" content="Phoenixcoded" />
-    
+
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
@@ -92,6 +92,7 @@
     <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('assets') }}/js/sweetalert2.all.min.js"></script>
     <script src="{{ asset('assets') }}/js/axios.js"></script>
     <script src="{{ asset('assets') }}/js/restAPI.js"></script>
     <script src="{{ asset('assets') }}/js/offline.js"></script>
@@ -141,12 +142,13 @@
     @yield('scripts')
     <script type="text/javascript">
         function notificationAlert(tipe, title, message) {
-            swal(
-                title,
-                message,
-                tipe
-            );
+            Swal.fire({
+                icon: tipe,
+                title: title,
+                text: message
+            });
         }
+
 
         function loadingPage(show) {
             if (show == true) {

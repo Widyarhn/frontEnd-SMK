@@ -451,6 +451,9 @@
                 }
 
                 $('#accordionFlushExample').html(accordionHtml);
+                $('.smk-element-file').each(function() {
+                    uploadFile($(this).attr('id'), $(this).next().attr('id'), $(this).next().prop('required'));
+                });
             }
         }
 
