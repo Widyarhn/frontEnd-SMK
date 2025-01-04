@@ -142,11 +142,7 @@
                                                 <div class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
                                                     <i class="fa-solid fa-file-alt text-white fa-2x"></i>
                                                 </div>
-                                                <div class="ms-3 ms-sm-0">
-                                                    <ul class="text-sm-center list-unstyled mt-2 mb-0 d-inline-block">
-                                                        <li class="list-unstyled-item"><a href="#" class="link-secondary">${element.notes_count || 0} Catatan</a></li>
-                                                    </ul>
-                                                </div>
+                                               
                                             </div>
                                         </div>
                                         <div class="col">
