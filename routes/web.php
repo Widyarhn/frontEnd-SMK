@@ -83,6 +83,21 @@ Route::middleware(Application::class)->group( function(){
                 return view('Administrator.Administrasi.Perusahaan.detail');
             });
 
+            // permohonan
+            Route::get('/sertifikat/list', function () {
+                return view('Administrator.SertifikatSmk.list');
+            });
+            Route::get('/sertifikat/detail', function () {
+                return view('Administrator.SertifikatSmk.detail');
+            });
+
+            Route::get('/laporan-tahunan/list', function () {
+                return view('Administrator.LaporanTahunan.list');
+            });
+            Route::get('/laporan-tahunan/detail', function () {
+                return view('Administrator.LaporanTahunan.detail');
+            });
+
             //administrasi
             Route::get('/hak-akses', function () {
                 return view('Administrator.Administrasi.HakAkses.list');
