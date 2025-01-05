@@ -179,7 +179,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card d-none">
                                 <div class="card-header">
                                     <h5>Informasi Pengguna</h5>
                                 </div>
@@ -433,14 +433,15 @@
         let getDataTable2 = '';
         let errorMessage2 = "Terjadi Kesalahan.";
 
-        let pathArray = window.location.pathname.split('/');
-        let referenceId = pathArray[pathArray.length - 1];
+        let queryString         = window.location.search;
+        let urlParams           = new URLSearchParams(queryString);
+        let referenceId         = urlParams.get('id');
 
         async function getPerusahaanData(id) {
             loadingPage(true);
             const getDataRest = await CallAPI(
                     'GET',
-                    `{{ asset('dummy/company/detail_perusahaan.json') }}`, {
+                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/detail`, {
                         id: id,
                     }
                 )
@@ -519,7 +520,8 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    `{{ asset('dummy/company/list_pengajuan_perusahaan.json') }}`, {
+                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/pengajuan`,
+                    {
                         id: id,
                         page: page,
                         limit: limit,
@@ -829,7 +831,8 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `{{ asset('dummy/company/list_laporan_perusahaan.json') }}`, {
+                `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/laporan`, 
+                {
                     id: id,
                     page: page,
                     limit: limit,
@@ -1052,7 +1055,8 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `{{ asset('dummy/internal/md-kbli/list_kbli.json') }}`, {
+                `{{ asset('dummy/internal/md-kbli/list_kbli.json') }}`, 
+                {
                     id: id,
                     page: page,
                     limit: limit,
