@@ -5,6 +5,7 @@
     "data": [
         {
             "name": "test admin 12",
+            "nip": "12098765",
             "work_unit_id": 4,
             "certificate_request_disposisition_count": 0,
             "certificate_request_disposition_process_count": 0,
@@ -31,6 +32,7 @@
         },
         {
             "name": "Shendy Revilla Putri",
+            "nip": "13098765",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 0,
             "certificate_request_disposition_process_count": 0,
@@ -57,6 +59,7 @@
         },
         {
             "name": "Penilai_2",
+            "nip": "12898765",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 0,
             "certificate_request_disposition_process_count": 0,
@@ -83,6 +86,7 @@
         },
         {
             "name": "Penilai",
+            "nip": "12398745",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 5,
             "certificate_request_disposition_process_count": 4,
@@ -109,6 +113,7 @@
         },
         {
             "name": "Ketua Tim",
+            "nip": "12898765",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 0,
             "certificate_request_disposition_process_count": 0,
@@ -135,6 +140,7 @@
         },
         {
             "name": "Iqbal Firmansyah",
+            "nip": "12898765",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 2,
             "certificate_request_disposition_process_count": 1,
@@ -161,6 +167,7 @@
         },
         {
             "name": "Direktur Jenderal",
+            "nip": "12768765",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 0,
             "certificate_request_disposition_process_count": 0,
@@ -187,6 +194,7 @@
         },
         {
             "name": "DEVELOPER",
+            "nip": "124298765",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 0,
             "certificate_request_disposition_process_count": 0,
@@ -213,6 +221,7 @@
         },
         {
             "name": "Aji",
+            "nip": "12678765",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 0,
             "certificate_request_disposition_process_count": 0,
@@ -239,6 +248,7 @@
         },
         {
             "name": "Aini",
+            "nip": "12098765",
             "work_unit_id": 1,
             "certificate_request_disposisition_count": 0,
             "certificate_request_disposition_process_count": 0,

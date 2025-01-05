@@ -1,4 +1,4 @@
-<nav class="pc-sidebar" style="background:white;">
+<nav class="pc-sidebar">
     <div class="navbar-wrapper">
         <div class="m-header text-center">
             <a href="" class="b-brand text-primary">
@@ -43,7 +43,7 @@
                 <li class="pc-item">
                     <a href="/admin/nomor-sk" class="pc-link">
                         <span class="pc-micon">
-                            <i class="fa-solid fa-file-lines"></i>
+                            <i class="fa-solid fa-file-invoice"></i>
                         </span>
                         <span class="pc-mtext">No. Berita Acara</span>
                     </a>

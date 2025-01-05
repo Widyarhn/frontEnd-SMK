@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="mb-5 mt-3">
                                         <input type="file" id="faviconUpload" />
-                                        <input type="hidden" id="faviconFileUrl" name="favicon_file_url" />
+                                        <input type="hidden" id="faviconFileUrl" name="favicon_file_url" accept="image/*"/>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 me-3">
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="mb-3 mt-3">
                                         <input type="file" id="logoUpload" />
-                                        <input type="hidden" id="logoFileUrl" name="logo_file_url" />
+                                        <input type="hidden" id="logoFileUrl" name="logo_file_url" accept="image/*" />
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                     <div class="col-12">
                         <div class="card mt-4 shadow-none border mb-0 h-100">
                             <div class="card-body">
-                                <h6 class="mb-3">Akun OSS</h6>
+                                <h6 class="mb-3">Integrasi Akun OSS</h6>
                                 <div class="form-check form-switch custom-switch-v1 switch-lg mb-4">
                                     <input type="checkbox" class="form-check-input input-primary f-16"
                                         id="akunOssActive" />
@@ -283,8 +283,7 @@
                                     </div>
 
                                     <!-- Jenis dan Format Data -->
-                                    <div class="row g-4 mt-3">
-                                        <div class="col-md-6">
+                                        <div class="mb-3 mt-5">
                                             <div class="form-floating mb-0">
                                                 <select class="form-select" id="jenisData">
                                                     <option value="" selected>Pilih Jenis Data</option>
@@ -294,17 +293,14 @@
                                                 <label for="jenisData">Jenis Data</label>
                                             </div>
                                         </div>
-                                    </div>
 
                                     <!-- File Upload -->
                                     <div class="mb-3 mt-3">
                                         <div class="form-floating mb-0">
                                             <div class="mb-5 mt-3">
-                                                <form action="{{ asset('assets') }}/json/file-upload.php"
-                                                    class="dropzone">
-                                                    <div class="fallback">
-                                                        <input name="file" type="file" multiple />
-                                                    </div>
+                                                <form action="{{ asset('assets') }}/json/file-upload.php">
+                                                    <input type="file" id="file" multiple accept=".pdf"/>
+                                                    <input type="hidden" id="fileUrl" name="fileUrl" />
                                                 </form>
                                             </div>
                                             <label for="fileLampiran">Unggah File Lampiran</label>
@@ -408,6 +404,8 @@
 
                 // Inisialisasi untuk Logo Aplikasi
                 uploadFile('logoUpload', 'logoFileUrl', true);
+
+                uploadFile('file', 'fileUrl', true);
 
 
 
