@@ -164,19 +164,19 @@
                 <li class="dropdown pc-h-item header-user-profile">
                     <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                         role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
-                        <img src="https://ableproadmin.com/assets/images/user/avatar-2.jpg" alt="user-image"
+                        <img src="{{asset('assets')}}/images/profil.jpg" alt="user-image"
                             class="user-avtar" />
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header d-flex align-items-center justify-content-between">
-                            <h5 class="m-0">Profile</h5>
+                            <h5 class="m-0">Profil</h5>
                         </div>
                         <div class="dropdown-body">
                             <div class="profile-notification-scroll position-relative"
                                 style="max-height: calc(100vh - 225px)">
                                 <div class="d-flex mb-1">
                                     <div class="flex-shrink-0">
-                                        <img src="https://ableproadmin.com/assets/images/user/avatar-2.jpg"
+                                        <img src="{{asset('assets')}}/images/profil.jpg"
                                             alt="user-image" class="user-avtar wid-35" />
                                     </div>
                                     <div class="flex-grow-1 ms-3">
