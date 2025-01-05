@@ -32,6 +32,15 @@ class Application
             $request->payload = $getMe['data']['payload'];
         }
 
+        if ($request->is('/')) {
+            $payload = $request->payload;
+            if($payload['role'] == 'internal'){
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('company.dashboard');
+            }
+        }
+
         return $next($request);
     }
 }
