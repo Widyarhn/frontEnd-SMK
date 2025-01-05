@@ -36,7 +36,7 @@
                                     <div class="datatable-top">
                                         <div class="datatable-dropdown">
                                             <label>
-                                                <select class="datatable-selector" id="limitPage" name="per-page">
+                                                <select class="datatable-selector" id="limitPage" name="per-page" style="width: auto;min-width: unset;">
                                                     <option value="5">5</option>
                                                     <option value="10" selected="">10</option>
                                                     <option value="15">15</option>
@@ -46,7 +46,7 @@
                                             </label>
                                         </div>
                                         <div class="datatable-search">
-                                            <input class="datatable-input search-input" placeholder="Search..."
+                                            <input class="datatable-input search-input" placeholder="Cari..."
                                                 type="search" name="search" title="Search within table"
                                                 aria-controls="pc-dt-simple">
                                         </div>

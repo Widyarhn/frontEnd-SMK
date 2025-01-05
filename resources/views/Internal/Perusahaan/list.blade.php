@@ -240,131 +240,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="listData">
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>
-                                                        <div class="row align-items-center">
-                                                            <div class="col-auto pe-0">
-                                                                <div
-                                                                    class="wid-40 hei-40 rounded-circle bg-primary d-flex align-items-center justify-content-center">
-                                                                    <i class="fa-solid fa-building text-white"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <h6 class="mb-1"><span class="text-truncate w-100">PT
-                                                                        WIRASWASTA
-                                                                        GEMILANG INDONESIA</span> </h6>
-                                                                <p class="f-12 mb-0">
-                                                                    <a href="#!" class="text-muted"><span
-                                                                            class="text-truncate w-200">8120004962755</span></a>
-                                                                    |
-                                                                    <a href="#!" class="text-muted"><span
-                                                                            class="badge bg-primary">Wawancara
-                                                                            terjadwal</span></a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><span class="badge bg-light-danger">Belum Terdaftar</span></td>
-                                                    <td>
-                                                        <ul style="padding-left: 20px; margin: 0;">
-                                                            <li>AKDP</li>
-                                                            <li>AJAP</li>
-                                                            <li>Angkutan B3</li>
-                                                            <li>Angkutan lintas batas negara</li>
-                                                            <li>Alat berat</li>
-                                                        </ul>
-                                                    </td>
-                                                    <td>
-                                                        <div class="row align-items-center">
-                                                            <div class="col-auto pe-0">
-                                                                <div
-                                                                    class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
-                                                                    <i class="fa-solid fa-map-location-dot text-white"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <h6 class="mb-1"><span class="text-truncate w-100">Jawa
-                                                                        Barat,
-                                                                        Kab.Bekasi</span></h6>
-                                                                <p class="f-12 mb-0">GEDUNG THE CITY TOWER LT.5 UNIT 1S
-                                                                    JL.MH
-                                                                    THAMRIN NO.81</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>14 Mei 2024</td>
-                                                    <td class="text-end sticky-end">
-                                                        <li class="list-inline-item"><a
-                                                                href="/internal/perusahaan-internal/detail"
-                                                                class="avtar avtar-s btn-link-info btn-pc-default">
-                                                                <i class="ti ti-eye f-20"></i></a>
-                                                        </li>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>
-                                                        <div class="row align-items-center">
-                                                            <div class="col-auto pe-0">
-                                                                <div
-                                                                    class="wid-40 hei-40 rounded-circle bg-success d-flex align-items-center justify-content-center">
-                                                                    <i class="fa-solid fa-building text-white"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <h6 class="mb-1"><span class="text-truncate w-100">PT
-                                                                        AGUNG
-                                                                        JAYA</span> </h6>
-                                                                <p class="f-12 mb-0">
-                                                                    <a href="#!" class="text-muted"><span
-                                                                            class="text-truncate w-200">8130004962754</span></a>
-                                                                    |
-                                                                    <a href="#!" class="text-muted"><span
-                                                                            class="badge bg-success">Selesai</span></a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><span class="badge bg-light-success">Terdaftar</span></td>
-                                                    <td>
-                                                        <ul style="padding-left: 20px; margin: 0;">
-                                                            <li>AKDP</li>
-                                                            <li>AJAP</li>
-                                                            <li>Angkutan B3</li>
-                                                            <li>Angkutan lintas batas negara</li>
-                                                            <li>Alat berat</li>
-                                                        </ul>
-                                                    </td>
-                                                    <td>
-                                                        <div class="row align-items-center">
-                                                            <div class="col-auto pe-0">
-                                                                <div
-                                                                    class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
-                                                                    <i class="fa-solid fa-map-location-dot text-white"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <h6 class="mb-1"><span class="text-truncate w-100">Jawa
-                                                                        Barat,
-                                                                        Kab.Bekasi</span></h6>
-                                                                <p class="f-12 mb-0">GEDUNG THE CITY TOWER LT.5 UNIT 1S
-                                                                    JL.MH
-                                                                    THAMRIN NO.81</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>14 Mei 2024</td>
-                                                    <td class="text-end sticky-end">
-                                                        <li class="list-inline-item"><a
-                                                                href="/internal/perusahaan-internal/detail"
-                                                                class="avtar avtar-s btn-link-info btn-pc-default">
-                                                                <i class="ti ti-eye f-20"></i></a>
-                                                        </li>
-                                                    </td>
-                                                </tr>
-
-
                                             </tbody>
                                         </table>
 
@@ -392,7 +267,7 @@
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
     <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-   
+
     <script>
         let menu = 'List Perusahaan';
         let defaultLimitPage = 10;
@@ -895,27 +770,9 @@
 
 
         async function customFilterTable() {
-            // let dateRangePicker = initializeDateRangePicker();
 
             document.getElementById('custom-filter').addEventListener('submit', async function(e) {
                 e.preventDefault();
-
-                // let startDate = dateRangePicker.data('daterangepicker').startDate;
-                // let endDate = dateRangePicker.data('daterangepicker').endDate;
-
-                // if (!startDate || !endDate) {
-                //     startDate = null;
-                //     endDate = null;
-                // } else {
-                //     startDate = startDate.startOf('day').toISOString();
-                //     endDate = endDate.endOf('day').toISOString();
-                // }
-                // startDate = startDate.startOf('day').toISOString();
-                // endDate = endDate.endOf('day').toISOString();
-                // let startDateObj = new Date(startDate);
-                // let endDateObj = new Date(endDate);
-                // let timeDif = endDateObj - startDateObj;
-                // let dayDif = timeDif / (1000 * 3600 * 24);
 
                 let sourceType = document.getElementById('input-layanan').value;
                 let status = document.getElementById('input-status').value;

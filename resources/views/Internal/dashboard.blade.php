@@ -5,29 +5,17 @@
         .chart-container {
             position: relative;
             width: 100%;
-            /* Make it fill the available space */
             height: 300px;
-            /* Set an appropriate height for the chart */
         }
 
         @media (max-width: 768px) {
-
-            /* For mobile devices, make sure the chart adjusts */
             .chart-container {
                 height: 200px;
-                /* Adjust the height for smaller screens */
             }
         }
     </style>
 @endsection
 @section('content')
-    <div class="page-header">
-        <div class="page-block">
-
-        </div>
-    </div>
-
-
     <div class="row">
         <div class="col-12">
             <div class="card welcome-banner bg-blue-800" style="background: #0f2a7d;">
@@ -143,9 +131,8 @@
                         <!-- Cards container taking 8 columns -->
                         <div class="col-lg-8 col-12">
                             <div class="row g-3 mt-3">
-                                <!-- Start of Cards -->
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #007bff;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-primary rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -155,7 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #ffc107;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-warning rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -165,7 +152,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #28a745;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-success rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -175,7 +162,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #17a2b8;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-info rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -185,7 +172,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #9B59B6;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
                                                 style="width: 10px; height: 10px; background:#9B59B6;"></span>
@@ -195,7 +182,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #006400;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
                                                 style="width: 10px; height: 10px; background:#006400;"></span>
@@ -205,7 +192,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #dc3545;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-danger rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -215,7 +202,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex mb-4 mb-lg-0">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #F4D03F;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
                                                 style="width: 10px; height: 10px; background:#F4D03F;"></span>
@@ -224,7 +211,6 @@
                                         <h6 class="mb-0" id="kadaluwarsa"></h6>
                                     </div>
                                 </div>
-                                <!-- End of Cards -->
                             </div>
                         </div>
                     </div>
@@ -255,7 +241,7 @@
                             <div class="datatable-top">
                                 <div class="datatable-dropdown">
                                     <label>
-                                        <select class="datatable-selector" id="limitPageReport" name="per-page">
+                                        <select class="datatable-selector" id="limitPageReport" name="per-page" style="width: auto;min-width: unset;">
                                             <option value="5">5</option>
                                             <option value="10" selected="">10</option>
                                             <option value="15">15</option>
@@ -265,7 +251,7 @@
                                     </label>
                                 </div>
                                 <div class="datatable-search">
-                                    <input class="datatable-input .search-input-report" placeholder="Search..."
+                                    <input class="datatable-input .search-input-report" placeholder="Cari..."
                                         type="search" name="search" title="Search within table"
                                         aria-controls="pc-dt-simple">
                                 </div>

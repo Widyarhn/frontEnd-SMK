@@ -63,7 +63,7 @@
                                             </label>
                                         </div>
                                         <div class="datatable-search">
-                                            <input id="searchInput" class="datatable-input" placeholder="Search..."
+                                            <input id="searchInput" class="datatable-input" placeholder="Cari..."
                                                 type="search" name="search" title="Search within table"
                                                 aria-controls="pc-dt-simple-1">
                                         </div>

@@ -40,7 +40,7 @@
                                     <div class="datatable-top">
                                         <div class="datatable-dropdown">
                                             <label>
-                                                <select class="datatable-selector" id="limitPage" name="per-page">
+                                                <select class="datatable-selector" id="limitPage" name="per-page" style="width: auto;min-width: unset;">
                                                     <option value="5">5</option>
                                                     <option value="10" selected="">10</option>
                                                     <option value="15">15</option>
@@ -50,7 +50,7 @@
                                             </label>
                                         </div>
                                         <div class="datatable-search">
-                                            <input class="datatable-input search-input" placeholder="Search..."
+                                            <input class="datatable-input search-input" placeholder="Cari..."
                                                 type="search" name="search" title="Search within table"
                                                 aria-controls="pc-dt-simple">
                                         </div>
@@ -317,9 +317,10 @@
                             <td>${index_loop}.</td>
                             <td>
                                 <div class="row align-items-center">
-                                    <div class="col-auto pe-0">
-                                        <img src="{{ asset('assets') }}/images/user/avatar-5.jpg" alt="user-image"
-                                            class="wid-40 hei-40 rounded-circle" />
+                                     <div class="col-auto pe-0">
+                                        <div class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                            <i class="fa-solid fa-user text-white"></i>
+                                        </div>
                                     </div>
                                     <div class="col">
                                         <h6 class="mb-1"><span class="text-truncate w-100">${element.name || '-'}</span> </h6>

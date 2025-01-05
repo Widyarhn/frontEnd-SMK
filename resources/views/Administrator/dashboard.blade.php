@@ -1,20 +1,16 @@
 @extends('Administrator.index', ['title' => 'Dashboard'])
 @section('asset_css')
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
     <style>
         .chart-container {
             position: relative;
             width: 100%;
-            /* Make it fill the available space */
             height: 300px;
-            /* Set an appropriate height for the chart */
         }
 
         @media (max-width: 768px) {
-
-            /* For mobile devices, make sure the chart adjusts */
             .chart-container {
                 height: 200px;
-                /* Adjust the height for smaller screens */
             }
         }
     </style>
@@ -39,6 +35,19 @@
                                 <img src="{{ asset('assets') }}/images/logoapp.png" alt="img" class="img-fluid mt-2"
                                     style="width: 100px;" />
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-1">
+            <div class="card">
+                <div class="row align-items-center py-4 px-2">
+                    <div class="col-md-4 offset-md-8 d-flex justify-content-end">
+                        <div class="input-group">
+                            <input type="text" id="pc-date_range_picker-2" class="form-control"
+                                placeholder="Pilih rentang tanggal" />
+                            <span class="input-group-text"><i class="feather icon-calendar"></i></span>
                         </div>
                     </div>
                 </div>
@@ -111,19 +120,15 @@
                         <h5 class="mb-5">Proses Sertifikasi</h5>
                     </div>
 
-                    <!-- Flex container for chart and cards -->
                     <div class="row g-3 mx-3">
-                        <!-- Chart container taking 4 columns -->
                         <div class="col-lg-4 col-12">
                             <div id="pie-chart-2" style="width: 100%; height: 350px;"></div>
                         </div>
 
-                        <!-- Cards container taking 8 columns -->
                         <div class="col-lg-8 col-12">
                             <div class="row g-3 mt-3">
-                                <!-- Start of Cards -->
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #007bff;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-primary rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -133,7 +138,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #ffc107;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-warning rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -143,7 +148,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #28a745;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-success rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -153,7 +158,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #17a2b8;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-info rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -163,7 +168,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #9B59B6;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
                                                 style="width: 10px; height: 10px; background:#9B59B6;"></span>
@@ -173,7 +178,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #006400;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
                                                 style="width: 10px; height: 10px; background:#006400;"></span>
@@ -183,7 +188,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #dc3545;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block bg-danger rounded-circle"
                                                 style="width: 10px; height: 10px;"></span>
@@ -193,7 +198,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3 d-flex mb-4 mb-lg-0">
-                                    <div class="bg-body p-3 rounded text-center w-100">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #F4D03F;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
                                                 style="width: 10px; height: 10px; background:#F4D03F;"></span>
@@ -202,9 +207,9 @@
                                         <h6 class="mb-0" id="kadaluwarsa"></h6>
                                     </div>
                                 </div>
-                                <!-- End of Cards -->
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -213,7 +218,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Total Proses Penilaian Setiap Bulan</h5>
+                        <h5 class="mb-0">Total Penilaian</h5>
                     </div>
                     <div class="my-2" id="mixed-chart-2" class="chart-container"></div>
                 </div>
@@ -244,7 +249,7 @@
                             <div class="datatable-top">
                                 <div class="datatable-dropdown">
                                     <label>
-                                        <select class="datatable-selector" id="limitPage" name="per-page">
+                                        <select class="datatable-selector" id="limitPage" name="per-page" style="width: auto;min-width: unset;">
                                             <option value="5">5</option>
                                             <option value="10" selected="">10</option>
                                             <option value="15">15</option>
@@ -254,7 +259,7 @@
                                     </label>
                                 </div>
                                 <div class="datatable-search">
-                                    <input class="datatable-input search-input" placeholder="Search..." type="search"
+                                    <input class="datatable-input search-input" placeholder="Cari..." type="search"
                                         name="search" title="Search within table" aria-controls="pc-dt-simple">
                                 </div>
                             </div>
@@ -297,7 +302,7 @@
                             <div class="datatable-top">
                                 <div class="datatable-dropdown">
                                     <label>
-                                        <select class="datatable-selector" id="limitPageReport" name="per-page">
+                                        <select class="datatable-selector" id="limitPageReport" name="per-page" style="width: auto;min-width: unset;">
                                             <option value="5">5</option>
                                             <option value="10" selected="">10</option>
                                             <option value="15">15</option>
@@ -307,7 +312,7 @@
                                     </label>
                                 </div>
                                 <div class="datatable-search">
-                                    <input class="datatable-input .search-input-report" placeholder="Search..."
+                                    <input class="datatable-input .search-input-report" placeholder="Cari..."
                                         type="search" name="search" title="Search within table"
                                         aria-controls="pc-dt-simple">
                                 </div>
@@ -346,8 +351,9 @@
 @section('scripts')
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --}}
+    <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
 
     <script>
         let defaultLimitPage = 10;
@@ -879,7 +885,7 @@
                                         <h6 class="mb-2"><span class="text-truncate w-100">${element.name || '-'}</span>
                                         </h6>
                                         <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                            ${element.work_unit.name || '-'}</span>
+                                            ${element.nip || '-'}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -1199,6 +1205,9 @@
         }
 
         async function initPageLoad() {
+            flatpickr(document.querySelector('#pc-date_range_picker-2'), {
+                mode: 'range'
+            });
             await getUserData();
             await getDataAllCompany();
             await setChartVersus();

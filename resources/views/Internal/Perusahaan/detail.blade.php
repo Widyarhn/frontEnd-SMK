@@ -236,7 +236,7 @@
                                                 <table class="table table-hover datatable-table" id="pc-dt-simple">
                                                     <thead>
                                                         <tr>
-                                                            <th class="text-center">Klasifikasi Baku Lapangan Usaha
+                                                            <th class="text-start">Klasifikasi Baku Lapangan Usaha
                                                                 Indonesia (KBLI)</th>
                                                         </tr>
                                                     </thead>
