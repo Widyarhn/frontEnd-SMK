@@ -56,15 +56,16 @@
         let totalPage = 1;
         let defaultAscending = 0;
         let defaultSearch = '';
-        let path = window.location.pathname;
-        let pathSegments = path.split('/'); // Pisahkan URL berdasarkan '/'
-        id = pathSegments[pathSegments.length - 1];
+        
+        let queryString         = window.location.search;
+        let urlParams           = new URLSearchParams(queryString);
+        let referenceId         = urlParams.get('id');
 
-        async function getListData() {
+        async function getListData(id) {
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                '/dummy/monitoring_element_detail.json'
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/monitoring-element/detail?id=${id}`, {}
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -185,7 +186,7 @@
         async function initPageLoad() {
 
             await Promise.all([
-                getListData()
+                getListData(referenceId)
             ]);
         }
     </script>

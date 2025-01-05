@@ -454,7 +454,6 @@
                         loadingPage(false);
                         let resp = error.response;
                         notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                        $("#modal-form").modal("hide");
                         return resp;
                     });
     

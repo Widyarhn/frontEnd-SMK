@@ -21,7 +21,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/element-pemantauan/list">Master Data Elemen</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/smk-element/list">Master Data Elemen</a></li>
                         <li class="breadcrumb-item" aria-current="page">Detail Data Element SMK</li>
                     </ul>
                 </div>
@@ -45,7 +45,6 @@
 @endsection
 @section('scripts')
     <!-- [Page Specific JS] start -->
-    <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
 @endsection
 
 @section('page_js')
@@ -56,17 +55,15 @@
         let defaultAscending = 0;
         let defaultSearch = '';
 
-        let pathArray = window.location.pathname.split('/');
-        let referenceId = pathArray[pathArray.length - 1];
-
+        let queryString         = window.location.search;
+        let urlParams           = new URLSearchParams(queryString);
+        let referenceId         = urlParams.get('id');
+        
         async function getListData(id) {
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                '/dummy/smk_element_detail.json'
-                // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/smk-element/detail', {
-                //     id: id
-                // }
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/smk-element/detail?id=${id}`, {}
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -168,7 +165,7 @@
                             <tr>
                                 <td>${subCounter + 1}.${subNumber}</td>
                                 <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${detail.title || ''}</td>
-                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${detail.description || ''}</td>
+                                <td style="word-wrap: break-word; white-space: normal; max-width: 200px;">${detail.description || ''}</td>
                                 <td>${filesHtml}</td>
                             </tr>`;
                                     subNumber++;
@@ -201,7 +198,7 @@
 
         async function initPageLoad() {
             await Promise.all([
-                getListData(),
+                getListData(referenceId),
                 // initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
             ]);
         }
