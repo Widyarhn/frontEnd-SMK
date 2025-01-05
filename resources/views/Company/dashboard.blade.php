@@ -16,24 +16,47 @@
     <div class="row"><!-- [ sample-page ] start -->
         <div class="col-sm-12">
             <div class="card social-profile" style="position:relative;">
-                <img src="../assets/images/application/img-profile-cover.jpg" alt="" class="w-100 card-img-top">
-                <div class="card-body pt-0">
-                    <div class="row align-items-end">
-                        <div class="col-md-auto text-md-start">
-                            <img class="img-fluid img-profile-avtar" src="../assets/images/user/avatar-5.jpg"
-                                alt="User image">
-                        </div>
-                        <div class="col">
-                            <div class="row justify-content-between align-items-end">
-                                <div class="col-md-auto soc-profile-data">
-                                    <h5 class="mb-1">Selamat Datang</h5>
-                                    <p class="company-name mb-0"></p>
+                <div class="card welcome-banner bg-blue-800 w-100 card-img-top"
+                    style="background: #0f2a7d; border-radius: 0;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="p-4">
+                                    <p class="text-white">
+                                        SMK-PAU adalah sistem yang dirancang untuk mendukung perusahaan angkutan umum dalam
+                                        menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
+                                        keselamatan secara berkelanjutan.
+                                    </p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Logo and Info Section -->
+                <div class="card-body pt-0 position-relative">
+                    <div class="row align-items-end">
+                        <!-- User Avatar -->
+                        <div class="col-md-auto text-md-start" style="position: absolute; top: -50px; left: 20px;">
+                            <img class="img-fluid rounded-circle" src="../assets/images/company.png" alt="User image"
+                                style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        </div>
+
+                        <!-- Company Info -->
+                        <div class="col" style="margin-left: 120px;">
+                            <div>
+                                <h5 class="company-name mb-1">PT Cahaya AKAP</h5>
+                                <p class="company-nib mb-0">NIB: 1165411111</p>
+                            </div>
+                        </div>
+
+                        <!-- Sinkronisasi OSS Button -->
+                        <div class="col-md-auto text-end">
+                            <button class="btn btn-primary btn-sync-oss">Sinkronisasi OSS</button>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Floating Countdown -->
                 <div id="countdown-card" class="card floating-countdown"
@@ -71,11 +94,6 @@
                 <div class="col-lg-12 col-xxl-12">
                     <div class="tab-content">
                         <div class="tab-pane show active" id="followers" role="tabpanel" aria-labelledby="followers-tab">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="company-name"></h5>
-                                </div>
-                            </div>
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Detail Perusahaan</h5>
@@ -125,7 +143,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card">
+                            {{-- <div class="card">
                                 <div class="card-header">
                                     <h5>Dokumen Perusahaan</h5>
                                 </div>
@@ -169,7 +187,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="row">
@@ -319,7 +337,7 @@
             $('.company-email').html(data.email);
             $('.company-address').html(data.address);
             $('.company-service-types').html(`<li class="list-item">${data.service_types}</li>`);
-            $('.company-nib').html(data.nib);
+            $('.company-nib').html('NIB : ' + data.nib);
             $('.company-joined-date').html(formatTanggalIndo(data.created_at != '-' || data.created_at == null ? data
                 .created_at : data.request_date));
             $('.company-pic-name').html(data.pic_name);
@@ -455,7 +473,7 @@
         }
 
         // Set the countdown time (e.g., 5 minutes from now)
-        const skIssueDate = new Date("2023-12-29"); // Tanggal terbit SK
+        const skIssueDate = new Date("2024-01-20"); // Tanggal terbit SK
         const nextReportDate = new Date(skIssueDate);
         nextReportDate.setFullYear(nextReportDate.getFullYear() + 1); // Laporan tahunan setahun setelah SK
 
@@ -478,18 +496,19 @@
 
                 // Update warna, pesan, dan ikon berdasarkan sisa waktu
                 if (days > 30) {
-                    countdownCard.style.background = "rgba(60, 179, 113, 0.8)"; // Hijau: Waktu masih lama
+                    countdownCard.style.background = "rgba(34, 139, 34, 0.9)"; // Hijau gelap
                     countdownMessage.textContent = "Waktu Anda Masih Panjang";
                     countdownIcon.className = "fa fa-smile"; // Ikon senyum
                 } else if (days <= 30 && days > 7) {
-                    countdownCard.style.background = "rgba(255, 255, 0, 0.8)"; // Kuning: Waktu mendekati deadline
+                    countdownCard.style.background = "rgba(218, 165, 32, 0.9)"; // Kuning gelap
                     countdownMessage.textContent = "Jangan Lupa Siapkan Laporan";
                     countdownIcon.className = "fa fa-exclamation-circle"; // Ikon peringatan
                 } else {
-                    countdownCard.style.background = "rgba(255, 0, 0, 0.8)"; // Merah: Deadline sudah dekat
+                    countdownCard.style.background = "rgba(139, 0, 0, 0.9)"; // Merah gelap
                     countdownMessage.textContent = "Segera Kirimkan Laporan Anda";
                     countdownIcon.className = "fa fa-times-circle"; // Ikon bahaya
                 }
+
             } else {
                 document.getElementById("countdown").innerHTML = "Waktu Habis!";
                 countdownCard.style.background = "rgba(128, 128, 128, 0.8)"; // Abu-abu: Waktu habis
@@ -498,10 +517,40 @@
             }
         }
 
+        async function checkOSS() {
+            loadingPage(true); // Menampilkan indikator loading
+            const getDataRest = await CallAPI(
+                'GET',
+                '/dummy/check_oss.json'
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false); // Menghentikan indikator loading jika terjadi error
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            loadingPage(false); // Menghentikan loading setelah mendapatkan response
+
+            if (getDataRest.status == 200) {
+                let data = getDataRest.data.data;
+                if (data.is_active === false) {
+                    // Menyembunyikan tombol sinkronisasi jika is_active == false
+                    const btnSync = document.querySelector('.btn-sync-oss');
+                    if (btnSync) {
+                        btnSync.style.display = 'none'; // Menyembunyikan tombol
+                    }
+                }
+            }
+        }
+
+
         async function initPageLoad() {
             await Promise.all([
                 getUserData(),
-                getSertifikatData()
+                getSertifikatData(),
+                checkOSS()
             ])
 
             // Update countdown setiap detik
