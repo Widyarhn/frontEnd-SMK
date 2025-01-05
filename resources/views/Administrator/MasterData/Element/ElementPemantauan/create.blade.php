@@ -106,7 +106,7 @@
             // Memanggil API
             const getDataRest = await CallAPI(
                 'GET',
-                '/dummy/get_smk_element.json'
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/smk-element/get-smk-element`, {}
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -494,11 +494,116 @@
             }
         });
 
+
+        async function generateSchema() {
+            const elements = {}
+            const additionalQuestions = {}
+            $.each(smkElements.max_assesment, function(elementKey, elementValue) {
+                const rowData = {}
+
+                $.each(elementValue, function(subElementKey) {
+                    let question = smkElements['question_schema']['properties'][elementKey][
+                            'properties'
+                        ][subElementKey],
+                        monitoringValue
+
+                    // check if sub element has a item
+                    if (question['items']) {
+                        let newData = []
+
+                        for (let i in question['items']) {
+                            let itemKey = Object.keys(question['items'][i])[0],
+                                isVisibilityValue = $(
+                                    `input:radio[name=isVisibility-${itemKey}]:checked`).val() ===
+                                'yes',
+                                isMandatoryValue = $(`input:radio[name=isMandatory-${itemKey}]:checked`)
+                                .val() === 'yes',
+                                questionValue = $(`#reportQuestion-${itemKey}`).val()
+
+                            let data = {
+                                isVisibilityValue: isVisibilityValue,
+                                isMandatoryValue: isMandatoryValue,
+                                questionValue: questionValue
+                            }
+
+                            newData.push({
+                                [itemKey]: data
+                            })
+                        }
+
+                        monitoringValue = newData
+
+                    } else {
+                        let isVisibilityValue = $(`input:radio[name=${$.escapeSelector(`isVisibility-${subElementKey}`)}]:checked`).val() === 'yes',
+                            isMandatoryValue = $(`input:radio[name=${$.escapeSelector(`isMandatory-${subElementKey}`)}]:checked`).val() === 'yes',
+                            questionValue = $(`#reportQuestion-${$.escapeSelector(subElementKey)}`).val();
+
+                        monitoringValue = {
+                            isVisibilityValue: isVisibilityValue,
+                            isMandatoryValue: isMandatoryValue,
+                            questionValue: questionValue
+                        };
+
+
+                    }
+
+                    rowData[subElementKey] = monitoringValue
+                })
+
+                elements[elementKey] = rowData
+                additionalQuestions[elementKey] = $(`#additional_${elementKey}`).val()
+
+            })
+
+            return {
+                elements,
+                additionalQuestions
+            }
+        }
+        
+        async function submitElement() {
+            // Attach form submit event
+            $(document).on('click', '#saveStep', async function(e) {
+                e.preventDefault();
+                let monitoringElements = await generateSchema();
+                let uniqueTitle = `monitoring_elements_${Date.now()}`;
+                console.log(monitoringElements.additionalQuestions)
+
+                let formData = {
+                    title: uniqueTitle,
+                    element_properties: smkElements,
+                    monitoring_elements: monitoringElements.elements,
+                    additional_questions: monitoringElements.additionalQuestions
+                };
+
+                loadingPage(true);
+                CallAPI('POST',
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/monitoring-element/create`,
+                        formData)
+                    .then(response => {
+                        if (response.status === 201) {
+                            loadingPage(false);
+                            notificationAlert('success', 'Pemberitahuan', response.data.message);
+                            setTimeout(() => {
+                                window.location.href =
+                                    "/admin/element-pemantauan/list";
+                            }, 1500);
+                        }
+                    })
+                    .catch(error => {
+                        loadingPage(false); // Hide loading in case of an error
+                        const resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp ? resp.data.message :
+                            'Terjadi kesalahan');
+                    });
+            });
+        }
+
         async function initPageLoad() {
             await Promise.all([
                 getListData(),
-                submitElement()
             ]);
+            submitElement();
         }
     </script>
 @endsection

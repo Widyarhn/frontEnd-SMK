@@ -635,10 +635,6 @@
             $('#form-data').off('submit').on('submit', async function(e) {
                 e.preventDefault(); // Mencegah reload halaman
 
-                try {
-                    // Aktifkan loading (simulasi saja)
-
-
                     // Generate schema dari elemen yang ada
                     let smkElements = await generateSchema();
 
@@ -650,27 +646,35 @@
                         title: uniqueTitle,
                         element_properties: smkElements
                     };
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Pemberitahuan',
-                        text: 'Data berhasil disimpan!',
-                        confirmButtonText: 'OK'
-                    })
-                    // Log hasil form ke console
-                    console.log('Form Data:', formData);
+                    
+                    const postDataRest = await CallAPI(
+                        'POST',
+                        `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/smk-element/create`,
+                        formData
+                    ).then(function(response) {
+                        return response;
+                    }).catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                        return resp;
+                    });
+    
+                    if (postDataRest.status == 200 || postDataRest.status == 201) {
+                        loadingPage(false);
+                        $("form").find("input, select, textarea").val("").prop("checked", false)
+                            .trigger("change");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Data berhasil disimpan!',
+                            confirmButtonText: 'OK'
+                        }).then(async () => {
+                            window.location.href = `/admin/element-smk/list`; 
+                        });
+                    }
+                    
 
-                    // Matikan loading (simulasi selesai)
-
-
-                    // Tampilkan notifikasi sukses (tanpa API)
-
-                } catch (error) {
-                    // Tangani error
-
-                    console.error('Error:', error); // Log error ke console
-
-
-                }
             });
         });
 
