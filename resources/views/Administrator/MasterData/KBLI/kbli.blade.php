@@ -255,6 +255,8 @@
         
                         if (postDataRest.status == 200) {
                             loadingPage(false);
+                            $("form").find("input, select, textarea").val("").prop("checked", false)
+                                .trigger("change");
                             setTimeout(async () => {
                                 Swal.fire({
                                     icon: 'success',

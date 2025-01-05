@@ -1,4 +1,8 @@
 @extends('...Administrator.index', ['title' => 'Nomor SK | Master Data Satuan Kerja'])
+@section('asset_css')
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
+@endsection
+
 
 @section('content')
     <div class="page-header">
@@ -100,12 +104,11 @@
                     <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                         <div class="p-3">
                             <div class="mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" name="input_satuan_kerja_id" id="input_satuan_kerja_id"
-                                        aria-label="Floating label select example" readonly>
-                                        <option value="dishub jabar" selected>Dishub Jawa Barat</option>
+                                <div class="form">
+                                    <label for="floatingSelect">Satuan Kerja</label>
+                                    <select class="form-control" id="input_satuan_kerja_id"
+                                        name="input_satuan_kerja_id" style="width: 100%;">
                                     </select>
-                                    <label for="input_satuan_kerja_id">Satuan Kerja</label>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -129,9 +132,10 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
 
     <script>
-        let env = '{{ env('ESMK_SERVICE_BASE_URL') }}';
+        let env = '{{ env('SERVICE_BASE_URL') }}';
         let menu = 'Nomor SK';
         let defaultLimitPage = 10;
         let currentPage = 1;
@@ -202,30 +206,45 @@
                     formData.id = id_user;
                 }
 
-                let method = isActionForm === "store" ? 'POST' : 'PUT';
-                // let postData = await CallAPI(method, actionUrl, formData);
-                let postDataRest = console.log(formData);
-                loadingPage(false);
-                $("#modal-form").modal("hide");
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Pemberitahuan',
-                    text: 'Data berhasil disimpan!',
-                    confirmButtonText: 'OK'
-                }).then(async () => {
-                    await initDataOnTable(defaultLimitPage, currentPage,
-                        defaultAscending, defaultSearch);
-                    $(this).trigger("reset");
+                const postDataRest = await CallAPI(
+                    'POST',
+                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/sk-number/${isActionForm}`,
+                    formData
+                ).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
                     $("#modal-form").modal("hide");
+                    return resp;
                 });
+
+                if (postDataRest.status == 200 || postDataRest.status == 201) {
+                    loadingPage(false);
+                    $("form").find("input, select, textarea").val("").prop("checked", false)
+                        .trigger("change");
+                    $("#modal-form").modal("hide");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pemberitahuan',
+                        text: 'Data berhasil disimpan!',
+                        confirmButtonText: 'OK'
+                    }).then(async () => {
+                        await initDataOnTable(defaultLimitPage, currentPage,
+                            defaultAscending, defaultSearch);
+                        $(this).trigger("reset");
+                        $("#modal-form").modal("hide");
+                    });
+                }
             });
         }
+
 
         async function deleteData() {
             $(document).on("click", ".delete-data", async function() {
                 isActionForm = "destroy";
                 let id = $(this).attr("data-id");
-                let name = $(this).attr("data-name");
                 Swal.fire({
                     icon: "question",
                     title: `Hapus Data ${name}`,
@@ -233,23 +252,42 @@
                     showCancelButton: true,
                     confirmButtonText: "Ya, Hapus!",
                     cancelButtonText: "Tidak, Batal!",
-                    reverseButtons: true
+                    reverseButtons: false
                 }).then(async (result) => {
-                    let postDataRest = console.log(id);
-                    loadingPage(false);
                     if (result.isConfirmed == true) {
-                        setTimeout(async () => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Pemberitahuan',
-                                text: 'Data berhasil dihapus!',
-                                confirmButtonText: 'OK'
-                            }).then(async () => {
-                                await initDataOnTable(defaultLimitPage,
-                                    currentPage,
-                                    defaultAscending, defaultSearch);
-                            });
-                        }, 100);
+                        loadingPage(true);
+                        let method = 'destroy';
+                        const postDataRest = await CallAPI(
+                            'POST',
+                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/sk-number/${method}`,
+                            {
+                                id: id
+                            }
+                        ).then(function(response) {
+                            return response;
+                        }).catch(function(error) {
+                            loadingPage(false);
+                            let resp = error.response;
+                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            return resp;
+                        });
+        
+                        if (postDataRest.status == 200) {
+                            loadingPage(false);
+                            setTimeout(async () => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pemberitahuan',
+                                    text: 'Data berhasil dihapus!',
+                                    confirmButtonText: 'OK'
+                                }).then(async () => {
+                                    await initDataOnTable(defaultLimitPage,
+                                        currentPage,
+                                        defaultAscending,
+                                        defaultSearch);
+                                });
+                            }, 100);
+                        }
                     }
                 }).catch(swal.noop);
             })
@@ -261,8 +299,8 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    // `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/sk-number/list`, 
-                    '{{ asset('dummy/internal/md-no-ba/list_noBa.json') }}', {
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/sk-number/list`, 
+                    {
                         page: currentPage,
                         limit: defaultLimitPage,
                         ascending: defaultAscending,
@@ -400,24 +438,41 @@
                 showCancelButton: true,
                 confirmButtonText: "Ya, Saya Yakin!",
                 cancelButtonText: "Batal",
-                reverseButtons: true
+                reverseButtons: false
             }).then(async (result) => {
-                loadingPage(true)
-                let postDataRest = console.log(id);
-                loadingPage(false);
                 if (result.isConfirmed == true) {
-                    setTimeout(async () => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Pemberitahuan',
-                            text: 'Status berhasil dirubah!',
-                            confirmButtonText: 'OK'
-                        }).then(async () => {
-                            await initDataOnTable(defaultLimitPage,
-                                currentPage,
-                                defaultAscending, defaultSearch);
-                        });
-                    }, 100);
+                    loadingPage(true)
+                    let formData = {};
+                    formData.id = id;
+                    const postDataRest = await CallAPI(
+                        'POST',
+                        `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/sk-number/status`,
+                        formData
+                    ).then(function(response) {
+                        return response;
+                    }).catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                        $("#modal-form").modal("hide");
+                        return resp;
+                    });
+    
+                    if (postDataRest.status == 200 || postDataRest.status == 201) {
+                        loadingPage(false);
+                        setTimeout(async () => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Pemberitahuan',
+                                text: 'Status berhasil dirubah!',
+                                confirmButtonText: 'OK'
+                            }).then(async () => {
+                                await initDataOnTable(defaultLimitPage,
+                                    currentPage,
+                                    defaultAscending, defaultSearch);
+                            });
+                        }, 100);
+                    }
                 }
             }).catch(swal.noop);
         }
@@ -552,9 +607,9 @@
 
         async function initPageLoad() {
             await Promise.all([
-                // selectList('#input_satuan_kerja_id',
-                //     '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
-                //     'Pilih Satuan Kerja', true),
+                selectList('#input_satuan_kerja_id',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
+                    'Pilih Satuan Kerja', true),
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
                 manipulationDataOnTable(),
                 setStatus(),
