@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Http;
+
 
 class Application
 {
@@ -15,6 +17,21 @@ class Application
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (!isset($_COOKIE['auth_token'])) {
+            return redirect()->route('auth.login');
+        }
+
+        $getMe = Http::acceptJson()
+        ->withHeaders([
+            'Authorization' => 'Bearer '.$_COOKIE['auth_token']
+        ])->get((string) env('SERVICE_BASE_URL').'/auth/me')
+        ->json();
+
+        if($getMe['status_code'] == 200){
+            $request->user = $getMe['data']['user'];
+            $request->payload = $getMe['data']['payload'];
+        }
+
         return $next($request);
     }
 }

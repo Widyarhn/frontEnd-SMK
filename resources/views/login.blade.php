@@ -187,7 +187,7 @@
                 let tokenParse = parseJwt(token);
                 console.log("🚀 ~ submitLogin ~ getDataRest.data:", getDataRest.data)
                 Cookies.remove('auth_token')
-                Cookies.set('auth_token', token, { 
+                Cookies.set('auth_token', token, {
                   expires: tokenParse.exp,
                   user: rest_data.user
                 })
