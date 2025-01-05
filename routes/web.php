@@ -2,25 +2,25 @@
 
 use App\Http\Controllers\DashbController;
 use App\Http\Middleware\Application;
+use App\Http\Middleware\IsLoginMiddleware;
 use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
+Route::get('/', function () {
+    return view('login')->with('title', env('APP_NAME'));
+})->name('auth.login')->middleware(IsLoginMiddleware::class);
+
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::get('/forgot-password', function () {
+    return view('forgotPassword');
+});
+
 
 Route::middleware(Application::class)->group( function(){
-
-    Route::get('/', function () {
-        return view('login')->with('title', env('APP_NAME'));
-    })->name('auth.login')->middleware(Application::class);
-
-    Route::get('/register', function () {
-        return view('register');
-    });
-
-    Route::get('/forgot-password', function () {
-        return view('forgotPassword');
-    });
-
 
     Route::controller(DashbController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');

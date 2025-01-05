@@ -17,6 +17,7 @@ class Application
      */
     public function handle(Request $request, Closure $next): Response
     {
+
         if (!isset($_COOKIE['auth_token'])) {
             return redirect()->route('auth.login');
         }
