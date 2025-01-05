@@ -11,7 +11,7 @@ class RoleMiddleware
     {
         $payload = $request->payload;
         if ($payload['role'] != $role) {
-            if($payload['role'] == 'internal'){
+            if($payload['role'] != 'company'){
                 return redirect()->route('admin.dashboard');
             } else {
                 return redirect()->route('company.dashboard');

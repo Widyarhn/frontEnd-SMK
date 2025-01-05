@@ -129,7 +129,7 @@
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
 
     <script>
-        let env = '{{ env('ESMK_SERVICE_BASE_URL') }}';
+        let env = '{{ env('SERVICE_BASE_URL') }}';
         let menu = 'KBLI';
         let defaultLimitPage = 10;
         let currentPage = 1;
@@ -167,9 +167,7 @@
                 $("#input_deskripsi_kbli").val(data.description);
 
                 // Set form action URL
-                // $("#form-create").data("action-url", `${env}/internal/admin-panel/master-kbli/update`);
-                $("#form-create").data("action-url",
-                    `{{ asset('dummy/internal/md-kbli/edit_kbli.json') }}`);
+                $("#form-create").data("action-url", `${env}/internal/admin-panel/master-kbli/update`);
                 $("#form-create").data("id", data.id);
             });
         }
@@ -191,22 +189,36 @@
                     formData.id = id;
                 }
 
-                let method = isActionForm === "store" ? "POST" : "PUT";
-                // let postData = await CallAPI(method, actionUrl, formData);
-                let postDataRest = console.log(formData);
-                loadingPage(false);
-                $("#modal-form").modal("hide");
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Pemberitahuan',
-                    text: 'Data berhasil disimpan!',
-                    confirmButtonText: 'OK'
-                }).then(async () => {
-                    await initDataOnTable(defaultLimitPage, currentPage, defaultAscending,
-                        defaultSearch);
-                    $(this).trigger("reset");
-                    $("#modal-form").modal("hide");
+                let method = isActionForm;
+
+                const postDataRest = await CallAPI(
+                    'POST',
+                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/master-kbli/${method}`,
+                    formData
+                ).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                    return resp;
                 });
+
+                if (postDataRest.status == 200) {
+                    loadingPage(false);
+                    $("#modal-form").modal("hide");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pemberitahuan',
+                        text: 'Data berhasil disimpan!',
+                        confirmButtonText: 'OK'
+                    }).then(async () => {
+                        await initDataOnTable(defaultLimitPage, currentPage, defaultAscending,
+                            defaultSearch);
+                        $(this).trigger("reset");
+                        $("#modal-form").modal("hide");
+                    });
+                }
             });
         }
 
@@ -214,7 +226,6 @@
             $(document).on("click", ".delete-data", async function() {
                 isActionForm = "destroy";
                 let id = $(this).attr("data-id");
-                let name = $(this).attr("data-name");
                 Swal.fire({
                     icon: "question",
                     title: `Hapus Data ${name}`,
@@ -222,23 +233,42 @@
                     showCancelButton: true,
                     confirmButtonText: "Ya, Hapus!",
                     cancelButtonText: "Tidak, Batal!",
-                    reverseButtons: true
+                    reverseButtons: false
                 }).then(async (result) => {
-                    let postDataRest = console.log(id);
-                    loadingPage(false);
                     if (result.isConfirmed == true) {
-                        setTimeout(async () => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Pemberitahuan',
-                                text: 'Data berhasil dihapus!',
-                                confirmButtonText: 'OK'
-                            }).then(async () => {
-                                await initDataOnTable(defaultLimitPage,
-                                    currentPage,
-                                    defaultAscending, defaultSearch);
-                            });
-                        }, 100);
+                        loadingPage(true);
+                        let method = 'destroy';
+                        const postDataRest = await CallAPI(
+                            'POST',
+                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/master-kbli/${method}`,
+                            {
+                                id: id
+                            }
+                        ).then(function(response) {
+                            return response;
+                        }).catch(function(error) {
+                            loadingPage(false);
+                            let resp = error.response;
+                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            return resp;
+                        });
+        
+                        if (postDataRest.status == 200) {
+                            loadingPage(false);
+                            setTimeout(async () => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pemberitahuan',
+                                    text: 'Data berhasil dihapus!',
+                                    confirmButtonText: 'OK'
+                                }).then(async () => {
+                                    await initDataOnTable(defaultLimitPage,
+                                        currentPage,
+                                        defaultAscending,
+                                        defaultSearch);
+                                });
+                            }, 100);
+                        }
                     }
                 }).catch(swal.noop);
             })
@@ -250,8 +280,8 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    // `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/master-kbli/list`, 
-                    '{{ asset('dummy/internal/md-kbli/list_kbli.json') }}', {
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/master-kbli/list`, 
+                    {
                         page: currentPage,
                         limit: defaultLimitPage,
                         ascending: defaultAscending,
