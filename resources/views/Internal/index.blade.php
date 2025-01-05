@@ -31,6 +31,12 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets') }}/css/uikit.css" /> --}}
     {{-- <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" /> --}}
 
+    <style>
+        select#limitPage {
+            width: 35%;
+        }
+    </style>
+    
     @yield('asset_css')
 
 </head>
@@ -91,6 +97,7 @@
     <script src="{{ asset('assets') }}/js/plugins/feather.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/sweetalert2.all.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <script src="{{ asset('assets') }}/js/axios.js"></script>
     <script src="{{ asset('assets') }}/js/restAPI.js"></script>
     <script src="{{ asset('assets') }}/js/offline.js"></script>
@@ -154,6 +161,43 @@
             }
             return;
         }
+
+        async function logout() {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+            'POST',
+            '{{ env("SERVICE_BASE_URL") }}/logout',
+            {}
+            ).then(function (response) {
+                return response;
+            }).catch(function (error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info','Pemberitahuan',resp.data.message);
+                return resp;
+            });
+            if(getDataRest.status == 200) {
+                Cookies.remove('auth_token');
+                setTimeout(function(){
+                    window.location.href = "{{ route('auth.login') }}"
+                },500);
+            }
+        }
+        
+        $(document).on('click', '.logout', async function() {
+            Swal.fire({
+                icon: 'warning',
+                title: "Apakah anda yakin ingin keluar?",
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: "Ya, Keluar",
+                cancelButtonText: "Tidak"
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  await logout();
+                }
+              });
+        });
     </script>
     @yield('scripts')
 

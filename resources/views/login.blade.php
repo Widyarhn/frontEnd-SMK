@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <!-- [Head] start -->
 
 <head>
-    <title>Login | SMK</title>
+    <title>{{ $title }} | {{ env('APP_NAME') }}</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
+    <link href="{{ asset('assets/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <style>
     .welcome-banner::after {
@@ -48,6 +50,16 @@
     <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>
+        </div>
+    </div>
+    <div id="preloaderLoadingPage">
+        <div class="sk-three-bounce">
+            <div class="centerpreloader">
+                <div class="ui-loading"></div>
+                <center>
+                    <h6 style="color: white;">Harap Tunggu....</h6>
+                </center>
+            </div>
         </div>
     </div>
     <!-- [ Pre-loader ] End -->
@@ -73,16 +85,16 @@
 
                         <div class="mb-3">
                             <div class="form-floating mb-0">
-                                <input type="email" class="form-control" id="floatingInput"
-                                    placeholder="Email address" />
-                                <label for="floatingInput">Email</label>
+                                <input type="email" class="form-control" id="email"
+                                    placeholder="Email address" required />
+                                <label for="email">Email</label>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword"
-                                    placeholder="Password" />
-                                <label for="floatingPassword">Kata Sandi</label>
+                                <input type="password" class="form-control" id="password"
+                                    placeholder="Password" required />
+                                <label for="password">Kata Sandi</label>
                             </div>
                         </div>
                         <div class="d-flex mt-1 justify-content-between align-items-center">
@@ -95,7 +107,7 @@
                             </h6>
                         </div>
                         <div class="d-grid mt-5">
-                            <a href="/admin/dashboard" type="button" class="btn btn-primary" style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Masuk</a>
+                            <a href="javascript:void(0);" onclick="submitLogin()" type="button" class="btn btn-primary" style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Masuk</a>
                         </div>
                         <div class="d-flex justify-content-center align-items-end mt-3">
                             <h6 class="f-w-500 mb-0 me-2">Belum punya akun?</h6>
@@ -109,12 +121,92 @@
     <!-- [ Main Content ] end -->
 
     <!-- Required Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
+    <script src="{{ asset('assets/js/plugins/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/plugins/popper.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/bootstrap.min.js"></script>
     <script src="{{ asset('assets') }}/js/fonts/custom-font.js"></script>
     <script src="{{ asset('assets') }}/js/pcoded.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/feather.min.js"></script>
+    <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
+    <script src="{{ asset('assets/js/axios.js') }}"></script>
+    <script src="{{ asset('assets/js/restAPI.js') }}"></script>
+
+    <script>
+        loadingPage(false);
+        document.getElementById('email').addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') {
+            submitLogin();
+          }
+        });
+
+        document.getElementById('password').addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') {
+            submitLogin();
+          }
+        });
+
+        function loadingPage(show) {
+            if(show == true) {
+              document.getElementById('preloaderLoadingPage').style.display = '';
+            } else {
+              document.getElementById('preloaderLoadingPage').style.display = 'none';
+            }
+            return;
+        }
+
+        function notificationAlert(tipe, title, message) {
+            swal(
+                title,
+                message,
+                tipe
+            );
+        }
+
+        async function submitLogin() {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+            'POST',
+            '{{ env("SERVICE_BASE_URL") }}/login',
+            {
+                email : $('#email').val(),
+                password : $('#password').val()
+            }
+            ).then(function (response) {
+                return response;
+            }).catch(function (error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info','Pemberitahuan',resp.data.message);
+                return resp;
+            });
+            if(getDataRest.status == 200) {
+                let rest_data = getDataRest.data;
+                let token = rest_data.token;
+                let tokenParse = parseJwt(token);
+                console.log("🚀 ~ submitLogin ~ getDataRest.data:", getDataRest.data)
+                Cookies.remove('auth_token')
+                Cookies.set('auth_token', token, { 
+                  expires: tokenParse.exp,
+                  user: rest_data.user
+                })
+                setTimeout(function(){
+                    window.location.href = "{{ route('admin.dashboard') }}"
+                },500);
+            }
+        }
+
+        function parseJwt (token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+
+            return JSON.parse(jsonPayload);
+        }
+    </script>
 </body>
 
 </html>

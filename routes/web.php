@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('login');
-});
+    return view('login')->with('title', env('APP_NAME'));
+})->name('auth.login');
 
 Route::get('/register', function () {
     return view('register');
@@ -18,7 +18,7 @@ Route::get('/forgot-password', function () {
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('Administrator.dashboard');
-    });
+    })->name('admin.dashboard');
 
     Route::get('/provinsi', function () {
         return view('Administrator.MasterData.Wilayah.provinsi');

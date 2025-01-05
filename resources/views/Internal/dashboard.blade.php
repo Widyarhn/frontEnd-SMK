@@ -261,7 +261,7 @@
                                             <option value="15">15</option>
                                             <option value="20">20</option>
                                             <option value="25">25</option>
-                                        </select> entries per page
+                                        </select> 
                                     </label>
                                 </div>
                                 <div class="datatable-search">
@@ -302,6 +302,7 @@
 @endsection
 
 @section('page_js')
+    <script src="{{ asset('assets') }}/assets/js/plugins/moment.js"></script>
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>

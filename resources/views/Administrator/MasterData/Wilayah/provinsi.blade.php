@@ -42,7 +42,7 @@
                                                     <option value="15">15</option>
                                                     <option value="20">20</option>
                                                     <option value="25">25</option>
-                                                </select> entries per page
+                                                </select> 
                                             </label>
                                         </div>
                                         <div class="datatable-search">
@@ -124,7 +124,7 @@
 @section('scripts')
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
     <script>
-        let env = '{{ env('ESMK_SERVICE_BASE_URL') }}';
+        let env = '{{ env('SERVICE_BASE_URL') }}';
         let menu = 'Provinsi';
         let defaultLimitPage = 10;
         let currentPage = 1;
@@ -139,7 +139,8 @@
             loadingPage(true);
             let getDataRest = await CallAPI(
                 'GET',
-                '{{ asset('dummy/internal/md-wilayah/list_provinsi.json') }}', {
+                '{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/provinsi/list',
+                {
                     page: currentPage,
                     limit: defaultLimitPage,
                     ascending: defaultAscending,
@@ -253,8 +254,8 @@
                 $(".modal-title").html(modalTitle);
                 const getDataRest = await CallAPI(
                     'GET',
-                    // `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/provinsi/edit`, 
-                    '{{ asset('dummy/internal/md-wilayah/edit_provinsi.json') }}', {
+                    '{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/provinsi/edit',
+                    {
                         id: id
                     }
                 ).then(function(response) {
@@ -285,30 +286,50 @@
                 e.preventDefault();
                 loadingPage(true);
                 const data = {};
-                let method = "POST";
+                let method = "store";
                 data["name"] = $("#input_name").val();
                 data["administrative_code"] = $("#input_administrative_code").val();
                 if (isActionForm == "update") {
                     data["id"] = $("#inputId").val();
-                    method = "PUT";
+                    method = "update";
                 }
-                const postDataRest = console.log(data);
-                loadingPage(false);
-                $("#modal-form").modal("hide");
-                setTimeout(async () => {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Pemberitahuan',
-                        text: 'Data berhasil disimpan!',
-                        confirmButtonText: 'OK'
-                    }).then(async () => {
-                        await initDataOnTable(defaultLimitPage, currentPage,
-                            defaultAscending,
-                            defaultSearch);
-                        $(this).trigger("reset");
-                        $("#modal-form").modal("hide");
-                    });
-                }, 100);
+                const postDataRest = await CallAPI(
+                    'POST',
+                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/provinsi/${method}`,
+                    data
+                ).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                    return resp;
+                });
+
+                if (postDataRest.status == 200) {
+                    loadingPage(false);
+                    $("form").find("input, select, textarea").val("").prop("checked", false)
+                        .trigger("change");
+                    $("#modal-form").modal("hide");
+                    let data = postDataRest.data.data;
+                    $("#inputId").val('');
+                    $("#input_name").val('');
+                    $("#input_administrative_code").val('');
+                    setTimeout(async () => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Data berhasil disimpan!',
+                            confirmButtonText: 'OK'
+                        }).then(async () => {
+                            await initDataOnTable(defaultLimitPage, currentPage,
+                                defaultAscending,
+                                defaultSearch);
+                            $(this).trigger("reset");
+                            $("#modal-form").modal("hide");
+                        });
+                    }, 100);
+                }
             });
         }
 
@@ -316,7 +337,6 @@
             $(document).on("click", ".delete-data", async function() {
                 isActionForm = "destroy";
                 let id = $(this).attr("data-id");
-                let name = $(this).attr("data-name");
                 Swal.fire({
                     icon: "question",
                     title: `Hapus Data ${name}`,
@@ -324,24 +344,42 @@
                     showCancelButton: true,
                     confirmButtonText: "Ya, Hapus!",
                     cancelButtonText: "Tidak, Batal!",
-                    reverseButtons: true
+                    reverseButtons: false
                 }).then(async (result) => {
-                    let postDataRest = console.log(id);
-                    loadingPage(false);
                     if (result.isConfirmed == true) {
-                        setTimeout(async () => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Pemberitahuan',
-                                text: 'Data berhasil dihapus!',
-                                confirmButtonText: 'OK'
-                            }).then(async () => {
-                                await initDataOnTable(defaultLimitPage,
-                                    currentPage,
-                                    defaultAscending,
-                                    defaultSearch);
-                            });
-                        }, 100);
+                        loadingPage(true);
+                        let method = 'destroy';
+                        const postDataRest = await CallAPI(
+                            'POST',
+                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/provinsi/${method}`,
+                            {
+                                id: id
+                            }
+                        ).then(function(response) {
+                            return response;
+                        }).catch(function(error) {
+                            loadingPage(false);
+                            let resp = error.response;
+                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            return resp;
+                        });
+        
+                        if (postDataRest.status == 200) {
+                            loadingPage(false);
+                            setTimeout(async () => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pemberitahuan',
+                                    text: 'Data berhasil dihapus!',
+                                    confirmButtonText: 'OK'
+                                }).then(async () => {
+                                    await initDataOnTable(defaultLimitPage,
+                                        currentPage,
+                                        defaultAscending,
+                                        defaultSearch);
+                                });
+                            }, 100);
+                        }
                     }
                 }).catch(swal.noop);
             })

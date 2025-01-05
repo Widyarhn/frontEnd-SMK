@@ -218,7 +218,7 @@
                                 </a> --}}
                                 {{-- <hr class="border-secondary border-opacity-50" /> --}}
                                 <div class="d-grid mb-3">
-                                    <button class="btn btn-primary">
+                                    <button class="btn btn-primary logout">
                                         <svg class="pc-icon me-2">
                                             <use xlink:href="#custom-logout-1-outline"></use>
                                         </svg>Keluar

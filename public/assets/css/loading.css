@@ -33,7 +33,7 @@
 } */
 
 .ui-loading {
-    background: url('../images/bus-loading.gif') no-repeat center center;
+    background: url('../images/loading.gif') no-repeat center center;
     background-size: contain;
     width: 200px;
     height: 200px;

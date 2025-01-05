@@ -1,6 +1,6 @@
 @extends('...Administrator.index', ['title' => 'Kota | Master Data Wilayah'])
 @section('asset_css')
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -45,7 +45,7 @@
                                                     <option value="15">15</option>
                                                     <option value="20">20</option>
                                                     <option value="25">25</option>
-                                                </select> entries per page
+                                                </select> 
                                             </label>
                                         </div>
                                         <div class="datatable-search">
@@ -99,12 +99,11 @@
                         <div class="p-3">
                             <div class="mb-3">
                                 <div class="col-md-12">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="floatingSelect" id="input_province_id"
-                                            name="input_province_id" aria-label="Floating label select example" readonly>
-                                            <option value="1" selected>Jawa Barat</option>
-                                        </select>
+                                    <div class="form">
                                         <label for="floatingSelect">Provinsi</label>
+                                        <select class="form-control" id="input_province_id"
+                                            name="input_province_id" style="width: 100%;">
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -144,9 +143,9 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
     <script>
-        let env = '{{ env('ESMK_SERVICE_BASE_URL') }}';
+        let env = '{{ env('SERVICE_BASE_URL') }}';
         let menu = 'Kota';
         let defaultLimitPage = 10;
         let currentPage = 1;
@@ -185,26 +184,41 @@
                 $("#modal-form").modal("show");
                 $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
 
+                const getDataRest = await CallAPI(
+                    'GET',
+                    '{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/kota/edit',
+                    {
+                        id: id
+                    }
+                ).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                    return resp;
+                });
 
-                $("#input_name").val(data.name);
-                let administrativeCode = data.administrative_code.split('.')[
-                    1];
-                $("#input_administrative_code").val(
-                    administrativeCode);
+                if (getDataRest.status == 200) {
+                    $("#input_name").val(data.name);
+                    let administrativeCode = data.administrative_code.split('.')[
+                        1];
+                    $("#input_administrative_code").val(
+                        administrativeCode);
+    
+                    let provinceId = data.province.id;
+                    $("#input_province_id").val(null).trigger('change');
+                    $('#input_province_id').append(new Option(data.province.name, provinceId, true, true));
+                    $("#input_province_id").trigger('change');
+    
+    
+                    $("#input_is_ministry").val(data.is_ministry);
+    
+    
+                    $("#form-create").data("action-url", `${env}/internal/admin-panel/kota/update`);
+                    $("#form-create").data("id", id);
+                }
 
-                let provinceId = data.province.id;
-                $("#input_province_id").val(null).trigger('change');
-                $('#input_province_id').append(new Option(data.province.name, provinceId, true, true));
-                $("#input_province_id").trigger('change');
-
-
-                $("#input_is_ministry").val(data.is_ministry);
-
-
-                // $("#form-create").data("action-url", `${env}/internal/admin-panel/kota/update`);
-                $("#form-create").data("action-url",
-                    `{{ asset('dummy/internal/md-wilayah/edit_kota.json') }}`);
-                $("#form-create").data("id_user", id);
             });
         }
 
@@ -214,70 +228,104 @@
                 e.preventDefault();
                 loadingPage(true);
 
-                let actionUrl = $("#form-create").data("action-url");
                 let formData = {
                     name: $('#input_name').val(),
                     administrative_code: $('#input_administrative_code').val(),
                     province_id: $('#input_province_id').val()
                 };
 
-                let id_user = $("#form-create").data("id_user");
-                if (id_user) {
-                    formData.id = id_user;
+                let id = $("#form-create").data("id");
+                if (id) {
+                    formData.id = id;
                 }
 
-                let method = isActionForm === "store" ? 'POST' : 'PUT';
-                // let postData = await CallAPI(method, actionUrl, formData);
-
-                let postDataRest = console.log(formData);
-                loadingPage(false);
-                $("#modal-form").modal("hide");
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Pemberitahuan',
-                    text: 'Data berhasil disimpan!',
-                    confirmButtonText: 'OK'
-                }).then(async () => {
-                    await getListData();
-                    $(this).trigger("reset");
+                const postDataRest = await CallAPI(
+                    'POST',
+                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/kota/${isActionForm}`,
+                    formData
+                ).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
                     $("#modal-form").modal("hide");
+                    return resp;
                 });
+
+                if (postDataRest.status == 200 || postDataRest.status == 201) {
+                    loadingPage(false);
+                    $("form").find("input, select, textarea").val("").prop("checked", false)
+                        .trigger("change");
+                    $("#modal-form").modal("hide");
+                    setTimeout(async () => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Data berhasil disimpan!',
+                            confirmButtonText: 'OK'
+                        }).then(async () => {
+                            await initDataOnTable(defaultLimitPage, currentPage,
+                                defaultAscending,
+                                defaultSearch);
+                            $(this).trigger("reset");
+                            $("#modal-form").modal("hide");
+                        });
+                    }, 100);
+                }
             });
         }
-
 
         async function deleteData() {
             $(document).on("click", ".delete-data", async function() {
                 isActionForm = "destroy";
                 let id = $(this).attr("data-id");
-                let name = $(this).attr("data-name");
-
-                const result = await Swal.fire({
+                Swal.fire({
                     icon: "question",
                     title: `Hapus Data ${name}`,
                     text: "Anda tidak akan dapat mengembalikannya!",
                     showCancelButton: true,
                     confirmButtonText: "Ya, Hapus!",
                     cancelButtonText: "Tidak, Batal!",
-                    reverseButtons: true
-                });
-
-                if (result.isConfirmed) {
-                    console.log(id);
-                    setTimeout(async () => {
-                        loadingPage(false);
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Pemberitahuan',
-                            text: 'Data berhasil dihapus!',
-                            confirmButtonText: 'OK'
-                        }).then(async () => {
-                            await initDataOnTable(defaultLimitPage, currentPage,
-                                defaultAscending, defaultSearch);
+                    reverseButtons: false
+                }).then(async (result) => {
+                    if (result.isConfirmed == true) {
+                        loadingPage(true);
+                        let method = 'destroy';
+                        const postDataRest = await CallAPI(
+                            'POST',
+                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/kota/${method}`,
+                            {
+                                id: id
+                            }
+                        ).then(function(response) {
+                            return response;
+                        }).catch(function(error) {
+                            loadingPage(false);
+                            let resp = error.response;
+                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            return resp;
                         });
-                    }, 100);
-                }
-            });
+        
+                        if (postDataRest.status == 200) {
+                            loadingPage(false);
+                            setTimeout(async () => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pemberitahuan',
+                                    text: 'Data berhasil dihapus!',
+                                    confirmButtonText: 'OK'
+                                }).then(async () => {
+                                    await initDataOnTable(defaultLimitPage,
+                                        currentPage,
+                                        defaultAscending,
+                                        defaultSearch);
+                                });
+                            }, 100);
+                        }
+                    }
+                }).catch(swal.noop);
+            })
         }
 
 
@@ -287,8 +335,8 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/kota/list', 
-                    '{{ asset('dummy/internal/md-wilayah/list_kota.json') }}', {
+                    '{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/kota/list',
+                    {
                         page: page,
                         limit: limit,
                         ascending: ascending,
@@ -510,10 +558,9 @@
 
         async function initPageLoad() {
             await Promise.all([
-                // selectList('#input_province_id',
-                //     // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/provinsi/list',
-                //     '{{ asset('dummy/internal/md-wilayah/select_provinsi.json') }}',
-                //     'Jawa Barat', true),
+                selectList('#input_province_id',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/provinsi/list',
+                    'Pilih Provinsi', true),
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
                 manipulationDataOnTable(),
                 addData(),

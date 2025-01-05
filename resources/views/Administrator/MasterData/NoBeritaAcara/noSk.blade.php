@@ -47,7 +47,7 @@
                                                     <option value="15">15</option>
                                                     <option value="20">20</option>
                                                     <option value="25">25</option>
-                                                </select> entries per page
+                                                </select> 
                                             </label>
                                         </div>
                                         <div class="datatable-search">

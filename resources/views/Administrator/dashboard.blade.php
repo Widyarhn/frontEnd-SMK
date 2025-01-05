@@ -20,6 +20,8 @@
     </style>
 @endsection
 @section('content')
+    <div id="custom-filter"></div>
+    <div id="resetCustomFilter"></div>
     <div class="row">
         <div class="col-12">
             <div class="card welcome-banner bg-blue-800" style="background: #0f2a7d;">
@@ -248,7 +250,7 @@
                                             <option value="15">15</option>
                                             <option value="20">20</option>
                                             <option value="25">25</option>
-                                        </select> entries per page
+                                        </select> 
                                     </label>
                                 </div>
                                 <div class="datatable-search">
@@ -301,7 +303,7 @@
                                             <option value="15">15</option>
                                             <option value="20">20</option>
                                             <option value="25">25</option>
-                                        </select> entries per page
+                                        </select> 
                                     </label>
                                 </div>
                                 <div class="datatable-search">
@@ -343,8 +345,9 @@
 
 @section('scripts')
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
-
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <script>
         let defaultLimitPage = 10;
@@ -1103,7 +1106,7 @@
         }
 
         function initializeDateRangePicker() {
-            let today = moment();
+            let today = moment(new Date());
             let last30Days = moment().subtract(30, 'days');
 
             $('#daterange').daterangepicker({
@@ -1120,7 +1123,7 @@
         }
 
         function initializeDateRangePicker() {
-            let today = moment();
+            let today = moment(new Date());
             let last30Days = moment().subtract(30, 'days');
 
             // Initialize the Date Range Picker with default 30 days
@@ -1172,7 +1175,7 @@
                 $('.search-input').val('');
 
                 // Reset date range to last 30 days
-                let today = moment();
+                let today = moment(new Date());
                 let last30Days = moment().subtract(30, 'days');
                 dateRangePicker.data('daterangepicker').setStartDate(last30Days);
                 dateRangePicker.data('daterangepicker').setEndDate(today);
