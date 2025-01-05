@@ -15,7 +15,7 @@
     <meta name="author" content="Phoenixcoded" />
 
     <!-- [Favicon] icon -->
-    <link rel="icon" href="https://ableproadmin.com/assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="icon" href="{{asset('assets')}}/images/logoapp.png" type="image/x-icon" />
     <!-- [Font] Family -->
     <link rel="stylesheet" href="https://ableproadmin.com/assets/fonts/inter/inter.css" id="main-font-link" />
     <!-- [phosphor Icons] https://phosphoricons.com/ -->
