@@ -81,6 +81,17 @@
         </div>
     </div>
 
+    <div style="position: fixed; bottom: 20px; right: 40px; z-index: 999;">
+        <a href="https://wa.me/6281287980134?text=Halo saya ingin bertanya tentang layanan Anda"
+           style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 45%;
+                  display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+                  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <i class="fa-solid fab fa-whatsapp text-white fa-2x"></i>
+        </a>
+    </div>
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/popper.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
@@ -140,13 +151,13 @@
     </script>
     @yield('scripts')
     <script type="text/javascript">
-        // function notificationAlert(tipe, title, message) {
-        //     swal(
-        //         title,
-        //         message,
-        //         tipe
-        //     );
-        // }
+        function notificationAlert(tipe, title, message) {
+            Swal.fire({
+                icon: tipe,
+                title: title,
+                text: message
+            });
+        }
 
         function loadingPage(show) {
             if (show == true) {

@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.js" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/js/libs/filepond/filepond.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <style>
         .nav-wrapper {
@@ -58,41 +62,187 @@
         </div>
     </div>
 
-    <div id="basicwizard" class="form-wizard row justify-content-center">
-        <div class="col-12 mt-4">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="nav-wrapper" style="overflow-x: auto; white-space: nowrap;">
-                        <ul class="nav nav-pills nav-justified" id="wizardTabs"
-                            style="display: flex; overflow-x: auto; padding-bottom: 10px;">
-                            <!-- Tab Dinamis Akan Dimasukkan di Sini -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="tab-content" id="tabContent">
-                        <!-- Konten Dinamis Akan Dimasukkan di Sini -->
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="row align-items-center g-3">
+                                <div class="col-lg-8 col-12">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="col-sm-auto mb-3 mb-sm-0 me-3">
+                                            <div class="d-sm-inline-block d-flex align-items-center">
+                                                <div
+                                                    class="wid-60 hei-60 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                                    <i class="fa-solid fa-building text-white fa-2x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-start">
+                                                <h4 class="d-inline-block mb-0 me-2" id="c_name"></h4>
+                                                <p class="mb-0"><b> NIB : <span id="c_nib"></span></b></p>
+                                            </div>
+                                            <div class="help-sm-hidden">
+                                                <ul class="list-unstyled mt-0 mb-0 text-muted">
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-solid fa-phone me-1" id="company_phone"></i>
+                                                        <span id="c_phone"></span>
+                                                    </li>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-regular fa-envelope me-1" id="company_email"></i>
+                                                        <span id="c_email"></span>
+                                                    </li>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fa-solid fa-location-dot me-1" id="company_address"></i>
+                                                        <span id="c_address"></span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Jenis Pelayanan</h5>
+                                <div style="max-height: 80px; overflow-y: scroll;">
+                                    <ol id="c_serviceType">
+
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Penanggung Jawab</h5>
+                                <p class="mb-0"><i class="fa-solid fa-user me-2"></i><span id="pic_name"></span></p>
+                                <p class="mb-0"><i class="fa-solid fa-phone me-2"></i><span id="pic_phone"></span></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Informasi Pengguna</h5>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <p class="mb-0"><i class="fa-solid fa-circle-user me-2"></i><span
+                                                id="u_name"></span></p>
+                                        <p class="mb-0"><i class="fa-solid fa-phone me-2"></i><span id="u_phone"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p class="mb-0"><i class="fa-solid fa-envelope me-2"></i><span
+                                                id="u_email"></span>
+                                        </p>
+                                        <p class="mb-0"><i class="fa-solid fa-calendar-day me-2"></i><span
+                                                id="establish_date"></span></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-                    <button type="button" class="btn btn-secondary" id="previousStep"
-                        style="margin-right: 10px;">Previous</button>
-                    <button type="button" class="btn btn-primary" id="nextStep" style="margin-left: 10px;">Next</button>
-                    <button type="button" class="btn btn-success" id="saveStep"
-                        style="display: none; margin-left: 10px;">Simpan</button>
-                    <button type="button" class="btn btn-warning" id="saveDraft" style="margin-left: 10px;">Simpan
-                        Draft</button>
-                </div>
             </div>
+        </div>
+        <div class="col-12">
+            <form id="fCreate">
+                <div class="card">
+                    <div class="card-header" style="background-color: #1267b1; margin-bottom: 10px;">
+                        <h6 class="card-title mb-0 text-white">Dokumen/Form Yang Harus Dilengkapi</h6>
+                    </div>
+                    <div class="card-body">
+                        <a class="btn btn-primary btn-primary-download"
+                            href="{{ asset('assets/doc/SURAT_PERMOHONAN_PENILAIAN.docx') }}" download>
+                            <i class="fas fa-download me-1"></i> Template Surat Permohonan Penilaian
+                        </a>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="number_of_application_letter" class="form-label">Nomor
+                                        Surat</label>
+                                    <input class="form-control" type="text" id="number_of_application_letter"
+                                        name="number_of_application_letter" placeholder="Nomor Surat" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="date_of_letter" class="form-label">Tanggal Surat</label>
+                                    <input type="text" class="form-control flatpickr-input"
+                                        placeholder="Tanggal surat" id="date_of_application_letter"
+                                        name="date_of_application_letter" required />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label class="application_letter_show" for="des-info-description-input">Surat
+                                        Permohonan Penilaian</label>
+                                    <input type="file" class="filepond filepond-input application_letter mb-0"
+                                        id="application_letter_show" accept="application/pdf" required />
+                                    <p class="text-muted mb-0">
+                                        <small>Maksimal ukuran file 5 MB.</small>
+                                    </p>
+                                    <input type="hidden" class="filepond application_letter_hide"
+                                        name="file_of_application_letter" id="application_letter" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                                aria-labelledby="analytics-tab-1" tabindex="0">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                                </div>
+                                <div class="row justify-content-md-center pe-4 ps-4">
+                                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                                        <button type="submit" class="btn btn-primary btn-gradient my-1"
+                                            style="width:100%;" id="submitRequestBtn"><i
+                                                class="fas fa-paper-plane me-1"></i>
+                                            Kirim pengajuan <i class="ri-arrow-right-s-line align-middle lh-1"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                                        <button type="button" onClick="saveAsDraft()" class="btn btn-light my-1"
+                                            style=" width:100%;" id="submitDraftRequestBtn"><i
+                                                class="fas fa-save me-1"></i>
+                                            Simpan sebagai draft <i class="ri-save-3-fill align-middle lh-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
 @section('scripts')
+    <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
+    </script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js">
+    </script>
     <!-- [Page Specific JS] start -->
-    <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs/dist/parsley.min.js"></script>
 @endsection
 
 @section('page_js')
@@ -103,18 +253,16 @@
         async function getListData(limit = 10, page = 1, ascending = 0, search = '') {
             loadingPage(true);
             const getDataRest = await CallAPI(
-                    'GET',
-                    '/dummy/company/sertifikatSMK/create.json'
-                )
-                .then(function(response) {
-                    return response;
-                })
-                .catch(function(error) {
-                    loadingPage(false);
-                    let resp = error.response;
-                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                    return resp;
-                });
+                'GET',
+                `/dummy/company/sertifikatSMK/create.json`
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
 
             loadingPage(false);
 
@@ -124,197 +272,83 @@
                 const questionSchema = smkElements.question_schema.properties;
                 const uiSchema = smkElements.ui_schema;
 
-                let tabContent = '';
-                let tabNav = '';
+                let accordionHtml = ``;
                 let numbering = 1;
 
-                // Hardcoded Tab and Content
-                tabNav += `
-            <li class="nav-item">
-                <a href="#hardcodeTab" data-bs-toggle="pill" class="nav-link active" data-index="0">
-                    <span class="fw-bold f-18"><i class="fa-solid fa-file-alt me-2"></i>DOKUMEN PERMOHONAN</span>
-                </a>
-            </li>`;
-                tabContent += `
-            <div class="tab-pane show active" id="hardcodeTab">
-               <form id="formDocuments" method="get">
-                                <div class="text-center">
-                                    <h3 class="mb-4">Dokumen/Form Yang Harus Dilengkapi</h3>
-                                </div>
-                                <div class="row mt-5">
-                                    <!-- Jenis Pelayanan -->
-                                    <div class="col-12 mb-4">
-                                        <div class="form-floating">
-                                            <select class="form-select" id="floatingSelect"
-                                                aria-label="Floating label select example" disabled>
-                                                <option selected>AJAP</option>
-                                                <option value="1">AJAP</option>
-                                            </select>
-                                            <label for="floatingSelect">Jenis Pelayanan</label>
-                                        </div>
-                                    </div>
-                                    <!-- Nomor Surat -->
-                                    <div class="col-lg-6 col-12 mb-4">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="nomorSurat" placeholder="" />
-                                            <label for="nomorSurat">Nomor Surat</label>
-                                        </div>
-                                    </div>
-                                    <!-- Tanggal Surat -->
-                                    <div class="col-lg-6 col-12 mb-4">
-                                        <div class="form-floating">
-                                            <input type="date" class="form-control" id="tanggalSurat" />
-                                            <label for="tanggalSurat">Tanggal Surat</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-12 mb-4">
-                                        <label class="mb-2">Upload Surat Permohonan Penilaian</label>
-                                        <div class="mb-3">
-                                            <input class="form-control" type="file" />
-                                            <small class="text-muted">Maksimal ukuran file 5 MB.</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-12 mb-4 d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="avtar avtar-xs btn-light-primary">
-                                                    <a href="path/to/template-surat.pdf"
-                                                        download="Template_Surat_Permohonan_Penilaian.pdf"
-                                                        title="Download Template">
-                                                        <i class="f-16 fa-solid fa-download"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1 ms-3">
-                                                <h6 class="mb-0">Unduh Template Surat Permohonan Penilaian</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </form>
-            </div>`;
-
-                // Dynamic Tabs and Content
-                let currentTabIndex = 1;
+                // Loop through each elementKey in uiSchema
                 for (const [elementKey, elementValue] of Object.entries(uiSchema)) {
-                    let sortableSubElement = sortableSubElementByUiOrder(uiSchema, elementKey);
-                    const numberedElementKey = `${numbering}.${elementKey}`;
+                    const panelId = `panel-${elementKey}`;
+                    accordionHtml += `
+                        <div class="accordion-item shadow-sm border-0 mb-4">
+                            <h2 class="accordion-header" id="heading-${elementKey}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${panelId}" aria-expanded="true" aria-controls="${panelId}" style="background: linear-gradient(90deg, #043c84 0%, #4572b8 100%); color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                    ${numbering}. ${questionSchema[elementKey].title}
+                                </button>
+                            </h2>
+                            <div id="${panelId}" class="accordion-collapse collapse show" aria-labelledby="heading-${elementKey}">
+                                <div class="accordion-body">
+                                    <div class="table-responsive py-4">
+                                        <table class="table table-hover table-bordered mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="text-center" style="width: 5%;">No</th>
+                                                    <th style="width: 35%; white-space: nowrap;">Uraian</th>
+                                                    <th style="width: 30%; white-space: nowrap;">Dokumen</th>
+                                                    <th style="width: 30%; white-space: nowrap;">Jawaban</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                    `;
+
+
+                    let sortableSubElement = Object.entries(uiSchema[elementKey])
+                        .map(([key, value]) => [key, value])
+                        .sort((a, b) => a[1]['ui:order'] - b[1]['ui:order']);
+
                     let rowIndex = 1;
 
-                    // Tab Navigation
-                    tabNav += `
-                <li class="nav-item">
-                    <a href="#${numberedElementKey}" data-bs-toggle="pill" class="nav-link" data-index="${currentTabIndex}">
-                        <span class="fw-bold f-18"><i class="fa-solid fa-shield me-2"></i>${numbering}. ${questionSchema[elementKey].title}</span>
-                    </a>
-                </li>`;
+                    sortableSubElement.forEach(([subKey, subValue]) => {
+                        const questionProperties = questionSchema[elementKey]['properties'][subKey];
+                        const formInputHtml = generateFormInput(subValue['ui:widget'], elementKey, subKey);
 
-                    // Tab Content
-                    tabContent += `
-                <div class="tab-pane" id="${numberedElementKey}">
-                    <form id="${numberedElementKey}" method="post" action="#">
-                        <div class="text-center">
-                            <h3 class="mb-2">${questionSchema[elementKey].title}</h3>
-                            <small style="color: blue">Maksimal ukuran file yang diunggah 5 MB.</small>
-                        </div>
-                        <div class="table-responsive py-5">
-                            <table class="table table-hover mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Uraian</th>
-                                        <th>Dokumen / Bukti Dukungan Jawaban</th>
-                                        <th>Jawaban</th>
-                                    </tr>
-                                </thead>
-                                <tbody>`;
-                    sortableSubElement.forEach(function(subElement) {
-                        let questionProperties = questionSchema[elementKey]['properties'][subElement[0]];
-                        let formInputHtml = generateFormInput(
-                            subElement[1]['ui:widget'],
-                            `${elementKey}`,
-                            `${subElement[0]}`
-                        );
-
-                        tabContent += `
-                    <tr>
-                        <td>${numbering}.${rowIndex}</td>
-                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${questionProperties['title']}</td>
-                        <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${questionProperties['description']}</td>
-                        <td>${formInputHtml}</td>
-                    </tr>`;
+                        accordionHtml += `
+                            <tr>
+                                <td class="text-center">${numbering}.${rowIndex}</td>
+                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${questionProperties['title']}</td>
+                                <td style="word-wrap: break-word; white-space: normal; max-width: 180px;">${questionProperties['description'] || 'N/A'}</td>
+                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${formInputHtml}</td>
+                            </tr>
+                        `;
                         rowIndex++;
                     });
 
-                    tabContent += `
-                                    </tbody>
-                                </table>
+                    accordionHtml += `
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
-                    </div>`;
+                        </div>
+                    `;
                     numbering++;
-                    currentTabIndex++;
                 }
 
-                // Append Tabs and Content to the DOM
-                $('#wizardTabs').html(tabNav);
-                $('#tabContent').html(tabContent);
 
-                // Tab Navigation Logic
-                let currentTab = 0;
+                // Render accordion content to the DOM
+                $('#accordionFlushExample').html(accordionHtml);
 
-                $('#wizardTabs .nav-link').click(function() {
-                    const index = $(this).data('index');
-                    currentTab = index;
-                    updateTabContent();
+                mappingCompanyInformation(getDataRest.data.data);
+                // Initialize PDF previews
+                $('.pdf-preview').each(function() {
+                    PDFObject.embed(`${$(this).attr('location')}`, `#${$(this).attr('id')}`, {
+                        height: '20em'
+                    });
                 });
 
-                // Update Tab Content Based on Current Tab
-                function updateTabContent() {
-                    $('#wizardTabs .nav-link').removeClass('active');
-                    $('#tabContent .tab-pane').removeClass('show active');
-
-                    $(`#wizardTabs .nav-link[data-index="${currentTab}"]`).addClass('active');
-                    $(`#tabContent .tab-pane:eq(${currentTab})`).addClass('show active');
-
-                    // Update Buttons for Last Tab
-                    if (currentTab === $('#wizardTabs .nav-link').length - 1) {
-                        $('#saveStep').show();
-                        $('#nextStep').hide();
-                    } else {
-                        $('#saveStep').hide();
-                        $('#nextStep').show();
-                    }
-                }
-
-                // Previous and Next Buttons
-                $('#previousStep').click(function() {
-                    if (currentTab > 0) {
-                        currentTab--;
-                        updateTabContent();
-                    }
+                // Initialize file uploads
+                $('.smk-element-file').each(function() {
+                    uploadFile($(this).attr('id'), $(this).next().attr('id'));
                 });
-
-                $('#nextStep').click(function() {
-                    if (currentTab < $('#wizardTabs .nav-link').length - 1) {
-                        currentTab++;
-                        updateTabContent();
-                    }
-                });
-
-                // Save Draft Button
-                $('#saveStep').click(function() {
-                    Swal.fire({
-                            icon: 'success',
-                            title: 'Pemberitahuan',
-                            text: 'Berhasil!',
-                            confirmButtonText: 'OK'
-                        });
-                });
-                
-                // Initialize Content
-                updateTabContent();
             }
         }
 
@@ -431,7 +465,80 @@
                 },
             });
 
-            //uploadFile('application_letter_show', 'application_letter')
+            uploadFile('application_letter_show', 'application_letter')
+        }
+
+        function uploadFile(sourceElement, inputTarget, sourceFile = null) {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content')
+            const initialFile = []
+
+            if (sourceFile) {
+                initialFile.push({
+                    source: sourceFile
+                })
+            }
+
+            FilePond.create(
+                document.querySelector(`#${sourceElement}`), {
+                    files: [],
+                    server: {
+                        process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                            $('#submitRequestBtn').prop('disabled', true)
+                            $('#submitDraftRequestBtn').prop('disabled', true)
+
+                            const formData = new FormData()
+                            formData.append('file', file, file.name)
+
+                            const request = new XMLHttpRequest()
+                            request.open('POST',
+                                '{{ env('ESMK_SERVICE_BASE_URL') }}/company/documents/upload-file')
+                            request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
+                            request.setRequestHeader('Accept', 'application/json')
+                            request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
+                            request.responseType = 'json';
+
+                            request.onload = function() {
+                                if (request.status >= 200 && request.status < 300) {
+                                    const resp = request.response
+                                    load(request.response);
+
+                                    $(`#${inputTarget}`).val(resp.file_url)
+                                } else {
+                                    error('oh no, Internal Server Error');
+                                }
+
+                                $('#submitRequestBtn').prop('disabled', false)
+                                $('#submitDraftRequestBtn').prop('disabled', false)
+                            };
+
+                            request.send(formData);
+
+                            return {
+                                abort: () => {
+                                    request.abort();
+
+                                    abort();
+                                }
+                            }
+                        },
+                        revert: (uniqueFileId, load, error) => {
+                            $(`#${inputTarget}`).val('')
+
+                            error('oh my goodness');
+
+                            load();
+                        }
+                    },
+
+                    labelIdle: '<span class="filepond--label-action"> Pilih File </span>',
+                    maxFiles: 1,
+                    required: true,
+                    checkValidity: true,
+                    maxFileSize: '5MB',
+                    labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
+                    labelMaxFileSize: 'Maksimal ukuran file 5MB'
+                }
+            );
         }
 
 
@@ -491,14 +598,56 @@
             //     submitData(formData, 'Berhasil mengirim pengajuan');
             // });
         }
+
+
+        function mappingCompanyInformation(data) {
+
+            let serviceTypes = '';
+            data.company.service_types.forEach((serviceType) => {
+                serviceTypes += `<li>${serviceType.name}</li>`;
+            });
+
+            const fileUrl = data.company.nib_file
+            const splitFileURL = fileUrl.split('/')
+            const fileName = splitFileURL[splitFileURL.length - 1]
+            const fileExtension = fileUrl.substring(fileUrl.lastIndexOf("."))
+
+            let nibPreview = ''
+            let imageType = ['.jpeg', '.jpg', '.png']
+            if (imageType.includes(fileExtension)) {
+                nibPreview = `
+                    <img class="img-fluid" src="${fileUrl}"/>
+                `
+            }
+
+            $('#c_name').text(`${data.company.name} |`)
+            $('#c_nib').text(data.company.nib)
+            // $('#c_nib_file').append(nibPreview)
+            $('#c_address').text(
+                `${data.company.address} ${data.company.city.name} ${data.company.province.name}`)
+            $('#c_phone').text(data.company.company_phone_number)
+            $('#c_email').text(data.company.email)
+            $('#c_serviceType').append(serviceTypes)
+            $('#pic_name').text(data.company.pic_name)
+            $('#pic_phone').text(data.company.pic_phone)
+            $('#u_name').text(data.company.username)
+            $('#u_email').text(data.company.name)
+            $('#u_phone').text(data.company.phone_number)
+            $('#current_preview').text(data.company.id)
+            $('#establish_date').text(data.company.establish ? moment(data.data.company.establish).format(
+                'D/MM/YYYY') : '-')
+            $('#request_date').text(moment(data.company.request_date).format('D/MM/YYYY'))
+        }
+
+
         async function initPageLoad() {
-            // FilePond.registerPlugin(
-            //     FilePondPluginFileEncode,
-            //     FilePondPluginImagePreview,
-            //     FilePondPluginPdfPreview,
-            //     FilePondPluginFileValidateSize,
-            //     FilePondPluginFileValidateType
-            // )
+            FilePond.registerPlugin(
+                FilePondPluginFileEncode,
+                FilePondPluginImagePreview,
+                FilePondPluginPdfPreview,
+                FilePondPluginFileValidateSize,
+                FilePondPluginFileValidateType
+            )
             await Promise.all([
                 getListData(),
                 inputDate(),
