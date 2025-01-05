@@ -1,6 +1,5 @@
 @extends('...Internal.index', ['title' => 'Detail | Data Perusahaan'])
 @section('asset_css')
-    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
     <style>
         .table th.sticky-end,
@@ -136,16 +135,16 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-penilai">Penilai</label>
-                                <select class="form-control select2" name="input_penilai" id="input-penilai"></select>
+                                <select class="form-control" name="input_penilai" id="input-penilai"></select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-perusahaan">Perusahaan</label>
-                                <select class="form-control select2" name="input_perusahaan"
+                                <select class="form-control" name="input_perusahaan"
                                     id="input-perusahaan"></select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-status">Status Sertifikat</label>
-                                <select class="form-control select2" name="input_status" id="input-status"></select>
+                                <select class="form-control" name="input_status" id="input-status"></select>
                             </div>
                         </div>
                     </div>
@@ -247,8 +246,8 @@
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
-    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/date/moment.js') }}"></script>
+    <script src="{{ asset('assets') }}/js/plugins/choices.min.js"></script>
     <script>
         function calculateBusinessDays(startDate, endDate) {
             let count = 0;
@@ -524,9 +523,32 @@
             $('#exampleModalCenter').modal('show');
         }
 
+        async function selectFilter(id, route, placeholder) {
+            var multipleFetch = new Choices(id, {
+                placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5
+            }).setChoices(function() {
+                return fetch(
+                        route
+                    )
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        return data.data.map(function(item) {
+                            return {
+                                value: item.id,
+                                label: item.name
+                            };
+                        });
+                    });
+            });
+        }
+
         async function selectFilterStatus(id, placeholder) {
-            // Mapping status values to Select2 options
-            let statusMapping = {
+            // Data didefinisikan langsung di dalam fungsi
+            const data = {
                 request: 'Pengajuan',
                 disposition: 'Disposisi',
                 not_passed_assessment: 'Tidak lulus penilaian',
@@ -546,103 +568,19 @@
                 draft: 'Draft'
             };
 
-            // Convert statusMapping to an array of objects with 'id' and 'text' for Select2
-            let statusOptions = Object.keys(statusMapping).map(key => {
-                return {
-                    id: key,
-                    text: statusMapping[key]
-                };
-            });
-
-            // Add an empty option at the beginning for placeholder
-            statusOptions.unshift({
-                id: '',
-                text: ''
-            });
-
-            // Initialize Select2 with local data
-            $(id).select2({
-                data: statusOptions, // Use the mapped data
-                allowClear: true,
+            var multipleFetch = new Choices(id, {
                 placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5
+            }).setChoices(function() {
+                // Mengonversi objek menjadi array untuk diolah oleh Choices.js
+                const choicesArray = Object.entries(data).map(([key, value]) => ({
+                    value: key,
+                    label: value
+                }));
+
+                return Promise.resolve(choicesArray);
             });
-        }
-
-
-        async function selectFilter(id) {
-            if (id === '#input-perusahaan') {
-                $(id).select2({
-                    // language: languageIndonesian,
-                    ajax: {
-                        url: `/dummy/internal/sertifikat/select_perusahaan.json`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.name
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih perusahaan'
-                });
-            }
-            if (id === '#input-penilai') {
-                $(id).select2({
-                    // language: languageIndonesian,
-                    ajax: {
-                        // url: `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/assessor-list`,
-                        url: `/dummy/internal/sertifikat/select_penilai.json`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                keyword: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-
-                                        text: item.name,
-                                        id: item.id
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih Penilai'
-                });
-            }
-
         }
 
         async function initPageLoad() {
@@ -652,8 +590,12 @@
             await Promise.all([
                 getListData(),
                 selectFilterStatus('#input-status', 'Pilih status sertifikat'),
-                selectFilter('#input-perusahaan'),
-                selectFilter('#input-penilai'),
+                selectFilter('#input-penilai',
+                    '{{ asset('/dummy/internal/sertifikat/select_penilai.json') }}',
+                    'Pilih penilai'),
+                selectFilter('#input-perusahaan',
+                    '{{ asset('/dummy/internal/sertifikat/select_perusahaan.json') }}',
+                    'Pilih penilai'),
             ]);
         }
     </script>

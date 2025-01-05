@@ -1,6 +1,5 @@
 @extends('...Internal.index', ['title' => 'Detail | Data Perusahaan'])
 @section('asset_css')
-    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
     <style>
         .table th.sticky-end,
@@ -134,15 +133,15 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="fw-normal" for="input-layanan">Jenis Layanan</label>
-                                <select class="form-control select2" name="input_layanan" id="input-layanan"></select>
+                                <select class="form-control" name="input_layanan" id="input-layanan"></select>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="fw-normal" for="input-provinsi">Provinsi</label>
-                                <select class="form-control select2" name="input_provinsi" id="input-provinsi"></select>
+                                <select class="form-control" name="input_provinsi" id="input-provinsi"></select>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="fw-normal" for="input-status">Status Sertifikat</label>
-                                <select class="form-control select2 " name="input_status" id="input-status"></select>
+                                <select class="form-control " name="input_status" id="input-status"></select>
                             </div>
                         </div>
                     </div>
@@ -265,8 +264,8 @@
 @section('page_js')
     <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
-    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/choices.min.js"></script>
 
     <script>
         let menu = 'List Perusahaan';
@@ -693,40 +692,31 @@
         }
 
         async function selectFilter(id, route, placeholder) {
-            $(id).select2({
-                ajax: {
-                    url: route,
-                    dataType: 'json',
-                    delay: 500,
-                    headers: {
-                        Authorization: `Bearer ${Cookies.get('auth_token')}`
-                    },
-                    data: function(params) {
-                        let query = {
-                            search: params.term,
-                        }
-                        return query;
-                    },
-                    processResults: function(res) {
-                        let data = res.data;
-                        return {
-                            results: $.map(data, function(item) {
-                                return {
-                                    id: item.id,
-                                    text: item.name
-                                }
-                            })
-                        };
-                    },
-                },
-                allowClear: true,
-                placeholder: placeholder
+            var multipleFetch = new Choices(id, {
+                placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5
+            }).setChoices(function() {
+                return fetch(
+                        route
+                    )
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        return data.data.map(function(item) {
+                            return {
+                                value: item.id,
+                                label: item.name
+                            };
+                        });
+                    });
             });
         }
 
         async function selectFilterStatus(id, placeholder) {
-            // Mapping status values to Select2 options
-            let statusMapping = {
+            // Data didefinisikan langsung di dalam fungsi
+            const data = {
                 request: 'Pengajuan',
                 disposition: 'Disposisi',
                 not_passed_assessment: 'Tidak lulus penilaian',
@@ -746,25 +736,18 @@
                 draft: 'Draft'
             };
 
-            // Convert statusMapping to an array of objects with 'id' and 'text' for Select2
-            let statusOptions = Object.keys(statusMapping).map(key => {
-                return {
-                    id: key,
-                    text: statusMapping[key]
-                };
-            });
-
-            // Add an empty option at the beginning for placeholder
-            statusOptions.unshift({
-                id: '',
-                text: ''
-            });
-
-            // Initialize Select2 with local data
-            $(id).select2({
-                data: statusOptions, // Use the mapped data
-                allowClear: true,
+            var multipleFetch = new Choices(id, {
                 placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5
+            }).setChoices(function() {
+                // Mengonversi objek menjadi array untuk diolah oleh Choices.js
+                const choicesArray = Object.entries(data).map(([key, value]) => ({
+                    value: key,
+                    label: value
+                }));
+
+                return Promise.resolve(choicesArray);
             });
         }
 
@@ -1320,10 +1303,10 @@
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter),
                 manipulationDataOnTable(),
+                getTotalData(),
                 customFilterTable(),
                 setStatus(),
                 getChartTipeLayanan(),
-                getTotalData(),
                 selectFilter('#input-layanan',
                     '{{ asset('dummy/company/select_jenis_layanan.json') }}',
                     'Pilih jenis layanan'),

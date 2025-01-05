@@ -1,20 +1,6 @@
 @extends('...Internal.index', ['title' => 'List | Data Laporan Tahunan'])
 @section('asset_css')
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/daterange.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/daterange-picker.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
 @endsection
 
 @section('content')
@@ -99,7 +85,7 @@
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-12 mb-2">
-                                <label class="fw-bold" for="daterange">Rentang Tanggal <sup
+                                <label class="fw-normal" for="daterange">Rentang Tanggal<sup
                                         class="text-danger">*</sup></label>
                                 <div class="input-group">
                                     <input type="text" id="pc-date_range_picker-2" class="form-control"
@@ -109,20 +95,12 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="fw-normal" for="input-status">Status</label>
-                                <select class="form-control select2" name="input_status" id="input-status">
-                                    <option value="" selected disabled></option>
-                                    <option value="verified">Laporan Terverifikasi</option>
-                                    <option value="rejected">ditolak</option>
-                                    <option value="request">Pengajuan</option>
-                                    <option value="disposition">Disposisi</option>
-                                    <option value="not_passed">Tidak lulus </option>
-                                    <option value="cancelled">Pengajuan dibatalkan</option>
-                                    <option value="revision">Revisi Pengajuan</option>
+                                <select class="form-control" name="input_status" id="input-status">
                                 </select>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="fw-normal" for="input-perusahaan">Perusahaan</label>
-                                <select class="form-control select2" name="input_perusahaan" id="input-perusahaan"></select>
+                                <select class="form-control" name="input_perusahaan" id="input-perusahaan"></select>
                             </div>
                         </div>
                     </div>
@@ -230,14 +208,9 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
-    <script src="{{ asset('assets') }}/js/pages/invoice-list.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
-    <script src="{{ asset('assets') }}/js/daterange-picker.js"></script>
-    <script src="{{ asset('assets') }}/js/daterange-custom.js"></script>
-    <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
-    <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/choices.min.js"></script>
 @endsection
 
 @section('page_js')
@@ -436,47 +409,97 @@
             $('#exampleModalCenter').modal('show');
         }
 
-        async function selectFilter(id) {
-            if (id === '#input-perusahaan') {
-                $(id).select2({
-                    ajax: {
-                        url: `/dummy/internal/select-company.json`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data;
+        async function selectFilter(id, route, placeholder) {
+            var multipleFetch = new Choices(id, {
+                placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5
+            }).setChoices(function() {
+                return fetch(
+                        route
+                    )
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        return data.data.map(function(item) {
                             return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.name
-                                    }
-                                })
+                                value: item.id,
+                                label: item.name
                             };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih perusahaan'
-                });
-            } else if (id === '#input-status') {
-                $(id).select2({
-                    allowClear: true,
-                    placeholder: 'Pilih status'
-                });
-            }
+                        });
+                    });
+            });
         }
+
+        async function selectFilterStatus(id, placeholder) {
+            // Data didefinisikan langsung di dalam fungsi
+            const data = {
+                verified: 'Laporan Terverifikasi',
+                rejected: 'Ditolak',
+                request: 'Pengajuan',
+                disposition: 'Disposisi',
+                not_passed: 'Tidak Lulus',
+                cancelled: 'Pengajuan Dibatalkan',
+                revision: 'Revisi Pengajuan'
+            };
+
+            var multipleFetch = new Choices(id, {
+                placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5
+            }).setChoices(function() {
+                // Mengonversi objek menjadi array untuk diolah oleh Choices.js
+                const choicesArray = Object.entries(data).map(([key, value]) => ({
+                    value: key,
+                    label: value
+                }));
+
+                return Promise.resolve(choicesArray);
+            });
+        }
+
+        // async function selectFilter(id) {
+        //     if (id === '#input-perusahaan') {
+        //         $(id).select2({
+        //             ajax: {
+        //                 url: `/dummy/internal/select-company.json`,
+        //                 dataType: 'json',
+        //                 delay: 500,
+        //                 headers: {
+        //                     Authorization: `Bearer ${Cookies.get('auth_token')}`
+        //                 },
+        //                 data: function(params) {
+        //                     let query = {
+        //                         search: params.term,
+        //                         page: 1,
+        //                         limit: 30,
+        //                         ascending: 1
+        //                     }
+        //                     return query;
+        //                 },
+        //                 processResults: function(res) {
+        //                     let data = res.data;
+        //                     return {
+        //                         results: $.map(data, function(item) {
+        //                             return {
+        //                                 id: item.id,
+        //                                 text: item.name
+        //                             }
+        //                         })
+        //                     };
+        //                 },
+        //             },
+        //             allowClear: true,
+        //             placeholder: 'Pilih perusahaan'
+        //         });
+        //     } else if (id === '#input-status') {
+        //         $(id).select2({
+        //             allowClear: true,
+        //             placeholder: 'Pilih status'
+        //         });
+        //     }
+        // }
 
         async function getFilterDownload(filter = {}, startDate, endDate) {
             loadingPage(true);
@@ -1029,10 +1052,11 @@
                 getCount(),
                 customFilterTable(),
                 getListData(),
-                selectFilter('#input-status'),
-                selectFilter('#input-perusahaan'),
+                selectFilter('#input-perusahaan',
+                    '{{ asset('/dummy/internal/select-company.json') }}',
+                    'Pilih perusahaan'),
+                selectFilterStatus('#input-status', 'Pilih status'),
             ]);
-
         }
     </script>
     @include('Internal.partial-js')

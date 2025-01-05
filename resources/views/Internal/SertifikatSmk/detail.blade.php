@@ -190,9 +190,6 @@
                                         <h5 class="text-muted">Design mobile Application</h5>
                                     </li>
                                 </ul>
-                                <div class="text-end">
-                                    <a href="#!" class="b-b-primary text-primary">View Friend List</a>
-                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade show" id="info" role="tabpanel" aria-labelledby="task-tab">
@@ -331,229 +328,6 @@
                         <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
                             aria-labelledby="analytics-tab-1" tabindex="0">
                             <div class="accordion accordion-flush" id="accordionFlushExample">
-                                {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                            aria-expanded="false" aria-controls="flush-collapseOne"
-                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
-                                            color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
-                                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-
-                                            <i class="fa-regular fa-file-lines me-2"></i>
-                                            <span class="fw-bold me-2 me-lg-0">1.1</span> &nbsp;
-                                            <span class="text-uppercase">Komitmen dan Kebijakan Keselamatan</span>
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="flush-headingOne">
-                                        <div class="accordion-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Uraian</th>
-                                                            <th>Unggahan Perusahaan</th>
-                                                            <th>Nilai</th>
-                                                            <th>Keterangan</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1.1</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                                Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                File Deskripsi Komitmen dan Kebijakan Keselamatan
-                                                                (Persyaratan,
-                                                                Ekspektasi, Implementasi, Prosedur Terkait)
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td>2.5</td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1.2</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Deskripsi Komitmen dan Kebijakan Keselamatan (Persyaratan,
-                                                                Ekspektasi, Implementasi, Prosedur Terkait)</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                File Deskripsi Komitmen dan Kebijakan Keselamatan
-                                                                (Persyaratan,
-                                                                Ekspektasi, Implementasi, Prosedur Terkait)
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td>2.5</td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingTwo">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
-                                            aria-expanded="false" aria-controls="flush-collapseTwo"
-                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
-                                            color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
-                                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-
-                                            <i class="fa-regular fa-file-lines me-2"></i>
-                                            <span class="fw-bold me-2 me-lg-0">2.1</span> &nbsp;
-                                            <span class="text-uppercase">Pengorganisasian</span>
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse show"
-                                        aria-labelledby="flush-headingTwo">
-                                        <div class="accordion-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Uraian</th>
-                                                            <th>Unggahan Perusahaan</th>
-                                                            <th>Nilai</th>
-                                                            <th>Keterangan</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>2.1</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Deskripsi Pengorganisasian</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                File Deskripsi Pengorganisasian
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td>2.5</td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2.2</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Perusahaan mempunyai struktur organisasi pengelolaan di
-                                                                bidang
-                                                                keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
-                                                                Keselamatan</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                File Perusahaan mempunyai struktur organisasi pengelolaan di
-                                                                bidang keselamatan, seperti Unit Manajemen Keselamatan atau
-                                                                Petugas Keselamatan
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td>2.5</td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="flush-headingThree">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                            aria-expanded="false" aria-controls="flush-collapseThree"
-                                            style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); 
-                                            color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; 
-                                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-
-                                            <i class="fa-regular fa-file-lines me-2"></i>
-                                            <span class="fw-bold me-2 me-lg-0">3.1</span> &nbsp;
-                                            <span class="text-uppercase">Manajemen Bahaya Dan Risiko</span>
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseThree" class="accordion-collapse collapse show"
-                                        aria-labelledby="flush-headingThree">
-                                        <div class="accordion-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Uraian</th>
-                                                            <th>Unggahan Perusahaan</th>
-                                                            <th>Nilai</th>
-                                                            <th>Keterangan</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>3.1</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Deskripsi Pengorganisasian</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                File Deskripsi Pengorganisasian
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td>2.5</td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3.2</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                Perusahaan mempunyai struktur organisasi pengelolaan di
-                                                                bidang
-                                                                keselamatan, seperti Unit Manajemen Keselamatan atau Petugas
-                                                                Keselamatan</td>
-                                                            <td
-                                                                style="word-wrap: break-word; white-space: normal; max-width: 300px;">
-                                                                File Perusahaan mempunyai struktur organisasi pengelolaan di
-                                                                bidang keselamatan, seperti Unit Manajemen Keselamatan atau
-                                                                Petugas Keselamatan
-                                                                <a href="">
-                                                                    <p class="mb-0"><i
-                                                                            class="fa-regular fa-file-pdf me-1"></i><label
-                                                                            class="mb-0">Lihat Dokumen</label></p>
-                                                                </a>
-                                                            </td>
-                                                            <td>2.5</td>
-                                                            <td><span class="badge bg-success">Sesuai</span></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -562,237 +336,6 @@
         </div>
     </div>
 @endsection
-{{-- @section('scripts')
-    <script>
-        var options17 = {
-            series: [30],
-            chart: {
-                height: 150,
-                type: 'radialBar'
-            },
-            plotOptions: {
-                radialBar: {
-                    hollow: {
-                        margin: 0,
-                        size: '60%',
-                        background: 'transparent',
-                        imageOffsetX: 0,
-                        imageOffsetY: 0,
-                        position: 'front'
-                    },
-                    track: {
-                        background: '#4680FF50',
-                        strokeWidth: '50%'
-                    },
-
-                    dataLabels: {
-                        show: true,
-                        name: {
-                            show: false
-                        },
-                        value: {
-                            formatter: function(val) {
-                                return parseInt(val);
-                            },
-                            offsetY: 7,
-                            color: '#4680FF',
-                            fontSize: '20px',
-                            fontWeight: '700',
-                            show: true
-                        }
-                    }
-                }
-            },
-            colors: ['#4680FF'],
-            fill: {
-                type: 'solid'
-            },
-            stroke: {
-                lineCap: 'round'
-            }
-        };
-        var chart = new ApexCharts(document.querySelector('#total-earning-graph-1'), options17);
-        chart.render();
-
-        var options18 = {
-            series: [30], // Persentase atau nilai yang ingin ditampilkan
-            chart: {
-                height: 150,
-                type: 'radialBar'
-            },
-            plotOptions: {
-                radialBar: {
-                    hollow: {
-                        margin: 0,
-                        size: '60%',
-                        background: 'transparent',
-                        imageOffsetX: 0,
-                        imageOffsetY: 0,
-                        position: 'front'
-                    },
-                    track: {
-                        background: '#28A74550', // Ganti dengan warna hijau transparan (hijau 50% opacity)
-                        strokeWidth: '50%' // Lebar track
-                    },
-                    dataLabels: {
-                        show: true,
-                        name: {
-                            show: false
-                        },
-                        value: {
-                            formatter: function(val) {
-                                return parseInt(val); // Format nilai menjadi integer
-                            },
-                            offsetY: 7,
-                            color: '#28A745', // Ganti dengan warna hijau
-                            fontSize: '20px',
-                            fontWeight: '700',
-                            show: true
-                        }
-                    }
-                }
-            },
-            colors: ['#28A745'], // Ganti warna grafik menjadi hijau
-            fill: {
-                type: 'solid' // Isi grafik menggunakan warna solid
-            },
-            stroke: {
-                lineCap: 'round' // Stroke dengan ujung membulat
-            }
-        };
-
-        // Render chart
-        var chart = new ApexCharts(document.querySelector('#total-earning-graph-2'), options18);
-        chart.render();
-
-
-        var options19 = {
-            series: [30],
-            chart: {
-                height: 150,
-                type: 'radialBar'
-            },
-            plotOptions: {
-                radialBar: {
-                    hollow: {
-                        margin: 0,
-                        size: '60%',
-                        background: 'transparent',
-                        imageOffsetX: 0,
-                        imageOffsetY: 0,
-                        position: 'front'
-                    },
-                    track: {
-                        background: '#DC262650',
-                        strokeWidth: '50%'
-                    },
-
-                    dataLabels: {
-                        show: true,
-                        name: {
-                            show: false
-                        },
-                        value: {
-                            formatter: function(val) {
-                                return parseInt(val);
-                            },
-                            offsetY: 7,
-                            color: '#DC2626',
-                            fontSize: '20px',
-                            fontWeight: '700',
-                            show: true
-                        }
-                    }
-                }
-            },
-            colors: ['#DC2626'],
-            fill: {
-                type: 'solid'
-            },
-            stroke: {
-                lineCap: 'round'
-            }
-        };
-        var chart = new ApexCharts(document.querySelector('#total-earning-graph-3'), options19);
-        chart.render();
-
-        var options20 = {
-            series: [30],
-            chart: {
-                height: 150,
-                type: 'radialBar'
-            },
-            plotOptions: {
-                radialBar: {
-                    hollow: {
-                        margin: 0,
-                        size: '60%',
-                        background: 'transparent',
-                        imageOffsetX: 0,
-                        imageOffsetY: 0,
-                        position: 'front'
-                    },
-                    track: {
-                        background: '#28A74550', // Warna latar belakang track tetap merah muda
-                        strokeWidth: '50%'
-                    },
-
-                    dataLabels: {
-                        show: true,
-                        name: {
-                            show: false
-                        },
-                        value: {
-                            formatter: function(val) {
-                                return parseInt(val);
-                            },
-                            offsetY: 7,
-                            color: '#006400', // Ubah warna teks menjadi hijau tua
-                            fontSize: '20px',
-                            fontWeight: '700',
-                            show: true
-                        }
-                    }
-                }
-            },
-            colors: ['#006400'], // Ubah warna grafik menjadi hijau tua
-            fill: {
-                type: 'solid'
-            },
-            stroke: {
-                lineCap: 'round'
-            }
-        };
-        var chart = new ApexCharts(document.querySelector('#total-earning-graph-4'), options20);
-        chart.render();
-
-        document.addEventListener("click", (e) => {
-            if (e.target.classList.contains('selanjutnya')) {
-                let currentTab = document.querySelector('.tab-pane.active');
-                let nextTab = currentTab.nextElementSibling;
-
-                if (nextTab) {
-                    currentTab.classList.remove('show', 'active');
-                    nextTab.classList.add('show', 'active');
-                }
-            }
-
-            if (e.target.classList.contains('kembali')) {
-                let currentTab = document.querySelector('.tab-pane.active');
-                let prevTab = currentTab.previousElementSibling;
-
-                if (prevTab) {
-                    currentTab.classList.remove('show', 'active');
-                    prevTab.classList.add('show', 'active');
-                }
-            }
-        });
-
-        $(document).on("click", ".collapse-filter", function() {
-            $("#collapseFilter").toggle(500);
-        });
-    </script>
-@endsection --}}
 
 @section('page_js')
     <script>
@@ -833,7 +376,6 @@
             if (getDataRest.status === 200) {
                 loadingPage(false);
                 let data = getDataRest.data.data;
-                console.log("🚀 ~ getHistoryPengajuan ~ data:", data)
                 const statusLabels = {
                     'draft': 'Draft',
                     'request': 'Pengajuan',
@@ -862,18 +404,33 @@
                     data.forEach(item => {
                         const {
                             status,
-                            created_at
+                            created_at, updated_by
                         } = item;
                         const label = statusLabels[status] || 'Status Tidak Diketahui';
 
-                        let bgClass = 'bg-primary';
-                        if (status === 'rejected') bgClass = 'bg-danger';
-                        else if (status === 'passed_assessment') bgClass = 'bg-success';
-                        else if (status === 'request') bgClass = 'bg-warning';
+                        let colorBage = 'primary';
+                        if (status.includes('draft')) {
+                            colorBage = 'secondary';
+                        }
+                        if (status.includes('not')) {
+                            colorBage = 'warning';
+                        }
+                        if (status.includes('expired')) {
+                            colorBage = 'dark';
+                        }
+                        if (status.includes('complete') || status.includes('passed_assessment_') ||
+                            status == 'certificate_validation' || status == 'passed_assessment') {
+                            colorBage = 'success';
+                        }
+                        if (status.includes('expired') ||
+                            status.includes('cancelled') ||
+                            status.includes('rejected')) {
+                            colorBage = 'danger';
+                        }
 
                         const taskItem = `
                     <li>
-                        <i class="task-icon ${bgClass}"></i>
+                        <i class="task-icon bg-${colorBage}"></i>
                         <p class="m-b-5">${new Date(created_at).toLocaleDateString('id-ID', {
                             year: 'numeric',
                             month: 'short',
@@ -881,7 +438,8 @@
                             hour: '2-digit',
                             minute: '2-digit'
                         })}</p>
-                        <h5 class="text-muted">${label}</h5>
+                        <h6 class="">${label}</h6>
+                        <p class="fw-normal"><i class="fa-solid fa-user me-2"></i>${updated_by}</p>
                     </li>
                 `;
 
@@ -889,9 +447,7 @@
                     });
 
                     const viewFriendList = `
-                <div class="text-end">
-                    <a href="#!" class="b-b-primary text-primary">View Friend List</a>
-                </div>
+                
             `;
                     taskListElement.insertAdjacentHTML('afterend', viewFriendList);
 
