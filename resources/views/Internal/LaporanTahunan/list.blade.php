@@ -91,90 +91,77 @@
             </div>
         </div>
     </div>
-    <div class="" id="collapseFilter">
-        <div class="card card-body mb-3">
-            <h5 class="card-title mt-1 mb-2"><i class="fa-solid fa-filter fa-20"></i> Filter Download</h5>
-            <form id="custom-filter">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-12 mb-2">
-                                <label class="fw-bold" for="daterange">Rentang Tanggal <sup
-                                        class="text-danger">*</sup></label>
-                                <div class="input-group">
-                                    <input type="text" id="pc-date_range_picker-2" class="form-control"
-                                        placeholder="Pilih rentang tanggal" />
-                                    <span class="input-group-text"><i class="feather icon-calendar"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <label class="fw-normal" for="input-status">Status</label>
-                                <select class="form-control select2" name="input_status" id="input-status">
-                                    <option value="" selected disabled></option>
-                                    <option value="verified">Laporan Terverifikasi</option>
-                                    <option value="rejected">ditolak</option>
-                                    <option value="request">Pengajuan</option>
-                                    <option value="disposition">Disposisi</option>
-                                    <option value="not_passed">Tidak lulus </option>
-                                    <option value="cancelled">Pengajuan dibatalkan</option>
-                                    <option value="revision">Revisi Pengajuan</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <label class="fw-normal" for="input-perusahaan">Perusahaan</label>
-                                <select class="form-control select2" name="input_perusahaan" id="input-perusahaan"></select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mt-4">
-                        <div class="row mt-md-0">
-                            <div class="col-6 mb-2">
-                                <button type="submit" id="btn-find"
-                                    class="btn btn-primary hovering w-100 align-items-center justify-content-center">
-                                    <i class="fa-solid fa-magnifying-glass me-2"></i>Cari
-                                </button>
-                            </div>
-                            <div class="col-6 mb-2">
-                                <button type="button" id="resetCustomFilter"
-                                    class="btn btn-light hovering w-100 align-items-center justify-content-center">
-                                    <i class="fa-solid fa-eraser me-2"></i>Reset
-                                </button>
-                            </div>
-                            <div class="col-12 mb-2 mt-4">
-                                <div id="download-container">
-                                    <div class="dropdown w-100">
-                                        <button class="btn w-100 dropdown-toggle align-items-center justify-content-center"
-                                            type="button" id="downloadDropdown" data-bs-toggle="dropdown"
-                                            aria-expanded="false"
-                                            style="cursor: pointer; font-weight: bold; padding: 10px 20px; border-radius: 8px; transition: all 0.3s ease-in-out; background-color: #28a745; color: white; text-align: center;">
-                                            <i class="fa-solid fa-download me-2"></i>Download</span>
-                                        </button>
 
-                                        <!-- Opsi download dalam dropdown -->
-                                        <ul class="dropdown-menu w-100" aria-labelledby="downloadDropdown">
-                                            <li>
-                                                <a class="dropdown-item" id="download-excel" href="#">
-                                                    <i class="fas fa-file-excel me-1"></i><span>Download Excel</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" id="download-csv" href="#">
-                                                    <i class="fas fa-file-csv me-1"></i><span>Download CSV</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" id="download-pdf" href="#">
-                                                    <i class="fas fa-file-pdf me-1"></i><span>Download PDF</span>
-                                                </a>
-                                            </li>
-                                        </ul>
+    <div id="collapseFilter">
+        <div class="col-12 mt-3">
+            <div class="card card-body mb-3">
+                <h5 class="card-title mt-1 mb-2"><i class="fa-solid fa-filter fa-20"></i> Filter Download</h5>
+                <form id="custom-filter">
+                    <div class="row g-3">
+                        <!-- Kolom kiri -->
+                        <div class="col-lg-9">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="fw-bold" for="daterange">Rentang Tanggal <sup
+                                            class="text-danger">*</sup></label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" id="daterange" name="daterange"
+                                            placeholder="Pilih rentang tanggal">
+                                        <span class="input-group-text"><i class="feather icon-calendar"></i></span>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="fw-normal" for="input-status">Status</label>
+                                    <select class="form-control select2" name="input_status" id="input-status">
+                                        <option value="" selected disabled>Pilih status</option>
+                                        <option value="verified">Laporan Terverifikasi</option>
+                                        <option value="rejected">Ditolak</option>
+                                        <option value="request">Pengajuan</option>
+                                        <option value="disposition">Disposisi</option>
+                                        <option value="not_passed">Tidak Lulus</option>
+                                        <option value="cancelled">Pengajuan Dibatalkan</option>
+                                        <option value="revision">Revisi Pengajuan</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="fw-normal" for="input-perusahaan">Perusahaan</label>
+                                    <select class="form-control select2" name="input_perusahaan" id="input-perusahaan">
+                                        <option value="" selected disabled>Pilih perusahaan</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Kolom kanan -->
+                        <div class="col-lg-3">
+                            <div class="d-flex flex-column h-100 justify-content-between">
+                                <div class="d-flex gap-2">
+                                    <button type="submit" id="btn-find" class="btn btn-primary w-100">
+                                        <i class="fa-solid fa-magnifying-glass me-2"></i>Cari
+                                    </button>
+                                    <button type="button" id="resetCustomFilter" class="btn btn-light w-100">
+                                        <i class="fa-solid fa-eraser me-2"></i>Reset
+                                    </button>
+                                </div>
+                                <div class="dropdown w-100 mt-3">
+                                    <button class="btn dropdown-toggle w-100 text-white" type="button"
+                                        id="downloadDropdown" data-bs-toggle="dropdown" aria-expanded="false"
+                                        style="background-color: #28a745; font-weight: bold; padding: 10px; border-radius: 8px;">
+                                        <i class="fa-solid fa-download me-2"></i>Download
+                                    </button>
+                                    <ul class="dropdown-menu w-100" aria-labelledby="downloadDropdown">
+                                        <li><a class="dropdown-item" id="download-excel" href="#"><i
+                                                    class="fas fa-file-excel me-1"></i>Download Excel</a></li>
+                                        <li><a class="dropdown-item" id="download-csv" href="#"><i
+                                                    class="fas fa-file-csv me-1"></i>Download CSV</a></li>
+                                        <li><a class="dropdown-item" id="download-pdf" href="#"><i
+                                                    class="fas fa-file-pdf me-1"></i>Download PDF</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -186,13 +173,12 @@
                     <div class="datatable-top">
                         <div class="datatable-dropdown">
                             <label>
-                                <select class="datatable-selector">
-                                    <option value="5">5</option>
+                                <select id="limitPage"class="datatable-selector" name="per-page">
                                     <option value="10" selected="">10</option>
                                     <option value="15">15</option>
                                     <option value="20">20</option>
                                     <option value="25">25</option>
-                                </select> 
+                                </select>
                             </label>
                         </div>
                         <div class="datatable-search">
@@ -205,6 +191,19 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 help-main large-view">
                     <div id="submission-card"></div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
+                    <div class="datatable-bottom">
+                        <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                            dari <span id="totalPage">0</span> data</div>
+                        <nav class="datatable-pagination">
+                            <ul id="pagination-js" class="datatable-pagination-list">
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -229,19 +228,26 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
-    <script src="{{ asset('assets') }}/js/pages/invoice-list.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
-    <script src="{{ asset('assets') }}/js/daterange-picker.js"></script>
-    <script src="{{ asset('assets') }}/js/daterange-custom.js"></script>
+    <script src="{{ asset('assets/js/date/moment.js') }}"></script>
+    <script src="{{ asset('assets/js/date/daterange-picker.js') }}"></script>
+    <script src="{{ asset('assets/js/date/daterange-custom.js') }}"></script>
+    <script src="{{ asset('assets/js/date/date-language-format.js') }}"></script>
+    <script src="{{ asset('assets/js/date/date-DMY-format.js') }}"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
+    <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
 @endsection
 
 @section('page_js')
     <script>
+        let defaultLimitPage = 10;
+        let currentPage = 1;
+        let totalPage = 1;
+        let defaultAscending = 0;
+        let defaultSearch = '';
+        let customFilter = {};
+
         async function getCount() {
             loadingPage(true)
             const getDataRest = await CallAPI(
@@ -269,14 +275,31 @@
 
             }
         }
-        async function getListData() {
+        async function getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter) {
             loadingPage(true);
             let card = $('#submission-card');
+            let countPaging = $('#countPage');
+            let totalPaging = $('#totalPage');
+            let tablePaging = $('#tableList');
+
+
+            let data = [];
+            customFilter = customFilter || {};
+            const queryParams = new URLSearchParams({
+                page: currentPage,
+                limit: defaultLimitPage,
+                ascending: defaultAscending,
+                search: defaultSearch,
+                company: Object.keys(customFilter).length !== 0 ? customFilter['company'] : '',
+                status: Object.keys(customFilter).length !== 0 ? customFilter['status'] : '',
+                fromdate: customFilter?.['start_date'] || '',
+                duedate: customFilter?.['end_date'] || '',
+            }).toString();
 
             // Memanggil API untuk mendapatkan data bidang
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/internal/laporan-tahunan/list.json`,
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/list?${queryParams}`
                 )
                 .then(response => response)
                 .catch(error => {
@@ -294,9 +317,7 @@
             if (getDataRest.status === 200) {
                 loadingPage(false);
                 let data = getDataRest.data;
-
                 let dataTable = data.data;
-
                 if (dataTable.length === 0) {
                     card.html(`
                         <tr>
@@ -304,6 +325,11 @@
                         </tr>
                     `);
                 } else {
+                    totalData = getDataRest.data.pagination.total || 0;
+                    totalPage = Math.ceil(totalData / defaultLimitPage);
+                    let display_from = (currentPage - 1) * defaultLimitPage + 1;
+                    let display_to = Math.min(currentPage * defaultLimitPage, totalData);
+                    let index_loop = display_from;
                     let domTableHtml = "";
 
                     for (let index = 0; index < dataTable.length; index++) {
@@ -390,28 +416,28 @@
                                                     </ul>
                                                 </div>
                                                 ${element.rejection_notes ? `
-                                                                                                        <div class="h5 mt-3">
-                                                                                                            <i class="material-icons-two-tone f-16 me-1">notification_important</i>Catatan Permohonan
-                                                                                                        </div>
-                                                                                                        <div class="help-md-hidden">
-                                                                                                            <div class="bg-body mb-3 p-3">
-                                                                                                                <h6>
-                                                                                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                                                                        alt="" class="wid-20 avatar me-2 rounded">
-                                                                                                                    Last comment from <a href="#" class="link-secondary">${element.updated_by}:</a>
-                                                                                                                </h6>
-                                                                                                                <p class="mb-0">
-                                                                                                                    ${truncatedNotes}
-                                                                                                                </p>
-                                                                                                            </div>
-                                                                                                        </div>` : ''}
+                                                                                                                                                                                                                                    <div class="h5 mt-3">
+                                                                                                                                                                                                                                        <i class="material-icons-two-tone f-16 me-1">notification_important</i>Catatan Permohonan
+                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                    <div class="help-md-hidden">
+                                                                                                                                                                                                                                        <div class="bg-body mb-3 p-3">
+                                                                                                                                                                                                                                            <h6>
+                                                                                                                                                                                                                                                <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                                                                                                                                                                                    alt="" class="wid-20 avatar me-2 rounded">
+                                                                                                                                                                                                                                                Last comment from <a href="#" class="link-secondary">${element.updated_by}:</a>
+                                                                                                                                                                                                                                            </h6>
+                                                                                                                                                                                                                                            <p class="mb-0">
+                                                                                                                                                                                                                                                ${truncatedNotes}
+                                                                                                                                                                                                                                            </p>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    </div>` : ''}
                                             </div>
                                             <div class="mt-2">
                                                 ${element.rejection_notes ? `
-                                                                                                        <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                                                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
-                                                                                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
-                                                                                                        </button>` : ''}
+                                                                                                                                                                                                                                    <button type="button" class="me-2 btn btn-sm btn-light-danger"
+                                                                                                                                                                                                                                        data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
+                                                                                                                                                                                                                                        <i class="ti ti-eye me-1"></i> Lihat Catatan
+                                                                                                                                                                                                                                    </button>` : ''}
                                                 <a href="/internal/laporan-tahunan/detail"
                                                     class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;">
                                                     <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
@@ -424,6 +450,8 @@
                             `;
                     }
 
+                    countPaging.text(`${display_from} - ${display_to}`);
+                    totalPaging.text(totalData);
                     card.empty();
                     card.html(domTableHtml);
                     $('[data-toggle="tooltip"]').tooltip();
@@ -434,6 +462,241 @@
         function showModalNotes(notes) {
             $('#exampleModalCenter .modal-body').html(`<p>${notes}</p>`);
             $('#exampleModalCenter').modal('show');
+        }
+
+        async function customFilterTable() {
+            let dateRangePicker = initializeDateRangePicker();
+            let startDate = dateRangePicker.data('daterangepicker').startDate;
+            let endDate = dateRangePicker.data('daterangepicker').endDate;
+            let startDateObj = new Date(startDate);
+            let endDateObj = new Date(endDate);
+            let timeDiff = endDateObj - startDateObj;
+            let dayDiff = timeDiff / (1000 * 3600 * 24);
+
+            document.getElementById('custom-filter').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                let startDate = dateRangePicker.data('daterangepicker').startDate;
+                let endDate = dateRangePicker.data('daterangepicker').endDate;
+
+                if ($("#daterange").val() !== '') {
+                    startDate = startDate.startOf('day').format('YYYY-MM-DD');
+                    endDate = endDate.endOf('day').format('YYYY-MM-DD');
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
+
+                let company = document.getElementById('input-perusahaan').value;
+                let status = document.getElementById('input-status').value;
+
+                customFilter = {
+                    'company': company,
+                    'status': status,
+                    'start_date': startDate,
+                    'end_date': endDate
+                };
+
+                currentPage = 1;
+                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter);
+            });
+
+            document.getElementById('download-excel').addEventListener('click', async function() {
+                let startDate = dateRangePicker.data('daterangepicker').startDate;
+                let endDate = dateRangePicker.data('daterangepicker').endDate;
+
+                if ($("#daterange").val() !== '') {
+                    startDate = startDate.startOf('day').toISOString();
+                    endDate = endDate.endOf('day').toISOString();
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
+
+                let company = document.getElementById('input-perusahaan').value;
+                let status = document.getElementById('input-status').value;
+
+                let customFilter = {
+                    'status': status,
+                    'company': company,
+                    'start_date': $("#daterange").val() !== '' ? startDate : '',
+                    'end_date': $("#daterange").val() !== '' ? endDate : ''
+                };
+
+                if (dayDiff > 31) {
+                    notificationAlert('info', 'Pemberitahuan',
+                        'Rentang tanggal tidak boleh lebih dari 31 hari');
+                    return;
+                }
+
+                if (!customFilter['start_date'] || !customFilter['end_date']) {
+                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
+                    return;
+                }
+
+                await getFilterDownload(customFilter, startDate, endDate);
+            });
+
+            document.getElementById('download-csv').addEventListener('click', async function() {
+                let startDate = dateRangePicker.data('daterangepicker').startDate;
+                let endDate = dateRangePicker.data('daterangepicker').endDate;
+
+                if ($("#daterange").val() !== '') {
+                    startDate = startDate.startOf('day').toISOString();
+                    endDate = endDate.endOf('day').toISOString();
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
+
+                let company = document.getElementById('input-perusahaan').value;
+                let status = document.getElementById('input-status').value;
+
+                let customFilter = {
+                    'status': status,
+                    'company': company,
+                    'start_date': $("#daterange").val() !== '' ? startDate : '',
+                    'end_date': $("#daterange").val() !== '' ? endDate : ''
+                };
+
+                if (dayDiff > 31) {
+                    notificationAlert('info', 'Pemberitahuan',
+                        'Rentang tanggal tidak boleh lebih dari 31 hari');
+                    return;
+                }
+
+                if (!customFilter['start_date'] || !customFilter['end_date']) {
+                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
+                    return;
+                }
+
+                let filteredData = await fetchFilteredData(customFilter);
+
+                if (filteredData.length > 0) {
+                    await downloadToCSV(filteredData, startDate, endDate);
+                } else {
+                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
+                }
+            });
+
+            document.getElementById('download-pdf').addEventListener('click', async function() {
+                let startDate = dateRangePicker.data('daterangepicker').startDate;
+                let endDate = dateRangePicker.data('daterangepicker').endDate;
+
+                if ($("#daterange").val() !== '') {
+                    startDate = startDate.startOf('day').toISOString();
+                    endDate = endDate.endOf('day').toISOString();
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
+
+                let company = document.getElementById('input-perusahaan').value;
+                let status = document.getElementById('input-status').value;
+
+                let customFilter = {
+                    'status': status,
+                    'company': company,
+                    'start_date': $("#daterange").val() !== '' ? startDate : '',
+                    'end_date': $("#daterange").val() !== '' ? endDate : ''
+                };
+
+                if (dayDiff > 31) {
+                    notificationAlert('info', 'Pemberitahuan',
+                        'Rentang tanggal tidak boleh lebih dari 31 hari');
+                    return;
+                }
+
+                if (!customFilter['start_date'] || !customFilter['end_date']) {
+                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
+                    return;
+                }
+
+                let filteredData = await fetchFilteredData(customFilter);
+
+                if (filteredData.length > 0) {
+                    await downloadToPDF(filteredData, startDate, endDate);
+                } else {
+                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
+                }
+            });
+
+            document.getElementById('resetCustomFilter').addEventListener('click', async function() {
+                $('.select2').val('').trigger('change');
+                $('#daterange').val('');
+                $('.search-input').val('');
+
+                customFilter = {};
+                defaultSearch = '';
+                defaultLimitPage = 10;
+                currentPage = 1;
+
+                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter);
+            });
+        }
+
+        async function fetchFilteredData(filter = {}, fromDate, toDate) {
+            const formatDate = (date) => {
+                const d = new Date(date);
+                return d.toISOString().split('T')[0];
+            };
+            let params = {
+                status: filter['status'] || '',
+                company: filter['company'] || '',
+                fromdate: formatDate(filter['start_date'] || startDate),
+                duedate: formatDate(filter['end_date'] || endDate),
+                limit: filter['limit'] || 10,
+                ascending: true
+            };
+
+            try {
+
+                let getDataRest = await CallAPI('GET',
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/list`, params)
+                    .then(function(response) {
+                        return response;
+                    })
+                    .catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
+                        return resp;
+                    });
+
+
+                // Check if the request was successful
+                if (getDataRest.data.status_code == 200) {
+                    let data = getDataRest.data.data;
+
+                    // Filter data based on parameters
+                    let filteredData = data.filter(item => {
+                        return (!params.status || item.status === params.status) &&
+                            (!params.company || item.nama_perusahaan === params.company) &&
+                            (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
+                                .start_date)) &&
+                            (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
+                    });
+
+                    // Check the result of the filtered data
+                    if (filteredData.length > 0) {
+                        notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda.');
+                        return filteredData;
+                    } else {
+                        notificationAlert('info', 'Pemberitahuan',
+                            'Data tidak ditemukan dengan filter yang diberikan.');
+                        return [];
+                    }
+                } else {
+                    notificationAlert('error', 'Error', 'Gagal mendapatkan data, status code bukan 200.');
+                    return [];
+                }
+            } catch (error) {
+                notificationAlert('warning', 'Error', 'Terjadi kesalahan saat memuat data.');
+
+                return [];
+            }
         }
 
         async function selectFilter(id) {
@@ -479,93 +742,157 @@
         }
 
         async function getFilterDownload(filter = {}, startDate, endDate) {
+
             loadingPage(true);
+
             const formatDate = (date) => {
                 const d = new Date(date);
-                return d.toISOString().split('T')[0];
+                return d.toISOString().split('T')[0]; // Formats to 'YYYY-MM-DD'
             };
+
+            // Format startDate and endDate
+            let formattedStartDate = formatDate(startDate);
+            let formattedEndDate = formatDate(endDate);
 
             let params = {
                 status: filter['status'] || '',
                 company: filter['company'] || '',
-                fromdate: formatDate(filter['start_date'] || startDate),
-                duedate: formatDate(filter['end_date'] || endDate),
-                limit: filter['limit'] || 10,
+                date_from: formatDate(filter['start_date'] || formattedStartDate),
+                date_to: formatDate(filter['end_date'] || formattedEndDate),
+                limit: filter['limit'],
                 ascending: true
             };
 
+            try {
+                // Fetch data from the JSON file
+                let getDataRest = await CallAPI('GET',
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/list`, params)
+                    .then(function(response) {
+                        return response;
+                    })
+                    .catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
+                        return resp;
+                    });
 
-            let getDataRest = await CallAPI('GET', `${url}/internal/admin-panel/laporan-tahunan/list`, params)
-                .then(function(response) {
-                    return response;
-                })
-                .catch(function(error) {
-                    loadingPage(false);
-                    notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
-                    return null;
-                });
 
-            if (getDataRest && getDataRest.data.status_code === 200) {
-                let data = getDataRest.data.data;
+                // Check if the request was successful
+                if (getDataRest.data.status_code == 200) {
+                    let data = getDataRest.data.data;
 
 
-                let filteredData = data.filter(item => {
-                    return (!params.status || item.status === params.status) &&
-                        (!params.company || item.nama_perusahaan === params.company) &&
-                        (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
-                            .start_date)) &&
-                        (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
-                });
+                    // Filter data based on parameters
+                    let filteredData = data.filter(item => {
+                        return (!params.status || item.status === params.status) &&
+                            (!params.company || item.nama_perusahaan === params.company) &&
+                            (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
+                                .start_date)) &&
+                            (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
+                    });
 
-                if (filteredData.length > 0) {
-                    // Fungsi ini harus dipanggil untuk mengunduh data
-                    await downloadToExcel(filteredData, startDate, endDate);
-                    notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda');
+
+                    if (filteredData.length > 0) {
+                        await downloadToExcel(filteredData, formattedStartDate,
+                            formattedEndDate);
+                        notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda');
+                    } else {
+                        notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
+                    }
                 } else {
                     notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
                 }
-            } else {
-                notificationAlert('error', 'Pemberitahuan', 'Gagal mendapatkan data atau data tidak ada.');
+            } catch (error) {
+                notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
+            } finally {
+                loadingPage(false);
             }
         }
 
+        function mapData(data) {
+            return data.map((item, index) => {
+                let created_at = moment(item.created_at, 'YYYY-MM-DD');
+                let current = moment();
+                let lastUpdated = item.updated_at ? moment(item.updated_at, 'YYYY-MM-DD') : current;
+                let weekDays = calculateBusinessDays(created_at, current);
+                if (item.status === 'certificate_validation') {
+                    weekDays = calculateBusinessDays(lastUpdated, current);
+                }
+                let progressLabel = `${weekDays} hari`;
+
+                const statusLabels = {
+                    'draft': 'Draft',
+                    'request': 'Pengajuan',
+                    'disposition': 'Disposisi',
+                    'not_passed_assessment': 'Tidak lulus penilaian',
+                    'submission_revision': 'Revisi pengajuan',
+                    'passed_assessment': 'Lulus penilaian',
+                    'not_passed_assessment_verification': 'Penilaian tidak lulus verifikasi',
+                    'assessment_revision': 'Revisi penilaian',
+                    'passed_assessment_verification': 'Penilaian terverifikasi',
+                    'scheduling_interview': 'Penjadwalan wawancara',
+                    'scheduled_interview': 'Wawancara Terjadwal',
+                    'not_passed_interview': 'Tidak lulus wawancara',
+                    'completed_interview': 'Wawancara selesai',
+                    'verification_director': 'Validasi direktur',
+                    'certificate_validation': 'Pengesahan sertifikat',
+                    'rejected': 'Pengajuan ditolak',
+                    'cancelled': 'Pengajuan dibatalkan',
+                    'expired': 'Pengajuan kedaluwarsa'
+                };
+
+                // Mengambil nama service types dari company
+                let serviceTypes = '-';
+                if (item.company && Array.isArray(item.company.service_types)) {
+                    serviceTypes = item.company.service_types.map(service => service.name).join(', ');
+                }
+
+                console.log(item);
+
+                return {
+                    No: index + 1,
+                    Header1: item.regnumber || '-',
+                    Header2: item.company_name || '-',
+                    Header3: serviceTypes, // Menambahkan serviceTypes setelah company_name
+                    Header4: statusLabels[item.status] || '-',
+                    Header5: progressLabel,
+                    Header6: item.disposition_to && item.disposition_to.name ? item.disposition_to.name : '-',
+                    Header7: item.schedule_interview ? dateDMYFormat(item.schedule_interview) : '-',
+                    Header8: item.disposition_by ? item.disposition_by.name : '-',
+                    Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
+                };
+            });
+        }
 
         async function downloadToExcel(data, fromDate, toDate) {
-            let selectedData = data.map((item, index) => ({
-                No: index + 1,
-                Header2: item.nama_perusahaan || '-',
-                Header3: item.status || '-',
-                Header5: item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
-                    .diverifikasi_oleh.assessor.name : '-',
-                Header7: item.tahun_laporan || '-',
-                Header8: item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) : '-',
-                Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
-            }));
-
+            let selectedData = mapData(data);
 
             let header = [
                 'No.',
+                'No. Pendaftaran',
                 'Nama Perusahaan',
+                'Jenis Pelayanan',
                 'Status',
-                'Diverifikasi Oleh',
-                'Tahun Laporan',
-                'Tanggal Verivikasi',
-                'Tanggal Dibuat',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
             ];
 
-            let formattedFromDate = await dateLanguageFormat(fromDate);
-            let formattedToDate = await dateLanguageFormat(toDate);
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
             let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
 
             let title;
             let fileName;
             if (sameDate) {
-                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate}`.toUpperCase();
-                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate}).xlsx`;
+                title = `Daftar Pengajuan Laporan Tahunan E-SMK ${formattedFromDate}`.toUpperCase();
+                fileName = `Daftar Pengajuan Laporan Tahunan E-SMK (${formattedFromDate}).xlsx`;
             } else {
-                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate} - ${formattedToDate}`
-                    .toUpperCase();
-                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate} - ${formattedToDate}).xlsx`;
+                title = `Daftar Pengajuan Laporan Tahunan E-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+                fileName = `Daftar Pengajuan Laporan Tahunan E-SMK (${formattedFromDate} - ${formattedToDate}).xlsx`;
             }
 
             try {
@@ -598,7 +925,7 @@
                         cell.value(value);
                         cell.style({
                             border: true,
-                            horizontalAlignment: "left" // Rata kiri untuk semua data
+                            horizontalAlignment: "left"
                         });
                     });
                 });
@@ -609,13 +936,11 @@
                 });
 
                 let blob = await workbook.outputAsync();
-
                 saveAs(blob, fileName);
             } catch (error) {
                 notificationAlert('warning', 'Error', 'Periksa Jaringan Anda.');
             }
         }
-
 
         async function downloadToCSV(data, fromDate, toDate) {
             let formattedFromDate = dateLanguageFormat(fromDate);
@@ -624,39 +949,29 @@
 
             let title;
             if (sameDate) {
-                title = `Perusahaan e-SMK TANGGAL ${formattedFromDate}`.toUpperCase();
+                title = `Pengajuan Laporan Tahunan e-SMK TANGGAL ${formattedFromDate}`.toUpperCase();
             } else {
-                title = `Perusahaan e-SMK DARI TANGGAL ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+                title = `Pengajuan Laporan Tahunan e-SMK DARI TANGGAL ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
             }
 
-            // Prepare the headers
             let headers = [
                 'No.',
+                'No. Pendaftaran',
                 'Nama Perusahaan',
+                'Jenis Pelayanan',
                 'Status',
-                'Diverifikasi Oleh',
-                'Tahun Laporan',
-                'Tanggal Verifikasi',
-                'Tanggal Dibuat',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
             ];
 
-            // Convert the data to CSV format
-            let csvContent = headers.join(',') + '\n'; // Add headers
+            let csvContent = headers.join(',') + '\n';
+            let selectedData = mapData(data);
 
-            data.forEach((item, index) => {
-                let row = [
-                    index + 1,
-                    item.nama_perusahaan || '-',
-                    item.status || '-',
-                    item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
-                    .diverifikasi_oleh.assessor.name : '-',
-                    item.tahun_laporan || '-', // Changed from item.year to item.tahun_laporan
-                    item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) :
-                    '-', // Changed from item.tanggal_verivikasi to item.tanggal_verifikasi
-                    item.created_at ? dateDMYFormat(item.created_at) :
-                    '-'
-                ];
-                csvContent += row.join(',') + '\n';
+            selectedData.forEach(row => {
+                csvContent += Object.values(row).join(',') + '\n';
             });
 
             let blob = new Blob([csvContent], {
@@ -665,7 +980,7 @@
             let link = document.createElement('a');
             let fileName = `Perusahaan e-SMK (${formattedFromDate} - ${formattedToDate}).csv`;
 
-            if (navigator.msSaveBlob) { // For IE 10+
+            if (navigator.msSaveBlob) {
                 navigator.msSaveBlob(blob, fileName);
             } else {
                 let url = URL.createObjectURL(blob);
@@ -682,35 +997,31 @@
             const {
                 jsPDF
             } = window.jspdf;
-
-            let selectedData = data.map((item, index) => ({
-                No: index + 1,
-                Header2: item.nama_perusahaan || '-',
-                Header3: item.status || '-',
-                Header5: item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
-                    .diverifikasi_oleh.assessor.name : '-',
-                Header7: item.tahun_laporan || '-',
-                Header8: item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) : '-',
-                Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
-            }));
+            let selectedData = mapData(data);
 
             let header = [
                 'No.',
+                'No. Pendaftaran',
                 'Nama Perusahaan',
+                'Jenis Pelayanan',
                 'Status',
-                'Diverifikasi Oleh',
-                'Tahun Laporan',
-                'Tanggal Verifikasi',
-                'Tanggal Dibuat',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
             ];
 
-            let formattedFromDate = await dateLanguageFormat(fromDate);
-            let formattedToDate = await dateLanguageFormat(toDate);
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
             let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
 
-            let title = sameDate ?
-                `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate}`.toUpperCase() :
-                `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+            let title;
+            if (sameDate) {
+                title = `Daftar Pengajuan Laporan Tahunan e-SMK ${formattedFromDate}`.toUpperCase();
+            } else {
+                title = `Daftar Pengajuan Laporan Tahunan e-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+            }
 
             let doc = new jsPDF({
                 orientation: 'landscape',
@@ -729,8 +1040,7 @@
                 startY: 50,
                 styles: {
                     fontSize: 9,
-                    cellPadding: 4,
-                    halign: 'center' // Rata tengah untuk seluruh isi
+                    cellPadding: 4
                 },
                 headStyles: {
                     fillColor: [204, 204, 204],
@@ -742,23 +1052,8 @@
                 },
                 columnStyles: {
                     0: {
-                        cellWidth: 30 // Lebar kolom pertama
-                    },
-                    // Atur semua kolom lain agar rata tengah
-                    1: {
-                        halign: 'center'
-                    },
-                    2: {
-                        halign: 'center'
-                    },
-                    3: {
-                        halign: 'center'
-                    },
-                    4: {
-                        halign: 'center'
-                    },
-                    5: {
-                        halign: 'center'
+                        halign: 'center',
+                        cellWidth: 30
                     }
                 }
             });
@@ -766,269 +1061,79 @@
             doc.save(`Daftar Pengajuan Penilaian e-SMK (${formattedFromDate} - ${formattedToDate}).pdf`);
         }
 
-        async function customFilterTable() {
 
-            let dateRangePicker = initializeDateRangePicker();
-            let startDate = dateRangePicker.data('daterangepicker').startDate;
-            let endDate = dateRangePicker.data('daterangepicker').endDate;
-            let startDateObj = new Date(startDate);
-            let endDateObj = new Date(endDate);
-            let timeDiff = endDateObj - startDateObj;
-            let dayDiff = timeDiff / (1000 * 3600 * 24);
-
-            // Submit filter
-            document.getElementById('custom-filter').addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                // Ambil nilai startDate dan endDate dari datepicker
-                let startDate = dateRangePicker.data('daterangepicker').startDate;
-                let endDate = dateRangePicker.data('daterangepicker').endDate;
-
-                if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').toISOString();
-                    endDate = endDate.endOf('day').toISOString();
-                } else {
-                    startDate = '';
-                    endDate = '';
-                }
-
-                let company = document.getElementById('input-perusahaan').value;
-                let status = document.getElementById('input-status').value;
-
-                // Buat objek custom filter
-                customFilter = {
-
-                    'company': company,
-                    'status': status,
-                    'start_date': $("#daterange").val() != '' ? startDate : '',
-                    'end_date': $("#daterange").val() != '' ? endDate : ''
-                };
-
-
-                // Set currentPage ke 1 dan muat data baru
-                currentPage = 1;
-                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                    customFilter);
-            });
-
-            // Fungsi download
-            document.getElementById('download-excel').addEventListener('click', async function() {
-                let startDate = dateRangePicker.data('daterangepicker').startDate;
-                let endDate = dateRangePicker.data('daterangepicker').endDate;
-
-                if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').toISOString();
-                    endDate = endDate.endOf('day').toISOString();
-                } else {
-                    startDate = '';
-                    endDate = '';
-                }
-
-                let company = document.getElementById('input-perusahaan').value;
-                let status = document.getElementById('input-status').value;
-
-                let customFilter = {
-                    'status': status,
-                    'company': company,
-                    'start_date': $("#daterange").val() !== '' ? startDate : '',
-                    'end_date': $("#daterange").val() !== '' ? endDate : ''
-                };
-
-                // Validation for date range length
-                if (dayDiff > 31) {
-                    notificationAlert('info', 'Pemberitahuan',
-                        'Rentang tanggal tidak boleh lebih dari 31 hari');
-                    return;
-                }
-
-                if (!customFilter['start_date'] || !customFilter['end_date']) {
-                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
-                    return;
-                }
-
-                loadingPage(true);
-
-                await getFilterDownload(customFilter, startDate, endDate);
-
-            });
-
-            document.getElementById('download-csv').addEventListener('click', async function() {
-                let startDate = dateRangePicker.data('daterangepicker').startDate;
-                let endDate = dateRangePicker.data('daterangepicker').endDate;
-
-                if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').toISOString();
-                    endDate = endDate.endOf('day').toISOString();
-                } else {
-                    startDate = '';
-                    endDate = '';
-                }
-
-
-                let company = document.getElementById('input-perusahaan').value;
-                let status = document.getElementById('input-status').value;
-
-                let customFilter = {
-                    'status': status,
-                    'company': company,
-                    'start_date': $("#daterange").val() !== '' ? startDate : '',
-                    'end_date': $("#daterange").val() !== '' ? endDate : ''
-                };
-
-                if (dayDiff > 31) {
-                    notificationAlert('info', 'Pemberitahuan',
-                        'Rentang tanggal tidak boleh lebih dari 31 hari');
-                    return;
-                }
-
-                if (!customFilter['start_date'] || !customFilter['end_date']) {
-                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
-                    return;
-                }
-
-                let filteredData = await fetchFilteredData(customFilter);
-
-
-                if (filteredData.length > 0) {
-
-                    await downloadToCSV(filteredData, startDate, endDate);
-                } else {
-                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
-                }
-            });
-
-            document.getElementById('download-pdf').addEventListener('click', async function() {
-                let startDate = dateRangePicker.data('daterangepicker').startDate;
-                let endDate = dateRangePicker.data('daterangepicker').endDate;
-
-                if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').toISOString();
-                    endDate = endDate.endOf('day').toISOString();
-                } else {
-                    startDate = '';
-                    endDate = '';
-                }
-
-
-                let company = document.getElementById('input-perusahaan').value;
-                let status = document.getElementById('input-status').value;
-
-                let customFilter = {
-                    'status': status,
-                    'company': company,
-
-                    'start_date': $("#daterange").val() !== '' ? startDate : '',
-                    'end_date': $("#daterange").val() !== '' ? endDate : ''
-                };
-
-                if (dayDiff > 31) {
-                    notificationAlert('info', 'Pemberitahuan',
-                        'Rentang tanggal tidak boleh lebih dari 31 hari');
-                    return;
-                }
-
-                if (!customFilter['start_date'] || !customFilter['end_date']) {
-                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
-                    return;
-                }
-
-                let filteredData = await fetchFilteredData(customFilter);
-
-                if (filteredData.length > 0) {
-                    await downloadToPDF(filteredData, startDate, endDate);
-                } else {
-                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
-                }
-            });
-
-            // Reset filter
-            document.getElementById('resetCustomFilter').addEventListener('click', async function() {
-                // Reset semua input
-                $('.select2').val('').trigger('change');
-                $('#daterange').val('');
-                $('.search-input').val('');
-
-                // Reset custom filter dan muat ulang data default
-                customFilter = {};
-                defaultSearch = '';
-                defaultLimitPage = 10;
-                currentPage = 1;
-
-                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                    customFilter);
+        function paginationDataOnTable(isPageSize) {
+            $('#pagination-js').pagination({
+                dataSource: Array.from({
+                    length: totalPage
+                }, (_, i) => i + 1),
+                pageSize: isPageSize,
+                className: 'paginationjs-theme-blue',
+                afterPreviousOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                },
+                afterPageOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                },
+                afterNextOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                },
             });
         }
 
-        async function fetchFilteredData(filter = {}, fromDate, toDate) {
-            const formatDate = (date) => {
-                const d = new Date(date);
-                return d.toISOString().split('T')[0];
+        function debounce(func, wait, immediate) {
+            let timeout;
+            return function() {
+                let context = this,
+                    args = arguments;
+                let later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                let callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
             };
-            let params = {
-                status: filter['status'] || '',
-                company: filter['company'] || '',
-                fromdate: formatDate(filter['start_date'] || startDate),
-                duedate: formatDate(filter['end_date'] || endDate),
-                limit: filter['limit'] || 10,
-                ascending: true
-            };
-
-            try {
-
-                let getDataRest = await CallAPI('GET', `${url}/internal/admin-panel/laporan-tahunan/list`, params)
-                    .then(function(response) {
-                        return response;
-                    })
-                    .catch(function(error) {
-                        loadingPage(false);
-                        let resp = error.response;
-                        notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
-                        return resp;
-                    });
-
-
-                // Check if the request was successful
-                if (getDataRest.data.status_code == 200) {
-                    let data = getDataRest.data.data;
-
-                    // Filter data based on parameters
-                    let filteredData = data.filter(item => {
-                        return (!params.status || item.status === params.status) &&
-                            (!params.company || item.nama_perusahaan === params.company) &&
-                            (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
-                                .start_date)) &&
-                            (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
-                    });
-
-                    // Check the result of the filtered data
-                    if (filteredData.length > 0) {
-                        notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda.');
-                        return filteredData;
-                    } else {
-                        notificationAlert('info', 'Pemberitahuan',
-                            'Data tidak ditemukan dengan filter yang diberikan.');
-                        return [];
-                    }
-                } else {
-                    notificationAlert('error', 'Error', 'Gagal mendapatkan data, status code bukan 200.');
-                    return [];
-                }
-            } catch (error) {
-                notificationAlert('warning', 'Error', 'Terjadi kesalahan saat memuat data.');
-
-                return [];
-            }
         }
 
+        async function performSearch() {
+            defaultSearch = $('.search-input').val();
+            defaultLimitPage = $("#limitPage").val();
+            currentPage = 1;
+            await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
+        }
+
+
+        async function manipulationDataOnTable() {
+            $(document).on("change", "#limitPage", async function() {
+                defaultLimitPage = $(this).val();
+                currentPage = 1;
+                await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter);
+                await paginationDataOnTable(defaultLimitPage);
+            });
+
+            $(document).on("input", ".search-input", debounce(performSearch, 500));
+            await paginationDataOnTable(defaultLimitPage);
+        }
+
+        async function initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter) {
+            await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
+            await paginationDataOnTable(defaultLimitPage);
+        }
 
         async function initPageLoad() {
-            flatpickr(document.querySelector('#pc-date_range_picker-2'), {
-                mode: 'range'
-            });
+
             await Promise.all([
                 getCount(),
                 customFilterTable(),
-                getListData(),
+                initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter),
+                manipulationDataOnTable(),
                 selectFilter('#input-status'),
                 selectFilter('#input-perusahaan'),
             ]);
