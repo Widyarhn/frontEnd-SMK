@@ -1,8 +1,5 @@
 @extends('...Internal.index', ['title' => 'List | Data Laporan Tahunan'])
 @section('asset_css')
-<<<<<<< Updated upstream
-<link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
-=======
     <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
@@ -19,7 +16,6 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
->>>>>>> Stashed changes
 @endsection
 
 @section('content')
@@ -1072,8 +1068,6 @@
             }
         }
 
-<<<<<<< Updated upstream
-=======
         async function selectFilterStatus(id, placeholder) {
             // Mapping status values to Select2 options
             let statusMapping = {
@@ -1499,12 +1493,8 @@
             await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
             await paginationDataOnTable(defaultLimitPage);
         }
->>>>>>> Stashed changes
 
         async function initPageLoad() {
-            flatpickr(document.querySelector('#pc-date_range_picker-2'), {
-                mode: 'range'
-            });
             await Promise.all([
                 customFilterTable(),
                 getCount(),
