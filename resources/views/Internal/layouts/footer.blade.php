@@ -16,10 +16,9 @@
                             </p>
                         </div>
                     </div>
-                    {{-- <p class="mb-2 mt-2 ms-3">
-                        Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja keselamatan secara berkelanjutan.
-                    </p> --}}
-                    
+                    <p class="mb-0 ms-3">
+                        © <a href="" target="_blank">2025 Dishub <span id="provinsi">Jawa Barat</span></a>
+                    </p>
                 </div>
                 <div class="col-md-6">
                     <div class="row">

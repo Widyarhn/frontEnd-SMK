@@ -122,7 +122,8 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label class="fw-normal" for="input-perusahaan">Perusahaan</label>
-                                <select class="form-control select2" name="input_perusahaan" id="input-perusahaan"></select>
+                                <select class="form-control select2" name="input_perusahaan"
+                                    id="input-perusahaan"></select>
                             </div>
                         </div>
                     </div>
@@ -192,7 +193,7 @@
                                     <option value="15">15</option>
                                     <option value="20">20</option>
                                     <option value="25">25</option>
-                                </select> 
+                                </select>
                             </label>
                         </div>
                         <div class="datatable-search">
@@ -269,6 +270,7 @@
 
             }
         }
+
         async function getListData() {
             loadingPage(true);
             let card = $('#submission-card');
@@ -390,28 +392,28 @@
                                                     </ul>
                                                 </div>
                                                 ${element.rejection_notes ? `
-                                                                                                        <div class="h5 mt-3">
-                                                                                                            <i class="material-icons-two-tone f-16 me-1">notification_important</i>Catatan Permohonan
-                                                                                                        </div>
-                                                                                                        <div class="help-md-hidden">
-                                                                                                            <div class="bg-body mb-3 p-3">
-                                                                                                                <h6>
-                                                                                                                    <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                                                                        alt="" class="wid-20 avatar me-2 rounded">
-                                                                                                                    Last comment from <a href="#" class="link-secondary">${element.updated_by}:</a>
-                                                                                                                </h6>
-                                                                                                                <p class="mb-0">
-                                                                                                                    ${truncatedNotes}
-                                                                                                                </p>
-                                                                                                            </div>
-                                                                                                        </div>` : ''}
+                                                                                                                    <div class="h5 mt-3">
+                                                                                                                        <i class="material-icons-two-tone f-16 me-1">notification_important</i>Catatan Permohonan
+                                                                                                                    </div>
+                                                                                                                    <div class="help-md-hidden">
+                                                                                                                        <div class="bg-body mb-3 p-3">
+                                                                                                                            <h6>
+                                                                                                                                <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                                                                    alt="" class="wid-20 avatar me-2 rounded">
+                                                                                                                                Last comment from <a href="#" class="link-secondary">${element.updated_by}:</a>
+                                                                                                                            </h6>
+                                                                                                                            <p class="mb-0">
+                                                                                                                                ${truncatedNotes}
+                                                                                                                            </p>
+                                                                                                                        </div>
+                                                                                                                    </div>` : ''}
                                             </div>
                                             <div class="mt-2">
                                                 ${element.rejection_notes ? `
-                                                                                                        <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                                                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
-                                                                                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
-                                                                                                        </button>` : ''}
+                                                                                                                    <button type="button" class="me-2 btn btn-sm btn-light-danger"
+                                                                                                                        data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
+                                                                                                                        <i class="ti ti-eye me-1"></i> Lihat Catatan
+                                                                                                                    </button>` : ''}
                                                 <a href="/internal/laporan-tahunan/detail"
                                                     class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;">
                                                     <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
@@ -476,294 +478,6 @@
                     placeholder: 'Pilih status'
                 });
             }
-        }
-
-        async function getFilterDownload(filter = {}, startDate, endDate) {
-            loadingPage(true);
-            const formatDate = (date) => {
-                const d = new Date(date);
-                return d.toISOString().split('T')[0];
-            };
-
-            let params = {
-                status: filter['status'] || '',
-                company: filter['company'] || '',
-                fromdate: formatDate(filter['start_date'] || startDate),
-                duedate: formatDate(filter['end_date'] || endDate),
-                limit: filter['limit'] || 10,
-                ascending: true
-            };
-
-
-            let getDataRest = await CallAPI('GET', `${url}/internal/admin-panel/laporan-tahunan/list`, params)
-                .then(function(response) {
-                    return response;
-                })
-                .catch(function(error) {
-                    loadingPage(false);
-                    notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
-                    return null;
-                });
-
-            if (getDataRest && getDataRest.data.status_code === 200) {
-                let data = getDataRest.data.data;
-
-
-                let filteredData = data.filter(item => {
-                    return (!params.status || item.status === params.status) &&
-                        (!params.company || item.nama_perusahaan === params.company) &&
-                        (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
-                            .start_date)) &&
-                        (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
-                });
-
-                if (filteredData.length > 0) {
-                    // Fungsi ini harus dipanggil untuk mengunduh data
-                    await downloadToExcel(filteredData, startDate, endDate);
-                    notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda');
-                } else {
-                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
-                }
-            } else {
-                notificationAlert('error', 'Pemberitahuan', 'Gagal mendapatkan data atau data tidak ada.');
-            }
-        }
-
-
-        async function downloadToExcel(data, fromDate, toDate) {
-            let selectedData = data.map((item, index) => ({
-                No: index + 1,
-                Header2: item.nama_perusahaan || '-',
-                Header3: item.status || '-',
-                Header5: item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
-                    .diverifikasi_oleh.assessor.name : '-',
-                Header7: item.tahun_laporan || '-',
-                Header8: item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) : '-',
-                Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
-            }));
-
-
-            let header = [
-                'No.',
-                'Nama Perusahaan',
-                'Status',
-                'Diverifikasi Oleh',
-                'Tahun Laporan',
-                'Tanggal Verivikasi',
-                'Tanggal Dibuat',
-            ];
-
-            let formattedFromDate = await dateLanguageFormat(fromDate);
-            let formattedToDate = await dateLanguageFormat(toDate);
-            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
-
-            let title;
-            let fileName;
-            if (sameDate) {
-                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate}`.toUpperCase();
-                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate}).xlsx`;
-            } else {
-                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate} - ${formattedToDate}`
-                    .toUpperCase();
-                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate} - ${formattedToDate}).xlsx`;
-            }
-
-            try {
-                let workbook = await XlsxPopulate.fromBlankAsync();
-                let sheet = workbook.sheet(0);
-                sheet.name("Data");
-
-                let lastColumn = String.fromCharCode(64 + header.length);
-                let titleRange = `A1:${lastColumn}1`;
-                sheet.range(titleRange).merged(true).value(title).style({
-                    horizontalAlignment: "center",
-                    bold: true,
-                    fontSize: 12
-                });
-
-                header.forEach((title, index) => {
-                    let cell = sheet.cell(3, index + 1);
-                    cell.value(title);
-                    cell.style({
-                        bold: true,
-                        fill: "CCCCCC",
-                        border: true,
-                        horizontalAlignment: "center"
-                    });
-                });
-
-                selectedData.forEach((row, rowIndex) => {
-                    Object.values(row).forEach((value, colIndex) => {
-                        let cell = sheet.cell(rowIndex + 4, colIndex + 1);
-                        cell.value(value);
-                        cell.style({
-                            border: true,
-                            horizontalAlignment: "left" // Rata kiri untuk semua data
-                        });
-                    });
-                });
-
-                header.forEach((title, index) => {
-                    sheet.column(index + 1).width(Math.max(...[title, ...selectedData.map(row => row[Object
-                        .keys(row)[index]])].map(text => text.toString().length)) * 1.2);
-                });
-
-                let blob = await workbook.outputAsync();
-
-                saveAs(blob, fileName);
-            } catch (error) {
-                notificationAlert('warning', 'Error', 'Periksa Jaringan Anda.');
-            }
-        }
-
-
-        async function downloadToCSV(data, fromDate, toDate) {
-            let formattedFromDate = dateLanguageFormat(fromDate);
-            let formattedToDate = dateLanguageFormat(toDate);
-            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
-
-            let title;
-            if (sameDate) {
-                title = `Perusahaan e-SMK TANGGAL ${formattedFromDate}`.toUpperCase();
-            } else {
-                title = `Perusahaan e-SMK DARI TANGGAL ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
-            }
-
-            // Prepare the headers
-            let headers = [
-                'No.',
-                'Nama Perusahaan',
-                'Status',
-                'Diverifikasi Oleh',
-                'Tahun Laporan',
-                'Tanggal Verifikasi',
-                'Tanggal Dibuat',
-            ];
-
-            // Convert the data to CSV format
-            let csvContent = headers.join(',') + '\n'; // Add headers
-
-            data.forEach((item, index) => {
-                let row = [
-                    index + 1,
-                    item.nama_perusahaan || '-',
-                    item.status || '-',
-                    item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
-                    .diverifikasi_oleh.assessor.name : '-',
-                    item.tahun_laporan || '-', // Changed from item.year to item.tahun_laporan
-                    item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) :
-                    '-', // Changed from item.tanggal_verivikasi to item.tanggal_verifikasi
-                    item.created_at ? dateDMYFormat(item.created_at) :
-                    '-'
-                ];
-                csvContent += row.join(',') + '\n';
-            });
-
-            let blob = new Blob([csvContent], {
-                type: 'text/csv;charset=utf-8;'
-            });
-            let link = document.createElement('a');
-            let fileName = `Perusahaan e-SMK (${formattedFromDate} - ${formattedToDate}).csv`;
-
-            if (navigator.msSaveBlob) { // For IE 10+
-                navigator.msSaveBlob(blob, fileName);
-            } else {
-                let url = URL.createObjectURL(blob);
-                link.setAttribute('href', url);
-                link.setAttribute('download', fileName);
-                link.style.visibility = 'hidden';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        }
-
-        async function downloadToPDF(data, fromDate, toDate) {
-            const {
-                jsPDF
-            } = window.jspdf;
-
-            let selectedData = data.map((item, index) => ({
-                No: index + 1,
-                Header2: item.nama_perusahaan || '-',
-                Header3: item.status || '-',
-                Header5: item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
-                    .diverifikasi_oleh.assessor.name : '-',
-                Header7: item.tahun_laporan || '-',
-                Header8: item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) : '-',
-                Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
-            }));
-
-            let header = [
-                'No.',
-                'Nama Perusahaan',
-                'Status',
-                'Diverifikasi Oleh',
-                'Tahun Laporan',
-                'Tanggal Verifikasi',
-                'Tanggal Dibuat',
-            ];
-
-            let formattedFromDate = await dateLanguageFormat(fromDate);
-            let formattedToDate = await dateLanguageFormat(toDate);
-            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
-
-            let title = sameDate ?
-                `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate}`.toUpperCase() :
-                `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
-
-            let doc = new jsPDF({
-                orientation: 'landscape',
-                unit: 'pt',
-                format: 'a4'
-            });
-
-            doc.setFontSize(12);
-            doc.text(title, doc.internal.pageSize.getWidth() / 2, 30, {
-                align: 'center'
-            });
-
-            doc.autoTable({
-                head: [header],
-                body: selectedData.map(Object.values),
-                startY: 50,
-                styles: {
-                    fontSize: 9,
-                    cellPadding: 4,
-                    halign: 'center' // Rata tengah untuk seluruh isi
-                },
-                headStyles: {
-                    fillColor: [204, 204, 204],
-                    textColor: 0,
-                    halign: 'center'
-                },
-                bodyStyles: {
-                    valign: 'middle'
-                },
-                columnStyles: {
-                    0: {
-                        cellWidth: 30 // Lebar kolom pertama
-                    },
-                    // Atur semua kolom lain agar rata tengah
-                    1: {
-                        halign: 'center'
-                    },
-                    2: {
-                        halign: 'center'
-                    },
-                    3: {
-                        halign: 'center'
-                    },
-                    4: {
-                        halign: 'center'
-                    },
-                    5: {
-                        halign: 'center'
-                    }
-                }
-            });
-
-            doc.save(`Daftar Pengajuan Penilaian e-SMK (${formattedFromDate} - ${formattedToDate}).pdf`);
         }
 
         async function customFilterTable() {
@@ -959,23 +673,33 @@
             });
         }
 
-        async function fetchFilteredData(filter = {}, fromDate, toDate) {
+        async function getFilterDownload(filter = {}, startDate, endDate) {
+
+            loadingPage(true);
+
             const formatDate = (date) => {
                 const d = new Date(date);
-                return d.toISOString().split('T')[0];
+                return d.toISOString().split('T')[0]; // Formats to 'YYYY-MM-DD'
             };
+
+            // Format startDate and endDate
+            let formattedStartDate = formatDate(startDate);
+            let formattedEndDate = formatDate(endDate);
+
             let params = {
                 status: filter['status'] || '',
                 company: filter['company'] || '',
-                fromdate: formatDate(filter['start_date'] || startDate),
-                duedate: formatDate(filter['end_date'] || endDate),
-                limit: filter['limit'] || 10,
+                assesor: filter['assesor'] || '',
+                date_from: formatDate(filter['start_date'] || formattedStartDate),
+                date_to: formatDate(filter['end_date'] || formattedEndDate),
+                limit: filter['limit'],
                 ascending: true
             };
 
             try {
-
-                let getDataRest = await CallAPI('GET', `${url}/internal/admin-panel/laporan-tahunan/list`, params)
+                // Fetch data from the JSON file
+                let getDataRest = await CallAPI('GET',
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/list`, params)
                     .then(function(response) {
                         return response;
                     })
@@ -991,35 +715,285 @@
                 if (getDataRest.data.status_code == 200) {
                     let data = getDataRest.data.data;
 
+
                     // Filter data based on parameters
                     let filteredData = data.filter(item => {
                         return (!params.status || item.status === params.status) &&
                             (!params.company || item.nama_perusahaan === params.company) &&
+                            (!params.assesor || item.penilai === params.assesor) &&
                             (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
                                 .start_date)) &&
                             (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
                     });
 
-                    // Check the result of the filtered data
+
                     if (filteredData.length > 0) {
-                        notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda.');
-                        return filteredData;
+                        await downloadToExcel(filteredData, formattedStartDate,
+                            formattedEndDate);
+                        notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda');
                     } else {
-                        notificationAlert('info', 'Pemberitahuan',
-                            'Data tidak ditemukan dengan filter yang diberikan.');
-                        return [];
+                        notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
                     }
                 } else {
-                    notificationAlert('error', 'Error', 'Gagal mendapatkan data, status code bukan 200.');
-                    return [];
+                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
                 }
             } catch (error) {
-                notificationAlert('warning', 'Error', 'Terjadi kesalahan saat memuat data.');
-
-                return [];
+                notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
+            } finally {
+                loadingPage(false);
             }
         }
 
+        function mapData(data) {
+            return data.map((item, index) => {
+                let created_at = moment(item.created_at, 'YYYY-MM-DD');
+                let current = moment();
+                let lastUpdated = item.updated_at ? moment(item.updated_at, 'YYYY-MM-DD') : current;
+                let weekDays = calculateBusinessDays(created_at, current);
+                if (item.status === 'certificate_validation') {
+                    weekDays = calculateBusinessDays(lastUpdated, current);
+                }
+                let progressLabel = `${weekDays} hari`;
+
+                const statusLabels = {
+                    'draft': 'Draft',
+                    'request': 'Pengajuan',
+                    'disposition': 'Disposisi',
+                    'not_passed_assessment': 'Tidak lulus penilaian',
+                    'submission_revision': 'Revisi pengajuan',
+                    'passed_assessment': 'Lulus penilaian',
+                    'not_passed_assessment_verification': 'Penilaian tidak lulus verifikasi',
+                    'assessment_revision': 'Revisi penilaian',
+                    'passed_assessment_verification': 'Penilaian terverifikasi',
+                    'scheduling_interview': 'Penjadwalan wawancara',
+                    'scheduled_interview': 'Wawancara Terjadwal',
+                    'not_passed_interview': 'Tidak lulus wawancara',
+                    'completed_interview': 'Wawancara selesai',
+                    'verification_director': 'Validasi direktur',
+                    'certificate_validation': 'Pengesahan sertifikat',
+                    'rejected': 'Pengajuan ditolak',
+                    'cancelled': 'Pengajuan dibatalkan',
+                    'expired': 'Pengajuan kedaluwarsa'
+                };
+
+                // Mengambil nama service types dari company
+                let serviceTypes = '-';
+                if (item.company && Array.isArray(item.company.service_types)) {
+                    serviceTypes = item.company.service_types.map(service => service.name).join(', ');
+                }
+
+                console.log(item);
+
+                return {
+                    No: index + 1,
+                    Header1: item.regnumber || '-',
+                    Header2: item.company_name || '-',
+                    Header3: serviceTypes, // Menambahkan serviceTypes setelah company_name
+                    Header4: statusLabels[item.status] || '-',
+                    Header5: progressLabel,
+                    Header6: item.disposition_to && item.disposition_to.name ? item.disposition_to.name : '-',
+                    Header7: item.schedule_interview ? dateDMYFormat(item.schedule_interview) : '-',
+                    Header8: item.disposition_by ? item.disposition_by.name : '-',
+                    Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
+                };
+            });
+        }
+
+        async function downloadToExcel(data, fromDate, toDate) {
+            let selectedData = mapData(data);
+
+            let header = [
+                'No.',
+                'No. Pendaftaran',
+                'Nama Perusahaan',
+                'Jenis Pelayanan',
+                'Status',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
+            ];
+
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title;
+            let fileName;
+            if (sameDate) {
+                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate}`.toUpperCase();
+                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate}).xlsx`;
+            } else {
+                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate} - ${formattedToDate}).xlsx`;
+            }
+
+            try {
+                let workbook = await XlsxPopulate.fromBlankAsync();
+                let sheet = workbook.sheet(0);
+                sheet.name("Data");
+
+                let lastColumn = String.fromCharCode(64 + header.length);
+                let titleRange = `A1:${lastColumn}1`;
+                sheet.range(titleRange).merged(true).value(title).style({
+                    horizontalAlignment: "center",
+                    bold: true,
+                    fontSize: 12
+                });
+
+                header.forEach((title, index) => {
+                    let cell = sheet.cell(3, index + 1);
+                    cell.value(title);
+                    cell.style({
+                        bold: true,
+                        fill: "CCCCCC",
+                        border: true,
+                        horizontalAlignment: "center"
+                    });
+                });
+
+                selectedData.forEach((row, rowIndex) => {
+                    Object.values(row).forEach((value, colIndex) => {
+                        let cell = sheet.cell(rowIndex + 4, colIndex + 1);
+                        cell.value(value);
+                        cell.style({
+                            border: true,
+                            horizontalAlignment: "left"
+                        });
+                    });
+                });
+
+                header.forEach((title, index) => {
+                    sheet.column(index + 1).width(Math.max(...[title, ...selectedData.map(row => row[Object
+                        .keys(row)[index]])].map(text => text.toString().length)) * 1.2);
+                });
+
+                let blob = await workbook.outputAsync();
+                saveAs(blob, fileName);
+            } catch (error) {
+                notificationAlert('warning', 'Error', 'Periksa Jaringan Anda.');
+            }
+        }
+
+        async function downloadToCSV(data, fromDate, toDate) {
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title;
+            if (sameDate) {
+                title = `Perusahaan e-SMK TANGGAL ${formattedFromDate}`.toUpperCase();
+            } else {
+                title = `Perusahaan e-SMK DARI TANGGAL ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+            }
+
+            let headers = [
+                'No.',
+                'No. Pendaftaran',
+                'Nama Perusahaan',
+                'Jenis Pelayanan',
+                'Status',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
+            ];
+
+            let csvContent = headers.join(',') + '\n';
+            let selectedData = mapData(data);
+
+            selectedData.forEach(row => {
+                csvContent += Object.values(row).join(',') + '\n';
+            });
+
+            let blob = new Blob([csvContent], {
+                type: 'text/csv;charset=utf-8;'
+            });
+            let link = document.createElement('a');
+            let fileName = `Perusahaan e-SMK (${formattedFromDate} - ${formattedToDate}).csv`;
+
+            if (navigator.msSaveBlob) {
+                navigator.msSaveBlob(blob, fileName);
+            } else {
+                let url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', fileName);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        async function downloadToPDF(data, fromDate, toDate) {
+            const {
+                jsPDF
+            } = window.jspdf;
+            let selectedData = mapData(data);
+
+            let header = [
+                'No.',
+                'No. Pendaftaran',
+                'Nama Perusahaan',
+                'Jenis Pelayanan',
+                'Status',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
+            ];
+
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title;
+            if (sameDate) {
+                title = `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate}`.toUpperCase();
+            } else {
+                title = `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+            }
+
+            let doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'pt',
+                format: 'a4'
+            });
+
+            doc.setFontSize(12);
+            doc.text(title, doc.internal.pageSize.getWidth() / 2, 30, {
+                align: 'center'
+            });
+
+            doc.autoTable({
+                head: [header],
+                body: selectedData.map(Object.values),
+                startY: 50,
+                styles: {
+                    fontSize: 9,
+                    cellPadding: 4
+                },
+                headStyles: {
+                    fillColor: [204, 204, 204],
+                    textColor: 0,
+                    halign: 'center'
+                },
+                bodyStyles: {
+                    valign: 'middle'
+                },
+                columnStyles: {
+                    0: {
+                        halign: 'center',
+                        cellWidth: 30
+                    }
+                }
+            });
+
+            doc.save(`Daftar Pengajuan Penilaian e-SMK (${formattedFromDate} - ${formattedToDate}).pdf`);
+        }
 
         async function initPageLoad() {
             flatpickr(document.querySelector('#pc-date_range_picker-2'), {
