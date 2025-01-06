@@ -36,7 +36,7 @@
             width: 35%;
         }
     </style>
-    
+
     @yield('asset_css')
 
 </head>
@@ -56,11 +56,7 @@
 
     <div class="pc-container">
         <div class="pc-content">
-
-
             @yield('content')
-
-
         </div>
     </div>
 
@@ -146,11 +142,11 @@
     </script>
     <script type="text/javascript">
         function notificationAlert(tipe, title, message) {
-            swal(
-                title,
-                message,
-                tipe
-            );
+            Swal.fire({
+                icon: tipe,
+                title: title,
+                text: message
+            });
         }
 
         function loadingPage(show) {
@@ -165,25 +161,24 @@
         async function logout() {
             loadingPage(true);
             const getDataRest = await CallAPI(
-            'POST',
-            '{{ env("SERVICE_BASE_URL") }}/logout',
-            {}
-            ).then(function (response) {
+                'POST',
+                '{{ env('SERVICE_BASE_URL') }}/logout', {}
+            ).then(function(response) {
                 return response;
-            }).catch(function (error) {
+            }).catch(function(error) {
                 loadingPage(false);
                 let resp = error.response;
-                notificationAlert('info','Pemberitahuan',resp.data.message);
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
                 return resp;
             });
-            if(getDataRest.status == 200) {
+            if (getDataRest.status == 200) {
                 Cookies.remove('auth_token');
-                setTimeout(function(){
+                setTimeout(function() {
                     window.location.href = "{{ route('auth.login') }}"
-                },500);
+                }, 500);
             }
         }
-        
+
         $(document).on('click', '.logout', async function() {
             Swal.fire({
                 icon: 'warning',
@@ -192,11 +187,11 @@
                 showCancelButton: true,
                 confirmButtonText: "Ya, Keluar",
                 cancelButtonText: "Tidak"
-              }).then(async (result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
-                  await logout();
+                    await logout();
                 }
-              });
+            });
         });
     </script>
     @yield('scripts')
