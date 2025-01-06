@@ -82,17 +82,18 @@
                                             </div>
                                         </div>
                                         <hr class="my-3 border border-secondary-subtle">
-                                        <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
-                                                class="ti ti-mail me-2"></i>
-                                            <p class="mb-0 company-email">anshan@gmail.com</p>
+                                        <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
+                                            <i class="ti ti-mail me-2"></i>
+                                            <p class="mb-0 company-email" style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">anshan@gmail.com</p>
                                         </div>
+
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
                                                 class="ti ti-phone me-2"></i>
                                             <p class="mb-0 company-phone">(+1-876) 8654 239 581</p>
                                         </div>
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
                                                 class="ti ti-map-pin me-2"></i>
-                                            <p class="mb-0 company-address">New York</p>
+                                            <p class="mb-0 company-address" style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">New York</p>
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +180,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card d-none">
+                            {{-- <div class="card d-none">
                                 <div class="card-header">
                                     <h5>Informasi Pengguna</h5>
                                 </div>
@@ -207,8 +208,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -762,6 +762,7 @@
                     <th class="text-center" colspan="${$('th').length}"> Tidak ada data. </th>
                 </tr>`;
                 $('#countPage1').text("0 - 0");
+                $('#totalPage1').text("0");
             }
             $('#listData1').append(getDataTable1);
             $('#totalPage1').text(totalPage1);
@@ -831,7 +832,7 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/laporan`, 
+                `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/laporan`,
                 {
                     id: id,
                     page: page,
@@ -984,7 +985,7 @@
                         </li>
                     </td>
                 </tr>`;
-                
+
 
                 index_loop++;
             }
@@ -1055,7 +1056,7 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `{{ asset('dummy/internal/md-kbli/list_kbli.json') }}`, 
+                `{{ asset('dummy/internal/md-kbli/list_kbli.json') }}`,
                 {
                     id: id,
                     page: page,
