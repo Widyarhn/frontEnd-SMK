@@ -14,13 +14,21 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data KBLI</h2>
                     </div>
-                    <a href="javascript:void(0)" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0 add-data"
-                        id="add-data">
-                        <i class="fas fa-plus-circle me-2"></i> Tambah Data
-                    </a>
+                    <div id="tambahContainer">
+                        <a href="javascript:void(0)" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0 add-data"
+                            id="add-data">
+                            <i class="fas fa-plus-circle me-2"></i> Tambah Data
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-12 mt-2">
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <i class="fas fa-info-circle me-2"></i>
+            <div>Aktifkan Integrasi Akun OSS pada menu <a href="/admin/pengaturan" class="fw-bold">Pengaturan Aplikasi</a> agar dapat mengelola Master Data KBLI.</div>
+        </div>        
     </div>
     <div class="row">
         <div class="col-12">
@@ -35,19 +43,19 @@
                                     <div class="datatable-top">
                                         <div class="datatable-dropdown">
                                             <label>
-                                                <select class="datatable-selector" id="limitPage" name="per-page" style="width: auto;min-width: unset;">
+                                                <select class="datatable-selector" id="limitPage" name="per-page"
+                                                    style="width: auto;min-width: unset;">
                                                     <option value="5">5</option>
                                                     <option value="10" selected="">10</option>
                                                     <option value="15">15</option>
                                                     <option value="20">20</option>
                                                     <option value="25">25</option>
-                                                </select> 
+                                                </select>
                                             </label>
                                         </div>
                                         <div class="datatable-search">
-                                            <input class="datatable-input search-input" placeholder="Cari..."
-                                                type="search" name="search" title="Search within table"
-                                                aria-controls="pc-dt-simple">
+                                            <input class="datatable-input search-input" placeholder="Cari..." type="search"
+                                                name="search" title="Search within table" aria-controls="pc-dt-simple">
                                         </div>
                                     </div>
                                     <div class="datatable-container">
@@ -59,7 +67,7 @@
                                                     <th>Nama KBLI</th>
                                                     <th>Uraian KBLI</th>
                                                     <th>Tanggal Dibuat</th>
-                                                    <th class="text-end">Aksi</th>
+                                                    <th class="text-end" id="aksiContainer">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="listData"></tbody>
@@ -127,7 +135,9 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+@endsection
+@section('page_js')
     <script>
         let env = '{{ env('SERVICE_BASE_URL') }}';
         let menu = 'KBLI';
@@ -139,6 +149,38 @@
         let getDataTable = '';
         let errorMessage = "Terjadi Kesalahan.";
         let isActionForm = "store";
+
+        async function getOSS() {
+            loadingPage(true);
+            let getDataRest = await CallAPI(
+                'GET', `{{ asset('dummy/internal/dashboard-admin/user_detail.json') }}`
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+            loadingPage(false);
+            if (getDataRest.status == 200) {
+                let data = getDataRest.data.data.user;
+                if (data.is_active_oss === false) {
+                    const tambahContainer = document.getElementById('tambahContainer');
+                    const aksiContainer = document.getElementById('aksiContainer');
+                    const buttonContainers = document.querySelectorAll('.buttonContainer');
+
+                    // Sembunyikan elemen tambahContainer dan aksiContainer
+                    if (tambahContainer) tambahContainer.style.display = 'none';
+                    if (aksiContainer) aksiContainer.style.display = 'none';
+
+                    // Sembunyikan semua elemen buttonContainer
+                    buttonContainers.forEach(buttonContainer => {
+                        buttonContainer.style.display = 'none';
+                    });
+                }
+            }
+        }
 
         async function addData() {
             $(document).on("click", ".add-data", function() {
@@ -331,7 +373,7 @@
                             <td><b>${element.name || '-'}</b></td>
                             <td>${element.description || '-'}</td>
                             <td>${element.created_at ? new Date(element.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}</td>
-                            <td class="text-end">
+                            <td class="text-end buttonContainer">
                                 <ul class="list-inline mb-0">
                                     <li class="list-inline-item">
                                             ${getEditButton(elementData, element)}
@@ -467,6 +509,7 @@
         async function initPageLoad() {
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
+                getOSS(),
                 manipulationDataOnTable(),
                 addData(),
                 editData(),

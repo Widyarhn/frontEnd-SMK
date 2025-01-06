@@ -885,7 +885,7 @@
                                         <h6 class="mb-2"><span class="text-truncate w-100">${element.name || '-'}</span>
                                         </h6>
                                         <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                            ${element.nip || '-'}</span>
+                                            NIP: ${element.nip || '-'}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -958,7 +958,7 @@
                                             <h6 class="mb-2"><span class="text-truncate w-100">${companyName}</span>
                                             </h6>
                                             <p class="text-muted f-12 mb-0"><span class="text-truncate w-100">
-                                                    ${nib}</span>
+                                                    NIB: ${nib}</span>
                                             </p>
                                         </div>
                                     </div>

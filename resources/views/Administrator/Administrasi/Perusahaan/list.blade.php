@@ -132,16 +132,6 @@
                                     <span class="input-group-text"><i class="feather icon-calendar"></i></span>
                                 </div>
                             </div>
-                            {{-- <div class="mb-3 row">
-                                <label class="fw-normal" for="input-layanan">Jenis Layanan</label> --}}
-                            {{-- <select class="form-control" name="input_layanan" id="input-layanan">
-                                    <option value="Choice 1" selected>Choice 1</option>
-                                    <option value="Choice 2">Choice 2</option>
-                                    <option value="Choice 3">Choice 3</option>
-                                    <option value="Choice 4">Choice 4</option>
-                                </select> --}}
-
-                            {{-- </div> --}}
                             <div class="col-md-6 mb-2">
                                 <label class="fw-normal" for="input-layanan">Jenis Layanan</label>
                                 <select class="form-control" name="input_layanan" id="input-layanan"></select>
@@ -729,51 +719,6 @@
             });
         }
 
-
-        // async function selectFilterStatus(id, placeholder) {
-        //     // Mapping status values to Select2 options
-        //     let statusMapping = {
-        //         request: 'Pengajuan',
-        //         disposition: 'Disposisi',
-        //         not_passed_assessment: 'Tidak lulus penilaian',
-        //         submission_revision: 'Perbaikan dokumen',
-        //         passed_assessment: 'Lulus penilaian',
-        //         not_passed_assessment_verification: 'Tidak lulus verifikasi penilaian',
-        //         assessment_revision: 'Perbaikan penilaian',
-        //         passed_assessment_verification: 'Lulus verifikasi penilaian',
-        //         scheduling_interview: 'Penjadwalan wawancara',
-        //         scheduled_interview: 'Wawancara terjadwal',
-        //         completed_interview: 'Wawancara selesai',
-        //         verification_director: 'Verifikasi direktur',
-        //         certificate_validation: 'Pengesahan Sertifikat',
-        //         rejected: 'Ditolak',
-        //         cancelled: 'Dibatalkan',
-        //         expired: 'Kedaluarsa',
-        //         draft: 'Draft'
-        //     };
-
-        //     // Convert statusMapping to an array of objects with 'id' and 'text' for Select2
-        //     let statusOptions = Object.keys(statusMapping).map(key => {
-        //         return {
-        //             id: key,
-        //             text: statusMapping[key]
-        //         };
-        //     });
-
-        //     // Add an empty option at the beginning for placeholder
-        //     statusOptions.unshift({
-        //         id: '',
-        //         text: ''
-        //     });
-
-        //     // Initialize Select2 with local data
-        //     $(id).select2({
-        //         data: statusOptions, // Use the mapped data
-        //         allowClear: true,
-        //         placeholder: placeholder,
-        //     });
-        // }
-
         async function selectFilterStatus(id, placeholder) {
             // Data didefinisikan langsung di dalam fungsi
             const data = {
@@ -810,8 +755,6 @@
                 return Promise.resolve(choicesArray);
             });
         }
-
-
 
         async function customFilterTable() {
 
@@ -1368,9 +1311,9 @@
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter),
                 manipulationDataOnTable(),
                 customFilterTable(),
+                getTotalData(),
                 setStatus(),
                 getChartTipeLayanan(),
-                getTotalData(),
                 selectFilter('#input-layanan',
                     '{{ asset('dummy/company/select_jenis_layanan.json') }}',
                     'Pilih jenis layanan'),

@@ -1,18 +1,16 @@
-@extends('...Administrator.index', ['title' => 'Detail | Data Perusahaan'])
+@extends('...Administrator.index', ['title' => 'Detail Sertifikat SMK | SMK-PAU'])
 @section('asset_css')
-    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/laporan/index.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         .table th.sticky-end,
         .table td.sticky-end {
             position: sticky;
             right: 0;
             background-color: #fff;
-            /* Warna background agar cocok */
             z-index: 1;
-            /* Prioritaskan di atas elemen lain */
             border-left: 1px solid #dee2e6;
-            /* Tambahkan garis batas */
         }
     </style>
 @endsection
@@ -23,7 +21,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/internal/dashboard-internal">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                         <li class="breadcrumb-item" aria-current="page">Sertifikat SMK</li>
                     </ul>
                 </div>
@@ -136,16 +134,15 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-penilai">Penilai</label>
-                                <select class="form-control select2" name="input_penilai" id="input-penilai"></select>
+                                <select class="form-control" name="input_penilai" id="input-penilai"></select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-perusahaan">Perusahaan</label>
-                                <select class="form-control select2" name="input_perusahaan"
-                                    id="input-perusahaan"></select>
+                                <select class="form-control" name="input_perusahaan" id="input-perusahaan"></select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-status">Status Sertifikat</label>
-                                <select class="form-control select2" name="input_status" id="input-status"></select>
+                                <select class="form-control" name="input_status" id="input-status"></select>
                             </div>
                         </div>
                     </div>
@@ -212,7 +209,7 @@
                             </label>
                         </div>
                         <div class="datatable-search">
-                            <input class="datatable-input searchInput" placeholder="Cari..." type="search"
+                            <input class="datatable-input search-input" placeholder="Cari..." type="search"
                                 title="Search within table" aria-controls="pc-dt-simple-1">
                         </div>
                     </div>
@@ -247,16 +244,30 @@
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
-    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets') }}/js/plugins/choices.min.js"></script>
+
+    <script src="{{ asset('assets/js/excel/xlsx-populate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/excel/file-saver.min.js') }}"></script>
     <script src="{{ asset('assets/js/date/moment.js') }}"></script>
+    <script src="{{ asset('assets/js/date/daterange-picker.js') }}"></script>
+    <script src="{{ asset('assets/js/date/daterange-custom.js') }}"></script>
+    <script src="{{ asset('assets/js/date/date-language-format.js') }}"></script>
+    <script src="{{ asset('assets/js/date/date-DMY-format.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script>
+        let env = '{{ env('SERVICE_BASE_URL') }}';
+        let defaultLimitPage = 10;
+        let currentPage = 1;
+        let totalPage = 1;
+        let defaultAscending = 0;
+        let defaultSearch = '';
+        let customFilter = {};
+
         function calculateBusinessDays(startDate, endDate) {
             let count = 0;
-            let curDate = moment(startDate).startOf('day'); // Mulai dari hari pertama
-            let lastDate = moment(endDate).startOf('day'); // Sampai dengan hari terakhir
-
+            let curDate = moment(startDate).startOf('day');
+            let lastDate = moment(endDate).startOf('day');
             while (curDate.isSameOrBefore(lastDate)) {
-                // Exclude weekend (Saturday = 6, Sunday = 7)
                 if (curDate.isoWeekday() !== 6 && curDate.isoWeekday() !== 7) {
                     count++;
                 }
@@ -266,14 +277,25 @@
             return count;
         }
 
-        async function getListData() {
+        async function getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter) {
             loadingPage(true);
             let card = $('#submission-card');
 
-            // Memanggil API untuk mendapatkan data bidang
             const getDataRest = await CallAPI(
+                    // 'GET',
+                    // `/dummy/internal/sertifikat/list_sertifikat.json`,
                     'GET',
-                    `/dummy/internal/sertifikat/list_sertifikat.json`,
+                    `${env}/internal/admin-panel/pengajuan-sertifikat/list`, {
+                        page: currentPage,
+                        limit: defaultLimitPage,
+                        ascending: defaultAscending,
+                        search: defaultSearch,
+                        searchByPerusahaan: Object.keys(customFilter).length !== 0 ? customFilter['company'] : '',
+                        searchByStatus: Object.keys(customFilter).length !== 0 ? customFilter['status'] : '',
+                        searchByPenilai: Object.keys(customFilter).length !== 0 ? customFilter['assesor'] : '',
+                        date_from: customFilter?.['start_date'] || '',
+                        date_to: customFilter?.['end_date'] || '',
+                    }
                 )
                 .then(response => response)
                 .catch(error => {
@@ -297,9 +319,13 @@
                 let dataTable = data.data;
                 if (dataTable.length === 0) {
                     card.html(`
-                        <tr>
-                            <th class="text-center" colspan="5">Tidak ada data.</th>
-                        </tr>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="text-center">Belum Ada Permohonan Penilaian Sertifikat</h5>
+                                </div>
+                            </div>
+                        </div>
                     `);
                 } else {
                     let domTableHtml = "";
@@ -375,7 +401,8 @@
                         }
                         if (element.status.includes('expired') ||
                             element.status.includes('cancelled') ||
-                            element.status.includes('rejected') || (element.rejection_notes && element.rejection_notes.length > 0 )
+                            element.status.includes('rejected') || (element.rejection_notes && element.rejection_notes
+                                .length > 0)
                         ) {
                             colorBage = 'danger';
                         }
@@ -466,11 +493,6 @@
                                                         <li class="d-sm-inline-block d-block mt-1 me-3">
                                                             <i class="fa-solid fa-calendar-day me-1"></i><b>Jadwal
                                                                 Interview : </b>${element.schedule_interview ? formatTanggalIndo(element.schedule_interview) : 'Tidak ada wawancara'}</li>
-                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                            <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                alt="" class="wid-20 rounded me-1 img-fluid">
-                                                            Posisi : <b>${element.disposition_by ? element.disposition_by.name : '-'}</b>
-                                                        </li>
                                                     </ul>
                                                     <ul class="list-unstyled mt-2 mb-0 text-muted">
                                                         <li class="d-sm-inline-block d-block mt-1 me-3">
@@ -479,29 +501,36 @@
                                                             ${element.company?.service_types?.map(service => service.name).join(', ') || '-'}
                                                         </li>
                                                     </ul>
+                                                    <ul class="list-unstyled mt-2 mb-0 text-muted">
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                alt="" class="wid-20 rounded me-1 img-fluid">
+                                                            Posisi : <b>${element.disposition_by ? element.disposition_by.name : '-'}</b>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                                 ${element.rejection_notes ? `
-                                                                        <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
-                                                                            Catatan Permohonan</div>
-                                                                        <div class="help-md-hidden">
-                                                                            <div class="bg-body mb-3 p-3">
-                                                                                <h6><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                                        alt="" class="wid-20 avatar me-2 rounded">Catatan terakhir dari <a href="#" class="link-secondary">${element.updated_by}</a></h6>
-                                                                                <p class="mb-0">
-                                                                                    ${truncatedNotes}
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>`
+                                                    <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
+                                                        Catatan Permohonan</div>
+                                                    <div class="help-md-hidden">
+                                                        <div class="bg-body mb-3 p-3">
+                                                            <h6><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                    alt="" class="wid-20 avatar me-2 rounded">Catatan terakhir dari <a href="#" class="link-secondary">${element.updated_by}</a></h6>
+                                                            <p class="mb-0">
+                                                                ${truncatedNotes}
+                                                            </p>
+                                                        </div>
+                                                    </div>`
                                                     : 
                                                 ''}
                                             </div>
                                             <div class="mt-4">
                                                 ${element.rejection_notes ? `
-                                                                        <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
-                                                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
-                                                                        </button>` : ''}
-                                                <a href="/internal/sertifikat/detail" class="me-2 btn btn-sm btn-light-secondary"
+                                                <button type="button" class="me-2 btn btn-sm btn-light-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
+                                                    <i class="ti ti-eye me-1"></i> Lihat Catatan
+                                                </button>` : ''}
+                                                <a href="/admin/sertifikat/detail?r=${element.id}" class="me-2 btn btn-sm btn-light-secondary"
                                                     style="border-radius:5px;"><i class="feather icon-eye mx-1 me-2"></i>Lihat
                                                     Detail</a>
                                             </div>
@@ -524,9 +553,55 @@
             $('#exampleModalCenter').modal('show');
         }
 
+        async function selectFilter(id, route, placeholder) {
+            var multipleFetch = new Choices(id, {
+                placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5
+            });
+
+            multipleFetch.setChoices(async function() {
+                const params = {
+                    term: ""
+                };
+
+                const query = {
+                    keyword: params.term,
+                    page: 1,
+                    limit: 30,
+                    ascending: 1
+                };
+
+                const url = new URL(route);
+                url.search = new URLSearchParams(query).toString();
+
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${Cookies.get('auth_token')}`,
+                    }
+                });
+
+                const data = await response.json();
+
+                return data.data.map(function(item) {
+                    return {
+                        value: item.id,
+                        label: item.name
+                    };
+                });
+
+            });
+
+            document.querySelector(id).addEventListener('change', function(event) {
+                const selectedValue = event.target.value;
+                console.log('Selected ID:', selectedValue);
+                document.querySelector(id).value = selectedValue;
+            });
+        }
+
         async function selectFilterStatus(id, placeholder) {
-            // Mapping status values to Select2 options
-            let statusMapping = {
+            const data = {
                 request: 'Pengajuan',
                 disposition: 'Disposisi',
                 not_passed_assessment: 'Tidak lulus penilaian',
@@ -546,116 +621,729 @@
                 draft: 'Draft'
             };
 
-            // Convert statusMapping to an array of objects with 'id' and 'text' for Select2
-            let statusOptions = Object.keys(statusMapping).map(key => {
+            var multipleFetch = new Choices(id, {
+                placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5
+            }).setChoices(function() {
+                // Mengonversi objek menjadi array untuk diolah oleh Choices.js
+                const choicesArray = Object.entries(data).map(([key, value]) => ({
+                    value: key,
+                    label: value
+                }));
+
+                return Promise.resolve(choicesArray);
+            });
+            document.querySelector(id).addEventListener('change', function(event) {
+                const selectedValue = event.target.value;
+                console.log('Selected ID:', selectedValue);
+
+                document.querySelector(id).value = selectedValue;
+            });
+        }
+
+        async function performSearch() {
+            defaultSearch = $('.search-input').val();
+            defaultLimitPage = $("#limitPage").val();
+            currentPage = 1;
+            await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
+        }
+
+        function debounce(func, wait, immediate) {
+            let timeout;
+            return function() {
+                let context = this,
+                    args = arguments;
+                let later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                let callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+
+        async function manipulationDataOnTable() {
+            $(document).on("change", "#limitPage", async function() {
+                defaultLimitPage = $(this).val();
+                currentPage = 1;
+                await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter);
+                await paginationDataOnTable(defaultLimitPage);
+            });
+
+            $(document).on("input", ".search-input", debounce(performSearch, 500));
+            await paginationDataOnTable(defaultLimitPage);
+        }
+
+        // Inisialisasi Flatpickr
+        function initializeDateRangePicker() {
+            return flatpickr("#pc-date_range_picker-2", {
+                mode: "range", // Mode rentang (start date dan end date)
+                dateFormat: "Y-m-d", // Format tanggal
+                // onChange: function(selectedDates, dateStr, instance) {
+                //     // Ketika tanggal dipilih
+                //     console.log("Tanggal mulai:", selectedDates[0]);
+                //     console.log("Tanggal akhir:", selectedDates[1]);
+                // }
+            });
+        }
+
+
+        async function fetchFilteredData(filter = {}) {
+            loadingPage(true);
+
+            const formatDate = (date) => {
+                if (!date || isNaN(new Date(date).getTime())) {
+                    console.warn('Invalid date value:', date);
+                    return ''; // Return an empty string for invalid dates
+                }
+                const d = new Date(date);
+                return d.toISOString().split('T')[0]; // Format YYYY-MM-DD
+            };
+
+            let formattedStartDate = formatDate(filter['start_date']);
+            let formattedEndDate = formatDate(filter['end_date']);
+
+            if (!formattedStartDate || !formattedEndDate) {
+                notificationAlert('warning', 'Error', 'Tanggal mulai atau tanggal akhir tidak valid.');
+                loadingPage(false);
+                return [];
+            }
+
+            let params = {
+                status: filter['status'] || '',
+                company: filter['company'] || '',
+                assesor: filter['assesor'] || '',
+                date_from: formattedStartDate,
+                date_to: formattedEndDate,
+                limit: filter['limit'],
+                ascending: true
+            };
+
+            try {
+                let getDataRest = await CallAPI('GET',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/list`, params);
+
+
+                if (getDataRest.data.status_code === 200) {
+                    let data = getDataRest.data.data;
+
+                    let filteredData = data.filter(item => {
+                        return ((!params.status || item.status === params.status) &&
+                            (!params.company || item.nama_perusahaan === params.company) &&
+                            (!params.assesor || item.penilai === params.assesor) &&
+                            (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
+                                .start_date)) &&
+                            (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params
+                                .end_date)));
+                    });
+                    console.log("🚀 ~ fetchFilteredData ~ filteredData:", filteredData)
+
+                    if (filteredData.length > 0) {
+                        notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda.');
+                        loadingPage(false);
+                        return filteredData;
+                    } else {
+                        notificationAlert('info', 'Pemberitahuan',
+                            'Data tidak ditemukan dengan filter yang diberikan.');
+                        loadingPage(false);
+                        return [];
+                    }
+                } else {
+                    notificationAlert('error', 'Error', 'Gagal mendapatkan data.');
+                    loadingPage(false);
+                    return [];
+                }
+            } catch (error) {
+                notificationAlert('warning', 'Error', 'Terjadi kesalahan saat memuat data.');
+                console.error('Fetch error:', error);
+                loadingPage(false);
+                return [];
+            }
+        }
+
+
+        async function customFilterTable() {
+            // Inisialisasi flatpickr
+            let dateRangePicker = initializeDateRangePicker();
+            let startDate = dateRangePicker.selectedDates[0];
+            let endDate = dateRangePicker.selectedDates[1];
+            let startDateObj = new Date(startDate);
+            let endDateObj = new Date(endDate);
+            let timeDiff = endDateObj - startDateObj;
+            let dayDiff = timeDiff / (1000 * 3600 * 24);
+
+            document.getElementById('custom-filter').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Ambil tanggal mulai dan akhir dari flatpickr
+                let startDate = dateRangePicker.selectedDates[0]; // Tanggal mulai
+                let endDate = dateRangePicker.selectedDates[1]; // Tanggal akhir
+
+                // Periksa apakah tanggal valid
+                if (startDate && endDate) {
+                    startDate = startDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                    endDate = endDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
+
+                // Ambil nilai lain untuk filter
+                let assesor = document.getElementById('input-penilai').value;
+                let company = document.getElementById('input-perusahaan').value;
+                let status = document.getElementById('input-status').value;
+
+                let customFilter = {
+                    'assesor': assesor,
+                    'company': company,
+                    'status': status,
+                    'start_date': startDate,
+                    'end_date': endDate
+                };
+
+                currentPage = 1;
+                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter);
+            });
+
+            // Download actions for Excel, CSV, and PDF
+            document.getElementById('download-excel').addEventListener('click', async function() {
+                let startDate = dateRangePicker.selectedDates[0];
+                let endDate = dateRangePicker.selectedDates[1];
+
+                if (startDate && endDate) {
+                    startDate = startDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                    endDate = endDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
+
+                let assesor = document.getElementById('input-penilai').value;
+                let company = document.getElementById('input-perusahaan').value;
+                let status = document.getElementById('input-status').value;
+
+                let customFilter = {
+                    'status': status,
+                    'company': company,
+                    'assesor': assesor,
+                    'start_date': startDate,
+                    'end_date': endDate
+                };
+
+                if (dayDiff > 31) {
+                    notificationAlert('info', 'Pemberitahuan',
+                        'Rentang tanggal tidak boleh lebih dari 31 hari');
+                    return;
+                }
+
+                if (!customFilter['start_date'] || !customFilter['end_date']) {
+                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
+                    return;
+                }
+
+                await getFilterDownload(customFilter, startDate, endDate);
+            });
+
+            document.getElementById('download-csv').addEventListener('click', async function() {
+                let startDate = dateRangePicker.selectedDates[0];
+                let endDate = dateRangePicker.selectedDates[1];
+
+                if (startDate && endDate) {
+                    startDate = startDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                    endDate = endDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
+
+                let assesor = document.getElementById('input-penilai').value;
+                let company = document.getElementById('input-perusahaan').value;
+                let status = document.getElementById('input-status').value;
+
+                let customFilter = {
+                    'status': status,
+                    'company': company,
+                    'assesor': assesor,
+                    'start_date': startDate,
+                    'end_date': endDate
+                };
+
+                if (dayDiff > 31) {
+                    notificationAlert('info', 'Pemberitahuan',
+                        'Rentang tanggal tidak boleh lebih dari 31 hari');
+                    return;
+                }
+
+                if (!customFilter['start_date'] || !customFilter['end_date']) {
+                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
+                    return;
+                }
+
+                let filteredData = await fetchFilteredData(customFilter);
+
+                if (filteredData.length > 0) {
+                    await downloadToCSV(filteredData, startDate, endDate);
+                } else {
+                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
+                }
+            });
+
+            document.getElementById('download-pdf').addEventListener('click', async function() {
+                let startDate = dateRangePicker.selectedDates[0];
+                let endDate = dateRangePicker.selectedDates[1];
+
+                if (startDate && endDate) {
+                    startDate = startDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                    console.log("🚀 ~ document.getElementById ~ startDate:", startDate)
+                    endDate = endDate.toISOString().split('T')[0]; // Format YYYY-MM-DD
+                    console.log("🚀 ~ document.getElementById ~ endDate:", endDate)
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
+
+                let assesor = document.getElementById('input-penilai').value;
+                let company = document.getElementById('input-perusahaan').value;
+                let status = document.getElementById('input-status').value;
+
+                let customFilter = {
+                    'status': status,
+                    'company': company,
+                    'assesor': assesor,
+                    'start_date': startDate,
+                    'end_date': endDate
+                };
+
+                if (dayDiff > 31) {
+                    notificationAlert('info', 'Pemberitahuan',
+                        'Rentang tanggal tidak boleh lebih dari 31 hari');
+                    return;
+                }
+
+                if (!customFilter['start_date'] || !customFilter['end_date']) {
+                    notificationAlert('info', 'Pemberitahuan', 'Download Membutuhkan Rentang Tanggal!');
+                    return;
+                }
+
+                let filteredData = await fetchFilteredData(customFilter);
+                console.log("🚀 ~ document.getElementById ~ filteredData:", filteredData)
+                if (filteredData.length > 0) {
+                    await downloadToPDF(filteredData, startDate, endDate);
+                } else {
+                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
+                }
+            });
+
+            document.getElementById('resetCustomFilter').addEventListener('click', async function() {
+                $('.select2').val('').trigger('change');
+                $('#daterange').val('');
+                $('.search-input').val('');
+
+                customFilter = {};
+                defaultSearch = '';
+                defaultLimitPage = 10;
+                currentPage = 1;
+
+                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter);
+            });
+        }
+
+
+        async function getFilterDownload(filter = {}, startDate, endDate) {
+            console.log("🚀 ~ getFilterDownload ~ endDate:", endDate)
+            console.log("🚀 ~ getFilterDownload ~ startDate:", startDate)
+
+            loadingPage(true);
+
+            const formatDate = (date) => {
+                const d = new Date(date);
+                return d.toISOString().split('T')[0]; // Formats to 'YYYY-MM-DD'
+            };
+
+            // Format startDate and endDate
+            let formattedStartDate = formatDate(startDate);
+            let formattedEndDate = formatDate(endDate);
+
+            let params = {
+                status: filter['status'] || '',
+                company: filter['company'] || '',
+                assesor: filter['assesor'] || '',
+                date_from: formatDate(filter['start_date'] || formattedStartDate),
+                date_to: formatDate(filter['end_date'] || formattedEndDate),
+                limit: filter['limit'],
+                ascending: true
+            };
+
+            try {
+                // Fetch data from the JSON file
+                let getDataRest = await CallAPI('GET',
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/list`, params)
+                    .then(function(response) {
+                        return response;
+                    })
+                    .catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
+                        return resp;
+                    });
+
+
+                // Check if the request was successful
+                if (getDataRest.data.status_code == 200) {
+                    let data = getDataRest.data.data;
+
+
+                    // Filter data based on parameters
+                    let filteredData = data.filter(item => {
+                        return (!params.status || item.status === params.status) &&
+                            (!params.company || item.nama_perusahaan === params.company) &&
+                            (!params.assesor || item.penilai === params.assesor) &&
+                            (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
+                                .start_date)) &&
+                            (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
+                    });
+
+
+                    if (filteredData.length > 0) {
+                        await downloadToExcel(filteredData, formattedStartDate,
+                            formattedEndDate);
+                        notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda');
+                    } else {
+                        notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
+                    }
+                } else {
+                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
+                }
+            } catch (error) {
+                notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
+            } finally {
+                loadingPage(false);
+            }
+        }
+
+        function mapData(data) {
+            return data.map((item, index) => {
+                let created_at = moment(item.created_at, 'YYYY-MM-DD');
+                let current = moment();
+                let lastUpdated = item.updated_at ? moment(item.updated_at, 'YYYY-MM-DD') : current;
+                let weekDays = calculateBusinessDays(created_at, current);
+                if (item.status === 'certificate_validation') {
+                    weekDays = calculateBusinessDays(lastUpdated, current);
+                }
+                let progressLabel = `${weekDays} hari`;
+
+                const statusLabels = {
+                    'draft': 'Draft',
+                    'request': 'Pengajuan',
+                    'disposition': 'Disposisi',
+                    'not_passed_assessment': 'Tidak lulus penilaian',
+                    'submission_revision': 'Revisi pengajuan',
+                    'passed_assessment': 'Lulus penilaian',
+                    'not_passed_assessment_verification': 'Penilaian tidak lulus verifikasi',
+                    'assessment_revision': 'Revisi penilaian',
+                    'passed_assessment_verification': 'Penilaian terverifikasi',
+                    'scheduling_interview': 'Penjadwalan wawancara',
+                    'scheduled_interview': 'Wawancara Terjadwal',
+                    'not_passed_interview': 'Tidak lulus wawancara',
+                    'completed_interview': 'Wawancara selesai',
+                    'verification_director': 'Validasi direktur',
+                    'certificate_validation': 'Pengesahan sertifikat',
+                    'rejected': 'Pengajuan ditolak',
+                    'cancelled': 'Pengajuan dibatalkan',
+                    'expired': 'Pengajuan kedaluwarsa'
+                };
+
+                // Mengambil nama service types dari company
+                let serviceTypes = '-';
+                if (item.company && Array.isArray(item.company.service_types)) {
+                    serviceTypes = item.company.service_types.map(service => service.name).join(', ');
+                }
+
+                console.log(item);
+
                 return {
-                    id: key,
-                    text: statusMapping[key]
+                    No: index + 1,
+                    Header1: item.regnumber || '-',
+                    Header2: item.company_name || '-',
+                    Header3: serviceTypes, // Menambahkan serviceTypes setelah company_name
+                    Header4: statusLabels[item.status] || '-',
+                    Header5: progressLabel,
+                    Header6: item.disposition_to && item.disposition_to.name ? item.disposition_to.name : '-',
+                    Header7: item.schedule_interview ? dateDMYFormat(item.schedule_interview) : '-',
+                    Header8: item.disposition_by ? item.disposition_by.name : '-',
+                    Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
                 };
             });
+        }
 
-            // Add an empty option at the beginning for placeholder
-            statusOptions.unshift({
-                id: '',
-                text: ''
+        async function downloadToExcel(data, fromDate, toDate) {
+            let selectedData = mapData(data);
+
+            let header = [
+                'No.',
+                'No. Pendaftaran',
+                'Nama Perusahaan',
+                'Jenis Pelayanan',
+                'Status',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
+            ];
+
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title;
+            let fileName;
+            if (sameDate) {
+                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate}`.toUpperCase();
+                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate}).xlsx`;
+            } else {
+                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate} - ${formattedToDate}).xlsx`;
+            }
+
+            try {
+                let workbook = await XlsxPopulate.fromBlankAsync();
+                let sheet = workbook.sheet(0);
+                sheet.name("Data");
+
+                let lastColumn = String.fromCharCode(64 + header.length);
+                let titleRange = `A1:${lastColumn}1`;
+                sheet.range(titleRange).merged(true).value(title).style({
+                    horizontalAlignment: "center",
+                    bold: true,
+                    fontSize: 12
+                });
+
+                header.forEach((title, index) => {
+                    let cell = sheet.cell(3, index + 1);
+                    cell.value(title);
+                    cell.style({
+                        bold: true,
+                        fill: "CCCCCC",
+                        border: true,
+                        horizontalAlignment: "center"
+                    });
+                });
+
+                selectedData.forEach((row, rowIndex) => {
+                    Object.values(row).forEach((value, colIndex) => {
+                        let cell = sheet.cell(rowIndex + 4, colIndex + 1);
+                        cell.value(value);
+                        cell.style({
+                            border: true,
+                            horizontalAlignment: "left"
+                        });
+                    });
+                });
+
+                header.forEach((title, index) => {
+                    sheet.column(index + 1).width(Math.max(...[title, ...selectedData.map(row => row[Object
+                        .keys(row)[index]])].map(text => text.toString().length)) * 1.2);
+                });
+
+                let blob = await workbook.outputAsync();
+                saveAs(blob, fileName);
+            } catch (error) {
+                notificationAlert('warning', 'Error', 'Periksa Jaringan Anda.');
+            }
+        }
+
+        async function downloadToCSV(data, fromDate, toDate) {
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title;
+            if (sameDate) {
+                title = `Perusahaan e-SMK TANGGAL ${formattedFromDate}`.toUpperCase();
+            } else {
+                title = `Perusahaan e-SMK DARI TANGGAL ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+            }
+
+            let headers = [
+                'No.',
+                'No. Pendaftaran',
+                'Nama Perusahaan',
+                'Jenis Pelayanan',
+                'Status',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
+            ];
+
+            let csvContent = headers.join(',') + '\n';
+            let selectedData = mapData(data);
+
+            selectedData.forEach(row => {
+                csvContent += Object.values(row).join(',') + '\n';
             });
 
-            // Initialize Select2 with local data
-            $(id).select2({
-                data: statusOptions, // Use the mapped data
-                allowClear: true,
-                placeholder: placeholder,
+            let blob = new Blob([csvContent], {
+                type: 'text/csv;charset=utf-8;'
+            });
+            let link = document.createElement('a');
+            let fileName = `Perusahaan e-SMK (${formattedFromDate} - ${formattedToDate}).csv`;
+
+            if (navigator.msSaveBlob) {
+                navigator.msSaveBlob(blob, fileName);
+            } else {
+                let url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', fileName);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        async function downloadToPDF(data, fromDate, toDate) {
+            const {
+                jsPDF
+            } = window.jspdf;
+            let selectedData = mapData(data);
+
+            let header = [
+                'No.',
+                'No. Pendaftaran',
+                'Nama Perusahaan',
+                'Jenis Pelayanan',
+                'Status',
+                'Lama Proses',
+                'Penilai',
+                'Jadwal Interview',
+                'Posisi',
+                'Tanggal Pengajuan'
+            ];
+
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title;
+            if (sameDate) {
+                title = `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate}`.toUpperCase();
+            } else {
+                title = `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+            }
+
+            let doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'pt',
+                format: 'a4'
+            });
+
+            doc.setFontSize(12);
+            doc.text(title, doc.internal.pageSize.getWidth() / 2, 30, {
+                align: 'center'
+            });
+
+            doc.autoTable({
+                head: [header],
+                body: selectedData.map(Object.values),
+                startY: 50,
+                styles: {
+                    fontSize: 9,
+                    cellPadding: 4
+                },
+                headStyles: {
+                    fillColor: [204, 204, 204],
+                    textColor: 0,
+                    halign: 'center'
+                },
+                bodyStyles: {
+                    valign: 'middle'
+                },
+                columnStyles: {
+                    0: {
+                        halign: 'center',
+                        cellWidth: 30
+                    }
+                }
+            });
+
+            doc.save(`Daftar Pengajuan Penilaian e-SMK (${formattedFromDate} - ${formattedToDate}).pdf`);
+        }
+
+        function paginationDataOnTable(isPageSize) {
+            $('#pagination-js').pagination({
+                dataSource: Array.from({
+                    length: totalPage
+                }, (_, i) => i + 1),
+                pageSize: isPageSize,
+                className: 'paginationjs-theme-blue',
+                afterPreviousOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                        customFilter);
+                },
+                afterPageOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                        customFilter);
+                },
+                afterNextOnClick: function(e) {
+                    currentPage = parseInt(e.currentTarget.dataset.num);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                        customFilter);
+                },
             });
         }
 
-
-        async function selectFilter(id) {
-            if (id === '#input-perusahaan') {
-                $(id).select2({
-                    // language: languageIndonesian,
-                    ajax: {
-                        url: `/dummy/internal/sertifikat/select_perusahaan.json`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.name
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih perusahaan'
-                });
-            }
-            if (id === '#input-penilai') {
-                $(id).select2({
-                    // language: languageIndonesian,
-                    ajax: {
-                        // url: `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/assessor-list`,
-                        url: `/dummy/internal/sertifikat/select_penilai.json`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                keyword: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-
-                                        text: item.name,
-                                        id: item.id
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih Penilai'
-                });
-            }
-
+        async function initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+            customFilter) {
+            await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
+            await paginationDataOnTable(defaultLimitPage);
         }
+
 
         async function initPageLoad() {
-            flatpickr(document.querySelector('#pc-date_range_picker-2'), {
-                mode: 'range'
-            });
+            // $(document).ready(function() {
+            //     let $searchInput = $('.search-input');
+            //     $("#collapseFilter").show(); 
+            //     $searchInput.attr('disabled', true); 
+
+            //     $(document).on("click", ".collapse-filter", function() {
+            //         $("#collapseFilter").toggle(500, function() {
+            //             // Cek status collapse setelah animasi selesai
+            //             if ($("#collapseFilter").is(':visible')) {
+            //                 $searchInput.attr('disabled',
+            //                     true); // Nonaktifkan input saat filter terbuka
+            //             } else {
+            //                 $searchInput.removeAttr(
+            //                     'disabled'); // Aktifkan input saat filter tertutup
+            //             }
+            //         });
+            //     });
+            // });
+
             await Promise.all([
-                getListData(),
+                initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter),
+                manipulationDataOnTable(),
+                customFilterTable(),
                 selectFilterStatus('#input-status', 'Pilih status sertifikat'),
-                selectFilter('#input-perusahaan'),
-                selectFilter('#input-penilai'),
+                selectFilter('#input-penilai',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/assessor-list',
+                    'Pilih penilai'),
+                selectFilter('#input-perusahaan',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/list',
+                    'Pilih penilai'),
             ]);
         }
     </script>
-    @include('Company.partial-js')
 @endsection
