@@ -56,159 +56,160 @@
     <!-- [ Pre-loader ] End -->
 
     <div class="auth-main">
-        <div class="auth-wrapper d-flex flex-column flex-lg-row">
-            <!-- Side Banner -->
-            <div class="auth-sidecontent welcome-banner d-none d-lg-flex"
-                style="flex-basis: 580px; min-width: 580px; max-width: 580px; height: 100vh; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); display: flex; justify-content: center; align-items: center; position: relative;">
-                <img src="{{ asset('assets') }}/images/logoapp.png" alt="images" class="img-fluid"
-                    style="width: 150px;" />
+        <div class="auth-wrapper v2">
+            <div class="auth-sidecontent welcome-banner"
+                style="width: 580px; height: 100vh; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); display: flex; justify-content: center; align-items: center; position: relative;">
+                <img src="{{ asset('assets') }}/images/logoapp.png" alt="images" style="width: 150px;" />
             </div>
-
-
-            <!-- Form Section -->
-            <div class="auth-form flex-grow-1 px-3 px-md-5">
-                <div class="card my-5 mx-auto" style="max-width: 700px;">
+            <div class="auth-form">
+                <div class="card my-5" style="max-width:70%">
                     <div class="card-body">
-                        <!-- Logo -->
                         <div class="text-center">
-                            <a href="#">
-                                <img src="{{ asset('assets') }}/images/logoapp.png" alt="img" class="img-fluid"
-                                    style="width: 60px;" />
-                            </a>
+                            <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img"
+                                    style="width: 60px;" /></a>
                         </div>
                         <h4 class="text-center mt-4">DAFTAR SMK-PAU</h4>
-                        <div class="saprator mb-4">
+                        <div class="saprator mb-5">
                             <span>Dinas Perhubungan Kabupaten</span>
                         </div>
 
-                        <!-- Wizard Form -->
                         <form id="wizard-form">
-                            <!-- Step 1 -->
                             <div class="wizard-step step-1" data-step="1">
-                                <h5 class="text-left mb-4" style="color:#214f96;">
-                                    <i class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan
-                                </h5>
+                                <h5 class="text-left mb-4" style="color:#214f96;"><i
+                                        class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan</h5>
                                 <div class="mb-3">
                                     <label class="form-label fw-bold" for="nib">Nomor Induk Berusaha (NIB)</label>
                                     <div class="input-group">
-                                        <div class="input-group-text">
-                                            <i class="fa-solid fa-magnifying-glass text-dark"></i>
-                                        </div>
+                                        <div class="input-group-text"><i
+                                                class="fa-solid fa-magnifying-glass text-dark"></i></div>
                                         <input type="text" class="form-control" id="nib"
                                             placeholder="Masukkan nomor induk berusaha" />
                                     </div>
                                 </div>
-                                <div class="d-grid mt-4">
-                                    <button type="submit" class="btn btn-primary"
-                                        style="border-radius: 5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">
-                                        Cek NIB
-                                    </button>
+                                {{-- <div class="form-check form-switch custom-switch-v1 switch-lg">
+                                    <input type="checkbox" class="form-check-input input-primary f-16"
+                                        id="customCheckdefout2" />
+                                    <label class="form-check-label" for="customCheckdefout2">Sinkronisasi dengan akun OSS jika ada</label>
+                                </div> --}}
+                                <div class="d-grid mt-5">
+                                    <button type="submit" class="btn btn-primary mb-2"
+                                        style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Cek
+                                        NIB</button>
                                 </div>
                             </div>
-
-                            <!-- Step 2 -->
-                            <div class="wizard-step step-2" data-step="2" style="display: none;">
-                                <h5 class="text-left mb-4" style="color:#214f96;">
-                                    <i class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan
-                                </h5>
-                                <div class="row g-3">
+                            <div class="wizard-step step-2" data-step="2">
+                                <h5 class="text-left mb-4" style="color:#214f96;"><i
+                                        class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan</h5>
+                                <div class="row g-4">
                                     <div class="col-md-6">
-                                        <div class="form-floating">
+                                        <div class="form-floating mb-0">
                                             <input type="text" class="form-control" id="nib" placeholder="" />
                                             <label for="nib">NIB</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-0">
                                             <input type="text" class="form-control" id="namaPerusahaan"
                                                 placeholder="" />
                                             <label for="namaPerusahaan">Nama Perusahaan</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row g-3 mt-3">
+                                <div class="row g-4">
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" id="noTelp"
-                                                placeholder="" />
-                                            <label for="noTelp">No. Telepon Perusahaan</label>
+                                        <div class="mb-3">
+                                            <div class="form-floating mb-0">
+                                                <input type="number" class="form-control" id="noTelp"
+                                                    placeholder="" />
+                                                <label for="noTelp">No. Telepon Perusahaan</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email"
-                                                placeholder="Email address" />
-                                            <label for="email">Email</label>
+                                        <div class="mb-3">
+                                            <div class="form-floating mb-0">
+                                                <input type="email" class="form-control" id="email"
+                                                    placeholder="Email address" />
+                                                <label for="email">Email</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row g-3 mt-3">
+                                <div class="row g-4">
                                     <div class="col-md-6">
-                                        <label class="fw-normal" for="input-provinsi">Provinsi</label>
-                                        <select class="form-control select2" name="input_provinsi"
-                                            id="input-provinsi">
-                                            <option value="" disabled selected>Pilih Provinsi</option>
-                                            <option value="1">Jawa Tengah</option>
-                                            <option value="2">Jawa Barat</option>
-                                        </select>
+                                        <div class="mb-3">
+                                            <label class="fw-normal" for="input-provinsi">Provinsi</label>
+                                            <select class="form-control select2" name="input_provinsi"
+                                                id="input-provinsi">
+                                                <option value="" disabled selected>Pilih Provinsi</option>
+                                                <option value="1">Jawa Tengah</option>
+                                                <option value="2">Jawa Barat</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="fw-normal" for="input-kota">Kota</label>
-                                        <select class="form-control select2" name="input_kota" id="input-kota">
-                                            <option value="" disabled selected>Pilih Kota</option>
-                                            <option value="1">Semarang</option>
-                                            <option value="2">Bandung</option>
+                                        <div class="mb-3">
+                                            <label class="fw-normal" for="input-kota">Kota</label>
+                                            <select class="form-control select2" name="input_kota" id="input-kota">
+                                                <option value="" disabled selected>Pilih Kota</option>
+                                                <option value="1">Semarang</option>
+                                                <option value="2">Bandung</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="col-md-12">
+                                        <div class="form-floating mb-0">
+                                            <textarea class="form-control" id="floatingdeskripsi" rows="3"></textarea>
+                                            <label for="floatingdeskripsi">Alamat</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="col-md-12">
+                                        <label class="fw-normal" for="input-pelayanan">Jenis Pelayanan</label>
+                                        <select class="form-control select2" name="input_pelayanan"
+                                            id="input-pelayanan">
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-floating mt-3">
-                                    <textarea class="form-control" id="floatingdeskripsi" rows="3"></textarea>
-                                    <label for="floatingdeskripsi">Alamat</label>
-                                </div>
-                                <div class="mt-3">
-                                    <label class="fw-normal" for="input-pelayanan">Jenis Pelayanan</label>
-                                    <select class="form-control select2" name="input_pelayanan" id="input-pelayanan">
-                                    </select>
-                                </div>
-                                <div class="d-grid mt-4">
-                                    <button type="submit" class="btn btn-primary"
-                                        style="border-radius: 5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">
-                                        Selanjutnya
-                                    </button>
+                                <div class="d-grid mt-5">
+                                    <button type="submit" class="btn btn-primary mb-2"
+                                        style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Selanjutnya</button>
                                 </div>
                             </div>
-
-                            <!-- Step 3 -->
                             <div class="wizard-step step-3" data-step="3" style="display: none;">
-                                <h5 class="text-left mb-4" style="color:#214f96;">
-                                    <i class="fa-solid fa-circle-info fa-lg me-2"></i>Penanggung Jawab (PIC)
-                                </h5>
-                                <div class="row g-3">
+                                <h5 class="text-left mb-4" style="color:#214f96;"><i
+                                        class="fa-solid fa-circle-info fa-lg me-2"></i>Penanggung Jawab (PIC)</h5>
+                                <div class="row g-4">
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="namaPic"
-                                                placeholder="" />
-                                            <label for="namaPic">Nama PIC</label>
+                                        <div class="mb-3">
+                                            <div class="form-floating mb-0">
+                                                <input type="text" class="form-control" id="namaPic"
+                                                    placeholder="" />
+                                                <label for="namaPic">Nama PIC</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="noTelpPic"
-                                                placeholder="" />
-                                            <label for="noTelpPic">No. Telepon PIC</label>
+                                        <div class="mb-3">
+                                            <div class="form-floating mb-0">
+                                                <input type="text" class="form-control" id="noTelpPic"
+                                                    placeholder="" />
+                                                <label for="noTelpPic">No. Telepon PIC</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-grid mt-4">
-                                    <button type="submit" class="btn btn-primary"
-                                        style="border-radius: 5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">
-                                        Selanjutnya
-                                    </button>
+                                <div class="d-grid mt-5">
+                                    <button type="submit" class="btn btn-primary mb-2"
+                                        style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Selanjutnya</button>
                                     <button type="button" class="btn btn-outline-secondary prev-btn"
-                                        style="border-radius: 5px;">Kembali</button>
+                                        style="border-radius:5px;">Kembali</button>
                                 </div>
                             </div>
-
                             <div class="wizard-step step-4" data-step="4" style="display: none;">
                                 <h5 class="text-left mb-4" style="color:#214f96;"><i
                                         class="fa-solid fa-circle-info fa-lg me-2"></i>Informasi Akun</h5>
@@ -248,7 +249,6 @@
                             </div>
                         </form>
 
-                        <!-- Footer -->
                         <div class="d-flex justify-content-center align-items-end mt-3">
                             <h6 class="f-w-500 mb-0 me-2">Sudah punya akun?</h6>
                             <a href="/" class="link-primary">Masuk Sekarang!</a>
@@ -258,7 +258,6 @@
             </div>
         </div>
     </div>
-
     <!-- [ Main Content ] end -->
 
     <!-- Required Js -->
@@ -317,7 +316,7 @@
             if (id === '#input-provinsi') {
                 $(id).select2({
                     ajax: {
-                        url: `/dummy/provinsi.json`,
+                        url: `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/provinsi/list`,
                         dataType: 'json',
                         delay: 500,
                         headers: {
@@ -351,7 +350,7 @@
             } else if (id === '#input-kota') {
                 $(id).select2({
                     ajax: {
-                        url: `/dummy/kota.json`,
+                        url: `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/kota/list`,
                         dataType: 'json',
                         delay: 500,
                         headers: {
