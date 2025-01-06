@@ -493,7 +493,6 @@
                 document.getElementById("countdown").innerHTML =
                     `${days}d ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
 
-                // Update warna, pesan, dan ikon berdasarkan sisa waktu
                 if (days > 30) {
                     countdownCard.style.background = "rgba(34, 139, 34, 0.9)"; // Hijau gelap
                     countdownMessage.textContent = "Waktu Anda Masih Panjang";

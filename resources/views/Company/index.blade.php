@@ -19,8 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/fontawesome.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
@@ -35,7 +34,7 @@
             width: 35%;
         }
     </style>
-    
+
     @yield('asset_css')
 
 </head>
@@ -89,12 +88,19 @@
 
     <div style="position: fixed; bottom: 20px; right: 40px; z-index: 999;">
         <a href="https://wa.me/6281287980134?text=Halo saya ingin bertanya tentang layanan Anda"
-           style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 45%;
+            style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 45%;
                   display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
                   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            <i class="fa-solid fab fa-whatsapp text-white fa-2x"></i>
+            <i class="ph-duotone ph-headset fa-solid text-white fa-2x"></i>
         </a>
     </div>
+
+    {{-- <div class="floting-button">
+        <a href="https://wa.me/6281287980134?text=Halo"
+            class="btn btn btn-success buynowlinks d-inline-flex align-items-center gap-2" data-bs-toggle="tooltip"
+            data-bs-original-title="Buy Now"><i class="ph-duotone ph-headset"></i> <span>Call Center</span>
+        </a>
+    </div> --}}
 
 
 
@@ -174,29 +180,28 @@
             }
             return;
         }
-        
+
         async function logout() {
             loadingPage(true);
             const getDataRest = await CallAPI(
-            'POST',
-            '{{ env("SERVICE_BASE_URL") }}/logout',
-            {}
-            ).then(function (response) {
+                'POST',
+                '{{ env('SERVICE_BASE_URL') }}/logout', {}
+            ).then(function(response) {
                 return response;
-            }).catch(function (error) {
+            }).catch(function(error) {
                 loadingPage(false);
                 let resp = error.response;
-                notificationAlert('info','Pemberitahuan',resp.data.message);
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
                 return resp;
             });
-            if(getDataRest.status == 200) {
+            if (getDataRest.status == 200) {
                 Cookies.remove('auth_token');
-                setTimeout(function(){
+                setTimeout(function() {
                     window.location.href = "{{ route('auth.login') }}"
-                },500);
+                }, 500);
             }
         }
-        
+
         $(document).on('click', '.logout', async function() {
             Swal.fire({
                 icon: 'warning',
@@ -205,14 +210,14 @@
                 showCancelButton: true,
                 confirmButtonText: "Ya, Keluar",
                 cancelButtonText: "Tidak"
-              }).then(async (result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
-                  await logout();
+                    await logout();
                 }
-              });
+            });
         });
     </script>
-     @include('Company.partial-js')
+    @include('Company.partial-js')
     @yield('page_js')
 </body>
 <!-- [Body] end -->
