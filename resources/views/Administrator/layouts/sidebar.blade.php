@@ -108,6 +108,38 @@
                     </a>
                 </li>
 
+
+                <li class="pc-item pc-caption">
+                    <label>Permohonan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+
+                <li class="pc-item">
+                    <a href="/admin/sertifikat/list" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="fa-solid fa-certificate"></i>
+                        </span>
+                        <span class="pc-mtext">Sertifikat SMK</span>
+                    </a>
+                </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Laporan</label>
+                    <svg class="pc-icon">
+                        <use xlink:href="#custom-presentation-chart"></use>
+                    </svg>
+                </li>
+                <li class="pc-item">
+                    <a href="/admin/laporan-tahunan/list" class="pc-link">
+                        <span class="pc-micon">
+                            <i class="ph-duotone ph-chart-bar"></i>
+                        </span>
+                        <span class="pc-mtext">Laporan Tahunan</span>
+                    </a>
+                </li>
+
                 <li class="pc-item pc-caption">
                     <label>Pengaturan</label>
                     <svg class="pc-icon">

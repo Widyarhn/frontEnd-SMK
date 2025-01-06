@@ -434,17 +434,18 @@
         async function getListData(limit = 10, page = 1, ascending = 0, search = '', customFilter) {
             loadingPage(true);
 
-            const queryParams = new URLSearchParams({
+            const queryParams = {
                 page: currentPage,
                 limit: defaultLimitPage,
                 ascending: defaultAscending,
                 search: defaultSearch,
                 // ...filterParams,
-            }).toString();
+            };
 
             let getDataRest = await CallAPI(
                 'GET',
-                `{{ asset('dummy/company/list_perusahaan.json') }}`
+                `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/list`,
+                queryParams
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -1216,7 +1217,7 @@
 
         function getDetailPage(elementID) {
             return `
-            <a href="/admin/perusahaan/detail" data-id="${elementID}"
+            <a href="/admin/perusahaan/detail?id=${elementID}" data-id="${elementID}"
                 class="avtar avtar-s btn-link-info btn-pc-default detail-data"
                 data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
                 title="Detail Data">

@@ -445,7 +445,7 @@
                     let formData = {};
                     formData.id = id;
                     const postDataRest = await CallAPI(
-                        'POST',
+                        'get',
                         `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/sk-number/status`,
                         formData
                     ).then(function(response) {
@@ -454,7 +454,6 @@
                         loadingPage(false);
                         let resp = error.response;
                         notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                        $("#modal-form").modal("hide");
                         return resp;
                     });
     

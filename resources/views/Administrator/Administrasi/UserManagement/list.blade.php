@@ -244,7 +244,7 @@
         let getDataTable = '';
         let errorMessage = "Terjadi Kesalahan.";
         let isActionForm = "store";
-        let env = `{{ env('ESMK_SERVICE_BASE_URL') }}`
+        let env = `{{ env('SERVICE_BASE_URL') }}`
 
         function togglePasswordVisibility(inputId, toggleElement) {
             const input = document.getElementById(inputId);
@@ -268,8 +268,8 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/list', 
-                    '{{ asset('dummy/internal/user-manajemen/list_user_manajemen.json') }}', {
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/user-management/list',
+                    {
                         page: currentPage,
                         limit: defaultLimitPage,
                         ascending: defaultAscending,
@@ -637,7 +637,7 @@
                 submitForm(),
                 deleteData(),
                 // selectList('#input_satuan_kerja_id',
-                //     '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
+                //     '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
                 //     'Pilih Satuan Kerja', true),
             ]);
 

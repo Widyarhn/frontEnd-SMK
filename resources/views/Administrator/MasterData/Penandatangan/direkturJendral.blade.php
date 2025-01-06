@@ -1,4 +1,8 @@
 @extends('...Administrator.index', ['title' => 'Direktur Jendral | Master Satuan Kerja'])
+@section('asset_css')
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
+@endsection
+
 
 @section('content')
     <div class="page-header">
@@ -100,12 +104,11 @@
                     <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                         <div class="p-3">
                             <div class="mb-3">
-                                <div class="form-floating">
-                                    <select class="form-select" id="floatingSelect" name="input_satuan_kerja_id"
-                                        id="input_satuan_kerja_id" aria-label="Floating label select example" readonly>
-                                        <option value="dishub jabar" selected>Dishub Jabar</option>
-                                    </select>
+                                <div class="form">
                                     <label for="floatingSelect">Instansi</label>
+                                    <select class="form-control" id="input_satuan_kerja_id"
+                                        name="input_satuan_kerja_id" style="width: 100%;">
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -134,7 +137,7 @@
                                     <label for="input_signer_identity_number">Nomor Identitas</label>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 d-none">
                                 <label class="mb-2">Unggah Tanda Tangan</label>
                                 <div class="col-md-12">
                                     <div class="mb-3">
@@ -157,6 +160,8 @@
 @section('scripts')
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/plugins/dropzone-amd-module.min.js"></script>
+    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
+
     <script>
         let defaultLimitPage = 10;
         let currentPage = 1;
@@ -166,8 +171,8 @@
         let menu = 'Direktur Jenderal';
         let getDataTable = '';
         let errorMessage = "Terjadi Kesalahan.";
-        let isActionForm = "store";
-        let env = `{{ env('ESMK_SERVICE_BASE_URL') }}`
+        let isActionForm = "create";
+        let env = `{{ env('SERVICE_BASE_URL') }}`
 
         async function getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch) {
             loadingPage(true);
@@ -175,8 +180,8 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    // '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/list', 
-                    '{{ asset('dummy/internal/md-penandatangan/list_penandatangan.json') }}', {
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/list', 
+                    {
                         page: currentPage,
                         limit: defaultLimitPage,
                         ascending: defaultAscending,
@@ -301,7 +306,7 @@
         async function addData() {
             $(document).on("click", ".add-data", function() {
                 $("#modal-title").html(`Form Tambah ${menu}`);
-                isActionForm = "store";
+                isActionForm = "create";
                 $("#modal-form").modal("show");
                 $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
 
@@ -334,9 +339,8 @@
                 $('#input_satuan_kerja_id').append(new Option(data.work_unit.name, workUnit, true, true));
                 $("#input_satuan_kerja_id").trigger('change');
 
-                // $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/update`);
-                $("#form-create").data("action-url", `{{ asset('dummy/internal/md-penandatangan/edit_penandatangan.json') }}`);
-                $("#form-create").data("id_user", id);
+                $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/update`);
+                $("#form-create").data("id", id);
             });
         }
 
@@ -351,26 +355,45 @@
                     showCancelButton: true,
                     confirmButtonText: "Ya, Hapus!",
                     cancelButtonText: "Tidak, Batal!",
-                    reverseButtons: true
+                    reverseButtons: false
                 }).then(async (result) => {
-                    let postDataRest = console.log(id);
-                    loadingPage(false);
                     if (result.isConfirmed == true) {
-                        setTimeout(async () => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Pemberitahuan',
-                                text: 'Data berhasil dihapus!',
-                                confirmButtonText: 'OK'
-                            }).then(async () => {
-                                await initDataOnTable(defaultLimitPage,
-                                    currentPage,
-                                    defaultAscending, defaultSearch);
-                            });
-                        }, 100);
+                        loadingPage(true);
+                        let method = 'destroy';
+                        const postDataRest = await CallAPI(
+                            'POST',
+                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/direktur-jendral/${method}`,
+                            {
+                                id: id
+                            }
+                        ).then(function(response) {
+                            return response;
+                        }).catch(function(error) {
+                            loadingPage(false);
+                            let resp = error.response;
+                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            return resp;
+                        });
+        
+                        if (postDataRest.status == 200) {
+                            loadingPage(false);
+                            setTimeout(async () => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pemberitahuan',
+                                    text: 'Data berhasil dihapus!',
+                                    confirmButtonText: 'OK'
+                                }).then(async () => {
+                                    await initDataOnTable(defaultLimitPage,
+                                        currentPage,
+                                        defaultAscending,
+                                        defaultSearch);
+                                });
+                            }, 100);
+                        }
                     }
                 }).catch(swal.noop);
-            });
+            })
         }
 
         async function submitForm() {
@@ -387,30 +410,45 @@
                     satker_id: $('#input_satuan_kerja_id').val()
                 };
 
-                let id_user = $("#form-create").data("id_user");
-                if (id_user) {
-                    formData.id = id_user;
+                let id = $("#form-create").data("id");
+                if (id) {
+                    formData.id = id;
                 }
-                let method = id_user ? 'PUT' : 'POST';
-                // let postData = await CallAPI(method, actionUrl, formData);
-                let postDataRest = console.log(formData);
-                loadingPage(false);
-                $("#modal-form").modal("hide");
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Pemberitahuan',
-                    text: 'Data berhasil disimpan!',
-                    confirmButtonText: 'OK'
-                }).then(async () => {
-                    await initDataOnTable(defaultLimitPage, currentPage,
-                        defaultAscending, defaultSearch);
-                    $(this).trigger("reset");
+
+                const postDataRest = await CallAPI(
+                    'POST',
+                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/direktur-jendral/${isActionForm}`,
+                    formData
+                ).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
                     $("#modal-form").modal("hide");
+                    return resp;
                 });
 
+                if (postDataRest.status == 200 || postDataRest.status == 201) {
+                    loadingPage(false);
+                    $("form").find("input, select, textarea").val("").prop("checked", false)
+                        .trigger("change");
+                        $("#modal-form").modal("hide");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Pemberitahuan',
+                            text: 'Data berhasil disimpan!',
+                            confirmButtonText: 'OK'
+                        }).then(async () => {
+                            await initDataOnTable(defaultLimitPage, currentPage,
+                                defaultAscending, defaultSearch);
+                            $(this).trigger("reset");
+                            $("#modal-form").modal("hide");
+                        });
+                }
             });
             $('#modal-form').on('hidden.bs.modal', function() {
-                $("#form-create").data("id_user", null); // Reset ID to null
+                $("#form-create").data("id", null); // Reset ID to null
                 $('#form-create').trigger("reset"); // Reset form fields
             });
         }
@@ -419,12 +457,11 @@
             $(document).on("click", ".change-status", async function() {
                 let id = $(this).attr("data-id");
                 let status = $(this).attr("data-status");
-                console.log(status);
                 await setStatusAction(id, status);
             });
         }
 
-        async function setStatusAction(id, status) {
+        async function setStatusAction(id, isStatus) {
             Swal.fire({
                 icon: "info",
                 title: "Pemberitahuan",
@@ -432,24 +469,41 @@
                 showCancelButton: true,
                 confirmButtonText: "Ya, Saya Yakin!",
                 cancelButtonText: "Batal",
-                reverseButtons: true
+                reverseButtons: false
             }).then(async (result) => {
-                loadingPage(true)
-                let postDataRest = console.log(id);
-                loadingPage(false);
                 if (result.isConfirmed == true) {
-                    setTimeout(async () => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Pemberitahuan',
-                            text: 'Status berhasil dirubah!',
-                            confirmButtonText: 'OK'
-                        }).then(async () => {
-                            await initDataOnTable(defaultLimitPage,
-                                currentPage,
-                                defaultAscending, defaultSearch);
-                        });
-                    }, 100);
+                    loadingPage(true)
+                    let formData = {};
+                    formData.id = id;
+                    let is_status = isStatus == 'aktifkan' ? 'active' : 'inactive';
+                    const postDataRest = await CallAPI(
+                        'GET',
+                        `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/direktur-jendral/${is_status}`,
+                        formData
+                    ).then(function(response) {
+                        return response;
+                    }).catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                        return resp;
+                    });
+    
+                    if (postDataRest.status == 200 || postDataRest.status == 201) {
+                        loadingPage(false);
+                        setTimeout(async () => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Pemberitahuan',
+                                text: 'Status berhasil dirubah!',
+                                confirmButtonText: 'OK'
+                            }).then(async () => {
+                                await initDataOnTable(defaultLimitPage,
+                                    currentPage,
+                                    defaultAscending, defaultSearch);
+                            });
+                        }, 100);
+                    }
                 }
             }).catch(swal.noop);
         }
@@ -579,9 +633,9 @@
                 editData(),
                 submitForm(),
                 deleteData(),
-                // selectList('#input_satuan_kerja_id',
-                //     '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
-                //     'Pilih Satuan Kerja', true),
+                selectList('#input_satuan_kerja_id',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
+                    'Pilih Satuan Kerja', true),
             ]);
 
         }

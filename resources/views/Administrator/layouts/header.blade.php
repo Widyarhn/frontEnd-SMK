@@ -180,12 +180,12 @@
                                             alt="user-image" class="user-avtar wid-35" />
                                     </div>
                                     <div class="flex-grow-1 ms-3">
-                                        <h6 class="mb-1">Carson Darrin 🖖</h6>
-                                        <span>carson.darrin@company.io</span>
+                                        <h6 class="mb-1">{{request()->user['name']}}</h6>
+                                        <span>{{request()->user['email']}}</span>
                                     </div>
                                 </div>
                                 <hr class="border-secondary border-opacity-50" />
-                                <div class="card">
+                                <div class="card d-none">
                                     <div class="card-body py-3">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 d-inline-flex align-items-center"><svg

@@ -103,12 +103,12 @@
 @section('scripts')
     <script src="https://ableproadmin.com/assets/js/plugins/apexcharts.min.js"></script>
     <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
-    <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
 @endsection
 
 @section('page_js')
     <script>
+    let paramsTable         = {};
         async function getListData(paramsTable) {
             loadingPage(true);
             let countPaging = $('#countPage');
@@ -118,7 +118,13 @@
             // Memanggil API untuk mendapatkan data bidang
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/smk_element_list.json`,
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/smk-element/list',  
+                    {
+                        page: paramsTable.currentPage,
+                        limit: paramsTable.defaultLimitPage,
+                        ascending: paramsTable.defaultAscending,
+                        search: paramsTable.defaultSearch,
+                    }
                 )
                 .then(response => response)
                 .catch(error => {
@@ -188,7 +194,7 @@
                                     <li class="list-inline-item">
                                         ${actionButton}
                                     </li>
-                                      <li class="list-inline-item"><a href="/admin/element-smk/detail"
+                                      <li class="list-inline-item"><a href="/admin/element-smk/detail?id=${element.id}"
                                             class="avtar avtar-s btn-link-info btn-pc-default"><i
                                                 class="ti ti-eye f-20"></i></a></li>
                                     <li class="list-inline-item">
@@ -225,7 +231,6 @@
             $(document).on("click", ".delete-data", async function() {
                 isActionForm = "destroy";
                 let id = $(this).attr("data-id");
-                let name = $(this).attr("data-name");
                 Swal.fire({
                     icon: "question",
                     title: `Hapus Data ${name}`,
@@ -233,23 +238,39 @@
                     showCancelButton: true,
                     confirmButtonText: "Ya, Hapus!",
                     cancelButtonText: "Tidak, Batal!",
-                    reverseButtons: true
+                    reverseButtons: false
                 }).then(async (result) => {
-                    let postDataRest = console.log(id);
-                    loadingPage(false);
                     if (result.isConfirmed == true) {
-                        setTimeout(async () => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Pemberitahuan',
-                                text: 'Data berhasil dihapus!',
-                                confirmButtonText: 'OK'
-                            }).then(async () => {
-                                await initDataOnTable(defaultLimitPage,
-                                    currentPage,
-                                    defaultAscending, defaultSearch);
-                            });
-                        }, 100);
+                        loadingPage(true);
+                        let method = 'destroy';
+                        const postDataRest = await CallAPI(
+                            'POST',
+                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/smk-element/${method}`,
+                            {
+                                id: id
+                            }
+                        ).then(function(response) {
+                            return response;
+                        }).catch(function(error) {
+                            loadingPage(false);
+                            let resp = error.response;
+                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            return resp;
+                        });
+        
+                        if (postDataRest.status == 200) {
+                            loadingPage(false);
+                            setTimeout(async () => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pemberitahuan',
+                                    text: 'Data berhasil dihapus!',
+                                    confirmButtonText: 'OK'
+                                }).then(async () => {
+                                    await manipulationDataTable(paramsTable, '#pagination', '#limitPage', '#searchInput', getListData, true);
+                                });
+                            }, 100);
+                        }
                     }
                 }).catch(swal.noop);
             })
@@ -271,31 +292,45 @@
                 showCancelButton: true,
                 confirmButtonText: "Ya, Saya Yakin!",
                 cancelButtonText: "Batal",
-                reverseButtons: true
+                reverseButtons: false
             }).then(async (result) => {
-                loadingPage(true)
-                let postDataRest = console.log(id);
-                loadingPage(false);
                 if (result.isConfirmed == true) {
-                    setTimeout(async () => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Pemberitahuan',
-                            text: 'Status berhasil dirubah!',
-                            confirmButtonText: 'OK'
-                        }).then(async () => {
-                            await initDataOnTable(defaultLimitPage,
-                                currentPage,
-                                defaultAscending, defaultSearch);
-                        });
-                    }, 100);
+                    loadingPage(true)
+                    let formData = {};
+                    formData.id = id;
+                    const getDataRest = await CallAPI(
+                        'GET',
+                        `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/smk-element/status`,
+                        formData
+                    ).then(function(response) {
+                        return response;
+                    }).catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                        return resp;
+                    });
+    
+                    if (getDataRest.status == 200 || getDataRest.status == 201) {
+                        loadingPage(false);
+                        setTimeout(async () => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Pemberitahuan',
+                                text: 'Status berhasil dirubah!',
+                                confirmButtonText: 'OK'
+                            }).then(async () => {
+                                await manipulationDataTable(paramsTable, '#paginationJs', '#limitPage', '#searchInput', getListData, true);
+                            });
+                        }, 100);
+                    }
                 }
             }).catch(swal.noop);
         }
 
         async function initPageLoad() {
 
-            let paramsTable = {
+            paramsTable = {
                 "defaultLimitPage": 10, // Set limit page default
                 "currentPage": 1,
                 "totalPage": 0,
