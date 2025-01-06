@@ -214,15 +214,15 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
-    <script src="{{ asset('assets') }}/js/pages/invoice-list.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
-    <script src="{{ asset('assets') }}/js/daterange-picker.js"></script>
-    <script src="{{ asset('assets') }}/js/daterange-custom.js"></script>
+    <script src="{{ asset('assets/js/date/moment.js') }}"></script>
+    <script src="{{ asset('assets/js/date/daterange-picker.js') }}"></script>
+    <script src="{{ asset('assets/js/date/daterange-custom.js') }}"></script>
+    <script src="{{ asset('assets/js/date/date-language-format.js') }}"></script>
+    <script src="{{ asset('assets/js/date/date-DMY-format.js') }}"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
+    <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
 @endsection
 
 @section('page_js')
@@ -450,7 +450,338 @@
             $('#exampleModalCenter').modal('show');
         }
 
+        async function selectFilter(id) {
+            if (id === '#input-perusahaan') {
+                $(id).select2({
+                    ajax: {
+                        url: `/dummy/internal/select-company.json`,
+                        dataType: 'json',
+                        delay: 500,
+                        headers: {
+                            Authorization: `Bearer ${Cookies.get('auth_token')}`
+                        },
+                        data: function(params) {
+                            let query = {
+                                search: params.term,
+                                page: 1,
+                                limit: 30,
+                                ascending: 1
+                            }
+                            return query;
+                        },
+                        processResults: function(res) {
+                            let data = res.data;
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+                                        id: item.id,
+                                        text: item.name
+                                    }
+                                })
+                            };
+                        },
+                    },
+                    allowClear: true,
+                    placeholder: 'Pilih perusahaan'
+                });
+            } else if (id === '#input-status') {
+                $(id).select2({
+                    allowClear: true,
+                    placeholder: 'Pilih status'
+                });
+            }
+        }
+
+        async function getFilterDownload(filter = {}, startDate, endDate) {
+            loadingPage(true);
+            const formatDate = (date) => {
+                const d = new Date(date);
+                return d.toISOString().split('T')[0];
+            };
+
+            let params = {
+                status: filter['status'] || '',
+                company: filter['company'] || '',
+                fromdate: formatDate(filter['start_date'] || startDate),
+                duedate: formatDate(filter['end_date'] || endDate),
+                limit: filter['limit'] || 10,
+                ascending: true
+            };
+
+
+            let getDataRest = await CallAPI('GET', `${url}/internal/admin-panel/laporan-tahunan/list`, params)
+                .then(function(response) {
+                    return response;
+                })
+                .catch(function(error) {
+                    loadingPage(false);
+                    notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
+                    return null;
+                });
+
+            if (getDataRest && getDataRest.data.status_code === 200) {
+                let data = getDataRest.data.data;
+
+
+                let filteredData = data.filter(item => {
+                    return (!params.status || item.status === params.status) &&
+                        (!params.company || item.nama_perusahaan === params.company) &&
+                        (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
+                            .start_date)) &&
+                        (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
+                });
+
+                if (filteredData.length > 0) {
+                    // Fungsi ini harus dipanggil untuk mengunduh data
+                    await downloadToExcel(filteredData, startDate, endDate);
+                    notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda');
+                } else {
+                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
+                }
+            } else {
+                notificationAlert('error', 'Pemberitahuan', 'Gagal mendapatkan data atau data tidak ada.');
+            }
+        }
+
+
+        async function downloadToExcel(data, fromDate, toDate) {
+            let selectedData = data.map((item, index) => ({
+                No: index + 1,
+                Header2: item.nama_perusahaan || '-',
+                Header3: item.status || '-',
+                Header5: item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
+                    .diverifikasi_oleh.assessor.name : '-',
+                Header7: item.tahun_laporan || '-',
+                Header8: item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) : '-',
+                Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
+            }));
+
+
+            let header = [
+                'No.',
+                'Nama Perusahaan',
+                'Status',
+                'Diverifikasi Oleh',
+                'Tahun Laporan',
+                'Tanggal Verivikasi',
+                'Tanggal Dibuat',
+            ];
+
+            let formattedFromDate = await dateLanguageFormat(fromDate);
+            let formattedToDate = await dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title;
+            let fileName;
+            if (sameDate) {
+                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate}`.toUpperCase();
+                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate}).xlsx`;
+            } else {
+                title = `Daftar Pengajuan Sertifikan E-SMK ${formattedFromDate} - ${formattedToDate}`
+                    .toUpperCase();
+                fileName = `Daftar Pengajuan Sertifikan E-SMK (${formattedFromDate} - ${formattedToDate}).xlsx`;
+            }
+
+            try {
+                let workbook = await XlsxPopulate.fromBlankAsync();
+                let sheet = workbook.sheet(0);
+                sheet.name("Data");
+
+                let lastColumn = String.fromCharCode(64 + header.length);
+                let titleRange = `A1:${lastColumn}1`;
+                sheet.range(titleRange).merged(true).value(title).style({
+                    horizontalAlignment: "center",
+                    bold: true,
+                    fontSize: 12
+                });
+
+                header.forEach((title, index) => {
+                    let cell = sheet.cell(3, index + 1);
+                    cell.value(title);
+                    cell.style({
+                        bold: true,
+                        fill: "CCCCCC",
+                        border: true,
+                        horizontalAlignment: "center"
+                    });
+                });
+
+                selectedData.forEach((row, rowIndex) => {
+                    Object.values(row).forEach((value, colIndex) => {
+                        let cell = sheet.cell(rowIndex + 4, colIndex + 1);
+                        cell.value(value);
+                        cell.style({
+                            border: true,
+                            horizontalAlignment: "left" // Rata kiri untuk semua data
+                        });
+                    });
+                });
+
+                header.forEach((title, index) => {
+                    sheet.column(index + 1).width(Math.max(...[title, ...selectedData.map(row => row[Object
+                        .keys(row)[index]])].map(text => text.toString().length)) * 1.2);
+                });
+
+                let blob = await workbook.outputAsync();
+
+                saveAs(blob, fileName);
+            } catch (error) {
+                notificationAlert('warning', 'Error', 'Periksa Jaringan Anda.');
+            }
+        }
+
+
+        async function downloadToCSV(data, fromDate, toDate) {
+            let formattedFromDate = dateLanguageFormat(fromDate);
+            let formattedToDate = dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title;
+            if (sameDate) {
+                title = `Perusahaan e-SMK TANGGAL ${formattedFromDate}`.toUpperCase();
+            } else {
+                title = `Perusahaan e-SMK DARI TANGGAL ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+            }
+
+            // Prepare the headers
+            let headers = [
+                'No.',
+                'Nama Perusahaan',
+                'Status',
+                'Diverifikasi Oleh',
+                'Tahun Laporan',
+                'Tanggal Verifikasi',
+                'Tanggal Dibuat',
+            ];
+
+            // Convert the data to CSV format
+            let csvContent = headers.join(',') + '\n'; // Add headers
+
+            data.forEach((item, index) => {
+                let row = [
+                    index + 1,
+                    item.nama_perusahaan || '-',
+                    item.status || '-',
+                    item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
+                    .diverifikasi_oleh.assessor.name : '-',
+                    item.tahun_laporan || '-', // Changed from item.year to item.tahun_laporan
+                    item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) :
+                    '-', // Changed from item.tanggal_verivikasi to item.tanggal_verifikasi
+                    item.created_at ? dateDMYFormat(item.created_at) :
+                    '-'
+                ];
+                csvContent += row.join(',') + '\n';
+            });
+
+            let blob = new Blob([csvContent], {
+                type: 'text/csv;charset=utf-8;'
+            });
+            let link = document.createElement('a');
+            let fileName = `Perusahaan e-SMK (${formattedFromDate} - ${formattedToDate}).csv`;
+
+            if (navigator.msSaveBlob) { // For IE 10+
+                navigator.msSaveBlob(blob, fileName);
+            } else {
+                let url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', fileName);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        async function downloadToPDF(data, fromDate, toDate) {
+            const {
+                jsPDF
+            } = window.jspdf;
+
+            let selectedData = data.map((item, index) => ({
+                No: index + 1,
+                Header2: item.nama_perusahaan || '-',
+                Header3: item.status || '-',
+                Header5: item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
+                    .diverifikasi_oleh.assessor.name : '-',
+                Header7: item.tahun_laporan || '-',
+                Header8: item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) : '-',
+                Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
+            }));
+
+            let header = [
+                'No.',
+                'Nama Perusahaan',
+                'Status',
+                'Diverifikasi Oleh',
+                'Tahun Laporan',
+                'Tanggal Verifikasi',
+                'Tanggal Dibuat',
+            ];
+
+            let formattedFromDate = await dateLanguageFormat(fromDate);
+            let formattedToDate = await dateLanguageFormat(toDate);
+            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
+
+            let title = sameDate ?
+                `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate}`.toUpperCase() :
+                `Daftar Pengajuan Penilaian e-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
+
+            let doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'pt',
+                format: 'a4'
+            });
+
+            doc.setFontSize(12);
+            doc.text(title, doc.internal.pageSize.getWidth() / 2, 30, {
+                align: 'center'
+            });
+
+            doc.autoTable({
+                head: [header],
+                body: selectedData.map(Object.values),
+                startY: 50,
+                styles: {
+                    fontSize: 9,
+                    cellPadding: 4,
+                    halign: 'center' // Rata tengah untuk seluruh isi
+                },
+                headStyles: {
+                    fillColor: [204, 204, 204],
+                    textColor: 0,
+                    halign: 'center'
+                },
+                bodyStyles: {
+                    valign: 'middle'
+                },
+                columnStyles: {
+                    0: {
+                        cellWidth: 30 // Lebar kolom pertama
+                    },
+                    // Atur semua kolom lain agar rata tengah
+                    1: {
+                        halign: 'center'
+                    },
+                    2: {
+                        halign: 'center'
+                    },
+                    3: {
+                        halign: 'center'
+                    },
+                    4: {
+                        halign: 'center'
+                    },
+                    5: {
+                        halign: 'center'
+                    }
+                }
+            });
+
+            doc.save(`Daftar Pengajuan Penilaian e-SMK (${formattedFromDate} - ${formattedToDate}).pdf`);
+        }
+
         async function customFilterTable() {
+
             let dateRangePicker = initializeDateRangePicker();
             let startDate = dateRangePicker.data('daterangepicker').startDate;
             let endDate = dateRangePicker.data('daterangepicker').endDate;
@@ -459,15 +790,17 @@
             let timeDiff = endDateObj - startDateObj;
             let dayDiff = timeDiff / (1000 * 3600 * 24);
 
+            // Submit filter
             document.getElementById('custom-filter').addEventListener('submit', async function(e) {
                 e.preventDefault();
 
+                // Ambil nilai startDate dan endDate dari datepicker
                 let startDate = dateRangePicker.data('daterangepicker').startDate;
                 let endDate = dateRangePicker.data('daterangepicker').endDate;
 
                 if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').format('YYYY-MM-DD');
-                    endDate = endDate.endOf('day').format('YYYY-MM-DD');
+                    startDate = startDate.startOf('day').toISOString();
+                    endDate = endDate.endOf('day').toISOString();
                 } else {
                     startDate = '';
                     endDate = '';
@@ -476,18 +809,23 @@
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
+                // Buat objek custom filter
                 customFilter = {
+
                     'company': company,
                     'status': status,
-                    'start_date': startDate,
-                    'end_date': endDate
+                    'start_date': $("#daterange").val() != '' ? startDate : '',
+                    'end_date': $("#daterange").val() != '' ? endDate : ''
                 };
 
+
+                // Set currentPage ke 1 dan muat data baru
                 currentPage = 1;
                 await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
                     customFilter);
             });
 
+            // Fungsi download
             document.getElementById('download-excel').addEventListener('click', async function() {
                 let startDate = dateRangePicker.data('daterangepicker').startDate;
                 let endDate = dateRangePicker.data('daterangepicker').endDate;
@@ -510,6 +848,7 @@
                     'end_date': $("#daterange").val() !== '' ? endDate : ''
                 };
 
+                // Validation for date range length
                 if (dayDiff > 31) {
                     notificationAlert('info', 'Pemberitahuan',
                         'Rentang tanggal tidak boleh lebih dari 31 hari');
@@ -521,7 +860,10 @@
                     return;
                 }
 
+                loadingPage(true);
+
                 await getFilterDownload(customFilter, startDate, endDate);
+
             });
 
             document.getElementById('download-csv').addEventListener('click', async function() {
@@ -535,6 +877,7 @@
                     startDate = '';
                     endDate = '';
                 }
+
 
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
@@ -559,7 +902,9 @@
 
                 let filteredData = await fetchFilteredData(customFilter);
 
+
                 if (filteredData.length > 0) {
+
                     await downloadToCSV(filteredData, startDate, endDate);
                 } else {
                     notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
@@ -578,12 +923,14 @@
                     endDate = '';
                 }
 
+
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
                 let customFilter = {
                     'status': status,
                     'company': company,
+
                     'start_date': $("#daterange").val() !== '' ? startDate : '',
                     'end_date': $("#daterange").val() !== '' ? endDate : ''
                 };
@@ -608,17 +955,19 @@
                 }
             });
 
+            // Reset filter
             document.getElementById('resetCustomFilter').addEventListener('click', async function() {
+                // Reset semua input
                 $('.select2').val('').trigger('change');
                 $('#daterange').val('');
                 $('.search-input').val('');
 
+                // Reset custom filter dan muat ulang data default
                 customFilter = {};
                 defaultSearch = '';
                 defaultLimitPage = 10;
                 currentPage = 1;
-
-                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
                     customFilter);
             });
         }
@@ -639,8 +988,7 @@
 
             try {
 
-                let getDataRest = await CallAPI('GET',
-                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/list`, params)
+                let getDataRest = await CallAPI('GET', `${url}/internal/admin-panel/laporan-tahunan/list`, params)
                     .then(function(response) {
                         return response;
                     })
@@ -685,489 +1033,17 @@
             }
         }
 
-        async function selectFilter(id, route, placeholder) {
-            var multipleFetch = new Choices(id, {
-                placeholder: placeholder,
-                placeholderValue: placeholder,
-                maxItemCount: 5
-            }).setChoices(function() {
-                return fetch(
-                        route
-                    )
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then(function(data) {
-                        return data.data.map(function(item) {
-                            return {
-                                value: item.id,
-                                label: item.name
-                            };
-                        });
-                    });
-            });
-        }
-
-        async function selectFilterStatus(id, placeholder) {
-            // Data didefinisikan langsung di dalam fungsi
-            const data = {
-                verified: 'Laporan Terverifikasi',
-                rejected: 'Ditolak',
-                request: 'Pengajuan',
-                disposition: 'Disposisi',
-                not_passed: 'Tidak Lulus',
-                cancelled: 'Pengajuan Dibatalkan',
-                revision: 'Revisi Pengajuan'
-            };
-
-            var multipleFetch = new Choices(id, {
-                placeholder: placeholder,
-                placeholderValue: placeholder,
-                maxItemCount: 5
-            }).setChoices(function() {
-                // Mengonversi objek menjadi array untuk diolah oleh Choices.js
-                const choicesArray = Object.entries(data).map(([key, value]) => ({
-                    value: key,
-                    label: value
-                }));
-
-                return Promise.resolve(choicesArray);
-            });
-        }
-
-        // async function selectFilter(id) {
-        //     if (id === '#input-perusahaan') {
-        //         $(id).select2({
-        //             ajax: {
-        //                 url: `/dummy/internal/select-company.json`,
-        //                 dataType: 'json',
-        //                 delay: 500,
-        //                 headers: {
-        //                     Authorization: `Bearer ${Cookies.get('auth_token')}`
-        //                 },
-        //                 data: function(params) {
-        //                     let query = {
-        //                         search: params.term,
-        //                         page: 1,
-        //                         limit: 30,
-        //                         ascending: 1
-        //                     }
-        //                     return query;
-        //                 },
-        //                 processResults: function(res) {
-        //                     let data = res.data;
-        //                     return {
-        //                         results: $.map(data, function(item) {
-        //                             return {
-        //                                 id: item.id,
-        //                                 text: item.name
-        //                             }
-        //                         })
-        //                     };
-        //                 },
-        //             },
-        //             allowClear: true,
-        //             placeholder: 'Pilih perusahaan'
-        //         });
-        //     } else if (id === '#input-status') {
-        //         $(id).select2({
-        //             allowClear: true,
-        //             placeholder: 'Pilih status'
-        //         });
-        //     }
-        // }
-
-        async function getFilterDownload(filter = {}, startDate, endDate) {
-
-            loadingPage(true);
-
-            const formatDate = (date) => {
-                const d = new Date(date);
-                return d.toISOString().split('T')[0]; // Formats to 'YYYY-MM-DD'
-            };
-
-            // Format startDate and endDate
-            let formattedStartDate = formatDate(startDate);
-            let formattedEndDate = formatDate(endDate);
-
-            let params = {
-                status: filter['status'] || '',
-                company: filter['company'] || '',
-                date_from: formatDate(filter['start_date'] || formattedStartDate),
-                date_to: formatDate(filter['end_date'] || formattedEndDate),
-                limit: filter['limit'],
-                ascending: true
-            };
-
-            try {
-                // Fetch data from the JSON file
-                let getDataRest = await CallAPI('GET',
-                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/list`, params)
-                    .then(function(response) {
-                        return response;
-                    })
-                    .catch(function(error) {
-                        loadingPage(false);
-                        let resp = error.response;
-                        notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
-                        return resp;
-                    });
-
-
-                // Check if the request was successful
-                if (getDataRest.data.status_code == 200) {
-                    let data = getDataRest.data.data;
-
-
-                    // Filter data based on parameters
-                    let filteredData = data.filter(item => {
-                        return (!params.status || item.status === params.status) &&
-                            (!params.company || item.nama_perusahaan === params.company) &&
-                            (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
-                                .start_date)) &&
-                            (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
-                    });
-
-
-                    if (filteredData.length > 0) {
-                        await downloadToExcel(filteredData, formattedStartDate,
-                            formattedEndDate);
-                        notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda');
-                    } else {
-                        notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
-                    }
-                } else {
-                    notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
-                }
-            } catch (error) {
-                notificationAlert('warning', 'Error', 'Tidak dapat memuat data');
-            } finally {
-                loadingPage(false);
-            }
-        }
-
-        function mapData(data) {
-            return data.map((item, index) => {
-                let created_at = moment(item.created_at, 'YYYY-MM-DD');
-                let current = moment();
-                let lastUpdated = item.updated_at ? moment(item.updated_at, 'YYYY-MM-DD') : current;
-                let weekDays = calculateBusinessDays(created_at, current);
-                if (item.status === 'certificate_validation') {
-                    weekDays = calculateBusinessDays(lastUpdated, current);
-                }
-                let progressLabel = `${weekDays} hari`;
-
-                const statusLabels = {
-                    'draft': 'Draft',
-                    'request': 'Pengajuan',
-                    'disposition': 'Disposisi',
-                    'not_passed_assessment': 'Tidak lulus penilaian',
-                    'submission_revision': 'Revisi pengajuan',
-                    'passed_assessment': 'Lulus penilaian',
-                    'not_passed_assessment_verification': 'Penilaian tidak lulus verifikasi',
-                    'assessment_revision': 'Revisi penilaian',
-                    'passed_assessment_verification': 'Penilaian terverifikasi',
-                    'scheduling_interview': 'Penjadwalan wawancara',
-                    'scheduled_interview': 'Wawancara Terjadwal',
-                    'not_passed_interview': 'Tidak lulus wawancara',
-                    'completed_interview': 'Wawancara selesai',
-                    'verification_director': 'Validasi direktur',
-                    'certificate_validation': 'Pengesahan sertifikat',
-                    'rejected': 'Pengajuan ditolak',
-                    'cancelled': 'Pengajuan dibatalkan',
-                    'expired': 'Pengajuan kedaluwarsa'
-                };
-
-                // Mengambil nama service types dari company
-                let serviceTypes = '-';
-                if (item.company && Array.isArray(item.company.service_types)) {
-                    serviceTypes = item.company.service_types.map(service => service.name).join(', ');
-                }
-
-                console.log(item);
-
-                return {
-                    No: index + 1,
-                    Header1: item.regnumber || '-',
-                    Header2: item.company_name || '-',
-                    Header3: serviceTypes, // Menambahkan serviceTypes setelah company_name
-                    Header4: statusLabels[item.status] || '-',
-                    Header5: progressLabel,
-                    Header6: item.disposition_to && item.disposition_to.name ? item.disposition_to.name : '-',
-                    Header7: item.schedule_interview ? dateDMYFormat(item.schedule_interview) : '-',
-                    Header8: item.disposition_by ? item.disposition_by.name : '-',
-                    Header9: item.created_at ? dateDMYFormat(item.created_at) : '-'
-                };
-            });
-        }
-
-        async function downloadToExcel(data, fromDate, toDate) {
-            let selectedData = mapData(data);
-
-            let header = [
-                'No.',
-                'No. Pendaftaran',
-                'Nama Perusahaan',
-                'Jenis Pelayanan',
-                'Status',
-                'Lama Proses',
-                'Penilai',
-                'Jadwal Interview',
-                'Posisi',
-                'Tanggal Pengajuan'
-            ];
-
-            let formattedFromDate = dateLanguageFormat(fromDate);
-            let formattedToDate = dateLanguageFormat(toDate);
-            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
-
-            let title;
-            let fileName;
-            if (sameDate) {
-                title = `Daftar Pengajuan Laporan Tahunan E-SMK ${formattedFromDate}`.toUpperCase();
-                fileName = `Daftar Pengajuan Laporan Tahunan E-SMK (${formattedFromDate}).xlsx`;
-            } else {
-                title = `Daftar Pengajuan Laporan Tahunan E-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
-                fileName = `Daftar Pengajuan Laporan Tahunan E-SMK (${formattedFromDate} - ${formattedToDate}).xlsx`;
-            }
-
-            try {
-                let workbook = await XlsxPopulate.fromBlankAsync();
-                let sheet = workbook.sheet(0);
-                sheet.name("Data");
-
-                let lastColumn = String.fromCharCode(64 + header.length);
-                let titleRange = `A1:${lastColumn}1`;
-                sheet.range(titleRange).merged(true).value(title).style({
-                    horizontalAlignment: "center",
-                    bold: true,
-                    fontSize: 12
-                });
-
-                header.forEach((title, index) => {
-                    let cell = sheet.cell(3, index + 1);
-                    cell.value(title);
-                    cell.style({
-                        bold: true,
-                        fill: "CCCCCC",
-                        border: true,
-                        horizontalAlignment: "center"
-                    });
-                });
-
-                selectedData.forEach((row, rowIndex) => {
-                    Object.values(row).forEach((value, colIndex) => {
-                        let cell = sheet.cell(rowIndex + 4, colIndex + 1);
-                        cell.value(value);
-                        cell.style({
-                            border: true,
-                            horizontalAlignment: "left"
-                        });
-                    });
-                });
-
-                header.forEach((title, index) => {
-                    sheet.column(index + 1).width(Math.max(...[title, ...selectedData.map(row => row[Object
-                        .keys(row)[index]])].map(text => text.toString().length)) * 1.2);
-                });
-
-                let blob = await workbook.outputAsync();
-                saveAs(blob, fileName);
-            } catch (error) {
-                notificationAlert('warning', 'Error', 'Periksa Jaringan Anda.');
-            }
-        }
-
-        async function downloadToCSV(data, fromDate, toDate) {
-            let formattedFromDate = dateLanguageFormat(fromDate);
-            let formattedToDate = dateLanguageFormat(toDate);
-            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
-
-            let title;
-            if (sameDate) {
-                title = `Pengajuan Laporan Tahunan e-SMK TANGGAL ${formattedFromDate}`.toUpperCase();
-            } else {
-                title = `Pengajuan Laporan Tahunan e-SMK DARI TANGGAL ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
-            }
-
-            let headers = [
-                'No.',
-                'No. Pendaftaran',
-                'Nama Perusahaan',
-                'Jenis Pelayanan',
-                'Status',
-                'Lama Proses',
-                'Penilai',
-                'Jadwal Interview',
-                'Posisi',
-                'Tanggal Pengajuan'
-            ];
-
-            let csvContent = headers.join(',') + '\n';
-            let selectedData = mapData(data);
-
-            selectedData.forEach(row => {
-                csvContent += Object.values(row).join(',') + '\n';
-            });
-
-            let blob = new Blob([csvContent], {
-                type: 'text/csv;charset=utf-8;'
-            });
-            let link = document.createElement('a');
-            let fileName = `Perusahaan e-SMK (${formattedFromDate} - ${formattedToDate}).csv`;
-
-            if (navigator.msSaveBlob) {
-                navigator.msSaveBlob(blob, fileName);
-            } else {
-                let url = URL.createObjectURL(blob);
-                link.setAttribute('href', url);
-                link.setAttribute('download', fileName);
-                link.style.visibility = 'hidden';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        }
-
-        async function downloadToPDF(data, fromDate, toDate) {
-            const {
-                jsPDF
-            } = window.jspdf;
-            let selectedData = mapData(data);
-
-            let header = [
-                'No.',
-                'No. Pendaftaran',
-                'Nama Perusahaan',
-                'Jenis Pelayanan',
-                'Status',
-                'Lama Proses',
-                'Penilai',
-                'Jadwal Interview',
-                'Posisi',
-                'Tanggal Pengajuan'
-            ];
-
-            let formattedFromDate = dateLanguageFormat(fromDate);
-            let formattedToDate = dateLanguageFormat(toDate);
-            let sameDate = moment(fromDate).isSame(moment(toDate), 'day');
-
-            let title;
-            if (sameDate) {
-                title = `Daftar Pengajuan Laporan Tahunan e-SMK ${formattedFromDate}`.toUpperCase();
-            } else {
-                title = `Daftar Pengajuan Laporan Tahunan e-SMK ${formattedFromDate} - ${formattedToDate}`.toUpperCase();
-            }
-
-            let doc = new jsPDF({
-                orientation: 'landscape',
-                unit: 'pt',
-                format: 'a4'
-            });
-
-            doc.setFontSize(12);
-            doc.text(title, doc.internal.pageSize.getWidth() / 2, 30, {
-                align: 'center'
-            });
-
-            doc.autoTable({
-                head: [header],
-                body: selectedData.map(Object.values),
-                startY: 50,
-                styles: {
-                    fontSize: 9,
-                    cellPadding: 4
-                },
-                headStyles: {
-                    fillColor: [204, 204, 204],
-                    textColor: 0,
-                    halign: 'center'
-                },
-                bodyStyles: {
-                    valign: 'middle'
-                },
-                columnStyles: {
-                    0: {
-                        halign: 'center',
-                        cellWidth: 30
-                    }
-                }
-            });
-
-            doc.save(`Daftar Pengajuan Penilaian e-SMK (${formattedFromDate} - ${formattedToDate}).pdf`);
-        }
-
-
-        function paginationDataOnTable(isPageSize) {
-            $('#pagination-js').pagination({
-                dataSource: Array.from({
-                    length: totalPage
-                }, (_, i) => i + 1),
-                pageSize: isPageSize,
-                className: 'paginationjs-theme-blue',
-                afterPreviousOnClick: function(e) {
-                    currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
-                },
-                afterPageOnClick: function(e) {
-                    currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
-                },
-                afterNextOnClick: function(e) {
-                    currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
-                },
-            });
-        }
-
-        function debounce(func, wait, immediate) {
-            let timeout;
-            return function() {
-                let context = this,
-                    args = arguments;
-                let later = function() {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                let callNow = immediate && !timeout;
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-                if (callNow) func.apply(context, args);
-            };
-        }
-
-        async function performSearch() {
-            defaultSearch = $('.search-input').val();
-            defaultLimitPage = $("#limitPage").val();
-            currentPage = 1;
-            await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
-        }
-
-
-        async function manipulationDataOnTable() {
-            $(document).on("change", "#limitPage", async function() {
-                defaultLimitPage = $(this).val();
-                currentPage = 1;
-                await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                    customFilter);
-                await paginationDataOnTable(defaultLimitPage);
-            });
-
-            $(document).on("input", ".search-input", debounce(performSearch, 500));
-            await paginationDataOnTable(defaultLimitPage);
-        }
-
-        async function initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter) {
-            await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
-            await paginationDataOnTable(defaultLimitPage);
-        }
 
         async function initPageLoad() {
-
+            flatpickr(document.querySelector('#pc-date_range_picker-2'), {
+                mode: 'range'
+            });
             await Promise.all([
                 getCount(),
                 customFilterTable(),
-                getListData(),
+                initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
+                    customFilter),
+                manipulationDataOnTable(),
                 selectFilter('#input-status'),
                 selectFilter('#input-perusahaan'),
             ]);
