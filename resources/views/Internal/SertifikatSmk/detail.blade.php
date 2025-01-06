@@ -446,9 +446,7 @@
                         taskListElement.insertAdjacentHTML('beforeend', taskItem);
                     });
 
-                    const viewFriendList = `
-                
-            `;
+                    const viewFriendList = ``;
                     taskListElement.insertAdjacentHTML('afterend', viewFriendList);
 
                 } else {
