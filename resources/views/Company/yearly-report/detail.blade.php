@@ -185,6 +185,11 @@
 
 @section('page_js')
     <script>
+        let queryString = window.location.search;
+        let urlParams = new URLSearchParams(queryString);
+        let referenceId = urlParams.get('id');
+        let companyID = urlParams.get('companyID');
+
         function generateRowOfElementTitle(colSpanTitle, numbering, title) {
             let $templateRow = `
                     <div class="accordion-item shadow-sm border-0 mb-4">
@@ -285,8 +290,12 @@
             let getDataRest;
 
             try {
-                const baseUrl = `/dummy/company/laporanTahunan/detail.json`;
-                getDataRest = await CallAPI('GET', baseUrl);
+
+                const baseUrl = `{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/detail`;
+                getDataRest = await CallAPI('GET', baseUrl, {
+                    id: referenceId,
+                    companyID: companyID
+                });
             } catch (error) {
                 loadingPage(false);
                 const errorMessage = error.response?.data?.message || 'Terjadi kesalahan';
