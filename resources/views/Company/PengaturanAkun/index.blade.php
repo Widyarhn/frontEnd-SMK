@@ -41,7 +41,7 @@
                                     <div class="text-center mt-3">
                                         <div class="chat-avtar d-inline-flex mx-auto"><img
                                                 class="rounded-circle img-fluid wid-70"
-                                                src="{{ asset('assets') }}/images/user/avatar-5.jpg" alt="User image">
+                                                src="{{ asset('assets') }}/images/profil.jpg" alt="User image">
                                         </div>
                                         <h5 class="mb-0" id="username">Administrator</h5>
                                         <p class="text-muted text-sm" id="name">Administrator</p>

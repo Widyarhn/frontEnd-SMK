@@ -169,7 +169,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header d-flex align-items-center justify-content-between">
-                            <h5 class="m-0">Profile</h5>
+                            <h5 class="m-0">Profil</h5>
                         </div>
                         <div class="dropdown-body">
                             <div class="profile-notification-scroll position-relative"
@@ -199,7 +199,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-span">Manage</p>
+                                {{-- <p class="text-span">Manage</p>
                                 <a href="#" class="dropdown-item">
                                     <span>
                                         <svg class="pc-icon text-muted me-2">
@@ -215,7 +215,7 @@
                                         </svg>
                                         <span>Profil Akun</span>
                                     </span>
-                                </a>
+                                </a> --}}
                                 <hr class="border-secondary border-opacity-50" />
                                 <div class="d-grid mb-3">
                                     <button class="btn btn-primary logout">

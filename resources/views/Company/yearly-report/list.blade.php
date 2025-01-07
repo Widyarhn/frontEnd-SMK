@@ -1,15 +1,5 @@
 @extends('...Company.index', ['title' => 'Sertifikat SMK'])
 @section('asset_css')
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
 @endsection
 @section('content')
     <div class="page-header">
@@ -167,40 +157,40 @@
 
                     for (let index = 0; index < dataTable.length; index++) {
                         let element = dataTable[index];
-                        let colorBage = 'primary';
-                        if (element.status.includes('draft')) {
-                            colorBage = 'secondary';
-                        }
-                        if (element.status.includes('not')) {
-                            colorBage = 'warning';
-                        }
-                        if (element.status.includes('expired')) {
-                            colorBage = 'dark';
-                        }
-                        if (element.status.includes('complete') || element.status.includes('passed_assessment_') ||
-                            element.status == 'certificate_validation') {
-                            colorBage = 'success';
-                        }
-                        if (element.status.includes('expired') ||
-                            element.status.includes('cancelled') ||
-                            element.status.includes('rejected') || (element.rejection_notes && element.rejection_notes
-                                .length > 0)
-                        ) {
-                            colorBage = 'danger';
-                        }
 
                         let statusBadge = element.is_active ?
                             '<span class="badge bg-light-success">Aktif</span>' :
                             '<span class="badge bg-light-danger">Tidak Aktif</span>';
 
-                        let statusLabel = element.status === "disposition" ?
-                            '<span class="badge bg-light-primary">Pengajuan Baru</span>' :
-                            '<span class="badge bg-light-success">Terverifikasi</span>';
+                        // let statusLabel = element.status === "disposition" ?
+                        //     '<span class="badge bg-light-primary">Pengajuan Baru</span>' :
+                        //     '<span class="badge bg-light-success">Terverifikasi</span>';
 
                         let lastUpdate = new Date(element.approved_at).toLocaleDateString();
                         let createdDate = new Date(element.created_at).toLocaleDateString();
 
-                        let cardClass = element.status === 'certificate_validation' ? 'ticket-card close-ticket' :
+                        let statusLabel = '';
+                        let colorBage = 'primary';
+                        switch (element.status) {
+                            case "request":
+                                statusLabel = '<span class="badge bg-light-secondary">Pengajuan Baru</span>';
+                                colorBage = 'primary';
+                                break;
+                            case "revision":
+                                statusLabel = '<span class="badge bg-light-danger">Revisi</span>';
+                                colorBage = 'danger';
+                                break;
+                            case "verified":
+                                statusLabel = '<span class="badge bg-light-success">Terverifikasi</span>';
+                                colorBage = 'success';
+                                break;
+                            default:
+                                statusLabel = '<span class="badge bg-light-warning">Status Tidak Diketahui</span>';
+                                colorBage = 'warning';
+                                break;
+                        }
+                        
+                        let cardClass = element.status === 'verified' ? 'ticket-card close-ticket' :
                             (element.rejection_notes && element.rejection_notes.length > 0 ? 'ticket-card open-ticket' :
                                 'ticket-card');
 
