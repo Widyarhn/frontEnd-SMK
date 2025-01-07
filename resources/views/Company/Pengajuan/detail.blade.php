@@ -609,6 +609,17 @@
         }
 
 
+        function formatTanggalIndo(dateString) {
+            const date = new Date(dateString);
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            return new Intl.DateTimeFormat('id-ID', options).format(date);
+        }
+
         function generateFormInput(inputType, elementName, subElementName, initialValue = undefined) {
             let $htmlInput = ''
             let questionProperties = smkElements['question_schema']['properties'][elementName]['properties'][subElementName]
