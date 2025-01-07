@@ -1,18 +1,4 @@
 @extends('...Administrator.index', ['title' => 'Tambah Element SMK | Master Data Element'])
-@section('asset_css')
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-@endsection
 
 @section('content')
     <div class="page-header">
@@ -36,7 +22,7 @@
     <form id="form-data" class="mt-3">
         <div class="card-body">
             <button type="button" class="btn btn-primary btn-add" id="add-element">Tambah Element</button>
-            <button type="submit" class="btn btn-success" id="submit-button">Submit</button>
+            <button type="submit" class="btn btn-success" id="submit-button">Simpan</button>
         </div>
     </form>
 @endsection
@@ -76,7 +62,7 @@
 
             let $template = $(
                 `
-        <div class="card smk-element mt-2 mx-5 mb-5" id="${elementID}" style="box-shadow: 0px -1px 5px 1px rgba(56,65,74,.15);">
+        <div class="card smk-element mt-2 mb-5" id="${elementID}" style="box-shadow: 0px -1px 5px 1px rgba(56,65,74,.15);">
             ` +
                 htmlElementHeader(elementID, elementNumber) +
                 `

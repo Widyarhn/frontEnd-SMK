@@ -1,4 +1,4 @@
-@extends('Administrator.index', ['title' => 'Dashboard'])
+@extends('Administrator.index', ['title' => 'Dashboard | SMK-TD'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/daterange.css" />
@@ -18,8 +18,6 @@
     </style>
 @endsection
 @section('content')
-    <div id="custom-filter"></div>
-    <div id="resetCustomFilter"></div>
     <div class="row">
         <div class="col-12">
             <div class="card welcome-banner bg-blue-800" style="background: #0f2a7d;">
@@ -46,7 +44,7 @@
         <div class="row mx-1" id="custom-filter">
             <div class="card">
                 <div class="row align-items-center py-4 px-2">
-                    <div class="col-md-6 offset-md-6 d-flex justify-content-start">
+                    <div class="col-md-5 offset-md-7 d-flex justify-content-start">
                         <div class="input-group">
                             <span class="input-group-text">
                                 <i class="feather icon-calendar"></i>
@@ -58,9 +56,9 @@
                                 style="border: 1px solid #ced4da;">
                                 <i class="fa-solid fa-magnifying-glass me-2"></i> Cari
                             </button>
-                            <button type="button" id="resetCustomFilter" class="btn btn-outline-secondary p-3"
+                            <button type="submit" id="resetCustomFilter" class="btn btn-outline-secondary p-3"
                                 style="border: 1px solid #ced4da;">
-                                <i class="fa-solid fa-arrows-rotate me-2"></i> Ulang
+                                <i class="fa-solid fa-arrows-rotate me-2"></i>Set Ulang
                             </button>
                         </div>
                     </div>
@@ -158,28 +156,8 @@
                                             <span class="d-block  rounded-circle"
                                                 style="width: 10px; height: 10px; background:#E58A00;"></span>
                                         </div>
-                                        <p class="mb-1">Disposisi</p>
-                                        <h6 class="mb-0" id="disposisi"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #DC2626;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#DC2626;"></span>
-                                        </div>
-                                        <p class="mb-1">Tidak Lulus Penilaian</p>
-                                        <h6 class="mb-0" id="tidakLulusPenilaian"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #FF5733;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#FF5733;"></span>
-                                        </div>
-                                        <p class="mb-1">Perbaikan Dokumen</p>
-                                        <h6 class="mb-0" id="perbaikanDokumen"></h6>
+                                        <p class="mb-1">Proses Pengajuan</p>
+                                        <h6 class="mb-0" id="prosesPengajuan"></h6>
                                     </div>
                                 </div>
                                 <div class="col-sm-4 d-flex">
@@ -188,105 +166,25 @@
                                             <span class="d-block rounded-circle"
                                                 style="width: 10px; height: 10px; background:#2CA87F;"></span>
                                         </div>
-                                        <p class="mb-1">Lulus Penilaian</p>
-                                        <h6 class="mb-0" id="lulusPenilaian"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #DC2626;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#DC2626;"></span>
-                                        </div>
-                                        <p class="mb-1">Tidak Lulus Verifikasi Penilaian</p>
-                                        <h6 class="mb-0" id="tidakLulusVerifikasiPenilaian"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #9B59B6;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block  rounded-circle"
-                                                style="width: 10px; height: 10px; background:#9B59B6;"></span>
-                                        </div>
-                                        <p class="mb-1">Lulus Verifikasi Penilaian</p>
-                                        <h6 class="mb-0" id="lulusVerifikasiPenilaian"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #F4D03F;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#F4D03F;"></span>
-                                        </div>
-                                        <p class="mb-1">Penjadwalan Wawancara</p>
-                                        <h6 class="mb-0" id="penjadwalanWawancara"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #3EC9D6;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#3EC9D6;"></span>
-                                        </div>
-                                        <p class="mb-1">Wawancara Terjadwal</p>
-                                        <h6 class="mb-0" id="wawancaraTerjadwal"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #006400;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#006400;"></span>
-                                        </div>
-                                        <p class="mb-1">Wawancara Selesai</p>
-                                        <h6 class="mb-0" id="wawancaraSelesai"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #D4A5A5;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#D4A5A5;"></span>
-                                        </div>
-                                        <p class="mb-1">Verifikasi Direktur</p>
-                                        <h6 class="mb-0" id="verifikasiDirektur"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #4680FF;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#4680FF;"></span>
-                                        </div>
                                         <p class="mb-1">Pengesahan Sertifikat</p>
                                         <h6 class="mb-0" id="pengesahanSertifikat"></h6>
                                     </div>
                                 </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #FF6347;">
+                                <div class="col-sm-6 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #DC2626;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px;background:#FF6347"></span>
+                                                style="width: 10px; height: 10px;background:#DC2626"></span>
                                         </div>
                                         <p class="mb-1">Ditolak</p>
                                         <h6 class="mb-0" id="ditolak"></h6>
                                     </div>
                                 </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #FF8C00;">
+                                <div class="col-sm-6 d-flex">
+                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #6e0000;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px;background:#FF8C00"></span>
-                                        </div>
-                                        <p class="mb-1">Dibatalkan</p>
-                                        <h6 class="mb-0" id="dibatalkan"></h6>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 d-flex">
-                                    <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #B22222;">
-                                        <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block rounded-circle"
-                                                style="width: 10px; height: 10px; background:#B22222;"></span>
+                                                style="width: 10px; height: 10px; background:#6e0000;"></span>
                                         </div>
                                         <p class="mb-1">Kadaluwarsa</p>
                                         <h6 class="mb-0" id="kadaluwarsa"></h6>
@@ -298,36 +196,11 @@
                 </div>
             </div>
         </div>
-
-        {{-- <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-5">Proses Sertifikasi</h5>
-                    </div>
-
-                    <div class="row g-3 mx-3">
-                        <!-- Chart section -->
-                        <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center">
-                            <div id="pie-chart-2" style="width: 100%; height: 350px;"></div>
-                        </div>
-
-                        <!-- Cards section -->
-                        <div class="col-lg-8 col-12">
-                            <div class="row g-3 mt-3" id="status-cards-container">
-                                <!-- Cards will be dynamically generated here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
         <div class="col-lg-6 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0" id="titleTotalPenilaian"></h5>
+                        <h5 class="mb-0" id="titleTotalPenilaian">Total Penilaian</h5>
                     </div>
                     <div class="my-2" id="totalPenilaian" class="chart-container"></div>
                 </div>
@@ -595,67 +468,46 @@
 
                 let statusMapping = {
                     request: 'Pengajuan',
-                    disposition: 'Disposisi',
-                    not_passed_assessment: 'Tidak lulus penilaian',
-                    submission_revision: 'Perbaikan dokumen',
-                    passed_assessment: 'Lulus penilaian',
-                    not_passed_assessment_verification: 'Tidak lulus verifikasi penilaian',
-                    assessment_revision: 'Lulus verifikasi penilaian',
-                    passed_assessment_verification: 'Lulus verifikasi penilaian',
-                    scheduling_interview: 'Penjadwalan wawancara',
-                    scheduled_interview: 'Wawancara terjadwal',
-                    completed_interview: 'Wawancara selesai',
-                    verification_director: 'Verifikasi direktur',
+                    disposition: 'Proses Pengajuan',
+                    not_passed_assessment: 'Proses Pengajuan',
+                    submission_revision: 'Proses Pengajuan',
+                    passed_assessment: 'Proses Pengajuan',
+                    not_passed_assessment_verification: 'Proses Pengajuan',
+                    assessment_revision: 'Proses Pengajuan',
+                    passed_assessment_verification: 'Proses Pengajuan',
+                    scheduling_interview: 'Proses Pengajuan',
+                    scheduled_interview: 'Proses Pengajuan',
+                    completed_interview: 'Proses Pengajuan',
+                    verification_director: 'Proses Pengajuan',
                     certificate_validation: 'Pengesahan Sertifikat',
                     rejected: 'Ditolak',
-                    cancelled: 'Dibatalkan',
-                    expired: 'Kedaluarsa'
+                    // cancelled: 'Dibatalkan',
+                    expired: 'Kadaluwarsa'
                 };
 
-                // Menghitung jumlah untuk setiap kategori status
                 let statusCounts = {
                     'Pengajuan': 0,
-                    'Disposisi': 0,
-                    'Tidak lulus penilaian': 0,
-                    'Perbaikan dokumen': 0,
-                    'Lulus penilaian': 0,
-                    'Tidak lulus verifikasi penilaian': 0,
-                    'Lulus verifikasi penilaian': 0,
-                    'Lulus verifikasi penilaian': 0,
-                    'Penjadwalan wawancara': 0,
-                    'Wawancara terjadwal': 0,
-                    'Wawancara selesai': 0,
-                    'Verifikasi direktur': 0,
+                    'Proses Pengajuan': 0,
                     'Pengesahan Sertifikat': 0,
                     'Ditolak': 0,
-                    'Dibatalkan': 0,
-                    'Kedaluwarsa': 0
+                    'Kadaluwarsa': 0
                 };
 
                 certificateRequestschart.forEach(request => {
                     if (request && request.status && statusMapping[request.status]) {
                         let statusLabel = statusMapping[request.status];
-                        statusCounts[statusLabel]++;
+                        if (statusLabel === 'Proses Pengajuan') {
+                            statusCounts['Proses Pengajuan']++;
+                        } else {
+                            statusCounts[statusLabel]++;
+                        }
                     }
                 });
 
-                // Update values in the cards based on ID
                 document.getElementById('pengajuan').innerText = statusCounts['Pengajuan'] || 0;
-                document.getElementById('disposisi').innerText = statusCounts['Disposisi'] || 0;
-                document.getElementById('tidakLulusPenilaian').innerText = statusCounts['Tidak lulus penilaian'] || 0;
-                document.getElementById('perbaikanDokumen').innerText = statusCounts['Perbaikan dokumen'] || 0;
-                document.getElementById('lulusPenilaian').innerText = statusCounts['Lulus penilaian'] || 0;
-                document.getElementById('tidakLulusVerifikasiPenilaian').innerText = statusCounts[
-                    'Tidak lulus verifikasi penilaian'] || 0;
-                document.getElementById('lulusVerifikasiPenilaian').innerText = statusCounts[
-                    'Lulus verifikasi penilaian'] || 0;
-                document.getElementById('penjadwalanWawancara').innerText = statusCounts['Penjadwalan wawancara'] || 0;
-                document.getElementById('wawancaraTerjadwal').innerText = statusCounts['Wawancara terjadwal'] || 0;
-                document.getElementById('wawancaraSelesai').innerText = statusCounts['Wawancara selesai'] || 0;
-                document.getElementById('verifikasiDirektur').innerText = statusCounts['Verifikasi direktur'] || 0;
+                document.getElementById('prosesPengajuan').innerText = statusCounts['Proses Pengajuan'] || 0;
                 document.getElementById('pengesahanSertifikat').innerText = statusCounts['Pengesahan Sertifikat'] || 0;
                 document.getElementById('ditolak').innerText = statusCounts['Ditolak'] || 0;
-                document.getElementById('dibatalkan').innerText = statusCounts['Dibatalkan'] || 0;
                 document.getElementById('kadaluwarsa').innerText = statusCounts['Kadaluwarsa'] || 0;
             }
 
@@ -720,41 +572,33 @@
                 return;
             }
 
+            // Menentukan label untuk chart
             let labels = [
                 'Pengajuan',
-                'Disposisi',
-                'Tidak lulus penilaian',
-                'Perbaikan dokumen',
-                'Lulus penilaian',
-                'Tidak lulus verifikasi penilaian',
-                'Lulus verifikasi penilaian',
-                'Penjadwalan wawancara',
-                'Wawancara terjadwal',
-                'Wawancara selesai',
-                'Verifikasi direktur',
+                'Proses Pengajuan',
                 'Pengesahan Sertifikat',
                 'Ditolak',
-                'Dibatalkan',
-                'Kedaluarsa'
+                'Kadaluwarsa'
             ];
 
+            // Pemetaan status ke kategori
             let statusMapping = {
                 request: 'Pengajuan',
-                disposition: 'Disposisi',
-                not_passed_assessment: 'Tidak lulus penilaian',
-                submission_revision: 'Perbaikan dokumen',
-                passed_assessment: 'Lulus penilaian',
-                not_passed_assessment_verification: 'Tidak lulus verifikasi penilaian',
-                assessment_revision: 'Lulus verifikasi penilaian',
-                passed_assessment_verification: 'Lulus verifikasi penilaian',
-                scheduling_interview: 'Penjadwalan wawancara',
-                scheduled_interview: 'Wawancara terjadwal',
-                completed_interview: 'Wawancara selesai',
-                verification_director: 'Verifikasi direktur',
+                disposition: 'Proses Pengajuan',
+                not_passed_assessment: 'Proses Pengajuan',
+                submission_revision: 'Proses Pengajuan',
+                passed_assessment: 'Proses Pengajuan',
+                not_passed_assessment_verification: 'Proses Pengajuan',
+                assessment_revision: 'Proses Pengajuan',
+                passed_assessment_verification: 'Proses Pengajuan',
+                scheduling_interview: 'Proses Pengajuan',
+                scheduled_interview: 'Proses Pengajuan',
+                completed_interview: 'Proses Pengajuan',
+                verification_director: 'Proses Pengajuan',
                 certificate_validation: 'Pengesahan Sertifikat',
                 rejected: 'Ditolak',
                 cancelled: 'Dibatalkan',
-                expired: 'Kedaluarsa'
+                expired: 'Kadaluwarsa'
             };
 
             let dataPoints = Array(labels.length).fill(0);
@@ -775,28 +619,16 @@
                 }
             });
 
-            // Menghancurkan chart sebelumnya jika ada
             if (window.chart_pie_chart_2) {
                 window.chart_pie_chart_2.destroy();
             }
 
-            // Menentukan warna untuk setiap status
             let colors = [
                 '#4680FF', // Pengajuan
-                '#E58A00', // Disposisi
-                '#DC2626', // Tidak lulus penilaian
-                '#FF5733', // Perbaikan dokumen
-                '#2CA87F', // Lulus penilaian
-                '#DC2626', // Tidak lulus verifikasi penilaian
-                '#9B59B6', // Lulus verifikasi penilaian
-                '#F4D03F', // Penjadwalan wawancara
-                '#3EC9D6', // Wawancara terjadwal
-                '#006400', // Wawancara selesai
-                '#DC2626', // Verifikasi direktur
-                '#4680FF', // Pengesahan Sertifikat
-                '#D4A5A5', // Ditolak
-                '#FF8C00', // Dibatalkan
-                '#B22222' // Kedaluarsa
+                '#E58A00', // Proses Pengajuan
+                '#2CA87F', // Pengesahan Sertifikat
+                '#DC2626', // Ditolak
+                '#6e0000', // Kadaluwarsa
             ];
 
             var options_pie_chart_2 = {
@@ -850,22 +682,24 @@
             window.chart_pie_chart_2.render();
         }
 
+
         async function getDataPenilaian(customFilter) {
             loadingPage(true);
-            let defaultStartDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
-            let defaultEndDate = moment().format('YYYY-MM-DD');
+            // let defaultStartDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
+            // let defaultEndDate = moment().format('YYYY-MM-DD');
 
-            let startDate = customFilter?.start_date || defaultStartDate;
-            let endDate = customFilter?.end_date || defaultEndDate;
+            // let startDate = customFilter?.start_date || defaultStartDate;
+            // let endDate = customFilter?.end_date || defaultEndDate;
 
-            let requestData = {
-                date_from: startDate,
-                date_to: endDate
-            };
+            // let requestData = {
+            //     date_from: startDate,
+            //     date_to: endDate
+            // };
 
             let getDataRest = await CallAPI(
                 'GET',
-                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/dashboard/dataDashboard', requestData
+                '{{ asset('dummy/internal/dashboard-admin/total_penilaian.json') }}'
+                // , requestData
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -878,25 +712,107 @@
             if (getDataRest.status == 200) {
                 loadingPage(false);
                 let totalPenilaian = getDataRest.data.data.total_penilaian || [];
+                console.log("🚀 ~ getDataPenilaian ~ totalPenilaian:", totalPenilaian)
 
                 // Ensure the Indonesian locale is set correctly
-                moment.locale('id');
+                // moment.locale('id');
 
-                // Format the start and end dates with Indonesian month names
-                let startMonth = moment(startDate).format('MMMM YYYY'); // "MMMM" gives full month name in Indonesian
-                let endMonth = moment(endDate).format('MMMM YYYY');
+                // // Format the start and end dates with Indonesian month names
+                // let startMonth = moment(startDate).format('MMMM YYYY'); // "MMMM" gives full month name in Indonesian
+                // let endMonth = moment(endDate).format('MMMM YYYY');
 
-                // If the start and end months are the same, show only one month
-                let titleText = (startMonth === endMonth) ? `Total Penilaian untuk Bulan ${startMonth}` :
-                    `Total Penilaian untuk Periode ${startMonth} - ${endMonth}`;
+                // // If the start and end months are the same, show only one month
+                // let titleText = (startMonth === endMonth) ? `Total Penilaian untuk Bulan ${startMonth}` :
+                //     `Total Penilaian untuk Periode ${startMonth} - ${endMonth}`;
 
-                document.getElementById('titleTotalPenilaian').innerText = titleText;
+                // document.getElementById('titleTotalPenilaian').innerText = titleText;
 
-                setChartTotalPenilaian(totalPenilaian, startDate, endDate);
+                // setChartTotalPenilaian(totalPenilaian, startDate, endDate);
+                setChartTotalPenilaian(totalPenilaian);
             }
 
 
         }
+
+        async function setChartTotalPenilaian(totalPenilaian) {
+            // Check if data is available
+            if (!totalPenilaian) {
+                console.error("Invalid data format");
+                return;
+            }
+
+            // Extract days and the values for each series
+            const daysArray = totalPenilaian.map(item => moment(item.date).format(
+                'DD MMM YY')); // Format date to "12 Des 25"
+            const pengajuanAwalData = totalPenilaian.map(item => item.pengajuan_awal);
+            const prosesPengajuanData = totalPenilaian.map(item => item.proses_pengajuan);
+            const prosesSelesaiData = totalPenilaian.map(item => item.proses_selesai);
+
+            // Get the current month (formatted like "January", "February", etc.)
+            const currentMonth = moment().format('MMMM YYYY'); // e.g., "January 2025"
+
+            // Chart options using the actual data
+            var options = {
+                series: [{
+                    name: 'Pengajuan awal',
+                    data: pengajuanAwalData // Data for 'Pengajuan awal'
+                }, {
+                    name: 'Proses Pengajuan',
+                    data: prosesPengajuanData // Data for 'Proses Pengajuan'
+                }, {
+                    name: 'Proses Selesai',
+                    data: prosesSelesaiData // Data for 'Proses Selesai'
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 350,
+                    toolbar: false,
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '55%',
+                        borderRadius: 5,
+                        borderRadiusApplication: 'end'
+                    },
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: daysArray, // Use the formatted dates as categories
+                    title: {
+                        text: 'Tanggal'
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: ''
+                    }
+                },
+                fill: {
+                    opacity: 1
+                },
+                tooltip: {
+                    y: {
+                        formatter: function(val) {
+                            return val + " Permohonan";
+                        }
+                    }
+                },
+                colors: ['#007bff', '#ffc107', '#28a745'], // Define chart colors
+            };
+
+            // Render the chart
+            var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
+            chart.render();
+        }
+
 
         // async function setChartTotalPenilaian(totalPenilaian) {
         //     var options = {
@@ -955,107 +871,107 @@
         //     var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
         //     chart.render();
         // }
-        async function setChartTotalPenilaian(totalPenilaian) {
-            // Get the number of days in the current month using Moment.js
-            const daysInMonth = moment().daysInMonth(); // Get the number of days in the current month
-            const daysArray = Array.from({
-                length: daysInMonth
-            }, (_, i) => (i + 1).toString()); // Generate an array of day numbers
+        // async function setChartTotalPenilaian(totalPenilaian) {
+        //     // Get the number of days in the current month using Moment.js
+        //     const daysInMonth = moment().daysInMonth(); // Get the number of days in the current month
+        //     const daysArray = Array.from({
+        //         length: daysInMonth
+        //     }, (_, i) => (i + 1).toString()); // Generate an array of day numbers
 
-            // Get the current month (formatted like "January", "February", etc.)
-            const currentMonth = moment().format('MMMM YYYY'); // e.g., "January 2025"
+        //     // Get the current month (formatted like "January", "February", etc.)
+        //     const currentMonth = moment().format('MMMM YYYY'); // e.g., "January 2025"
 
-            // Assuming we have data for each day of the month (using random data for demo purposes)
-            var options = {
-                series: [{
-                    name: 'Pengajuan awal',
-                    data: Array.from({
-                        length: daysInMonth
-                    }, () => Math.floor(Math.random() * 100)) // Random data for 'Pengajuan awal'
-                }, {
-                    name: 'Proses Pengajuan',
-                    data: Array.from({
-                        length: daysInMonth
-                    }, () => Math.floor(Math.random() * 100)) // Random data for 'Proses Pengajuan'
-                }, {
-                    name: 'Proses Selesai',
-                    data: Array.from({
-                        length: daysInMonth
-                    }, () => Math.floor(Math.random() * 100)) // Random data for 'Proses Selesai'
-                }],
-                chart: {
-                    type: 'bar',
-                    height: 350,
-                    toolbar: false,
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        borderRadius: 5,
-                        borderRadiusApplication: 'end'
-                    },
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: daysArray,
-                    title: {
-                        text: 'Tanggal'
-                    }
-                },
-                yaxis: {
-                    title: {
-                        text: 'Total Permohonan'
-                    }
-                },
-                fill: {
-                    opacity: 1
-                },
-                tooltip: {
-                    shared: true, // This will group all tooltips in a shared container
-                    intersect: false, // Tooltips will be triggered by any segment, not only on hover
-                    y: {
-                        formatter: function(val) {
-                            return val + " Permohonan";
-                        }
-                    },
-                    custom: function({
-                        series,
-                        seriesIndex,
-                        dataPointIndex,
-                        w
-                    }) {
-                        // Create a custom tooltip with a header and additional info
-                        const date = daysArray[dataPointIndex]; // Get the current date
-                        const pengajuanAwal = series[0][dataPointIndex]; // Get 'Pengajuan awal' value
-                        const prosesPengajuan = series[1][dataPointIndex]; // Get 'Proses Pengajuan' value
-                        const prosesSelesai = series[2][dataPointIndex]; // Get 'Proses Selesai' value
+        //     // Assuming we have data for each day of the month (using random data for demo purposes)
+        //     var options = {
+        //         series: [{
+        //             name: 'Pengajuan awal',
+        //             data: Array.from({
+        //                 length: daysInMonth
+        //             }, () => Math.floor(Math.random() * 100)) // Random data for 'Pengajuan awal'
+        //         }, {
+        //             name: 'Proses Pengajuan',
+        //             data: Array.from({
+        //                 length: daysInMonth
+        //             }, () => Math.floor(Math.random() * 100)) // Random data for 'Proses Pengajuan'
+        //         }, {
+        //             name: 'Proses Selesai',
+        //             data: Array.from({
+        //                 length: daysInMonth
+        //             }, () => Math.floor(Math.random() * 100)) // Random data for 'Proses Selesai'
+        //         }],
+        //         chart: {
+        //             type: 'bar',
+        //             height: 350,
+        //             toolbar: false,
+        //         },
+        //         plotOptions: {
+        //             bar: {
+        //                 horizontal: false,
+        //                 columnWidth: '55%',
+        //                 borderRadius: 5,
+        //                 borderRadiusApplication: 'end'
+        //             },
+        //         },
+        //         dataLabels: {
+        //             enabled: false
+        //         },
+        //         stroke: {
+        //             show: true,
+        //             width: 2,
+        //             colors: ['transparent']
+        //         },
+        //         xaxis: {
+        //             categories: daysArray,
+        //             title: {
+        //                 text: 'Tanggal'
+        //             }
+        //         },
+        //         yaxis: {
+        //             title: {
+        //                 text: 'Total Permohonan'
+        //             }
+        //         },
+        //         fill: {
+        //             opacity: 1
+        //         },
+        //         tooltip: {
+        //             shared: true, // This will group all tooltips in a shared container
+        //             intersect: false, // Tooltips will be triggered by any segment, not only on hover
+        //             y: {
+        //                 formatter: function(val) {
+        //                     return val + " Permohonan";
+        //                 }
+        //             },
+        //             custom: function({
+        //                 series,
+        //                 seriesIndex,
+        //                 dataPointIndex,
+        //                 w
+        //             }) {
+        //                 // Create a custom tooltip with a header and additional info
+        //                 const date = daysArray[dataPointIndex]; // Get the current date
+        //                 const pengajuanAwal = series[0][dataPointIndex]; // Get 'Pengajuan awal' value
+        //                 const prosesPengajuan = series[1][dataPointIndex]; // Get 'Proses Pengajuan' value
+        //                 const prosesSelesai = series[2][dataPointIndex]; // Get 'Proses Selesai' value
 
-                        // Format the tooltip content
-                        return `
-                    <div style="padding: 10px; font-size: 14px;">
-                        <strong>Tanggal: ${date} ${currentMonth}</strong><br/>
-                        <strong>Pengajuan awal: </strong>${pengajuanAwal} Permohonan<br/>
-                        <strong>Proses Pengajuan: </strong>${prosesPengajuan} Permohonan<br/>
-                        <strong>Proses Selesai: </strong>${prosesSelesai} Permohonan
-                    </div>
-                `;
-                    }
-                },
-                colors: ['#007bff', '#ffc107', '#28a745'],
-            };
+        //                 // Format the tooltip content
+        //                 return `
+    //             <div style="padding: 10px; font-size: 14px;">
+    //                 <strong>Tanggal: ${date} ${currentMonth}</strong><br/>
+    //                 <strong>Pengajuan awal: </strong>${pengajuanAwal} Permohonan<br/>
+    //                 <strong>Proses Pengajuan: </strong>${prosesPengajuan} Permohonan<br/>
+    //                 <strong>Proses Selesai: </strong>${prosesSelesai} Permohonan
+    //             </div>
+    //         `;
+        //             }
+        //         },
+        //         colors: ['#007bff', '#ffc107', '#28a745'],
+        //     };
 
-            // Render the chart
-            var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
-            chart.render();
-        }
+        //     // Render the chart
+        //     var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
+        //     chart.render();
+        // }
 
 
         // async function setChartTotalPenilaian(totalPenilaian, startDate, endDate) {
@@ -1475,8 +1391,6 @@
                     return;
                 }
 
-                console.log("🚀 ~ startDate:", startDate);
-                console.log("🚀 ~ endDate:", endDate);
 
                 startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
                 endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
@@ -1494,30 +1408,7 @@
             });
 
             document.getElementById('resetCustomFilter').addEventListener('click', async function() {
-                $('.search-input').val('');
-                $('.search-input-report').val('');
-
-                let today = moment(new Date());
-                let last30Days = moment().subtract(30, 'days');
-                dateRangePicker.data('daterangepicker').setStartDate(last30Days);
-                dateRangePicker.data('daterangepicker').setEndDate(today);
-
-                $('#daterange').val(last30Days.format('YYYY-MM-DD') + ' - ' + today.format('YYYY-MM-DD'));
-
-                customFilter = {
-                    'start_date': last30Days.format('YYYY-MM-DD'),
-                    'end_date': today.format('YYYY-MM-DD')
-                };
-
-                console.log("🚀 ~ customFilter (reset):", customFilter);
-
-                defaultSearch = '';
-                defaultLimitPage = 10;
-                currentPage = 1;
-
-                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                    customFilter);
-                await getDataAllCompany(customFilter);
+                window.location.reload();
             });
         }
 

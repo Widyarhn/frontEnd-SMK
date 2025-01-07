@@ -18,7 +18,7 @@
     </div>
 </footer> --}}
 <footer class="pc-footer">
-    <div class="border-top footer-center">
+    <div class="border-top footer-center mt-5">
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
@@ -28,7 +28,7 @@
                                     style="width: 40px;" /></a>
                         </div>
                         <div class="flex-grow-1 mx-3 text-center text-sm-start">
-                            <h4 id="namaAplikasi" class="mb-0">SMK-PAU</h4>
+                            <h4 id="namaAplikasi" class="mb-0">SMK-TD</h4>
                             <h6 class="mb-0">Dishub <span id="provinsi">Jawa Barat</span></h6>
                             <p class="mb-0">
                                 © <a href="" target="_blank">2025 Dishub <span id="provinsi">Jawa Barat</span></a>

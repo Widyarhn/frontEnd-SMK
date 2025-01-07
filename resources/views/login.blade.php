@@ -78,7 +78,7 @@
                             <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img"
                                     style="width: 60px;" /></a>
                         </div>
-                        <h4 class="text-center mt-4">PERIZINAN SMK-PAU</h4>
+                        <h4 class="text-center mt-4">PERIZINAN SMK-TD</h4>
                         <div class="saprator mb-5">
                             <span>Dinas Perhubungan</span>
                         </div>

@@ -1,4 +1,4 @@
-@extends('...Company.index', ['title' => 'Form Pengajuan Sertifikat | SMK-PAU'])
+@extends('...Company.index', ['title' => 'Form Pengajuan Sertifikat | SMK-TD'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />

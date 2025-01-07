@@ -348,24 +348,29 @@
 
                     for (let index = 0; index < dataTable.length; index++) {
                         let element = dataTable[index];
+                        
                         let statusBadge = element.is_active ?
                             '<span class="badge bg-light-success">Aktif</span>' :
                             '<span class="badge bg-light-danger">Tidak Aktif</span>';
 
                         let statusLabel = '';
-
+                        let colorBage = 'primary';
                         switch (element.status) {
                             case "request":
                                 statusLabel = '<span class="badge bg-light-secondary ms-2">Pengajuan Baru</span>';
+                                colorBage = 'primary';
                                 break;
                             case "revision":
                                 statusLabel = '<span class="badge bg-light-danger ms-2">Revisi</span>';
+                                colorBage = 'danger';
                                 break;
                             case "verified":
                                 statusLabel = '<span class="badge bg-light-success ms-2">Terverifikasi</span>';
+                                colorBage = 'success';
                                 break;
                             default:
                                 statusLabel = '<span class="badge bg-light-warning ms-2">Status Tidak Diketahui</span>';
+                                colorBage = 'warning';
                                 break;
                         }
 
@@ -385,7 +390,7 @@
                                     <div class="row">
                                         <div class="col-sm-auto mb-3 mb-sm-0">
                                             <div class="d-sm-inline-block d-flex align-items-center">
-                                                 <div class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                                 <div class="wid-60 hei-60 rounded-circle bg-${colorBage} d-flex align-items-center justify-content-center">
                                                     <i class="fa-solid fa-book text-white fa-2x"></i>
                                                 </div>
                                             </div>
@@ -444,7 +449,7 @@
                                                                         </div>
                                                                     </div>` : ''}
                                             </div>
-                                            <div class="mt-2">
+                                            <div class="mt-4">
                                                 ${element.rejection_notes ? `
                                                                     <button type="button" class="me-2 btn btn-sm btn-light-danger"
                                                                         data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
