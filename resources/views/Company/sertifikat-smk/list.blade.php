@@ -36,20 +36,51 @@
     </div>
     <div class="row"><!-- [ sample-page ] start -->
         <div class="col-12">
+            <div
+                class="datatable-wrapper datatable-loading no-footer searchable fixed-columns datatable-empty">
+                <div class="datatable-top">
+                    <div class="datatable-dropdown">
+                        <label>
+                            <select id="limitPage"class="datatable-selector" name="per-page">
+                                <option value="10" selected="">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                            </select> 
+                        </label>
+                    </div>
+                    <div class="datatable-search">
+                        <input id="searchInput" class="datatable-input" placeholder="Cari..."
+                            type="search" name="search" title="Search within table"
+                            aria-controls="pc-dt-simple-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 help-main large-view">
-                    <div id="submission-card"></div>
+                    <div id="tableList"></div>
                 </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="datatable-bottom">
+                <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                    dari <span id="totalPage">0</span> data</div>
+                <nav class="datatable-pagination">
+                    <ul class="datatable-pagination-list" id="pagination"></ul>
+                </nav>
             </div>
         </div>
     </div>
 
-    <div id="exampleModalCenter" class="modal fade" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+    <div id="notesModalCenter" class="modal fade" tabindex="-1" aria-labelledby="notesModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Catatan Pengajuan</h5>
+                    <h5 class="modal-title" id="notesModalCenterTitle">Catatan Pengajuan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -64,25 +95,57 @@
 @endsection
 
 @section('scripts')
-    <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
 @endsection
 
 @section('page_js')
     <script>
-        async function getListData() {
-            loadingPage(true);
-            let card = $('#submission-card');
+        let defaultLimitPage = 10;
+        let currentPage      = 1;
+        let totalPage        = 1;
+        let defaultAscending = 0;
+        let defaultSearch    = "";
+        let paramsTable      = {};
+        let statusLabels     = {
+            'draft': 'Draft',
+            'request': 'Pengajuan',
+            'disposition': 'Disposisi',
+            'not_passed_assessment': 'Tidak lulus penilaian',
+            'submission_revision': 'Revisi pengajuan',
+            'passed_assessment': 'Lulus penilaian',
+            'not_passed_assessment_verification': 'Penilaian tidak lulus verifikasi',
+            'assessment_revision': 'Revisi penilaian',
+            'passed_assessment_verification': 'Penilaian terverifikasi',
+            'scheduling_interview': 'Penjadwalan wawancara',
+            'scheduled_interview': 'Wawancara Terjadwal',
+            'not_passed_interview': 'Tidak lulus wawancara',
+            'completed_interview': 'Wawancara selesai',
+            'verification_director': 'Validasi direktur',
+            'certificate_validation': 'Pengesahan sertifikat',
+            'rejected': 'Pengajuan ditolak',
+            'cancelled': 'Pengajuan dibatalkan',
+            'expired': 'Pengajuan kedaluwarsa'
+        };
 
-            // Memanggil API untuk mendapatkan data bidang
+        async function getListData(paramsTable) {
+            loadingPage(true);
+            let countPaging = $('#countPage');
+            let totalPaging = $('#totalPage');
+            let tablePaging = $('#tableList');
+
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/company/sertifikatSMK/list.json`,
+                    `{{ env("SERVICE_BASE_URL") }}/company/documents/submission/index`,
+                    {
+                        page: paramsTable.currentPage,
+                        limit: paramsTable.defaultLimitPage,
+                        ascending: paramsTable.defaultAscending,
+                        search: paramsTable.defaultSearch,
+                    }
                 )
                 .then(response => response)
                 .catch(error => {
@@ -100,28 +163,48 @@
             if (getDataRest.status === 200) {
                 loadingPage(false);
                 let data = getDataRest.data;
-
                 let dataTable = data.data;
+                let totalPage = data.pagination.total;
+                paramsTable.totalPage = totalPage;
 
                 if (dataTable.length === 0) {
-                    card.html(`
-                        <tr>
-                            <th class="text-center" colspan="5">Tidak ada data.</th>
-                        </tr>
+                    tablePaging.html(`
+                        <div class="card">
+                            <div class="card-body text-center"><strong>Tidak ada data.</strong></div>
+                        </div>
                     `);
+                    countPaging.text("0 - 0");
+                    totalPaging.text("0");
                 } else {
+                    let display_from = ((paramsTable.defaultLimitPage * getDataRest.data.pagination.current_page) + 1) -
+                        paramsTable.defaultLimitPage;
+                    let display_to = paramsTable.currentPage < getDataRest.data.pagination.total_pages ?
+                        dataTable.length < paramsTable.defaultLimitPage ?
+                        dataTable.length :
+                        (paramsTable.defaultLimitPage * getDataRest.data.pagination.current_page) :
+                        totalPage;
+                    let index_loop = display_from;
                     let domTableHtml = "";
-
                     for (let index = 0; index < dataTable.length; index++) {
                         let element = dataTable[index];
                         let statusBadge = element.is_active ?
                             '<span class="badge bg-light-success">Aktif</span>' :
                             '<span class="badge bg-light-danger">Tidak Aktif</span>';
 
-                        let statusLabel = element.status === "disposition" ?
-                            '<span class="badge bg-light-primary">Pengajuan Baru</span>' :
-                            '<span class="badge bg-light-success">Draft</span>';
-
+                        let statusLabelColor = 'primary';
+                        if (element.status === 'draft') {
+                            statusLabelColor = 'secondary';
+                        }
+                        if (element.status === 'certificate_validation') {
+                            statusLabelColor = 'success';
+                        }
+                        if (element.status === 'rejected'
+                            || element.status === 'cancelled'
+                            | element.status === 'expired') {
+                            statusLabelColor = 'danger';
+                        }
+                        let statusLabel = `<span class="badge bg-light-${statusLabelColor}">${statusLabels[element.status]}</span>`;
+                        
                         let lastUpdate = new Date(element.updated_at).toLocaleDateString();
                         let createdDate = new Date(element.created_at).toLocaleDateString();
 
@@ -181,10 +264,10 @@
                                             <div class="mt-2">
                                                 ${element.rejection_notes ? `
                                                     <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
+                                                        data-bs-toggle="modal" data-bs-target="#notesModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
                                                         <i class="ti ti-eye me-1"></i> Lihat Catatan
                                                     </button>` : ''}
-                                                <a href="/company/pengajuan-sertifikat/detail"
+                                                <a href="/company/pengajuan-sertifikat/detail?id=${element.id}"
                                                     class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;">
                                                     <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
                                                 </a>
@@ -193,25 +276,35 @@
                                     </div>
                                 </div>
                             </div>
-                            `;
+                        `;
                     }
 
-                    card.empty();
-                    card.html(domTableHtml);
+                    countPaging.html(`${display_from} - ${display_to}`);
+                    totalPaging.html(getDataRest.data.pagination.total);
+                    tablePaging.empty();
+                    tablePaging.html(domTableHtml);
                     $('[data-toggle="tooltip"]').tooltip();
                 }
             }
         }
 
         function showModalNotes(notes) {
-            $('#exampleModalCenter .modal-body').html(`<p>${notes}</p>`);
-            $('#exampleModalCenter').modal('show');
+            $('#notesModalCenter .modal-body').html(`<p>${notes}</p>`);
+            $('#notesModalCenter').modal('show');
         }
 
 
         async function initPageLoad() {
+            paramsTable = {
+                "defaultLimitPage": 10,
+                "currentPage": 1,
+                "totalPage": 0,
+                "defaultAscending": 1,
+                "defaultSearch": '',
+            };
 
-            await getListData();
+            await manipulationDataTable(paramsTable, '#pagination', '#limitPage',
+                '#searchInput', getListData); 
         }
     </script>
     @include('Company.partial-js')

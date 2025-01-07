@@ -38,9 +38,9 @@
         #back-to-top {
             position: fixed;
             /* Agar melayang */
-            bottom: 30px;
+            bottom: 80px;
             /* Jarak dari bawah */
-            right: 30px;
+            right: 40px;
             /* Jarak dari kanan */
             display: none;
             /* Awalnya tersembunyi */
@@ -51,7 +51,7 @@
             height: 50px;
             border-radius: 50%;
             /* Bentuk bulat */
-            background: linear-gradient(45deg, #4154ff, #752bff);
+            background: linear-gradient(45deg, #043c85, #4672b8);
             /* Gradien warna */
             color: white;
             /* Warna teks/ikon */
@@ -273,16 +273,19 @@
 
 @section('page_js')
     <script>
+        let queryString         = window.location.search;
+        let urlParams           = new URLSearchParams(queryString);
+        let referenceId         = urlParams.get('id');
+
         async function getListData() {
             loadingPage(true);
             let getDataRest;
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    '/dummy/company/sertifikatSMK/detail.json'
-                    // `{{ env('ESMK_SERVICE_BASE_URL') }}/company/documents/submission/detail`, {
-                    //     id: referenceId
-                    // }
+                    `{{ env('SERVICE_BASE_URL') }}/company/documents/submission/detail`, {
+                        id: referenceId
+                    }
                 );
             } catch (error) {
                 loadingPage(false);
@@ -374,7 +377,7 @@
                                         answerColumn += `
                                             <div class="mb-5">
                                                 <span class="form-label">File ${Object.values(questionPropertiesItems[i])[0]['name']}</span>
-                                                <p><a class="link-primary link-offset-2 text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover" href="javascript:;" onClick="showViewDocument('${response.data.answers[elementKey][subElement[0]][i][Object.keys(questionPropertiesItems[i])]}')">
+                                                <p><a class="link-primary link-offset-2 text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover" href="javascript:void(0);" target="_blank" onClick="showViewDocument('${response.data.answers[elementKey][subElement[0]][i][Object.keys(questionPropertiesItems[i])]}')">
                                                     Lihat Dokumen
                                                 </a></p>
                                             </div>`;
@@ -393,7 +396,7 @@
                                     answerColumn += `
                                         <td class="text-start align-top" style="word-wrap: break-word; white-space: normal; max-width: 300px;">
                                             <span class="form-label">File ${questionProperties['attachmentName']}</span>
-                                            <p><a class="link-primary link-offset-2 text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover" href="javascript:;" onClick="showViewDocument('${response.data.answers[elementKey][subElement[0]]}')">Lihat Dokumen</a></p>
+                                            <p><a class="link-primary link-offset-2 text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover" href="javascript:void(0);" target="_blank" onClick="showViewDocument('${response.data.answers[elementKey][subElement[0]]}')">Lihat Dokumen</a></p>
                                         </td>`;
                                 }
                             }
@@ -585,7 +588,12 @@
             let response;
 
             try {
-                response = await CallAPI('GET', '/dummy/company/sertifikatSMK/history.json');
+                response = await CallAPI(
+                    'GET', 
+                    `{{ env('SERVICE_BASE_URL') }}/company/documents/submission/history`, {
+                        id: referenceId
+                    }
+                );
             } catch (error) {
                 const errorMessage = error?.response?.data?.message || 'Terjadi kesalahan. Mohon coba lagi.';
                 Swal.fire({
@@ -667,7 +675,7 @@
                     <li>
                         <i class="task-icon ${iconClass}"></i>
                         <p class="m-b-5">${formattedDate}</p>
-                        <h5 class="text-muted">${text} oleh <span class="text-primary">${item.updated_by}</span></h5>
+                        <h5 class="text-muted">${text} oleh <span class="text-primary">${item.updated_by || 'tim penilai'}</span></h5>
                     </li>
                 `;
             });
@@ -740,7 +748,7 @@
                     <li class="list-group-item">
                         <div class="media align-items-center">
                             <div class="media-body">
-                                <a href="${applicationLetter?.fileOfApplicationLetter}">
+                                <a href="${applicationLetter?.fileOfApplicationLetter}" target="_blank">
                                     <p class="mb-0"><i class="fa-regular fa-file-pdf me-1"></i><label
                                             class="mb-0">Lihat Dokumen</label></p>
                                 </a>
@@ -896,11 +904,11 @@
         async function showViewDocument(loc) {
             // $('.view-document-print').attr(loc);
             // await $('#view-document').modal('show')
-            window.open(loc)
+            window.open(loc, "_blank");
         }
 
         async function showViewDocumentAppLetter() {
-            window.open(applicationLetter)
+            window.open(applicationLetter, "_blank");
         }
 
         document.addEventListener("DOMContentLoaded", function() {

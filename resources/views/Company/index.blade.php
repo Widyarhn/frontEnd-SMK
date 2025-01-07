@@ -88,8 +88,8 @@
 
     <div style="position: fixed; bottom: 20px; right: 40px; z-index: 999;">
         <a href="https://wa.me/6281287980134?text=Halo saya ingin bertanya tentang layanan Anda"
-            style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 45%;
-                  display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+            style="background:linear-gradient(45deg, #28a745, #28a74594); color: white; padding: 12px; border-radius: 50%; height: 50px;
+                  width: 50px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
                   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <i class="ph-duotone ph-headset fa-solid text-white fa-2x"></i>
         </a>
@@ -203,18 +203,7 @@
         }
 
         $(document).on('click', '.logout', async function() {
-            Swal.fire({
-                icon: 'warning',
-                title: "Apakah anda yakin ingin keluar?",
-                showDenyButton: false,
-                showCancelButton: true,
-                confirmButtonText: "Ya, Keluar",
-                cancelButtonText: "Tidak"
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    await logout();
-                }
-            });
+            await logout();
         });
     </script>
     @include('Company.partial-js')

@@ -196,7 +196,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Status</h3>
-                                                    <p class="sertificate-status text-muted mb-0"></p>
+                                                    <p class="sertificate-status text-white mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-file-alt fa-lg text-primary f-36"></i>
@@ -211,7 +211,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Tanggal Terbit</h3>
-                                                    <p class="sertificate-publish text-white mb-0"></p>
+                                                    <p class="sertificate-publish badge bg-info text-white mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-calendar-alt fa-lg text-primary f-36"></i>
@@ -254,8 +254,6 @@
 @endsection
 
 @section('scripts')
-    <script src="https://ableproadmin.com/assets/js/plugins/simple-datatables.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/date-language-format.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
@@ -462,11 +460,12 @@
                 </div>
             `);
             }
-            console.log(data.number_of_certificate)
+
             $('.sertificate-number').html(data.number_of_certificate);
             $('.sertificate-status').html(data.is_active.text_status).addClass(`badge ${data.is_active.color}`);
             $('.sertificate-publish').html(data.publish_date);
             $('.sertificate-expired').html(data.expired_date).addClass(`badge ${data.expired.color}`);
+            console.log("🚀 ~ setSertifikatData ~ data.publish_date:", data.publish_date)
         }
 
         // Set the countdown time (e.g., 5 minutes from now)

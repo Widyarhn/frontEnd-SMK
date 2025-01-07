@@ -184,20 +184,9 @@
                 },500);
             }
         }
-        
+
         $(document).on('click', '.logout', async function() {
-            Swal.fire({
-                icon: 'warning',
-                title: "Apakah anda yakin ingin keluar?",
-                showDenyButton: false,
-                showCancelButton: true,
-                confirmButtonText: "Ya, Keluar",
-                cancelButtonText: "Tidak"
-              }).then(async (result) => {
-                if (result.isConfirmed) {
-                  await logout();
-                }
-              });
+            await logout();
         });
     </script>
     @include('Administrator.partial-js')
