@@ -574,7 +574,6 @@
                                 <strong>
                                     <a href="#" class="link-secondary">${service.name}</a>
                                 </strong>
-                                | <span class="badge bg-light text-black">${service.name}</span>
                             </li>
                         </ul>
                     `;
