@@ -10,11 +10,13 @@ class RoleMiddleware
     public function handle($request, Closure $next, $role)
     {
         $payload = $request->payload;
-        if ($payload['role'] != $role) {
-            if($payload['role'] != 'company'){
-                return redirect()->route('admin.dashboard');
-            } else {
-                return redirect()->route('company.dashboard');
+        if (!is_null($payload)) {
+            if ($payload['role'] != $role) {
+                if($payload['role'] != 'company'){
+                    return redirect()->route('admin.dashboard');
+                } else {
+                    return redirect()->route('company.dashboard');
+                }
             }
         }
 

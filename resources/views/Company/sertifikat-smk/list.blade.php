@@ -95,8 +95,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
