@@ -656,61 +656,62 @@
         }
 
 
+
         async function addData() {
-            // const form = document.getElementById('fCreate');
-            // form.addEventListener("submit", (e) => {
-            //     e.preventDefault(); // Mencegah submit default
+            const form = document.getElementById('fCreate');
+            form.addEventListener("submit", (e) => {
+                e.preventDefault(); // Mencegah submit default
 
-            //     const formParsley = $('#fCreate').parsley(); // Validasi menggunakan Parsley
-            //     formParsley.validate();
+                const formParsley = $('#fCreate').parsley(); // Validasi menggunakan Parsley
+                formParsley.validate();
 
-            //     if (!formParsley.isValid()) return false; // Berhenti jika validasi gagal
+                if (!formParsley.isValid()) return false; // Berhenti jika validasi gagal
 
-            //     // Ambil data dari form sebagai array dan konversi menjadi objek manual
-            //     let dataArray = $("#fCreate").serializeArray(),
-            //         formObject = {}; // Gantikan AjaxHelper dengan konversi manual
+                // Ambil data dari form sebagai array dan konversi menjadi objek manual
+                let dataArray = $("#fCreate").serializeArray(),
+                    formObject = {}; // Gantikan AjaxHelper dengan konversi manual
 
-            //     // Loop melalui dataArray untuk mengubahnya menjadi objek
-            //     dataArray.forEach((field) => {
-            //         formObject[field.name] = field.value;
-            //     });
+                // Loop melalui dataArray untuk mengubahnya menjadi objek
+                dataArray.forEach((field) => {
+                    formObject[field.name] = field.value;
+                });
 
 
-            //     // Cek apakah field wajib kosong
-            //     if (!formObject.number_of_application_letter) {
-            //         loadingPage(false);
-            //         notificationAlert('info', 'Pemberitahuan', 'Nomor surat permohonan wajib diisi')
-            //         return;
-            //     }
+                // Cek apakah field wajib kosong
+                if (!formObject.number_of_application_letter) {
+                    loadingPage(false);
+                    notificationAlert('info', 'Pemberitahuan', 'Nomor surat permohonan wajib diisi')
+                    return;
+                }
 
-            //     if (!formObject.date_of_application_letter) {
-            //         loadingPage(false);
-            //         notificationAlert('info', 'Pemberitahuan', 'Tanggal surat permohonan wajib diisi')
-            //         return;
-            //     }
+                if (!formObject.date_of_application_letter) {
+                    loadingPage(false);
+                    notificationAlert('info', 'Pemberitahuan', 'Tanggal surat permohonan wajib diisi')
+                    return;
+                }
 
-            //     if (!formObject.file_of_application_letter) {
-            //         loadingPage(false);
-            //         notificationAlert('info', 'Pemberitahuan', 'File surat permohonan wajib diisi')
-            //         return;
-            //     }
+                if (!formObject.file_of_application_letter) {
+                    loadingPage(false);
+                    notificationAlert('info', 'Pemberitahuan', 'File surat permohonan wajib diisi')
+                    return;
+                }
 
-            //     // Membangun skema jawaban
-            //     let answerSchema = buildAnswerSchema();
+                // Membangun skema jawaban
+                let answerSchema = buildAnswerSchema();
 
-            //     // Mengumpulkan semua data form
-            //     let formData = {
-            //         element_properties: smkElements, // Asumsikan smkElements sudah didefinisikan
-            //         answers: answerSchema,
-            //         status: 'request',
-            //         number_of_application_letter: formObject.number_of_application_letter,
-            //         date_of_application_letter: formObject.date_of_application_letter,
-            //         file_of_application_letter: formObject.file_of_application_letter,
-            //     };
+                // Mengumpulkan semua data form
+                let formData = {
+                    element_properties: smkElements, // Asumsikan smkElements sudah didefinisikan
+                    answers: answerSchema,
+                    status: 'request',
+                    number_of_application_letter: formObject.number_of_application_letter,
+                    date_of_application_letter: formObject.date_of_application_letter,
+                    file_of_application_letter: formObject.file_of_application_letter,
+                };
 
-            //     // Kirim data ke server
-            //     submitData(formData, 'Berhasil mengirim pengajuan');
-            // });
+                // Kirim data ke server
+                submitData(formData, 'Berhasil mengirim pengajuan');
+            });
         }
 
 

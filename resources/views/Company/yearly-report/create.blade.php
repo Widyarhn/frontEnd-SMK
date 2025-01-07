@@ -705,9 +705,6 @@
             return elements
         }
 
-
-
-
         async function initPageLoad() {
             FilePond.registerPlugin(
                 FilePondPluginFileEncode,

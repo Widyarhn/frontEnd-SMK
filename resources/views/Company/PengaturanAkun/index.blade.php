@@ -163,7 +163,7 @@
         async function getData() {
             loadingPage(true);
             let getDataRest = await CallAPI(
-                'GET', `{{ asset('dummy/internal/infoPengaturanAkun_admin.json') }}`
+                'GET', `{{ asset('dummy/company/infoPengaturanAkun_admin.json') }}`
             ).then(function(response) {
                 return response;
             }).catch(function(error) {

@@ -63,8 +63,8 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/internal/dashboard-internal">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/internal/laporan-tahunan/list">Laporan Tahunan</a></li>
+                        <li class="breadcrumb-item"><a href="/company/dashboard-company">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/company/yearly-report/list">Laporan Tahunan</a></li>
                         <li class="breadcrumb-item" aria-current="page">Detail Laporan Tahunan</li>
                     </ul>
                 </div>
@@ -188,7 +188,7 @@
         let queryString = window.location.search;
         let urlParams = new URLSearchParams(queryString);
         let referenceId = urlParams.get('id');
-        let companyID = urlParams.get('companyID');
+        let companyID = urlParams.get('company_id');
 
         function generateRowOfElementTitle(colSpanTitle, numbering, title) {
             let $templateRow = `
