@@ -1,7 +1,10 @@
 @extends('...Administrator.index', ['title' => 'Data Perusahaan'])
 @section('asset_css')
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/daterange.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/daterange-picker.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/laporan/index.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         .table th.sticky-end,
         .table td.sticky-end {
@@ -127,7 +130,7 @@
                                 <label class="fw-normal" for="daterange">Rentang Tanggal <sup
                                         class="text-danger">*</sup></label>
                                 <div class="input-group">
-                                    <input type="text" id="pc-date_range_picker-2" class="form-control"
+                                    <input type="text" id="daterange" class="form-control"
                                         placeholder="Pilih rentang tanggal" />
                                     <span class="input-group-text"><i class="feather icon-calendar"></i></span>
                                 </div>
@@ -262,13 +265,22 @@
         </div>
     </div>
 @endsection
-@section('page_js')
-    <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
+@section('scripts')
+    {{-- <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script> --}}
     <script src="{{ asset('assets') }}/js/plugins/choices.min.js"></script>
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script> --}}
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-
+    <script src="{{ asset('assets/js/excel/xlsx-populate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/excel/file-saver.min.js') }}"></script>
+    <script src="{{ asset('assets/js/date/moment.js') }}"></script>
+    <script src="{{ asset('assets/js/date/date-language-format.js') }}"></script>
+    <script src="{{ asset('assets/js/date/daterange-picker.js') }}"></script>
+    <script src="{{ asset('assets/js/date/daterange-custom.js') }}"></script>
+    <script src="{{ asset('assets/js/date/date-DMY-format.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+@endsection
+@section('page_js')
     <script>
         let menu = 'List Perusahaan';
         let defaultLimitPage = 10;
@@ -280,6 +292,284 @@
         let getDataTable = '';
         let errorMessage = "Terjadi Kesalahan.";
 
+        async function getListData(limit = 10, page = 1, ascending = 0, search = '', customFilter) {
+            loadingPage(true);
+            let filterParams = {};
+
+            if (customFilter['start_date']) filterParams['fromdate'] = customFilter['start_date'];
+            if (customFilter['end_date']) filterParams['duedate'] = customFilter['end_date'];
+
+            if (customFilter['province']) {
+                filterParams.province = customFilter['province'];
+            }
+            if (customFilter['status']) {
+                filterParams.status = customFilter['status'];
+            }
+            if (customFilter['service_type']) {
+                filterParams.service_type = customFilter['service_type'];
+            }
+            const queryParams = new URLSearchParams({
+                page: currentPage,
+                limit: defaultLimitPage,
+                ascending: defaultAscending,
+                search: defaultSearch,
+                ...filterParams,
+            }).toString();
+
+            let getDataRest;
+            try {
+                getDataRest = await CallAPI(
+                    'GET',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/list?${queryParams}`
+                );
+            } catch (error) {
+                loadingPage(false);
+                let resp = error.response;
+                errorMessage = resp.data.message || errorMessage;
+                notificationAlert('info', 'Pemberitahuan', errorMessage);
+                getDataRest = resp;
+            }
+            if (getDataRest.status == 200) {
+                loadingPage(false);
+                let handleDataArray = await Promise.all(
+                    getDataRest.data.data.map(async item => await handleData(item))
+                );
+                document.getElementById('total_perusahaan').innerText = getDataRest.data.paginate.total || '-';
+                await setListData(handleDataArray, getDataRest.data.paginate, customFilter);
+            } else {
+                getDataTable = `
+                <tr>
+                    <th class="text-center" colspan="${$('th').length}"> ${errorMessage} </th>
+                </tr>`;
+                $('#listData tr').remove();
+                $('#listData').append(getDataTable);
+            }
+        }
+
+        async function handleData(data) {
+            const isActive = (data['is_active'] === true) || (data['is_active'] === 1);
+            const existSpionam = (data['exist_spionam'] === true) || (data['exist_spionam'] === 1);
+
+            let statusMapping = {
+                request: 'Pengajuan',
+                disposition: 'Disposisi',
+                not_passed_assessment: 'Tidak lulus penilaian',
+                submission_revision: 'Perbaikan dokumen',
+                passed_assessment: 'Lulus penilaian',
+                not_passed_assessment_verification: 'Tidak lulus verifikasi penilaian',
+                assessment_revision: 'Perbaikan penilaian',
+                passed_assessment_verification: 'Lulus verifikasi penilaian',
+                scheduling_interview: 'Penjadwalan wawancara',
+                scheduled_interview: 'Wawancara terjadwal',
+                completed_interview: 'Wawancara selesai',
+                verification_director: 'Verifikasi direktur',
+                certificate_validation: 'Pengesahan Sertifikat',
+                rejected: 'Ditolak',
+                cancelled: 'Dibatalkan',
+                expired: 'Kedaluarsa',
+                draft: 'Draft'
+            };
+
+            let statusColors = {
+                default: "bg-light-primary",
+                success: "bg-light-success",
+                danger: "bg-light-danger"
+            };
+
+            function getStatusColor(statusKey) {
+                switch (statusKey) {
+                    case 'not_passed_assessment':
+                    case 'not_passed_assessment_verification':
+                    case 'rejected':
+                    case 'cancelled':
+                    case 'expired':
+                        return statusColors.danger;
+                    case 'passed_assessment':
+                    case 'passed_assessment_verification':
+                    case 'certificate_validation':
+                        return statusColors.success;
+                    default:
+                        return statusColors.default;
+                }
+            }
+
+            let handleData = {
+                id: data.id ?? '-',
+                name: data['name'] ?? '-',
+                nib: data['nib'] ?? '-',
+                service_types: (data['service_types']?.map(service => service['name']).join(', ')) ?? '-',
+
+                certificate_request_status: {
+                    text: statusMapping[data['certificate_status']] ?? 'Belum ada pengajuan',
+                    background: getStatusColor(data['certificate_status'] ?? '')
+                },
+
+                province_name: (data['province'] && data['province']['name']) ? data['province']['name'] : '-',
+                city_name: (data['city'] && data['city']['name']) ? data['city']['name'] : '-',
+                address: data['address'] ?? '-',
+
+                exist_spionam: {
+                    init: data['exist_spionam'] ?? '-',
+                    background: data['exist_spionam'] ? "bg-success text-white" : "bg-danger text-white",
+                    text_status: data['exist_spionam'] ? "Terdaftar" : "Belum Terdaftar",
+                    icon_status: data['exist_spionam'] ? "fa fa-circle-check" : "fa fa-circle-xmark",
+                },
+
+                created_at: dateLanguageFormat(data['created_at']) ?? '-',
+
+                is_active: {
+                    init: data['is_active'] ?? '-',
+                    background: data['is_active'] ? "bg-success text-white" : "bg-danger text-white",
+                    text_status: data['is_active'] ? "Aktif" : "Tidak Aktif",
+                    icon_status: data['is_active'] ? "fa fa-circle-check" : "fa fa-circle-xmark",
+                },
+            };
+
+            return handleData;
+        }
+
+        async function setListData(dataList, pagination) {
+            totalPage = pagination.total;
+            let display_from = ((defaultLimitPage * pagination.current_page) + 1) - defaultLimitPage;
+            let index_loop = display_from;
+            let display_to = currentPage < pagination.total_pages ? dataList.length < defaultLimitPage ?
+                dataList.length : (defaultLimitPage * pagination.current_page) : totalPage;
+
+            let getDataTable = '';
+            for (let index = 0; index < dataList.length; index++) {
+                let element = dataList[index];
+                const elementData = JSON.stringify(element);
+                const spionamStatus = element.exist_spionam.text_status;
+                const badgeClass = spionamStatus === 'Belum Terdaftar' ? 'bg-danger' :
+                    'bg-success';
+                const isActive = element.is_active === true;
+
+                const actionButton = isActive ?
+                    `<a class="avtar avtar-s btn-link-success" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Terverifikasi" data-id="${element.id}" data-status="terverifikasi">
+                            <i class="fa-solid fa-square-check fa-lg"></i>
+                        </a>` :
+                    `<a class="avtar avtar-s btn-link-danger change-status" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Belum Terverifikasi" data-id="${element.id}" data-status="belum-terverifikasi">
+                            <i class="fa-solid fa-square-xmark fa-lg"></i>
+                        </a>`;
+
+
+                getDataTable += `
+                <tr class="nk-tb-item">
+                    <td>${index_loop}.</td>
+                    <td>
+                        <div class="row align-items-center">
+                            <div class="col-auto pe-0">
+                                <div
+                                    class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-building text-white"></i>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <h6 class="mb-1"><span class="text-truncate w-100">${element.name}</span> </h6>
+                                <p class="f-12 mb-0">
+                                    <a href="#!" class="text-muted"><span
+                                            class="text-truncate w-200">${element.nib}</span></a>
+                                    | <a href="#!" class="text-muted">
+                                        <span class="badge ${element.certificate_request_status.background}">${element.certificate_request_status.text}</span></a>
+                                    
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td><a href="#!" class="text-muted"><span
+                                            class="badge ${badgeClass}">${spionamStatus}</span></a></td>
+                    <td>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            ${Array.isArray(element.service_types)
+                                ? element.service_types.map(type => `<li>${type}</li>`).join('')
+                                : element.service_types
+                                    ? element.service_types.split(',').map(type => `<li>${type.trim()}</li>`).join('')
+                                    : '<li>Tidak ada layanan</li>'
+                            }
+                        </ul>
+                    </td>
+
+                    <td>
+                        <div class="row align-items-center">
+                            
+                            <div class="col">
+                                <h6 class="mb-1"><span class="text-truncate w-100">${element.province_name},
+                                    ${element.city_name}i</span></h6>
+                                <p class="f-12 mb-0 " style="word-wrap: break-word; white-space: normal; max-width: 300px;">${element.address}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${element.created_at ? new Date(element.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}</td>
+                    <td class="text-end sticky-end">
+                        <li class="list-inline-item">
+                            ${actionButton}
+                        </li>
+                        <li class="list-inline-item">
+                            ${getDetailPage(element.id)}
+                        </li>
+                    </td>
+                </tr>`;
+                index_loop++;
+            }
+            $('#listData tr').remove();
+
+            if (totalPage == 0) {
+                getDataTable = `
+                <tr class="nk-tb-item">
+                    <th class="text-center" colspan="${$('th').length}"> Tidak ada data. </th>
+                </tr>`;
+                $('#countPage').text("0 - 0");
+            }
+            $('#listData').append(getDataTable);
+            $('#totalPage').text(totalPage);
+            $('#countPage').text(`${display_from} - ${display_to}`);
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        }
+
+        async function getChartTipeLayanan() {
+            loadingPage(true);
+            let getDataRest = await CallAPI(
+                'GET',
+                `{{ asset('dummy/company/chart_tipe_layanan.json') }}`
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            if (getDataRest.status == 200) {
+                loadingPage(false);
+
+                await setChartTipeLayanan(getDataRest.data.data);
+            }
+        }
+        async function getTotalData() {
+            loadingPage(true);
+            let getDataRest = await CallAPI(
+                'GET',
+                `{{ asset('dummy/company/total_data.json') }}`
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            if (getDataRest.status == 200) {
+                loadingPage(false);
+                await setChartPerusahaanTerverisikasi(getDataRest.data.data);
+                document.getElementById('total_perusahaan_terverifikasi').innerText = getDataRest.data.data
+                    .total_perusahaan_terverifikasi || '-';
+                document.getElementById('belum_terdaftar_spionam').innerText = getDataRest.data.data
+                    .belum_terdaftar_spionam || '-';
+                document.getElementById('terdaftar_spionam').innerText = getDataRest.data.data.terdaftar_spionam || '-';
+            }
+        }
         async function setChartPerusahaanTerverisikasi(data) {
             const {
                 total_perusahaan_terverifikasi
@@ -389,274 +679,6 @@
             var chartLine = new ApexCharts(document.querySelector('#line-chart'), optionsLineChart);
             chartLine.render();
         }
-        async function getChartTipeLayanan() {
-            loadingPage(true);
-            let getDataRest = await CallAPI(
-                'GET',
-                `{{ asset('dummy/company/chart_tipe_layanan.json') }}`
-            ).then(function(response) {
-                return response;
-            }).catch(function(error) {
-                loadingPage(false);
-                notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                return resp;
-            });
-
-            if (getDataRest.status == 200) {
-                loadingPage(false);
-
-                await setChartTipeLayanan(getDataRest.data.data);
-            }
-        }
-        async function getTotalData() {
-            loadingPage(true);
-            let getDataRest = await CallAPI(
-                'GET',
-                `{{ asset('dummy/company/total_data.json') }}`
-            ).then(function(response) {
-                return response;
-            }).catch(function(error) {
-                loadingPage(false);
-                notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                return resp;
-            });
-
-            if (getDataRest.status == 200) {
-                loadingPage(false);
-                await setChartPerusahaanTerverisikasi(getDataRest.data.data);
-                document.getElementById('total_perusahaan_terverifikasi').innerText = getDataRest.data.data
-                    .total_perusahaan_terverifikasi || '-';
-                document.getElementById('belum_terdaftar_spionam').innerText = getDataRest.data.data
-                    .belum_terdaftar_spionam || '-';
-                document.getElementById('terdaftar_spionam').innerText = getDataRest.data.data.terdaftar_spionam || '-';
-            }
-        }
-        async function getListData(limit = 10, page = 1, ascending = 0, search = '', customFilter) {
-            loadingPage(true);
-
-            const queryParams = {
-                page: currentPage,
-                limit: defaultLimitPage,
-                ascending: defaultAscending,
-                search: defaultSearch,
-                // ...filterParams,
-            };
-
-            let getDataRest = await CallAPI(
-                'GET',
-                `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/list`,
-                queryParams
-            ).then(function(response) {
-                return response;
-            }).catch(function(error) {
-                loadingPage(false);
-                notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                return resp;
-            });
-
-            if (getDataRest.status == 200) {
-                loadingPage(false);
-                let handleDataArray = await Promise.all(
-                    getDataRest.data.data.map(async item => await handleData(item))
-                );
-                document.getElementById('total_perusahaan').innerText = getDataRest.data.paginate.total || '-';
-                await setListData(handleDataArray, getDataRest.data.paginate, customFilter);
-            } else {
-                getDataTable = `
-                <tr>
-                    <th class="text-center" colspan="${$('th').length}"> ${errorMessage} </th>
-                </tr>`;
-                $('#listData tr').remove();
-                $('#listData').append(getDataTable);
-            }
-        }
-
-        async function handleData(data) {
-            const isActive = (data['is_active'] === true) || (data['is_active'] === 1);
-            const existSpionam = (data['exist_spionam'] === true) || (data['exist_spionam'] === 1);
-
-            let statusMapping = {
-                request: 'Pengajuan',
-                disposition: 'Disposisi',
-                not_passed_assessment: 'Tidak lulus penilaian',
-                submission_revision: 'Perbaikan dokumen',
-                passed_assessment: 'Lulus penilaian',
-                not_passed_assessment_verification: 'Tidak lulus verifikasi penilaian',
-                assessment_revision: 'Perbaikan penilaian',
-                passed_assessment_verification: 'Lulus verifikasi penilaian',
-                scheduling_interview: 'Penjadwalan wawancara',
-                scheduled_interview: 'Wawancara terjadwal',
-                completed_interview: 'Wawancara selesai',
-                verification_director: 'Verifikasi direktur',
-                certificate_validation: 'Pengesahan Sertifikat',
-                rejected: 'Ditolak',
-                cancelled: 'Dibatalkan',
-                expired: 'Kedaluarsa',
-                draft: 'Draft'
-            };
-
-            let statusColors = {
-                default: "bg-light-primary",
-                success: "bg-light-success",
-                danger: "bg-light-danger"
-            };
-
-            function getStatusColor(statusKey) {
-                switch (statusKey) {
-                    case 'not_passed_assessment':
-                    case 'not_passed_assessment_verification':
-                    case 'rejected':
-                    case 'cancelled':
-                    case 'expired':
-                        return statusColors.danger;
-                    case 'passed_assessment':
-                    case 'passed_assessment_verification':
-                    case 'certificate_validation':
-                        return statusColors.success;
-                    default:
-                        return statusColors.default;
-                }
-            }
-
-            let handleData = {
-                id: data.id ?? '-',
-                name: data['name'] ?? '-',
-                nib: data['nib'] ?? '-',
-                service_types: (data['service_types']?.map(service => service['name']).join(', ')) ?? '-',
-
-                certificate_request_status: {
-                    text: statusMapping[data['certificate_status']] ?? 'Belum ada pengajuan',
-                    background: getStatusColor(data['certificate_status'] ?? '')
-                },
-
-                province_name: (data['province'] && data['province']['name']) ? data['province']['name'] : '-',
-                city_name: (data['city'] && data['city']['name']) ? data['city']['name'] : '-',
-                address: data['address'] ?? '-',
-
-                exist_spionam: {
-                    init: data['exist_spionam'] ?? '-',
-                    background: data['exist_spionam'] ? "bg-success text-white" : "bg-danger text-white",
-                    text_status: data['exist_spionam'] ? "Terdaftar" : "Belum Terdaftar",
-                    icon_status: data['exist_spionam'] ? "fa fa-circle-check" : "fa fa-circle-xmark",
-                },
-
-                created_at: dateLanguageFormat(data['created_at']) ?? '-',
-
-                is_active: {
-                    init: data['is_active'] ?? '-',
-                    background: data['is_active'] ? "bg-success text-white" : "bg-danger text-white",
-                    text_status: data['is_active'] ? "Aktif" : "Tidak Aktif",
-                    icon_status: data['is_active'] ? "fa fa-circle-check" : "fa fa-circle-xmark",
-                },
-            };
-            console.log("🚀 ~ handleData ~ handleData.certificate_request_status.background:", handleData
-                .certificate_request_status.background)
-            console.log("🚀 ~ handleData ~ handleData.certificate_request_status.text:", handleData
-                .certificate_request_status.text)
-
-
-            return handleData;
-        }
-
-        async function setListData(dataList, pagination) {
-            totalPage = pagination.total;
-            let display_from = ((defaultLimitPage * pagination.current_page) + 1) - defaultLimitPage;
-            let index_loop = display_from;
-            let display_to = currentPage < pagination.total_pages ? dataList.length < defaultLimitPage ?
-                dataList.length : (defaultLimitPage * pagination.current_page) : totalPage;
-
-            let getDataTable = '';
-            for (let index = 0; index < dataList.length; index++) {
-                let element = dataList[index];
-                const elementData = JSON.stringify(element);
-                const spionamStatus = element.exist_spionam.text_status;
-                const badgeClass = spionamStatus === 'Belum Terdaftar' ? 'bg-danger' :
-                    'bg-success';
-                const isActive = element.is_active === true;
-
-                const actionButton = isActive ?
-                    `<a class="avtar avtar-s btn-link-success" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Terverifikasi" data-id="${element.id}" data-status="terverifikasi">
-                            <i class="fa-solid fa-square-check fa-lg"></i>
-                        </a>` :
-                    `<a class="avtar avtar-s btn-link-danger change-status" data-bs-container="body" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Belum Terverifikasi" data-id="${element.id}" data-status="belum-terverifikasi">
-                            <i class="fa-solid fa-square-xmark fa-lg"></i>
-                        </a>`;
-
-
-                getDataTable += `
-                <tr class="nk-tb-item">
-                    <td>${index_loop}.</td>
-                    <td>
-                        <div class="row align-items-center">
-                            <div class="col-auto pe-0">
-                                <div
-                                    class="wid-40 hei-40 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-building text-white"></i>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <h6 class="mb-1"><span class="text-truncate w-100">${element.name}</span> </h6>
-                                <p class="f-12 mb-0">
-                                    <a href="#!" class="text-muted"><span
-                                            class="text-truncate w-200">${element.nib}</span></a>
-                                    | <a href="#!" class="text-muted">
-                                        <span class="badge ${element.certificate_request_status.background}">${element.certificate_request_status.text}</span></a>
-                                    
-                                </p>
-                            </div>
-                        </div>
-                    </td>
-                    <td><a href="#!" class="text-muted"><span
-                                            class="badge ${badgeClass}">${spionamStatus}</span></a></td>
-                    <td>
-                        <ul style="padding-left: 20px; margin: 0;">
-                            ${Array.isArray(element.service_types)
-                                ? element.service_types.map(type => `<li>${type}</li>`).join('')
-                                : element.service_types
-                                    ? element.service_types.split(',').map(type => `<li>${type.trim()}</li>`).join('')
-                                    : '<li>Tidak ada layanan</li>'
-                            }
-                        </ul>
-                    </td>
-
-                    <td>
-                        <div class="row align-items-center">
-                            
-                            <div class="col">
-                                <h6 class="mb-1"><span class="text-truncate w-100">${element.province_name},
-                                    ${element.city_name}i</span></h6>
-                                <p class="f-12 mb-0 " style="word-wrap: break-word; white-space: normal; max-width: 300px;">${element.address}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>${element.created_at ? new Date(element.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}</td>
-                    <td class="text-end sticky-end">
-                        <li class="list-inline-item">
-                            ${actionButton}
-                        </li>
-                        <li class="list-inline-item">
-                            ${getDetailPage(element.id)}
-                        </li>
-                    </td>
-                </tr>`;
-                index_loop++;
-            }
-            $('#listData tr').remove();
-
-            if (totalPage == 0) {
-                getDataTable = `
-                <tr class="nk-tb-item">
-                    <th class="text-center" colspan="${$('th').length}"> Tidak ada data. </th>
-                </tr>`;
-                $('#countPage').text("0 - 0");
-            }
-            $('#listData').append(getDataTable);
-            $('#totalPage').text(totalPage);
-            $('#countPage').text(`${display_from} - ${display_to}`);
-            $('[data-bs-toggle="tooltip"]').tooltip();
-        }
 
         async function setStatus() {
             $(document).on("click", ".change-status", async function() {
@@ -700,27 +722,63 @@
             var multipleFetch = new Choices(id, {
                 placeholder: placeholder,
                 placeholderValue: placeholder,
-                maxItemCount: 5
-            }).setChoices(function() {
-                return fetch(
-                        route
-                    )
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then(function(data) {
-                        return data.data.map(function(item) {
-                            return {
-                                value: item.id,
-                                label: item.name
-                            };
-                        });
-                    });
+                maxItemCount: 5,
+                removeItemButton: true,
+                allowClear: true,
             });
+
+            multipleFetch.setChoices(async function() {
+                const params = {
+                    term: ""
+                };
+
+                const query = {
+                    keyword: params.term,
+                    page: 1,
+                    limit: 30,
+                    ascending: 1
+                };
+
+                const url = new URL(route);
+                url.search = new URLSearchParams(query).toString();
+
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${Cookies.get('auth_token')}`,
+                    }
+                });
+
+                const data = await response.json();
+
+                return data.data.map(function(item) {
+                    return {
+                        value: item.id,
+                        label: item.name
+                    };
+                });
+
+            });
+
+            document.querySelector(id).addEventListener('change', function(event) {
+                const selectedValue = event.target.value;
+
+                if (selectedValue === '') {
+                    $(id).val('');
+                } else {
+                    $(id).val(selectedValue);
+                }
+
+                const selectedValues = multipleFetch.getValue(true);
+            });
+
+            function clearSelection() {
+                multipleFetch.clearChoices();
+            }
         }
 
+
         async function selectFilterStatus(id, placeholder) {
-            // Data didefinisikan langsung di dalam fungsi
             const data = {
                 request: 'Pengajuan',
                 disposition: 'Disposisi',
@@ -744,7 +802,9 @@
             var multipleFetch = new Choices(id, {
                 placeholder: placeholder,
                 placeholderValue: placeholder,
-                maxItemCount: 5
+                maxItemCount: 5,
+                allowClear: true,
+                removeItemButton: true,
             }).setChoices(function() {
                 // Mengonversi objek menjadi array untuk diolah oleh Choices.js
                 const choicesArray = Object.entries(data).map(([key, value]) => ({
@@ -754,41 +814,75 @@
 
                 return Promise.resolve(choicesArray);
             });
+            document.querySelector(id).addEventListener('change', function(event) {
+                const selectedValue = event.target.value;
+
+                document.querySelector(id).value = selectedValue;
+            });
+
+            function clearSelection() {
+                multipleFetch.clearChoices();
+            }
         }
 
         async function customFilterTable() {
+            let dateRangePicker = initializeDateRangePicker(); // Inisialisasi Date Range Picker
+
+            // Function to get updated start and end date
+            function getStartEndDate() {
+                let startDate = dateRangePicker.data('daterangepicker').startDate;
+                let endDate = dateRangePicker.data('daterangepicker').endDate;
+
+                return {
+                    startDate,
+                    endDate
+                };
+            }
 
             document.getElementById('custom-filter').addEventListener('submit', async function(e) {
                 e.preventDefault();
+
+                // Get updated start and end date
+                let {
+                    startDate,
+                    endDate
+                } = getStartEndDate();
+
+                startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
 
                 let sourceType = document.getElementById('input-layanan').value;
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
 
-                customFilter = {
+                let customFilter = {
                     'service_type': sourceType,
                     'status': status,
                     'province': province,
-                    'start_date': $("#daterange").val() != '' ? startDate : '',
-                    'end_date': $("#daterange").val() != '' ? endDate : ''
+                    'start_date': startDate,
+                    'end_date': endDate
                 };
 
-                if (dayDif > 31) {
-                    notificationAlert('info', 'pemberitahuan',
-                        'Rentang tanggal tidak boleh lebih dari 31 hari'
-                    );
+                let timeDiff = new Date(endDate) - new Date(startDate);
+                let dayDiff = timeDiff / (1000 * 3600 * 24);
+
+                if (dayDiff > 31) {
+                    notificationAlert('info', 'Pemberitahuan',
+                        'Rentang tanggal tidak boleh lebih dari 31 hari');
                     return;
                 }
 
                 currentPage = 1;
-
                 await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
                     customFilter);
             });
 
+            // Download Excel
             document.getElementById('download-excel').addEventListener('click', async function() {
-                let startDate = dateRangePicker.data('daterangepicker').startDate;
-                let endDate = dateRangePicker.data('daterangepicker').endDate;
+                let {
+                    startDate,
+                    endDate
+                } = getStartEndDate();
 
                 startDate = startDate.startOf('day').toISOString();
                 endDate = endDate.endOf('day').toISOString();
@@ -797,18 +891,16 @@
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
 
-                let startDateObj = new Date(startDate);
-                let endDateObj = new Date(endDate);
-                let timeDiff = endDateObj - startDateObj;
-                let dayDiff = timeDiff / (1000 * 3600 * 24);
-
-                customFilter = {
+                let customFilter = {
                     'service_type': sourceType,
                     'status': status,
                     'province': province,
-                    'start_date': $("#daterange").val() != '' ? startDate : '',
-                    'end_date': $("#daterange").val() != '' ? endDate : ''
+                    'start_date': startDate,
+                    'end_date': endDate
                 };
+
+                let timeDiff = new Date(endDate) - new Date(startDate);
+                let dayDiff = timeDiff / (1000 * 3600 * 24);
 
                 if (dayDiff > 31) {
                     notificationAlert('info', 'Pemberitahuan',
@@ -824,9 +916,12 @@
                 let data = await getFilterDownload(customFilter, startDate, endDate, 'excel');
             });
 
+            // Download CSV
             document.getElementById('download-csv').addEventListener('click', async function() {
-                let startDate = dateRangePicker.data('daterangepicker').startDate;
-                let endDate = dateRangePicker.data('daterangepicker').endDate;
+                let {
+                    startDate,
+                    endDate
+                } = getStartEndDate();
 
                 startDate = startDate.startOf('day').toISOString();
                 endDate = endDate.endOf('day').toISOString();
@@ -835,18 +930,16 @@
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
 
-                let startDateObj = new Date(startDate);
-                let endDateObj = new Date(endDate);
-                let timeDiff = endDateObj - startDateObj;
-                let dayDiff = timeDiff / (1000 * 3600 * 24);
-
-                customFilter = {
+                let customFilter = {
                     'service_type': sourceType,
                     'status': status,
                     'province': province,
-                    'start_date': $("#daterange").val() != '' ? startDate : '',
-                    'end_date': $("#daterange").val() != '' ? endDate : ''
+                    'start_date': startDate,
+                    'end_date': endDate
                 };
+
+                let timeDiff = new Date(endDate) - new Date(startDate);
+                let dayDiff = timeDiff / (1000 * 3600 * 24);
 
                 if (dayDiff > 31) {
                     notificationAlert('info', 'Pemberitahuan',
@@ -862,9 +955,12 @@
                 let data = await getFilterDownload(customFilter, startDate, endDate, 'csv');
             });
 
+            // Download PDF
             document.getElementById('download-pdf').addEventListener('click', async function() {
-                let startDate = dateRangePicker.data('daterangepicker').startDate;
-                let endDate = dateRangePicker.data('daterangepicker').endDate;
+                let {
+                    startDate,
+                    endDate
+                } = getStartEndDate();
 
                 startDate = startDate.startOf('day').toISOString();
                 endDate = endDate.endOf('day').toISOString();
@@ -873,18 +969,16 @@
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
 
-                let startDateObj = new Date(startDate);
-                let endDateObj = new Date(endDate);
-                let timeDiff = endDateObj - startDateObj;
-                let dayDiff = timeDiff / (1000 * 3600 * 24);
-
-                customFilter = {
+                let customFilter = {
                     'service_type': sourceType,
                     'status': status,
                     'province': province,
-                    'start_date': $("#daterange").val() != '' ? startDate : '',
-                    'end_date': $("#daterange").val() != '' ? endDate : ''
+                    'start_date': startDate,
+                    'end_date': endDate
                 };
+
+                let timeDiff = new Date(endDate) - new Date(startDate);
+                let dayDiff = timeDiff / (1000 * 3600 * 24);
 
                 if (dayDiff > 31) {
                     notificationAlert('info', 'Pemberitahuan',
@@ -900,20 +994,12 @@
                 let data = await getFilterDownload(customFilter, startDate, endDate, 'pdf');
             });
 
+            // Reset filter
             document.getElementById('resetCustomFilter').addEventListener('click', async function() {
-                $('.select2').val('').trigger('change');
-                $('#daterange').val('');
-                $('.search-input').val('');
-
-                customFilter = {};
-                defaultSearch = '';
-                defaultLimitPage = 10;
-                currentPage = 1;
-
-                await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                    customFilter);
+                window.location.reload();
             });
         }
+
 
         async function getFilterDownload(filter = {}, startDate, endDate, format) {
             loadingPage(true);
@@ -1289,24 +1375,6 @@
         }
 
         async function initPageLoad() {
-            flatpickr(document.querySelector('#pc-date_range_picker-2'), {
-                mode: 'range'
-            });
-            $(document).on("click", ".collapse-filter", function() {
-                let $searchInput = $('.search-input');
-                $("#collapseFilter").toggle(500); // Animasi toggle
-
-                if ($searchInput.is(':disabled')) {
-                    $searchInput.removeAttr('disabled'); // Aktifkan input jika disabled
-                } else {
-                    $searchInput.attr('disabled', true); // Disable input jika aktif
-                }
-                $searchInput.val(''); // Reset nilai input
-            });
-            // var multipleCancelButton = new Choices('#input-layanan', {
-            //     removeItemButton: true
-            // });
-
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter),
                 manipulationDataOnTable(),
@@ -1315,10 +1383,10 @@
                 setStatus(),
                 getChartTipeLayanan(),
                 selectFilter('#input-layanan',
-                    '{{ asset('dummy/company/select_jenis_layanan.json') }}',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/service`,
                     'Pilih jenis layanan'),
                 selectFilter('#input-provinsi',
-                    '{{ asset('dummy/company/select_provinsi.json') }}',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/province`,
                     'Pilih provinsi'),
                 selectFilterStatus('#input-status', 'Pilih status sertifikat'),
             ])

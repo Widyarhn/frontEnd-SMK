@@ -14,7 +14,7 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data KBLI</h2>
                     </div>
-                    <div id="tambahContainer">
+                    <div>
                         <a href="javascript:void(0)" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0 add-data"
                             id="add-data">
                             <i class="fas fa-plus-circle me-2"></i> Tambah Data
@@ -23,12 +23,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 mt-2">
-        <div class="alert alert-primary d-flex align-items-center" role="alert">
-            <i class="fas fa-info-circle me-2"></i>
-            <div>Aktifkan Integrasi Akun OSS pada menu <a href="/admin/pengaturan" class="fw-bold">Pengaturan Aplikasi</a> agar dapat mengelola Master Data KBLI.</div>
-        </div>        
     </div>
     <div class="row">
         <div class="col-12">
@@ -149,38 +143,6 @@
         let getDataTable = '';
         let errorMessage = "Terjadi Kesalahan.";
         let isActionForm = "store";
-
-        async function getOSS() {
-            loadingPage(true);
-            let getDataRest = await CallAPI(
-                'GET', `{{ asset('dummy/internal/dashboard-admin/user_detail.json') }}`
-            ).then(function(response) {
-                return response;
-            }).catch(function(error) {
-                loadingPage(false);
-                let resp = error.response;
-                notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                return resp;
-            });
-            loadingPage(false);
-            if (getDataRest.status == 200) {
-                let data = getDataRest.data.data.user;
-                if (data.is_active_oss === false) {
-                    const tambahContainer = document.getElementById('tambahContainer');
-                    const aksiContainer = document.getElementById('aksiContainer');
-                    const buttonContainers = document.querySelectorAll('.buttonContainer');
-
-                    // Sembunyikan elemen tambahContainer dan aksiContainer
-                    if (tambahContainer) tambahContainer.style.display = 'none';
-                    if (aksiContainer) aksiContainer.style.display = 'none';
-
-                    // Sembunyikan semua elemen buttonContainer
-                    buttonContainers.forEach(buttonContainer => {
-                        buttonContainer.style.display = 'none';
-                    });
-                }
-            }
-        }
 
         async function addData() {
             $(document).on("click", ".add-data", function() {
@@ -509,7 +471,6 @@
         async function initPageLoad() {
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
-                getOSS(),
                 manipulationDataOnTable(),
                 addData(),
                 editData(),
