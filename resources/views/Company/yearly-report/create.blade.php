@@ -177,8 +177,7 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    '/dummy/company/laporanTahunan/certificate.json'
-                    // `{{ env('ESMK_SERVICE_BASE_URL') }}/company/documents/certificate`
+                    `{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/get-monitoring-element`
                 );
             } catch (error) {
                 loadingPage(false);
@@ -198,8 +197,7 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    '/dummy/company/laporanTahunan/latest.json'
-                    // `{{ env('ESMK_SERVICE_BASE_URL') }}/company/laporan-tahunan/latest`
+                    `{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/latest`
                 );
                 loadingPage(false);
 
@@ -229,7 +227,7 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    '/dummy/company/laporanTahunan/get-monitoring-element.json'
+                    `{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/get-monitoring-element`
                 );
             } catch (error) {
                 loadingPage(false);
@@ -587,7 +585,7 @@
 
                         const request = new XMLHttpRequest()
                         request.open('POST',
-                            'dummy/upload_file.json')
+                            '{{ env('SERVICE_BASE_URL') }}/company/documents/upload-file')
                         request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
                         request.setRequestHeader('Accept', 'application/json')
                         request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
@@ -651,7 +649,7 @@
                 // Memanggil API untuk mengirim data
                 const postData = await CallAPI(
                     'POST',
-                    'https://jsonplaceholder.typicode.com/posts/1',
+                    '{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/store',
                     formData
                 );
 
