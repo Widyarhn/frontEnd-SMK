@@ -1,17 +1,5 @@
 @extends('...Administrator.index', ['title' => 'Tambah Element SMK | Master Data Element'])
 @section('asset_css')
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
     <style>
         .custom-icon {
             font-size: 30px !important;
@@ -81,17 +69,18 @@
                 </div>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                 <!-- Tombol Previous -->
+                 <button type="button" class="btn btn-secondary" id="previousStep"
+                 style="margin-right: 10px;">Sebelumnya</button>
                 <!-- Tombol Simpan Draft -->
-                <button type="button" class="btn btn-warning" id="saveDraft" style="margin-right: 10px;">Simpan
+                <button type="button" class="btn btn-outline-success" id="saveDraft" style="margin-right: 10px;">Simpan
                     Draft</button>
-                <!-- Tombol Previous -->
-                <button type="button" class="btn btn-secondary" id="previousStep"
-                    style="margin-right: 10px;">Previous</button>
+               
                 <!-- Tombol Next -->
-                <button type="button" class="btn btn-primary" id="nextStep" style="margin-left: 10px;">Next</button>
+                <button type="button" class="btn btn-primary" id="nextStep" style="margin-right: 10px;">Selanjutnya</button>
                 <!-- Tombol Simpan (hanya tampil di akhir) -->
                 <button type="button" class="btn btn-success" id="saveStep"
-                    style="display: none; margin-left: 10px;">Simpan</button>
+                    style="display: none;">Simpan</button>
             </div>
         </div>
     </div>
