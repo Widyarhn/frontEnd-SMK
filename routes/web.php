@@ -158,7 +158,7 @@ Route::middleware(Application::class)->group( function(){
             Route::prefix('certificate')->group(function () {
                 Route::get('/list', function () {
                     return view('Company.sertifikat-smk.list');
-                });
+                })->name('company.certificate.list');
 
             });
             Route::prefix('yearly-report')->group(function () {

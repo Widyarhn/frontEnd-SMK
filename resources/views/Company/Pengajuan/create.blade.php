@@ -37,6 +37,65 @@
         .nav-wrapper::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+        #back-to-top {
+            position: fixed;
+            /* Agar melayang */
+            bottom: 80px;
+            /* Jarak dari bawah */
+            right: 40px;
+            /* Jarak dari kanan */
+            display: none;
+            /* Awalnya tersembunyi */
+            z-index: 1000;
+            /* Di atas elemen lainnya */
+            width: 50px;
+            /* Ukuran tombol */
+            height: 50px;
+            border-radius: 50%;
+            /* Bentuk bulat */
+            background: linear-gradient(45deg, #043c85, #4672b8);
+            /* Gradien warna */
+            color: white;
+            /* Warna teks/ikon */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            /* Shadow lembut */
+            border: none;
+            /* Hilangkan border */
+            outline: none;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            /* Animasi halus */
+            opacity: 0;
+            /* Awalnya transparan */
+            cursor: pointer;
+            /* Tampilkan ikon pointer */
+            display: flex;
+            /* Flexbox untuk mengatur posisi konten */
+            justify-content: center;
+            /* Posisi horizontal di tengah */
+            align-items: center;
+            /* Posisi vertikal di tengah */
+        }
+
+        #back-to-top.show {
+            display: flex;
+            /* Tetap gunakan flex */
+            opacity: 1;
+            /* Transparansi penuh */
+            transform: scale(1);
+            /* Ukuran normal */
+        }
+
+        #back-to-top:hover {
+            transform: scale(1.1);
+            /* Sedikit membesar saat hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+            /* Pertegas bayangan */
+        }
+
+        #back-to-top i {
+            font-size: 20px;
+            /* Ukuran ikon */
+        }
     </style>
 @endsection
 
@@ -222,6 +281,11 @@
             </form>
         </div>
     </div>
+
+
+    <button class="btn btn-danger btn-icon btnScrollToTop" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 @endsection
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
@@ -253,7 +317,8 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `/dummy/company/sertifikatSMK/create.json`
+                `{{ env('SERVICE_BASE_URL') }}/company/documents/smk-element`,
+                {}
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -490,7 +555,7 @@
 
                             const request = new XMLHttpRequest()
                             request.open('POST',
-                                '{{ env('ESMK_SERVICE_BASE_URL') }}/company/documents/upload-file')
+                                '{{ env('SERVICE_BASE_URL') }}/company/documents/upload-file')
                             request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
                             request.setRequestHeader('Accept', 'application/json')
                             request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
@@ -538,6 +603,56 @@
                     labelMaxFileSize: 'Maksimal ukuran file 5MB'
                 }
             );
+        }
+
+        async function saveAsDraft() {
+            loadingPage(true);
+
+            // Ambil data form
+            let dataArray = $("#fCreate").serializeArray(),
+                formObject = {};
+
+            // Konversi dataArray menjadi objek
+            dataArray.forEach((field) => {
+                formObject[field.name] = field.value;
+            });
+
+            // Cek apakah field wajib kosong
+            if (!formObject.number_of_application_letter) {
+                loadingPage(false);
+                notificationAlert('info', 'Pemberitahuan', 'Nomor surat permohonan wajib diisi')
+                return;
+            }
+
+            if (!formObject.date_of_application_letter) {
+                loadingPage(false);
+                notificationAlert('info', 'Pemberitahuan', 'Tanggal surat permohonan wajib diisi')
+                return;
+            }
+
+            if (!formObject.file_of_application_letter) {
+                loadingPage(false);
+                notificationAlert('info', 'Pemberitahuan', 'File surat permohonan wajib diisi')
+                return;
+            }
+
+            // Bangun schema jawaban
+            let answerSchema = buildAnswerSchema();
+
+            // Buat objek formData untuk dikirim
+            let formData = {
+                element_properties: smkElements,
+                answers: answerSchema,
+                status: 'draft',
+                number_of_application_letter: formObject.number_of_application_letter,
+                date_of_application_letter: formObject.date_of_application_letter,
+                file_of_application_letter: formObject.file_of_application_letter,
+            };
+
+            loadingPage(false);
+
+            // Kirim data
+            submitData(formData, 'Berhasil menyimpan data');
         }
 
 
@@ -599,14 +714,82 @@
         }
 
 
+        async function submitData(formData, successMessage) {
+            loadingPage(true);
+
+            let postData = await CallAPI(
+                'POST',
+                "{{ env('SERVICE_BASE_URL') }}/company/documents/submission/store",
+                formData
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                console.log(error)
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+            if (postData.status === 200) {
+                loadingPage(false);
+                notificationAlert('success', 'Pemberitahuan', postData.data.message);
+                setTimeout(() => {
+                    window.location =
+                        "{{ route('company.certificate.list') }}";
+                }, 1500);
+            } else {
+
+            }
+        }
+
+        function buildAnswerSchema() {
+            let elements = {}
+
+            $.each(smkElements.max_assesment, function(elementKey, elementValue) {
+                const rowData = {}
+
+                $.each(elementValue, function(subElementKey) {
+                    let newData, question = smkElements['question_schema']['properties'][elementKey][
+                        'properties'
+                    ][subElementKey]
+
+                    if (question['items']) {
+                        newData = []
+
+                        for (let i in question['items']) {
+
+                            let itemKey = Object.keys(question['items'][i])[0],
+                                answerValue = $(`#${elementKey}_${itemKey}`).val() || null
+
+                            newData.push({
+                                [itemKey]: answerValue
+                            })
+                        }
+                        rowData[subElementKey] = newData
+                    } else {
+                        rowData[subElementKey] = $(`#${elementKey}_${subElementKey}`).val() || null
+                    }
+
+                })
+                elements[elementKey] = rowData
+            })
+
+            return elements
+        }
+
+
         function mappingCompanyInformation(data) {
 
             let serviceTypes = '';
-            data.company.service_types.forEach((serviceType) => {
-                serviceTypes += `<li>${serviceType.name}</li>`;
-            });
+            if (data.company_info.service_types) {
+                data.company_info.service_types.forEach((serviceType) => {
+                    serviceTypes += `<li>${serviceType.name}</li>`;
+                });
+            } else {
+                serviceTypes = '-';
+            }
 
-            const fileUrl = data.company.nib_file
+            const fileUrl = data.company_info.nib_file
             const splitFileURL = fileUrl.split('/')
             const fileName = splitFileURL[splitFileURL.length - 1]
             const fileExtension = fileUrl.substring(fileUrl.lastIndexOf("."))
@@ -619,25 +802,46 @@
                 `
             }
 
-            $('#c_name').text(`${data.company.name} |`)
-            $('#c_nib').text(data.company.nib)
-            // $('#c_nib_file').append(nibPreview)
+            $('#c_name').text(`${data.company_info.name} |`)
+            $('#c_nib').text(data.company_info.nib)
             $('#c_address').text(
-                `${data.company.address} ${data.company.city.name} ${data.company.province.name}`)
-            $('#c_phone').text(data.company.company_phone_number)
-            $('#c_email').text(data.company.email)
+                `${data.company_info.address} ${data.company_info.city?.name || ''} ${data.company_info.province?.name || ''}`)
+            $('#c_phone').text(data.company_info.company_phone_number)
+            $('#c_email').text(data.company_info.email)
             $('#c_serviceType').append(serviceTypes)
-            $('#pic_name').text(data.company.pic_name)
-            $('#pic_phone').text(data.company.pic_phone)
-            $('#u_name').text(data.company.username)
-            $('#u_email').text(data.company.name)
-            $('#u_phone').text(data.company.phone_number)
-            $('#current_preview').text(data.company.id)
-            $('#establish_date').text(data.company.establish ? moment(data.data.company.establish).format(
+            $('#pic_name').text(data.company_info.pic_name)
+            $('#pic_phone').text(data.company_info.pic_phone)
+            $('#u_name').text(data.company_info.username)
+            $('#u_email').text(data.company_info.name)
+            $('#u_phone').text(data.company_info.phone_number)
+            $('#current_preview').text(data.company_info.id)
+            $('#establish_date').text(data.company_info.establish ? moment(data.data.company_info.establish).format(
                 'D/MM/YYYY') : '-')
-            $('#request_date').text(moment(data.company.request_date).format('D/MM/YYYY'))
+            $('#request_date').text(moment(data.company_info.request_date).format('D/MM/YYYY'))
         }
 
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const backToTopButton = document.getElementById("back-to-top");
+
+            window.addEventListener("scroll", function() {
+                // Tampilkan tombol jika pengguna menggulir ke bawah lebih dari 100px
+                if (window.scrollY > 100) {
+                    backToTopButton.classList.add("show");
+                } else {
+                    backToTopButton.classList.remove("show");
+                }
+            });
+
+            // Scroll ke atas saat tombol diklik
+            backToTopButton.addEventListener("click", function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+        });
 
         async function initPageLoad() {
             FilePond.registerPlugin(

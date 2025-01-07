@@ -10,6 +10,12 @@
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets') }}/js/libs/filepond/filepond.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         .table th.sticky-end,
         .table td.sticky-end {
@@ -217,7 +223,7 @@
                     </li>
                     <li class="list-group-item">
                         <div class="media align-items-center">
-                            <label class="mb-2 fw-bold">Jadwal Verifikasi <span id="tipe-verifikasi">-</span> :</label>
+                            <label class="mb-2 fw-bold">Jadwal Verifikasi <span id="tipe-verifikasi"></span> :</label>
                             <div class="media-body">
                                 <p class="mb-0"><i class="fa-solid fa-calendar-days me-2"></i><label class="mb-0"
                                         id="jadwal-verifikasi-lapangan"></label></p>
@@ -228,13 +234,16 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div id="templateTable" class="accordion"></div>
+    <div class="card">
+        <div class="card-body">
+            <form id="fCreate">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div id="templateTable" class="accordion"></div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-xs-12 actionButton"></div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -264,11 +273,28 @@
     </button>
 @endsection
 @section('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
+    </script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js">
+    </script>
+
     <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="../assets/js/plugins/datepicker-full.min.js"></script>
     <script src="../assets/js/pages/ac-datepicker.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs/dist/parsley.min.js"></script>
 @endsection
 
 @section('page_js')
@@ -583,6 +609,54 @@
             }
         }
 
+
+        function generateFormInput(inputType, elementName, subElementName, initialValue = undefined) {
+            let $htmlInput = ''
+            let questionProperties = smkElements['question_schema']['properties'][elementName]['properties'][subElementName]
+
+            if (inputType === 'files') {
+                let items = questionProperties['items']
+
+                for (let i in items) {
+                    let value = ''
+
+                    if (initialValue && initialValue[i][Object.keys(items[i])[0]] !== null) {
+                        value = initialValue[i][Object.keys(items[i])[0]]
+                    }
+
+                    $htmlInput += `
+                        <label class="form-label">File ${items[i][Object.keys(items[i])[0]]['name']}</label>
+                        <small class="text-danger">* Maksimal file berukuran 5 MB</small>
+                        <input type="file" class="filepond form-control smk-element-file" id="${Object.keys(items[i])[0]}File" accept="application/pdf">
+
+                        <input type="hidden" class="answer-element" name="${elementName}_${Object.keys(items[i])[0]}" id="${elementName}_${Object.keys(items[i])[0]}" value="${value}" required>
+                    `
+                }
+            } else if (inputType === 'file') {
+                let value = initialValue ? initialValue : ''
+
+                $htmlInput = `
+                    <label class="form-label">File ${questionProperties['attachmentName']}</label>
+                    <small class="text-danger">* Maksimal file berukuran 5 MB</small>
+                    <input type="file" class="filepond form-control smk-element-file" id="${subElementName}File" accept="application/pdf">
+                    <input type="hidden" class="answer-element" name="${elementName}_${subElementName}" id="${elementName}_${subElementName}" value="${value}" required>
+                `
+            } else if (inputType === 'image') {
+                $htmlInput = `
+                    <label class="form-label">File</label>
+                    <input type="file" class="filepond form-control smk-element-file" id="${subElementName}File" accept="image/png, image/jpeg">
+                    <input type="hidden" class="answer-element" name="${elementName}_${subElementName}" id="${elementName}_${subElementName}" required>
+                `
+            } else {
+                $htmlInput = `
+                    <label class="form-label">inputan</label>
+                    <input type="text" class="form-control answer-element" id="${elementName}_${subElementName}Text" name="${elementName}_${subElementName}Text">
+                `
+            }
+
+            return $htmlInput
+        }
+
         async function getRequestHistory() {
             loadingPage(true);
             let response;
@@ -604,7 +678,7 @@
                     });
                 return null;
             } finally {
-                loadingPage(false); // Matikan loading
+                loadingPage(false);
             }
 
             // Jika status code 200, kembalikan datanya
@@ -613,11 +687,11 @@
             } else {
                 const errorMessage = response?.data?.message || 'Data tidak ditemukan.';
                 Swal.fire({
-                        icon: 'info',
-                        title: 'Pemberitahuan',
-                        text: errorMessage,
-                        confirmButtonColor: '#28a745',
-                    });
+                    icon: 'info',
+                    title: 'Pemberitahuan',
+                    text: errorMessage,
+                    confirmButtonColor: '#28a745',
+                });
                 return null;
             }
         }
@@ -679,9 +753,25 @@
                     </li>
                 `;
             });
+            if (historyData.data.length == 0) {
+                const formattedDate = new Date().toLocaleString('id-ID', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                logContainer.innerHTML = `
+                    <li>
+                        <i class="task-icon bg-info"></i>
+                        <p class="m-b-5">${formattedDate}</p>
+                        <h5 class="text-muted">Permohonan Draft</h5>
+                    </li>
+                `;
+            }
         }
-
-
 
         function generateRowOfElementTitle(colSpanTitle, title, elementId, rowsHtml) {
             const html = `
@@ -844,6 +934,7 @@
                 `
             }
             $('.actionButton').append($templateButton)
+
         }
 
         function countAssessment(answerData, assessmentData) {
@@ -876,8 +967,6 @@
             if (totalDocument > 0) {
                 percentagePassed = Math.round((passedDocument / totalDocument) * 100) + '%';
             }
-
-            console.log(document.getElementById('total-document')); // Cek apakah elemen ada
 
             // Perbarui elemen HTML
             document.getElementById('total-document').textContent = totalDocument;
@@ -932,60 +1021,251 @@
             });
         });
 
-        // async function addData() {
-        //     const $form = document.getElementById('fCreate');
-        //     $form.addEventListener("submit", (e) => {
+        
+        async function addData() {
+            const $form = document.getElementById('fCreate');
+            $form.addEventListener("submit", (e) => {
 
-        //         e.preventDefault();
+                e.preventDefault();
 
-        //         // Check if the current status is "draft" or "rejected"
-        //         if (currentStatus === "draft" || currentStatus === "rejected") {
-        //             if ($('#application_letter').val() !== '') {
-        //                 $('#application_letter').removeAttr('required');
-        //             } else {
-        //                 $('#application_letter').attr('required', 'required');
-        //             }
-        //         }
+                // Check if the current status is "draft" or "rejected"
+                if (currentStatus === "draft" || currentStatus === "rejected") {
+                    if ($('#application_letter').val() !== '') {
+                        $('#application_letter').removeAttr('required');
+                    } else {
+                        $('#application_letter').attr('required', 'required');
+                    }
+                }
 
-        //         const formParsley = $('#fCreate').parsley();
-        //         formParsley.validate();
+                const formParsley = $('#fCreate').parsley();
+                formParsley.validate();
 
-        //         if (!formParsley.isValid()) return false;
+                if (!formParsley.isValid()) return false;
 
-        //         loadingPage(true);
+                loadingPage(true);
 
-        //         let dataArray = $("#fCreate").serializeArray(),
-        //             formObject = {};
+                let dataArray = $("#fCreate").serializeArray(),
+                    formObject = {};
 
-        //         // Convert form data array to an object
-        //         dataArray.forEach((field) => {
-        //             formObject[field.name] = field.value;
-        //         });
+                // Convert form data array to an object
+                dataArray.forEach((field) => {
+                    formObject[field.name] = field.value;
+                });
 
-        //         let answerSchema = buildAnswerSchema();
+                let answerSchema = buildAnswerSchema();
 
-        //         // Determine next status based on the current status
-        //         let nextStatus = 'submission_revision';
-        //         if (currentStatus === 'draft' || currentStatus === 'rejected') {
-        //             nextStatus = 'request';
-        //         }
+                // Determine next status based on the current status
+                let nextStatus = 'submission_revision';
+                if (currentStatus === 'draft' || currentStatus === 'rejected') {
+                    nextStatus = 'request';
+                }
 
-        //         console.log(nextStatus);
+                console.log(nextStatus);
 
-        //         let formData = {
-        //             element_properties: smkElements,
-        //             answers: answerSchema,
-        //             assessments: assessmentSchema,
-        //             status: nextStatus,
-        //             number_of_application_letter: formObject.number_of_application_letter,
-        //             date_of_application_letter: formObject.date_of_application_letter,
-        //             file_of_application_letter: formObject.file_of_application_letter,
-        //         };
+                let formData = {
+                    element_properties: smkElements,
+                    answers: answerSchema,
+                    assessments: assessmentSchema,
+                    status: nextStatus,
+                    number_of_application_letter: formObject.number_of_application_letter,
+                    date_of_application_letter: formObject.date_of_application_letter,
+                    file_of_application_letter: formObject.file_of_application_letter,
+                };
 
-        //         // Submit form data
-        //         submitData(formData, 'Berhasil kirim pengajuan');
-        //     });
-        // }
+                // Submit form data
+                submitData(formData, 'Berhasil kirim pengajuan');
+            });
+        }
+
+
+        function uploadFile(sourceElement, inputTarget, sourceFile = null) {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content');
+            const initialFile = [];
+            let isRequired = true;
+            if (currentStatus === "draft" || currentStatus === "rejected") {
+                const fileUrl = $(`#${inputTarget}`).val();
+                if (fileUrl || sourceFile) {
+                    isRequired = false;
+                }
+            }
+
+            if (sourceFile) {
+                initialFile.push({
+                    source: sourceFile
+                });
+            }
+
+            FilePond.create(
+                document.querySelector(`#${sourceElement}`), {
+                    files: initialFile,
+                    server: {
+                        process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                            $('#submitRequestBtn').prop('disabled', true);
+                            $('#submitDraftRequestBtn').prop('disabled', true);
+
+                            const formData = new FormData();
+                            formData.append('file', file, file.name);
+
+                            const request = new XMLHttpRequest();
+                            request.open('POST',
+                                '{{ env('SERVICE_BASE_URL') }}/company/documents/upload-file');
+                            request.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                            request.setRequestHeader('Accept', 'application/json');
+                            request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
+                            request.responseType = 'json';
+
+                            request.onload = function() {
+                                if (request.status >= 200 && request.status < 300) {
+                                    const resp = request.response;
+                                    load(request.response);
+
+                                    $(`#${inputTarget}`).val(resp.file_url);
+                                } else {
+                                    error('oh no, Internal Server Error');
+                                }
+
+                                $('#submitRequestBtn').prop('disabled', false);
+                                $('#submitDraftRequestBtn').prop('disabled', false);
+                            };
+
+                            request.send(formData);
+
+                            return {
+                                abort: () => {
+                                    request.abort();
+                                    abort();
+                                }
+                            };
+                        },
+                        revert: (uniqueFileId, load, error) => {
+                            $(`#${inputTarget}`).val(''); // Hapus nilai input hidden jika file dihapus
+
+                            error('oh my goodness');
+
+                            load();
+                        }
+                    },
+
+                    labelIdle: '<span class="filepond--label-action"> Pilih File </span>',
+                    maxFiles: 1,
+                    required: isRequired, // Set required berdasarkan kondisi
+                    checkValidity: true,
+                    maxFileSize: '5MB',
+                    labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
+                    labelMaxFileSize: 'Maksimal ukuran file 5MB'
+                }
+            );
+        }
+
+        function buildAnswerSchema() {
+            let elements = {}
+
+            $.each(smkElements.max_assesment, function(elementKey, elementValue) {
+                const rowData = {}
+
+                $.each(elementValue, function(subElementKey) {
+                    let newData, question = smkElements['question_schema']['properties'][elementKey][
+                        'properties'
+                    ][subElementKey]
+
+                    if (question['items']) {
+                        newData = []
+
+                        for (let i in question['items']) {
+
+                            let itemKey = Object.keys(question['items'][i])[0],
+                                answerValue = null
+
+                            if ($(`#${elementKey}_${itemKey}`).length) {
+                                if ($(`#${elementKey}_${itemKey}`).val() !== '') {
+                                    answerValue = $(`#${elementKey}_${itemKey}`).val()
+                                }
+                            } else {
+                                answerValue = prevAnswerSchema[elementKey][subElementKey][i][itemKey]
+                            }
+
+                            newData.push({
+                                [itemKey]: answerValue
+                            })
+                        }
+                        rowData[subElementKey] = newData
+                    } else {
+                        let answerValue = null
+
+                        if ($(`#${elementKey}_${subElementKey}`).length) {
+                            if ($(`#${elementKey}_${subElementKey}`).val() !== '') {
+                                answerValue = $(`#${elementKey}_${subElementKey}`).val()
+                            }
+                        } else {
+                            answerValue = prevAnswerSchema[elementKey][subElementKey]
+                        }
+
+                        rowData[subElementKey] = answerValue
+                    }
+
+                })
+                elements[elementKey] = rowData
+            })
+
+            return elements
+        }
+
+        async function saveAsDraft() {
+            loadingPage(true)
+
+            $('#number_of_application_letter').removeAttr('required')
+            $('#date_of_application_letter').removeAttr('required')
+            $('#application_letter').removeAttr('required')
+
+            let dataArray = $("#fCreate").serializeArray(),
+                formObject = {}; // Gantikan AjaxHelper dengan konversi manual
+
+            // Loop melalui dataArray untuk mengubahnya menjadi objek
+            dataArray.forEach((field) => {
+                formObject[field.name] = field.value;
+            });
+
+            let answerSchema = buildAnswerSchema()
+
+            let formData = {
+                element_properties: smkElements,
+                answers: answerSchema,
+                status: 'draft',
+                number_of_application_letter: formObject.number_of_application_letter,
+                date_of_application_letter: formObject.date_of_application_letter,
+                file_of_application_letter: formObject.file_of_application_letter,
+            }
+
+            submitData(formData, 'Berhasil simpan pengajuan')
+        }
+
+        async function submitData(formData, successMessage) {
+            loadingPage(true);
+
+            let postData = await CallAPI(
+                'POST',
+                "{{ env('SERVICE_BASE_URL') }}/company/documents/submission/update", {
+                    id: referenceId,
+                    ...formData
+                }
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            if (postData.status === 200) {
+                loadingPage(false);
+                notificationAlert('success', 'Pemberitahuan', successMessage);
+                setTimeout(() => {
+                    window.location =
+                        "{{ route('company.certificate.list') }}";
+                }, 1500);
+            }
+        }
 
         async function initPageLoad() {
 
