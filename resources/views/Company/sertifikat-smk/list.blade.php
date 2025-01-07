@@ -26,10 +26,11 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Sertifikat SMK</h2>
                     </div>
-                    <a href="/company/pengajuan-sertifikat/create" data-pc-animate="fade-in-scale"
+                    <a href="javascript:void(0);" data-pc-animate="fade-in-scale" onClick="goToSubmissionCreatePage()"
                         class="btn btn-md btn-primary px-3 p-2">
                         <i class="fas fa-plus-circle me-2"></i> Buat Permohonan
                     </a>
+                    {{-- <div id="for-create-button"></div> --}}
                 </div>
             </div>
         </div>
@@ -128,6 +129,54 @@
             'cancelled': 'Pengajuan dibatalkan',
             'expired': 'Pengajuan kedaluwarsa'
         };
+
+        async function buttonAddSubmission() {
+
+            // <button type="button" onClick="goToSubmissionCreatePage()" class="btn btn-primary btn-load waves-effect waves-light d-flex align-items-center">
+            //      <i class="icon ni ni-plus me-2"></i>
+            //      <span>Tambah</span>
+            //  </button>
+
+            const checkActive = await getActiveCertificateRequest();
+
+            if (checkActive.data.data?.length == 0) {
+                $('#for-create-button').empty();
+                $('#for-create-button').append(`
+                    <a href="javascript:void(0);" data-pc-animate="fade-in-scale" onClick="goToSubmissionCreatePage()"
+                        class="btn btn-md btn-primary px-3 p-2">
+                        <i class="fas fa-plus-circle me-2"></i> Buat Permohonan
+                    </a>
+                `);
+            } else {
+                $('#for-create-button').empty();
+            }
+        }
+
+
+        async function getActiveCertificateRequest() {
+            try {
+                const getDataRest = await CallAPI(
+                    'GET',
+                    `{{ env('SERVICE_BASE_URL') }}/company/documents/submission/active-submmision`
+                );
+                return getDataRest;
+            } catch (error) {
+                loadingPage(false);
+                return resp;
+            }
+        }
+
+
+        async function goToSubmissionCreatePage() {
+
+            const checkActiveCertificateRequest = await getActiveCertificateRequest();
+
+            if (checkActiveCertificateRequest.data.data?.length > 0) {
+                notificationAlert('info', 'Pemberitahuan', 'Anda Memiliki Pengajuan Aktif');
+                return false;
+            }
+            window.location.href = `{{ route('company.certificate.create') }}`;
+        }
 
         async function getListData(paramsTable) {
             loadingPage(true);
@@ -303,6 +352,8 @@
 
             await manipulationDataTable(paramsTable, '#pagination', '#limitPage',
                 '#searchInput', getListData); 
+            
+                await buttonAddSubmission();
         }
     </script>
     @include('Company.partial-js')

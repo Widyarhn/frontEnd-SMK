@@ -176,7 +176,7 @@ Route::middleware(Application::class)->group( function(){
             });
             Route::get('/pengajuan-sertifikat/create', function () {
                 return view('Company.Pengajuan.create');
-            });
+            })->name('company.certificate.create');
             Route::get('/pengajuan-sertifikat/detail', function () {
                 return view('Company.Pengajuan.detail');
             });
