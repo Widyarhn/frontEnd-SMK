@@ -196,7 +196,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Status</h3>
-                                                    <p class="sertificate-status text-white mb-0"></p>
+                                                    <p class="sertificate-status text-dark mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-file-alt fa-lg text-primary f-36"></i>
@@ -211,7 +211,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Tanggal Terbit</h3>
-                                                    <p class="sertificate-publish badge bg-info text-white mb-0"></p>
+                                                    <p class="sertificate-publish badge bg-info text-dark mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-calendar-alt fa-lg text-primary f-36"></i>
@@ -226,7 +226,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Masa Berlaku</h3>
-                                                    <p class="sertificate-expired text-white mb-0"></p>
+                                                    <p class="sertificate-expired text-dark mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-solid fa-clock fa-lg text-primary f-36"></i>
@@ -389,13 +389,13 @@
                 number_of_certificate: data['number_of_certificate'] ?? '-',
                 is_active: {
                     init: data['is_active'] ?? '-',
-                    color: isActive ? "text-white bg-success" : "text-white bg-danger",
+                    color: isActive ? "text-dark bg-success" : "text-dark bg-danger",
                     text_status: isActive ? "Aktif" : "Tidak Aktif",
                     icon_status: isActive ? "fas fa-circle-check" : "fas fa-circle-xmark",
                 },
                 expired: {
                     text_status: statusText,
-                    color: `${colorClass} text-white`, // Pastikan semua teks berwarna putih
+                    color: `${colorClass} text-dark`, // Pastikan semua teks berwarna putih
                 }
             };
 
@@ -437,6 +437,9 @@
             container.style.position = 'relative';
             canvas.style.maxWidth = '100%';
             canvas.style.height = 'auto';
+            canvas.style.display = 'block';
+            canvas.style.margin = '0 auto';
+
         }
 
         async function setSertifikatData(data) {
