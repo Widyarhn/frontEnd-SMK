@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/fontawesome.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
     <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
