@@ -211,7 +211,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Tanggal Terbit</h3>
-                                                    <p class="sertificate-publish text-muted mb-0"></p>
+                                                    <p class="sertificate-publish text-white mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-calendar-alt fa-lg text-primary f-36"></i>
@@ -226,7 +226,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Masa Berlaku</h3>
-                                                    <p class="sertificate-expired text-muted mb-0"></p>
+                                                    <p class="sertificate-expired text-white mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-solid fa-clock fa-lg text-primary f-36"></i>
@@ -272,8 +272,7 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                '/dummy/company/dashboard/company.json'
-                // '{{ env('ESMK_SERVICE_BASE_URL') }}/company/dashboard/company/perusahaan',
+                '{{ env('SERVICE_BASE_URL') }}/company/dashboard/company/perusahaan',
 
             ).then(function(response) {
                 return response;
@@ -286,7 +285,6 @@
             loadingPage(false);
             if (getDataRest.status == 200) {
                 let handleDataResult = await handleUserData(getDataRest.data.data);
-                console.log("🚀 ~ getUserData ~ handleDataResult:", handleDataResult)
                 await setUserData(handleDataResult);
             }
         }
@@ -350,7 +348,7 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                '/dummy/company/dashboard/getSMK.json'
+                '{{ env('SERVICE_BASE_URL') }}/company/dashboard/company/getsmk',
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
