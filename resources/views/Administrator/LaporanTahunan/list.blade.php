@@ -1,22 +1,13 @@
-@extends('...Administrator.index', ['title' => 'List | Data Laporan Tahunan'])
+@extends('...Administrator.index', ['title' => 'Data Laporan Tahunan'])
+
 @section('asset_css')
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/daterange.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/daterange-picker.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/flatpickr.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 @endsection
+
 
 @section('content')
     <div class="page-header">
@@ -195,7 +186,7 @@
                             </label>
                         </div>
                         <div class="datatable-search">
-                            <input class="datatable-input" placeholder="Search..." type="search"
+                            <input class="datatable-input" placeholder="Cari..." type="search"
                                 title="Search within table" aria-controls="pc-dt-simple-1">
                         </div>
                     </div>
@@ -459,7 +450,7 @@
                                                                         data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
                                                                         <i class="ti ti-eye me-1"></i> Lihat Catatan
                                                                     </button>` : ''}
-                                                <a href="/internal/laporan-tahunan/detail"
+                                                <a href="/admin/laporan-tahunan/detail?id=${element.id}&companyID=${element.company_id}"
                                                     class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;">
                                                     <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
                                                 </a>

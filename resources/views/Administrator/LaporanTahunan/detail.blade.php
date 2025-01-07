@@ -1,16 +1,5 @@
-@extends('...Administrator.index', ['title' => 'Detail | Detail Laporan Tahunan'])
+@extends('...Administrator.index', ['title' => 'Detail Laporan Tahunan'])
 @section('asset_css')
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
         .custom-icon {
             font-size: 30px !important;
@@ -64,8 +53,8 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/internal/dashboard-internal">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/internal/laporan-tahunan/list">Laporan Tahunan</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/laporan-tahunan/list">Laporan Tahunan</a></li>
                         <li class="breadcrumb-item" aria-current="page">Detail Laporan Tahunan</li>
                     </ul>
                 </div>
@@ -142,13 +131,17 @@
                                 <h5>Informasi Pengguna</h5>
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <p class="mb-0"><i class="fa-solid fa-circle-user me-2"></i><span id="u_name"></span></p>
-                                        <p class="mb-0"><i class="fa-solid fa-phone me-2"></i><span id="u_phone"></span></p>
+                                        <p class="mb-0"><i class="fa-solid fa-circle-user me-2"></i><span
+                                                id="u_name"></span></p>
+                                        <p class="mb-0"><i class="fa-solid fa-phone me-2"></i><span id="u_phone"></span>
+                                        </p>
                                     </div>
                                     <div class="col-lg-6">
-                                        <p class="mb-0"><i class="fa-solid fa-envelope me-2"></i><span id="u_email"></span>
+                                        <p class="mb-0"><i class="fa-solid fa-envelope me-2"></i><span
+                                                id="u_email"></span>
                                         </p>
-                                        <p class="mb-0"><i class="fa-solid fa-calendar-day me-2"></i><span id="establish_date"></span></p>
+                                        <p class="mb-0"><i class="fa-solid fa-calendar-day me-2"></i><span
+                                                id="establish_date"></span></p>
                                     </div>
                                 </div>
 
@@ -158,16 +151,14 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                                aria-labelledby="analytics-tab-1" tabindex="0">
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                            aria-labelledby="analytics-tab-1" tabindex="0">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
 
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -175,17 +166,28 @@
             </div>
         </div>
     </div>
+    <div id="view-document" class="modal fade" aria-labelledby="exampleModalCenterTitle"
+    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lihat Dokumen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="max-height: 800px; overflow-y: auto;">
+                    <embed class="view-document-print" src="" frameborder="0" width="100%" height="700px">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
-@section('scripts')
-    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="../assets/js/plugins/datepicker-full.min.js"></script>
-    <script src="../assets/js/pages/ac-datepicker.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-@endsection
-@section('page_js')
+
 @section('page_js')
     <script>
-        let env = '{{ env('ESMK_SERVICE_BASE_URL') }}';
+        let env = '{{ env('SERVICE_BASE_URL') }}';
         let menu = 'Detail Laporan Tahunan';
         let queryString = window.location.search;
         let urlParams = new URLSearchParams(queryString);
@@ -199,12 +201,13 @@
         let resp;
         var pathname = window.location.pathname.split('/')
 
-
         async function getYearlyReportByID() {
             loadingPage(true);
             try {
-                const baseUrl = `/dummy/internal/laporan-tahunan/detail.json`;
-                const getDataRest = await CallAPI('GET', baseUrl);
+                const baseUrl = `${env}/internal/admin-panel/laporan-tahunan/detail`;
+                const getDataRest = await CallAPI('GET', baseUrl, {
+                    id: referenceId,
+                });
 
                 if (getDataRest?.status === 200) {
                     const responseData = getDataRest.data;
@@ -239,7 +242,7 @@
                                         aria-expanded="true"
                                         aria-controls="${panelId}"
                                         style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-                                        ${numbering}. ${questionSchema[elementKey]?.title || 'No Title'}
+                                        ${questionSchema[elementKey]?.title || 'No Title'}
                                     </button>
                                 </h2>
                                 <div id="${panelId}" class="accordion-collapse collapse show">
@@ -282,7 +285,7 @@
                             rowIndex++;
                         });
 
-                        accordionHTML += `</tbody></table></div></div></div>`;
+                        accordionHTML += `</tbody></table></div></div></div></div>`;
                         numbering++;
                     }
 
@@ -308,10 +311,24 @@
             }
         }
 
+        function formatTanggal(timestamp) {
+            const date = new Date(timestamp);
 
+            const day = date.getDate();
+            const monthNames = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
+            const month = monthNames[date.getMonth()];
+            const year = date.getFullYear();
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+
+            return `${day} ${month} ${year}`;
+        }
 
         function mappingCompanyInformation(data) {
-            console.log(data)
+            console.log("🚀 ~ mappingCompanyInformation ~ data:", data)
             let serviceTypes = '';
             data.company.service_types.forEach((serviceType) => {
                 serviceTypes += `<li>${serviceType.name}</li>`;
@@ -344,8 +361,7 @@
             $('#u_email').text(data.company.name)
             $('#u_phone').text(data.company.phone_number)
             $('#current_preview').text(data.company.id)
-            $('#establish_date').text(data.company.establish ? moment(data.data.company.establish).format(
-                'D/MM/YYYY') : '-')
+            $('#establish_date').text(data.company.established ? formatTanggal(data.company.established) : '-')
             $('#request_date').text(moment(data.company.request_date).format('D/MM/YYYY'))
         }
 
@@ -460,8 +476,10 @@
 
             if (subElementSchema.monitoringProperties.isVisibilityValue) {
                 answerColumn = subElementSchema.answers !== null ?
-                    `<button type="button" id="${subElementSchema.answers}-answerFile" onClick="showViewDocument('${subElementSchema.answers}')" class="btn btn-light btn-sm">lihat dokumen</button>` :
-                    'Tidak ada perubahan'
+                    `<button type="button" id="${subElementSchema.answers}-answerFile" onClick="showViewDocument('${subElementSchema.answers}')" class="btn btn-md btn-outline-primary">
+                        <i class="fa-regular fa-file-pdf me-1"></i>Lihat Dokumen
+                    </button>` : 'Tidak Ada Perubahan';
+                    
 
                 if (status === 'request') {
                     if (subElementSchema.answers) {
@@ -506,7 +524,6 @@
 
                 } else {
                     if (subElementSchema.answers) {
-                        console.log(subElementSchema.assessments.assessmentValue)
                         if (typeof subElementSchema.assessments.assessmentValue !== 'undefined') {
                             if (subElementSchema.assessments.assessmentValue === true || subElementSchema.assessments
                                 .assessmentReason === null) {
@@ -767,7 +784,7 @@
                 return;
             }
             $.ajax({
-                url: "{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/getView",
+                url: "{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/getView",
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${authToken}`
