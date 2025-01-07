@@ -403,7 +403,7 @@
                                         answerColumn += `
                                             <div class="mb-5">
                                                 <span class="form-label">File ${Object.values(questionPropertiesItems[i])[0]['name']}</span>
-                                                <p><a class="link-primary link-offset-2 text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover" href="javascript:void(0);" target="_blank" onClick="showViewDocument('${response.data.answers[elementKey][subElement[0]][i][Object.keys(questionPropertiesItems[i])]}')">
+                                                <p><a class="link-primary link-offset-2 text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover" href="javascript:void(0);" onClick="showViewDocument('${response.data.answers[elementKey][subElement[0]][i][Object.keys(questionPropertiesItems[i])]}')">
                                                     Lihat Dokumen
                                                 </a></p>
                                             </div>`;
@@ -422,7 +422,7 @@
                                     answerColumn += `
                                         <td class="text-start align-top" style="word-wrap: break-word; white-space: normal; max-width: 300px;">
                                             <span class="form-label">File ${questionProperties['attachmentName']}</span>
-                                            <p><a class="link-primary link-offset-2 text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover" href="javascript:void(0);" target="_blank" onClick="showViewDocument('${response.data.answers[elementKey][subElement[0]]}')">Lihat Dokumen</a></p>
+                                            <p><a class="link-primary link-offset-2 text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover" href="javascript:void(0);" onClick="showViewDocument('${response.data.answers[elementKey][subElement[0]]}')">Lihat Dokumen</a></p>
                                         </td>`;
                                 }
                             }
@@ -993,11 +993,11 @@
         async function showViewDocument(loc) {
             // $('.view-document-print').attr(loc);
             // await $('#view-document').modal('show')
-            window.open(loc, "_blank");
+            window.open(loc);
         }
 
         async function showViewDocumentAppLetter() {
-            window.open(applicationLetter, "_blank");
+            window.open(applicationLetter);
         }
 
         document.addEventListener("DOMContentLoaded", function() {
