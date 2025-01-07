@@ -167,6 +167,28 @@
 
                     for (let index = 0; index < dataTable.length; index++) {
                         let element = dataTable[index];
+                        let colorBage = 'primary';
+                        if (element.status.includes('draft')) {
+                            colorBage = 'secondary';
+                        }
+                        if (element.status.includes('not')) {
+                            colorBage = 'warning';
+                        }
+                        if (element.status.includes('expired')) {
+                            colorBage = 'dark';
+                        }
+                        if (element.status.includes('complete') || element.status.includes('passed_assessment_') ||
+                            element.status == 'certificate_validation') {
+                            colorBage = 'success';
+                        }
+                        if (element.status.includes('expired') ||
+                            element.status.includes('cancelled') ||
+                            element.status.includes('rejected') || (element.rejection_notes && element.rejection_notes
+                                .length > 0)
+                        ) {
+                            colorBage = 'danger';
+                        }
+
                         let statusBadge = element.is_active ?
                             '<span class="badge bg-light-success">Aktif</span>' :
                             '<span class="badge bg-light-danger">Tidak Aktif</span>';
@@ -178,7 +200,7 @@
                         let lastUpdate = new Date(element.approved_at).toLocaleDateString();
                         let createdDate = new Date(element.created_at).toLocaleDateString();
 
-                        let cardClass = element.status === 'verified' ? 'ticket-card close-ticket' :
+                        let cardClass = element.status === 'certificate_validation' ? 'ticket-card close-ticket' :
                             (element.rejection_notes && element.rejection_notes.length > 0 ? 'ticket-card open-ticket' :
                                 'ticket-card');
 
@@ -191,7 +213,7 @@
                                 <div class="row">
                                     <div class="col-sm-auto mb-3 mb-sm-0">
                                         <div class="d-sm-inline-block d-flex align-items-center">
-                                           <div class="wid-60 hei-60 rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                           <div class="wid-60 hei-60 rounded-circle bg-${colorBage} d-flex align-items-center justify-content-center">
                                                     <i class="fa-solid fa-calendar text-white fa-2x"></i>
                                                 </div>
 
@@ -202,19 +224,19 @@
                                             <div class="h5 font-weight-bold">Tahun Laporan: ${element.year}</div>
                                             <div class="help-sm-hidden">
                                                 <ul class="list-unstyled mt-2 mb-0 text-muted">
-                                                    <li class="d-sm-inline-block d-block mt-1">
-                                                        <i class="ti ti-file-certificate"></i>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="ti ti-file-certificate me-1 fa-lg"></i>
                                                         ${statusLabel}
                                                     </li>
-                                                    <li class="d-sm-inline-block d-block mt-1">
-                                                        <i class="fas fa-user wid-20 rounded me-1 img-fluid"></i>
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="fas fa-user me-1 "></i>
                                                             Diproses Oleh: <b>${element.assessor.name || '-'}</b>
                                                     </li>
-                                                    <li class="d-sm-inline-block d-block mt-1">
-                                                        <i class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Diajukan ${createdDate}
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="material-icons-two-tone text-center f-14 me-1">calendar_today</i>Diajukan ${createdDate}
                                                     </li>
-                                                    <li class="d-sm-inline-block d-block mt-1">
-                                                        <i class="wid-20 material-icons-two-tone text-center f-14 me-2">calendar_today</i>Disetujui ${lastUpdate}
+                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                        <i class="material-icons-two-tone text-center f-14 me-1">calendar_today</i>Disetujui ${lastUpdate}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -236,7 +258,7 @@
                                                     </div>` :
                                                     ''}
                                         </div>
-                                        <div class="mt-2">
+                                        <div class="mt-4">
                                             ${element.rejection_notes ? `
                                                     <button type="button" class="me-2 btn btn-sm btn-light-danger"
                                                         data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
