@@ -1,5 +1,6 @@
 @extends('...Administrator.index', ['title' => 'Detail Laporan Tahunan'])
 @section('asset_css')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.6/pdfobject.min.js"></script>
     <style>
         .custom-icon {
             font-size: 30px !important;
@@ -67,103 +68,123 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <div class="row align-items-center g-3">
-                                <div class="col-lg-8 col-12">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <div class="col-sm-auto mb-3 mb-sm-0 me-3">
-                                            <div class="d-sm-inline-block d-flex align-items-center">
-                                                <div
-                                                    class="wid-60 hei-60 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
-                                                    <i class="fa-solid fa-building text-white fa-2x"></i>
+        <form id="fCreate">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="row align-items-center g-3">
+                                    <div class="col-lg-8 col-12">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="col-sm-auto mb-3 mb-sm-0 me-3">
+                                                <div class="d-sm-inline-block d-flex align-items-center">
+                                                    <div
+                                                        class="wid-60 hei-60 rounded-circle bg-secondary d-flex align-items-center justify-content-center">
+                                                        <i class="fa-solid fa-building text-white fa-2x"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="d-flex flex-column flex-sm-row align-items-start">
+                                                    <h4 class="d-inline-block mb-0 me-2" id="c_name"></h4>
+                                                    <p class="mb-0"><b> NIB : <span id="c_nib"></span></b></p>
+                                                </div>
+                                                <div class="help-sm-hidden">
+                                                    <ul class="list-unstyled mt-0 mb-0 text-muted">
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <i class="fa-solid fa-phone me-1" id="company_phone"></i>
+                                                            <span id="c_phone"></span>
+                                                        </li>
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <i class="fa-regular fa-envelope me-1" id="company_email"></i>
+                                                            <span id="c_email"></span>
+                                                        </li>
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3" id="c_status">
+                                                        </li>
+                                                        <li class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <i class="fa-solid fa-location-dot me-1"
+                                                                id="company_address"></i>
+                                                            <span id="c_address"></span>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div class="d-flex flex-column flex-sm-row align-items-start">
-                                                <h4 class="d-inline-block mb-0 me-2" id="c_name"></h4>
-                                                <p class="mb-0"><b> NIB : <span id="c_nib"></span></b></p>
-                                            </div>
-                                            <div class="help-sm-hidden">
-                                                <ul class="list-unstyled mt-0 mb-0 text-muted">
-                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                        <i class="fa-solid fa-phone me-1" id="company_phone"></i>
-                                                        <span id="c_phone"></span>
-                                                    </li>
-                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                        <i class="fa-regular fa-envelope me-1" id="company_email"></i>
-                                                        <span id="c_email"></span>
-                                                    </li>
-                                                    <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                        <i class="fa-solid fa-location-dot me-1" id="company_address"></i>
-                                                        <span id="c_address"></span>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12 d-flex">
+                                <div class="border rounded p-3 w-100">
+                                    <h5>Jenis Pelayanan</h5>
+                                    <div style="max-height: 80px; overflow-y: scroll;">
+                                        <ol id="c_serviceType">
+
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-12 d-flex">
+                                <div class="border rounded p-3 w-100">
+                                    <h5>Penanggung Jawab</h5>
+                                    <p class="mb-0"><i class="fa-solid fa-user me-2"></i><span id="pic_name"></span></p>
+                                    <p class="mb-0"><i class="fa-solid fa-phone me-2"></i><span id="pic_phone"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-12 d-flex">
+                                <div class="border rounded p-3 w-100">
+                                    <h5>Informasi Pengguna</h5>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <p class="mb-0"><i class="fa-solid fa-circle-user me-2"></i><span
+                                                    id="u_name"></span></p>
+                                            <p class="mb-0"><i class="fa-solid fa-phone me-2"></i><span
+                                                    id="u_phone"></span>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p class="mb-0"><i class="fa-solid fa-envelope me-2"></i><span
+                                                    id="u_email"></span>
+                                            </p>
+                                            <p class="mb-0"><i class="fa-solid fa-calendar-day me-2"></i><span
+                                                    id="establish_date"></span></p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-12 d-flex">
-                            <div class="border rounded p-3 w-100">
-                                <h5>Jenis Pelayanan</h5>
-                                <div style="max-height: 80px; overflow-y: scroll;">
-                                    <ol id="c_serviceType">
 
-                                    </ol>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-12 d-flex">
-                            <div class="border rounded p-3 w-100">
-                                <h5>Penanggung Jawab</h5>
-                                <p class="mb-0"><i class="fa-solid fa-user me-2"></i><span id="pic_name"></span></p>
-                                <p class="mb-0"><i class="fa-solid fa-phone me-2"></i><span id="pic_phone"></span></p>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-12 d-flex">
-                            <div class="border rounded p-3 w-100">
-                                <h5>Informasi Pengguna</h5>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p class="mb-0"><i class="fa-solid fa-circle-user me-2"></i><span
-                                                id="u_name"></span></p>
-                                        <p class="mb-0"><i class="fa-solid fa-phone me-2"></i><span id="u_phone"></span>
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p class="mb-0"><i class="fa-solid fa-envelope me-2"></i><span
-                                                id="u_email"></span>
-                                        </p>
-                                        <p class="mb-0"><i class="fa-solid fa-calendar-day me-2"></i><span
-                                                id="establish_date"></span></p>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                            aria-labelledby="analytics-tab-1" tabindex="0">
-                            <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                                aria-labelledby="analytics-tab-1" tabindex="0">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
 
+                                </div>
                             </div>
                         </div>
+                        <div class="text-center action-button mb-4 ">
+                        </div>
                     </div>
-                    <div class="text-center action-button mb-4 ">
-                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal fade" id="full-content-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5">
+
                 </div>
             </div>
         </div>
@@ -177,7 +198,10 @@
         </div>
     </div>
 @endsection
-
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs/dist/parsley.min.js"></script>
+    </script>
+@endsection
 @section('page_js')
     <script>
         let env = '{{ env('SERVICE_BASE_URL') }}';
@@ -339,10 +363,26 @@
             <img class="img-fluid" src="${fileUrl}"/>
         `
             }
+            let statusLabel = '';
+            switch (data.status) {
+                case "request":
+                    statusLabel = '<span class="badge bg-secondary ms-2">Pengajuan Baru</span>';
+                    break;
+                case "revision":
+                    statusLabel = '<span class="badge bg-danger ms-2">Revisi</span>';
+                    break;
+                case "verified":
+                    statusLabel = '<span class="badge bg-success ms-2">Terverifikasi</span>';
+                    break;
+                default:
+                    statusLabel = '<span class="badge bg-warning ms-2">Status Tidak Diketahui</span>';
+                    break;
+            }
 
             $('#c_name').text(`${data.company.name} |`)
             $('#c_nib').text(data.company.nib)
             // $('#c_nib_file').append(nibPreview)
+            $('#c_status').html(`${statusLabel}`);
             $('#c_address').text(
                 `${data.company.address} ${data.company.city.name} ${data.company.province.name}`)
             $('#c_phone').text(data.company.company_phone_number)
@@ -472,7 +512,7 @@
                     `<button type="button" id="${subElementSchema.answers}-answerFile" onClick="showViewDocument('${subElementSchema.answers}')" class="btn btn-md btn-outline-primary">
                         <i class="fa-regular fa-file-pdf me-1"></i>Lihat Dokumen
                     </button>` : 'Tidak Ada Perubahan';
-                    
+
 
                 if (status === 'request') {
                     if (subElementSchema.answers) {
@@ -497,7 +537,8 @@
                         ) {
                             if (subElementSchema.assessments.assessmentValue === true || subElementSchema.assessments
                                 .assessmentReason === null) {
-                                assessmentButtonColumn = '<span class="badge p-2 f-12 fw-bold px-3" style="background-color:green; color:white;">Sesuai</span>'
+                                assessmentButtonColumn =
+                                    '<span class="badge p-2 f-12 fw-bold px-3" style="background-color:green; color:white;">Sesuai</span>'
                             } else {
 
                                 assessmentButtonColumn = customRadioCheckHTML(
@@ -520,7 +561,8 @@
                         if (typeof subElementSchema.assessments.assessmentValue !== 'undefined') {
                             if (subElementSchema.assessments.assessmentValue === true || subElementSchema.assessments
                                 .assessmentReason === null) {
-                                assessmentButtonColumn = '<span class="badge p-2 f-12 fw-bold px-3" style="background-color:green; color:white;">Sesuai</span>'
+                                assessmentButtonColumn =
+                                    '<span class="badge p-2 f-12 fw-bold px-3" style="background-color:green; color:white;">Sesuai</span>'
                             } else {
                                 assessmentButtonColumn = '<span class="badge bg-danger">belum Sesuai</span>'
                                 assessmentReasonColumn = subElementSchema.assessments.assessmentReason
@@ -567,8 +609,8 @@
             if (isNeedSubmitButton) {
                 $('.action-button').empty().append(`
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary w-100 d-flex justify-content-center align-items-center">
-                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Simpan
+                        <button type="submit" class="btn w-100 d-flex justify-content-center align-items-center" style="background: linear-gradient(90deg, rgb(39 132 4) 0%, rgb(4 113 9) 100%);color: white;">
+                            <i class="fas fa-paper-plane text-white" style="margin-right: 8px;"></i> Simpan
                         </button>
                     </div>
                 `)
@@ -618,57 +660,57 @@
         }
 
         const $form = document.getElementById('fCreate');
-        // $form.addEventListener("submit", (e) => {
-        //     e.preventDefault();
-        //     const formParsley = $('#fCreate').parsley();
+        $form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formParsley = $('#fCreate').parsley();
 
-        //     formParsley.validate();
+            formParsley.validate();
 
-        //     if (!formParsley.isValid()) return false;
+            if (!formParsley.isValid()) return false;
 
 
-        //     let assessmentSchema = buildAssessmentSchema();
+            let assessmentSchema = buildAssessmentSchema();
 
-        //     let formData = {
-        //         assessments: assessmentSchema.schema,
-        //         assessment_status: assessmentSchema.nextStatus,
-        //     };
+            let formData = {
+                assessments: assessmentSchema.schema,
+                assessment_status: assessmentSchema.nextStatus,
+            };
 
-        //     submitData(formData, 'Assessment Berhasil');
-        // });
+            submitData(formData, 'Assessment Berhasil');
+        });
 
-        // async function submitData(formData, successMessage) {
-        //     console.log('formData', formData);
-        //     loadingPage(true);
-        //     try {
-        //         const ajaxResponse = await CallAPI(
-        //             'PUT',
-        //             `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/update`, {
-        //                 id: referenceId,
-        //                 ...formData
-        //             }
-        //         );
-        //         console.log(ajaxResponse, 'data');
-        //         if (ajaxResponse.status === 200) {
-        //             notificationAlert('success', 'Berhasil', ajaxResponse.data.message);
-        //             Swal.fire({
-        //                 title: 'Berhasil!',
-        //                 text: successMessage,
-        //                 icon: 'success',
-        //                 timer: 5000,
-        //                 timerProgressBar: true,
-        //                 showConfirmButton: false,
-        //             }).then(() => {
-        //                 window.location.reload();
-        //             });
-        //         }
-        //     } catch (error) {
-        //         const message = error.response?.data?.message || 'An unknown error occurred';
-        //         notificationAlert('error', 'Error', message);
-        //     } finally {
-        //         loadingPage(false);
-        //     }
-        // }
+        async function submitData(formData, successMessage) {
+            console.log('formData', formData);
+            loadingPage(true);
+            try {
+                const ajaxResponse = await CallAPI(
+                    'PUT',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/update`, {
+                        id: referenceId,
+                        ...formData
+                    }
+                );
+                console.log(ajaxResponse, 'data');
+                if (ajaxResponse.status === 200) {
+                    notificationAlert('success', 'Berhasil', ajaxResponse.data.message);
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: successMessage,
+                        icon: 'success',
+                        timer: 5000,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            } catch (error) {
+                const message = error.response?.data?.message || 'An unknown error occurred';
+                notificationAlert('error', 'Error', message);
+            } finally {
+                loadingPage(false);
+            }
+        }
 
 
         function buildAssessmentSchema() {

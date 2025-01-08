@@ -1,16 +1,5 @@
 @extends('...Internal.index', ['title' => 'Detail | Detail Laporan Tahunan'])
 @section('asset_css')
-    <link rel="icon" href="{{ asset('assets') }}/images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
-    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <style>
         .custom-icon {
             font-size: 30px !important;
@@ -203,7 +192,7 @@
         async function getYearlyReportByID() {
             loadingPage(true);
             try {
-                const baseUrl = `/dummy/internal/laporan-tahunan/detail.json`;
+                const baseUrl = `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/detail`;
                 const getDataRest = await CallAPI('GET', baseUrl);
 
                 if (getDataRest?.status === 200) {

@@ -36,31 +36,41 @@
                             <div class="card">
                                 <div class="card-body position-relative">
                                     <div class="position-absolute end-0 top-0 p-3" id="is_active">
-                                        <span class="badge bg-success">Aktif</span>
+                                        <span class="badge bg-success mb-4">Aktif</span>
                                     </div>
-                                    <div class="text-center mt-3">
+                                    <div class="text-center mt-5">
                                         <div class="chat-avtar d-inline-flex mx-auto"><img
                                                 class="rounded-circle img-fluid wid-70"
-                                                src="{{ asset('assets') }}/images/profil.jpg" alt="User image">
+                                                src="{{ asset('assets') }}/images/user/user-profil2.jpg" alt="User image">
                                         </div>
-                                        <h5 class="mb-0" id="username">Administrator</h5>
-                                        <p class="text-muted text-sm" id="name">Administrator</p>
+                                        <h5 class="mb-0" id="name"></h5>
+                                        <p class="text-muted text-sm" id="nib"></p>
                                         <hr class="my-3 border border-secondary-subtle">
                                         <div class="row g-3">
-                                            <div class="col-6">
-                                                <h5 class="mb-0">NIP</h5><small class="text-muted"
-                                                    id="nip">0000000000000001</small>
+                                            <div class="col-4">
+                                                <h5 class="mb-0 total_aodt">86</h5><small class="text-muted">AODT</small>
                                             </div>
-                                            <div class="col-6 border border-top-0 border-bottom-0"
-                                                style="border-right: 0 !important;">
-                                                <h5 class="mb-0">Peran</h5><small class="text-muted"
-                                                    id="role_name">Admin</small>
+                                            <div class="col-4 border border-top-0 border-bottom-0">
+                                                <h5 class="mb-0 total_aotdt">40</h5><small
+                                                    class="text-muted">AOTDT</small>
+                                            </div>
+                                            <div class="col-4">
+                                                <h5 class="mb-0 total_ab">4.5K</h5><small class="text-muted">AB</small>
                                             </div>
                                         </div>
                                         <hr class="my-3 border border-secondary-subtle">
+                                        <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
+                                            <i class="ti ti-mail me-2"></i>
+                                            <p class="mb-0 company-email" style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">anshan@gmail.com</p>
+                                        </div>
+
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
-                                                class="ti ti-mail me-2"></i>
-                                            <p class="mb-0" id="email">administrator@gmail.com</p>
+                                                class="ti ti-phone me-2"></i>
+                                            <p class="mb-0 company-phone">(+1-876) 8654 239 581</p>
+                                        </div>
+                                        <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
+                                                class="ti ti-map-pin me-2"></i>
+                                            <p class="mb-0 company-address" style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">New York</p>
                                         </div>
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
                                             <i class="fa-regular fa-calendar-days me-2"></i>
@@ -130,7 +140,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="card-footer text-end btn-page">
+                                    <div class="card-footer text-end btn-page mb-3">
                                         <a href="" class="btn btn-outline-secondary">Batal</a>
                                         <button type="submit" class="btn btn-primary shadow-2">Perbarui</button>
                                     </div>
@@ -163,7 +173,7 @@
         async function getData() {
             loadingPage(true);
             let getDataRest = await CallAPI(
-                'GET', `{{ asset('dummy/company/infoPengaturanAkun_admin.json') }}`
+                'GET', `{{ env('SERVICE_BASE_URL') }}/company/dashboard/company/perusahaan`
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -178,17 +188,29 @@
 
                 // Set is_active badge
                 let isActiveElement = document.getElementById('is_active');
-                if (data.is_active === 1) {
-                    isActiveElement.innerHTML = '<span class="badge bg-success">Aktif</span>';
+                if (data.is_active_oss === 1 || data.is_active_oss === true) {
+                    isActiveElement.innerHTML = '<span class="badge bg-success">Terdaftar Spionam</span>';
                 } else {
-                    isActiveElement.innerHTML = '<span class="badge bg-danger">Tidak Aktif</span>';
+                    isActiveElement.innerHTML = '<span class="badge bg-danger">Belum Terdaftar Spionam</span>';
                 }
 
                 // Populate other data
-                document.getElementById('username').innerText = data.username || 'Unknown';
-                document.getElementById('name').innerText = data.name || 'Unknown';
-                document.getElementById('nip').innerText = data.nip || 'N/A';
-                document.getElementById('role_name').innerText = data.role_name || 'Unknown';
+                document.getElementById('name').innerText = data.name || '-';
+                document.getElementById('nib').innerText = "NIB : "+data.nib || '-';
+                $('.company-province').html(data.province_name);
+                $('.company-city').html(data.city_name);
+                $('.company-phone').html(data.company_phone_number);
+                $('.company-email').html(data.email);
+                $('.company-address').html(data.address);
+                $('.company-service-types').html(`<li class="list-item">${data.service_types}</li>`);
+                $('.company-established').html(data.established);
+                $('.company-joined-date').html(data.created_at);
+                $('.company-pic-name').html(data.pic_name);
+                $('.company-pic-phone').html(data.pic_phone);
+                $('.company-user-name').html(data.username);
+                $('.company-user-phone').html(data.phone_number);
+                $('.company-is-active').addClass(`${data.is_active.icon_status} ${data.is_active.color}`);
+                    
                 document.getElementById('email').innerText = data.email || 'No Email';
 
                 document.getElementById('createdAt').innerText =

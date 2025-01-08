@@ -1,5 +1,5 @@
 
-<nav class="pc-sidebar" style="background:white;">
+<nav class="pc-sidebar">
     <div class="navbar-wrapper">
         <div class="m-header text-center">
             <a href="" class="b-brand text-primary">
