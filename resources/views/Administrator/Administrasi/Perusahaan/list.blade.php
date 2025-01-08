@@ -38,7 +38,7 @@
     <div class="row d-flex">
         <div class="col-lg-3 col-12">
             <div class="card">
-                <div class="card-body" style="padding-bottom: 10px;">
+                <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Perusahaan Terverifikasi</p>
