@@ -316,7 +316,7 @@
             if (id === '#input-provinsi') {
                 $(id).select2({
                     ajax: {
-                        url: `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/provinsi/list`,
+                        url: `{{ env("SERVICE_BASE_URL") }}/provinsi/list`,
                         dataType: 'json',
                         delay: 500,
                         headers: {
@@ -337,20 +337,20 @@
                                 results: $.map(data, function(item) {
                                     return {
                                         id: item.id,
-                                        text: item.nama
+                                        text: item.name
                                     }
                                 })
                             };
                         },
                     },
                     allowClear: true,
-                    placeholder: 'Pilih perusahaan',
+                    placeholder: 'Pilih Provinsi',
                     width: '100%' // Menyesuaikan lebar elemen Select2 dengan container
                 });
             } else if (id === '#input-kota') {
                 $(id).select2({
                     ajax: {
-                        url: `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/kota/list`,
+                        url: `{{ env("SERVICE_BASE_URL") }}/kota/list`,
                         dataType: 'json',
                         delay: 500,
                         headers: {
@@ -371,14 +371,14 @@
                                 results: $.map(data, function(item) {
                                     return {
                                         id: item.id,
-                                        text: item.nama
+                                        text: item.name
                                     }
                                 })
                             };
                         },
                     },
                     allowClear: true,
-                    placeholder: 'Pilih perusahaan',
+                    placeholder: 'Pilih Kota',
                     width: '100%' // Menyesuaikan lebar elemen Select2 dengan container
                 });
             } else if (id === '#input-pelayanan') {
