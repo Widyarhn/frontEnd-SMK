@@ -33,6 +33,26 @@
         .accordion-button:not(.collapsed)::after {
             filter: brightness(0) invert(1);
         }
+
+        #alertMessage:empty {
+            display: none;
+        }
+
+        #interviewInformation:empty {
+            display: none;
+        }
+
+        /* Default margin for request information */
+        #requestInformation {
+            margin-top: 0;
+            /* Default margin */
+        }
+
+        /* Default margin for interview information */
+        #interviewInformation {
+            margin-top: 0;
+            /* Default margin */
+        }
     </style>
 @endsection
 
@@ -160,39 +180,11 @@
         </div>
         <div class="col-lg-4 col-12">
             <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-2">Informasi Pengajuan</h5>
-                    <ul class="nav nav-tabs card-header-tabs" id="navTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="alertMessage-tab" data-bs-toggle="tab" href="#alertMessage"
-                                role="tab" aria-controls="alertMessage" aria-selected="true">Aksi Pengajuan</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link"id="interviewInformation-tab" data-bs-toggle="tab"
-                                href="#interviewInformation" role="tab" aria-controls="interviewInformation"
-                                aria-selected="false">Wawancara</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="requestInformation-tab" data-bs-toggle="tab"
-                                href="#requestInformation" role="tab" aria-controls="requestInformation"
-                                aria-selected="false">Riwayat Pengajuan</a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="card-body">
-                    <div class="tab-content" id="navTabsContent">
-                        <div class="tab-pane fade  show active" id="alertMessage" role="tabpanel"
-                            aria-labelledby="alertMessage-tab">
-
-                        </div>
-                        <div class="tab-pane fade" id="interviewInformation" role="tabpanel"
-                            aria-labelledby="interviewInformation-tab">
-
-                        </div>
-                        <div class="tab-pane fade" id="requestInformation" role="tabpanel"
-                            aria-labelledby="requestInformation-tab">
-                        </div>
-                    </div>
+                    <h3>Informasi Pengajuan</h3>
+                    <div id="alertMessage" class="mb-4 rounded-lg border-0"></div>
+                    <div id="interviewInformation" class="mb-4 rounded-lg border-0"></div>
+                    <div id="requestInformation" class="shadow rounded-lg border-0"></div>
                 </div>
             </div>
         </div>
@@ -1693,69 +1685,28 @@
         }
 
         function adjustLayout() {
-            const tabs = [{
-                    tabId: 'alertMessage-tab',
-                    contentId: 'alertMessage'
-                },
-                {
-                    tabId: 'interviewInformation-tab',
-                    contentId: 'interviewInformation'
-                },
-                {
-                    tabId: 'requestInformation-tab',
-                    contentId: 'requestInformation'
-                },
-            ];
+            const alertMessage = document.getElementById('alertMessage');
+            const interviewInformation = document.getElementById('interviewInformation');
+            const requestInformation = document.getElementById('requestInformation');
 
-            let firstVisibleTab = null;
+            const isAlertMessageEmpty = !alertMessage.innerHTML.trim();
+            const isInterviewInformationEmpty = !interviewInformation.innerHTML.trim();
 
-            tabs.forEach(({
-                tabId,
-                contentId
-            }) => {
-                const tabElement = document.getElementById(tabId);
-                const contentElement = document.getElementById(contentId);
+            // Hide alertMessage if empty and move interviewInformation up
+            if (isAlertMessageEmpty) {
+                alertMessage.classList.add('hidden');
+                interviewInformation.classList.add('top');
+            }
 
-                // Pastikan elemen tab dan konten ada
-                if (!tabElement || !contentElement) return;
+            // Hide interviewInformation if empty and move requestInformation up
+            if (isInterviewInformationEmpty) {
+                interviewInformation.classList.add('hidden');
+                requestInformation.classList.add(isAlertMessageEmpty ? 'top' : 'moved-up');
+            }
 
-                // Periksa apakah konten kosong
-                const isContentEmpty = contentElement.textContent.trim() ===
-                    ''; // Gunakan textContent untuk memastikan
-
-                if (isContentEmpty) {
-                    // Sembunyikan tab dan kontennya
-                    tabElement.classList.add('d-none');
-                    contentElement.classList.remove('show', 'active');
-                } else {
-                    // Tampilkan tab jika tidak kosong
-                    tabElement.classList.remove('d-none');
-                    if (!firstVisibleTab) {
-                        firstVisibleTab = {
-                            tabElement,
-                            contentElement
-                        };
-                    }
-                }
-            });
-
-            // Aktifkan tab pertama yang terlihat
-            if (firstVisibleTab) {
-                tabs.forEach(({
-                    tabId,
-                    contentId
-                }) => {
-                    const tabElement = document.getElementById(tabId);
-                    const contentElement = document.getElementById(contentId);
-
-                    // Reset status aktif
-                    tabElement?.classList.remove('active');
-                    contentElement?.classList.remove('show', 'active');
-                });
-
-                // Set tab pertama yang terlihat menjadi aktif
-                firstVisibleTab.tabElement.classList.add('active');
-                firstVisibleTab.contentElement.classList.add('show', 'active');
+            // If both alertMessage and interviewInformation are empty, move requestInformation to the top
+            if (isAlertMessageEmpty && isInterviewInformationEmpty) {
+                requestInformation.classList.add('top');
             }
         }
 
@@ -1879,7 +1830,7 @@
         }
 
         async function mappingCertificateRequestCard(status, dispositionBy, dispositionTo, updateAt, validationReason,
-        data) {
+            data) {
             dataComment = '';
             rowDispositionBy = '';
             rowDispositionTo = '';
@@ -1943,7 +1894,7 @@
                     </div>`;
             }
             const existingServiceTypes = data.company.service_types || [];
-            if (status !== 'disposition' || dispositionTo?.id !== currentUser) {
+            if ((status !== 'disposition' || status !== 'not_passed_assessment_verification') && dispositionTo?.id !== currentUser) {
                 serviceTypeValidation = ``;
             } else {
 
@@ -1990,7 +1941,8 @@
             // Template for the task list
             let taskListTemplate = `
                 <div class="card mb-4" id="${uniqueId}" style="border: none;">
-                    <div class="task-card p-3" style="max-height: 300px; overflow-y: auto;">
+                    <div class="task-card p-3" style="max-height: 400px; overflow-y: auto;">
+                        <h5 class="mb-3">Riwayat Pengajuan</h5>
                         <ul class="list-unstyled task-list" id="taskList-${uniqueId}" style="list-style: none; padding: 0; max-height: 210px; overflow-y: auto;">
                             <!-- Task items will be appended here -->
                         </ul>
@@ -3840,6 +3792,45 @@
         //         return moment(date).format(format);
         //     },
         // });
+
+        $(document).ready(function() {
+            $('#validationReason').summernote({
+                placeholder: 'Masukkan Alasan',
+                tabsize: 2,
+                height: 450,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']]
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        updateWordAndParagraphCount(
+                            contents); // Hitung kata dan paragraf saat konten berubah
+                    }
+                }
+            });
+
+            // Inisialisasi hitungan pertama kali
+            updateWordAndParagraphCount($('#validationReason').summernote('code'));
+
+            // Event handler untuk validasi input
+            $('input[name="isValidAssessment"]').on('click', function() {
+                let isValidAssessment = $(this).val() === 'yes';
+                if (!isValidAssessment) {
+                    $('#validationReason').summernote('enable'); // Aktifkan editor
+                } else {
+                    $('#validationReason').summernote('disable'); // Nonaktifkan editor
+                    $('#validationReason').summernote('code', ''); // Kosongkan konten
+                    $('#wordCount').html(''); // Kosongkan hitungan kata dan paragraf
+                }
+            });
+        });
+
 
         $(document).on('change', '#signer_id', function() {
             $('#generate-sk-btn').prop('disabled', true)

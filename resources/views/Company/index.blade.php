@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/uikit.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
-
+    <link href="{{ asset('assets/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js"></script>
 
     <style>
