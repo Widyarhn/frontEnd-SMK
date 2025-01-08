@@ -1,4 +1,4 @@
-@extends('...Company.index', ['title' => 'Detail Pengajuan'])
+@extends('...Company.index', ['title' => 'SMK TD | Detail Pengajuan'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/js/libs/filepond/filepond.min.css">
@@ -181,62 +181,62 @@
         </div>
     </div>
 
-
-    <div class="row">
-        <!-- Kolom Surat Permohonan -->
-        <div class="col-12 col-md-8">
-            <div class="card mt-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5>Surat Permohonan</h5>
-                    <button class="btn btn-secondary btn-sm" title="Log Aktivitas" data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter" onclick="loadHistoryModal()">
-                        <i class="fa-solid fa-clock me-2"></i>Log
-                    </button>
+    <form id="fCreate">
+        <div class="row">
+            <!-- Kolom Surat Permohonan -->
+            <div class="col-12 col-md-8">
+                <div class="card mt-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Surat Permohonan</h5>
+                        <button class="btn btn-secondary btn-sm" title="Log Aktivitas" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalCenter" onclick="loadHistoryModal()">
+                            <i class="fa-solid fa-clock me-2"></i>Log
+                        </button>
+                    </div>
+                    <div id="applicationLetterSection"></div>
                 </div>
-                <div id="applicationLetterSection"></div>
+            </div>
+            <!-- Kolom Detail Pengajuan Sertifikat -->
+            <div class="col-12 col-md-4">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Detail Pengajuan Sertifikat</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="media align-items-center">
+                                <label class="mb-2 fw-bold">Jenis Pelayanan :</label>
+                                <div class="media-body" id="serviceTypes">
+
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="media align-items-center">
+                                <label class="mb-2 fw-bold">Jadwal Verifikasi <span id="tipe-verifikasi"></span> :</label>
+                                <div class="media-body">
+                                    <p class="mb-0"><i class="fa-solid fa-calendar-days me-2"></i><label class="mb-0"
+                                            id="jadwal-verifikasi-lapangan"></label></p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-
-        <!-- Kolom Detail Pengajuan Sertifikat -->
-        <div class="col-12 col-md-4">
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h5>Detail Pengajuan Sertifikat</h5>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="media align-items-center">
-                            <label class="mb-2 fw-bold">Jenis Pelayanan :</label>
-                            <div class="media-body" id="serviceTypes">
-
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="media align-items-center">
-                            <label class="mb-2 fw-bold">Jadwal Verifikasi <span id="tipe-verifikasi"></span> :</label>
-                            <div class="media-body">
-                                <p class="mb-0"><i class="fa-solid fa-calendar-days me-2"></i><label class="mb-0"
-                                        id="jadwal-verifikasi-lapangan"></label></p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <form id="fCreate">
+        <div class="card">
+            <div class="card-body">
+                <div id="rejectedNote"></div>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12 col-xs-12">
                         <div id="templateTable" class="accordion"></div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-xs-12 actionButton"></div>
                 </div>
-            </form>
+
+            </div>
         </div>
-    </div>
+    </form>
 
     <div id="exampleModalCenter" class="modal fade" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
@@ -267,8 +267,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
     <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
-    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js">
-    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
     <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
     <script
         src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
@@ -290,9 +289,9 @@
 
 @section('page_js')
     <script>
-        let queryString         = window.location.search;
-        let urlParams           = new URLSearchParams(queryString);
-        let referenceId         = urlParams.get('id');
+        let queryString = window.location.search;
+        let urlParams = new URLSearchParams(queryString);
+        let referenceId = urlParams.get('id');
 
         async function getListData() {
             loadingPage(true);
@@ -329,7 +328,6 @@
                     'dateOfApplicationLetter': response.data.date_of_application_letter,
                     'fileOfApplicationLetter': response.data.file_of_application_letter
                 };
-
                 buildApplicationLetterSection(response.data.request_status, applicationLetterData);
 
                 if (['draft', 'rejected'].includes(response.data.request_status)) {
@@ -664,7 +662,7 @@
 
             try {
                 response = await CallAPI(
-                    'GET', 
+                    'GET',
                     `{{ env('SERVICE_BASE_URL') }}/company/documents/submission/history`, {
                         id: referenceId
                     }
@@ -672,11 +670,11 @@
             } catch (error) {
                 const errorMessage = error?.response?.data?.message || 'Terjadi kesalahan. Mohon coba lagi.';
                 Swal.fire({
-                        icon: 'info',
-                        title: 'Pemberitahuan',
-                        text: errorMessage,
-                        confirmButtonColor: '#28a745',
-                    });
+                    icon: 'info',
+                    title: 'Pemberitahuan',
+                    text: errorMessage,
+                    confirmButtonColor: '#28a745',
+                });
                 return null;
             } finally {
                 loadingPage(false);
@@ -852,9 +850,6 @@
             if (status === "draft" || status === "rejected") {
                 applicationLetterHtml = `
                     <div class="card" id="applicationLetter">
-                        <div class="card-header" style="background-color: #f3f6f9">
-                            <h6 class="card-title mb-0">Dokumen/Form Yang Harus Dilengkapi</h6>
-                        </div>
                         <div class="card-body">
                             <a class="btn btn-primary btn-primary-download" href="{{ asset('assets/doc/SURAT_PERMOHONAN_PENILAIAN.docx') }}" download>
                                 <i class="fas fa-download me-1"></i> Template Surat Permohonan Penilaian
@@ -878,8 +873,8 @@
                                         ${
                                             applicationLetter.fileOfApplicationLetter
                                                 ? `<a href="${applicationLetter?.fileOfApplicationLetter}" class="link-secondary text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover d-block mb-3" target="_blank" rel="noopener noreferrer">
-                                                                            Lihat dokumen yang dikirim
-                                                                        </a>`
+                                                                                    Lihat dokumen yang dikirim
+                                                                                </a>`
                                                 : ""
                                         }
                                         <input type="file" class="filepond filepond-input application_letter mb-0" id="application_letter_show" accept="application/pdf" ${applicationLetter.fileOfApplicationLetter ? "" : "required"} />
@@ -1022,7 +1017,7 @@
             });
         });
 
-        
+
         async function addData() {
             const $form = document.getElementById('fCreate');
             $form.addEventListener("submit", (e) => {
@@ -1061,8 +1056,6 @@
                     nextStatus = 'request';
                 }
 
-                console.log(nextStatus);
-
                 let formData = {
                     element_properties: smkElements,
                     answers: answerSchema,
@@ -1072,7 +1065,7 @@
                     date_of_application_letter: formObject.date_of_application_letter,
                     file_of_application_letter: formObject.file_of_application_letter,
                 };
-
+                console.log(formData)
                 // Submit form data
                 submitData(formData, 'Berhasil kirim pengajuan');
             });
@@ -1237,6 +1230,7 @@
                 file_of_application_letter: formObject.file_of_application_letter,
             }
 
+
             submitData(formData, 'Berhasil simpan pengajuan')
         }
 
@@ -1290,16 +1284,16 @@
             });
 
 
-            // FilePond.registerPlugin(
-            //     FilePondPluginFileEncode,
-            //     FilePondPluginImagePreview,
-            //     FilePondPluginPdfPreview,
-            //     FilePondPluginFileValidateSize,
-            //     FilePondPluginFileValidateType
-            // )
+            FilePond.registerPlugin(
+                FilePondPluginFileEncode,
+                FilePondPluginImagePreview,
+                FilePondPluginPdfPreview,
+                FilePondPluginFileValidateSize,
+                FilePondPluginFileValidateType
+            )
             await Promise.all([
                 getListData(),
-                //addData(),
+                addData(),
             ])
             $('.filepond--credits').remove()
         }
