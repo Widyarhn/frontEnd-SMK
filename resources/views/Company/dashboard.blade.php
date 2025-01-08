@@ -12,7 +12,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background:rgba(0, 255, 0, 0.8);
+            background: rgba(0, 255, 0, 0.8);
         }
 
 
@@ -25,9 +25,9 @@
                 margin-bottom: 20px;
             }
 
-            .profile-tabs{
-                align-items:center;
-                justify-content: center ;
+            .profile-tabs {
+                align-items: center;
+                justify-content: center;
             }
 
             #countdown-card {
@@ -82,7 +82,7 @@
 
                         <!-- Sinkronisasi OSS Button -->
                         <div class="col-lg-3 col-12 ms-auto text-lg-end">
-                            <button class="btn btn-primary btn-sync-oss">Sinkronisasi OSS</button>
+                            <button class="btn btn-primary btn-sync-oss" id="syncOss">Sinkronisasi OSS</button>
                         </div>
                     </div>
                 </div>
@@ -92,23 +92,19 @@
                     style=" width: 250px; padding: 15px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1);
                        border-radius:8px; text-align:center;">
                     <div style="display:flex; align-items:center; gap:10px; justify-content: center;">
-                        <i id="countdown-icon" class="fa fa-clock" style="font-size:24px; color:#000000; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);"></i>
-                        <h6 style="margin:0; color:#000000; font-weight:600; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Laporan Tahunan</h6>
+                        <h6 style="margin:0; color:#000000; font-weight:600; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
+                            Laporan Tahunan</h6>
                     </div>
-                    <div id="countdown" style="font-size:18px; font-weight:700; color:#000000; margin-top:10px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
+                    <div id="countdown-timer"
+                        style="font-size:18px; font-weight:700; color:#000000; margin-top:10px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
                         00:00:00
                     </div>
-                    <p id="countdown-message"
-                        style="margin:0; font-size:14px; color:#000000; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);font-weight:500; margin-top:5px;">
-                        Waktu Anda Masih Panjang
-                    </p>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-body py-0 ">
-                    <ul class="nav nav-tabs profile-tabs"
-                        id="myTab" role="tablist">
+                    <ul class="nav nav-tabs profile-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation"><a class="nav-link active" id="followers-tab"
                                 data-bs-toggle="tab" href="#followers" role="tab" aria-selected="false"
                                 tabindex="-1"><i class="ti ti-building me-2"></i> Informasi Perusahaan</a></li>
@@ -240,7 +236,8 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Tanggal Terbit</h3>
-                                                    <p class="sertificate-publish badge text-white mb-0" style="background: #002688;"></p>
+                                                    <p class="sertificate-publish badge text-white mb-0"
+                                                        style="background: #002688;"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-calendar-alt fa-lg text-primary f-36"></i>
@@ -285,6 +282,7 @@
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/date-language-format.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
+    <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
@@ -292,8 +290,7 @@
 
 @section('page_js')
     <script>
-        // IFRAME
-        const pdfUrl = 'https://storage.hubdat.dephub.go.id/tdbupj-dev/testing--yGywXxuU5hzB9256gu-c.pdf';
+        let nextReportDate;
 
         async function getUserData() {
             loadingPage(true);
@@ -353,7 +350,6 @@
         }
 
         async function setUserData(data) {
-            console.log("🚀 ~ setUserData ~ data:", data)
             $('.company-name').html(data.name);
             $('.company-province').html(data.province_name);
             $('.company-city').html(data.city_name);
@@ -387,8 +383,86 @@
 
             loadingPage(false);
             if (getDataRest.status == 200) {
+                let data = getDataRest.data.data;
+
+                let skIssueDate = new Date(data.publish_date);
+                let expiredDate = new Date(data.expired_date);
+
+                // Hitung daftar tanggal laporan tahunan hingga maksimal 5 tahun atau expired_date
+                let annualReportDates = calculateAnnualReportDates(skIssueDate, expiredDate);
+
                 let handleDataResult = await handleSertifikatData(getDataRest.data.data);
                 await setSertifikatData(handleDataResult);
+                startCountdown(annualReportDates, expiredDate);
+            }
+        }
+
+        function startCountdown(annualReportDates, expiredDate) {
+            setInterval(() => {
+                updateCountdown(annualReportDates, expiredDate);
+            }, 1000); // Memperbarui setiap 1 detik
+
+            // Jalankan pembaruan pertama kali
+            updateCountdown(annualReportDates, expiredDate);
+        }
+
+        // Fungsi menghitung countdown
+        function updateCountdown(annualReportDates, expiredDate) {
+            const now = new Date(); // Waktu saat ini
+
+            // Cek jika expired sudah lewat
+            if (now >= expiredDate) {
+                document.getElementById('countdown-timer').innerHTML = 'Kedaluwarsa';
+                return;
+            }
+
+            // Temukan laporan tahunan berikutnya
+            let nextReportDate = annualReportDates.find(date => date > now);
+
+            if (!nextReportDate) {
+                document.getElementById('countdown-timer').innerHTML = 'Tidak ada laporan tahunan lagi.';
+                return;
+            }
+
+            // Hitung selisih waktu
+            let diff = nextReportDate - now;
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Tampilkan countdown
+            document.getElementById('countdown-timer').innerHTML =
+                `${days} hari, ${hours} jam, ${minutes} menit, ${seconds} detik`;
+        }
+
+        // Fungsi menghitung daftar tanggal laporan tahunan
+        function calculateAnnualReportDates(skIssueDate, expiredDate) {
+            let dates = [];
+            let currentDate = new Date(skIssueDate);
+
+            while (currentDate < expiredDate) {
+                currentDate.setFullYear(currentDate.getFullYear() + 1);
+                dates.push(new Date(currentDate));
+            }
+
+            return dates;
+        }
+
+
+        function setCountdownStyle(countdownCard, countdownMessage, countdownIcon, days) {
+            if (days > 30) {
+                countdownCard.style.background = "rgba(34, 139, 34, 0.9)";
+                countdownMessage.textContent = "Waktu Anda Masih Panjang";
+                countdownIcon.className = "fa fa-smile";
+            } else if (days <= 30 && days > 7) {
+                countdownCard.style.background = "rgba(218, 165, 32, 0.9)";
+                countdownMessage.textContent = "Jangan Lupa Siapkan Laporan";
+                countdownIcon.className = "fa fa-exclamation-circle";
+            } else {
+                countdownCard.style.background = "rgba(139, 0, 0, 0.9)";
+                countdownMessage.textContent = "Segera Kirimkan Laporan Anda";
+                countdownIcon.className = "fa fa-times-circle";
             }
         }
 
@@ -431,6 +505,98 @@
             return handleData;
         }
 
+        async function setSertifikatData(data) {
+            const certificatePdfContainer = $('#certificate-pdf');
+
+            if (data.certificate_file && data.certificate_file !== '-') {
+                certificatePdfContainer.html(`
+                <div id="pdf-viewer-container" style="width: 100%; height: 400px; position: relative; overflow: auto;"></div>
+            `);
+                await loadPDF(data.certificate_file);
+            } else {
+                certificatePdfContainer.html(`
+                <h4 class="mt-4 fw-semibold">Sertifikat belum ada</h4>
+                <p class="text-muted mt-3">Silahkan lengkapi proses pengajuan sertifikat SMK <a href="javascript:void(0)">Disini</a></p>
+                <div class="mt-4">
+                    <div class="row justify-content-center mt-5 mb-2">
+                        <div class="col-sm-7 col-8 mb-4">
+                            <img src="{{ asset('assets/images/verification-img.png') }}" alt="Informasi Sertifikat" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            `);
+            }
+
+            $('.sertificate-number').html(data.number_of_certificate);
+            $('.sertificate-status').html(data.is_active.text_status).addClass(`badge ${data.is_active.color}`);
+            $('.sertificate-publish').html(data.publish_date);
+            $('.sertificate-expired').html(data.expired_date).addClass(`badge ${data.expired.color}`);
+
+        }
+
+        async function checkOSS() {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+                'GET',
+                '{{ env('SERVICE_BASE_URL') }}/company/setting/find', {
+                    name: "oss"
+                }
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            loadingPage(false);
+
+            if (getDataRest.status == 200) {
+                let data = getDataRest.data.data;
+
+                if (data.is_active === 0) {
+                    const btnSync = document.querySelector('.btn-sync-oss');
+                    if (btnSync) {
+                        btnSync.style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        async function syncDataOss() {
+            $(document).on("click", "#syncOss", async function() {
+                swal({
+                    title: `Sync data dengan OSS?`,
+                    text: "Data akan diperbaharui",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonColor: '#6F6F6F',
+                    confirmButtonColor: '#28a745    ',
+                    cancelButtonText: 'Batal',
+                    confirmButtonText: 'Ya, Saya Yakin',
+                }).then(async (result) => {
+                    let postDataRest = await CallAPI(
+                        'GET',
+                        `{{ env('SERVICE_BASE_URL') }}/company/syncOss`
+                    ).then(function(response) {
+                        return response;
+                    }).catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp.data
+                            .message);
+                        return resp;
+                    });
+
+                    if (postDataRest.status == 200) {
+                        loadingPage(false);
+                        notificationAlert('success', 'Berhasil', postDataRest.data
+                            .message);
+                    }
+                }).catch(swal.noop);
+            })
+        }
 
         async function loadPDF(url) {
             const loadingTask = pdfjsLib.getDocument(url);
@@ -471,118 +637,16 @@
 
         }
 
-        async function setSertifikatData(data) {
-            console.log("🚀 ~ setSertifikatData ~ data:", data)
-            const certificatePdfContainer = $('#certificate-pdf');
-
-            if (data.certificate_file && data.certificate_file !== '-') {
-                certificatePdfContainer.html(`
-                <div id="pdf-viewer-container" style="width: 100%; height: 400px; position: relative; overflow: auto;"></div>
-            `);
-                await loadPDF(data.certificate_file);
-            } else {
-                certificatePdfContainer.html(`
-                <h4 class="mt-4 fw-semibold">Sertifikat belum ada</h4>
-                <p class="text-muted mt-3">Silahkan lengkapi proses pengajuan sertifikat SMK <a href="javascript:void(0)">Disini</a></p>
-                <div class="mt-4">
-                    <div class="row justify-content-center mt-5 mb-2">
-                        <div class="col-sm-7 col-8 mb-4">
-                            <img src="{{ asset('assets/images/verification-img.png') }}" alt="Informasi Sertifikat" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            `);
-            }
-
-            $('.sertificate-number').html(data.number_of_certificate);
-            $('.sertificate-status').html(data.is_active.text_status).addClass(`badge ${data.is_active.color}`);
-            $('.sertificate-publish').html(data.publish_date);
-            $('.sertificate-expired').html(data.expired_date).addClass(`badge ${data.expired.color}`);
-            console.log("🚀 ~ setSertifikatData ~ data.publish_date:", data.publish_date)
-        }
-
-        // Set the countdown time (e.g., 5 minutes from now)
-        const skIssueDate = new Date("2024-01-20"); // Tanggal terbit SK
-        const nextReportDate = new Date(skIssueDate);
-        nextReportDate.setFullYear(nextReportDate.getFullYear() + 1); // Laporan tahunan setahun setelah SK
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = nextReportDate - now;
-
-            const countdownCard = document.getElementById("countdown-card");
-            const countdownMessage = document.getElementById("countdown-message");
-            const countdownIcon = document.getElementById("countdown-icon");
-
-            if (distance >= 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("countdown").innerHTML =
-                    `${days}d ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
-
-                if (days > 30) {
-                    countdownCard.style.background = "rgba(34, 139, 34, 0.9)"; // Hijau gelap
-                    countdownMessage.textContent = "Waktu Anda Masih Panjang";
-                    countdownIcon.className = "fa fa-smile"; // Ikon senyum
-                } else if (days <= 30 && days > 7) {
-                    countdownCard.style.background = "rgba(218, 165, 32, 0.9)"; // Kuning gelap
-                    countdownMessage.textContent = "Jangan Lupa Siapkan Laporan";
-                    countdownIcon.className = "fa fa-exclamation-circle"; // Ikon peringatan
-                } else {
-                    countdownCard.style.background = "rgba(139, 0, 0, 0.9)"; // Merah gelap
-                    countdownMessage.textContent = "Segera Kirimkan Laporan Anda";
-                    countdownIcon.className = "fa fa-times-circle"; // Ikon bahaya
-                }
-
-            } else {
-                document.getElementById("countdown").innerHTML = "Waktu Habis!";
-                countdownCard.style.background = "rgba(128, 128, 128, 0.8)"; // Abu-abu: Waktu habis
-                countdownMessage.textContent = "Laporan tahunan belum dilakukan!";
-                countdownIcon.className = "fa fa-ban"; // Ikon larangan
-            }
-        }
-
-        async function checkOSS() {
-            loadingPage(true); // Menampilkan indikator loading
-            const getDataRest = await CallAPI(
-                'GET',
-                '/dummy/check_oss.json'
-            ).then(function(response) {
-                return response;
-            }).catch(function(error) {
-                loadingPage(false); // Menghentikan indikator loading jika terjadi error
-                let resp = error.response;
-                notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                return resp;
-            });
-
-            loadingPage(false); // Menghentikan loading setelah mendapatkan response
-
-            if (getDataRest.status == 200) {
-                let data = getDataRest.data.data;
-                if (data.is_active === false) {
-                    // Menyembunyikan tombol sinkronisasi jika is_active == false
-                    const btnSync = document.querySelector('.btn-sync-oss');
-                    if (btnSync) {
-                        btnSync.style.display = 'none'; // Menyembunyikan tombol
-                    }
-                }
-            }
-        }
 
 
         async function initPageLoad() {
             await Promise.all([
                 getUserData(),
+                checkOSS(),
                 getSertifikatData(),
-                checkOSS()
-            ])
+                syncDataOss(),
 
-            // Update countdown setiap detik
-            setInterval(updateCountdown, 1000);
+            ])
         }
     </script>
     @include('Company.partial-js')
