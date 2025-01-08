@@ -1,5 +1,14 @@
-@extends('...Administrator.index', ['title' => 'Detail | Data Perusahaan'])
+@extends('Administrator.index', ['title' => 'SMK-TD | Pengajuan Sertifikat SMK'])
 @section('asset_css')
+    <link rel="stylesheet" href="{{ asset('assets') }}/js/libs/filepond/filepond.min.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         .table th.sticky-end,
         .table td.sticky-end {
@@ -94,23 +103,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-12 d-flex">
-                            <div class="border rounded p-3 w-100">
-                                <h5>Detail Pengajuan</h5>
-                                <p class="mb-0"><i class="fa-solid fa-building-user me-2"></i> Dispo oleh <b
-                                        id="internal" name="internal">Joko</b></p>
-                                <p class="mb-0"><i class="fa-solid fa-user-tie me-3"></i>Dispo ke <b id="penilai">Iqbal
-                                        Firmansyah</b></p>
-                                <p class="mb-0"><i class="fa-solid fa-calendar-day me-3"></i>Diperbarui <b
-                                        id="tanggal_diperbarui">12
-                                        Desember 2024</b></p>
-                                <p class="mb-0"><i class="fa-solid fa-user-large me-3"></i>Dibutuhkan Aksi
-                                    <b id="internal-jabatan">Ketua Tim</b>
-                                </p>
-                                <p class="mb-0"><i class="fa-regular fa-note-sticky me-3"></i><a href="">Lihat
-                                        Catatan</a></p>
-                            </div>
+                    </div>
+                    <div class="row g-3">
+                        <!-- Detail Pengajuan -->
+                        <div class="col-12">
+                            <div id="detailPengajuan"></div>
                         </div>
+
+                        <!-- Surat Permohonan -->
                         <div class="col-lg-4 col-12 d-flex">
                             <div class="border rounded p-3 w-100">
                                 <h5>Surat Permohonan</h5>
@@ -119,103 +119,83 @@
                                             class="fa-solid fa-file me-2"></i>SRT-242024</p>
                                     <p class="mb-0" id="dateOfApplicationLetter"><i
                                             class="fa-solid fa-calendar me-2"></i>12 Desember 2023</p>
-                                    <a href="">
-                                        <p class="mb-0"><i class="fa-regular fa-file-pdf me-2"></i>Lihat Dokumen</p>
+
+                                    <a href="" id="application-letter-link" target="_blank">
+                                        <p class="mb-0">
+                                            <i class="fa-regular fa-file-pdf me-2"></i>Lihat Dokumen
+                                        </p>
                                     </a>
                                 </div>
                             </div>
                         </div>
+                        <!-- Informasi Pengguna -->
                         <div class="col-lg-4 col-12 d-flex">
                             <div class="border rounded p-3 w-100">
                                 <h5>Jenis Pelayanan</h5>
-                                <ol id="service_type">
-                                    <li>AJAP</li>
-                                    <li>Angkutan barang umum</li>
-                                </ol>
+                                <div style="max-height: 100px; overflow-y: auto; padding: 10px; border-radius: 5px;">
+                                    <ul id="c_serviceTypeList" class="mb-3"
+                                        style="margin: 0; padding: 0; list-style: none;">
+                                        <!-- Hasil serviceTypes akan masuk di sini -->
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="col-lg-4 col-12 d-flex">
+                            <div class="border rounded p-3 w-100">
+                                <h5>Informasi Pengguna</h5>
+                                <p class="mb-0"><i class="fa-solid fa-user me-2"></i>Nama Pengguna: <b
+                                        id="u_name">-</b></p>
+                                <p class="mb-0"><i class="fa-solid fa-envelope me-2"></i>Email: <b id="u_email">-</b>
+                                </p>
+                                <p class="mb-0"><i class="fa-solid fa-phone me-2"></i>No. Telepon: <b id="pic_phone">-</b>
+                                </p>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="col-lg-4 col-12">
             <div class="card">
                 <div class="card-header">
+                    <h5 class="mb-2">Informasi Pengajuan</h5>
                     <ul class="nav nav-tabs card-header-tabs" id="navTabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="task-tab" data-bs-toggle="tab" href="#task" role="tab"
-                                aria-controls="task" aria-selected="true">Riwayat Pengajuan</a>
+                            <a class="nav-link active" id="alertMessage-tab" data-bs-toggle="tab" href="#alertMessage"
+                                role="tab" aria-controls="alertMessage" aria-selected="true">Aksi Pengajuan</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="task-tab" data-bs-toggle="tab" href="#info" role="tab"
-                                aria-controls="task" aria-selected="true">Informasi Pengguna</a>
+                            <a class="nav-link"id="interviewInformation-tab" data-bs-toggle="tab"
+                                href="#interviewInformation" role="tab" aria-controls="interviewInformation"
+                                aria-selected="false">Wawancara</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="requestInformation-tab" data-bs-toggle="tab"
+                                href="#requestInformation" role="tab" aria-controls="requestInformation"
+                                aria-selected="false">Riwayat Pengajuan</a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="navTabsContent">
-                        <div class="tab-pane fade show active" id="task" role="tabpanel"
-                            aria-labelledby="task-tab">
-                            <div class="task-card p-3" style="max-height: 200px; overflow-y: auto;">
-                                <ul class="list-unstyled task-list">
-                                    <li>
-                                        <i class="feather icon-check f-w-600 task-icon bg-success"></i>
-                                        <p class="m-b-5">8:50</p>
-                                        <h5 class="text-muted">Call to customer <span class="text-primary"> <a
-                                                    href="#!" class="text-primary">Jacob</a> </span> and discuss the
-                                        </h5>
-                                    </li>
-                                    <li>
-                                        <i class="task-icon bg-primary"></i>
-                                        <p class="m-b-5">Sat, 5 Mar</p>
-                                        <h5 class="text-muted">Design mobile Application</h5>
-                                    </li>
-                                    <li>
-                                        <i class="task-icon bg-danger"></i>
-                                        <p class="m-b-5">Sun, 17 Feb</p>
-                                        <h5 class="text-muted"><span class="text-primary"><a href="#!"
-                                                    class="text-primary">Jeny</a></span> assign you a task <span
-                                                class="text-primary"><a href="#!" class="text-primary">Mockup
-                                                    Design.</a></span></h5>
-                                    </li>
-                                    <li>
-                                        <i class="task-icon bg-warning"></i>
-                                        <p class="m-b-5">Sat, 18 Mar</p>
-                                        <h5 class="text-muted">Design logo</h5>
-                                    </li>
-                                    <li class="p-b-15 m-b-10">
-                                        <i class="task-icon bg-success"></i>
-                                        <p class="m-b-5">Sat, 22 Mar</p>
-                                        <h5 class="text-muted">Design mobile Application</h5>
-                                    </li>
-                                </ul>
-                                <div class="text-end">
-                                    <a href="#!" class="b-b-primary text-primary">View Friend List</a>
-                                </div>
-                            </div>
+                        <div class="tab-pane fade  show active" id="alertMessage" role="tabpanel"
+                            aria-labelledby="alertMessage-tab">
+
                         </div>
-                        <div class="tab-pane fade show" id="info" role="tabpanel" aria-labelledby="task-tab">
-                            <div class="task-card" style="max-height: 280px; overflow-y: auto;">
-                                <h5>Penanggung Jawab</h5>
-                                <p class="mb-0" id="pic_name"><i class="fa-solid fa-user me-2"></i>Ang Hoey Tiong</p>
-                                <p class="mb-0" id="pic_phone"><i class="fa-solid fa-phone me-2"></i>(970) 982-3353</p>
-                                <h5 class="mt-4">Informasi Pengguna</h5>
-                                <p class="mb-0" id="u_name"><i class="fa-solid fa-circle-user me-2"></i>Anghoey</p>
-                                <p class="mb-0" id="u_phone"><i class="fa-solid fa-phone me-2"></i>(970) 982-3353</p>
-                                <p class="mb-0" id="u_email"><i
-                                        class="fa-solid fa-envelope me-2"></i>anghoey.conn@borer.com
-                                </p>
-                                <p class="mb-0" id="request_date"><i class="fa-solid fa-calendar-day me-2"></i>25 Maret
-                                    2023</p>
-                            </div>
+                        <div class="tab-pane fade" id="interviewInformation" role="tabpanel"
+                            aria-labelledby="interviewInformation-tab">
+
+                        </div>
+                        <div class="tab-pane fade" id="requestInformation" role="tabpanel"
+                            aria-labelledby="requestInformation-tab">
                         </div>
                     </div>
                 </div>
-                <!-- You can add more tab panes here -->
             </div>
         </div>
-
     </div>
     <div class="row">
         <div class="col-lg-3 col-12">
@@ -298,70 +278,653 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <div class="datatable-wrapper datatable-loading no-footer searchable fixed-columns">
-                            <div class="datatable-top">
-                                <div class="datatable-dropdown">
-                                    <label>
-                                        <select class="datatable-selector" style="width: auto;min-width: unset;"
-                                            id="limitPage">
-                                            <option value="5">5</option>
-                                            <option value="10" selected="">10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
-                                            <option value="25">25</option>
-                                        </select>
+                    <form id="fCreate">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                                aria-labelledby="analytics-tab-1" tabindex="0">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                </div>
+                            </div>
+
+                            <div class="mb-4 actionButton"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- MODAL CONTENT --}}
+    <div class="modal fade" id="full-content-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade form-dirjen" id="add-disposition" data-bs-keyboard="false" data-bs-backdrop="static"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="justify-content: center;">
+            <form id="fCreateAssessor" onsubmit="submitAssessor(event)">
+                <div class="modal-content modal-form" style="min-width: 500px">
+                    <div class="modal-header" style="border-bottom: 1px solid #e9ebec; padding: 1.25rem">
+                        <h5 class="modal-title modal-form-dirjen-title">Disposisi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-3">
+                        <div class="mb-3">
+                            <label for="signer_id" class="form-label">Disposisi Ke :</label>
+                            <select class="form-control form-select form-name" id="iAssessor" name="assessor"
+                                required></select>
+                            {{-- <div class="invalid-feedback" id="user_id_error"></div> --}}
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top: 1px solid #e9ebec; padding: 1rem">
+                        <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-paper-plane"></i>
+                                <span class="flex-grow-1">Lanjutkan</span>
+                            </span>
+                        </button>
+
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-times" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Tutup</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade form-dirjen" id="change-assessor-head" data-bs-keyboard="false" data-bs-backdrop="static"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="justify-content: center;">
+            <form id="fCreateAssessorHead" onsubmit="submitAssessorHead(event)">
+                <div class="modal-content modal-form" style="min-width: 500px">
+                    <div class="modal-header" style="border-bottom: 1px solid #e9ebec; padding: 1.25rem">
+                        <h5 class="modal-title modal-form-dirjen-title">Ubah Ketua tim</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-3">
+                        <div class="mb-3">
+                            <label for="signer_id" class="form-label">Ubah ketua tim Ke :</label>
+                            <select class="form-control form-select form-name" id="iAssessorHeadChange"
+                                name="assessor_head" required></select>
+                            {{-- <div class="invalid-feedback" id="user_id_error"></div> --}}
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top: 1px solid #e9ebec; padding: 1rem">
+                        <button type="submit" class="btn btn-primary" id="submitBtnKetua" disabled>
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-paper-plane"></i>
+                                <span class="flex-grow-1">Lanjutkan</span>
+                            </span>
+                        </button>
+
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-times" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Tutup</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- modal assessment validation -->
+    <div class="modal fade modal-lg" id="request-validation" data-bs-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+            <form action="#" id="fCreateValidation" onsubmit="submitAssessmentValidation(event)">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Verifikasi Penilaian</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-5">
+                        <div class="row align-items-center mb-2">
+
+                            <span class="col-8">Apakah penilaian sesuai? </span>
+                            <div class="col-4">
+                                <div class="text-end">
+                                    <input type="radio" class="btn-check" name="isValidAssessment"
+                                        id="validAssessment" value="yes" required>
+                                    <label class="btn btn-success" for="validAssessment">
+                                        <span class="d-flex align-items-center gap-2 text-dark">
+                                            <i class="fas fa-check" style="font-size: 16px;"></i>
+                                            <span class="flex-grow-1">Iya</span>
+                                        </span>
+                                    </label>
+
+                                    <input type="radio" class="btn-check" name="isValidAssessment"
+                                        id="invalidAssessment" value="no" required>
+                                    <label class="btn btn-danger" for="invalidAssessment">
+                                        <span class="d-flex align-items-center gap-2">
+                                            <i class="fas fa-times" style="font-size: 16px;"></i>
+                                            <span class="flex-grow-1">Tidak</span>
+                                        </span>
                                     </label>
                                 </div>
-                                <div class="datatable-search">
-                                    <input class="datatable-input" placeholder="Cari..." type="search"
-                                        title="Search within table" aria-controls="pc-dt-simple-1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="validationReason" style="height: 350px;" name="validation_notes" disabled></textarea>
+                                    <!-- <label for="validationReason">Alasan</label> -->
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div id="wordCount">Terdapat 0 paragraf dan 0 kata</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer px-5">
+                        <button type="submit" class="btn btn-primary btn-load waves-effect waves-light">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-save" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Simpan</span>
+                            </span>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-times" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Tutup</span>
+                            </span>
+                        </button>
+                    </div>
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <!-- modal rejected assessment -->
+    <div class="modal fade modal-lg" id="request-rejected" data-bs-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="justify-content: center;">
+
+            <form action="#" id="fCreateRejected">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tolak Pengajuan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body pt-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control w-100" id="rejectedNotes" style="height: 350px;" name="rejected_note" required></textarea>
+                                    <label for="rejectedNotes">Alasan</label>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                            aria-labelledby="analytics-tab-1" tabindex="0">
-                            <div class="accordion accordion-flush" id="accordionFlushExample">
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="submitBtnAlasan" class="btn btn-primary">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-save" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Simpan</span>
+                            </span>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-times" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Tutup</span>
+                            </span>
+                        </button>
                     </div>
                 </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- modal scheduling interview -->
+    <div class="modal fade" id="scheduling-interview" data-bs-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+            <form action="#" id="fCreateScheduleInterview" onsubmit="submitSchedulingInterview(event)">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Penjadwalan Verifikasi Lapangan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-5">
+                        <div class="mb-3">
+
+                            <div class="form-floating">
+                                <select class="form-control d-block" id="iInterviewType" name="interview_type" required>
+                                    <option value="">Pilih tipe wawancara</option>
+                                    <option value="offline">Lapangan</option>
+                                    <option value="online">Daring</option>
+                                </select>
+                                <label for="iInterviewType" class="form-label">Tipe wawancara</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control flatpickr-input" name="schedule"
+                                    id="interview_date" placeholder="Tanggal wawancara" readonly="readonly">
+                                <label for="interview_date" class="form-label">Waktu wawancara</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="iAssessorHead" class="form-label">Ketua Penilai</label>
+                            <select class="form-control d-block" id="iAssessorHead" name="assessor_head" required>
+                                <option value="">Pilih Ketua penilai</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="iAssessors" class="form-label">Penilai</label>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-control d-block" id="iAssessors" data-choices multiple>
+                                <option placeholder value="">Pilih penilai</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer px-5">
+                        <button type="submit" class="btn btn-primary btn-load waves-effect waves-light">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-save" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Simpan</span>
+                            </span>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-times" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Tutup</span>
+                            </span>
+                        </button>
+                    </div>
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- modal edit assessment interview -->
+    <div class="modal fade" id="edit-assessment-interview" data-bs-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="justify-content: center;">
+
+            <form action="#" id="fEditAssessmentInterview" onsubmit="submitEditAssessmentInterview(event)">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ubah Verifikasi lapangan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-5">
+                        <div class="mb-3">
+                            <b><u>Ubah Ketua Penilai dan atau Penilai untuk merubah data verifikasi lapangan.</u></b>
+                        </div>
+
+                        <div class="mb-3">
+
+                            <div class="form-floating">
+                                <select class="form-control d-block" id="iEditInterviewType" name="interview_type"
+                                    required>
+                                    <option value="">Pilih tipe wawancara</option>
+                                    <option value="offline">Lapangan</option>
+                                    <option value="online">Daring</option>
+                                </select>
+                                <label for="iEditInterviewType" class="form-label">Tipe wawancara</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control flatpickr-input" name="schedule"
+                                    id="iEditInterview_date" placeholder="Tanggal wawancara" readonly="readonly"
+                                    required>
+                                <label for="iEditInterview_date" class="form-label">Waktu wawancara</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="iEditAssessorHead" class="form-label">Ketua Penilai</label>
+                            <select class="form-control d-block" id="iEditAssessorHead" name="assessor_head" required>
+                                <option placeholder value="">Pilih Ketua penilai</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="iEditAssessors" class="form-label">Penilai</label>
+                            <select class="form-control d-block" name="assessors" id="iEditAssessors" data-choice
+                                multiple>
+                                <option placeholder value="">Pilih penilai</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer px-5">
+                        <button type="submit" class="btn btn-primary btn-load waves-effect waves-light">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-save" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Simpan</span>
+                            </span>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-times" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Tutup</span>
+                            </span>
+                        </button>
+                    </div>
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <!-- modal Record of Verfication interview -->
+    <div class="modal fade" id="create-record-of-verification" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="createRoVLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createRoVLabel">Buat Berita Acara</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" id="fCreateRoV" onsubmit="submitCreateRoV(event)">
+                        <div class="mb-4">
+                            <label class="form-label" for="photos_of_event">Upload Foto Kegiatan</label>
+                            <input type="file" class="filepond filepond-input-multiple photos_of_event"
+                                id="photos_of_event" name="photos_of_event_show"
+                                accept="image/jpeg, image/jpg, image/png" multiple data-max-file-size="5MB"
+                                data-max-files="5"
+                                data-file-validate-type-label="Hanya file gambar (JPEG/PNG) yang diperbolehkan"
+                                data-file-validate-type-message="Tipe file tidak valid. Harap unggah file gambar."
+                                required />
+                            <input type="hidden" class="filepond" name="photos_of_event" id="photos_of_event_hide"
+                                required />
+                        </div>
+
+                        <!-- Upload Foto Daftar Peserta -->
+                        <div class="mb-4">
+                            <label class="form-label" for="photos_of_attendance_list_show">Upload Foto Daftar
+                                Peserta</label>
+                            <input type="file" class="filepond filepond-input-multiple photos_of_attendance_list"
+                                id="photos_of_attendance_list" data-allow-reorder="true"
+                                accept="image/jpeg, image/jpg, image/png" multiple data-max-file-size="5MB"
+                                data-max-files="5"
+                                data-file-validate-type-label="Hanya file gambar (JPEG/PNG) yang diperbolehkan"
+                                data-file-validate-type-message="Tipe file tidak valid. Harap unggah file gambar."
+                                required />
+                            <input type="hidden" class="filepond" name="photos_of_attendance_list"
+                                id="photos_of_attendance_list_hide" required />
+                        </div>
+
+
+                        <!-- Footer Modal dengan Tombol Simpan dan Tutup -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-save" style="font-size: 16px;"></i>
+                                    <span class="flex-grow-1">Simpan</span>
+                                </span>
+                            </button>
+                            <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="fas fa-times" style="font-size: 16px;"></i>
+                                    <span class="flex-grow-1">Tutup</span>
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="show-record-of-verification" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="createRoVLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showROVlabel">Berita Acara</h5>
+                    <!-- Tombol close bawaan Bootstrap -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Isi modal -->
+                </div>
+                <div class="modal-footer">
+                    <!-- Tombol tutup modal -->
+                    <button class="btn btn-danger" type="button" data-bs-dismiss="modal">
+                        <span class="d-flex align-items-center gap-2">
+                            <i class="fas fa-times" style="font-size: 16px;"></i>
+                            <span class="flex-grow-1">Tutup</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal upload certificate -->
+    <div class="modal fade" id="create-pengajuan-selesai" data-bs-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form action="#" id="formPengajuanSelesai" onsubmit="pengajuanSelesaiSubmit(event)">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom p-3">
+                        <h5 class="modal-title">Pengajuan Selesai</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body py-3 px-5">
+                        <div class="mb-3">
+                            <label for="number_of_certificate" class="form-label">Nomor Sertifikat</label>
+                            <input type="text" class="form-control" id="number_of_certificate"
+                                name="number_of_certificate" placeholder="Nomor Sertifikat" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="publish_date" class="form-label">Tanggal Rilis Sertifikat</label>
+                            <input type="text" class="form-control" id="publish_date" name="publish_date"
+                                placeholder="Tanggal Rilis Sertifikat" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="certificate_file" class="form-label">Upload Sertifikat <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" type="file" id="certificate_file" name="certificate_file"
+                                accept="application/pdf" data-max-file-size="5MB" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sk_file" class="form-label">Upload Surat Keputusan <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" type="file" id="sk_file" name="sk_file"
+                                accept="application/pdf" data-max-file-size="5MB" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="rov_file" class="form-label">Upload Berita Acara <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" type="file" id="rov_file" name="rov_file"
+                                accept="application/pdf" data-max-file-size="5MB" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sign_by" class="form-label">Tanda Tangan Dirjen</label>
+                            <select class="form-control form-select signby-name" id="sign_by" name="sign_by">
+                            </select>
+                            <div class="invalid-feedback" id="sign_by_error">
+                            </div>
+                        </div>
+
+                        <p class="text-danger m-0 mt-4" style="font-size: 0.75rem">* Pastikan dokumen yang di unggah sudah
+                            sesuai dengan ketentuan.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-save" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Simpan</span>
+                            </span>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-times" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Tutup</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- modal View of Document interview -->
+    <div class="modal fade" id="view-document" data-bs-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <embed class="view-document-print" src="" frameborder="0" width="100%" height="700px">
+            </div>
+        </div>
+    </div>
+
+    <!-- modal sign by dirjen to SK dirjen -->
+    <div class="modal fade form-dirjen" id="modal-signby-dirjen" data-bs-keyboard="false" data-bs-backdrop="static"
+        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="justify-content: center;">
+            <form id="form-signby-dirjen" onsubmit="NextStepSignbyDirector(event)">
+                <div class="modal-content modal-form" style="min-width: 500px">
+                    <div class="modal-header" style="border-bottom: 1px solid #e9ebec; padding: 1.25rem">
+                        <h5 class="modal-title modal-form-dirjen-title">Tanda Tangan Dirjen</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-3">
+                        <div class="mb-3">
+                            <label for="signer_id" class="form-label">Nama Dirjen</label>
+                            <select class="form-control form-select form-name" id="signer_id" name="user_id"></select>
+                            <div class="invalid-feedback" id="user_id_error"></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border-top: 1px solid #e9ebec; padding: 1rem">
+                        <button type="submit" id="generate-sk-btn"
+                            class="btn btn-primary btn-load waves-effect waves-ligh btn-form-dirjen-submit"
+                            style="display: flex" disabled>
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-save" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Lanjutkan</span>
+                            </span>
+                        </button>
+
+                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="d-flex align-items-center gap-2">
+                                <i class="fas fa-times" style="font-size: 16px;"></i>
+                                <span class="flex-grow-1">Tutup</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- modal to show comment -->
+    <div class="modal fade" id="showCommentModal">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Catatan Verifikasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="dataCatatanVerifikasi"></div>
             </div>
         </div>
     </div>
 @endsection
 
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <script src="{{ asset('assets/js/date/moment.js') }}"></script>
+    <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
+    <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
+    </script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js">
+    </script>
+@endsection
+
 @section('page_js')
     <script>
-        let env = '{{ env('ESMK_SERVICE_BASE_URL') }}';
-        let menu = 'Detail Penilaian Sertifikat SMK';
+        let dataComment
+        let historyData
+        let smkElements
+        let prevAssessmentSchema = {};
+        let assessor
+        let interviewDate
+        let interviewType
+        let interviewAssessorhead
+        let interviewAssessors
         let queryString = window.location.search;
         let urlParams = new URLSearchParams(queryString);
-        let referenceId = urlParams.get('id');
-        let companyID = urlParams.get('companyID');
-        var smkElements
-        var answerSchema
-        var prevAssessmentSchema
-        var monitoringElement
-        let responseData;
-        let resp;
-        var pathname = window.location.pathname.split('/')
+        let id = urlParams.get('r');
+        let currentUser = @json(request()->user['id']);
 
-        async function getHistoryPengajuan() {
+
+
+        async function getDetailData() {
             loadingPage(true);
-
-            const getDataRest = await CallAPI(
+            let response = await CallAPI(
                     'GET',
-                    `/dummy/internal/sertifikat/riwayat_pengajuan.json`,
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/detail`, {
+                        id: id
+                    }
                 )
                 .then(response => response)
                 .catch(error => {
@@ -375,94 +938,6 @@
                     });
                     return resp;
                 });
-
-            if (getDataRest.status === 200) {
-                loadingPage(false);
-                let data = getDataRest.data.data;
-                const statusLabels = {
-                    'draft': 'Draft',
-                    'request': 'Pengajuan',
-                    'rejected': 'Pengajuan ditolak',
-                    'disposition': 'Disposisi',
-                    'not_passed_assessment': 'Tidak lulus penilaian',
-                    'passed_assessment': 'Lulus penilaian',
-                    'submission_revision': 'Revisi pengajuan',
-                    'not_passed_assessment_verification': 'Penilaian tidak lulus verifikasi',
-                    'assessment_revision': 'Revisi penilaian',
-                    'passed_assessment_verification': 'Penilaian terverifikasi',
-                    'scheduling_interview': 'Penjadwalan wawancara',
-                    'scheduled_interview': 'Wawancara Terjadwal',
-                    'not_passed_interview': 'Tidak lulus wawancara',
-                    'completed_interview': 'Wawancara selesai',
-                    'verification_director': 'Validasi direktur',
-                    'certificate_validation': 'Pengesahan sertifikat',
-                    'cancelled': 'Pengajuan dibatalkan',
-                    'expired': 'Pengajuan kedaluwarsa'
-                };
-
-                const taskListElement = document.querySelector('.task-list');
-                taskListElement.innerHTML = '';
-
-                if (data) {
-                    data.forEach(item => {
-                        const {
-                            status,
-                            created_at, updated_by
-                        } = item;
-                        const label = statusLabels[status] || 'Status Tidak Diketahui';
-
-                        let colorBage = 'primary';
-                        if (status.includes('draft')) {
-                            colorBage = 'secondary';
-                        }
-                        if (status.includes('not')) {
-                            colorBage = 'warning';
-                        }
-                        if (status.includes('expired')) {
-                            colorBage = 'dark';
-                        }
-                        if (status.includes('complete') || status.includes('passed_assessment_') ||
-                            status == 'certificate_validation' || status == 'passed_assessment') {
-                            colorBage = 'success';
-                        }
-                        if (status.includes('expired') ||
-                            status.includes('cancelled') ||
-                            status.includes('rejected')) {
-                            colorBage = 'danger';
-                        }
-
-                        const taskItem = `
-                    <li>
-                        <i class="task-icon bg-${colorBage}"></i>
-                        <p class="m-b-5">${new Date(created_at).toLocaleDateString('id-ID', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        })}</p>
-                        <h6 class="">${label}</h6>
-                        <p class="fw-normal"><i class="fa-solid fa-user me-2"></i>${updated_by}</p>
-                    </li>
-                `;
-
-                        taskListElement.insertAdjacentHTML('beforeend', taskItem);
-                    });
-
-                    const viewFriendList = ``;
-                    taskListElement.insertAdjacentHTML('afterend', viewFriendList);
-
-                } else {
-                    console.error("Data is not an array", data);
-                }
-            }
-        }
-
-
-        async function getListData() {
-            loadingPage(true);
-            const baseUrl = `/dummy/internal/sertifikat/detail_sertifikat.json`;
-            const response = await CallAPI('GET', baseUrl);
             loadingPage(true);
             if (response.status == 200) {
                 loadingPage(false);
@@ -568,7 +1043,7 @@
                                 prevAssessmentSchema[elementKey]?.[subElement[0]]?.reason !== null)) {
 
                             // Hanya menampilkan penilaian jika disposition_to.id sama dengan currentUser
-                            if (response.data.data.disposition_to.id === currentUser) {
+                            if (response.data.data.disposition_to?.id === currentUser) {
                                 isNeedSubmitButton = true;
 
                                 // Logika untuk status 'disposition'
@@ -614,8 +1089,7 @@
                                                 </div>
                                             </div>
                                         `;
-                                    const isReasonAvailable = prevAssessmentSchema[elementKey]?.[subElement[
-                                            0]]
+                                    const isReasonAvailable = prevAssessmentSchema[elementKey]?.[subElement[0]]
                                         ?.reason ? '' : 'disabled';
 
                                     assessmentReason = `
@@ -627,8 +1101,7 @@
 
 
                         if (response.data.data.status === 'not_passed_assessment_verification') {
-                            if (response.data.data.disposition_to && response.data.data.disposition_to
-                                .id ===
+                            if (response.data.data.disposition_to && response.data.data.disposition_to.id ==
                                 currentUser) {
 
                                 assessmentValue = `<input type="text"
@@ -663,8 +1136,8 @@
                                     <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${numbering}.${rowIndex}</td>
                                     <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${question.title}</td>
                                     <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${templateAnswer}</td>
-                                    <td>${assessmentValue}</td>
-                                    <td>${assessmentReason}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${assessmentValue}</td>
+                                    <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${assessmentReason}</td>
                                 </tr>
                             `;
                         rowIndex++;
@@ -682,7 +1155,7 @@
                 countAssessment(response.data.data.answers, response.data.data.assessments);
 
                 // Panggil fungsi untuk mengatur ikon accordion
-                setTimeout(() => initializeAccordionIcons(), 0);
+                // setTimeout(() => initializeAccordionIcons(), 0);
 
                 $('body').off('input', '.nilai-sertifikat').on('input', '.nilai-sertifikat', function() {
                     let val = $(this).val();
@@ -724,8 +1197,8 @@
                     .data.data.disposition_to, response.data.data.disposition_by);
                 mappingCompanyInformation(response.data.data);
                 mappingCertificateRequestCard(response.data.data.status, response.data.data.disposition_by?.name,
-                    response.data.data.disposition_to?.name, response.data.data.updated_at, response.data.data
-                    .validation_notes);
+                    response.data.data.disposition_to, response.data.data.updated_at, response.data.data
+                    .validation_notes, response.data.data);
 
                 buildAnswerAsPDF();
                 buildSubmitButton(isNeedSubmitButton);
@@ -735,7 +1208,16 @@
                     'dateOfApplicationLetter': response.data.data.date_of_application_letter,
                     'fileOfApplicationLetter': response.data.data.file_of_application_letter
                 };
-                buildApplicationLetterSection(applicationLetterData);
+
+                // Masukkan tautan file ke elemen <a>
+                const linkElement = document.getElementById('application-letter-link');
+                if (applicationLetterData.fileOfApplicationLetter) {
+                    linkElement.href = applicationLetterData.fileOfApplicationLetter; // Mengatur URL file
+                    linkElement.style.display = 'block'; // Pastikan link terlihat
+                } else {
+                    linkElement.style.display = 'none'; // Sembunyikan jika tidak ada file
+                }
+
 
                 const inInterviewStatus = ['scheduling_interview', 'scheduled_interview', 'completed_interview',
                     'verification_director', 'certificate_validation', 'expired'
@@ -759,11 +1241,44 @@
 
         }
 
+        async function getRequestHistory() {
+            loadingPage(true);
+
+            const getDataRest = await CallAPI(
+                    'GET',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/history`, {
+                        id: id
+                    }
+                )
+                .then(response => response)
+                .catch(error => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Pemberitahuan',
+                        text: resp.data.message,
+                        confirmButtonColor: '#28a745',
+                    });
+                    return resp;
+                });
+
+            if (getDataRest.status === 200) {
+                loadingPage(false);
+                return getDataRest.data.data
+            } else {
+                const errorMessage = getDataRest?.data?.message || 'Data tidak ditemukan.';
+                notificationAlert('info', 'Pemberitahuan', errorMessage);
+                return null; // Jika respons tidak sesuai, kembalikan null
+            }
+        }
+
+
         function countAssessment(answerData, assessmentData) {
             let totalDocument = 0,
-                passedDocument = '-',
-                notPassedDocument = '-',
-                percentagePassed = '-';
+                passedDocument = 0,
+                notPassedDocument = 0,
+                percentagePassed = 0;
 
             // Hitung total dokumen
             Object.values(answerData).map(elementAnswers => {
@@ -801,30 +1316,37 @@
         }
 
         async function showViewDocument(loc) {
-            // $('.view-document-print').attr('src', loc);
-            // await $('#view-document').modal('show')
             window.open(loc)
         }
 
-        async function loadServiceTypes(id = "") {
-            $(`${id}`).select2({
+        function buildAnswerAsPDF() {
+            $('.pdf-preview').each(function() {
+                PDFObject.embed(`${$(this).attr('location')}`, `#${$(this).attr('id')}`, {
+                    height: '32em',
+                    width: '50em'
+                });
+            })
+        }
+
+        async function loadServiceTypes(id = "#c_serviceType", selectedTypes = []) {
+            $(id).select2({
                 width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
                     'style',
                 ajax: {
-                    url: '{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/service',
+                    url: '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/serviceType',
                     dataType: 'json',
                     delay: 500,
                     headers: {
                         Authorization: `Bearer ${Cookies.get('auth_token')}`
                     },
                     processResults: function(res) {
-                        let data = res.data
+                        let data = res.data;
                         return {
                             results: $.map(data, function(item) {
                                 return {
                                     text: item.name,
                                     id: item.id
-                                }
+                                };
                             })
                         };
                     },
@@ -833,28 +1355,57 @@
                 placeholder: 'Pilih Pelayanan',
                 closeOnSelect: true,
             });
+
+            // Tambahkan opsi default untuk `selectedTypes`
+            if (selectedTypes.length > 0) {
+                selectedTypes.forEach(type => {
+                    // Tambahkan opsi secara manual ke Select2
+                    let option = new Option(type.name, type.id, true, true);
+                    $(id).append(option).trigger('change');
+                });
+            }
         }
 
-        function initializeAccordionIcons() {
-            document.querySelectorAll('.accordion-item').forEach(item => {
-                const collapseElement = item.querySelector('.accordion-collapse');
-                const button = item.querySelector('.accordion-btn');
-                const icon = button.querySelector('.toggle-icon');
 
-                // Event listener untuk saat accordion dibuka
-                collapseElement.addEventListener('shown.bs.collapse', () => {
-                    icon.classList.remove('fa-plus');
-                    icon.classList.add('fa-minus');
-                });
+        // function initializeAccordionIcons() {
+        //     document.querySelectorAll('.accordion-item').forEach(item => {
+        //         const collapseElement = item.querySelector('.accordion-collapse');
+        //         const button = item.querySelector('.accordion-btn');
+        //         const icon = button.querySelector('.toggle-icon');
 
-                // Event listener untuk saat accordion ditutup
-                collapseElement.addEventListener('hidden.bs.collapse', () => {
-                    icon.classList.remove('fa-minus');
-                    icon.classList.add('fa-plus');
-                });
-            });
+        //         // Event listener untuk saat accordion dibuka
+        //         collapseElement.addEventListener('shown.bs.collapse', () => {
+        //             icon.classList.remove('fa-plus');
+        //             icon.classList.add('fa-minus');
+        //         });
+
+        //         // Event listener untuk saat accordion ditutup
+        //         collapseElement.addEventListener('hidden.bs.collapse', () => {
+        //             icon.classList.remove('fa-minus');
+        //             icon.classList.add('fa-plus');
+        //         });
+        //     });
+        // }
+
+        async function getAssessmentInterview(id) {
+            let response;
+            try {
+                loadingPage(true);
+                const getDataRest = await CallAPI('GET',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/jadwal/getJadwal', {
+                        id: id
+                    });
+
+                response = getDataRest.data;
+            } catch (error) {
+                loadingPage(false);
+                console.error('Error fetching assessment interview data:', error);
+                return;
+            }
+
+            // Return the fetched response
+            return response;
         }
-
 
         function generateRowOfElementTitle(colSpanTitle, title) {
             let $templateRow =
@@ -897,6 +1448,113 @@
             });
         }
 
+        async function mappingInterviewCard(status, schedule, interviewType, assessorHead, assessors) {
+            let $assessorsHtml = '';
+            let canEdit = false;
+
+            // Check if the current user can edit
+            if (assessorHead.id !== null) {
+                canEdit = true;
+            }
+
+            assessors.forEach((assessor, index) => {
+                if (currentUser === assessor.id) {
+                    canEdit = true;
+                }
+
+                $assessorsHtml +=
+                    `<div class="d-flex justify-content-between assessor_interview_row mb-2">
+                    <h6 class="fw-bold">Penilai ${index + 1}:</h6>
+                    <span class="fw-normal" id="i_assessor_${index}">${assessor.name}</span>
+                </div>`;
+            });
+
+            // Generate interview details with consistent spacing
+            let $informationTemplate =
+                `<div class="row mb-2">
+                    <div class="col-6">
+                        <h6 class="fw-bold">Jadwal Wawancara:</h6>
+                    </div>
+                    <div class="col-6 text-end">
+                        <span class="fw-normal" id="i_schedule">${formatTanggalIndo(schedule)}</span>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <h6 class="fw-bold">Tipe Wawancara:</h6>
+                    </div>
+                    <div class="col-6 text-end">
+                        <span class="fw-normal" id="i_type">${interviewType === 'offline' ? 'Kunjungan lapangan' : interviewType}</span>
+                    </div>
+                </div>
+                <div class="row mb-2" id="interview_assessor_head_row">
+                    <div class="col-6">
+                        <h6 class="fw-bold">Ketua Penilai:</h6>
+                    </div>
+                    <div class="col-6 text-end">
+                        <span class="fw-normal" id="i_assessorHead">${assessorHead.name}</span>
+                    </div>
+                </div>
+
+            ${$assessorsHtml}`;
+
+            // Add action buttons depending on the status and permissions
+            let editButton = '';
+            if (status === 'scheduled_interview' && canEdit) {
+                editButton =
+                    `<button class="btn btn-primary w-100 mt-2"
+                    type="button"
+                    onClick="showEditAssessmentInterview()">
+                    Ubah Data
+                </button>`;
+            }
+
+            let rovButton = '';
+            if (canEdit && ['scheduling_interview', 'scheduled_interview'].includes(status)) {
+                rovButton =
+                    `<button class="btn btn-success w-100 mt-2"
+                    type="button"
+                    onClick="showCreateRecordOfVerification()">
+                    Buat Berita Acara
+                </button>`;
+            }
+
+            if (status === 'completed_interview') {
+                rovButton =
+                    `<div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <button class="btn btn-primary w-100 mt-2 me-2" type="button" onClick="showPrintRecordOfVerification()">
+                            <i class="fas fa-file-alt align-bottom me-2"></i> Cetak BA
+                        </button>
+                        <button class="btn btn-info w-100 mt-2 text-white" type="button" data-bs-toggle="modal" data-bs-target="#show-record-of-verification" onClick="lihatBeritaAcara()">
+                            <i class="fas fa-eye align-bottom me-2"></i> Lihat BA
+                        </button>
+
+                    </div>
+                    <button class="btn btn-primary w-100 mt-2" type="button" id="btn_generate_sk" onClick="signByDirector()">
+                        <i class="fas fa-print me-2"></i> Cetak SK
+                    </button>
+                    <button class="btn btn-success w-100 mt-2 text-light" type="button" onClick="pengajuanSelesai()">
+                        <i class="fas fa-folder-open align-bottom me-2"></i> Pengajuan Selesai
+                    </button>
+                </div>
+
+                `;
+            }
+
+            // Combine the interview information and action buttons into the final template
+            let $template =
+                `<div class="invoice-box p-4 rounded shadow" style="background-color: #ffffff; color: #333;">
+                ${$informationTemplate}
+                ${editButton}
+                ${rovButton}
+            </div>`;
+
+            // Append the generated template to the container
+            $('#interviewInformation').html($template);
+            adjustLayout();
+        }
+
         function sortableSubElementByUiOrder(uiSchema, elementKey) {
             let sortable = []
 
@@ -916,7 +1574,7 @@
                 isShowAlert = false
 
             // action for disposition
-            if (assessmentStatus === 'request' && dispositionTo === null) {
+            if ((assessmentStatus === 'request' || assessmentStatus === 'submission_revision') && dispositionTo === null) {
                 alertMessage = `<i class="fas fa-file-alt me-2"></i>Pengajuan baru`
                 actionButton =
                     `<button class="btn w-100" style="background-color: #28a745; color: #ffffff;" onClick="showDisposition()">
@@ -960,9 +1618,9 @@
                 alertMessage = `<p class="p-0 lead"><strong>Pengajuan baru</strong></p>`
                 actionButton =
                     `<button type="button" class="btn btn-primary" style="font-weight: 600; width: 100%;" onClick="showDisposition(${dispositionTo.id})">
-                    <i class="fas fa-sync-alt me-2" style="color: #ffffff;"></i> Ubah Penilai
-                </button>
-                `
+                        <i class="fas fa-sync-alt me-2" style="color: #ffffff;"></i> Ubah Penilai
+                    </button>
+                    `
             }
 
             // action for assessment verification
@@ -999,19 +1657,19 @@
             if (requestStatus === 'passed_assessment_verification') {
 
                 alertMessage = `
-            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                <i class="fas fa-exclamation-circle me-2" style="font-size: 1.5rem;"></i>
-                <div>
-                    <p class="mb-0 lead">Pengajuan membutuhkan penjadwalan interview!</p>
-                </div>
-            </div>
-            `
-
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <i class="fas fa-exclamation-circle me-2" style="font-size: 1.5rem;"></i>
+                        <div>
+                            <p class="mb-0 lead">Pengajuan membutuhkan penjadwalan interview!</p>
+                        </div>
+                    </div>
+                `
                 if (dispositionBy.id === currentUser) {
                     actionButton =
                         `<button type="button" class="btn btn-warning" style="font-weight: 600; width:100%; color: #333333;" onClick="showSchedulingInterview()">
-                    <i class="fas fa-calendar-alt me-2" style="color: #333333;"></i>Atur Interview
-                </button>`
+                            <i class="fas fa-calendar-alt me-2" style="color: #333333;"></i>Atur Interview
+                        </button>
+                        `
                 } else {
                     actionButton = '';
                 }
@@ -1020,20 +1678,88 @@
             }
 
             if (isShowAlert) {
-                let $template =
+                let $template = `
+                        <div class="d-flex align-items-start">
+                            <div class="flex-grow-1">
+                                ${actionButton ? `<div class="mb-2">${actionButton}</div>` : ''}
+                                ${htmlReject ? `<div>${htmlReject}</div>` : ''}
+                            </div>
+                        </div>
 
-                    `<div class="invoice-box p-3 rounded" style="background-color: #ffffff; color: #333;">
-                    <h5 class="text-start mb-3">
-                    ${alertMessage}
-                    </h5>
-                    ${actionButton}
-                    ${htmlReject}
-                </div>`
-
-                $('#alertMessage').append($template)
+                `;
+                $('#alertMessage').append($template);
             }
 
         }
+
+        function adjustLayout() {
+            const tabs = [{
+                    tabId: 'alertMessage-tab',
+                    contentId: 'alertMessage'
+                },
+                {
+                    tabId: 'interviewInformation-tab',
+                    contentId: 'interviewInformation'
+                },
+                {
+                    tabId: 'requestInformation-tab',
+                    contentId: 'requestInformation'
+                },
+            ];
+
+            let firstVisibleTab = null;
+
+            tabs.forEach(({
+                tabId,
+                contentId
+            }) => {
+                const tabElement = document.getElementById(tabId);
+                const contentElement = document.getElementById(contentId);
+
+                // Pastikan elemen tab dan konten ada
+                if (!tabElement || !contentElement) return;
+
+                // Periksa apakah konten kosong
+                const isContentEmpty = contentElement.textContent.trim() ===
+                    ''; // Gunakan textContent untuk memastikan
+
+                if (isContentEmpty) {
+                    // Sembunyikan tab dan kontennya
+                    tabElement.classList.add('d-none');
+                    contentElement.classList.remove('show', 'active');
+                } else {
+                    // Tampilkan tab jika tidak kosong
+                    tabElement.classList.remove('d-none');
+                    if (!firstVisibleTab) {
+                        firstVisibleTab = {
+                            tabElement,
+                            contentElement
+                        };
+                    }
+                }
+            });
+
+            // Aktifkan tab pertama yang terlihat
+            if (firstVisibleTab) {
+                tabs.forEach(({
+                    tabId,
+                    contentId
+                }) => {
+                    const tabElement = document.getElementById(tabId);
+                    const contentElement = document.getElementById(contentId);
+
+                    // Reset status aktif
+                    tabElement?.classList.remove('active');
+                    contentElement?.classList.remove('show', 'active');
+                });
+
+                // Set tab pertama yang terlihat menjadi aktif
+                firstVisibleTab.tabElement.classList.add('active');
+                firstVisibleTab.contentElement.classList.add('show', 'active');
+            }
+        }
+
+
 
         function mappingCompanyInformation(data) {
             let serviceTypes = '';
@@ -1041,101 +1767,387 @@
                 serviceTypes += `<li>${serviceType.name}</li>`;
             });
 
-            const fileUrl = data.company.nib_file
-            const splitFileURL = fileUrl.split('/')
-            const fileName = splitFileURL[splitFileURL.length - 1]
-            const fileExtension = fileUrl.substring(fileUrl.lastIndexOf("."))
+            const fileUrl = data.company.nib_file;
+            const splitFileURL = fileUrl.split('/');
+            const fileName = splitFileURL[splitFileURL.length - 1];
+            const fileExtension = fileUrl.substring(fileUrl.lastIndexOf('.'));
 
-            let nibPreview = ''
-            let imageType = ['.jpeg', '.jpg', '.png']
+            let nibPreview = '';
+            const imageType = ['.jpeg', '.jpg', '.png'];
             if (imageType.includes(fileExtension)) {
-                nibPreview = `
-                    <img class="img-fluid" src="${fileUrl}"/>
-                `
+                nibPreview = `<img class="img-fluid" src="${fileUrl}"/>`;
             }
 
-            // colorBridge(success)
-            let color = ''
-            if (data.status === 'active') {
-                color = 'success'
-            } else if (data.status === 'inactive') {
-                color = 'danger'
-            } else if (data.status === 'pending') {
-                color = 'warning'
-            } else if (data.status === 'cancelled') {
-                color = 'info'
-            }
+            const mappingStatusToReadable = {
+                'assessment_revision': 'Revisi Penilaian',
+                'passed_assessment_verification': 'Verifikasi Penilaian Lulus',
+                'scheduling_interview': 'Penjadwalan Wawancara',
+                'scheduled_interview': 'Wawancara Terjadwal',
+                'not_passed_interview': 'Wawancara Tidak Lulus',
+                'completed_interview': 'Wawancara Selesai',
+                'verification_director': 'Verifikasi Direktur',
+                'certificate_validation': 'Validasi Sertifikat',
+                'rejected': 'Ditolak',
+                'cancelled': 'Dibatalkan',
+                'expired': 'Kedaluwarsa',
+                'draft': 'Draf',
+                'request': 'Permintaan',
+                'disposition': 'Disposisi',
+                'not_passed_assessment': 'Penilaian Tidak Lulus',
+                'passed_assessment': 'Penilaian Lulus',
+                'submission_revision': 'Revisi Pengajuan',
+                'not_passed_assessment_verification': 'Verifikasi Penilaian Tidak Lulus',
+                'active': 'Aktif',
+                'inactive': 'Tidak Aktif',
+                'pending': 'Menunggu Persetujuan'
+            };
 
+            const statusColorMapping = {
+                'assessment_revision': 'warning',
+                'passed_assessment_verification': 'success',
+                'scheduling_interview': 'info',
+                'scheduled_interview': 'primary',
+                'not_passed_interview': 'danger',
+                'completed_interview': 'success',
+                'verification_director': 'info',
+                'certificate_validation': 'primary',
+                'rejected': 'danger',
+                'cancelled': 'secondary',
+                'expired': 'dark',
+                'draft': 'secondary',
+                'request': 'info',
+                'disposition': 'primary',
+                'not_passed_assessment': 'danger',
+                'passed_assessment': 'success',
+                'submission_revision': 'warning',
+                'not_passed_assessment_verification': 'danger',
+                'active': 'success',
+                'inactive': 'danger',
+                'pending': 'warning'
+            };
+
+            // Tentukan warna berdasarkan status
+            const statusColor = statusColorMapping[data.status] || 'secondary';
+
+            // Update elemen c_color
             $('#c_color').html(`
                 <div
-                    class="wid-60 hei-60 rounded-circle bg-${color} d-flex align-items-center justify-content-center">
+                    class="wid-60 hei-60 rounded-circle bg-${statusColor} d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-building text-white fa-2x"></i>
-                </div>`);
-            $('#c_status').text(data.status)
+                </div>
+            `);
 
-            $('#c_name').text(`${data.company.name} |`)
-            $('#c_nib').text('NIB : ' + data.company.nib)
+            // Update elemen c_status
+            $('#c_status').html(`
+                <span class="badge bg-${statusColor}">${mappingStatusToReadable[data.status] || 'Status Tidak Diketahui'}</span>
+            `);
+
+            // Update informasi lainnya
+            $('#c_name').text(`${data.company.name} |`);
+            $('#c_nib').text('NIB : ' + data.company.nib);
             $('#c_address').text(
-                `${data.company.address} ${data.company.city.name} ${data.company.province.name}`)
+                `${data.company.address} ${data.company.city.name} ${data.company.province.name}`
+            );
             $('#c_phone').html(`<i class="fa-solid fa-phone me-1"></i> ${data.company.company_phone_number}`);
-            $('#c_email').html(`<i class="fa-regular fa-envelope me-1"></i> ${data.company.company_phone_number}`);
+            $('#c_email').html(`<i class="fa-regular fa-envelope me-1"></i> ${data.company.email}`);
 
-            // pic
-            $('#pic_name').html(`
-                <i class="fa-solid fa-user me-2"></i>${data.company.pic_name}`);
-            $('#pic_phone').html(`
-                <i class="fa-solid fa-phone me-2"></i>${data.company.pic_phone}`);
+            // PIC
+            $('#pic_name').html(`<i class="fa-solid fa-user me-2"></i>${data.company.pic_name}`);
+            $('#pic_phone').html(`${data.company.pic_phone}`);
+            // User
+            $('#u_name').html(`${data.company.username}`);
+            $('#u_phone').html(`${data.company.phone_number}`);
+            $('#u_email').html(`${data.company.email}`);
+            $('#request_date').html(
+                `<i class="fa-solid fa-calendar-day me-2"></i>${moment(data.company.request_date).format('D/MM/YYYY')}`);
 
-            //user
-            $('#u_name').html(`
-                <i class="fa-circle-user me-2"></i>${data.company.username}`);
-            $('#u_phone').html(`
-                <i class="fa-solid fa-phone me-2"></i>${data.company.phone_number}`);
-            $('#u_email').html(`
-                <i class="fa-solid fa-envelope me-2"></i>${data.company.email}`);
-            $('#request_date').html(`
-                <i class="fa-solid fa-phone me-2"></i>${data.company.request_date}`);
+            // Disposisi
+            $('#internal').text(data?.disposition_by?.name || "-");
+            $('#penilai').text(data?.disposition_to?.name || "-");
 
-            //disposisi
-            $('#internal').text(data.disposition_by.name)
-            $('#penilai').text(data.disposition_to.name)
-            $('#tanggal_diperbarui').text(data.updated_at)
+            $('#tanggal_diperbarui').text(moment(data.updated_at).format('D/MM/YYYY'));
             $('#numberOfApplicationLetter').html(`
-                <i class="fa-solid fa-file me-2"></i>${data.number_of_application_letter}`);
-            $('#dateOfApplicationLetter').html(`
-                <i class="fa-solid fa-calendar me-2"></i>${data.date_of_application_letter}`);
+                    <i class="fa-solid fa-file me-2"></i>${data.number_of_application_letter}`);
+            $('#dateOfApplicationLetter').html(
+                `
+                 <i class="fa-solid fa-calendar me-2"></i>${moment(data.date_of_application_letter).format('D/MM/YYYY')}`
+            );
 
-            $('#c_serviceType').append(serviceTypes)
-            $('#pic_name').text(data.company.pic_name)
-            $('#pic_phone').text(data.company.pic_phone)
-            $('#u_name').text(data.company.username)
-            $('#u_email').text(data.company.name)
-            $('#u_phone').text(data.company.phone_number)
-            $('#current_preview').text(data.company.id)
-            $('#establish_date').text(data.company.establish ? moment(data.data.company.establish).format(
-                'D/MM/YYYY') : '-')
-            $('#request_date').text(moment(data.company.request_date).format('D/MM/YYYY'))
+            $('#c_serviceTypeList').append(serviceTypes);
+            $('#current_preview').text(data.company.id);
+            $('#establish_date').text(data.company.establish ? moment(data.company.establish).format('D/MM/YYYY') : '-');
         }
 
-        function sortableSubElementByUiOrder(uiSchema, elementKey) {
-            let sortable = []
+        async function mappingCertificateRequestCard(status, dispositionBy, dispositionTo, updateAt, validationReason,
+        data) {
+            dataComment = '';
+            rowDispositionBy = '';
+            rowDispositionTo = '';
+            rowValidationReason = '';
+            rowStatus = '';
+            let serviceTypeValidation = '';
 
-            for (let a in uiSchema[elementKey]) {
-                sortable.push([a, uiSchema[elementKey][a]]);
+            const mappingStatusToReadable = {
+                'assessment_revision': 'Revisi Penilaian',
+                'passed_assessment_verification': 'Verifikasi Penilaian Lulus',
+                'scheduling_interview': 'Penjadwalan Wawancara',
+                'scheduled_interview': 'Wawancara Terjadwal',
+                'not_passed_interview': 'Wawancara Tidak Lulus',
+                'completed_interview': 'Wawancara Selesai',
+                'verification_director': 'Verifikasi Direktur',
+                'certificate_validation': 'Validasi Sertifikat',
+                'rejected': 'Ditolak',
+                'cancelled': 'Dibatalkan',
+                'expired': 'Kedaluwarsa',
+                'draft': 'Draf',
+                'request': 'Permintaan',
+                'disposition': 'Disposisi',
+                'not_passed_assessment': 'Penilaian Tidak Lulus',
+                'passed_assessment': 'Penilaian Lulus',
+                'submission_revision': 'Revisi Pengajuan',
+                'not_passed_assessment_verification': 'Verifikasi Penilaian Tidak Lulus'
+            };
+            rowUpdatedAt = `
+                <div class="row">
+                    <span class="col-5">Terakhir diperbarui :</span>
+                    <span class="col-7">${formatTanggalIndo(updateAt)}</span>
+                </div>`;
+
+            rowProcessBy = `
+                <div class="row align-items-center">
+                    <span class="col-5">Dibutuhkan Aksi :</span>
+                    <div class="col-7 d-flex align-items-center">
+                        <span class="text-danger fw-bold me-2">${mappingProcessByV2(status, dispositionBy)}</span>
+                    </div>
+                </div>`;
+
+            if (dispositionTo.name) {
+                rowDispositionTo = `
+                    <div class="row mb-2">
+                        <span class="col-5 fw-bold">Dispo ke:</span>
+                        <span class="col-7">${dispositionTo.name}</span>
+                    </div>`;
             }
 
-            sortable.sort(function(a, b) {
-                return a[1]['ui:order'] - b[1]['ui:order'];
-            });
+            if ((validationReason || validationReason !== '') && status !== 'scheduled_interview') {
+                dataComment = validationReason;
 
-            return sortable
+                buttonComment = validationReason ?
+                    `<a href="javascript:void(0);" class="btn btn-sm btn-info" id="btnShowModalValidationReason">Tampilkan catatan</a>` :
+                    '-';
+
+                rowValidationReason = `
+                    <div class="row mb-2">
+                        <span class="col-5 fw-bold">Catatan verifikasi:</span>
+                        <span class="col-7">${buttonComment}</span>
+                    </div>`;
+            }
+            const existingServiceTypes = data.company.service_types || [];
+            if (status !== 'disposition' || dispositionTo?.id !== currentUser) {
+                serviceTypeValidation = ``;
+            } else {
+
+                serviceTypeValidation = `
+                    <div class="row mb-2">
+                        <span class="col-5 fw-bold">Jenis Pelayanan:</span>
+                        <span class="col-7">
+                            <select class="form-control select2" multiple
+                            name="c_serviceType" id="c_serviceType"
+                            required></select></span>
+                    </div>`;
+            }
+
+
+            detailPengajuan = `
+                <div class="border rounded p-3 w-100">
+                    <h5>Detail Pengajuan</h5>
+                    <div class="row mb-2">
+                        <span class="col-5 fw-bold">Dispo oleh:</span>
+                        <span class="col-7">${dispositionBy || '-'}</span>
+                    </div>
+                    ${rowDispositionTo}
+                    <div class="row mb-2">
+                        <span class="col-5 fw-bold">Diperbarui:</span>
+                        <span class="col-7">${formatTanggalIndo(updateAt)}</span>
+                    </div>
+                    <div class="row mb-2">
+                        <span class="col-5 fw-bold">Dibutuhkan Aksi:</span>
+                        <span class="col-7 text-primary fw-bold">${mappingProcessByV2(status, dispositionBy)}</span>
+                    </div>
+                    ${rowValidationReason}
+                    <div class="row mb-2">
+                        <span class="col-5 fw-bold">Status:</span>
+                        <span class="col-7">${mappingStatusToReadable[status] || status}</span>
+                    </div>
+                    ${serviceTypeValidation}
+                </div>`;
+
+            $('#detailPengajuan').html(detailPengajuan)
+
+
+            let uniqueId = `requestInfo-${status}-${Date.now()}`;
+
+            // Template for the task list
+            let taskListTemplate = `
+                <div class="card mb-4" id="${uniqueId}" style="border: none;">
+                    <div class="task-card p-3" style="max-height: 300px; overflow-y: auto;">
+                        <ul class="list-unstyled task-list" id="taskList-${uniqueId}" style="list-style: none; padding: 0; max-height: 210px; overflow-y: auto;">
+                            <!-- Task items will be appended here -->
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+
+            // Append the task list template to the container
+            $('#requestInformation').append(taskListTemplate);
+
+            // Load request history data and render it
+            let historyData = await getRequestHistory();
+
+            let taskListElement = document.querySelector(`#taskList-${uniqueId}`);
+            let prevDate;
+
+            const mappingAssessmentStatusV2 = {
+                "request": {
+                    text: "Permintaan Diajukan",
+                    icon: "📩", // Ikon amplop untuk permintaan
+                    color: "primary" // Warna biru untuk permintaan
+                },
+                "passed_assessment": {
+                    text: "Penilaian Lulus",
+                    icon: "✅", // Ikon centang hijau untuk lulus penilaian
+                    color: "success" // Warna hijau untuk lulus penilaian
+                },
+                "passed_assessment_verification": {
+                    text: "Verifikasi Penilaian Lulus",
+                    icon: "🔍", // Ikon kaca pembesar untuk verifikasi
+                    color: "success" // Warna oranye untuk verifikasi
+                },
+                "submission_revision": {
+                    text: "Revisi Pengajuan",
+                    icon: "✏️", // Ikon pensil untuk revisi
+                    color: "secondary" // Warna merah untuk revisi
+                },
+                "rejected": {
+                    text: "Pengajuan Ditolak",
+                    icon: "❌", // Ikon silang merah untuk ditolak
+                    color: "danger" // Warna merah gelap untuk penolakan
+                },
+                // Status tambahan
+                "assessment_revision": {
+                    text: "Revisi Penilaian",
+                    icon: "✏️", // Ikon pensil untuk revisi
+                    color: "secondary" // Warna merah untuk revisi penilaian
+                },
+                "scheduling_interview": {
+                    text: "Penjadwalan Wawancara",
+                    icon: "📅", // Ikon kalender untuk penjadwalan wawancara
+                    color: "primary" // Warna ungu untuk penjadwalan
+                },
+                "scheduled_interview": {
+                    text: "Wawancara Terjadwal",
+                    icon: "📆", // Ikon kalender terjadwal
+                    color: "primary" // Warna biru gelap untuk wawancara terjadwal
+                },
+                "not_passed_interview": {
+                    text: "Wawancara Tidak Lulus",
+                    icon: "❌", // Ikon silang merah untuk tidak lulus
+                    color: "danger" // Warna merah gelap untuk wawancara gagal
+                },
+                "completed_interview": {
+                    text: "Wawancara Selesai",
+                    icon: "🎤", // Ikon mikrofon untuk wawancara selesai
+                    color: "success" // Warna hijau untuk wawancara selesai
+                },
+                "verification_director": {
+                    text: "Verifikasi Direktur",
+                    icon: "🕴️", // Ikon orang berjas untuk direktur
+                    color: "primary" // Warna abu-abu untuk verifikasi direktur
+                },
+                "certificate_validation": {
+                    text: "Validasi Sertifikat",
+                    icon: "📜", // Ikon sertifikat untuk validasi
+                    color: "success" // Warna hijau toska untuk validasi sertifikat
+                },
+                "cancelled": {
+                    text: "Dibatalkan",
+                    icon: "🚫", // Ikon tanda larangan untuk dibatalkan
+                    color: "danger" // Warna abu-abu untuk pembatalan
+                },
+                "expired": {
+                    text: "Kedaluwarsa",
+                    icon: "⏳", // Ikon jam pasir untuk kedaluwarsa
+                    color: "danger" // Warna abu-abu terang untuk kedaluwarsa
+                },
+                "draft": {
+                    text: "Draf",
+                    icon: "📝", // Ikon catatan untuk draf
+                    color: "secondary" // Warna abu-abu muda untuk draf
+                },
+                "disposition": {
+                    text: "Disposisi",
+                    icon: "📜", // Ikon dokumen untuk disposisi
+                    color: "sencondary" // Warna oranye untuk disposisi
+                },
+                "not_passed_assessment": {
+                    text: "Penilaian Tidak Lulus",
+                    icon: "❌", // Ikon silang merah untuk tidak lulus penilaian
+                    color: "danger" // Warna merah untuk penilaian tidak lulus
+                },
+                "not_passed_assessment_verification": {
+                    text: "Verifikasi Penilaian Tidak Lulus",
+                    icon: "🚫", // Ikon larangan untuk tidak lulus verifikasi penilaian
+                    color: "danger" // Warna merah untuk tidak lulus verifikasi
+                }
+            };
+
+            if (Array.isArray(historyData)) {
+                historyData.forEach((requestHistory) => {
+                    const currentDate = moment
+                        .utc(requestHistory["created_at"])
+                        .utcOffset("+07:00");
+
+                    let durationMinutes = 0;
+                    if (prevDate) {
+                        durationMinutes = currentDate.diff(prevDate, "minutes");
+                    }
+
+                    const statusInfo = mappingAssessmentStatusV2[requestHistory["status"]] || {
+                        text: "Status Tidak Diketahui",
+                        icon: "❓",
+                        color: "secondary"
+                    };
+
+                    const taskItem = `
+                        <li>
+                            <i class="task-icon bg-${statusInfo.color}"></i>
+
+                            <h6 class="fw-bold mb-1">${statusInfo.icon} ${statusInfo.text}</h6>
+
+                            <p class="text-muted mb-0">${currentDate.format("D MMM YYYY HH:mm")}</p>
+                                ${
+                                    durationMinutes > 0
+                                        ? `<p class="text-muted small">Durasi: ${convertMinutesToDhhmm(durationMinutes)}</p>`
+                                        : ""
+                                }
+                        </li>
+                    `;
+
+                    taskListElement.insertAdjacentHTML("beforeend", taskItem);
+                    prevDate = currentDate;
+                });
+            } else {
+                console.error("History data is not an array", historyData);
+            }
+
+            loadServiceTypes('#c_serviceType', existingServiceTypes)
         }
 
         function mappingColumnOfRow(
             subElementSchema,
             status,
-            numberColumn
-        ) {
+            numberColumn) {
             let $rowTable = ''
 
             if (subElementSchema.inputType === 'files') {
@@ -1194,8 +2206,7 @@
         function generateRowsTable(
             subElementSchema,
             status,
-            numberOfColumn
-        ) {
+            numberOfColumn) {
             let numberColumn = '',
                 titleColumn = '',
                 questionColumn = subElementSchema.monitoringProperties.questionValue ?
@@ -1290,15 +2301,15 @@
             }
 
             let $templateRow = `
-        <tr>
-            ${numberColumn}
-            ${titleColumn}
-            ${questionColumn}
-            <td>${answerColumn}</td>
-            <td>${assessmentButtonColumn}</td>
-            <td>${assessmentReasonColumn}</td>
-        </tr>
-        `
+                <tr>
+                    ${numberColumn}
+                    ${titleColumn}
+                    ${questionColumn}
+                    <td>${answerColumn}</td>
+                    <td>${assessmentButtonColumn}</td>
+                    <td>${assessmentReasonColumn}</td>
+                </tr>
+            `
 
             $(document).on('change', `input:radio[name=assessment-${subElementSchema.subElementKey}]`, function() {
                 let buttonValue = $(this).val()
@@ -1322,15 +2333,23 @@
         }
 
         function buildSubmitButton(isNeedSubmitButton) {
+            console.log(isNeedSubmitButton)
+            // condition to show submit button
+            $templateButton = ''
+
             if (isNeedSubmitButton) {
-                $('.action-button').empty().append(`
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary w-100 d-flex justify-content-center align-items-center">
-                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Simpan
-                        </button>
-                    </div>
-                `)
+                $templateButton = `
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" style="width:100%;">
+                        <i class="fas fa-paper-plane align-middle lh-1" style="margin-right:8px;"></i>Kirim pengajuan
+                    </button>
+                </div>
+            </div>
+            `
             }
+
+            $('.actionButton').append($templateButton)
         }
 
         function customRadioCheckHTML(inputName, properties, defaultValue = 'yes') {
@@ -1357,7 +2376,7 @@
             <label class="btn btn-outline-warning bg-opacity-50 bg-gradient"
                 for="${properties.noOption.id}"
                 style="width: 40%;">${properties.noOption.label}</label>
-        </div>`
+            </div>`
 
             return $customRadioButton
         }
@@ -1376,145 +2395,75 @@
         }
 
         const $form = document.getElementById('fCreate');
-        // $form.addEventListener("submit", (e) => {
-        //     e.preventDefault();
-        //     const formParsley = $('#fCreate').parsley();
+        $form.addEventListener("submit", (e) => {
+            e.preventDefault();
 
-        //     formParsley.validate();
+            const formParsley = $('#fCreate').parsley();
 
-        //     if (!formParsley.isValid()) return false;
+            formParsley.validate();
 
+            if (!formParsley.isValid()) return false;
 
-        //     let assessmentSchema = buildAssessmentSchema();
+            loadingPage(true);
 
-        //     let formData = {
-        //         assessments: assessmentSchema.schema,
-        //         assessment_status: assessmentSchema.nextStatus,
-        //     };
+            let assessmentSchema = buildAssessmentSchema();
 
-        //     submitData(formData, 'Assessment Berhasil');
-        // });
+            // Ambil nilai-nilai dari Select2 dan konversi ke integer
+            let selectedServices = $('#c_serviceType').val().map(value => parseInt(value,
+                10)); // Konversi ke integer
 
-        // async function submitData(formData, successMessage) {
-        //     console.log('formData', formData);
-        //     loadingPage(true);
-        //     try {
-        //         const ajaxResponse = await CallAPI(
-        //             'PUT',
-        //             `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/update`, {
-        //                 id: referenceId,
-        //                 ...formData
-        //             }
-        //         );
-        //         console.log(ajaxResponse, 'data');
-        //         if (ajaxResponse.status === 200) {
-        //             notificationAlert('success', 'Berhasil', ajaxResponse.data.message);
-        //             Swal.fire({
-        //                 title: 'Berhasil!',
-        //                 text: successMessage,
-        //                 icon: 'success',
-        //                 timer: 5000,
-        //                 timerProgressBar: true,
-        //                 showConfirmButton: false,
-        //             }).then(() => {
-        //                 window.location.reload();
-        //             });
-        //         }
-        //     } catch (error) {
-        //         const message = error.response?.data?.message || 'An unknown error occurred';
-        //         notificationAlert('error', 'Error', message);
-        //     } finally {
-        //         loadingPage(false);
-        //     }
-        // }
+            let formData = {
+                element_properties: smkElements,
+                answers: answerSchema,
+                assessments: assessmentSchema.schema,
+                status: assessmentSchema.status,
+                service_types: selectedServices // Tambahkan data dari #c_serviceType
+            };
+
+            updateCertificateRequest(formData, 'Berhasil Memberikan Penilaian');
+        });
 
 
         function buildAssessmentSchema() {
             let elements = {},
-                nextStatus = 'verified'
+                nextStatus = 'not_passed_assessment'; // Default status
+            let totalSubElements = 0, // Total semua sub-element
+                emptyReasonCount = 0; // Total sub-element dengan reason kosong
 
-            $.each(answerSchema, function(elementKey, elementValue) {
-                const rowData = {}
+            // Iterasi melalui smkElements.max_assesment
+            $.each(smkElements.max_assesment, function(elementKey, elementValue) {
+                const rowData = {};
 
                 $.each(elementValue, function(subElementKey) {
+                    totalSubElements++; // Hitung total sub-element
+                    let reasonValue = $(`#reason_${elementKey}_${subElementKey}`).val();
 
-                    let question = smkElements['question_schema']['properties'][elementKey][
-                            'properties'
-                        ][
-                            subElementKey
-                        ],
-                        assessments
-
-                    if (question['items']) {
-                        let newData = []
-
-                        for (let i in question['items']) {
-                            let itemKey = Object.keys(question['items'][i])[0],
-                                assessmentButtonValue = $(
-                                    `input:radio[name=assessment-${itemKey}]:checked`)
-                                .val(),
-                                assessmentReason = $(`#assessment-reason-${itemKey}`).val(),
-                                assessmentValue = null
-
-                            if (typeof assessmentButtonValue !== 'undefined') {
-                                assessmentValue = assessmentButtonValue === 'yes'
-                            }
-
-                            let data = {
-                                assessmentValue: assessmentValue,
-                                assessmentReason: assessmentReason || null
-                            }
-
-                            if (!assessmentValue && assessmentReason) {
-                                nextStatus = 'not_passed'
-                            }
-
-                            newData.push({
-                                [itemKey]: data
-                            })
-                        }
-
-                        assessments = newData
-                    } else {
-                        let assessmentButtonValue = $(
-                                `input:radio[name=assessment-${subElementKey}]:checked`).val(),
-                            assessmentReason = null,
-                            assessmentValue = null,
-                            answerFile = $(`#answerFile-${subElementKey}`)
-
-                        if (
-                            typeof assessmentButtonValue === 'undefined' &&
-                            answerFile !== undefined
-                        ) {
-                            assessmentValue = true
-                        }
-
-                        if (typeof assessmentButtonValue !== 'undefined') {
-                            assessmentValue = assessmentButtonValue === 'yes'
-                            assessmentReason = $(`#assessment-reason-${subElementKey}`).val()
-                        }
-
-                        if (!assessmentValue && assessmentReason) {
-                            nextStatus = 'not_passed'
-                        }
-
-                        assessments = {
-                            assessmentValue: assessmentValue,
-                            assessmentReason: assessmentReason
-                        }
+                    // Jika reason kosong (null atau empty string), tambahkan ke counter
+                    if (!reasonValue) {
+                        emptyReasonCount++;
                     }
 
-                    rowData[subElementKey] = assessments
+                    rowData[subElementKey] = {
+                        value: $(`#value_${elementKey}_${subElementKey}`).val() ||
+                            prevAssessmentSchema[elementKey][subElementKey]['value'],
+                        reason: reasonValue
+                    };
+                });
 
-                })
+                elements[elementKey] = rowData;
+            });
 
-                elements[elementKey] = rowData
-            })
+            // Hitung persentase alasan kosong
+            const emptyReasonPercentage = (emptyReasonCount / totalSubElements) * 100;
+
+            if (emptyReasonPercentage >= 40) {
+                nextStatus = 'passed_assessment';
+            }
 
             return {
                 schema: elements,
-                nextStatus: nextStatus,
-            }
+                status: nextStatus,
+            };
         }
 
 
@@ -1530,6 +2479,16 @@
             await $('#view-document').modal('show')
         }
 
+        function showConfirmationRejectRequest() {
+            $('#request-rejected').modal('show')
+        }
+        async function showCreateRecordOfVerification() {
+            renderListAssessor('iEditAssessorHead', 'Ketua Tim', interviewAssessorhead.id)
+
+            await $('#create-record-of-verification').modal('show')
+        }
+
+
 
         async function showViewDocument(loc) {
             const authToken = Cookies.get('auth_token');
@@ -1538,7 +2497,7 @@
                 return;
             }
             $.ajax({
-                url: "{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/getView",
+                url: "{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/getView",
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${authToken}`
@@ -1883,9 +2842,1070 @@
 
             return `<span>${prosessBy}</span>`
         }
+
+        // MODAL SECTION
+        async function showDisposition(id = '') {
+            loadingPage(true);
+
+            await renderListAssessor('iAssessor', 'Assessor', id);
+            await Swal.close();
+
+            // Show the modal
+            $('#add-disposition').modal('show');
+
+            const assessorSelect = document.querySelector('#iAssessor');
+            const submitBtn = document.querySelector('#submitBtn');
+
+            // Disable/enable submit button based on selection
+            assessorSelect.addEventListener('change', function() {
+                submitBtn.disabled = !assessorSelect.value;
+            });
+            // Validate form when modal is submitted
+            document.querySelector('#add-disposition').addEventListener('submit', function(e) {
+                if (!assessorSelect.value) {
+                    assessorSelect.setCustomValidity('Silakan pilih penilai.');
+                } else {
+                    assessorSelect.setCustomValidity('');
+                }
+
+                if (!this.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                this.classList.add('was-validated');
+            }, false);
+
+            $('#add-disposition').on('hidden.bs.modal', function() {
+                window.location.reload();
+            });
+        }
+        async function showDispositionBy(id = '') {
+            loadingPage(true);
+
+            renderListAssessor('iAssessorHeadChange', 'Ketua Tim', id);
+            await Swal.close();
+
+            // Show the modal
+            $('#change-assessor-head').modal('show');
+
+            const assessorSelect = document.querySelector('#iAssessorHeadChange');
+            const submitBtn = document.querySelector('#submitBtnKetua');
+
+            // Disable/enable submit button based on selection
+            assessorSelect.addEventListener('change', function() {
+                submitBtn.disabled = !assessorSelect.value;
+            });
+
+            // Validate form when modal is submitted
+            const form = document.querySelector('#fCreateAssessorHead');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+
+                // Add validation
+                if (!assessorSelect.value) {
+                    assessorSelect.setCustomValidity('Silakan pilih Ketua Tim.');
+                } else {
+                    assessorSelect.setCustomValidity('');
+                }
+
+                // Check validity and handle submission if valid
+                if (form.checkValidity()) {
+                    form.classList.remove('was-validated');
+                } else {
+                    form.classList.add('was-validated');
+                }
+            });
+        }
+
+        async function showAssessmentValidation() {
+
+            await $('#request-validation').modal('show')
+        }
+
+        async function pengajuanSelesai() {
+            $("#create-pengajuan-selesai").modal("show");
+
+            flatpickr("#publish_date", {
+                altInput: true,
+                dateFormat: "YYYY-MM-DD",
+                altFormat: "DD MMMM YYYY",
+                parseDate: (datestr, format) => moment(datestr, format, true).toDate(),
+                formatDate: (date, format) => moment(date).format(format),
+            });
+
+            $("#certificate_file,#sk_file,#rov_file").on("change", async function(e) {
+                loadingPage(true)
+                const id = $(`#${$(this).attr("id")}`);
+                const formFile = new FormData();
+
+                formFile.append("file", id.prop("files")[0]);
+
+                const response = await fetch(
+                    "{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/upload-file", {
+                        method: "POST",
+                        body: formFile,
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                            Accept: "application/json",
+                            Authorization: `Bearer ${Cookies.get('auth_token')}`
+
+                        },
+                    });
+
+                if (response.ok) {
+                    loadingPage(false)
+                    const data = await response.json();
+                    id.attr("data-value", data.file_url || "");
+                } else {
+                    loadingPage(false)
+                    id.attr("data-value", "");
+                }
+            });
+
+            const response = await CallAPI(
+                "GET",
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/signer`
+            );
+
+            if (response.status == 200) {
+                loadingPage(false)
+                $(".signby-name").html(`
+                <option value="" selected disabled>Silahkan pilih</option>
+                ${response.data.data
+                    .map(
+                        (data) =>
+                            `<option value="${data.id}">${data.name}</option>`
+                    )
+                    .join(" ")}
+            `);
+            }
+        }
+
+
+        // ASSESSOR SECTION
+        async function renderListAssessor(sourceElement, role, selectedValue = []) {
+            const element = document.getElementById(`${sourceElement}`);
+            const assessrOpt = new Choices(element, {
+                placeholder: 'Pilih penilai',
+                removeItemButton: true,
+                maxItemCount: 2
+            });
+
+            await assessrOpt.setChoices(async () => {
+                const items = await getAssessorList('', role);
+                let isItems = [];
+                let isSelected = false;
+                let arraySelect = [];
+
+                if (Array.isArray(items)) {
+                    if (Array.isArray(selectedValue)) {
+                        if (role == 'Ketua Tim') {
+                            arraySelect = Object.values(selectedValue);
+                        }
+                        if (role != 'Ketua Tim') {
+                            arraySelect = selectedValue.map(item => item.id);
+                        }
+                    }
+
+                    items.map((item) => {
+                        isSelected = arraySelect.includes(item.id);
+                        isItems.push({
+                            value: item.id,
+                            label: item.name,
+                            selected: isSelected
+                        });
+                    });
+
+                    return isItems;
+                } else {
+                    console.error('Items is not an array', items);
+                    return [];
+                }
+            });
+
+            if (selectedValue.length > 0) {
+                await assessrOpt.setChoiceByValue(selectedValue);
+            }
+
+            // Check to enable or disable the save button based on selected values
+            element.addEventListener('change', function() {
+                $('#fEditAssessmentInterview button[type="submit"]').prop(
+                    'disabled',
+                    !$('#iEditAssessorHead').val() && !$('#iEditAssessors').val().length
+                );
+            });
+
+            $("#edit-assessment-interview, #scheduling-interview, #add-disposition, #change-assessor-head").on(
+                "hidden.bs.modal",
+                function() {
+                    assessrOpt.destroy();
+                });
+        }
+
+        async function showEditAssessmentInterview() {
+            $('#iEditInterviewType').val(interviewType).change();
+            scheduleEdit.setDate(moment(interviewDate).format('YYYY-MM-DD'));
+            renderListAssessor('iEditAssessorHead', 'Ketua Tim', interviewAssessorhead);
+            renderListAssessor('iEditAssessors', 'Assessor', interviewAssessors);
+
+            await $('#edit-assessment-interview').modal('show');
+            $('#fEditAssessmentInterview button[type="submit"]').prop('disabled', !$('#iEditAssessorHead').val() && !$(
+                '#iEditAssessors').val().length);
+        }
+
+        async function lihatBeritaAcara() {
+            loadingPage(true);
+            let getDataRest = await CallAPI(
+                'GET',
+                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/show-record-of-vertification', {
+                    id: id
+                }
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            if (getDataRest.status === 200) {
+                loadingPage(false);
+
+                let data = getDataRest.data.data;
+
+                let attendancePhotoUrls = data.photos_of_attendance_list || [];
+                let eventPhotoUrls = data.photos_of_event || [];
+
+                let modalBody = document.querySelector("#show-record-of-verification .modal-body");
+
+                // Membuat struktur tab
+                modalBody.innerHTML = `
+            <ul class="nav nav-tabs" id="photoTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="event-photos-tab" data-bs-toggle="tab" data-bs-target="#event-photos" type="button" role="tab" aria-controls="event-photos" aria-selected="true">Foto Kegiatan</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="attendance-photos-tab" data-bs-toggle="tab" data-bs-target="#attendance-photos" type="button" role="tab" aria-controls="attendance-photos" aria-selected="false">Foto Kehadiran</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="photoTabsContent">
+                <div class="tab-pane fade show active" id="event-photos" role="tabpanel" aria-labelledby="event-photos-tab"></div>
+                <div class="tab-pane fade" id="attendance-photos" role="tabpanel" aria-labelledby="attendance-photos-tab"></div>
+            </div>
+        `;
+
+                // Menambahkan konten gambar ke tab
+                let eventPhotosContainer = document.getElementById("event-photos");
+                let attendancePhotosContainer = document.getElementById("attendance-photos");
+
+                eventPhotosContainer.innerHTML = eventPhotoUrls.map((url) => `
+                    <a href="${url}" target="_blank">
+                        <img src="${url}" alt="Foto Kegiatan" style="width: 100%; max-height: 100vh; object-fit: contain; margin-bottom: 15px;" />
+                    </a>
+                `).join("");
+
+                attendancePhotosContainer.innerHTML = attendancePhotoUrls.map((url) => `
+                    <a href="${url}" target="_blank">
+                        <img src="${url}" alt="Foto Kehadiran" style="width: 100%; max-height: 100vh; object-fit: contain; margin-bottom: 15px;" />
+                    </a>
+                `).join("");
+
+                // Inisialisasi modal setelah konten dimuat
+                const myModal = new bootstrap.Modal(document.getElementById('show-record-of-verification'));
+                myModal.show();
+
+                // Opsi untuk mengganti ikon X dengan ikon download
+                FilePond.setOptions({
+                    fileActionButtons: {
+                        removeItem: {
+                            label: "Download",
+                            icon: '<i class="fa fa-download"></i>',
+                            action: (file) => window.open(file.getMetadata("downloadUrl"), "_blank"),
+                        },
+                    },
+                });
+            }
+        }
+
+        async function submitEditAssessmentInterview(e) {
+            e.preventDefault();
+
+            const $form = $('#fEditAssessmentInterview'),
+                formParsley = $form.parsley(),
+                formObject = {};
+
+            formParsley.validate();
+
+            if (!formParsley.isValid()) return false;
+
+            loadingPage(true);
+
+            const formArrayData = $form.serializeArray();
+            formArrayData.forEach(function(item) {
+                formObject[item.name] = item.value;
+            });
+
+            const assessorSelect = document.getElementById('iEditAssessors');
+            const assessors = [];
+
+            for (const option of assessorSelect.options) {
+                if (option.selected) {
+                    assessors.push(parseInt(option.value));
+                }
+            }
+
+            formObject['assessors'] = assessors;
+            try {
+                const postData = await CallAPI(
+                    'POST',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/jadwal/updateJadwal`, {
+                        id: id,
+                        ...formObject
+                    }
+                );
+
+                if (postData.status === 200) {
+                    loadingPage(false);
+                    const response = postData.data.data;
+
+                    $('#i_schedule').text(
+                        moment(response.assessment_interview.schedule).format('D MMM YYYY')
+                    );
+                    $('#i_type').text(
+                        response.assessment_interview.interview_type === 'offline' ? 'Kunjungan lapangan' : response
+                        .assessment_interview.interview_type
+                    );
+                    $('#i_assessorHead').text(response.assessment_interview.assessor_head.name);
+                    interviewAssessorhead = response.assessment_interview.assessor_head;
+
+                    // Remove existing rows
+                    $('.assessor_interview_row').remove();
+
+                    let assessors = [],
+                        assessorHtml = '';
+
+                    response.assessment_interview.assessors.forEach((assessor, i) => {
+                        assessors.push(assessor.id);
+                        assessorHtml +=
+                            `<div class="row assessor_interview_row">
+                        <small class="text-muted col-5">Penilai ${i + 1} :</small>
+                        <span class="col-7" id="i_assessor_${i}">${assessor.name}</span>
+                    </div>`;
+                    });
+
+                    interviewAssessors = assessors;
+                    $(assessorHtml).insertAfter('#interview_assessor_head_row');
+
+                    $('#edit-assessment-interview').modal('hide');
+                    notificationAlert('success', 'Pemberitahuan', 'Berhasil mengubah jadwal interview.');
+
+                    // Refresh the page after successful update
+                    window.location.reload();
+                } else {
+
+                    loadingPage(false);
+                    $('#edit-assessment-interview').modal('hide');
+                    notificationAlert('info', 'Pemberitahuan', postData.message || 'Terjadi kesalahan.');
+                    window.location.reload();
+                }
+            } catch (error) {
+                loadingPage(false);
+                $('#edit-assessment-interview').modal('hide');
+                const resp = error.response;
+                console.error('Error:', error);
+                notificationAlert('info', 'Pemberitahuan', resp?.data?.message || 'Gagal memproses permintaan.');
+                window.location.reload();
+            }
+        }
+
+
+        async function submitAssessmentValidation(e) {
+            e.preventDefault();
+            loadingPage(true)
+            const $form = $('#fCreateValidation'),
+                formParsley = $form.parsley();
+
+            formParsley.validate();
+
+            if (!formParsley.isValid()) return false;
+
+            const formArrayData = $form.serializeArray();
+            let formObject = {};
+            if (formObject !== null || status_code === 200) {
+                formArrayData.forEach(function(item) {
+                    formObject[item.name] = item.value;
+                });
+                if ($('input[name="isValidAssessment"]:checked').val() == 'no') {
+                    formObject['validation_notes'] = $('#validationReason').summernote('code');
+                }
+
+
+                $('#request-validation').modal('hide');
+                updateCertificateRequest(formObject, 'Berhasil melakukan validasi penilaian');
+            }
+        }
+
+        async function submitSchedulingInterview(e) {
+            e.preventDefault();
+            loadingPage(true);
+
+            const $form = $('#fCreateScheduleInterview'),
+                formParsley = $form.parsley();
+
+            formParsley.validate();
+
+            if (!formParsley.isValid()) {
+                loadingPage(false);
+                return false;
+            }
+
+            const formObject = {};
+
+            // Serialize form data
+            const formArrayData = $form.serializeArray();
+            formArrayData.forEach(function(item) {
+                formObject[item.name] = item.value;
+            });
+
+            // Collect assessors' values
+            const assessorSelect = document.getElementById('iAssessors');
+            const assessors = [];
+
+            for (const option of assessorSelect.options) {
+                if (option.selected) {
+                    assessors.push(parseInt(option.value));
+                }
+            }
+            formObject['assessors'] = assessors;
+
+            try {
+                const postData = await CallAPI(
+                    'POST',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/jadwal/storeJadwal`, {
+                        id: id,
+                        ...formObject
+                    }
+                );
+
+                if (postData.status === 200) {
+                    loadingPage(false);
+                    $('#scheduling-interview').modal('hide');
+                    notificationAlert('success', 'Pemberitahuan', 'Berhasil mengatur jadwal interview');
+
+                    // Redirect after success
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    $('#scheduling-interview').modal('hide');
+                    loadingPage(false);
+                    notificationAlert('info', 'Pemberitahuan', postData.message || 'Terjadi kesalahan.');
+                }
+            } catch (error) {
+                loadingPage(false);
+                $('#scheduling-interview').modal('hide');
+                let resp = error.response;
+                console.error('Error:', error); // Logging the error for debugging
+                notificationAlert('info', 'Pemberitahuan', resp?.data?.message || 'Gagal memproses permintaan.');
+            }
+        }
+
+        async function showPrintRecordOfVerification() {
+            loadingPage(true);
+            // Memanggil API menggunakan fetch
+            const response = await fetch(
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengesahan-sertifikat/generate-official-report?id=${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${Cookies.get('auth_token')}`
+                    }
+                });
+
+            if (response.ok) {
+                loadingPage(false)
+                const blob = await response.blob();
+                const newWindow = window.open();
+                const pdfUrl = URL.createObjectURL(blob);
+                newWindow.document.write('<iframe src="' + pdfUrl +
+                    '" frameborder="0" style="width:100%;height:100%;"></iframe>');
+            } else {
+                console.error('Error:', response.status);
+            }
+
+        }
+
+        async function NextStepSignbyDirector(e) {
+            e.preventDefault();
+
+            const form = $('#form-signby-dirjen');
+            const user_id = form.find('#signer_id').val();
+            const sk_number = 1;
+            loadingPage(true);
+            try {
+                // Memanggil API menggunakan fetch
+                const response = await fetch(
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengesahan-sertifikat/generate-sk?id=${id}&signer=${user_id}&sk_number=${sk_number}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${Cookies.get('auth_token')}`
+                        }
+                    });
+
+                if (response.ok) {
+                    const blob = await response.blob(); // Mengubah response menjadi blob
+                    const newWindow = window.open();
+                    const pdfUrl = URL.createObjectURL(blob);
+
+                    // Tampilkan PDF dalam iframe
+                    newWindow.document.write('<iframe src="' + pdfUrl +
+                        '" frameborder="0" style="width:100%;height:100%;"></iframe>');
+                } else {
+                    console.error('Error:', response.status);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                // Stop loading state
+                loadingPage(false);
+                $("#modal-signby-dirjen").modal("hide");
+            }
+        }
+
+
+        async function signByDirector(e) {
+
+            loadingPage(true)
+            $("#modal-signby-dirjen").modal("show");
+
+            try {
+                response = await CallAPI('GET', `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/signer`);
+
+                if (response.status == 200) {
+                    loadingPage(false)
+                    $(".form-name").html(`
+                <option value="" selected disabled>Silahkan pilih</option>
+                ${response.data.data
+                    .map(
+                        (data) =>
+                            `<option value="${data.id}">${data.name}</option>`
+                    )
+                    .join(" ")}
+            `);
+                }
+            } catch (error) {
+                loadingPage(false);
+                const resp = error.response;
+                errorMessage = resp?.data?.message;
+                return; // Stop execution if error occurs
+            }
+
+        }
+
+        function submitAssessor(e) {
+            e.preventDefault();
+
+            const $form = $('#fCreateAssessor'),
+                formParsley = $form.parsley();
+
+            formParsley.validate();
+
+            if (!formParsley.isValid()) return false;
+            loadingPage(true)
+
+            // Mengubah form data menjadi object tanpa AjaxHelper
+            const formArrayData = $form.serializeArray();
+            const formObject = {};
+
+            formArrayData.forEach(field => {
+                formObject[field.name] = field.value;
+            });
+
+            // Tambahkan field 'status' ke object
+            formObject['status'] = 'disposition';
+            $('#add-disposition').modal('hide');
+
+            // Panggil fungsi updateCertificateRequest
+            updateCertificateRequest(formObject, 'Pengajuan akan ditugaskan kepada penilai');
+        }
+
+        async function submitCreateRoV(e) {
+            e.preventDefault();
+            loadingPage(true);
+
+            const $form = $('#fCreateRoV'),
+                formParsley = $form.parsley();
+
+            formParsley.validate();
+
+            if (!formParsley.isValid()) {
+                loadingPage(false);
+                return false;
+            }
+
+            // Mengambil data form dalam bentuk objek
+            const formArrayData = $form.serializeArray();
+            const formObject = {};
+            formArrayData.forEach(item => {
+                formObject[item.name] = item.value;
+            });
+
+
+            // Mengirim request menggunakan Axios
+            let postData = await CallAPI(
+                'POST',
+                "{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/record-of-verification", {
+                    id,
+                    ...formObject
+                }
+            );
+            if (postData.data.error === true) {
+                loadingPage(false);
+                notificationAlert('error', 'Pemberitahuan', postData.data.message);
+                return;
+            }
+
+            // Jika berhasil, lakukan operasi lain sebelum pengalihan
+            if (postData.status === 200) {
+                loadingPage(false);
+                notificationAlert('success', 'Pemberitahuan', 'Berhasil Membuat Berita Acara');
+
+                // Memperbarui konten halaman
+                $('#i_schedule').text(moment(postData.data.data.assessment_interview.schedule).format('D MMM YYYY'));
+                $('#i_type').text(postData.data.data.assessment_interview.interview_type === 'offline' ?
+                    'Kunjungan lapangan' : postData.data.data.assessment_interview.interview_type);
+                $('#i_assessorHead').text(postData.data.data.assessment_interview.assessor_head.name);
+
+                let assessors = [],
+                    assessorHtml = '';
+
+                postData.data.data.assessment_interview.assessors.forEach((assessor, index) => {
+                    assessors.push(assessor.id);
+                    assessorHtml += `
+                        <div class="row assessor_interview_row">
+                            <small class="text-muted col-5">Penilai ${index + 1} :</small>
+                            <span class="col-7" id="i_assessor_${index}">${assessor.name}</span>
+                        </div>`;
+                });
+
+                // Memperbarui daftar penilai di tampilan
+                $('.assessor_interview_row').remove();
+                $(assessorHtml).insertAfter('#interview_assessor_head_row');
+
+                // Tutup modal
+                $('#create-record-of-verification').modal('hide');
+
+                // Penundaan 300ms sebelum pengalihan ke halaman lain
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500); // Penambahan jeda 300ms
+            } else {
+                loadingPage(false);
+                notificationAlert('error', 'Pemberitahuan', 'Gagal membuat Berita Acara. Silakan coba lagi.');
+            }
+        }
+
+        const scheduleEdit = flatpickr("#iEditInterview_date", {
+            altInput: true,
+            dateFormat: "YYYY-MM-DD",
+            altFormat: 'DD MMMM YYYY',
+            minDate: 'today',
+            parseDate: (datestr, format) => {
+                return moment(datestr, format, true).toDate();
+            },
+            formatDate: (date, format, locale) => {
+                return moment(date).format(format);
+            },
+        });
+
+
+        flatpickr("#interview_date", {
+            allowInput: true,
+            altInput: true,
+            dateFormat: "YYYY-MM-DD",
+            altFormat: 'DD MMMM YYYY',
+            minDate: 'today',
+            parseDate: (datestr, format) => {
+                return moment(datestr, format, true).toDate();
+            },
+            formatDate: (date, format, locale) => {
+                return moment(date).format(format);
+            },
+        });
+
+        async function updateCertificateRequest(formData, successMessage) {
+            loadingPage(true);
+
+            try {
+
+                let postData = await CallAPI(
+                    'POST',
+                    "{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengajuan-sertifikat/update", {
+                        id,
+                        ...formData
+                    }
+                );
+                if (postData.status === 200) {
+                    loadingPage(false);
+                    notificationAlert('success', 'Pemberitahuan', successMessage || postData.message);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                }
+            } catch (error) {
+                loadingPage(false);
+                let resp = error.response || {
+                    data: {
+                        message: 'Terjadi kesalahan'
+                    }
+                };
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+            }
+        }
+
+        async function showSchedulingInterview() {
+            renderListAssessor('iAssessorHead', 'Ketua Tim')
+            renderListAssessor('iAssessors', 'Assessor')
+
+            await $('#scheduling-interview').modal('show')
+        }
+
+        async function submitRejectRequest() {
+            $(document).on("submit", "#fCreateRejected", function(e) {
+                e.preventDefault()
+
+                const $form = $('#fCreateRejected'),
+                    formParsley = $form.parsley()
+
+                formParsley.validate()
+
+                if (!formParsley.isValid()) return false
+
+                loadingPage(true)
+
+                const formArrayData = $form.serializeArray();
+                const formObject = {};
+
+                formArrayData.forEach(field => {
+                    let isValue = field.value;
+                    if (field.name == 'rejected_note') {
+                        isValue = sanitizeInput(field.value);
+                    }
+                    formObject[field.name] = isValue;
+                });
+
+                formObject['status'] = 'rejected'
+
+                $('#request-rejected').modal('hide');
+                updateCertificateRequest(formObject, 'Berhasil menolak pengajuan')
+            })
+        }
+
+        function submitAssessorHead(e) {
+            e.preventDefault();
+
+            const $form = $('#fCreateAssessorHead'),
+                formParsley = $form.parsley();
+
+            formParsley.validate();
+
+            if (!formParsley.isValid()) return false;
+            loadingPage(true);
+
+            // Mengubah form data menjadi object dengan tipe data yang sesuai
+            const formArrayData = $form.serializeArray();
+            const formObject = {};
+
+            formArrayData.forEach(field => {
+                // Konversi ke integer jika field-nya adalah `assessor_head`
+                formObject[field.name] = field.name === 'assessor_head' ? parseInt(field.value, 10) : field.value;
+            });
+
+            updateCertificateRequest(formObject, 'Pengajuan akan ditugaskan kepada ketua tim baru');
+        }
+
+
+        function uploadFile(sourceElement, inputTarget, sourceFiles = []) {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content')
+            const uploadedFiles = []
+
+            // Jika ada file awal, tambahkan ke FilePond
+            const initialFiles = sourceFiles.map(file => ({
+                source: file
+            }))
+
+            const pond = FilePond.create(
+                document.querySelector(`#${sourceElement}`), {
+                    files: initialFiles, // Menambahkan file yang sudah ada (jika ada)
+                    server: {
+                        process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                            $('#submitRequestBtn').prop('disabled', true)
+                            $('#submitDraftRequestBtn').prop('disabled', true)
+
+                            const formData = new FormData()
+                            formData.append('file', file, file.name)
+
+                            const request = new XMLHttpRequest()
+                            request.open('POST',
+                                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/upload-file')
+                            request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
+                            request.setRequestHeader('Accept', 'application/json')
+                            request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`)
+                            request.responseType = 'json'
+
+                            request.onload = function() {
+                                if (request.status >= 200 && request.status < 300) {
+                                    const resp = request.response
+                                    load(resp)
+
+                                    // Tambahkan URL ke array uploadedFiles
+                                    uploadedFiles.push(resp.file_url)
+
+                                    // Update nilai inputTarget dengan URL yang dipisahkan koma
+                                    $(`#${inputTarget}`).val(uploadedFiles.join(','))
+                                } else {
+                                    error('oh no, Internal Server Error')
+                                }
+
+                                $('#submitRequestBtn').prop('disabled', false)
+                                $('#submitDraftRequestBtn').prop('disabled', false)
+                            }
+
+                            request.send(formData)
+
+                            return {
+                                abort: () => {
+                                    request.abort()
+                                    abort()
+                                }
+                            }
+                        },
+                        revert: (uniqueFileId, load, error) => {
+                            // Hapus file dari uploadedFiles saat dihapus
+                            const fileIndex = uploadedFiles.indexOf(uniqueFileId)
+                            if (fileIndex > -1) {
+                                uploadedFiles.splice(fileIndex, 1)
+                            }
+
+                            // Update inputTarget
+                            $(`#${inputTarget}`).val(uploadedFiles.join(','))
+
+                            error('oh my goodness')
+                            load()
+                        }
+                    },
+                    labelIdle: '<span class="filepond--label-action"> Pilih File </span>',
+                    allowMultiple: true, // Mengizinkan upload multiple file
+                    maxFiles: 5, // Atur jumlah maksimum file yang bisa di-upload
+                    required: true,
+                    checkValidity: true,
+                    maxFileSize: '5MB',
+                    labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
+                    labelMaxFileSize: 'Maksimal ukuran file 5MB'
+                }
+            )
+        }
+
+
+        async function pengajuanSelesaiSubmit(e) {
+            e.preventDefault();
+
+            const $form = $('#formPengajuanSelesai'),
+                formParsley = $form.parsley();
+
+            // Validate form
+            formParsley.validate();
+            if (!formParsley.isValid()) return false;
+
+            // Show loading state
+            loadingPage(true)
+
+            // Serialize form data to object
+            const formData = $form.serializeArray();
+            const formObject = {};
+            formData.forEach(item => {
+                formObject[item.name] = item.value;
+            });
+            // Add additional fields
+            formObject['number_of_certificate'] = $('#number_of_certificate').val();
+            formObject['publish_date'] = $('#publish_date').val();
+            formObject['certificate_file'] = $('#certificate_file').attr('data-value');
+            formObject['sk_file'] = $('#sk_file').attr('data-value');
+            formObject['rov_file'] = $('#rov_file').attr('data-value');
+            formObject['sign_by'] = $('#sign_by').val();
+
+            try {
+                // Submit form data via API
+                const response = await CallAPI(
+                    'POST',
+                    "{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/pengesahan-sertifikat/certificate-release", {
+                        id: id,
+                        ...formObject
+                    }
+
+                );
+
+                // Handle success response
+                if (response.status === 200) {
+                    $('#create-pengajuan-selesai').modal('hide');
+                    notificationAlert('success', 'Pemberitahuan', 'Berhasil mengesahkan sertifikat');
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1500);
+                }
+            } catch (error) {
+                // Handle error response
+                $('#create-pengajuan-selesai').modal('hide');
+                const resp = error.response;
+                const errorMessage = resp?.data?.message || "An error occurred";
+                notificationAlert('info', 'Pemberitahuan', errorMessage);
+            } finally {
+                // Always hide loading state
+                loadingPage(false);
+            }
+        }
+
+
+
+        async function getAssessorList(keyword, role) {
+            loadingPage(true);
+            try {
+                const response = await CallAPI(
+                    'GET',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/assessor-list', {
+                        keyword: keyword,
+                        role: role
+                    }
+                );
+                loadingPage(false);
+                if (response && Array.isArray(response.data.data)) {
+                    return response.data.data;
+                } else {
+                    console.error('Unexpected response format:', response);
+                    return [];
+                }
+            } catch (error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data ? resp.data.message : 'Terjadi kesalahan');
+                return []; // Kembalikan array kosong jika terjadi error
+            }
+        }
+
+        function updateWordAndParagraphCount(contents) {
+            var contentElement = $('<div>').html(contents);
+
+            // Hitung paragraf dengan elemen <p> atau <div>
+            var paragraphs = contentElement.find('p, div').filter(function() {
+                return $(this).text().trim().length > 0;
+            }).length;
+
+            // Hitung paragraf berdasarkan <br> yang mengawali baris baru
+            contentElement.find('br').each(function() {
+                var nextText = $(this).next().text().trim();
+                if (nextText.length > 0) {
+                    paragraphs++;
+                }
+            });
+
+            // Ambil teks mentah dan hitung kata
+            var plainText = contentElement.text().trim();
+
+            // Pecah teks ke dalam kata-kata berdasarkan spasi
+            var words = plainText.split(/\s+/).filter(function(word) {
+                return word.length > 0;
+            });
+
+            // Periksa apakah teks kosong
+            if (plainText === '') {
+                paragraphs = 0;
+            }
+
+            var wordCount = words.length;
+
+            // Update elemen DOM untuk menampilkan jumlah paragraf dan kata
+            $('#wordCount').html(`Terdapat ${paragraphs} paragraf dan ${wordCount} kata`);
+        }
+
+        // const scheduleEdit = flatpickr("#iEditInterview_date", {
+        //     altInput: true,
+        //     dateFormat: "YYYY-MM-DD",
+        //     altFormat: 'DD MMMM YYYY',
+        //     minDate: 'today',
+        //     parseDate: (datestr, format) => {
+        //         return moment(datestr, format, true).toDate();
+        //     },
+        //     formatDate: (date, format, locale) => {
+        //         return moment(date).format(format);
+        //     },
+        // });
+
+        $(document).on('change', '#signer_id', function() {
+            $('#generate-sk-btn').prop('disabled', true)
+
+            if ($(this).val() !== '') {
+                $('#generate-sk-btn').prop('disabled', false)
+            }
+        })
+
+        $("#modal-signby-dirjen").on("hidden.bs.modal", function() {
+            $('#generate-sk-btn').prop('disabled', true)
+        })
+
+        function sanitizeInput(input) {
+            var sanitized = input.replace(/<script[^>]*>(.*?)<\/script>/gi, '');
+            return sanitized;
+        }
+
+
         async function initPageLoad() {
-            await getHistoryPengajuan();
-            await getListData();
+            FilePond.registerPlugin(
+                FilePondPluginFileEncode,
+                FilePondPluginImagePreview,
+                FilePondPluginPdfPreview,
+                FilePondPluginFileValidateSize,
+                FilePondPluginFileValidateType
+            )
+            $('#validationReason').summernote({
+                placeholder: 'Masukkan Alasan',
+                tabsize: 2,
+                height: 450,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']]
+                ],
+                callbacks: {
+                    onChange: function(contents, $editable) {
+                        updateWordAndParagraphCount(contents);
+                    }
+                }
+            });
+
+            $('#validationReason').summernote('disable');
+            updateWordAndParagraphCount($('#validationReason').summernote('code'));
+
+            $(document).on("click", "#btnShowModalValidationReason", function() {
+                $("#showCommentModal").modal('show')
+                let decodedString = $("<div>").html(dataComment).text();
+                $("#dataCatatanVerifikasi").html(decodedString)
+            });
+            $('.photos_of_event').each(function() {
+                uploadFile($(this).attr('id'), $(this).next().attr('id'))
+            })
+
+            $('.photos_of_attendance_list').each(function() {
+                uploadFile($(this).attr('id'), $(this).next().attr('id'))
+            })
+            await Promise.all([
+                getDetailData(),
+                submitRejectRequest(),
+            ]);
             $('.filepond--credits').remove();
         }
     </script>
