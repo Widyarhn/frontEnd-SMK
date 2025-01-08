@@ -456,13 +456,14 @@
             }
         }
 
-
         async function getDataOSS() {
             loadingPage(true);
 
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/data_oss.json`
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/setting/find`, {
+                        name: "oss"
+                    }
                 )
                 .then(response => response)
                 .catch(error => {
@@ -475,30 +476,40 @@
             if (getDataRest.status === 200) {
                 loadingPage(false);
 
-                // Ambil data dari response
-                const appData = getDataRest.data.data;
+                let appData = getDataRest.data.data;
+                let active = appData.is_active;
 
-                document.getElementById('username').value = appData.oss_username;
-                document.getElementById('password').value = appData.oss_password;
-                document.getElementById('urlOss').value = appData.oss_url;
+                const akunOssCheckbox = document.getElementById('akunOssActive');
+                const formAkunOss = document.getElementById('form-akun-oss');
+
+                akunOssCheckbox.checked = active === 1;
+                formAkunOss.style.display = active === 1 ? 'block' : 'none';
+
+                document.getElementById('username').value = appData.username;
+                document.getElementById('password').value = appData.password;
+                document.getElementById('urlOss').value = appData.url;
             }
         }
 
-        async function updateDataOSS() {
+        async function updateDataOSS(isActive = null) {
             loadingPage(true);
-            // Ambil nilai inputan dari formulir
+
             const ossUsername = document.getElementById('username').value;
             const ossPassword = document.getElementById('password').value;
             const ossUrl = document.getElementById('urlOss').value;
 
-            // Persiapkan data untuk dikirim
+            const akunOssCheckbox = document.getElementById('akunOssActive');
+
             const payload = {
-                oss_username: ossUsername,
-                oss_password: ossPassword,
-                oss_url: ossUrl,
+                username: ossUsername,
+                password: ossPassword,
+                url: ossUrl,
+                is_active: isActive !== null ? (isActive ? 1 : 0) : (akunOssCheckbox.checked ? 1 :
+                    0),
             };
 
-            const getDataRest = await CallAPI('PUT', 'https://jsonplaceholder.typicode.com/posts/1', payload)
+            const getDataRest = await CallAPI('POST',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/setting/oss', payload)
                 .then((response) => response)
                 .catch((error) => {
                     loadingPage(false);
@@ -566,7 +577,6 @@
                 checkValidity: true,
             });
 
-            // Jika fileUrl tersedia, unduh file sebagai Blob dan tambahkan ke FilePond
             if (fileUrl) {
                 fetch(fileUrl)
                     .then(response => {
@@ -581,7 +591,6 @@
                             type: blob.type
                         });
 
-                        // Tambahkan file ke FilePond
                         customUpload.addFile(file).then(() => {
                             // Set nilai hidden input dengan URL file
                             document.getElementById(inputTarget).value = fileUrl;
@@ -596,24 +605,6 @@
         }
 
 
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const akunOssCheckbox = document.getElementById('akunOssActive');
-            const formAkunOss = document.getElementById('form-akun-oss');
-
-            akunOssCheckbox.addEventListener('change', function() {
-                if (akunOssCheckbox.checked) {
-                    formAkunOss.style.display = 'block';
-                } else {
-                    formAkunOss.style.display = 'none';
-                }
-            });
-
-            if (akunOssCheckbox.checked) {
-                formAkunOss.style.display = 'block';
-            }
-        });
         document.addEventListener('DOMContentLoaded', function() {
             const akunOssCheckbox = document.getElementById('shareActive');
             const formAkunOss = document.getElementById('form-berbagi-data');
@@ -640,6 +631,29 @@
                 FilePondPluginFileValidateSize,
                 FilePondPluginFileValidateType
             )
+
+            const akunOssCheckbox = document.getElementById('akunOssActive');
+            const formAkunOss = document.getElementById('form-akun-oss');
+
+
+            async function syncCheckboxStatus() {
+                const getDataRest = await getDataOSS();
+                if (getDataRest.status === 200) {
+                    const appData = getDataRest.data.data;
+                    const isActive = appData.is_active === 1;
+
+
+                    akunOssCheckbox.checked = isActive;
+                    formAkunOss.style.display = isActive ? 'block' : 'none';
+                }
+            }
+
+
+            akunOssCheckbox.addEventListener('change', async function() {
+                const isActive = akunOssCheckbox.checked;
+                await updateDataOSS(isActive);
+                formAkunOss.style.display = isActive ? 'block' : 'none';
+            });
             await Promise.all([
                 getDataApps(),
                 getDataOSS()
