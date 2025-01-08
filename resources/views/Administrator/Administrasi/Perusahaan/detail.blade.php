@@ -1,6 +1,5 @@
 @extends('...Administrator.index', ['title' => 'Detail | Data Perusahaan'])
 @section('asset_css')
-    
 @endsection
 
 @section('content')
@@ -63,8 +62,7 @@
                                                 <h5 class="mb-0 total_aodt">86</h5><small class="text-muted">AODT</small>
                                             </div>
                                             <div class="col-4 border border-top-0 border-bottom-0">
-                                                <h5 class="mb-0 total_aotdt">40</h5><small
-                                                    class="text-muted">AOTDT</small>
+                                                <h5 class="mb-0 total_aotdt">40</h5><small class="text-muted">AOTDT</small>
                                             </div>
                                             <div class="col-4">
                                                 <h5 class="mb-0 total_ab">4.5K</h5><small class="text-muted">AB</small>
@@ -73,7 +71,9 @@
                                         <hr class="my-3 border border-secondary-subtle">
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
                                             <i class="ti ti-mail me-2"></i>
-                                            <p class="mb-0 company-email" style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">anshan@gmail.com</p>
+                                            <p class="mb-0 company-email"
+                                                style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">
+                                                anshan@gmail.com</p>
                                         </div>
 
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
@@ -82,7 +82,9 @@
                                         </div>
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
                                                 class="ti ti-map-pin me-2"></i>
-                                            <p class="mb-0 company-address" style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">New York</p>
+                                            <p class="mb-0 company-address"
+                                                style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">
+                                                New York</p>
                                         </div>
                                     </div>
                                 </div>
@@ -127,13 +129,14 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p class="mb-1 text-muted">Jenis Layanan</p>
-                                                    <ol class="company-service-types">
-                                                        <li>AJAP</li>
-                                                        <li>AKDP</li>
-                                                        <li>Angkutan B3</li>
-                                                        <li>Angkutan lintas batas negara</li>
-                                                    </ol>
+                                                    <table class="company-service-types"
+                                                        style="width: 100%; border-collapse: collapse; border: 0px;">
+                                                        <tbody>
+                                                            <!-- Table rows will be dynamically added here -->
+                                                        </tbody>
+                                                    </table>
                                                 </div>
+
                                             </div>
                                         </li>
                                         <li class="list-group-item px-0">
@@ -213,7 +216,8 @@
                                             <div class="datatable-top">
                                                 <div class="datatable-dropdown">
                                                     <label>
-                                                        <select class="datatable-selector" style="width: auto;min-width: unset;" name="limitPageKbli"
+                                                        <select class="datatable-selector"
+                                                            style="width: auto;min-width: unset;" name="limitPageKbli"
                                                             id="limitPageKbli">
                                                             <option value="5">5</option>
                                                             <option value="10" selected="">10</option>
@@ -224,9 +228,9 @@
                                                     </label>
                                                 </div>
                                                 <div class="datatable-search">
-                                                    <input class="datatable-input search-input-kbli"
-                                                        placeholder="Cari..." type="search" name="search"
-                                                        title="Search within table" aria-controls="pc-dt-simple">
+                                                    <input class="datatable-input search-input-kbli" placeholder="Cari..."
+                                                        type="search" name="search" title="Search within table"
+                                                        aria-controls="pc-dt-simple">
                                                 </div>
                                             </div>
                                             <div class="datatable-container">
@@ -268,7 +272,8 @@
                                             <div class="datatable-top">
                                                 <div class="datatable-dropdown">
                                                     <label>
-                                                        <select class="datatable-selector" style="width: auto;min-width: unset;" name="limitPage1"
+                                                        <select class="datatable-selector"
+                                                            style="width: auto;min-width: unset;" name="limitPage1"
                                                             id="limitPage1">
                                                             <option value="5">5</option>
                                                             <option value="10" selected="">10</option>
@@ -337,7 +342,8 @@
                                             <div class="datatable-top">
                                                 <div class="datatable-dropdown">
                                                     <label>
-                                                        <select class="datatable-selector" style="width: auto;min-width: unset;" name="limitPage2"
+                                                        <select class="datatable-selector"
+                                                            style="width: auto;min-width: unset;" name="limitPage2"
                                                             id="limitPage2">
                                                             <option value="5">5</option>
                                                             <option value="10" selected="">10</option>
@@ -361,10 +367,11 @@
                                                             <th rowspan="2">Tahun Laporan</th>
                                                             <th rowspan="2">Tanggal Pelaporan</th>
                                                             <th rowspan="2">Status</th>
-                                                            <th colspan="2" class="text-center" style="border-bottom:none;">Verifikasi</th>
+                                                            <th colspan="2" class="text-center"
+                                                                style="border-bottom:none;">Verifikasi</th>
                                                             <th rowspan="2" class="text-end">Aksi</th>
                                                         </tr>
-                                                        <tr >
+                                                        <tr>
                                                             <th style="border-top:none;">Tanggal</th>
                                                             <th style="border-top:none;">Oleh</th>
                                                         </tr>
@@ -422,15 +429,15 @@
         let getDataTable2 = '';
         let errorMessage2 = "Terjadi Kesalahan.";
 
-        let queryString         = window.location.search;
-        let urlParams           = new URLSearchParams(queryString);
-        let referenceId         = urlParams.get('id');
+        let queryString = window.location.search;
+        let urlParams = new URLSearchParams(queryString);
+        let referenceId = urlParams.get('id');
 
         async function getPerusahaanData(id) {
             loadingPage(true);
             const getDataRest = await CallAPI(
                     'GET',
-                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/detail`, {
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/detail`, {
                         id: id,
                     }
                 )
@@ -479,7 +486,7 @@
                     text_status: isActive ? "Aktif" : "Tidak Aktif",
                     icon_status: isActive ? "fas fa-circle-check" : "fas fa-circle-xmark",
                 },
-                service_types: (data['service_types']?.map(service => service['name']).join(', ')) ?? '-'
+                service_types: data['service_types']?.map(service => service['name']) ?? [],
             };
 
             return handleData;
@@ -493,7 +500,13 @@
             $('.company-phone').html(data.company_phone_number);
             $('.company-email').html(data.email);
             $('.company-address').html(data.address);
-            $('.company-service-types').html(`<li class="list-item">${data.service_types}</li>`);
+            console.log(data)
+            let serviceTypes = [];
+            data.service_types.forEach((serviceType) => {
+                serviceTypes += `<li>${serviceType}</li>`;
+            });
+
+            $('.company-service-types').html(serviceTypes);
             $('.company-established').html(data.established);
             $('.company-joined-date').html(data.created_at);
             $('.company-pic-name').html(data.pic_name);
@@ -503,14 +516,14 @@
             $('.company-is-active').addClass(`${data.is_active.icon_status} ${data.is_active.color}`);
         }
 
+
         async function getListPengajuanSmk(limit = 10, page = 1, ascending = 0, search = '', id = referenceId) {
             loadingPage(true);
             let getDataRest;
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/pengajuan`,
-                    {
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/pengajuan`, {
                         id: id,
                         page: page,
                         limit: limit,
@@ -821,8 +834,7 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/perusahaan/laporan`,
-                {
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/laporan`, {
                     id: id,
                     page: page,
                     limit: limit,
@@ -1045,8 +1057,7 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `{{ asset('dummy/internal/md-kbli/list_kbli.json') }}`,
-                {
+                `{{ asset('dummy/internal/md-kbli/list_kbli.json') }}`, {
                     id: id,
                     page: page,
                     limit: limit,
