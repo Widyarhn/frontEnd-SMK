@@ -39,7 +39,7 @@
                             <!-- Nama Aplikasi -->
                             <h4 id="namaAplikasi" class="mb-0"></h4>
                             <!-- Deskripsi Aplikasi -->
-                            <h6 class="mb-0">Dishub <span id="provinsi"></span></h6>
+                            <h6 id="namaInstansi" class="mb-0"></h6>
                             <!-- Alamat -->
                             <p id="alamat" class="mb-0">
                                 <i class="fa-solid fa-location-dot me-2"></i>
@@ -77,7 +77,8 @@
                                     </div>
                                     <div class="mb-5 mt-3">
                                         <input type="file" id="faviconUpload" />
-                                        <input type="hidden" id="faviconFileUrl" name="favicon_file_url" accept="image/*"/>
+                                        <input type="hidden" id="faviconFileUrl" name="favicon_file_url"
+                                            accept="image/*" />
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 me-3">
@@ -169,17 +170,7 @@
                                         </div>
                                     </div>
                                     <div class="row g-4">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-floating mb-0">
-                                                    <input type="text" class="form-control" id="kodePos"
-                                                        placeholder="Masukkan Kode POS" />
-                                                    <label for="floatingSelect">Kode Pos</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="mb-">
                                                 <div class="form-floating mb-0">
                                                     <textarea class="form-control" id="input_alamat" rows="3"></textarea>
@@ -282,23 +273,23 @@
                                     </div>
 
                                     <!-- Jenis dan Format Data -->
-                                        <div class="mb-3 mt-5">
-                                            <div class="form-floating mb-0">
-                                                <select class="form-select" id="jenisData">
-                                                    <option value="" selected>Pilih Jenis Data</option>
-                                                    <option value="laporan">Laporan Keselamatan</option>
-                                                    <option value="insiden">Data Insiden</option>
-                                                </select>
-                                                <label for="jenisData">Jenis Data</label>
-                                            </div>
+                                    <div class="mb-3 mt-5">
+                                        <div class="form-floating mb-0">
+                                            <select class="form-select" id="jenisData">
+                                                <option value="" selected>Pilih Jenis Data</option>
+                                                <option value="laporan">Laporan Keselamatan</option>
+                                                <option value="insiden">Data Insiden</option>
+                                            </select>
+                                            <label for="jenisData">Jenis Data</label>
                                         </div>
+                                    </div>
 
                                     <!-- File Upload -->
                                     <div class="mb-3 mt-3">
                                         <div class="form-floating mb-0">
                                             <div class="mb-5 mt-3">
                                                 <form action="{{ asset('assets') }}/json/file-upload.php">
-                                                    <input type="file" id="file" multiple accept=".pdf"/>
+                                                    <input type="file" id="file" multiple accept=".pdf" />
                                                     <input type="hidden" id="fileUrl" name="fileUrl" />
                                                 </form>
                                             </div>
@@ -352,8 +343,7 @@
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/dropzone-amd-module.min.js"></script>
     <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
-    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js">
-    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
     <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
     <script
         src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
@@ -374,7 +364,9 @@
 
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/pengaturan_aplikasi.json`
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/setting/find`, {
+                        name: "aplikasi"
+                    }
                 )
                 .then(response => response)
                 .catch(error => {
@@ -389,28 +381,19 @@
 
                 // Ambil data dari response
                 const appData = getDataRest.data.data;
-
-
-                document.getElementById('input_nama').value = appData.apps_name;
-                document.getElementById('deskripsiAplikasi').value = appData.apps_desc;
-                document.getElementById('input_email').value = appData.helpdesk_mail;
-                document.getElementById('input_wa').value = appData.helpdesk_whatsapp;
-                document.getElementById('kodePos').value = appData.post_code;
-                document.getElementById('input_alamat').value = appData.address;
-
-                // Inisialisasi untuk Logo Favicon
-                uploadFile('faviconUpload', 'faviconFileUrl', true);
-
-                // Inisialisasi untuk Logo Aplikasi
-                uploadFile('logoUpload', 'logoFileUrl', true);
-
-                uploadFile('file', 'fileUrl', true);
-
-                document.getElementById('namaAplikasi').innerText = appData.apps_name;
-                document.getElementById('provinsi').innerText = appData.province_name;
-                $('#email').html(`<i class="fa fa-envelope me-2"></i>${appData.helpdesk_mail}`);
-                $('#noWaHelpdesk').html(`<i class="fa fa-phone me-2"></i>${appData.helpdesk_whatsapp}`);
-                $('#alamat').html(`<i class="fa-solid fa-location-dot me-2"></i> ${appData.address}`);
+                document.getElementById('input_nama').value = appData.nama;
+                document.getElementById('input_nama_instansi').value = appData.nama_instansi;
+                document.getElementById('deskripsiAplikasi').value = appData.deskripsi;
+                document.getElementById('input_email').value = appData.email;
+                document.getElementById('input_wa').value = appData.whatsapp;
+                document.getElementById('input_alamat').value = appData.alamat;
+                uploadFile('faviconUpload', 'faviconFileUrl', true, appData.logo_favicon);
+                uploadFile('logoUpload', 'logoFileUrl', true, appData.logo_aplikasi);
+                document.getElementById('namaAplikasi').innerText = appData.nama;
+                document.getElementById('namaInstansi').innerText = appData.nama_instansi;
+                $('#email').html(`<i class="fa fa-envelope me-2"></i>${appData.email}`);
+                $('#noWaHelpdesk').html(`<i class="fa fa-phone me-2"></i>${appData.whatsapp}`);
+                $('#alamat').html(`<i class="fa-solid fa-location-dot me-2"></i> ${appData.alamat}`);
 
 
                 // Jika ada dropdown disabled, update value-nya
@@ -418,11 +401,11 @@
                 const citySelect = document.querySelector('#select_kota');
 
                 if (provinsiSelect) {
-                    provinsiSelect.innerHTML = `<option selected>${appData.province_name}</option>`;
+                    provinsiSelect.innerHTML = `<option selected>${appData.kota}</option>`;
                 }
 
                 if (citySelect) {
-                    citySelect.innerHTML = `<option selected>${appData.city_name}</option>`;
+                    citySelect.innerHTML = `<option selected>${appData.provinsi}</option>`;
                 }
             }
         }
@@ -430,28 +413,34 @@
         async function updateDataApps() {
             loadingPage(true);
             // Ambil nilai inputan dari formulir
-            const namaAplikasi = document.getElementById('namaAplikasi').value;
-            const deskripsiAplikasi = document.getElementById('deskripsiAplikasi').value;
-            const email = document.getElementById('email').value;
-            const noWaHelpdesk = document.getElementById('noWaHelpdesk').value;
-            const kodePos = document.getElementById('kodePos').value;
-            const alamat = document.getElementById('alamat').value;
-            const provinsi = document.getElementById('select_provinsi').value;
-            const kota = document.getElementById('select_kota').value;
+            let namaAplikasi = document.getElementById('input_nama').value;
+            let namaInstansi = document.getElementById('input_nama_instansi').value;
+            let deskripsiAplikasi = document.getElementById('deskripsiAplikasi').value;
+            let email = document.getElementById('input_email').value;
+            let noWaHelpdesk = document.getElementById('input_wa').value;
+            let alamat = document.getElementById('input_alamat').value;
+            let provinsi = document.getElementById('select_provinsi').value;
+            let kota = document.getElementById('select_kota').value;
+            let faviconUrl = document.getElementById('faviconFileUrl').value;
+            let logoUrl = document.getElementById('logoFileUrl').value;
+
 
             // Persiapkan data untuk dikirim
-            const payload = {
-                nama_aplikasi: namaAplikasi,
-                deskripsi_aplikasi: deskripsiAplikasi,
-                email_helpdesk: email,
-                no_wa_helpdesk: noWaHelpdesk,
-                kode_pos: kodePos,
+            let payload = {
+                nama_instansi: namaInstansi,
+                nama: namaAplikasi,
+                deskripsi: deskripsiAplikasi,
+                email: email,
+                whatsapp: noWaHelpdesk,
                 alamat: alamat,
                 provinsi: provinsi,
                 kota: kota,
+                logo_favicon: faviconUrl,
+                logo_aplikasi: logoUrl
             };
 
-            const getDataRest = await CallAPI('PUT', 'https://jsonplaceholder.typicode.com/posts/1', payload)
+            let getDataRest = await CallAPI('POST',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/setting/aplikasi', payload)
                 .then((response) => response)
                 .catch((error) => {
                     loadingPage(false);
@@ -463,6 +452,7 @@
             if (getDataRest && getDataRest.status === 200) {
                 loadingPage(false);
                 notificationAlert('success', 'Pemberitahuan', 'Data berhasil diubah')
+                window.location.reload()
             }
         }
 
@@ -523,40 +513,33 @@
             }
         }
 
-        function uploadFile(sourceElement, inputTarget, isRequired) {
-            const csrfToken = $('meta[name="csrf-token"]').attr('content')
-
-            let removeButton = $(`#${sourceElement}`).closest('td').prev().find("[type=radio]")
-            if (removeButton[1]) {
-                removeButton[1].addEventListener('click', () => {
-                    customUpload.removeFiles();
-                })
-            }
+        function uploadFile(sourceElement, inputTarget, isRequired, fileUrl = null) {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
             let customUpload = FilePond.create(
                 document.querySelector(`#${sourceElement}`)
             );
+
             customUpload.setOptions({
                 server: {
                     process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                        const formData = new FormData();
+                        formData.append('file', file, file.name);
 
-                        const formData = new FormData()
-                        formData.append('file', file, file.name)
-
-                        const request = new XMLHttpRequest()
-                        request.open('POST',
-                            'https://jsonplaceholder.typicode.com/posts/1')
-                        request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
-                        request.setRequestHeader('Accept', 'application/json')
+                        const request = new XMLHttpRequest();
+                        request.open('POST', '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/upload-file');
+                        request.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                        request.setRequestHeader('Accept', 'application/json');
                         request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
                         request.responseType = 'json';
 
                         request.onload = function() {
                             if (request.status >= 200 && request.status < 300) {
-                                const resp = request.response
-                                load(request.response);
+                                const resp = request.response;
+                                load(resp.file_url);
 
-                                $(`#${inputTarget}`).val(resp.file_url)
+                                // Set hidden input value
+                                document.getElementById(inputTarget).value = resp.file_url;
                             } else {
                                 error('oh no, Internal Server Error');
                             }
@@ -567,26 +550,52 @@
                         return {
                             abort: () => {
                                 request.abort();
-
                                 abort();
                             }
-                        }
+                        };
                     },
                     revert: (uniqueFileId, load, error) => {
-                        $(`#${inputTarget}`).val('')
-
-                        error('oh my goodness');
-
+                        document.getElementById(inputTarget).value = '';
+                        error('File removal error');
                         load();
                     }
                 },
-                labelIdle: '<span class="filepond--label-action"> Pilih File </span>',
+                labelIdle: '<span class="filepond--label-action">Pilih File</span>',
                 maxFiles: 1,
                 required: isRequired,
                 checkValidity: true,
-            })
+            });
 
+            // Jika fileUrl tersedia, unduh file sebagai Blob dan tambahkan ke FilePond
+            if (fileUrl) {
+                fetch(fileUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        // Buat objek file dari Blob
+                        const file = new File([blob], fileUrl.split('/').pop(), {
+                            type: blob.type
+                        });
+
+                        // Tambahkan file ke FilePond
+                        customUpload.addFile(file).then(() => {
+                            // Set nilai hidden input dengan URL file
+                            document.getElementById(inputTarget).value = fileUrl;
+                        }).catch(err => {
+                            console.error('Error adding file to FilePond:', err);
+                        });
+                    })
+                    .catch(err => {
+                        console.error('Error fetching file from URL:', err);
+                    });
+            }
         }
+
+
 
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -624,7 +633,13 @@
 
 
         async function initPageLoad() {
-
+            FilePond.registerPlugin(
+                FilePondPluginFileEncode,
+                FilePondPluginImagePreview,
+                FilePondPluginPdfPreview,
+                FilePondPluginFileValidateSize,
+                FilePondPluginFileValidateType
+            )
             await Promise.all([
                 getDataApps(),
                 getDataOSS()
