@@ -3,7 +3,7 @@
 <!-- [Head] start -->
 
 <head>
-    <title>Forgot Password | SMK</title>
+    <title>Forgot Password | SMK-TD</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />

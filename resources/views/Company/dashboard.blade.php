@@ -1,8 +1,48 @@
 @extends('Company.index', ['title' => 'Dashboard'])
 @section('asset_css')
+    <style>
+        .profile-avatar {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            z-index: 1;
+        }
+
+        #countdown-card {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background:rgba(0, 255, 0, 0.8);
+        }
+
+
+        @media (max-width: 767px) {
+            .profile-avatar {
+                position: relative;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-bottom: 20px;
+            }
+
+            .profile-tabs{
+                align-items:center;
+                justify-content: center ;
+            }
+
+            #countdown-card {
+                position: relative;
+                top: 0;
+                padding: 15px;
+                right: 0;
+                margin: 0 auto;
+            }
+
+        }
+    </style>
 @endsection
 @section('content')
-    <div class="row"><!-- [ sample-page ] start -->
+    <div class="row">
         <div class="col-sm-12">
             <div class="card social-profile" style="position:relative;">
                 <div class="card welcome-banner bg-blue-800 w-100 card-img-top"
@@ -24,58 +64,57 @@
 
                 <!-- Logo and Info Section -->
                 <div class="card-body pt-0 position-relative">
-                    <div class="row align-items-end">
+                    <div class="row align-items-center justify-content-center flex-column flex-md-row">
                         <!-- User Avatar -->
-                        <div class="col-md-auto text-md-start" style="position: absolute; top: -50px; left: 20px;">
+                        <div class="col-lg-2 col-12 text-lg-start ms-0 ms-lg-2 profile-avatar"
+                            style="position: absolute; top: -50px;">
                             <img class="img-fluid rounded-circle" src="../assets/images/company.png" alt="User image"
                                 style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                         </div>
 
                         <!-- Company Info -->
-                        <div class="col" style="margin-left: 120px;">
-                            <div>
+                        <div class="col-lg-7 col-12 ms-0 ms-lg-5 mt-5 mt-lg-0 text-center text-lg-start mb-3 mb-md-0">
+                            <div class="ms-0 ms-lg-5">
                                 <h5 class="company-name mb-1">PT Cahaya AKAP</h5>
                                 <p class="company-nib mb-0">NIB: 1165411111</p>
                             </div>
                         </div>
 
                         <!-- Sinkronisasi OSS Button -->
-                        <div class="col-md-auto text-end">
+                        <div class="col-lg-3 col-12 ms-auto text-lg-end">
                             <button class="btn btn-primary btn-sync-oss">Sinkronisasi OSS</button>
                         </div>
                     </div>
                 </div>
 
 
-                <!-- Floating Countdown -->
-                <div id="countdown-card" class="card floating-countdown"
-                    style="position:absolute; top:20px; right:20px; width:250px; padding:15px;
-                            background:rgba(0, 255, 0, 0.8); box-shadow:0 4px 6px rgba(0, 0, 0, 0.1);
-                            border-radius:8px; text-align:center;">
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <i id="countdown-icon" class="fa fa-clock" style="font-size:24px; color:#fff;"></i>
-                        <h6 style="margin:0; color:#333; font-weight:600;">Laporan Tahunan</h6>
+                <div id="countdown-card" class="card floating-countdown mb-5 mb-lg-0"
+                    style=" width: 250px; padding: 15px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1);
+                       border-radius:8px; text-align:center;">
+                    <div style="display:flex; align-items:center; gap:10px; justify-content: center;">
+                        <i id="countdown-icon" class="fa fa-clock" style="font-size:24px; color:#000000; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);"></i>
+                        <h6 style="margin:0; color:#000000; font-weight:600; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Laporan Tahunan</h6>
                     </div>
-                    <div id="countdown" style="font-size:18px; font-weight:700; color:#fff; margin-top:10px;">
+                    <div id="countdown" style="font-size:18px; font-weight:700; color:#000000; margin-top:10px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
                         00:00:00
                     </div>
                     <p id="countdown-message"
-                        style="margin:0; font-size:14px; color:#fff; font-weight:500; margin-top:5px;">
+                        style="margin:0; font-size:14px; color:#000000; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);font-weight:500; margin-top:5px;">
                         Waktu Anda Masih Panjang
                     </p>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-body py-0">
-                    <ul class="nav nav-tabs profile-tabs" id="myTab" role="tablist">
+                <div class="card-body py-0 ">
+                    <ul class="nav nav-tabs profile-tabs"
+                        id="myTab" role="tablist">
                         <li class="nav-item" role="presentation"><a class="nav-link active" id="followers-tab"
                                 data-bs-toggle="tab" href="#followers" role="tab" aria-selected="false"
                                 tabindex="-1"><i class="ti ti-building me-2"></i> Informasi Perusahaan</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab" data-bs-toggle="tab"
                                 href="#profile" role="tab" aria-selected="true"><i class="ti ti-file me-2"></i>
                                 Sertifikat SMK</a></li>
-
                     </ul>
                 </div>
             </div>
@@ -91,11 +130,11 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item px-0 pt-0">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">NIB Perusahaan</p>
                                                     <p class="company-nib mb-0"></p>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Nama Penanggung Jawab</p>
                                                     <p class="company-pic-name mb-0"></p>
                                                 </div>
@@ -103,11 +142,11 @@
                                         </li>
                                         <li class="list-group-item px-0">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Telepon</p>
                                                     <p class="company-phone mb-0"></p>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Kota</p>
                                                     <p class="company-city mb-0"></p>
                                                 </div>
@@ -115,11 +154,11 @@
                                         </li>
                                         <li class="list-group-item px-0">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Email</p>
                                                     <p class="company-email mb-0">anshan.dh81@gmail.com</p>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Zip Code</p>
                                                     <p class="mb-0">956 754</p>
                                                 </div>
@@ -127,7 +166,7 @@
                                         </li>
                                         <li class="list-group-item px-0 pb-0">
                                             <p class="mb-1 text-muted">Alamat</p>
-                                            <p class="company-address mb-0"></p>
+                                            <p class="company-address mb-4"></p>
                                         </li>
                                     </ul>
                                 </div>
@@ -186,7 +225,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Status</h3>
-                                                    <p class="sertificate-status text-dark mb-0"></p>
+                                                    <p class="sertificate-status text-white mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-file-alt fa-lg text-primary f-36"></i>
@@ -201,7 +240,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Tanggal Terbit</h3>
-                                                    <p class="sertificate-publish badge bg-info text-dark mb-0"></p>
+                                                    <p class="sertificate-publish badge text-white mb-0" style="background: #002688;"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-regular fa-calendar-alt fa-lg text-primary f-36"></i>
@@ -216,7 +255,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-8">
                                                     <h3 class="mb-1">Masa Berlaku</h3>
-                                                    <p class="sertificate-expired text-dark mb-0"></p>
+                                                    <p class="sertificate-expired text-white mb-0"></p>
                                                 </div>
                                                 <div class="col-4 text-end">
                                                     <i class="fa-solid fa-clock fa-lg text-primary f-36"></i>
@@ -239,7 +278,7 @@
                     </div>
                 </div>
             </div>
-        </div><!-- [ sample-page ] end -->
+        </div>
     </div>
 @endsection
 
@@ -379,7 +418,7 @@
                 number_of_certificate: data['number_of_certificate'] ?? '-',
                 is_active: {
                     init: data['is_active'] ?? '-',
-                    color: isActive ? "text-dark bg-success" : "text-dark bg-danger",
+                    color: isActive ? "text-white bg-success" : "text-dark bg-danger",
                     text_status: isActive ? "Aktif" : "Tidak Aktif",
                     icon_status: isActive ? "fas fa-circle-check" : "fas fa-circle-xmark",
                 },
@@ -433,6 +472,7 @@
         }
 
         async function setSertifikatData(data) {
+            console.log("🚀 ~ setSertifikatData ~ data:", data)
             const certificatePdfContainer = $('#certificate-pdf');
 
             if (data.certificate_file && data.certificate_file !== '-') {

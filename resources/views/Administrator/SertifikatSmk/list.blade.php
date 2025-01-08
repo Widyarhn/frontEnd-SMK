@@ -506,8 +506,7 @@
                                                             <b>${element.company_name || '-'}</b>
                                                         </li>
                                                         <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                            <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                alt="" class="wid-20 rounded me-1 img-fluid">
+                                                           <i class="fa-solid fa-user-tie me-1"></i>
                                                             Penilai : <b>${element.disposition_to ? element.disposition_to.name : '-'}</b>
                                                         </li>
                                                     </ul>
@@ -529,8 +528,7 @@
                                                     </ul>
                                                     <ul class="list-unstyled mt-2 mb-0 text-muted">
                                                         <li class="d-sm-inline-block d-block mt-1 me-3">
-                                                            <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                alt="" class="wid-20 rounded me-1 img-fluid">
+                                                           <i class="fa-solid fa-user-tie me-1"></i>
                                                             Posisi : <b>${element.disposition_by ? element.disposition_by.name : '-'}</b>
                                                         </li>
                                                     </ul>
@@ -540,7 +538,7 @@
                                                                                                 Catatan Permohonan</div>
                                                                                             <div class="help-md-hidden">
                                                                                                 <div class="bg-body mb-3 p-3">
-                                                                                                    <h6><img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                                    <h6><img src="{{ asset('assets') }}/images/user/user-profil.jpg"
                                                                                                             alt="" class="wid-20 avatar me-2 rounded">Catatan terakhir dari <a href="#" class="link-secondary">${element.updated_by}</a></h6>
                                                                                                     <p class="mb-0">
                                                                                                         ${truncatedNotes}

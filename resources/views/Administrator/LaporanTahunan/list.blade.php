@@ -406,27 +406,25 @@
                                                 <div class="help-sm-hidden">
                                                     <ul class="list-unstyled mt-2 mb-0 text-muted">
                                                         <li
-                                                            class="d-sm-inline-block d-block mt-1 me-2">
+                                                            class="d-sm-inline-block d-block mt-1 me-3">
                                                             <i
                                                                 class="fa-solid fa-calendar-day me-1"></i>
                                                             Tahun Laporan : <b>${element.tahun_laporan}</b>
                                                         </li>
                                                         <li
-                                                            class="d-sm-inline-block d-block mt-1 me-2">
-                                                            <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
-                                                                alt=""
-                                                                class="wid-20 rounded me-1 img-fluid">
+                                                            class="d-sm-inline-block d-block mt-1 me-3">
+                                                            <i class="fa-solid fa-user-tie me-1"></i>
                                                             Diverifikasi Oleh <b>${element.diverifikasi_oleh.assessor.name}</b>
                                                         </li>
                                                     </ul>
                                                     <ul class="list-unstyled mt-2 mb-0 text-muted">
                                                         <li
-                                                            class="d-sm-inline-block d-block mt-1 me-2">
+                                                            class="d-sm-inline-block d-block mt-1 me-3">
                                                             <i class="fa-solid fa-calendar-day me-1"></i>
                                                             Tanggal Dibuat : <b>${element.created_at}</b>
                                                         </li>
                                                         <li
-                                                            class="d-sm-inline-block d-block mt-1 me-2">
+                                                            class="d-sm-inline-block d-block mt-1 me-3">
                                                             <i class="fa-solid fa-calendar-day me-1"></i>
                                                             Tanggal Terverifikasi : <b>${element.tanggal_verifikasi}</b>
                                                         </li>
@@ -439,7 +437,7 @@
                                                                     <div class="help-md-hidden">
                                                                         <div class="bg-body mb-3 p-3">
                                                                             <h6>
-                                                                                <img src="{{ asset('assets') }}/images/user/avatar-5.jpg"
+                                                                                <img src="{{ asset('assets') }}/images/user/user-profil2.jpg"
                                                                                     alt="" class="wid-20 avatar me-2 rounded">
                                                                                 Last comment from <a href="#" class="link-secondary">${element.updated_by}:</a>
                                                                             </h6>
