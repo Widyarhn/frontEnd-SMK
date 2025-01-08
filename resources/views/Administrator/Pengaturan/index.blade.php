@@ -102,14 +102,25 @@
                                                 <div class="form-floating mb-0">
                                                     <input type="text" class="form-control" id="input_nama"
                                                         placeholder="Masukkan Nama Aplikasi" />
-                                                    <label for="namaAplikasi">Nama Aplikasi</label>
+                                                    <label for="input_nama">Nama Aplikasi</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <div class="form-floating mb-0">
+                                                    <input type="text" class="form-control" id="input_nama_instansi"
+                                                        placeholder="Masukkan Nama Aplikasi" />
+                                                    <label for="input_nama_instansi">Nama Instansi</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-4">
+                                        <div class="col-12">
                                             <div class="mb-5">
                                                 <div class="form-floating mb-0">
-                                                    <textarea class="form-control" id="deskripsiAplikasi" rows="3"></textarea>
+                                                    <textarea class="form-control" id="deskripsiAplikasi" rows="5"></textarea>
                                                     <label for="deskripsiAplikasi">Deskripsi Aplikasi</label>
                                                 </div>
                                             </div>
@@ -395,15 +406,11 @@
 
                 uploadFile('file', 'fileUrl', true);
 
-
-
                 document.getElementById('namaAplikasi').innerText = appData.apps_name;
-                document.getElementById('email').innerText = appData.helpdesk_mail;
-                document.getElementById('noWaHelpdesk').innerText = appData.helpdesk_whatsapp;
-                document.getElementById('alamat').innerText = appData.address;
                 document.getElementById('provinsi').innerText = appData.province_name;
-                document.getElementById('noWaHelpdesk').innerText = appData.helpdesk_whatsapp;
-                document.getElementById('email').innerText = appData.helpdesk_mail;
+                $('#email').html(`<i class="fa fa-envelope me-2"></i>${appData.helpdesk_mail}`);
+                $('#noWaHelpdesk').html(`<i class="fa fa-phone me-2"></i>${appData.helpdesk_whatsapp}`);
+                $('#alamat').html(`<i class="fa-solid fa-location-dot me-2"></i> ${appData.address}`);
 
 
                 // Jika ada dropdown disabled, update value-nya

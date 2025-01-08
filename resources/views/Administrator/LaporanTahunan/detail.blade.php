@@ -162,24 +162,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="text-center action-button mb-4 ">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="view-document" class="modal fade" aria-labelledby="exampleModalCenterTitle"
-    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal fade" id="view-document" data-bs-keyboard="false" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Lihat Dokumen</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="max-height: 800px; overflow-y: auto;">
-                    <embed class="view-document-print" src="" frameborder="0" width="100%" height="700px">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                </div>
+                <embed class="view-document-print" src="" frameborder="0" width="100%" height="700px">
             </div>
         </div>
     </div>
@@ -504,7 +497,7 @@
                         ) {
                             if (subElementSchema.assessments.assessmentValue === true || subElementSchema.assessments
                                 .assessmentReason === null) {
-                                assessmentButtonColumn = '<span class="badge bg-success">Sesuai</span>'
+                                assessmentButtonColumn = '<span class="badge p-2 f-12 fw-bold px-3" style="background-color:green; color:white;">Sesuai</span>'
                             } else {
 
                                 assessmentButtonColumn = customRadioCheckHTML(
@@ -527,7 +520,7 @@
                         if (typeof subElementSchema.assessments.assessmentValue !== 'undefined') {
                             if (subElementSchema.assessments.assessmentValue === true || subElementSchema.assessments
                                 .assessmentReason === null) {
-                                assessmentButtonColumn = '<span class="badge bg-success">Sesuai</span>'
+                                assessmentButtonColumn = '<span class="badge p-2 f-12 fw-bold px-3" style="background-color:green; color:white;">Sesuai</span>'
                             } else {
                                 assessmentButtonColumn = '<span class="badge bg-danger">belum Sesuai</span>'
                                 assessmentReasonColumn = subElementSchema.assessments.assessmentReason

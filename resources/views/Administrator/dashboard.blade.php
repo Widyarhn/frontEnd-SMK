@@ -136,10 +136,11 @@
 
                     <div class="row g-3 mx-3">
                         <div class="col-lg-4 col-12 d-flex align-items-center justify-content-center">
-                            <div id="pie-chart-2" style="width: 100%; height: 350px;"></div>
+                            <div id="proses-sertifikasi" style="width: 100%; height: 350px;"></div>
                         </div>
                         <div class="col-lg-8 col-12 mb-4">
                             <div class="row g-3 mt-3">
+                                <!-- Kolom pertama: Pengajuan -->
                                 <div class="col-sm-4 d-flex">
                                     <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #4680FF;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
@@ -150,16 +151,20 @@
                                         <h6 class="mb-0" id="pengajuan"></h6>
                                     </div>
                                 </div>
+
+                                <!-- Kolom kedua: Proses Pengajuan -->
                                 <div class="col-sm-4 d-flex">
                                     <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #E58A00;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
-                                            <span class="d-block  rounded-circle"
+                                            <span class="d-block rounded-circle"
                                                 style="width: 10px; height: 10px; background:#E58A00;"></span>
                                         </div>
                                         <p class="mb-1">Proses Pengajuan</p>
                                         <h6 class="mb-0" id="prosesPengajuan"></h6>
                                     </div>
                                 </div>
+
+                                <!-- Kolom ketiga: Pengesahan Sertifikat -->
                                 <div class="col-sm-4 d-flex">
                                     <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #2CA87F;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
@@ -170,7 +175,12 @@
                                         <h6 class="mb-0" id="pengesahanSertifikat"></h6>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 d-flex">
+                            </div>
+
+                            <!-- Baris kedua untuk Ditolak dan Kadaluwarsa, sejajar dan di tengah -->
+                            <div class="row justify-content-center mt-3">
+                                <!-- Kolom keempat: Ditolak -->
+                                <div class="col-sm-4 d-flex">
                                     <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #DC2626;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
@@ -180,7 +190,9 @@
                                         <h6 class="mb-0" id="ditolak"></h6>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 d-flex">
+
+                                <!-- Kolom kelima: Kadaluwarsa -->
+                                <div class="col-sm-4 d-flex mt-3 mt-md-0">
                                     <div class="bg-body p-3 rounded text-center w-100" style="border: 1px solid #6e0000;">
                                         <div class="d-flex align-items-center justify-content-center mb-2">
                                             <span class="d-block rounded-circle"
@@ -464,8 +476,14 @@
                 setChart(serviceTypes);
 
                 let certificateRequestschart = getDataRest.data.data.certificate_requests || [];
-                setChartcertificateRequest(certificateRequestschart);
+                if (certificateRequestschart && certificateRequestschart.length > 0) {
+                    setChartcertificateRequest(certificateRequestschart);
+                } else {
+                    $('#proses-sertifikasi').html(
+                        '<img src="{{ asset('assets/images/1.png') }}" alt="No Data" style="width: 100%; height: auto; object-fit: cover; top: -50px;">'
+                    );
 
+                }
                 let statusMapping = {
                     request: 'Pengajuan',
                     disposition: 'Proses Pengajuan',
@@ -678,7 +696,8 @@
             };
 
             // Membuat chart baru
-            window.chart_pie_chart_2 = new ApexCharts(document.querySelector('#pie-chart-2'), options_pie_chart_2);
+            window.chart_pie_chart_2 = new ApexCharts(document.querySelector('#proses-sertifikasi'),
+                options_pie_chart_2);
             window.chart_pie_chart_2.render();
         }
 
@@ -812,266 +831,6 @@
             var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
             chart.render();
         }
-
-
-        // async function setChartTotalPenilaian(totalPenilaian) {
-        //     var options = {
-        //         series: [{
-        //             name: 'Pengajuan awal',
-        //             data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-        //         }, {
-        //             name: 'Proses Pengajuan',
-        //             data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-        //         }, {
-        //             name: 'Proses Selesai',
-        //             data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-        //         }],
-        //         chart: {
-        //             type: 'bar',
-        //             height: 350,
-        //             toolbar: false,
-        //         },
-        //         plotOptions: {
-        //             bar: {
-        //                 horizontal: false,
-        //                 columnWidth: '55%',
-        //                 borderRadius: 5,
-        //                 borderRadiusApplication: 'end'
-        //             },
-        //         },
-        //         dataLabels: {
-        //             enabled: false
-        //         },
-        //         stroke: {
-        //             show: true,
-        //             width: 2,
-        //             colors: ['transparent']
-        //         },
-        //         xaxis: {
-        //             categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-        //         },
-        //         yaxis: {
-        //             title: {
-        //                 text: 'Total'
-        //             }
-        //         },
-        //         fill: {
-        //             opacity: 1
-        //         },
-        //         tooltip: {
-        //             y: {
-        //                 formatter: function(val) {
-        //                     return val + " Permohonan"
-        //                 }
-        //             }
-        //         },
-        //         colors: ['#007bff', '#ffc107', '#28a745'] 
-        //     };
-
-        //     var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
-        //     chart.render();
-        // }
-        // async function setChartTotalPenilaian(totalPenilaian) {
-        //     // Get the number of days in the current month using Moment.js
-        //     const daysInMonth = moment().daysInMonth(); // Get the number of days in the current month
-        //     const daysArray = Array.from({
-        //         length: daysInMonth
-        //     }, (_, i) => (i + 1).toString()); // Generate an array of day numbers
-
-        //     // Get the current month (formatted like "January", "February", etc.)
-        //     const currentMonth = moment().format('MMMM YYYY'); // e.g., "January 2025"
-
-        //     // Assuming we have data for each day of the month (using random data for demo purposes)
-        //     var options = {
-        //         series: [{
-        //             name: 'Pengajuan awal',
-        //             data: Array.from({
-        //                 length: daysInMonth
-        //             }, () => Math.floor(Math.random() * 100)) // Random data for 'Pengajuan awal'
-        //         }, {
-        //             name: 'Proses Pengajuan',
-        //             data: Array.from({
-        //                 length: daysInMonth
-        //             }, () => Math.floor(Math.random() * 100)) // Random data for 'Proses Pengajuan'
-        //         }, {
-        //             name: 'Proses Selesai',
-        //             data: Array.from({
-        //                 length: daysInMonth
-        //             }, () => Math.floor(Math.random() * 100)) // Random data for 'Proses Selesai'
-        //         }],
-        //         chart: {
-        //             type: 'bar',
-        //             height: 350,
-        //             toolbar: false,
-        //         },
-        //         plotOptions: {
-        //             bar: {
-        //                 horizontal: false,
-        //                 columnWidth: '55%',
-        //                 borderRadius: 5,
-        //                 borderRadiusApplication: 'end'
-        //             },
-        //         },
-        //         dataLabels: {
-        //             enabled: false
-        //         },
-        //         stroke: {
-        //             show: true,
-        //             width: 2,
-        //             colors: ['transparent']
-        //         },
-        //         xaxis: {
-        //             categories: daysArray,
-        //             title: {
-        //                 text: 'Tanggal'
-        //             }
-        //         },
-        //         yaxis: {
-        //             title: {
-        //                 text: 'Total Permohonan'
-        //             }
-        //         },
-        //         fill: {
-        //             opacity: 1
-        //         },
-        //         tooltip: {
-        //             shared: true, // This will group all tooltips in a shared container
-        //             intersect: false, // Tooltips will be triggered by any segment, not only on hover
-        //             y: {
-        //                 formatter: function(val) {
-        //                     return val + " Permohonan";
-        //                 }
-        //             },
-        //             custom: function({
-        //                 series,
-        //                 seriesIndex,
-        //                 dataPointIndex,
-        //                 w
-        //             }) {
-        //                 // Create a custom tooltip with a header and additional info
-        //                 const date = daysArray[dataPointIndex]; // Get the current date
-        //                 const pengajuanAwal = series[0][dataPointIndex]; // Get 'Pengajuan awal' value
-        //                 const prosesPengajuan = series[1][dataPointIndex]; // Get 'Proses Pengajuan' value
-        //                 const prosesSelesai = series[2][dataPointIndex]; // Get 'Proses Selesai' value
-
-        //                 // Format the tooltip content
-        //                 return `
-    //             <div style="padding: 10px; font-size: 14px;">
-    //                 <strong>Tanggal: ${date} ${currentMonth}</strong><br/>
-    //                 <strong>Pengajuan awal: </strong>${pengajuanAwal} Permohonan<br/>
-    //                 <strong>Proses Pengajuan: </strong>${prosesPengajuan} Permohonan<br/>
-    //                 <strong>Proses Selesai: </strong>${prosesSelesai} Permohonan
-    //             </div>
-    //         `;
-        //             }
-        //         },
-        //         colors: ['#007bff', '#ffc107', '#28a745'],
-        //     };
-
-        //     // Render the chart
-        //     var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
-        //     chart.render();
-        // }
-
-
-        // async function setChartTotalPenilaian(totalPenilaian, startDate, endDate) {
-        //     // Generate an array of dates between startDate and endDate
-        //     const dateRange = [];
-        //     let currentDate = moment(startDate);
-
-        //     // Create the date range and format it as "DD MMM"
-        //     while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
-        //         dateRange.push(currentDate.format('YYYY-MM-DD')); // Store full date for filtering
-        //         currentDate.add(1, 'days'); // Increment the day
-        //     }
-
-        //     // Filter the totalPenilaian data to get the dates that have data
-        //     const filteredDates = dateRange.filter(date => {
-        //         return totalPenilaian.some(item => moment(item.date).format('YYYY-MM-DD') === date);
-        //     });
-
-        //     // Map the filtered dates into "DD MMM" format for the x-axis
-        //     const formattedDates = filteredDates.map(date => moment(date).format('DD MMM'));
-
-        //     // Map totalPenilaian data to match the filtered dates
-        //     const pengajuanAwal = filteredDates.map(date => {
-        //         const dataForDate = totalPenilaian.find(item => moment(item.date).format('YYYY-MM-DD') ===
-        //         date);
-        //         return dataForDate ? dataForDate.pengajuan_awal : 0;
-        //     });
-
-        //     const prosesPengajuan = filteredDates.map(date => {
-        //         const dataForDate = totalPenilaian.find(item => moment(item.date).format('YYYY-MM-DD') ===
-        //         date);
-        //         return dataForDate ? dataForDate.proses_pengajuan : 0;
-        //     });
-
-        //     const prosesSelesai = filteredDates.map(date => {
-        //         const dataForDate = totalPenilaian.find(item => moment(item.date).format('YYYY-MM-DD') ===
-        //         date);
-        //         return dataForDate ? dataForDate.proses_selesai : 0;
-        //     });
-
-        //     var options = {
-        //         series: [{
-        //             name: 'Pengajuan awal',
-        //             data: pengajuanAwal
-        //         }, {
-        //             name: 'Proses Pengajuan',
-        //             data: prosesPengajuan
-        //         }, {
-        //             name: 'Proses Selesai',
-        //             data: prosesSelesai
-        //         }],
-        //         chart: {
-        //             type: 'bar',
-        //             height: 350,
-        //             toolbar: false,
-        //         },
-        //         plotOptions: {
-        //             bar: {
-        //                 horizontal: false,
-        //                 columnWidth: '55%',
-        //                 borderRadius: 5,
-        //                 borderRadiusApplication: 'end'
-        //             },
-        //         },
-        //         dataLabels: {
-        //             enabled: false
-        //         },
-        //         stroke: {
-        //             show: true,
-        //             width: 2,
-        //             colors: ['transparent']
-        //         },
-        //         xaxis: {
-        //             categories: formattedDates, // Display only the dates that have data
-        //             title: {
-        //                 text: 'Tanggal'
-        //             },
-        //         },
-        //         yaxis: {
-        //             title: {
-        //                 text: 'Total Permohonan'
-        //             }
-        //         },
-        //         fill: {
-        //             opacity: 1
-        //         },
-        //         tooltip: {
-        //             y: {
-        //                 formatter: function(val) {
-        //                     return val + " Permohonan";
-        //                 }
-        //             }
-        //         },
-        //         colors: ['#007bff', '#ffc107', '#28a745'], // Different colors for the bars
-        //     };
-
-        //     // Render the chart
-        //     var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
-        //     chart.render();
-        // }
 
         async function fetchData(url, params) {
             try {
