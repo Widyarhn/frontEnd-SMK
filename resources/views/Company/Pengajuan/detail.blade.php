@@ -180,19 +180,18 @@
             </div>
         </div>
     </div>
-
     <form id="fCreate">
         <div class="row">
-            <!-- Kolom Surat Permohonan -->
             <div class="col-12 col-md-8">
                 <div class="card mt-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5>Surat Permohonan</h5>
-                        <button class="btn btn-secondary btn-sm" title="Log Aktivitas" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-secondary btn-sm" title="Log Aktivitas" data-bs-toggle="modal"
                             data-bs-target="#exampleModalCenter" onclick="loadHistoryModal()">
                             <i class="fa-solid fa-clock me-2"></i>Log
                         </button>
                     </div>
+
                     <div id="applicationLetterSection"></div>
                 </div>
             </div>
@@ -206,17 +205,17 @@
                         <li class="list-group-item">
                             <div class="media align-items-center">
                                 <label class="mb-2 fw-bold">Jenis Pelayanan :</label>
-                                <div class="media-body" id="serviceTypes">
-
-                                </div>
+                                <div class="media-body" id="serviceTypes"></div>
                             </div>
                         </li>
                         <li class="list-group-item">
                             <div class="media align-items-center">
                                 <label class="mb-2 fw-bold">Jadwal Verifikasi <span id="tipe-verifikasi"></span> :</label>
                                 <div class="media-body">
-                                    <p class="mb-0"><i class="fa-solid fa-calendar-days me-2"></i><label class="mb-0"
-                                            id="jadwal-verifikasi-lapangan"></label></p>
+                                    <p class="mb-0">
+                                        <i class="fa-solid fa-calendar-days me-2"></i>
+                                        <label class="mb-0" id="jadwal-verifikasi-lapangan"></label>
+                                    </p>
                                 </div>
                             </div>
                         </li>
@@ -233,7 +232,6 @@
                     </div>
                     <div class="col-lg-12 col-sm-12 col-xs-12 actionButton"></div>
                 </div>
-
             </div>
         </div>
     </form>
@@ -873,8 +871,8 @@
                                         ${
                                             applicationLetter.fileOfApplicationLetter
                                                 ? `<a href="${applicationLetter?.fileOfApplicationLetter}" class="link-secondary text-decoration-underline link-underline-opacity-25 link-underline-opacity-100-hover d-block mb-3" target="_blank" rel="noopener noreferrer">
-                                                                                    Lihat dokumen yang dikirim
-                                                                                </a>`
+                                                                                            Lihat dokumen yang dikirim
+                                                                                        </a>`
                                                 : ""
                                         }
                                         <input type="file" class="filepond filepond-input application_letter mb-0" id="application_letter_show" accept="application/pdf" ${applicationLetter.fileOfApplicationLetter ? "" : "required"} />
