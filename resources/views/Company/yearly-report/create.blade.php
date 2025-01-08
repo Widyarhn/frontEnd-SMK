@@ -5,7 +5,11 @@
         href="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
     <link rel="stylesheet"
         href="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.css">
-@endsection
+        <link rel="stylesheet" href="{{ asset('assets//js/plugins/yearpicker/yearpicker.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+
 
 @section('content')
     <div class="page-header">
@@ -68,6 +72,7 @@
     <script src="{{ asset('assets') }}/js/plugins/wizard.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/yearpicker/yearpicker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
     <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
