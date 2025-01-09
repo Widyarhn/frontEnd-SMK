@@ -3,7 +3,7 @@
 <!-- [Head] start -->
 
 <head>
-    <title>Register | SMK-TD</title>
+    <title>Register | SMK</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
     <link href="{{ asset('assets/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+
+    <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js"></script>
 </head>
 <style>
     .welcome-banner::after {
@@ -86,32 +88,34 @@
 
                         <form id="wizard-form">
                             <div class="wizard-step step-1" data-step="1">
-                                <h5 class="text-left mb-4" style="color:#214f96;"><i
-                                        class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan</h5>
+                                <h5 class="text-left mb-4" style="color:#214f96;">
+                                    <i class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan
+                                </h5>
                                 <div class="mb-3">
                                     <label class="form-label fw-bold" for="nib">Nomor Induk Berusaha (NIB)</label>
                                     <div class="input-group">
-                                        <div class="input-group-text"><i
-                                                class="fa-solid fa-magnifying-glass text-dark"></i></div>
-                                        <input type="number" min="0" maxlength="20" minlength="13"
-                                            class="form-control" name="nib" id="nib"
-                                            placeholder="Masukkan Nomor NIB" onkeypress="return event.keyCode != 13;"
-                                            required />
+                                        <div class="input-group-text">
+                                            <i class="fa-solid fa-magnifying-glass text-dark"></i>
+                                        </div>
+                                        <input type="text" class="form-control" id="nib"
+                                            placeholder="Masukkan nomor induk berusaha" />
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
-                                    <button type="button" class="btn btn-primary mb-2 check-nib"
-                                        style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Cek
-                                        NIB</button>
+                                    <button type="button" class="btn btn-primary mb-2" onclick="getAllowedNib()"
+                                        style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">
+                                        <em class="icon ni ni-check-round-cut"></em> &nbsp; Cek NIB
+                                    </button>
                                 </div>
                             </div>
+
                             <div class="wizard-step step-2" data-step="2">
                                 <h5 class="text-left mb-4" style="color:#214f96;"><i
                                         class="fa-solid fa-circle-info fa-lg me-2"></i>Data Perusahaan</h5>
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-0">
-                                            <input type="text" class="form-control" id="nib"
+                                            <input type="text" class="form-control" id="data-perusahaan-nib"
                                                 placeholder="" />
                                             <label for="nib">NIB</label>
                                         </div>
@@ -119,10 +123,8 @@
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-0">
                                             <input type="text" class="form-control"
-                                                id="data-perusahaan-nama-perusahaan"
-                                                name="data-perusahaan-nama-perusahaan"
-                                                placeholder="Nama Perusahaan" />
-                                            <label for="data-perusahaan-nama-perusahaan">Nama Perusahaan</label>
+                                                id="data-perusahaan-nama-perusahaan" placeholder="" />
+                                            <label for="namaPerusahaan">Nama Perusahaan</label>
                                         </div>
                                     </div>
                                 </div>
@@ -130,20 +132,17 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="text" class="form-control"
-                                                    id="data-perusahaan-no-telepon-perusahaan"
-                                                    name="data-perusahaan-no-telepon-perusahaan"
-                                                    placeholder="Nomor Telepon" />
-                                                <label for="data-perusahaan-no-telepon-perusahaan">No. Telepon
-                                                    Perusahaan</label>
+                                                <input type="number" class="form-control"
+                                                    id="data-perusahaan-no-telepon-perusahaan" placeholder="" />
+                                                <label for="noTelp">No. Telepon Perusahaan</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="text" class="form-control" id="data-perusahaan-email"
-                                                    name="data-perusahaan-email" placeholder="Email" />
+                                                <input type="email" class="form-control" id="data-perusahaan-email"
+                                                    placeholder="Email address" />
                                                 <label for="email">Email</label>
                                             </div>
                                         </div>
@@ -152,18 +151,17 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="fw-normal" for="input-provinsi">Provinsi</label>
-                                            <select class="form-control select2" name="input_provinsi"
-                                                id="input-provinsi">
-                                            </select>
+                                            <label class="fw-normal" for="data-perusahaan-provinsi">Provinsi</label>
+                                            <select class="form-control form-control-sm"
+                                                name="data-perusahaan-provinsi" id="data-perusahaan-provinsi"
+                                                required></select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="fw-normal" for="input-kota">Kota</label>
-                                            <select class="form-control select2" name="input_kota" id="input-kota">
-
-                                            </select>
+                                            <label class="fw-normal" for="data-perusahaan-kota">Kota</label>
+                                            <select class="form-control form-control-sm" name="data-perusahaan-kota"
+                                                id="data-perusahaan-kota" required></select>
                                         </div>
                                     </div>
                                 </div>
@@ -171,17 +169,16 @@
                                 <div class="mb-3">
                                     <div class="col-md-12">
                                         <div class="form-floating mb-0">
-                                            <textarea class="form-control" id="floatingdeskripsi" rows="3"></textarea>
+                                            <textarea class="form-control" id="data-perusahaan-alamat" rows="3"></textarea>
                                             <label for="floatingdeskripsi">Alamat</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="col-md-12">
-                                        <label class="fw-normal" for="input-pelayanan">Jenis Pelayanan</label>
-                                        <select class="form-control select2" name="input_pelayanan"
-                                            id="input-pelayanan">
-                                        </select>
+                                        <label class="fw-normal" for="data-jenis-pelayanan">Jenis Pelayanan</label>
+                                        <select class="form-control form-control-sm" name="data-jenis-pelayanan"
+                                            id="data-jenis-pelayanan" required></select>
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
@@ -196,7 +193,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="text" class="form-control" id="namaPic"
+                                                <input type="text" class="form-control" id="data-pic-nama"
                                                     placeholder="" />
                                                 <label for="namaPic">Nama PIC</label>
                                             </div>
@@ -205,7 +202,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="text" class="form-control" id="noTelpPic"
+                                                <input type="text" class="form-control" id="data-pic-no-telepon"
                                                     placeholder="" />
                                                 <label for="noTelpPic">No. Telepon PIC</label>
                                             </div>
@@ -226,34 +223,43 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="text" class="form-control" id="username"
+                                                <input type="text" class="form-control" id="data-informasi-akun-username"
                                                     placeholder="" />
-                                                <label for="username">Username</label>
+                                                <label for="data-informasi-akun-username">Username</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="number" class="form-control" id="noTelp"
+                                                <input type="number" class="form-control" id="data-informasi-akun-no-telepon"
                                                     placeholder="" />
-                                                <label for="noTelp">No. Telepon</label>
+                                                <label for="data-informasi-akun-no-telepon">No. Telepon</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <div class="form-floating mb-0">
+                                                <input type="password" class="form-control" id="data-informasi-akun-password"/>
+                                                <label for="data-informasi-akun-password">Password</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-flex mt-1 justify-content-between align-items-center">
                                     <div class="form-check">
-                                        <input class="form-check-input input-primary" type="checkbox"
-                                            id="customCheckc1" checked="" />
-                                        <label class="form-check-label text-muted" for="customCheckc1">Saya menyetujui
-                                            semua
-                                            Syarat & Ketentuan</label>
+                                        <input type="checkbox" class="custom-control-input" name="cp1-save-register"
+                                            id="cp1-save-register" value="1" required />
+                                        <label class="custom-control-label" for="cp1-save-register">Saya menyetujui
+                                            syarat dan ketentuan yang berlaku.</label>
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
-                                    <a href="/admin/dashboard" class="btn mb-2"
-                                        style="border-radius:5px;background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;"">Simpan</a>
+                                    <button type="button" class="btn mb-2" id="daftar-akun"
+                                        style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">
+                                        Simpan
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -278,17 +284,44 @@
     <script src="https://ableproadmin.com/assets/js/plugins/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
     <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
     <script src="{{ asset('assets') }}/js/axios.js"></script>
     <script src="{{ asset('assets') }}/js/restAPI.js"></script>
     <script>
+        let languageIndonesian = {
+            inputTooShort: function(args) {
+                var remainingChars = args.minimum - args.input.length;
+                return `silakan masukkan ${remainingChars} karakter atau lebih`;
+            },
+            noResults: function() {
+                return 'Tidak ada data yang sesuai';
+            },
+            searching: function() {
+                return 'Mencari…';
+            },
+        };
+
+        let isNibAllowed = 0;
+
+        let companyType = {
+            '01': 'PT',
+            '02': 'CV',
+            '04': 'Badan Usaha pemerintah',
+            '05': 'Firma (Fa)',
+            '06': 'Persekutuan Perdata',
+            '07': 'Koperasi',
+            '10': 'Yayasan',
+            '16': 'Bentuk Usaha Tetap (BUT)',
+            '17': 'Perseorangan',
+            '18': 'Badan Layanan Umum (BLU)',
+            '19': 'Badan Hukum',
+        };
         async function checkOSS() {
-            // loadingPage(true);
+            loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/setting/find', {
+                '{{ env('SERVICE_BASE_URL') }}/setting/find', {
                     name: "oss"
                 }
             ).then(function(response) {
@@ -300,75 +333,13 @@
                 return resp;
             });
             if (getDataRest.status == 200) {
+                loadingPage(false)
                 const active = getDataRest.data.data.is_active;
-                if (active === false) {
+                if (active === 0) {
                     adjustWizardSteps();
-                } else {
-                    await getAllowedNib();
                 }
             }
         }
-
-        async function getAllowedNib() {
-            $(document).on('click', '.check-nib', async function() {
-                loadingPage(true);
-                const nib = $('#nib').val();
-                try {
-                    const response = await CallAPI('GET',
-                    `{{ env('SERVICE_BASE_URL') }}/oss/inquery-nib`, {
-                        nib
-                    });
-
-                    loadingPage(false);
-
-                    if (response.status === 200) {
-                        const data = response.data.data;
-
-                        // Display success notification
-                        notificationAlert('success', 'Pemberitahuan',
-                            'Berhasil menemukan NIB untuk KBLI E-SMK dari data OSS Perusahaan! Silahkan Klik Tombol Selanjutnya.'
-                            );
-
-                        // Reset dependent fields
-                        $("#data-perusahaan-provinsi, #data-perusahaan-kota, #data-jenis-pelayanan")
-                            .val(' ').trigger("change");
-
-                        // Populate form fields
-                        $('#data-perusahaan-nib').val(data.nib);
-                        const companyTypeName = companyType[data.jenis_perseroan]?.toUpperCase() || '';
-                        $('#data-perusahaan-nama-perusahaan').val(
-                            `${companyTypeName} ${data.nama_perseroan}`);
-                        $('#data-perusahaan-no-telepon-perusahaan').val(data.nomor_telpon_perseroan);
-                        $('#data-perusahaan-email').val(data.email_perusahaan);
-                        $('#data-perusahaan-alamat').val(
-                            `${data.alamat_perseroan} Kelurahan ${data.kelurahan_perseroan || '-'} Kode pos ${data.kode_pos_perseroan || '-'}`
-                        );
-
-                        const namaPic = data.penanggung_jwb?.[0]?.nama_penanggung_jwb || '-';
-                        const teleponPic = data.penanggung_jwb?.[0]?.no_hp_penanggung_jwb || '-';
-                        $('#data-pic-nama').val(namaPic);
-                        $('#data-pic-no-telepon').val(teleponPic);
-                        navigateWizard(2);
-                    }
-                } catch (error) {
-                    loadingPage(false);
-                    const errorMessage = error.response?.data?.message ||
-                        'Terjadi kesalahan saat memproses data.';
-                    notificationAlert('warning', 'Pemberitahuan', errorMessage);
-                    $('.selanjutnya').attr('disabled', true);
-                }
-            });
-        }
-
-        /**
-         * Handles the navigation between wizard steps.
-         * @param {number} step The step number to navigate to.
-         */
-        function navigateWizard(step) {
-            $('.wizard-step').hide(); // Hide all steps
-            $(`.wizard-step[data-step="${step}"]`).show(); // Show the desired step
-        }
-
 
         function adjustWizardSteps() {
             // Menyembunyikan semua langkah
@@ -377,119 +348,115 @@
                 step.style.display = 'none';
             });
 
-            // Menampilkan langkah kedua (step-2)
             const step2 = document.querySelector('.wizard-step.step-2');
             if (step2) {
-                step2.style.display = 'block'; // Tampilkan step-2
+                step2.style.display = 'block';
             } else {
                 console.error('Step 2 element not found in DOM.');
             }
         }
 
-        function selectFilter(id) {
-            if (id === '#input-provinsi') {
-                $(id).select2({
-                    ajax: {
-                        url: `{{ env('SERVICE_BASE_URL') }}/provinsi/list`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data;
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.name
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih Provinsi',
-                    width: '100%' // Menyesuaikan lebar elemen Select2 dengan container
-                });
-            } else if (id === '#input-kota') {
-                $(id).select2({
-                    ajax: {
-                        url: `{{ env('SERVICE_BASE_URL') }}/kota/list`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data;
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.name
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih Kota',
-                    width: '100%' // Menyesuaikan lebar elemen Select2 dengan container
-                });
-            } else if (id === '#input-pelayanan') {
-                $(id).select2({
-                    ajax: {
-                        url: `/dummy/service_type.json`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data;
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.name
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih jenis pelayanan',
-                    width: '100%' // Menyesuaikan lebar elemen Select2 dengan container
-                });
+        document.getElementById('nib').addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                getAllowedNib();
             }
+        });
+
+        async function getAllowedNib() {
+            loadingPage(true);
+            const dataRest = await CallAPI(
+                'GET',
+                `{{ env('SERVICE_BASE_URL') }}/oss/inquery-nib`, {
+                    nib: $('#nib').val()
+                }
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                console.error("🚀 ~ message:", resp.data.message)
+                notificationAlert('warning', 'Pemberitahuan', resp.data.message);
+                $('.selanjutnya').attr('disabled', true);
+                return resp;
+            });
+            let data = {};
+            if (dataRest.status == 200) {
+                loadingPage(false);
+                notificationAlert('success', 'Pemberitahuan',
+                    'Berhasil menemukan NIB untuk KBLI E-SMK dari data OSS Perusahaan!. Silahkan Klik Tombol Selanjutnya'
+                );
+                adjustWizardSteps();
+
+                console.log(dataRest)
+                $("#input-provinsi").val(' ').trigger("change");
+                $("#input-kota").val(' ').trigger("change");
+                $("#input-pelayanan").val(' ').trigger("change");
+
+                data = dataRest.data.data;
+                isNibAllowed = 1;
+                $('#data-perusahaan-nib').val(data.nib);
+                let companyTypeName = typeof companyType[data.jenis_perseroan] != 'undefined' ?
+                    companyType[data.jenis_perseroan].toUpperCase() : ''
+                $('#data-perusahaan-nama-perusahaan').val(companyTypeName + ' ' + data.nama_perseroan);
+                $('#data-perusahaan-no-telepon-perusahaan').val(data.nomor_telpon_perseroan);
+                $('#data-perusahaan-email').val(data.email_perusahaan);
+                $('#data-perusahaan-alamat').val(
+                    `${data.alamat_perseroan} Kelurahan ${data.kelurahan_perseroan || '-'} Kode pos ${data.kode_pos_perseroan || '-'}`
+                );
+
+                let namaPic = data.penanggung_jwb.length > 0 ? data.penanggung_jwb[0]
+                    .nama_penanggung_jwb : '-';
+                let teleponPic = data.penanggung_jwb.length > 0 ? data.penanggung_jwb[0]
+                    .no_hp_penanggung_jwb : '-';
+                $('#data-pic-nama').val(namaPic)
+                $('#data-pic-no-telepon').val(teleponPic)
+
+                $('.selanjutnya').attr('disabled', false);
+            }
+            return data;
+
+        }
+
+        async function submitCompany() {
+            $(document).on('click', '#daftar-akun', async function() {
+                loadingPage(true);
+                const dataSubmission = {
+                    "province_id": $('#data-perusahaan-provinsi').val(),
+                    "city_id": $('#data-perusahaan-kota').val(),
+                    "username": $('#data-informasi-akun-username').val(),
+                    "phone_number": $('#data-informasi-akun-no-telepon').val(),
+                    "service_types": $('#data-jenis-pelayanan').val(),
+                    "nib": $('#data-perusahaan-nib').val(),
+                    "password" : $('#data-informasi-akun-password').val(),
+                };
+
+                console.log(dataSubmission)
+                const dataRest = await CallAPI(
+                    'POST',
+                    `{{ env('SERVICE_BASE_URL') }}/register`,
+                    dataSubmission
+                ).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    console.error("🚀 ~ message:", resp.data.message)
+                    notificationAlert('warning', 'Pemberitahuan', resp.data.message);
+                    return resp;
+                });
+                if (dataRest.status == 200) {
+                    loadingPage(false);
+                    notificationAlert('success', 'Pemberitahuan', dataRest.data.message);
+                }
+            });
+        }
+
+        function notificationAlert(tipe, title, message) {
+            swal(
+                title,
+                message,
+                tipe
+            );
         }
 
         function loadingPage(show) {
@@ -501,13 +468,59 @@
             return;
         }
 
-        function notificationAlert(tipe, title, message) {
-            swal(
-                title,
-                message,
-                tipe
-            );
+        async function select2List(idElement = '#data-perusahaan-provinsi', type = 'provinsi', id = '') {
+            let urlExtended = '';
+            let isAllowMultiple = false;
+            if (type == 'provinsi') {
+                urlExtended = 'provinsi/list';
+                isPlaceholder = 'Pilih Provinsi';
+            }
+            if (type == 'kota') {
+                urlExtended = 'kota/list';
+                isPlaceholder = 'Pilih Kota';
+            }
+            if (type == 'jenis_pelayanan') {
+                urlExtended = 'service-type/list';
+                isPlaceholder = 'Pilih Jenis Pelayanan';
+                isAllowMultiple = true;
+            }
+            $(`${idElement}`).select2({
+                language: languageIndonesian,
+                ajax: {
+                    url: `{{ env('SERVICE_BASE_URL') }}/${urlExtended}`,
+                    dataType: 'json',
+                    delay: 500,
+                    data: function(params) {
+                        let query = {
+                            keyword: params.term,
+                            page: 1,
+                            limit: 30,
+                            ascending: 1,
+                        }
+                        if (id != '') {
+                            query.province_id = id;
+                        }
+                        return query;
+                    },
+                    processResults: function(res) {
+                        let data = res.data
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    text: item.name,
+                                    id: item.id
+                                }
+                            })
+                        };
+                    },
+                },
+                enable: true,
+                allowClear: true,
+                placeholder: isPlaceholder,
+                multiple: isAllowMultiple
+            });
         }
+
 
         document.addEventListener("DOMContentLoaded", () => {
             const steps = document.querySelectorAll(".wizard-step");
@@ -541,14 +554,46 @@
                     }
                 });
             });
-            showStep(currentStep);
-            getAllowedNib();
-            // checkOSS();
 
-            // Inisialisasi Select2
-            selectFilter('#input-provinsi');
-            selectFilter('#input-kota');
-            selectFilter('#input-pelayanan');
+            $("#data-perusahaan-provinsi").select2({
+                language: languageIndonesian,
+                placeholder: 'Pilih Provinsi',
+                enable: false,
+            });
+            $("#data-perusahaan-kota").select2({
+                language: languageIndonesian,
+                placeholder: 'Pilih Kota',
+                enable: false,
+            });
+            $("#data-jenis-pelayanan").select2({
+                language: languageIndonesian,
+                placeholder: 'Pilih Jenis Pelayanan',
+                enable: false,
+            });
+
+            $('#data-informasi-akun-username, #data-informasi-akun-no-telepon').on('input', function() {
+                if ($('#data-informasi-akun-username').val() == '' || $('#data-informasi-akun-no-telepon')
+                    .val() == '') {
+                    $('#cp1-save-register').prop('checked', false);
+                    $('#cp1-save-register').attr('disabled', true);
+                } else {
+                    $('#cp1-save-register').attr('disabled', false);
+                }
+            });
+
+
+            select2List('#data-perusahaan-provinsi', 'provinsi');
+            select2List('#data-jenis-pelayanan', 'jenis_pelayanan');
+            $('#data-perusahaan-provinsi').on('change', async function() {
+                $("#data-perusahaan-kota").val(' ').trigger("change");
+                let id = $(this).val();
+                select2List('#data-perusahaan-kota', 'kota', id);
+            });
+
+            showStep(currentStep);
+            checkOSS();
+            submitCompany();
+
         });
     </script>
 
