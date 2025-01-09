@@ -716,6 +716,7 @@
         async function setListPengajuanSmk(dataList, pagination) {
             totalPage1 = pagination.total;
             let display_from = ((defaultLimitPage1 * pagination.current_page) + 1) - defaultLimitPage1;
+            console.log("🚀 ~ setListPengajuanSmk ~ display_from:", display_from)
             let index_loop = display_from;
             let display_to = currentPage1 < pagination.total_pages ? dataList.length < defaultLimitPage1 ?
                 dataList.length : (defaultLimitPage1 * pagination.current_page) : totalPage1;
@@ -769,10 +770,11 @@
                 </tr>`;
                 $('#countPage1').text("0 - 0");
                 $('#totalPage1').text("0");
+            } else {
+                $('#totalPage1').text(totalPage1);
+                $('#countPage1').text(`${display_from} - ${display_to}`);
             }
             $('#listData1').append(getDataTable1);
-            $('#totalPage1').text(totalPage1);
-            $('#countPage1').text(`${display_from} - ${display_to}`);
 
             $('[data-bs-toggle="tooltip"]').tooltip();
         }
@@ -1002,10 +1004,12 @@
                     <th class="text-center" colspan="${$('th').length}"> Tidak ada data. </th>
                 </tr>`;
                 $('#countPage2').text("0 - 0");
+            } else {
+
+                $('#totalPage2').text(totalPage2);
+                $('#countPage2').text(`${display_from} - ${display_to}`);
             }
             $('#listData2').append(getDataTable2);
-            $('#totalPage2').text(totalPage2);
-            $('#countPage2').text(`${display_from} - ${display_to}`);
 
             $('[data-bs-toggle="tooltip"]').tooltip();
         }
@@ -1061,7 +1065,7 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `{{ asset('dummy/internal/md-kbli/list_kbli.json') }}`, {
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/kbli`, {
                     id: id,
                     page: page,
                     limit: limit,
@@ -1081,7 +1085,7 @@
                 let handleDataArray = await Promise.all(
                     getDataRest.data.data.map(async item => await handleKbli(item))
                 );
-                await setListKbli(handleDataArray, getDataRest.data.pagination);
+                await setListKbli(handleDataArray, getDataRest.data.paginate);
             } else {
                 getDataTableKbli = `
                 <tr class="nk-tb-item">
@@ -1095,10 +1099,11 @@
         async function handleKbli(data) {
             let handleData = {
                 id: data['id'] ?? '-',
-                name: data['name'] ?? '-',
+                uraian_usaha: data['uraian_usaha'] ?? '-',
                 kbli: data['kbli'] ?? '-',
                 description: data['description'] ?? '-',
                 created_at: data['created_at'] ?? '-',
+                is_match : data['is_match'] ?? '-',
             };
 
             return handleData;
@@ -1117,6 +1122,8 @@
             let getDataTableKbli = '';
             for (let index = 0; index < dataList.length; index++) {
                 const element = dataList[index];
+                const textMatch = element.is_match === true || element.is_match === 1 ? 'Sesuai' : 'Tidak Sesuai'; 
+                const colorMatch = element.is_match === true || element.is_match === 1 ? 'bg-success' : 'bg-danger';
                 getDataTableKbli += `
                 <tr>
                     <td>
@@ -1129,7 +1136,9 @@
                             </div>
                             <div class="col">
                                 <h5 class="mb-1"><span class="text-truncate w-100">${element.kbli}</span> </h5>
-                                <h6 class="mb-1 fw-normal"><span class="text-truncate w-100">${element.name}</span> </h6>
+                                <h6 class="mb-1 fw-normal"><span class="text-truncate w-100">${element.uraian_usaha}</span> </h6>
+                                <a href="#!" class="text-muted"><span class="badge ${colorMatch}">${textMatch}</span></a>
+                   
                             </div>
                         </div>
                     </td>
@@ -1149,11 +1158,13 @@
                     <td class="text-center" colspan="${colCount}">Tidak ada data.</td>
                 </tr>`;
                 $('#countPageKbli').text("0 - 0");
+            } else {
+                $('#totalPageKbli').text(totalPageKbli);
+                $('#countPageKbli').text(`${display_from} - ${display_to}`);
+
             }
 
             $('#listDataKbli').append(getDataTableKbli);
-            $('#totalPageKbli').text(totalPageKbli);
-            $('#countPageKbli').text(`${display_from} - ${display_to}`);
 
             // Aktifkan tooltip jika ada
             $('[data-bs-toggle="tooltip"]').tooltip();
