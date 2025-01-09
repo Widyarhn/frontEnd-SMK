@@ -1,6 +1,5 @@
 @extends('...Administrator.index', ['title' => 'Administrasi | Hak Akses'])
 @section('asset_css')
-    
     <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css" />
     <style>
         .datatable-top {
@@ -79,10 +78,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
-                    <form class="p-3">
+                    <form id="addRoleForm" class="p-3">
                         <div class="mb-3">
                             <div class="form-floating mb-0">
-                                <input type="text" class="form-control" id="namaPeran" placeholder="" />
+                                <input type="text" class="form-control" id="namaPeran"
+                                    placeholder="Masukkan Nama Peran" />
                                 <label for="namaPeran">Nama Peran</label>
                             </div>
                         </div>
@@ -95,12 +95,11 @@
                                     for="customCheckinl1">Centang jika peran ini aktif.</label>
                             </div>
                         </div>
-
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Kembali</button>
-                    <button type="button" class="btn btn-primary shadow-2">Simpan</button>
+                    <button type="button" class="btn btn-primary shadow-2" onclick="addRole()">Simpan</button>
                 </div>
             </div>
         </div>
@@ -116,12 +115,13 @@
 
 @section('page_js')
     <script>
+        let selectedRole;
         async function getPermissions() {
             loadingPage(true);
 
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/hakAkses/group_permission.json`,
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/group-permission`,
                 )
                 .then(response => response)
                 .catch(error => {
@@ -170,12 +170,14 @@
             }
         }
 
-        async function getPermissionsByRoleID() {
+        async function getPermissionsByRoleID(id) {
             loadingPage(true);
 
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/hakAkses/permission.json`,
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/permission`, {
+                        id: id
+                    }
                 )
                 .then(response => response)
                 .catch(error => {
@@ -192,7 +194,9 @@
 
             if (getDataRest.status === 200) {
                 loadingPage(false);
-                let data = getDataRest.data.data
+                let data = getDataRest.data.data.permissions
+
+
                 for (let i in data) {
                     $(`#checkbox-permission-${data[i].id}`).prop('checked', true)
                 }
@@ -205,10 +209,11 @@
             let isAssign = $(this).prop('checked')
 
             let getDataRest = CallAPI(
-                    'GET',
-                    `/dummy/hakAkses/sync_permission.json`, {
+                    'PUT',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/sync-permission`, {
                         isAssign: isAssign,
                         permission: parseInt(permissionID),
+                        id: selectedRole
 
                     }
                 )
@@ -238,7 +243,7 @@
         async function selectFilter(id) {
             $('#input-role').select2({
                 ajax: {
-                    url: `/dummy/hakAkses/role.json`,
+                    url: `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/role-options`,
                     dataType: 'json',
                     delay: 500,
                     headers: {
@@ -272,7 +277,7 @@
 
             // Fetch the first item and set it as default
             $.ajax({
-                url: `/dummy/hakAkses/role.json`,
+                url: `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/role-options`,
                 headers: {
                     Authorization: `Bearer ${Cookies.get('auth_token')}`
                 },
@@ -288,8 +293,40 @@
             });
         }
 
+        async function addRole() {
+            loadingPage(true);
+            const nameRole = document.getElementById('namaPeran').value.trim();
+            const isActive = document.getElementById('customCheckinl1').checked ? 1 : 0;
 
+            if (!nameRole) {
+                loadingPage(false);
+                notificationAlert('warning', 'Pemberitahuan', 'Nama peran tidak boleh kosong.');
+                return;
+            }
+            const payload = {
+                name: nameRole,
+                is_active: isActive
+            };
 
+            let getDataRest = await CallAPI('POST',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/role/create', payload)
+                .then((response) => response)
+                .catch((error) => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', 'Error')
+                    return resp;
+                });
+
+            if (getDataRest.status === 201) {
+                loadingPage(false);
+                $('#animateModal').modal('hide');
+                notificationAlert('success', 'Pemberitahuan', getDataRest.data.message)
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000); // 2000 ms = 2 detik
+            }
+        }
 
         $('#input-role').on('change', function() {
             $('.checkbox-permission').each(function() {
@@ -297,15 +334,14 @@
             })
 
             selectedRole = $(this).val()
-            getPermissionsByRoleID($(this).val())
+            getPermissionsByRoleID(selectedRole)
         })
 
         async function initPageLoad() {
 
             await Promise.all([
-                getPermissions(),
-                getPermissionsByRoleID(),
                 selectFilter('#input-role'),
+                getPermissions(),
             ]);
 
         }
