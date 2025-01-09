@@ -392,6 +392,7 @@
         let customFilterReport = {};
         let getDataRestDashboard;
         let isAdmin;
+        let chart;
 
         async function getUserData() {
             loadingPage(true);
@@ -500,14 +501,14 @@
                     const prosesElement = document.getElementById('proses');
                     const prosesSert = document.getElementById('proses-sertifikasi');
                     if (prosesElement) {
-                        prosesElement.style.display = 'none'; 
-                        prosesSert.style.display = 'none'; 
+                        prosesElement.style.display = 'none';
+                        prosesSert.style.display = 'none';
                     }
 
                     const infoTableCol = document.getElementById('proses-ket');
                     if (infoTableCol) {
-                        infoTableCol.classList.remove('col-lg-8'); 
-                        infoTableCol.classList.add('col-12'); 
+                        infoTableCol.classList.remove('col-lg-8');
+                        infoTableCol.classList.add('col-12');
                     }
                 } else {
                     setChartcertificateRequest(certificateRequestschart);
@@ -758,8 +759,7 @@
 
             let getDataRest = await CallAPI(
                 'GET',
-                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/dashboard/totalPenilaian'
-                , requestData
+                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/dashboard/totalPenilaian', requestData
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -772,89 +772,93 @@
             if (getDataRest.status == 200) {
                 loadingPage(false);
                 let totalPenilaian = getDataRest.data.data || [];
-
+                console.log("🚀 ~ getDataPenilaian ~ totalPenilaian:", totalPenilaian)
                 setChartTotalPenilaian(totalPenilaian);
             }
         }
 
-        async function setChartTotalPenilaian(totalPenilaian) {
-            // Check if data is available
-            if (!totalPenilaian) {
-                console.error("Invalid data format");
-                return;
+
+async function setChartTotalPenilaian(totalPenilaian) {
+    console.log("🚀 ~ setChartTotalPenilaian ~ totalPenilaian:", totalPenilaian);
+    // Check if data is available
+    // if (!totalPenilaian || totalPenilaian.length === 0) {
+    //     document.getElementById('totalPenilaian').innerHTML = '<p>No data available for the selected range</p>';
+    //     return;
+    // }
+
+    // Extract days and the values for each series
+    const daysArray = totalPenilaian.map(item => moment(item.date).format('DD MMM YY')); // Format date to "12 Des 25"
+    const pengajuanAwalData = totalPenilaian.map(item => item.pengajuan_awal);
+    const prosesPengajuanData = totalPenilaian.map(item => item.proses_pengajuan);
+    const prosesSelesaiData = totalPenilaian.map(item => item.proses_selesai);
+
+    // Chart options using the actual data
+    var options = {
+        series: [{
+            name: 'Pengajuan awal',
+            data: pengajuanAwalData // Data for 'Pengajuan awal'
+        }, {
+            name: 'Proses Pengajuan',
+            data: prosesPengajuanData // Data for 'Proses Pengajuan'
+        }, {
+            name: 'Proses Selesai',
+            data: prosesSelesaiData // Data for 'Proses Selesai'
+        }],
+        chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: false,
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                borderRadius: 5,
+                borderRadiusApplication: 'end'
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+        },
+        xaxis: {
+            categories: daysArray, // Use the formatted dates as categories
+            title: {
+                text: 'Tanggal'
             }
+        },
+        yaxis: {
+            title: {
+                text: ''
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+                formatter: function(val) {
+                    return val + " Permohonan";
+                }
+            }
+        },
+        colors: ['#007bff', '#ffc107', '#28a745'], // Define chart colors
+    };
 
-            // Extract days and the values for each series
-            const daysArray = totalPenilaian.map(item => moment(item.date).format(
-                'DD MMM YY')); // Format date to "12 Des 25"
-            const pengajuanAwalData = totalPenilaian.map(item => item.pengajuan_awal);
-            const prosesPengajuanData = totalPenilaian.map(item => item.proses_pengajuan);
-            const prosesSelesaiData = totalPenilaian.map(item => item.proses_selesai);
+    // Hancurkan chart lama sebelum merender chart baru
+    if (chart) {
+        chart.destroy(); // Hancurkan chart lama jika ada
+    }
 
-            // Get the current month (formatted like "January", "February", etc.)
-            const currentMonth = moment().format('MMMM YYYY'); // e.g., "January 2025"
+    // Render the chart
+    chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
+    chart.render();
+}
 
-            // Chart options using the actual data
-            var options = {
-                series: [{
-                    name: 'Pengajuan awal',
-                    data: pengajuanAwalData // Data for 'Pengajuan awal'
-                }, {
-                    name: 'Proses Pengajuan',
-                    data: prosesPengajuanData // Data for 'Proses Pengajuan'
-                }, {
-                    name: 'Proses Selesai',
-                    data: prosesSelesaiData // Data for 'Proses Selesai'
-                }],
-                chart: {
-                    type: 'bar',
-                    height: 350,
-                    toolbar: false,
-                },
-                plotOptions: {
-                    bar: {
-                        horizontal: false,
-                        columnWidth: '55%',
-                        borderRadius: 5,
-                        borderRadiusApplication: 'end'
-                    },
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    show: true,
-                    width: 2,
-                    colors: ['transparent']
-                },
-                xaxis: {
-                    categories: daysArray, // Use the formatted dates as categories
-                    title: {
-                        text: 'Tanggal'
-                    }
-                },
-                yaxis: {
-                    title: {
-                        text: ''
-                    }
-                },
-                fill: {
-                    opacity: 1
-                },
-                tooltip: {
-                    y: {
-                        formatter: function(val) {
-                            return val + " Permohonan";
-                        }
-                    }
-                },
-                colors: ['#007bff', '#ffc107', '#28a745'], // Define chart colors
-            };
-
-            // Render the chart
-            var chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
-            chart.render();
-        }
 
         async function fetchData(url, params) {
             try {
@@ -1182,6 +1186,9 @@
                 await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
                     customFilter);
                 await getDataAllCompany(customFilter);
+                await getDataPenilaian(customFilter);
+                await initDataOnTableReport(defaultLimitPageReport, currentPageReport, defaultAscendingReport,
+                    defaultSearchReport);
             });
 
             document.getElementById('resetCustomFilter').addEventListener('click', async function() {
