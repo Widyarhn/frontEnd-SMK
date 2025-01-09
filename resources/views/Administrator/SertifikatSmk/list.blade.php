@@ -297,9 +297,9 @@
         async function getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter) {
             loadingPage(true);
             let card = $('#submission-card');
-            let countPaging = $('#countPage');
-            let totalPaging = $('#totalPage');
-            let tablePaging = $('#tableList');
+            // let countPaging = $('#countPage');
+            // let totalPaging = $('#totalPage');
+            // let tablePaging = $('#tableList');
 
             const getDataRest = await CallAPI(
                     'GET',
@@ -345,16 +345,20 @@
                             </div>
                         </div>
                     `);
-                    countPaging.text(`0 - 0`);
-                    totalPaging.text(`0`);
+                    $('#totalPage').text('0');
+                    $('#countPage').text('0 - 0');
                 } else {
-                    // let domTableHtml = "";
-                    totalData = getDataRest.data.pagination.total || 0;
-                    totalPage = Math.ceil(totalData / defaultLimitPage);
-                    let display_from = (currentPage - 1) * defaultLimitPage + 1;
-                    let display_to = Math.min(currentPage * defaultLimitPage, totalData);
-                    let index_loop = display_from;
+                    totalPage = getDataRest.data.pagination.total;
+                    let data = getDataRest.data.data;
+                    let display_from = ((defaultLimitPage * getDataRest.data.pagination.current_page) + 1) -
+                        defaultLimitPage;
+                    let display_to = currentPage < getDataRest.data.pagination.total_pages ? data.length <
+                        defaultLimitPage ? data.length : (defaultLimitPage * getDataRest.data.pagination.current_page) :
+                        totalPage;
+                    $('#totalPage').text(getDataRest.data.pagination.total);
+                    $('#countPage').text("" + display_from + " - " + display_to + "");
                     let domTableHtml = "";
+                    let index_loop = display_from;
                     const processStatuses = [
                         'request',
                         'disposition',
@@ -534,26 +538,26 @@
                                                     </ul>
                                                 </div>
                                                 ${element.rejection_notes ? `
-                                                                                            <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
-                                                                                                Catatan Permohonan</div>
-                                                                                            <div class="help-md-hidden">
-                                                                                                <div class="bg-body mb-3 p-3">
-                                                                                                    <h6><img src="{{ asset('assets') }}/images/user/user-profil.jpg"
-                                                                                                            alt="" class="wid-20 avatar me-2 rounded">Catatan terakhir dari <a href="#" class="link-secondary">${element.updated_by}</a></h6>
-                                                                                                    <p class="mb-0">
-                                                                                                        ${truncatedNotes}
-                                                                                                    </p>
-                                                                                                </div>
-                                                                                            </div>`
+                                                                                                                        <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
+                                                                                                                            Catatan Permohonan</div>
+                                                                                                                        <div class="help-md-hidden">
+                                                                                                                            <div class="bg-body mb-3 p-3">
+                                                                                                                                <h6><img src="{{ asset('assets') }}/images/user/"
+                                                                                                                                        alt="" class="wid-20 avatar me-2 rounded">Catatan terakhir dari <a href="#" class="link-secondary">${element.updated_by}</a></h6>
+                                                                                                                                <p class="mb-0">
+                                                                                                                                    ${truncatedNotes}
+                                                                                                                                </p>
+                                                                                                                            </div>
+                                                                                                                        </div>`
                                                     : 
                                                 ''}
                                             </div>
                                             <div class="mt-4">
                                                 ${element.rejection_notes ? `
-                                                                                        <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
-                                                                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
-                                                                                        </button>` : ''}
+                                                                                                                    <button type="button" class="me-2 btn btn-sm btn-light-danger"
+                                                                                                                        data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
+                                                                                                                        <i class="ti ti-eye me-1"></i> Lihat Catatan
+                                                                                                                    </button>` : ''}
                                                 <a href="/admin/sertifikat/detail?r=${element.id}" class="me-2 btn btn-sm btn-light-secondary"
                                                     style="border-radius:5px;"><i class="feather icon-eye mx-1 me-2"></i>Lihat
                                                     Detail</a>
@@ -564,8 +568,6 @@
                             </div>
                             `;
                     }
-                    countPaging.text(`${display_from} - ${display_to}`);
-                    totalPaging.text(totalData);
                     card.empty();
                     card.html(domTableHtml);
                     $('[data-toggle="tooltip"]').tooltip();
@@ -584,7 +586,6 @@
                 placeholderValue: placeholder,
                 maxItemCount: 5,
                 removeItemButton: true,
-                allowClear: true,
             });
 
             multipleFetch.setChoices(async function() {
@@ -742,12 +743,12 @@
             }
 
             let params = {
-                status: filter['status'] || '',
-                company: filter['company'] || '',
-                assesor: filter['assesor'] || '',
+                searchByStatus: filter['status'] || '',
+                searchByPerusahaan: filter['company'] || '',
+                searchByPenilai: filter['assesor'] || '',
                 date_from: formattedStartDate,
                 date_to: formattedEndDate,
-                limit: filter['limit'],
+                limit: filter['limit'] || 10,
                 ascending: true
             };
 
@@ -760,14 +761,17 @@
                     let data = getDataRest.data.data;
 
                     let filteredData = data.filter(item => {
-                        return ((!params.status || item.status === params.status) &&
-                            (!params.company || item.nama_perusahaan === params.company) &&
-                            (!params.assesor || item.penilai === params.assesor) &&
-                            (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
-                                .start_date)) &&
-                            (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params
-                                .end_date)));
+                        let createdAt = moment(item.created_at).startOf('day').format('YYYY-MM-DD');
+
+                        return ((!params.searchByStatus || item.status === params.searchByStatus) &&
+                            (!params.searchByPerusahaan || String(item.company.id) === params
+                                .searchByPerusahaan) &&
+                            (!params.searchByPenilai || String(item.disposition_to.id) === params
+                                .searchByPenilai) &&
+                            (!params.date_from || createdAt >= params.date_from) &&
+                            (!params.date_to || createdAt <= params.date_to));
                     });
+
 
                     if (filteredData.length > 0) {
                         notificationAlert('success', 'Berhasil', 'Silahkan periksa file anda.');
@@ -814,9 +818,13 @@
                     startDate,
                     endDate
                 } = getStartEndDate();
-
-                startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
-                endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                if ($("#daterange").val() !== '') {
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
 
 
                 // Ambil nilai lain untuk filter
@@ -844,9 +852,14 @@
                     endDate
                 } = getStartEndDate();
 
-                startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
-                endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                if ($("#daterange").val() !== '') {
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
 
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
                 let assesor = document.getElementById('input-penilai').value;
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
@@ -882,9 +895,14 @@
                     endDate
                 } = getStartEndDate();
 
-                startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
-                endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                if ($("#daterange").val() !== '') {
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
 
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
                 let assesor = document.getElementById('input-penilai').value;
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
@@ -926,9 +944,14 @@
                     endDate
                 } = getStartEndDate();
 
-                startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
-                endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                if ($("#daterange").val() !== '') {
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
 
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
                 let assesor = document.getElementById('input-penilai').value;
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
@@ -943,7 +966,7 @@
 
                 let timeDiff = new Date(endDate) - new Date(startDate);
                 let dayDiff = timeDiff / (1000 * 3600 * 24);
-                
+
                 if (dayDiff > 31) {
                     notificationAlert('info', 'Pemberitahuan',
                         'Rentang tanggal tidak boleh lebih dari 31 hari');
@@ -1297,18 +1320,15 @@
                 className: 'paginationjs-theme-blue',
                 afterPreviousOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                        customFilter);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
                 },
                 afterPageOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                        customFilter);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
                 },
                 afterNextOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                        customFilter);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
                 },
             });
         }
@@ -1322,10 +1342,10 @@
 
         async function initPageLoad() {
             await Promise.all([
+                customFilterTable(),
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
                     customFilter),
                 manipulationDataOnTable(),
-                customFilterTable(),
                 selectFilterStatus('#input-status', 'Pilih status sertifikat'),
                 selectFilter('#input-penilai',
                     '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/assessor-list',
