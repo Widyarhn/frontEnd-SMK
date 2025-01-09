@@ -430,7 +430,7 @@
                             formInputHtml = generateFormInput(subElement[1]['ui:widget'], `${elementKey}`,
                                 `${subElement[0]}`);
                             formInputColumn =
-                                `<td>${formInputHtml}</td>`;
+                                `<td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${formInputHtml}</td>`;
                         }
 
                         if (['draft', 'rejected'].includes(response.data.request_status)) {
@@ -438,7 +438,7 @@
                             formInputHtml = generateFormInput(subElement[1]['ui:widget'], `${elementKey}`,
                                 `${subElement[0]}`, newAnswers);
                             formInputColumn =
-                                `<td>${formInputHtml}</td>`;
+                                `<td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${formInputHtml}</td>`;
                             isNeedDraftButton = true;
                             isNeedSubmitButton = true;
                         }
