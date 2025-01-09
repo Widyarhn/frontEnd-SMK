@@ -29,8 +29,8 @@
                         <li class="nav-item" role="presentation"><a class="nav-link active" id="profile-tab-1"
                                 data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="true"><i
                                     class="ph-duotone ph-buildings me-2"></i>Profil Perusahaan</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-2" data-bs-toggle="tab"
-                                href="#profile-2" role="tab" aria-selected="false" tabindex="-1"><i
+                        <li class="nav-item kbli-nav" role="presentation"><a class="nav-link" id="profile-tab-2" data-bs-toggle="tab"
+                                href="#kbli" role="tab" aria-selected="false" tabindex="-1"><i
                                     class="ti ti-file-text me-2"></i>KBLI Perusahaan</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-3" data-bs-toggle="tab"
                                 href="#profile-3" role="tab" aria-selected="false" tabindex="-1"><i
@@ -47,15 +47,15 @@
                         <div class="col-lg-4 col-xxl-3">
                             <div class="card">
                                 <div class="card-body position-relative">
-                                    {{-- <div class="position-absolute end-0 top-0 p-3"><span class="badge bg-primary">Wawancara Terjadwal</span>
-                                    </div> --}}
+                                    <div class="position-absolute end-0 top-0 p-3 c_stastus_active">
+                                    </div>
                                     <div class="text-center mt-3">
                                         <div class="chat-avtar d-inline-flex mx-auto"><img
                                                 class="rounded-circle img-fluid wid-70"
                                                 src="{{ asset('assets') }}/images/user/perusahaan.jpg" alt="User image">
                                         </div>
                                         <h5 class="mb-0 company-name">PT. NUSANTARA TECH INOVATOR</h5>
-                                        <p class="text-muted text-sm company-role">Perusahaan</p>
+                                        <p class="text-muted text-sm c-nib"></p>
                                         <hr class="my-3 border border-secondary-subtle">
                                         <div class="row g-3">
                                             <div class="col-4">
@@ -99,11 +99,11 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item px-0 pt-0">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Nama Perusahaan</p>
                                                     <p class="mb-0 company-name">PT WIRASWASTA GEMILANG INDONESIA</p>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">NIB</p>
                                                     <p class="mb-0 company-nib">8120004962755</p>
                                                 </div>
@@ -111,11 +111,11 @@
                                         </li>
                                         <li class="list-group-item px-0">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Telepon</p>
                                                     <p class="mb-0 company-phone">(+1-876) 8654 239 581</p>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Email</p>
                                                     <p class="mb-0 company-email">info@ptwgi.com</p>
                                                 </div>
@@ -123,28 +123,27 @@
                                         </li>
                                         <li class="list-group-item px-0">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Tanggal Terbit NIB</p>
                                                     <p class="mb-0 company-established">12 Desember 2023</p>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Jenis Layanan</p>
-                                                    <table class="company-service-types"
+                                                    <table class="company-service-types ms-4"
                                                         style="width: 100%; border-collapse: collapse; border: 0px;">
                                                         <tbody>
-                                                            <!-- Table rows will be dynamically added here -->
                                                         </tbody>
                                                     </table>
                                                 </div>
 
                                             </div>
                                         </li>
-                                        <li class="list-group-item px-0">
+                                        <li class="list-group-item px-0 mb-3 mb-md-0">
                                             <p class="mb-1 text-muted">Alamat</p>
                                             <p class="mb-0 company-address">GEDUNG THE CITY TOWER LT.5 UNIT 1S JL.MH
                                                 THAMRIN NO.81</p>
                                         </li>
-                                        <li class="list-group-item px-0">
+                                        <li class="list-group-item px-0 mb-3 mb-md-0">
                                             <p class="mb-1 text-muted">Tanggal Bergabung</p>
                                             <p class="mb-0 company-joined-date">12 Desember 2023</p>
                                         </li>
@@ -159,11 +158,11 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item px-0 pt-0">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Nama</p>
                                                     <p class="mb-0 company-pic-name">Uidn</p>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Telepon</p>
                                                     <p class="mb-0 company-pic-phone">-</p>
                                                 </div>
@@ -204,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
+                <div class="tab-pane" id="kbli" role="tabpanel" aria-labelledby="profile-tab-2">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -493,7 +492,12 @@
         }
 
         async function setUserData(data) {
+            let color = data.is_active.init === 1 || data.is_active.init === true ? 'success' : 'danger';
             $('.company-name').html(data.name);
+            $('.c-nib').html(`NIB: ${data.nib}`);
+            $('.c_stastus_active').html(`
+                <span class="badge bg-${color}">${data.is_active.text_status}</span>
+            `);
             $('.company-nib').html(data.nib);
             $('.company-province').html(data.province_name);
             $('.company-city').html(data.city_name);
@@ -1218,8 +1222,41 @@
             };
         }
 
+        async function checkOSS() {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+                'GET',
+                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/setting/find', {
+                    name: "oss"
+                }
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            loadingPage(false);
+
+            if (getDataRest.status == 200) {
+                let data = getDataRest.data.data;
+
+                if (data.is_active === 1 || data.is_active === true) {
+                    const kbli = document.getElementById('kbli');
+                    const kbliNav = document.querySelector('.kbli-nav');
+                    if (kbli && kbliNav) {
+                        kbli.style.display = 'none';
+                        kbliNav.style.display = 'none';
+                    }
+                } 
+            }
+        }
+
         async function initPageLoad() {
             await Promise.all([
+                checkOSS(),
                 getPerusahaanData(referenceId),
                 initDataOnTablePengajuanSmk(defaultLimitPage1, currentPage1, defaultAscending1, defaultSearch1),
                 manipulationDataOnTablePengajuanSmk(),

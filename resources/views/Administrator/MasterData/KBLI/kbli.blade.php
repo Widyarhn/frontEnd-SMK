@@ -14,7 +14,7 @@
                     <div class="page-header-title">
                         <h2 class="mb-0">Data KBLI</h2>
                     </div>
-                    <div>
+                    <div id="tambahContainer">
                         <a href="javascript:void(0)" class="btn btn-md btn-primary px-3 p-2 mt-3 mt-md-0 add-data"
                             id="add-data">
                             <i class="fas fa-plus-circle me-2"></i> Tambah Data
@@ -23,6 +23,12 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-12 mt-2 infoOss">
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <i class="fas fa-info-circle me-2"></i>
+            <div>Aktifkan Integrasi Akun OSS pada menu <a href="/admin/pengaturan" class="fw-bold">Pengaturan Aplikasi</a> agar dapat mengelola Master Data KBLI.</div>
+        </div>        
     </div>
     <div class="row">
         <div class="col-12">
@@ -61,7 +67,7 @@
                                                     <th>Nama KBLI</th>
                                                     <th>Uraian KBLI</th>
                                                     <th>Tanggal Dibuat</th>
-                                                    <th class="text-end" id="aksiContainer">Aksi</th>
+                                                    <th class="text-end aksiContainer">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="listData"></tbody>
@@ -143,6 +149,7 @@
         let getDataTable = '';
         let errorMessage = "Terjadi Kesalahan.";
         let isActionForm = "store";
+        let is_active_oss = '';
 
         async function addData() {
             $(document).on("click", ".add-data", function() {
@@ -197,7 +204,7 @@
 
                 const postDataRest = await CallAPI(
                     'POST',
-                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/master-kbli/${method}`,
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/master-kbli/${method}`,
                     formData
                 ).then(function(response) {
                     return response;
@@ -244,8 +251,7 @@
                         let method = 'destroy';
                         const postDataRest = await CallAPI(
                             'POST',
-                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/master-kbli/${method}`,
-                            {
+                            `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/master-kbli/${method}`, {
                                 id: id
                             }
                         ).then(function(response) {
@@ -253,13 +259,15 @@
                         }).catch(function(error) {
                             loadingPage(false);
                             let resp = error.response;
-                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            notificationAlert('info', 'Pemberitahuan', resp.data
+                                .message);
                             return resp;
                         });
-        
+
                         if (postDataRest.status == 200) {
                             loadingPage(false);
-                            $("form").find("input, select, textarea").val("").prop("checked", false)
+                            $("form").find("input, select, textarea").val("").prop("checked",
+                                    false)
                                 .trigger("change");
                             setTimeout(async () => {
                                 Swal.fire({
@@ -268,7 +276,8 @@
                                     text: 'Data berhasil dihapus!',
                                     confirmButtonText: 'OK'
                                 }).then(async () => {
-                                    await initDataOnTable(defaultLimitPage,
+                                    await initDataOnTable(
+                                        defaultLimitPage,
                                         currentPage,
                                         defaultAscending,
                                         defaultSearch);
@@ -286,8 +295,7 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/master-kbli/list`, 
-                    {
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/master-kbli/list`, {
                         page: currentPage,
                         limit: defaultLimitPage,
                         ascending: defaultAscending,
@@ -317,6 +325,21 @@
                     let element = dataList[index];
                     const elementData = JSON.stringify(element);
                     const isActive = element.status_aktif === 1;
+                    let buttonActions = ''; 
+
+                    if (is_active_oss === 1) {
+                        buttonActions = `
+                        <td class="text-end">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    ${getEditButton(elementData, element)}
+                                </li>
+                                <li class="list-inline-item">
+                                    ${getDeleteButton(elementData, element)}
+                                </li>
+                            </ul>
+                        </td>`;
+                    }
                     appendHtml += `
                         <tr class="">
                             <td>${index_loop}.</td>
@@ -335,17 +358,7 @@
                             <td><b>${element.name || '-'}</b></td>
                             <td>${element.description || '-'}</td>
                             <td>${element.created_at ? new Date(element.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}</td>
-                            <td class="text-end buttonContainer">
-                                <ul class="list-inline mb-0">
-                                    <li class="list-inline-item">
-                                            ${getEditButton(elementData, element)}
-                                    </li>
-                                    <li class="list-inline-item">
-                                        ${getDeleteButton(elementData, element)}
-                                    </li>
-                                </ul>
-                            </td>
-                            
+                            ${buttonActions}
                         </tr>`;
                     index_loop++;
                 }
@@ -468,8 +481,45 @@
             return new Intl.DateTimeFormat('id-ID', options).format(date);
         }
 
+        async function checkOSS() {
+            loadingPage(true);
+            const getDataRest = await CallAPI(
+                'GET',
+                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/setting/find', {
+                    name: "oss"
+                }
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+
+            loadingPage(false);
+
+            if (getDataRest.status == 200) {
+                let data = getDataRest.data.data;
+                is_active_oss = data.is_active;
+
+                if (data.is_active === 0 || data.is_active === false) {
+                    const btnTambah = document.getElementById('tambahContainer');
+                    const thAksi = document.querySelector('.aksiContainer');
+                    if (btnTambah) {
+                        btnTambah.style.display = 'none';
+                        thAksi.style.display = 'none';
+                    }
+                } else {
+                    const infoOss = document.querySelector('.infoOss');
+                    infoOss.style.display = 'none';
+                }
+            }
+        }
+
         async function initPageLoad() {
             await Promise.all([
+                checkOSS(),
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
                 manipulationDataOnTable(),
                 addData(),
