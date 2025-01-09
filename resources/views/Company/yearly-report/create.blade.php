@@ -133,6 +133,7 @@
             }
         }
 
+
         async function setReportYear() {
             let smkCertificate = await getSmkCertificate(),
                 currentYear = new moment().year(),
@@ -169,7 +170,7 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    `{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/get-monitoring-element`
+                    `{{ env('SERVICE_BASE_URL') }}/company/dashboard/company/getsmk`
                 );
             } catch (error) {
                 loadingPage(false);
