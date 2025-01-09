@@ -33,8 +33,8 @@
     <script src="https://ableproadmin.com/assets/js/tech-stack.js"></script>
     <link rel="stylesheet" href="https://ableproadmin.com/assets/css/style-preset.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css" />
-
-    <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
+    <link href="{{ asset('assets/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <style>
     .welcome-banner::after {
@@ -51,6 +51,17 @@
     <div class="loader-bg">
         <div class="loader-track">
             <div class="loader-fill"></div>
+        </div>
+    </div>
+
+    <div id="preloaderLoadingPage">
+        <div class="sk-three-bounce">
+            <div class="centerpreloader">
+                <div class="ui-loading"></div>
+                <center>
+                    <h6 style="color: white;">Harap Tunggu....</h6>
+                </center>
+            </div>
         </div>
     </div>
     <!-- [ Pre-loader ] End -->
@@ -82,17 +93,14 @@
                                     <div class="input-group">
                                         <div class="input-group-text"><i
                                                 class="fa-solid fa-magnifying-glass text-dark"></i></div>
-                                        <input type="text" class="form-control" id="nib"
-                                            placeholder="Masukkan nomor induk berusaha" />
+                                        <input type="number" min="0" maxlength="20" minlength="13"
+                                            class="form-control" name="nib" id="nib"
+                                            placeholder="Masukkan Nomor NIB" onkeypress="return event.keyCode != 13;"
+                                            required />
                                     </div>
                                 </div>
-                                {{-- <div class="form-check form-switch custom-switch-v1 switch-lg">
-                                    <input type="checkbox" class="form-check-input input-primary f-16"
-                                        id="customCheckdefout2" />
-                                    <label class="form-check-label" for="customCheckdefout2">Sinkronisasi dengan akun OSS jika ada</label>
-                                </div> --}}
                                 <div class="d-grid mt-5">
-                                    <button type="submit" class="btn btn-primary mb-2"
+                                    <button type="button" class="btn btn-primary mb-2 check-nib"
                                         style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Cek
                                         NIB</button>
                                 </div>
@@ -103,15 +111,18 @@
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-0">
-                                            <input type="text" class="form-control" id="nib" placeholder="" />
+                                            <input type="text" class="form-control" id="nib"
+                                                placeholder="" />
                                             <label for="nib">NIB</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-0">
-                                            <input type="text" class="form-control" id="namaPerusahaan"
-                                                placeholder="" />
-                                            <label for="namaPerusahaan">Nama Perusahaan</label>
+                                            <input type="text" class="form-control"
+                                                id="data-perusahaan-nama-perusahaan"
+                                                name="data-perusahaan-nama-perusahaan"
+                                                placeholder="Nama Perusahaan" />
+                                            <label for="data-perusahaan-nama-perusahaan">Nama Perusahaan</label>
                                         </div>
                                     </div>
                                 </div>
@@ -119,17 +130,20 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="number" class="form-control" id="noTelp"
-                                                    placeholder="" />
-                                                <label for="noTelp">No. Telepon Perusahaan</label>
+                                                <input type="text" class="form-control"
+                                                    id="data-perusahaan-no-telepon-perusahaan"
+                                                    name="data-perusahaan-no-telepon-perusahaan"
+                                                    placeholder="Nomor Telepon" />
+                                                <label for="data-perusahaan-no-telepon-perusahaan">No. Telepon
+                                                    Perusahaan</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="email" class="form-control" id="email"
-                                                    placeholder="Email address" />
+                                                <input type="text" class="form-control" id="data-perusahaan-email"
+                                                    name="data-perusahaan-email" placeholder="Email" />
                                                 <label for="email">Email</label>
                                             </div>
                                         </div>
@@ -141,9 +155,6 @@
                                             <label class="fw-normal" for="input-provinsi">Provinsi</label>
                                             <select class="form-control select2" name="input_provinsi"
                                                 id="input-provinsi">
-                                                <option value="" disabled selected>Pilih Provinsi</option>
-                                                <option value="1">Jawa Tengah</option>
-                                                <option value="2">Jawa Barat</option>
                                             </select>
                                         </div>
                                     </div>
@@ -151,9 +162,7 @@
                                         <div class="mb-3">
                                             <label class="fw-normal" for="input-kota">Kota</label>
                                             <select class="form-control select2" name="input_kota" id="input-kota">
-                                                <option value="" disabled selected>Pilih Kota</option>
-                                                <option value="1">Semarang</option>
-                                                <option value="2">Bandung</option>
+
                                             </select>
                                         </div>
                                     </div>
@@ -268,33 +277,98 @@
     <script src="https://ableproadmin.com/assets/js/pcoded.js"></script>
     <script src="https://ableproadmin.com/assets/js/plugins/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
+    <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
     <script src="{{ asset('assets') }}/js/axios.js"></script>
     <script src="{{ asset('assets') }}/js/restAPI.js"></script>
     <script>
         async function checkOSS() {
-            try {
-                // Menunggu hasil dari CallAPI
-                const getDataRest = await CallAPI('GET', '/dummy/check_oss.json');
-
-                // Mengecek status response
-                if (getDataRest.status === 200) {
-                    const active = getDataRest.data.data.is_active; // Mengambil nilai is_active
-
-                    if (active === false) {
-                        adjustWizardSteps(); // Langsung ke step-2 jika active === false
-                    }
+            // loadingPage(true);
+            const getDataRest = await CallAPI(
+                'GET',
+                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/setting/find', {
+                    name: "oss"
                 }
-            } catch (error) {
-                // Menangani error
-                if (error.response) {
-                    console.error('Error response:', error.response);
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                let resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                return resp;
+            });
+            if (getDataRest.status == 200) {
+                const active = getDataRest.data.data.is_active;
+                if (active === false) {
+                    adjustWizardSteps();
                 } else {
-                    console.error('Error:', error.message);
+                    await getAllowedNib();
                 }
             }
         }
+
+        async function getAllowedNib() {
+            $(document).on('click', '.check-nib', async function() {
+                loadingPage(true);
+                const nib = $('#nib').val();
+                try {
+                    const response = await CallAPI('GET',
+                    `{{ env('SERVICE_BASE_URL') }}/oss/inquery-nib`, {
+                        nib
+                    });
+
+                    loadingPage(false);
+
+                    if (response.status === 200) {
+                        const data = response.data.data;
+
+                        // Display success notification
+                        notificationAlert('success', 'Pemberitahuan',
+                            'Berhasil menemukan NIB untuk KBLI E-SMK dari data OSS Perusahaan! Silahkan Klik Tombol Selanjutnya.'
+                            );
+
+                        // Reset dependent fields
+                        $("#data-perusahaan-provinsi, #data-perusahaan-kota, #data-jenis-pelayanan")
+                            .val(' ').trigger("change");
+
+                        // Populate form fields
+                        $('#data-perusahaan-nib').val(data.nib);
+                        const companyTypeName = companyType[data.jenis_perseroan]?.toUpperCase() || '';
+                        $('#data-perusahaan-nama-perusahaan').val(
+                            `${companyTypeName} ${data.nama_perseroan}`);
+                        $('#data-perusahaan-no-telepon-perusahaan').val(data.nomor_telpon_perseroan);
+                        $('#data-perusahaan-email').val(data.email_perusahaan);
+                        $('#data-perusahaan-alamat').val(
+                            `${data.alamat_perseroan} Kelurahan ${data.kelurahan_perseroan || '-'} Kode pos ${data.kode_pos_perseroan || '-'}`
+                        );
+
+                        const namaPic = data.penanggung_jwb?.[0]?.nama_penanggung_jwb || '-';
+                        const teleponPic = data.penanggung_jwb?.[0]?.no_hp_penanggung_jwb || '-';
+                        $('#data-pic-nama').val(namaPic);
+                        $('#data-pic-no-telepon').val(teleponPic);
+                        navigateWizard(2);
+                    }
+                } catch (error) {
+                    loadingPage(false);
+                    const errorMessage = error.response?.data?.message ||
+                        'Terjadi kesalahan saat memproses data.';
+                    notificationAlert('warning', 'Pemberitahuan', errorMessage);
+                    $('.selanjutnya').attr('disabled', true);
+                }
+            });
+        }
+
+        /**
+         * Handles the navigation between wizard steps.
+         * @param {number} step The step number to navigate to.
+         */
+        function navigateWizard(step) {
+            $('.wizard-step').hide(); // Hide all steps
+            $(`.wizard-step[data-step="${step}"]`).show(); // Show the desired step
+        }
+
 
         function adjustWizardSteps() {
             // Menyembunyikan semua langkah
@@ -316,7 +390,7 @@
             if (id === '#input-provinsi') {
                 $(id).select2({
                     ajax: {
-                        url: `{{ env("SERVICE_BASE_URL") }}/provinsi/list`,
+                        url: `{{ env('SERVICE_BASE_URL') }}/provinsi/list`,
                         dataType: 'json',
                         delay: 500,
                         headers: {
@@ -350,7 +424,7 @@
             } else if (id === '#input-kota') {
                 $(id).select2({
                     ajax: {
-                        url: `{{ env("SERVICE_BASE_URL") }}/kota/list`,
+                        url: `{{ env('SERVICE_BASE_URL') }}/kota/list`,
                         dataType: 'json',
                         delay: 500,
                         headers: {
@@ -418,6 +492,23 @@
             }
         }
 
+        function loadingPage(show) {
+            if (show == true) {
+                document.getElementById('preloaderLoadingPage').style.display = '';
+            } else {
+                document.getElementById('preloaderLoadingPage').style.display = 'none';
+            }
+            return;
+        }
+
+        function notificationAlert(tipe, title, message) {
+            swal(
+                title,
+                message,
+                tipe
+            );
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             const steps = document.querySelectorAll(".wizard-step");
             const wizardContainer = document.querySelector(".wizard-container");
@@ -450,12 +541,9 @@
                     }
                 });
             });
-
-            // Tampilkan langkah pertama saat pertama kali halaman dimuat
             showStep(currentStep);
-
-            // Panggil fungsi checkOSS secara otomatis
-            checkOSS();
+            getAllowedNib();
+            // checkOSS();
 
             // Inisialisasi Select2
             selectFilter('#input-provinsi');
