@@ -36,13 +36,13 @@
         </div>
     </div>
     <div class="row d-flex">
-        <div class="col-lg-3 col-12">
+        <div class="col-lg-3 col-md-6 col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style=" height: 9rem; ">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1">Perusahaan Terverifikasi</p>
-                            <h4 id="total_perusahaan_terverifikasi">30</h4>
+                            <h4 id="total_perusahaan_terverifikasi"></h4>
                         </div>
                         <div class="flex-shrink-0">
                             <div class="my-n4" style="width: 90px;">
@@ -56,11 +56,11 @@
         </div>
         <div class="col-lg-3 col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style=" height: 9rem; ">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1 fw-medium text-muted">Total Perusahaan</p>
-                            <h4 class="mb-1" id="total_perusahaan">980+</h4>
+                            <h4 class="mb-1" id="total_perusahaan"></h4>
                         </div>
                         <div class="flex-shrink-0">
                             <div class="avtar avtar-l bg-light-primary rounded-circle">
@@ -73,11 +73,11 @@
         </div>
         <div class="col-lg-3 col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style=" height: 9rem; ">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1 fw-medium text-muted">Terdaftar Spionam</p>
-                            <h4 class="mb-1" id="terdaftar_spionam">1,563</h4>
+                            <h4 class="mb-1" id="terdaftar_spionam"></h4>
                         </div>
                         <div class="flex-shrink-0">
                             <div class="avtar avtar-l bg-light-success rounded-circle">
@@ -90,11 +90,11 @@
         </div>
         <div class="col-lg-3 col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style=" height: 9rem; ">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1 ms-3">
                             <p class="mb-1 fw-medium text-muted">Belum Terdaftar Spionam</p>
-                            <h4 class="mb-1" id="belum_terdaftar_spionam">42.6%</h4>
+                            <h4 class="mb-1" id="belum_terdaftar_spionam"></h4>
                         </div>
                         <div class="flex-shrink-0">
                             <div class="avtar avtar-l bg-light-danger rounded-circle">
@@ -106,23 +106,22 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class=" col-12 mb-lg-0 mb-4">
-            <div class="card ">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0">Total Tiap Tipe Layanan</h5>
+    <form id="custom-filter">
+        <div class="row">
+            <div class=" col-12 mb-lg-0 mb-4">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h5 class="mb-0">Total Tiap Tipe Layanan</h5>
+                        </div>
+                        <div class="my-2" id="line-chart"></div>
                     </div>
-                    <div class="my-2" id="line-chart"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="" id="collapseFilter">
-        <div class="card card-body mb-3">
-            <h5 class="card-title mt-1 mb-2"><i class="fa-solid fa-filter fa-20"></i> Filter Download</h5>
-            <form id="custom-filter">
+        <div class="" id="collapseFilter">
+            <div class="card card-body mb-3">
+                <h5 class="card-title mt-1 mb-2"><i class="fa-solid fa-filter fa-20"></i> Filter Download</h5>
                 <div class="row">
                     <div class="col-md-9">
                         <div class="row">
@@ -173,7 +172,6 @@
                                             <i class="fa-solid fa-download me-2"></i>Download</span>
                                         </button>
 
-                                        <!-- Opsi download dalam dropdown -->
                                         <ul class="dropdown-menu w-100" aria-labelledby="downloadDropdown">
                                             <li>
                                                 <a class="dropdown-item" id="download-excel" href="#">
@@ -197,9 +195,10 @@
                         </div>
                     </div>
                 </div>
-            </form>
+
+            </div>
         </div>
-    </div>
+    </form>
     <div class="row ">
         <div class="col-12">
             <div class="card">
@@ -334,7 +333,7 @@
                 let handleDataArray = await Promise.all(
                     getDataRest.data.data.map(async item => await handleData(item))
                 );
-                document.getElementById('total_perusahaan').innerText = getDataRest.data.paginate.total || '-';
+                
                 await setListData(handleDataArray, getDataRest.data.paginate, customFilter);
             } else {
                 getDataTable = `
@@ -521,37 +520,20 @@
                     <th class="text-center" colspan="${$('th').length}"> Tidak ada data. </th>
                 </tr>`;
                 $('#countPage').text("0 - 0");
+                $('#totalPage').text("0");
+            } else{
+                $('#totalPage').text(totalPage);
+                $('#countPage').text(`${display_from} - ${display_to}`);
             }
             $('#listData').append(getDataTable);
-            $('#totalPage').text(totalPage);
-            $('#countPage').text(`${display_from} - ${display_to}`);
             $('[data-bs-toggle="tooltip"]').tooltip();
         }
 
-        async function getChartTipeLayanan() {
-            loadingPage(true);
-            let getDataRest = await CallAPI(
-                'GET',
-                `{{ asset('dummy/company/chart_tipe_layanan.json') }}`
-            ).then(function(response) {
-                return response;
-            }).catch(function(error) {
-                loadingPage(false);
-                notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                return resp;
-            });
-
-            if (getDataRest.status == 200) {
-                loadingPage(false);
-
-                await setChartTipeLayanan(getDataRest.data.data);
-            }
-        }
         async function getTotalData() {
             loadingPage(true);
             let getDataRest = await CallAPI(
                 'GET',
-                `{{ asset('dummy/company/total_data.json') }}`
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/countPerusahaan`
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -563,6 +545,7 @@
             if (getDataRest.status == 200) {
                 loadingPage(false);
                 await setChartPerusahaanTerverisikasi(getDataRest.data.data);
+                document.getElementById('total_perusahaan').innerText = getDataRest.data.data.total_perusahaan || '-';
                 document.getElementById('total_perusahaan_terverifikasi').innerText = getDataRest.data.data
                     .total_perusahaan_terverifikasi || '-';
                 document.getElementById('belum_terdaftar_spionam').innerText = getDataRest.data.data
@@ -624,61 +607,6 @@
             var chart = new ApexCharts(document.querySelector('#total-earning-graph-1'), options20);
             chart.render();
         }
-        async function setChartTipeLayanan(data) {
-            const {
-                series,
-                categories
-            } = data;
-
-            var optionsLineChart = {
-                chart: {
-                    type: 'line',
-                    height: 300,
-                    toolbar: {
-                        show: false
-                    }
-                },
-                colors: ['#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#fd7e14', '#ffc107', '#28a745', '#20c997',
-                    '#17a2b8'
-                ],
-                stroke: {
-                    width: 2,
-                    curve: 'smooth'
-                },
-                markers: {
-                    size: 5,
-                    colors: ['#fff'],
-                    strokeColors: ['#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#fd7e14', '#ffc107', '#28a745',
-                        '#20c997', '#17a2b8'
-                    ],
-                    strokeWidth: 2,
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                series: series, // Data series dari JSON
-                xaxis: {
-                    categories: categories, // Data kategori dari JSON
-                    axisBorder: {
-                        show: true
-                    },
-                    axisTicks: {
-                        show: true
-                    }
-                },
-                legend: {
-                    position: 'bottom',
-                    horizontalAlign: 'center'
-                },
-                grid: {
-                    strokeDashArray: 4
-                }
-            };
-
-            // Render chart
-            var chartLine = new ApexCharts(document.querySelector('#line-chart'), optionsLineChart);
-            chartLine.render();
-        }
 
         async function setStatus() {
             $(document).on("click", ".change-status", async function() {
@@ -711,7 +639,7 @@
                         }).then(async () => {
                             await initDataOnTable(defaultLimitPage,
                                 currentPage,
-                                defaultAscending, defaultSearch);
+                                defaultAscending, defaultSearch, customFilter);
                         });
                     }, 100);
                 }
@@ -848,9 +776,13 @@
                     endDate
                 } = getStartEndDate();
 
-                startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
-                endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
-
+                if ($("#daterange").val() !== '') {
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
                 let sourceType = document.getElementById('input-layanan').value;
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
@@ -875,6 +807,7 @@
                 currentPage = 1;
                 await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
                     customFilter);
+                getChartTipeLayanan(customFilter);
             });
 
             // Download Excel
@@ -884,8 +817,13 @@
                     endDate
                 } = getStartEndDate();
 
-                startDate = startDate.startOf('day').toISOString();
-                endDate = endDate.endOf('day').toISOString();
+                if ($("#daterange").val() !== '') {
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
 
                 let sourceType = document.getElementById('input-layanan').value;
                 let status = document.getElementById('input-status').value;
@@ -914,6 +852,7 @@
                 }
 
                 let data = await getFilterDownload(customFilter, startDate, endDate, 'excel');
+
             });
 
             // Download CSV
@@ -923,8 +862,13 @@
                     endDate
                 } = getStartEndDate();
 
-                startDate = startDate.startOf('day').toISOString();
-                endDate = endDate.endOf('day').toISOString();
+                if ($("#daterange").val() !== '') {
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
 
                 let sourceType = document.getElementById('input-layanan').value;
                 let status = document.getElementById('input-status').value;
@@ -962,8 +906,13 @@
                     endDate
                 } = getStartEndDate();
 
-                startDate = startDate.startOf('day').toISOString();
-                endDate = endDate.endOf('day').toISOString();
+                if ($("#daterange").val() !== '') {
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
+                } else {
+                    startDate = '';
+                    endDate = '';
+                }
 
                 let sourceType = document.getElementById('input-layanan').value;
                 let status = document.getElementById('input-status').value;
@@ -1014,7 +963,7 @@
             if (filter['end_date']) params['duedate'] = filter['end_date'];
 
             let getDataRest = await CallAPI('GET',
-                    `{{ env('ESMK_SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/list`, params)
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/list`, params)
                 .then(function(response) {
                     return response;
                 })
@@ -1049,6 +998,112 @@
             } else {
                 notificationAlert('info', 'Pemberitahuan', 'Data tidak ada');
             }
+        }
+
+        async function getChartTipeLayanan(customFilter) {
+            console.log("🚀 ~ getChartTipeLayanan ~ customFilter:", customFilter)
+            loadingPage(true);
+
+            let yearToUse = new Date(customFilter?.end_date).getFullYear() || new Date().getFullYear();
+            console.log("🚀 ~ getChartTipeLayanan ~ yearToUse:", yearToUse)
+
+            let getDataRest = await CallAPI(
+                'GET',
+                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/countService`, {
+                    year: yearToUse
+                }
+            ).then(function(response) {
+                return response;
+            }).catch(function(error) {
+                loadingPage(false);
+                notificationAlert('info', 'Pemberitahuan', error.message || 'Terjadi kesalahan');
+                return error;
+            });
+
+            if (getDataRest.status == 200) {
+                loadingPage(false);
+                await setChartTipeLayanan(getDataRest.data.data, yearToUse);
+            }
+        }
+
+
+        async function setChartTipeLayanan(data, year) {
+            console.log("🚀 ~ setChartTipeLayanan ~ data:", data);
+
+            if (!data || !Array.isArray(data) || data.length === 0) {
+                console.error("Series data is missing or empty");
+                return;
+            }
+
+            // Menyiapkan kategori bulan dan tahun
+            const currentYear = year; // Ambil tahun saat ini
+            const months = [
+                'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+            ];
+
+            // Membuat kategori bulan dengan format 'Jan 2025'
+            const categories = months.map(month => `${month} ${currentYear}`);
+
+            // Validasi bahwa setiap series memiliki data untuk 12 bulan
+            data.forEach(item => {
+                if (!Array.isArray(item.data) || item.data.length !== 12) {
+                    console.error(`Data for ${item.name} is invalid. Expected 12 data points.`);
+                }
+            });
+
+            if (window.chartLine) {
+                window.chartLine.destroy(); // Hancurkan chart lama
+            }
+
+            var optionsLineChart = {
+                chart: {
+                    type: 'line',
+                    height: 300,
+                    toolbar: {
+                        show: false
+                    }
+                },
+                colors: ['#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#fd7e14', '#ffc107', '#28a745', '#20c997',
+                    '#17a2b8'
+                ],
+                stroke: {
+                    width: 2,
+                    curve: 'smooth'
+                },
+                markers: {
+                    size: 5,
+                    colors: ['#fff'],
+                    strokeColors: ['#0d6efd', '#6610f2', '#6f42c1', '#d63384', '#fd7e14', '#ffc107', '#28a745',
+                        '#20c997', '#17a2b8'
+                    ],
+                    strokeWidth: 2,
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                series: data, // Data series dari JSON
+                xaxis: {
+                    categories: categories, // Data kategori bulan dan tahun
+                    axisBorder: {
+                        show: true
+                    },
+                    axisTicks: {
+                        show: true
+                    }
+                },
+                legend: {
+                    position: 'bottom',
+                    horizontalAlign: 'center'
+                },
+                grid: {
+                    strokeDashArray: 4
+                }
+            };
+
+            // Render chart
+            window.chartLine = new ApexCharts(document.querySelector('#line-chart'), optionsLineChart);
+            window.chartLine.render();
         }
 
         function dateLanguageFormat(date) {
@@ -1375,13 +1430,13 @@
         }
 
         async function initPageLoad() {
+            await getChartTipeLayanan(customFilter);
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter),
                 manipulationDataOnTable(),
                 customFilterTable(),
                 getTotalData(),
                 setStatus(),
-                getChartTipeLayanan(),
                 selectFilter('#input-layanan',
                     `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/service`,
                     'Pilih jenis layanan'),
