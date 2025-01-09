@@ -261,7 +261,7 @@
             loadingPage(true)
             const getDataRest = await CallAPI(
                     'GET',
-                    `/dummy/internal/laporan-tahunan/submission-count.json`,
+                    `{{ env('SERVICE_BASE_URL')}}/internal/admin-panel/laporan-tahunan/countData`,
                 )
                 .then(response => response)
                 .catch(error => {
@@ -278,9 +278,9 @@
 
             if (getDataRest.status === 200) {
                 let data = getDataRest.data.data
-                $(".submission-total").text(`${data.submission_total || 0} Pengajuan`);
-                $(".submission-verified").text(`${data.submission_verified || 0} Terverifikasi`);
-                $(".submission-revision").text(`${data.submission_revision || 0} Revisi`);
+                $(".submission-total").text(`${data.total_pengajuan || 0} Pengajuan`);
+                $(".submission-verified").text(`${data.total_terverifikasi || 0} Terverifikasi`);
+                $(".submission-revision").text(`${data.total_revisi || 0} Revisi`);
 
             }
         }
@@ -348,7 +348,7 @@
 
                     for (let index = 0; index < dataTable.length; index++) {
                         let element = dataTable[index];
-                        
+
                         let statusBadge = element.is_active ?
                             '<span class="badge bg-light-success">Aktif</span>' :
                             '<span class="badge bg-light-danger">Tidak Aktif</span>';
