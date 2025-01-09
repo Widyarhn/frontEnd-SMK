@@ -576,10 +576,12 @@
                     cancelButtonText: 'Batal',
                     confirmButtonText: 'Ya, Saya Yakin',
                 }).then(async (result) => {
+                    loadingPage(true)
                     let postDataRest = await CallAPI(
                         'GET',
                         `{{ env('SERVICE_BASE_URL') }}/company/syncOss`
                     ).then(function(response) {
+                        loadingPage(false)
                         return response;
                     }).catch(function(error) {
                         loadingPage(false);
