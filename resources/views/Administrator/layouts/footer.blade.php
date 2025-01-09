@@ -1,8 +1,8 @@
 <footer class="pc-footer">
     <div class="border-top footer-center mt-5">
-        <div class="container mt-4">
+        <div class="container-fluid mt-4">
             <div class="row">
-                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-lg-6 col-sm-6 col-12 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="d-flex flex-column flex-sm-row align-items-start ms-3">
                         <div class="d-flex justify-content-start mb-3 mb-sm-0 me-3">
                             <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img"
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6 col-sm-6 col-12">
                     <div class="row">
                         <div class="col-12 wow fadeInUp" data-wow-delay="1s">
                             <ul class="ms-3 mt-4 mt-md-0 list-unstyled footer-link">
