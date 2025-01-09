@@ -10,6 +10,25 @@
             height: 300px;
         }
 
+        #proses-sertifikasi {
+            width: 100%;
+            height: 250px;
+            /* Tinggi tetap, sesuaikan sesuai kebutuhan */
+            position: relative;
+        }
+
+        #proses-sertifikasi img {
+            width: 100%;
+            /* Memastikan gambar mengambil 100% lebar kontainer */
+            height: 80%;
+            /* Memastikan gambar mengambil 100% tinggi kontainer */
+            object-fit: cover;
+            /* Menjaga gambar agar tidak terdistorsi dan memotong jika perlu */
+            object-position: center;
+            /* Posisi gambar di tengah jika ada pemotongan */
+        }
+
+
         @media (max-width: 768px) {
             .chart-container {
                 height: 200px;
@@ -135,10 +154,10 @@
                     </div>
 
                     <div class="row g-3 mx-3">
-                        <div class="col-lg-4 col-12 d-flex align-items-center justify-content-center">
+                        <div id="proses" class="col-lg-4 col-12  d-flex align-items-center justify-content-center">
                             <div id="proses-sertifikasi" style="width: 100%; height: 350px;"></div>
                         </div>
-                        <div class="col-lg-8 col-12 mb-4">
+                        <div class="col-lg-8 col-12 mb-4 " id="proses-ket">
                             <div class="row g-3 mt-3">
                                 <!-- Kolom pertama: Pengajuan -->
                                 <div class="col-sm-4 d-flex">
@@ -472,17 +491,26 @@
                 document.getElementById('totaltersertifikasi').innerText = totalverif;
 
                 let serviceTypes = getDataRest.data.data.service_types || [];
-                console.log("🚀 ~ getDataAllCompany ~ serviceTypes:", serviceTypes)
+
                 setChart(serviceTypes);
 
                 let certificateRequestschart = getDataRest.data.data.certificate_requests || [];
-                if (certificateRequestschart && certificateRequestschart.length > 0) {
-                    setChartcertificateRequest(certificateRequestschart);
-                } else {
-                    $('#proses-sertifikasi').html(
-                        '<img src="{{ asset('assets/images/1.png') }}" alt="No Data" style="width: 100%; height: auto; object-fit: cover; top: -50px;">'
-                    );
 
+                if (!Array.isArray(certificateRequestschart) || certificateRequestschart.length === 0) {
+                    const prosesElement = document.getElementById('proses');
+                    const prosesSert = document.getElementById('proses-sertifikasi');
+                    if (prosesElement) {
+                        prosesElement.style.display = 'none'; 
+                        prosesSert.style.display = 'none'; 
+                    }
+
+                    const infoTableCol = document.getElementById('proses-ket');
+                    if (infoTableCol) {
+                        infoTableCol.classList.remove('col-lg-8'); 
+                        infoTableCol.classList.add('col-12'); 
+                    }
+                } else {
+                    setChartcertificateRequest(certificateRequestschart);
                 }
                 let statusMapping = {
                     request: 'Pengajuan',
@@ -532,6 +560,12 @@
         }
 
         async function setChart(serviceTypes) {
+            // Pastikan data tidak kosong
+            if (!serviceTypes || serviceTypes.length === 0) {
+                document.getElementById('bar-chart-3').innerHTML = '<p>No data available for the selected range</p>';
+                return; // Stop the function if no data
+            }
+
             let labels = serviceTypes.map(item => item.name);
             let dataPoints = serviceTypes.map(item => item.companies.length);
 
@@ -576,16 +610,23 @@
                 xaxis: {
                     categories: labels,
                     min: minValue,
-                    max: maxValue,
+                    max: maxValue
                 }
             };
 
-            var chart_bar_chart_3 = new ApexCharts(document.querySelector('#bar-chart-3'), options_bar_chart_3);
-            chart_bar_chart_3.render();
+            // Hancurkan chart lama jika ada
+            if (window.jenisLayanan) {
+                window.jenisLayanan.destroy(); // Hancurkan chart lama
+            }
+
+            // Buat chart baru dengan data yang sudah diperbarui
+            window.jenisLayanan = new ApexCharts(document.querySelector('#bar-chart-3'), options_bar_chart_3);
+            window.jenisLayanan.render(); // Render chart dengan data yang baru
         }
 
+
         async function setChartcertificateRequest(certificateRequestschart) {
-            if (!Array.isArray(certificateRequestschart)) {
+            if (!certificateRequestschart || !Array.isArray(certificateRequestschart)) {
                 console.error('Error: certificateRequestschart is not an array.');
                 return;
             }
@@ -704,21 +745,21 @@
 
         async function getDataPenilaian(customFilter) {
             loadingPage(true);
-            // let defaultStartDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
-            // let defaultEndDate = moment().format('YYYY-MM-DD');
+            let defaultStartDate = moment().subtract(30, 'days').format('YYYY-MM-DD');
+            let defaultEndDate = moment().format('YYYY-MM-DD');
 
-            // let startDate = customFilter?.start_date || defaultStartDate;
-            // let endDate = customFilter?.end_date || defaultEndDate;
+            let startDate = customFilter?.start_date || defaultStartDate;
+            let endDate = customFilter?.end_date || defaultEndDate;
 
-            // let requestData = {
-            //     date_from: startDate,
-            //     date_to: endDate
-            // };
+            let requestData = {
+                dateFrom: startDate,
+                dateTo: endDate
+            };
 
             let getDataRest = await CallAPI(
                 'GET',
-                '{{ asset('dummy/internal/dashboard-admin/total_penilaian.json') }}'
-                // , requestData
+                '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/dashboard/totalPenilaian'
+                , requestData
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -730,27 +771,10 @@
 
             if (getDataRest.status == 200) {
                 loadingPage(false);
-                let totalPenilaian = getDataRest.data.data.total_penilaian || [];
-                console.log("🚀 ~ getDataPenilaian ~ totalPenilaian:", totalPenilaian)
+                let totalPenilaian = getDataRest.data.data || [];
 
-                // Ensure the Indonesian locale is set correctly
-                // moment.locale('id');
-
-                // // Format the start and end dates with Indonesian month names
-                // let startMonth = moment(startDate).format('MMMM YYYY'); // "MMMM" gives full month name in Indonesian
-                // let endMonth = moment(endDate).format('MMMM YYYY');
-
-                // // If the start and end months are the same, show only one month
-                // let titleText = (startMonth === endMonth) ? `Total Penilaian untuk Bulan ${startMonth}` :
-                //     `Total Penilaian untuk Periode ${startMonth} - ${endMonth}`;
-
-                // document.getElementById('titleTotalPenilaian').innerText = titleText;
-
-                // setChartTotalPenilaian(totalPenilaian, startDate, endDate);
                 setChartTotalPenilaian(totalPenilaian);
             }
-
-
         }
 
         async function setChartTotalPenilaian(totalPenilaian) {
@@ -975,7 +999,7 @@
                                 <td>${element.year || 'N/A'}</td>
                                 <td>${element.due_date || 'N/A'}</td>
                                 <td>
-                                    <a type="button" href="" class="avtar avtar-s btn-link-primary">
+                                    <a type="button" href="/admin/perusahaan/detail?id=${element.id}" class="avtar avtar-s btn-link-primary">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -1144,12 +1168,6 @@
 
                 let startDate = dateRangePicker.data('daterangepicker')?.startDate;
                 let endDate = dateRangePicker.data('daterangepicker')?.endDate;
-
-                if (!startDate || !endDate) {
-                    console.log("Tanggal tidak valid!");
-                    return;
-                }
-
 
                 startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
                 endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
