@@ -1243,14 +1243,14 @@
             if (getDataRest.status == 200) {
                 let data = getDataRest.data.data;
 
-                if (data.is_active === 1 || data.is_active === true) {
+                if (data.is_active === 0 || data.is_active === false) {
                     const kbli = document.getElementById('kbli');
                     const kbliNav = document.querySelector('.kbli-nav');
                     if (kbli && kbliNav) {
                         kbli.style.display = 'none';
                         kbliNav.style.display = 'none';
                     }
-                } 
+                }
             }
         }
 
