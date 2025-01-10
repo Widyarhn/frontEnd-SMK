@@ -74,7 +74,7 @@
                                             <tbody id="listData">
                                             </tbody>
                                         </table>
-                                        
+
                                     </div>
                                     <div class="datatable-bottom">
                                         <div class="datatable-info">Menampilkan <span id="countPage">0</span>
@@ -92,7 +92,7 @@
             </div>
         </div>
     </div>
-    <form id="form-create">
+    <form class="validates" id="form-create">
         <div class="modal fade modal-animate modal-lg modal-animate-scrollable" id="modal-form" data-bs-keyboard="false"
             tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
             <div class="modal-dialog">
@@ -108,9 +108,9 @@
                                     <div class="mb-3">
                                         <div class="form-floating mb-0">
                                             <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="Masukkan email" required />
+                                                placeholder="Masukkan email" required autocomplete="off"/>
                                             <label for="email">Email<sup
-                                                    class="required-pass text-danger ms-1">*</sup></label>
+                                                    class=" text-danger ms-1">*</sup></label>
                                         </div>
                                     </div>
                                 </div>
@@ -118,9 +118,9 @@
                                     <div class="mb-3">
                                         <div class="form-floating mb-0">
                                             <input type="text" class="form-control" name="fullname" id="fullname"
-                                                placeholder="Masukkan nama lengkap" required />
+                                                placeholder="Masukkan nama lengkap"  autocomplete="off" required />
                                             <label for="fullname">Nama Lengkap<sup
-                                                    class="required-pass text-danger ms-1">*</sup></label>
+                                                    class=" text-danger ms-1">*</sup></label>
                                         </div>
                                     </div>
                                 </div>
@@ -130,9 +130,9 @@
                                     <div class="mb-3">
                                         <div class="form-floating mb-0">
                                             <input type="text" class="form-control" name="username" id="username"
-                                                placeholder="Masukkan nama pengguna" required />
+                                                placeholder="Masukkan nama pengguna" autocomplete="off" required />
                                             <label for="username">Nama Pengguna (username)<sup
-                                                    class="required-pass text-danger ms-1">*</sup></label>
+                                                    class=" text-danger ms-1">*</sup></label>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                                             <input type="text" class="form-control" name="nip" id="nip"
                                                 placeholder="Masukkan NIP" autocomplete="off" required />
                                             <label for="nip">NIP<sup
-                                                    class="required-pass text-danger ms-1">*</sup></label>
+                                                    class=" text-danger ms-1">*</sup></label>
                                         </div>
                                     </div>
                                 </div>
@@ -154,13 +154,9 @@
                                                 class="required text-danger ms-1">*</sup></label>
                                     </div>
                                     <div class="form-control-wrap">
-                                        <select class="form-control select2" name="input_role" id="input-role" style="width: 100% !important;"></select>
+                                        <select class="form-control select2" name="input_role" id="input-role"
+                                            style="width: 100% !important;" required></select>
                                     </div>
-                                    {{-- <select class="form-select select2" name="input_role" id="input-role"
-                                        aria-label="Floating label select example" style="width: 100% !important;">
-                                    </select>
-                                    <label for="input_role">Role<sup
-                                            class="required-pass text-danger ms-1">*</sup></label> --}}
                                 </div>
                             </div>
                             <div class="row g-4">
@@ -172,12 +168,12 @@
                                             <label for="password">Kata Sandi
                                                 <sup class="required-pass text-danger ms-1">*</sup>
                                             </label>
-                                            <a href="javascript:void(0);"
+                                            {{-- <a href="javascript:void(0);"
                                                 class="form-icon form-icon-right passcode-switch lg"
                                                 onclick="togglePasswordVisibility('password', this)">
                                                 <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                                 <em class="passcode-icon icon-hide icon ni ni-eye-off d-none"></em>
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -190,12 +186,12 @@
                                             <label for="password-confirm">Konfirmasi Kata Sandi
                                                 <sup class="required-pass text-danger ms-1">*</sup>
                                             </label>
-                                            <a href="javascript:void(0);"
+                                            {{-- <a href="javascript:void(0);"
                                                 class="form-icon form-icon-right passcode-switch lg"
                                                 onclick="togglePasswordVisibility('password-confirm', this)">
                                                 <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                                 <em class="passcode-icon icon-hide icon ni ni-eye-off d-none"></em>
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -238,6 +234,8 @@
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
+    <script src="{{ asset('assets/js/form/validate.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
     <script></script>
 
@@ -252,6 +250,18 @@
         let errorMessage = "Terjadi Kesalahan.";
         let isActionForm = "store";
         let env = `{{ env('SERVICE_BASE_URL') }}`
+        let customFilter = '';
+        let totalPasswordLine = 0
+        let totalPasswordLine1 = 0
+        let totalPasswordLine2 = 0
+        let totalPasswordLine3 = 0
+        let totalPasswordLine4 = 0
+        let passwordConfirmStatus = 0
+
+        jQuery.extend(jQuery.validator.messages, {
+            required: "Bagian ini diperlukan.",
+            email: "Silakan masukkan email yang valid."
+        });
 
         function togglePasswordVisibility(inputId, toggleElement) {
             const input = document.getElementById(inputId);
@@ -595,8 +605,8 @@
             await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
         }
 
-        async function initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch) {
-            await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+        async function initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter) {
+            await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
             await paginationDataOnTable(defaultLimitPage);
         }
 
@@ -621,15 +631,15 @@
                 className: 'paginationjs-theme-blue',
                 afterPreviousOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
                 },
                 afterPageOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
                 },
                 afterNextOnClick: function(e) {
                     currentPage = parseInt(e.currentTarget.dataset.num);
-                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch);
+                    getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
                 },
             });
         }
@@ -652,6 +662,32 @@
         }
 
         async function initPageLoad() {
+            $(document).ready(function() {
+
+                $('.reset-all').on('click', function() {
+                    $('#form-create')[0].reset();
+                    $('#form-create').validate().resetForm();
+                    resetPasswordValidation();
+                    passwordEvent();
+                });
+
+                $(".validates").validate({
+                    ignore: "input[type=hidden]",
+                    errorClass: "text-danger",
+                    successClass: "text-success",
+                    highlight: function(element, errorClass) {
+                        $(element).removeClass(errorClass);
+                    },
+                    unhighlight: function(element, errorClass) {
+                        $(element).removeClass(errorClass);
+                    },
+                    errorPlacement: function(error, element) {
+                        error.insertAfter(element.parent());
+                    }
+                });
+
+                passwordEvent();
+            });
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
                 manipulationDataOnTable(),
