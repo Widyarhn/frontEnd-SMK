@@ -444,7 +444,7 @@
                 console.log(dataSubmission)
                 const dataRest = await CallAPI(
                     'POST',
-                    `{{ env('SERVICE_BASE_URL') }}/register`,
+                    `{{ env('SERVICE_BASE_URL') }}/auth/register`,
                     dataSubmission
                 ).then(function(response) {
                     return response;
