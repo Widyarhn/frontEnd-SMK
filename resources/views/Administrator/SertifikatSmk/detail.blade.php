@@ -1518,7 +1518,7 @@
                         <button class="btn btn-primary w-100 mt-2 me-2" type="button" onClick="showPrintRecordOfVerification()">
                             <i class="fas fa-file-alt align-bottom me-2"></i> Cetak BA
                         </button>
-                        <button class="btn btn-info w-100 mt-2 text-white" type="button" data-bs-toggle="modal" data-bs-target="#show-record-of-verification" onClick="lihatBeritaAcara()">
+                        <button class="btn btn-info w-100 mt-2 text-white" type="button" onClick="lihatBeritaAcara()">
                             <i class="fas fa-eye align-bottom me-2"></i> Lihat BA
                         </button>
 
