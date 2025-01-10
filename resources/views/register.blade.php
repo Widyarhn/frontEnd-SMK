@@ -223,8 +223,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="text" class="form-control" id="data-informasi-akun-username"
-                                                    placeholder="" />
+                                                <input type="text" class="form-control"
+                                                    id="data-informasi-akun-username" placeholder="" />
                                                 <label for="data-informasi-akun-username">Username</label>
                                             </div>
                                         </div>
@@ -232,8 +232,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="number" class="form-control" id="data-informasi-akun-no-telepon"
-                                                    placeholder="" />
+                                                <input type="number" class="form-control"
+                                                    id="data-informasi-akun-no-telepon" placeholder="" />
                                                 <label for="data-informasi-akun-no-telepon">No. Telepon</label>
                                             </div>
                                         </div>
@@ -241,7 +241,8 @@
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <div class="form-floating mb-0">
-                                                <input type="password" class="form-control" id="data-informasi-akun-password"/>
+                                                <input type="password" class="form-control"
+                                                    id="data-informasi-akun-password" />
                                                 <label for="data-informasi-akun-password">Password</label>
                                             </div>
                                         </div>
@@ -254,6 +255,10 @@
                                         <label class="custom-control-label" for="cp1-save-register">Saya menyetujui
                                             syarat dan ketentuan yang berlaku.</label>
                                     </div>
+                                </div>
+                                <div class="d-grid mt-5">
+                                    <button type="button" class="btn btn-outline-secondary prev-btn"
+                                        style="border-radius:5px;">Kembali</button>
                                 </div>
                                 <div class="d-grid mt-5">
                                     <button type="button" class="btn mb-2" id="daftar-akun"
@@ -397,7 +402,7 @@
                 $('#data-perusahaan-nib').val(data.nib);
                 let companyTypeName = typeof companyType[data.jenis_perseroan] != 'undefined' ?
                     companyType[data.jenis_perseroan].toUpperCase() : ''
-                $('#data-perusahaan-nama-perusahaan').val(companyTypeName + ' ' + data.nama_perseroan);
+                $('#data-perusahaan-nama-perusahaan').val(companyTypeName + ' ' + data.nama_perseroan)
                 $('#data-perusahaan-no-telepon-perusahaan').val(data.nomor_telpon_perseroan);
                 $('#data-perusahaan-email').val(data.email_perusahaan);
                 $('#data-perusahaan-alamat').val(
@@ -427,7 +432,13 @@
                     "phone_number": $('#data-informasi-akun-no-telepon').val(),
                     "service_types": $('#data-jenis-pelayanan').val(),
                     "nib": $('#data-perusahaan-nib').val(),
-                    "password" : $('#data-informasi-akun-password').val(),
+                    "password": $('#data-informasi-akun-password').val(),
+                    "name": $('#data-perusahaan-nama-perusahaan').val(),
+                    "address": $('#data-perusahaan-alamat').val(),
+                    "pic_name": $('#data-pic-nama').val(),
+                    "pic_phone": $('#data-pic-no-telepon').val(),
+                    "email": $('#data-perusahaan-email').val(),
+                    "company_phone_number": $('#data-perusahaan-no-telepon-perusahaan').val()
                 };
 
                 console.log(dataSubmission)
@@ -447,6 +458,9 @@
                 if (dataRest.status == 200) {
                     loadingPage(false);
                     notificationAlert('success', 'Pemberitahuan', dataRest.data.message);
+                    setTimeout(() => {
+                        window.location.href = '/'; // Arahkan ke halaman login
+                    }, 1000);
                 }
             });
         }
