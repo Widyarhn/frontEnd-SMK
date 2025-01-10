@@ -253,7 +253,7 @@
                 let id = $(this).attr("data-id");
                 $(".modal-title").html(modalTitle);
                 const getDataRest = await CallAPI(
-                    'GET',
+                    'POST',
                     '{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/provinsi/edit',
                     {
                         id: id

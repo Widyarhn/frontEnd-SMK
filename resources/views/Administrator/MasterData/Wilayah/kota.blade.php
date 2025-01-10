@@ -67,16 +67,17 @@
                                             </thead>
                                             <tbody id="listData"></tbody>
                                         </table>
-                                        <div class="datatable-bottom">
-                                            <div class="datatable-info">Menampilkan <span id="countPage">0</span>
-                                                dari <span id="totalPage">0</span> data</div>
-                                            <nav class="datatable-pagination">
-                                                <ul id="pagination-js" class="datatable-pagination-list">
-                                                </ul>
-                                            </nav>
-                                        </div>
-
+                                        
                                     </div>
+                                    <div class="datatable-bottom">
+                                        <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                                            dari <span id="totalPage">0</span> data</div>
+                                        <nav class="datatable-pagination">
+                                            <ul id="pagination-js" class="datatable-pagination-list">
+                                            </ul>
+                                        </nav>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -185,7 +186,7 @@
                 $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
 
                 const getDataRest = await CallAPI(
-                    'GET',
+                    'POST',
                     '{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/kota/edit',
                     {
                         id: id
@@ -212,7 +213,7 @@
                     $("#input_province_id").trigger('change');
     
     
-                    $("#input_is_ministry").val(data.is_ministry);
+                    // $("#input_is_ministry").val(data.is_ministry);
     
     
                     $("#form-create").data("action-url", `${env}/internal/admin-panel/kota/update`);

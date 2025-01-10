@@ -105,7 +105,7 @@
                             <!-- Perusahaan -->
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-perusahaan">Perusahaan</label>
-                                <select class="form-control select2" name="input_perusahaan" id="input-perusahaan">
+                                <select class="form-control " name="input_perusahaan" id="input-perusahaan">
                                     <option value="">Pilih perusahaan</option>
                                     <!-- Tambahkan opsi perusahaan secara dinamis -->
                                 </select>
@@ -114,7 +114,7 @@
                             <!-- Status Sertifikat -->
                             <div class="col-md-6 mb-3">
                                 <label class="fw-normal" for="input-status">Status Sertifikat</label>
-                                <select class="form-control select2" name="input_status" id="input-status">
+                                <select class="form-control " name="input_status" id="input-status">
                                     <option value="">Pilih status sertifikat</option>
                                     <!-- Tambahkan opsi status sertifikat secara dinamis -->
                                 </select>
@@ -232,6 +232,7 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="{{ asset('assets') }}/js/plugins/choices.min.js"></script>
     <script src="{{ asset('assets/js/date/moment.js') }}"></script>
     <script src="{{ asset('assets/js/date/daterange-picker.js') }}"></script>
     <script src="{{ asset('assets/js/date/daterange-custom.js') }}"></script>
@@ -240,8 +241,8 @@
     <script src="{{ asset('assets/js/excel/xlsx-populate.min.js') }}"></script>
     <script src="{{ asset('assets/js/excel/file-saver.min.js') }}"></script>
 
-    <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
-    <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
+    {{-- <script src="{{ asset('assets') }}/js//select2.full.min.js"></script>
+    <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script> --}}
     <script src="{{ asset('assets') }}/js/plugins/flatpickr.min.js"></script>
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
 
@@ -261,7 +262,7 @@
             loadingPage(true)
             const getDataRest = await CallAPI(
                     'GET',
-                    `{{ env('SERVICE_BASE_URL')}}/internal/admin-panel/laporan-tahunan/countData`,
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/countData`,
                 )
                 .then(response => response)
                 .catch(error => {
@@ -390,8 +391,8 @@
                                     <div class="row">
                                         <div class="col-sm-auto mb-3 mb-sm-0">
                                             <div class="d-sm-inline-block d-flex align-items-center">
-                                                 <div class="wid-60 hei-60 rounded-circle bg-${colorBage} d-flex align-items-center justify-content-center">
-                                                    <i class="fa-solid fa-book text-white fa-2x"></i>
+                                                <div class="wid-60 hei-60 rounded-circle bg-${colorBage} d-flex align-items-center justify-content-center">
+                                                    <i class="ph-duotone ph-buildings text-white fa-2x"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -432,28 +433,28 @@
                                                     </ul>
                                                 </div>
                                                 ${element.rejection_notes ? `
-                                                                    <div class="h5 mt-3">
-                                                                        <i class="material-icons-two-tone f-16 me-1">notification_important</i>Catatan Permohonan
-                                                                    </div>
-                                                                    <div class="help-md-hidden">
-                                                                        <div class="bg-body mb-3 p-3">
-                                                                            <h6>
-                                                                                <img src="{{ asset('assets') }}/images/user/user-profil2.jpg"
-                                                                                    alt="" class="wid-20 avatar me-2 rounded">
-                                                                                Last comment from <a href="#" class="link-secondary">${element.updated_by}:</a>
-                                                                            </h6>
-                                                                            <p class="mb-0">
-                                                                                ${truncatedNotes}
-                                                                            </p>
+                                                                        <div class="h5 mt-3">
+                                                                            <i class="material-icons-two-tone f-16 me-1">notification_important</i>Catatan Permohonan
                                                                         </div>
-                                                                    </div>` : ''}
+                                                                        <div class="help-md-hidden">
+                                                                            <div class="bg-body mb-3 p-3">
+                                                                                <h6>
+                                                                                    <img src="{{ asset('assets') }}/images/user/user-profil2.jpg"
+                                                                                        alt="" class="wid-20 avatar me-2 rounded">
+                                                                                    Last comment from <a href="#" class="link-secondary">${element.updated_by}:</a>
+                                                                                </h6>
+                                                                                <p class="mb-0">
+                                                                                    ${truncatedNotes}
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>` : ''}
                                             </div>
                                             <div class="mt-4">
                                                 ${element.rejection_notes ? `
-                                                                    <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                                                        data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
-                                                                        <i class="ti ti-eye me-1"></i> Lihat Catatan
-                                                                    </button>` : ''}
+                                                                        <button type="button" class="me-2 btn btn-sm btn-light-danger"
+                                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
+                                                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
+                                                                        </button>` : ''}
                                                 <a href="/admin/laporan-tahunan/detail?id=${element.id}&companyID=${element.company_id}"
                                                     class="me-2 btn btn-sm btn-light-secondary" style="border-radius: 5px;">
                                                     <i class="feather icon-eye mx-1"></i>Lihat Pengajuan
@@ -480,45 +481,61 @@
             $('#exampleModalCenter').modal('show');
         }
 
-        async function selectFilter(id) {
-            if (id === '#input-perusahaan') {
-                $(id).select2({
-                    ajax: {
-                        url: `/dummy/internal/select-company.json`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data;
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.name
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih perusahaan'
+        async function selectFilter(id, route, placeholder) {
+            var multipleFetch = new Choices(id, {
+                placeholder: placeholder,
+                placeholderValue: placeholder,
+                maxItemCount: 5,
+                removeItemButton: true,
+            });
+
+            multipleFetch.setChoices(async function() {
+                const params = {
+                    term: ""
+                };
+
+                const query = {
+                    keyword: params.term,
+                    page: 1,
+                    limit: 30,
+                    ascending: 1
+                };
+
+                const url = new URL(route);
+                url.search = new URLSearchParams(query).toString();
+
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${Cookies.get('auth_token')}`,
+                    }
                 });
-            } else if (id === '#input-status') {
-                $(id).select2({
-                    allowClear: true,
-                    placeholder: 'Pilih status'
+
+                const data = await response.json();
+
+                return data.data.map(function(item) {
+                    return {
+                        value: item.id,
+                        label: item.name
+                    };
                 });
+
+            });
+
+            document.querySelector(id).addEventListener('change', function(event) {
+                const selectedValue = event.target.value;
+
+                if (selectedValue === '') {
+                    $(id).val('');
+                } else {
+                    $(id).val(selectedValue);
+                }
+
+                const selectedValues = multipleFetch.getValue(true);
+            });
+
+            function clearSelection() {
+                multipleFetch.clearChoices();
             }
         }
 
@@ -829,8 +846,8 @@
                 let endDate = dateRangePicker.data('daterangepicker').endDate;
 
                 if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').toISOString();
-                    endDate = endDate.endOf('day').toISOString();
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
                 } else {
                     startDate = '';
                     endDate = '';
@@ -861,8 +878,8 @@
                 let endDate = dateRangePicker.data('daterangepicker').endDate;
 
                 if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').toISOString();
-                    endDate = endDate.endOf('day').toISOString();
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
                 } else {
                     startDate = '';
                     endDate = '';
@@ -901,8 +918,8 @@
                 let endDate = dateRangePicker.data('daterangepicker').endDate;
 
                 if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').toISOString();
-                    endDate = endDate.endOf('day').toISOString();
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
                 } else {
                     startDate = '';
                     endDate = '';
@@ -946,8 +963,8 @@
                 let endDate = dateRangePicker.data('daterangepicker').endDate;
 
                 if ($("#daterange").val() !== '') {
-                    startDate = startDate.startOf('day').toISOString();
-                    endDate = endDate.endOf('day').toISOString();
+                    startDate = moment(startDate).startOf('day').format('YYYY-MM-DD');
+                    endDate = moment(endDate).endOf('day').format('YYYY-MM-DD');
                 } else {
                     startDate = '';
                     endDate = '';
@@ -987,38 +1004,38 @@
 
             // Reset filter
             document.getElementById('resetCustomFilter').addEventListener('click', async function() {
-                // Reset semua input
-                $('.select2').val('').trigger('change');
-                $('#daterange').val('');
-                $('.search-input').val('');
-
-                // Reset custom filter dan muat ulang data default
-                customFilter = {};
-                defaultSearch = '';
-                defaultLimitPage = 10;
-                currentPage = 1;
-                await getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch,
-                    customFilter);
+                window.location.reload();
             });
         }
 
-        async function fetchFilteredData(filter = {}, fromDate, toDate) {
+        async function fetchFilteredData(filter = {}) {
             const formatDate = (date) => {
                 const d = new Date(date);
                 return d.toISOString().split('T')[0];
             };
+            let formattedStartDate = formatDate(filter['start_date']);
+            let formattedEndDate = formatDate(filter['end_date']);
+
+            if (!formattedStartDate || !formattedEndDate) {
+                notificationAlert('warning', 'Error', 'Tanggal mulai atau tanggal akhir tidak valid.');
+                loadingPage(false);
+                return [];
+            }
             let params = {
                 status: filter['status'] || '',
                 company: filter['company'] || '',
-                fromdate: formatDate(filter['start_date'] || startDate),
-                duedate: formatDate(filter['end_date'] || endDate),
+                fromdate: formattedStartDate,
+                duedate: formattedEndDate,
                 limit: filter['limit'] || 10,
                 ascending: true
             };
 
             try {
 
-                let getDataRest = await CallAPI('GET', `${url}/internal/admin-panel/laporan-tahunan/list`, params)
+                let getDataRest = await CallAPI('GET',
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/list?${params}`
+                    )
+                    // `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/list`, params)
                     .then(function(response) {
                         return response;
                     })
@@ -1029,6 +1046,7 @@
                         return resp;
                     });
 
+                console.log("🚀 ~ fetchFilteredData ~ getDataRest:", getDataRest)
 
                 // Check if the request was successful
                 if (getDataRest.data.status_code == 200) {
@@ -1036,11 +1054,14 @@
 
                     // Filter data based on parameters
                     let filteredData = data.filter(item => {
+                        let createdAt = moment(item.created_at).startOf('day').format('YYYY-MM-DD');
+                        console.log("🚀 ~ fetchFilteredData ~ createdAt:", createdAt)
+                        console.log("🚀 ~ fetchFilteredData ~ createdAt:", item.company_id)
+                        console.log()
                         return (!params.status || item.status === params.status) &&
-                            (!params.company || item.nama_perusahaan === params.company) &&
-                            (!params.start_date || new Date(item.tanggal_pengajuan) >= new Date(params
-                                .start_date)) &&
-                            (!params.end_date || new Date(item.tanggal_pengajuan) <= new Date(params.end_date));
+                            (!params.company || String(item.company_id) === params.company) &&
+                            (!params.fromdate || createdAt >= params.fromdate) &&
+                            (!params.duedate || createdAt <= params.duedate);
                     });
 
                     // Check the result of the filtered data
@@ -1063,76 +1084,38 @@
             }
         }
 
+
         async function selectFilterStatus(id, placeholder) {
-            // Mapping status values to Select2 options
-            let statusMapping = {
+            const data = {
                 request: 'Pengajuan',
                 submission_revision: 'Perbaikan dokumen',
                 rejected: 'Ditolak',
                 verified: 'Terverifikasi',
             };
 
-            // Convert statusMapping to an array of objects with 'id' and 'text' for Select2
-            let statusOptions = Object.keys(statusMapping).map(key => {
-                return {
-                    id: key,
-                    text: statusMapping[key]
-                };
-            });
-
-            // Add an empty option at the beginning for placeholder
-            statusOptions.unshift({
-                id: '',
-                text: ''
-            });
-
-            // Initialize Select2 with local data
-            $(id).select2({
-                data: statusOptions, // Use the mapped data
-                allowClear: true,
+            var multipleFetch = new Choices(id, {
                 placeholder: placeholder,
-            });
-        }
+                placeholderValue: placeholder,
+                maxItemCount: 5,
+                allowClear: true,
+                removeItemButton: true,
+            }).setChoices(function() {
+                // Mengonversi objek menjadi array untuk diolah oleh Choices.js
+                const choicesArray = Object.entries(data).map(([key, value]) => ({
+                    value: key,
+                    label: value
+                }));
 
-        async function selectFilter(id) {
-            if (id === '#input-perusahaan') {
-                $(id).select2({
-                    ajax: {
-                        url: `/dummy/internal/select-company.json`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                                page: 1,
-                                limit: 30,
-                                ascending: 1
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res.data;
-                            return {
-                                results: $.map(data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.name
-                                    }
-                                })
-                            };
-                        },
-                    },
-                    allowClear: true,
-                    placeholder: 'Pilih perusahaan'
-                });
-            } else if (id === '#input-status') {
-                $(id).select2({
-                    allowClear: true,
-                    placeholder: 'Pilih status'
-                });
+                return Promise.resolve(choicesArray);
+            });
+            document.querySelector(id).addEventListener('change', function(event) {
+                const selectedValue = event.target.value;
+
+                document.querySelector(id).value = selectedValue;
+            });
+
+            function clearSelection() {
+                multipleFetch.clearChoices();
             }
         }
 
@@ -1194,7 +1177,7 @@
                 No: index + 1,
                 Header2: item.nama_perusahaan || '-',
                 Header3: item.status || '-',
-                Header5: item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor.name ? item
+                Header5: item.diverifikasi_oleh.assessor && item.diverifikasi_oleh.assessor !== null ? item
                     .diverifikasi_oleh.assessor.name : '-',
                 Header7: item.tahun_laporan || '-',
                 Header8: item.tanggal_verifikasi ? dateDMYFormat(item.tanggal_verifikasi) : '-',
@@ -1497,7 +1480,9 @@
                     customFilter),
                 manipulationDataOnTable(),
                 selectFilterStatus('#input-status', 'Pilih status sertifikat'),
-                selectFilter('#input-perusahaan'),
+                selectFilter('#input-perusahaan',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/list',
+                    'Pilih perusahaan'),
             ]);
         }
     </script>

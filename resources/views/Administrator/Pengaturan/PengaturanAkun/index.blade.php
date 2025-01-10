@@ -163,7 +163,7 @@
         async function getData() {
             loadingPage(true);
             let getDataRest = await CallAPI(
-                'GET', `{{ asset('dummy/internal/infoPengaturanAkun_admin.json') }}`
+                'GET', `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/dashboard/userDetail`
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -174,7 +174,7 @@
             });
 
             if (getDataRest.status === 200) {
-                let data = getDataRest.data.data;
+                let data = getDataRest.data.data.user;
 
                 // Set is_active badge
                 let isActiveElement = document.getElementById('is_active');
@@ -185,10 +185,10 @@
                 }
 
                 // Populate other data
-                document.getElementById('username').innerText = data.username || 'Unknown';
-                document.getElementById('name').innerText = data.name || 'Unknown';
-                document.getElementById('nip').innerText = data.nip || 'N/A';
-                document.getElementById('role_name').innerText = data.role_name || 'Unknown';
+                document.getElementById('username').innerText = data.username || '-';
+                document.getElementById('name').innerText = data.name || '-';
+                document.getElementById('nip').innerText = data.nip || '-';
+                document.getElementById('role_name').innerText = data.role || '-';
                 document.getElementById('email').innerText = data.email || 'No Email';
 
                 document.getElementById('createdAt').innerText =

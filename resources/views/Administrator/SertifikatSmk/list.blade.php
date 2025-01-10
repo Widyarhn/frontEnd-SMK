@@ -1352,7 +1352,7 @@
                     'Pilih penilai'),
                 selectFilter('#input-perusahaan',
                     '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/list',
-                    'Pilih penilai'),
+                    'Pilih perusahaan'),
             ]);
         }
     </script>

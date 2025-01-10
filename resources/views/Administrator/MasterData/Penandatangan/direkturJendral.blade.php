@@ -45,7 +45,8 @@
                                     <div class="datatable-top">
                                         <div class="datatable-dropdown">
                                             <label>
-                                                <select class="datatable-selector" id="limitPage" name="per-page" style="width: auto;min-width: unset;">
+                                                <select class="datatable-selector" id="limitPage" name="per-page"
+                                                    style="width: auto;min-width: unset;">
                                                     <option value="5">5</option>
                                                     <option value="10" selected="">10</option>
                                                     <option value="15">15</option>
@@ -55,9 +56,8 @@
                                             </label>
                                         </div>
                                         <div class="datatable-search">
-                                            <input class="datatable-input search-input" placeholder="Cari..."
-                                                type="search" name="search" title="Search within table"
-                                                aria-controls="pc-dt-simple">
+                                            <input class="datatable-input search-input" placeholder="Cari..." type="search"
+                                                name="search" title="Search within table" aria-controls="pc-dt-simple">
                                         </div>
                                     </div>
                                     <div class="datatable-container">
@@ -74,16 +74,17 @@
                                             <tbody id="listData">
                                             </tbody>
                                         </table>
-                                        <div class="datatable-bottom">
-                                            <div class="datatable-info">Menampilkan <span id="countPage">0</span>
-                                                dari <span id="totalPage">0</span> data</div>
-                                            <nav class="datatable-pagination">
-                                                <ul id="pagination-js" class="datatable-pagination-list">
-                                                </ul>
-                                            </nav>
-                                        </div>
-
+                                    
                                     </div>
+                                    <div class="datatable-bottom">
+                                        <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                                            dari <span id="totalPage">0</span> data</div>
+                                        <nav class="datatable-pagination">
+                                            <ul id="pagination-js" class="datatable-pagination-list">
+                                            </ul>
+                                        </nav>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -106,34 +107,36 @@
                             <div class="mb-3">
                                 <div class="form">
                                     <label for="floatingSelect">Instansi</label>
-                                    <select class="form-control" id="input_satuan_kerja_id"
-                                        name="input_satuan_kerja_id" style="width: 100%;">
+                                    <select class="form-control" id="input_satuan_kerja_id" name="input_satuan_kerja_id"
+                                        style="width: 100%;">
                                     </select>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="form-floating mb-0">
-                                    <input type="text" class="form-control" name="input_sk_number"
-                                        id="input_signer_name" placeholder=""/>
+                                    <input type="text" class="form-control" name="input_sk_number" id="input_signer_name"
+                                        placeholder="" />
                                     <label for="input_sk_number">Nama Penandatangan</label>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="form-floating mb-0">
                                     <input type="text" class="form-control" name="input_signer_position"
-                                        id="input_signer_position" placeholder=""/>
+                                        id="input_signer_position" placeholder="" />
                                     <label for="input_signer_position">Jabatan</label>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="form-floating mb-0">
-                                    <input type="text" class="form-control" id="input_signer_type_identity" placeholder=""/>
+                                    <input type="text" class="form-control" id="input_signer_type_identity"
+                                        placeholder="" />
                                     <label for="input_signer_type_identity">Tipe Identitas</label>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="form-floating mb-0">
-                                    <input type="text" class="form-control" id="input_signer_identity_number" placeholder=""/>
+                                    <input type="text" class="form-control" id="input_signer_identity_number"
+                                        placeholder="" />
                                     <label for="input_signer_identity_number">Nomor Identitas</label>
                                 </div>
                             </div>
@@ -184,7 +187,7 @@
                     {
                         page: currentPage,
                         limit: defaultLimitPage,
-                        ascending: defaultAscending,
+                        order_by: defaultAscending,
                         search: defaultSearch
                     }
                 );
@@ -237,7 +240,7 @@
                                     </div>
                                     <div class="col">
                                         <h6 class="mb-1"><span class="text-truncate w-100">${element.name || '-'}</span></h6>
-                                        <p class="f-12 mb-0"><a href="#!" class="text-muted">${element?.work_unit?.name || '-'}</a></p>
+                                        <p class="f-12 mb-0"><a href="#!" class="text-muted">Nik: ${element.identity_number || '-'}</a></p>
                                     </div>
                                 </div>
                             </td>
@@ -308,10 +311,9 @@
                 $("#modal-title").html(`Form Tambah ${menu}`);
                 isActionForm = "create";
                 $("#modal-form").modal("show");
-                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, textarea, select").val("").prop("checked", false).trigger("change");
 
-                $("#form-create").data("action-url", ``);
-                // $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/create`);
+                $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/create`);
             });
         }
 
@@ -327,20 +329,20 @@
                 $("#modal-title").html(modalTitle);
                 $("#modal-form").modal("show");
 
-                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, textarea, select").val("").prop("checked", false).trigger("change");
 
                 $("#input_signer_name").val(data.name);
                 $("#input_signer_position").val(data.position);
                 $("#input_signer_type_identity").val(data.identity_type);
                 $("#input_signer_identity_number").val(data.identity_number);
 
-                let workUnit = data?.work_unit?.id;
+                // let workUnit = data.work_unit.id;
                 $("#input_satuan_kerja_id").val(null).trigger('change');
-                $('#input_satuan_kerja_id').append(new Option(data?.work_unit?.name, workUnit, true, true));
-                $("#input_satuan_kerja_id").trigger('change');
+                // $('#input_satuan_kerja_id').append(new Option(data.work_unit.name, workUnit, true, true));
+                // $("#input_satuan_kerja_id").trigger('change');
 
                 $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/update`);
-                $("#form-create").data("id", id);
+                $("#form-create").data("id_user", id);
             });
         }
 
@@ -362,8 +364,7 @@
                         let method = 'destroy';
                         const postDataRest = await CallAPI(
                             'POST',
-                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/direktur-jendral/${method}`,
-                            {
+                            `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/${method}`, {
                                 id: id
                             }
                         ).then(function(response) {
@@ -371,7 +372,8 @@
                         }).catch(function(error) {
                             loadingPage(false);
                             let resp = error.response;
-                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            notificationAlert('info', 'Pemberitahuan', resp.data
+                                .message);
                             return resp;
                         });
 
@@ -384,7 +386,8 @@
                                     text: 'Data berhasil dihapus!',
                                     confirmButtonText: 'OK'
                                 }).then(async () => {
-                                    await initDataOnTable(defaultLimitPage,
+                                    await initDataOnTable(
+                                        defaultLimitPage,
                                         currentPage,
                                         defaultAscending,
                                         defaultSearch);
@@ -410,16 +413,13 @@
                     satker_id: $('#input_satuan_kerja_id').val()
                 };
 
-                let id = $("#form-create").data("id");
-                if (id) {
-                    formData.id = id;
+                let id_user = $("#form-create").data("id_user");
+                if (id_user) {
+                    formData.id = id_user;
                 }
-
-                const postDataRest = await CallAPI(
-                    'POST',
-                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/direktur-jendral/${isActionForm}`,
-                    formData
-                ).then(function(response) {
+                let method = id_user ? 'POST' : 'POST';
+                let postDataRest = await CallAPI(method, actionUrl, formData)
+                .then(function(response) {
                     return response;
                 }).catch(function(error) {
                     loadingPage(false);
@@ -433,22 +433,22 @@
                     loadingPage(false);
                     $("form").find("input, select, textarea").val("").prop("checked", false)
                         .trigger("change");
+                    $("#modal-form").modal("hide");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pemberitahuan',
+                        text: 'Data berhasil disimpan!',
+                        confirmButtonText: 'OK'
+                    }).then(async () => {
+                        await initDataOnTable(defaultLimitPage, currentPage,
+                            defaultAscending, defaultSearch);
+                        $(this).trigger("reset");
                         $("#modal-form").modal("hide");
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Pemberitahuan',
-                            text: 'Data berhasil disimpan!',
-                            confirmButtonText: 'OK'
-                        }).then(async () => {
-                            await initDataOnTable(defaultLimitPage, currentPage,
-                                defaultAscending, defaultSearch);
-                            $(this).trigger("reset");
-                            $("#modal-form").modal("hide");
-                        });
+                    });
                 }
             });
             $('#modal-form').on('hidden.bs.modal', function() {
-                $("#form-create").data("id", null); // Reset ID to null
+                $("#form-create").data("id_user", null); // Reset ID to null
                 $('#form-create').trigger("reset"); // Reset form fields
             });
         }
@@ -478,7 +478,7 @@
                     let is_status = isStatus == 'aktifkan' ? 'active' : 'inactive';
                     const postDataRest = await CallAPI(
                         'GET',
-                        `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/direktur-jendral/${is_status}`,
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/${is_status}`,
                         formData
                     ).then(function(response) {
                         return response;
@@ -639,6 +639,5 @@
             ]);
 
         }
-
     </script>
 @endsection

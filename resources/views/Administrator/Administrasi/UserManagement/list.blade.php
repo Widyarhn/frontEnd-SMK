@@ -1,5 +1,7 @@
 @extends('...Administrator.index', ['title' => 'User Manajemen | Master Data Administrasi'])
-
+@section('asset_css')
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
+@endsection
 @section('content')
     <div class="page-header">
         <div class="page-block">
@@ -40,19 +42,19 @@
                                     <div class="datatable-top">
                                         <div class="datatable-dropdown">
                                             <label>
-                                                <select class="datatable-selector" id="limitPage" name="per-page" style="width: auto;min-width: unset;">
+                                                <select class="datatable-selector" id="limitPage" name="per-page"
+                                                    style="width: auto;min-width: unset;">
                                                     <option value="5">5</option>
                                                     <option value="10" selected="">10</option>
                                                     <option value="15">15</option>
                                                     <option value="20">20</option>
                                                     <option value="25">25</option>
-                                                </select> 
+                                                </select>
                                             </label>
                                         </div>
                                         <div class="datatable-search">
-                                            <input class="datatable-input search-input" placeholder="Cari..."
-                                                type="search" name="search" title="Search within table"
-                                                aria-controls="pc-dt-simple">
+                                            <input class="datatable-input search-input" placeholder="Cari..." type="search"
+                                                name="search" title="Search within table" aria-controls="pc-dt-simple">
                                         </div>
                                     </div>
                                     <div class="datatable-container">
@@ -72,14 +74,15 @@
                                             <tbody id="listData">
                                             </tbody>
                                         </table>
-                                        <div class="datatable-bottom">
-                                            <div class="datatable-info">Menampilkan <span id="countPage">0</span>
-                                                dari <span id="totalPage">0</span> data</div>
-                                            <nav class="datatable-pagination">
-                                                <ul id="pagination-js" class="datatable-pagination-list">
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        
+                                    </div>
+                                    <div class="datatable-bottom">
+                                        <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                                            dari <span id="totalPage">0</span> data</div>
+                                        <nav class="datatable-pagination">
+                                            <ul id="pagination-js" class="datatable-pagination-list">
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
@@ -146,14 +149,18 @@
                             </div>
                             <div class="mb-3">
                                 <div class="form-floating">
-                                    <select class="form-select" name="input_role" id="input-role"
-                                        aria-label="Floating label select example">
-                                        <option selected>Pilih role</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Asesor</option>
+                                    <div class="form-label-group">
+                                        <label class="form-label" for="input-role">Role<sup
+                                                class="required text-danger ms-1">*</sup></label>
+                                    </div>
+                                    <div class="form-control-wrap">
+                                        <select class="form-control select2" name="input_role" id="input-role" style="width: 100% !important;"></select>
+                                    </div>
+                                    {{-- <select class="form-select select2" name="input_role" id="input-role"
+                                        aria-label="Floating label select example" style="width: 100% !important;">
                                     </select>
                                     <label for="input_role">Role<sup
-                                            class="required-pass text-danger ms-1">*</sup></label>
+                                            class="required-pass text-danger ms-1">*</sup></label> --}}
                                 </div>
                             </div>
                             <div class="row g-4">
@@ -180,7 +187,7 @@
                                             <input type="password" class="form-control" id="password-confirm"
                                                 name="password-confirm" placeholder="Masukkan kata sandi"
                                                 autocomplete="off" required />
-                                            <label for="password-confirm" >Konfirmasi Kata Sandi
+                                            <label for="password-confirm">Konfirmasi Kata Sandi
                                                 <sup class="required-pass text-danger ms-1">*</sup>
                                             </label>
                                             <a href="javascript:void(0);"
@@ -229,10 +236,10 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/js/paginationjs/pagination.min.js') }}"></script>
-    
-    <script>
-        
-    </script>
+    <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
+    <script src="{{ asset('assets') }}/js/select2/select2.min.js"></script>
+
+    <script></script>
 
     <script>
         let defaultLimitPage = 10;
@@ -250,7 +257,7 @@
             const input = document.getElementById(inputId);
             const showIcon = toggleElement.querySelector('.icon-show');
             const hideIcon = toggleElement.querySelector('.icon-hide');
-            
+
             if (input.type === 'password') {
                 input.type = 'text';
                 showIcon.classList.add('d-none');
@@ -261,15 +268,14 @@
                 hideIcon.classList.add('d-none');
             }
         }
-        
+
         async function getListData(defaultLimitPage, currentPage, defaultAscending, defaultSearch) {
             loadingPage(true);
             let getDataRest;
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/user-management/list',
-                    {
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/user-management/list', {
                         page: currentPage,
                         limit: defaultLimitPage,
                         ascending: defaultAscending,
@@ -385,15 +391,13 @@
                 $("#modal-title").html(`Form Pendaftaran ${menu}`);
                 isActionForm = "store";
                 $("#modal-form").modal("show");
-                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
 
                 $("#password").attr("required", "required");
                 $("#password-confirm").attr("required", "required");
                 $(".required-pass").text("*");
-                // $("#form-user").data("action-url",
-                //     `{{ env('AUTH_SERVICE_BASE_URL') }}/user-management/esmk/add`);
                 $("#form-create").data("action-url",
-                    ``);
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/user-management/add`);
             });
         }
 
@@ -409,7 +413,6 @@
                 let actionUrl = $("#form-create").data("action-url");
                 // work_unit_id: $('#input-instansi').val(),
                 let formData = {
-                    id_application: params,
                     id_role: $('#input-role').val(),
                     name: $('#fullname').val(),
                     username: $('#username').val(),
@@ -418,31 +421,42 @@
                     password: $('#password').val()
                 };
 
-                let idUser = $("#form-create").data("id_user");
-                if (idUser) {
-                    formData.id_user = idUser;
-                }
-
                 let id_user = $("#form-create").data("id_user");
                 console.log(id_user);
                 if (id_user) {
-                    formData.id = id_user;
+                    formData.id_user = id_user;
                 }
-                let method = id_user ? 'PUT' : 'POST';
-                let postDataRest = console.log(formData);
-                loadingPage(false);
-                $("#modal-form").modal("hide");
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Pemberitahuan',
-                    text: 'Data berhasil didaftarkan!',
-                    confirmButtonText: 'OK'
-                }).then(async () => {
-                    await initDataOnTable(defaultLimitPage, currentPage,
-                        defaultAscending, defaultSearch);
-                    $(this).trigger("reset");
+                let method = id_user ? 'POST' : 'POST';
+                let postDataRest = await CallAPI(method, actionUrl, formData)
+                    .then(function(response) {
+                        return response;
+                    }).catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                        $("#modal-form").modal("hide");
+                        return resp;
+                    });
+
+                if (postDataRest.status == 200 || postDataRest.status == 201) {
+                    loadingPage(false);
+                    $("form").find("input, select, textarea").val("").prop("checked", false)
+                        .trigger("change");
                     $("#modal-form").modal("hide");
-                });
+                    let textStatus = id_user ? 'Pengguna Berhasil Diperbarui!' :
+                        'Perngguna Berhasil Didaftarkan!';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pemberitahuan',
+                        text: textStatus,
+                        confirmButtonText: 'OK'
+                    }).then(async () => {
+                        await initDataOnTable(defaultLimitPage, currentPage,
+                            defaultAscending, defaultSearch);
+                        $(this).trigger("reset");
+                        $("#modal-form").modal("hide");
+                    });
+                }
             });
         }
 
@@ -455,7 +469,7 @@
             });
         }
 
-        async function setStatusAction(id, status) {
+        async function setStatusAction(id, isStatus) {
             Swal.fire({
                 icon: "info",
                 title: "Pemberitahuan",
@@ -465,22 +479,39 @@
                 cancelButtonText: "Batal",
                 reverseButtons: true
             }).then(async (result) => {
-                loadingPage(true)
-                let postDataRest = console.log(id);
-                loadingPage(false);
                 if (result.isConfirmed == true) {
-                    setTimeout(async () => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Pemberitahuan',
-                            text: 'Status berhasil dirubah!',
-                            confirmButtonText: 'OK'
-                        }).then(async () => {
-                            await initDataOnTable(defaultLimitPage,
-                                currentPage,
-                                defaultAscending, defaultSearch);
-                        });
-                    }, 100);
+                    loadingPage(true)
+                    let formData = {};
+                    formData.id_user = id;
+                    let is_status = isStatus == 'aktifkan' ? 'active' : 'inactive';
+                    let postDataRest = await CallAPI(
+                        'GET',
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/user-management/${is_status}`,
+                        formData
+                    ).then(function(response) {
+                        return response;
+                    }).catch(function(error) {
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                        return resp;
+                    });
+
+                    if (postDataRest.status == 200 || postDataRest.status == 201) {
+                        loadingPage(false);
+                        setTimeout(async () => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Pemberitahuan',
+                                text: 'Status berhasil dirubah!',
+                                confirmButtonText: 'OK'
+                            }).then(async () => {
+                                await initDataOnTable(defaultLimitPage,
+                                    currentPage,
+                                    defaultAscending, defaultSearch);
+                            });
+                        }, 100);
+                    }
                 }
             }).catch(swal.noop);
         }
@@ -493,11 +524,12 @@
                 let data = $(this).attr("data");
                 data = JSON.parse(data);
                 let id = $(this).attr("data-id");
+                console.log("🚀 ~ $ ~ id:", id)
 
                 $("#modal-title").html(modalTitle);
                 $("#modal-form").modal("show");
 
-                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
 
                 $("#password").removeAttr("required");
                 $("#password-confirm").removeAttr("required");
@@ -512,56 +544,48 @@
 
                 $(".required-pass").text("");
                 $("#form-create").data("action-url",
-                    `{{ asset('dummy/internal/user-manajemen/edit_user.json') }}`);
-                $("#form-create").data("id_user", data.id);
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/user-management/update`);
+                $("#form-create").data("id_user", id);
             });
         }
 
 
         async function selectFilter(id) {
-            if (id === '#input-role' || id === '#input-filter') {
-                let placeholder = '';
-                if (id === '#input-role') {
-                    placeholder = 'Pilih role';
-                }
-                if (id === '#input-filter') {
-                    placeholder = 'Filter By Role';
-                }
-                let dataSelect = {
-                    ajax: {
-                        url: ` `,
-                        // url: `${url}/user-management/esmk/role/list`,
-                        dataType: 'json',
-                        delay: 500,
-                        headers: {
-                            Authorization: `Bearer ${Cookies.get('auth_token')}`
-                        },
-                        data: function(params) {
-                            let query = {
-                                search: params.term,
-                            }
-                            return query;
-                        },
-                        processResults: function(res) {
-                            let data = res;
-                            return {
-                                results: $.map(data.data, function(item) {
-                                    return {
-                                        id: item.id,
-                                        text: item.role
-                                    }
-                                })
-                            };
-                        },
+            $('#input-role').select2({
+                ajax: {
+                    url: `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/role-options`,
+                    dataType: 'json',
+                    delay: 500,
+                    headers: {
+                        Authorization: `Bearer ${Cookies.get('auth_token')}`
                     },
-                    allowClear: true,
-                    placeholder: placeholder
-                };
-                if (id === '#input-role') {
-                    dataSelect.dropdownParent = $('#modal-form')
-                }
-                $(id).select2(dataSelect);
-            }
+                    data: function(params) {
+                        let query = {
+                            search: params.term,
+                            page: 1,
+                            limit: 30,
+                            ascending: 1
+                        };
+                        return query;
+                    },
+                    processResults: function(res) {
+                        let data = res.data;
+
+                        console.log("🚀 ~ selectFilter ~ data:", data)
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name
+                                };
+                            })
+                        };
+                    },
+                },
+                allowClear: true,
+                placeholder: 'Pilih peran',
+                dropdownParent: $('#modal-form')
+            });
         }
 
         async function performSearch() {
@@ -631,11 +655,11 @@
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
                 manipulationDataOnTable(),
+                selectFilter('#input-role'),
                 addData(),
                 setStatus(),
                 editData(),
                 submitForm(),
-                deleteData(),
                 // selectList('#input_satuan_kerja_id',
                 //     '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/satuan-kerja/list',
                 //     'Pilih Satuan Kerja', true),
