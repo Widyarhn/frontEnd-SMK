@@ -101,11 +101,11 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Nama Perusahaan</p>
-                                                    <p class="mb-0 company-name">PT WIRASWASTA GEMILANG INDONESIA</p>
+                                                    <p class="mb-0 company-name"></p>
                                                 </div>
                                                 <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">NIB</p>
-                                                    <p class="mb-0 company-nib">8120004962755</p>
+                                                    <p class="mb-0 company-nib"></p>
                                                 </div>
                                             </div>
                                         </li>
@@ -113,11 +113,11 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Telepon</p>
-                                                    <p class="mb-0 company-phone">(+1-876) 8654 239 581</p>
+                                                    <p class="mb-0 company-phone"></p>
                                                 </div>
                                                 <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Email</p>
-                                                    <p class="mb-0 company-email">info@ptwgi.com</p>
+                                                    <p class="mb-0 company-email"></p>
                                                 </div>
                                             </div>
                                         </li>
@@ -125,7 +125,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Tanggal Terbit NIB</p>
-                                                    <p class="mb-0 company-established">12 Desember 2023</p>
+                                                    <p class="mb-0 company-established"></p>
                                                 </div>
                                                 <div class="col-md-6 mb-3 mb-md-0">
                                                     <p class="mb-1 text-muted">Jenis Layanan</p>

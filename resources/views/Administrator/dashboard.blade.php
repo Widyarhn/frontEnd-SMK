@@ -45,7 +45,7 @@
                         <div class="col-sm-6">
                             <div class="p-4">
                                 <h2 class="text-white internal-name"></h2>
-                                <p class="text-white">Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam
+                                <p class="text-white" id="deskripsi_aplikasi">Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam
                                     menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
                                     keselamatan secara berkelanjutan.
                             </div>
@@ -1202,7 +1202,7 @@ async function setChartTotalPenilaian(totalPenilaian) {
             await getUserData();
             await getDataAllCompany();
             await getDataPenilaian();
-
+            
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter),
                 manipulationDataOnTable(),

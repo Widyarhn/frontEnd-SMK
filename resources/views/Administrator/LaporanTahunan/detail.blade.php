@@ -684,7 +684,7 @@
             loadingPage(true);
             try {
                 const ajaxResponse = await CallAPI(
-                    'PUT',
+                    'POST',
                     `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/laporan-tahunan/update`, {
                         id: referenceId,
                         ...formData

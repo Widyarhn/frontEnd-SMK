@@ -51,10 +51,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="p-4">
-                                    <p class="text-white">
-                                        SMK-TD adalah sistem yang dirancang untuk mendukung perusahaan angkutan umum dalam
-                                        menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
-                                        keselamatan secara berkelanjutan.
+                                    <p class="text-white" id="deskripsi_aplikasi">
                                     </p>
                                 </div>
                             </div>
