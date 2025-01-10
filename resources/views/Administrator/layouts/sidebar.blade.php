@@ -2,8 +2,8 @@
     <div class="navbar-wrapper">
         <div class="m-header text-center">
             <a href="" class="b-brand text-primary">
-                <img src="{{asset('assets')}}/images/logoapp.png" alt="img" style="width: 45px;"/></a>
-                <h5 class="fw-bold" style="padding-left:10px;">SMK-TD</h5>
+                <div class="logo_aplikasi"></div></a>
+                <h5 class="fw-bold nama_aplikasi" style="padding-left:10px;"></h5>
             </a>
         </div>
         <div class="navbar-content">
