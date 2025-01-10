@@ -41,7 +41,7 @@
                                     <div class="text-center mt-3">
                                         <div class="chat-avtar d-inline-flex mx-auto"><img
                                                 class="rounded-circle img-fluid wid-70"
-                                                src="{{ asset('assets') }}/images/profil.jpg" alt="User image">
+                                                src="{{ asset('assets') }}/images/user/user-profil2.jpg" alt="User image">
                                         </div>
                                         <h5 class="mb-0" id="username">Administrator</h5>
                                         <p class="text-muted text-sm" id="name">Administrator</p>
@@ -66,10 +66,6 @@
                                             <i class="fa-regular fa-calendar-days me-2"></i>
                                             <p class="mb-0" id="createdAt">Terdaftar: 7 Desember 2024</p>
                                         </div>
-                                        {{-- <div class="d-inline-flex align-items-center justify-content-start w-100"><i
-                                                class="ti ti-link me-2"></i> <a href="#" class="link-primary">
-                                                <p class="mb-0">https://anshan.dh.url</p>
-                                            </a></div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -142,23 +138,15 @@
             </div>
         </div><!-- [ sample-page ] end -->
     </div>
+    {{-- @dd(request()) --}}
 @endsection
 @section('scripts')
     <script>
-        let defaultLimitPage = 10;
-        let currentPage = 1;
-        let totalPage = 1;
-        let defaultAscending = 0;
-        let defaultSearch = '';
-        let defaultLimitPageReport = 10;
-        let currentPageReport = 1;
-        let totalPageReport = 1;
-        let defaultAscendingReport = 0;
-        let defaultSearchReport = '';
-        let customFilter = {};
-        let customFilterReport = {};
-        let getDataRestDashboard;
-        let isAdmin;
+        let email = '';
+        let nip = @json(request()->user['nip']);
+        let username = @json(request()->user['username']);
+        let createdAt = @json(request()->user['created_at']);
+        let createdAt = @json(request()->user['is_active']);
 
         async function getData() {
             loadingPage(true);
@@ -175,24 +163,24 @@
 
             if (getDataRest.status === 200) {
                 let data = getDataRest.data.data.user;
-
-                // Set is_active badge
+                email = data.email;
                 let isActiveElement = document.getElementById('is_active');
-                if (data.is_active === 1) {
+                if (is_active === 1) {
                     isActiveElement.innerHTML = '<span class="badge bg-success">Aktif</span>';
                 } else {
                     isActiveElement.innerHTML = '<span class="badge bg-danger">Tidak Aktif</span>';
                 }
 
                 // Populate other data
-                document.getElementById('username').innerText = data.username || '-';
+                document.getElementById('username').innerText = username ? username : '-';
                 document.getElementById('name').innerText = data.name || '-';
-                document.getElementById('nip').innerText = data.nip || '-';
+                document.getElementById('nip').innerText = nip ? nip : '-';
                 document.getElementById('role_name').innerText = data.role || '-';
-                document.getElementById('email').innerText = data.email || 'No Email';
+                document.getElementById('email').innerText = data.email || '-';
 
+                // Menampilkan tanggal terdaftar
                 document.getElementById('createdAt').innerText =
-                    `Terdaftar: ${data.created_at ? new Date(data.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}`;
+                    `Terdaftar: ${createdAt ? new Date(createdAt ).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}`;
             }
 
             loadingPage(false);
@@ -263,7 +251,7 @@
                 const data = {
                     oldPassword: $("#password-old").val(),
                     newPassword: $("#password").val(),
-                    confirmPassword: $("#confirmPassword").val()
+                    confirmPassword: $("#confirmPassword").val(),
                 };
 
                 // Validasi jika ada field yang kosong
@@ -299,6 +287,11 @@
                     return;
                 }
 
+                let formData = {
+                    password: data.newPassword,
+                    email: email,
+                    old_password: data.oldPassword,
+                }
                 // Proses pengiriman data
                 Swal.fire({
                     icon: "question",
@@ -311,16 +304,32 @@
                 }).then(async (result) => {
                     loadingPage(false);
                     if (result.isConfirmed == true) {
-                        setTimeout(async () => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Pemberitahuan',
-                                text: 'Kata sandi berhasil diperbarui!',
-                                confirmButtonText: 'OK'
-                            }).then(async () => {
-                                $("#form-update-password").trigger("reset");
+                        let postDataRest = await CallAPI('PUT',
+                                '{{ env('SERVICE_BASE_URL') }}/internal/pengaturan-akun/update',
+                                formData)
+                            .then(function(response) {
+                                return response;
+                            }).catch(function(error) {
+                                loadingPage(false);
+                                let resp = error.response;
+                                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                                return resp;
                             });
-                        }, 100);
+
+                        if (postDataRest.status == 200 || postDataRest.status == 201) {
+                            loadingPage(false);
+                            setTimeout(async () => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pemberitahuan',
+                                    text: 'Kata sandi berhasil diperbarui!',
+                                    confirmButtonText: 'OK'
+                                }).then(async () => {
+                                    $("#form-update-password").trigger("reset");
+                                });
+                            }, 100);
+                        }
+
                     }
                 }).catch(swal.noop);
             });

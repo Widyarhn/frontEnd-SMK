@@ -14,7 +14,7 @@
     <meta name="author" content="Phoenixcoded" />
 
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
-    <link rel="icon" href="{{ asset('assets') }}/images/logoapp.png" type="image/x-icon" />
+    <link id="logo_favicon" rel="icon" href="{{ asset('assets') }}/images/logoapp.png" type="image/x-icon"  />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/css/uikit.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
-    <link href="{{ asset('assets/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js"></script>
 
     <style>
@@ -104,9 +103,9 @@
 
 
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/popper.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/bootstrap.min.js"></script>
     <script src="{{ asset('assets') }}/js/fonts/custom-font.js"></script>
     <script src="{{ asset('assets') }}/js/pcoded.js"></script>
@@ -114,7 +113,6 @@
     <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugins/sweetalert2.all.min.js"></script>
-    <script src="{{ asset('assets') }}/js/sweetalert2.all.min.js"></script>
     <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <script src="{{ asset('assets') }}/js/axios.js"></script>
     <script src="{{ asset('assets') }}/js/restAPI.js"></script>
@@ -164,6 +162,58 @@
     </script>
     @yield('scripts')
     <script type="text/javascript">
+        let deskripsi_aplikasi;
+
+        async function getDataApps() {
+            loadingPage(true); // Menampilkan indikator loading
+
+            const getDataRest = await CallAPI(
+                    'GET',
+                    `{{ env('SERVICE_BASE_URL') }}/company/setting/find`, {
+                        name: "aplikasi"
+                    }
+                )
+                .then(response => response)
+                .catch(error => {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', 'Error');
+                    return resp;
+                });
+
+            if (getDataRest.status === 200) {
+                loadingPage(false);
+
+                const appData = getDataRest.data.data;
+
+                document.querySelectorAll('.nama_aplikasi').forEach(function(element) {
+                    element.innerText = appData.nama;
+                });
+                document.getElementById('nama_instansi').innerText = appData.nama_instansi;
+                document.getElementById('kredit_by').innerText = `${appData.nama_instansi}`;
+                $('#email_app').html(`<i class="fa fa-envelope me-2"></i>${appData.email}`);
+                $('#no_telepon_app').html(`<i class="fa fa-phone me-2"></i>${appData.whatsapp}`);
+                $('#alamat_app').html(`<i class="fa-solid fa-location-dot me-2"></i> ${appData.alamat}`);
+                $('.logo_aplikasi').html(
+                    `<img src="${appData.logo_aplikasi}" alt="img" style="width: 45px; height: 45px; border-radius: 50%;">`
+                );
+
+                if (appData.logo_favicon) {
+                    const favicon = document.getElementById('logo_favicon');
+                    favicon.href = appData.logo_favicon;
+                }
+                let deskripsi_dashboard = document.getElementById('deskripsi_aplikasi');
+                if (deskripsi_dashboard) {
+                    deskripsi_dashboard.innerText = appData.deskripsi;
+                }
+                let logoFooter = document.getElementById('logo_footer');
+                if (logoFooter) {
+                    logoFooter.innerHTML = `<img src="${appData.logo_aplikasi}" alt="Logo" style="width: 45px; height: 45px; border-radius: 50%;">`;
+                }
+            }
+        }
+        window.onload = getDataApps;
+
         function notificationAlert(tipe, title, message) {
             Swal.fire({
                 icon: tipe,

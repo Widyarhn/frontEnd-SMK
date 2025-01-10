@@ -54,14 +54,14 @@
                         <svg class="pc-icon">
                             <use xlink:href="#custom-notification"></use>
                         </svg>
-                        <span class="badge bg-success pc-h-badge">3</span>
+                        <span class="badge bg-success pc-h-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header d-flex align-items-center justify-content-between">
                             <h5 class="m-0">Notifications</h5>
-                            <a href="#!" class="btn btn-link btn-sm">Mark all read</a>
+                            <a href="#!" class="btn btn-link btn-sm"></a>
                         </div>
-                        <div class="dropdown-body text-wrap header-notification-scroll position-relative"
+                        {{-- <div class="dropdown-body text-wrap header-notification-scroll position-relative"
                             style="max-height: calc(100vh - 215px)">
                             <p class="text-span">Today</p>
                             <div class="card mb-2">
@@ -155,9 +155,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="text-center py-2">
-                            <a href="#!" class="link-danger">Clear all Notifications</a>
+                            <a href="#!" class="link-danger">Belum ada notifikasi</a>
                         </div>
                     </div>
                 </li>

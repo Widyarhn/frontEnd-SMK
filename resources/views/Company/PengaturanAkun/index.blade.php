@@ -155,20 +155,8 @@
 @endsection
 @section('scripts')
     <script>
-        let defaultLimitPage = 10;
-        let currentPage = 1;
-        let totalPage = 1;
-        let defaultAscending = 0;
-        let defaultSearch = '';
-        let defaultLimitPageReport = 10;
-        let currentPageReport = 1;
-        let totalPageReport = 1;
-        let defaultAscendingReport = 0;
-        let defaultSearchReport = '';
-        let customFilter = {};
-        let customFilterReport = {};
-        let getDataRestDashboard;
-        let isAdmin;
+        let email = '';
+        let exist_spionam = @json(request()->user['exist_spionam']);
 
         async function getData() {
             loadingPage(true);
@@ -185,10 +173,10 @@
 
             if (getDataRest.status === 200) {
                 let data = getDataRest.data.data;
-
+                email = data.email;
                 // Set is_active badge
                 let isActiveElement = document.getElementById('is_active');
-                if (data.is_active_oss === 1 || data.is_active_oss === true) {
+                if (exist_spionam === 1 || exist_spionam === true) {
                     isActiveElement.innerHTML = '<span class="badge bg-success">Terdaftar Spionam</span>';
                 } else {
                     isActiveElement.innerHTML = '<span class="badge bg-danger">Belum Terdaftar Spionam</span>';
@@ -211,7 +199,6 @@
                 $('.company-user-phone').html(data.phone_number);
                 $('.company-is-active').addClass(`${data.is_active.icon_status} ${data.is_active.color}`);
                     
-                document.getElementById('email').innerText = data.email || 'No Email';
 
                 document.getElementById('createdAt').innerText =
                     `Terdaftar: ${data.created_at ? new Date(data.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}`;
@@ -219,7 +206,7 @@
 
             loadingPage(false);
         }
-
+    
         function validatePasswordStrength(password) {
             const minLength = 8;
             const hasUppercase = /[A-Z]/.test(password);
@@ -285,7 +272,7 @@
                 const data = {
                     oldPassword: $("#password-old").val(),
                     newPassword: $("#password").val(),
-                    confirmPassword: $("#confirmPassword").val()
+                    confirmPassword: $("#confirmPassword").val(),
                 };
 
                 // Validasi jika ada field yang kosong
@@ -321,6 +308,11 @@
                     return;
                 }
 
+                let formData = {
+                    password: data.newPassword,
+                    email: email,
+                    old_password: data.oldPassword,
+                }
                 // Proses pengiriman data
                 Swal.fire({
                     icon: "question",
@@ -333,22 +325,36 @@
                 }).then(async (result) => {
                     loadingPage(false);
                     if (result.isConfirmed == true) {
-                        setTimeout(async () => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Pemberitahuan',
-                                text: 'Kata sandi berhasil diperbarui!',
-                                confirmButtonText: 'OK'
-                            }).then(async () => {
-                                $("#form-update-password").trigger("reset");
+                        let postDataRest = await CallAPI('PUT',
+                                '{{ env('SERVICE_BASE_URL') }}/company/pengaturan-akun/update',
+                                formData)
+                            .then(function(response) {
+                                return response;
+                            }).catch(function(error) {
+                                loadingPage(false);
+                                let resp = error.response;
+                                notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                                return resp;
                             });
-                        }, 100);
+
+                        if (postDataRest.status == 200 || postDataRest.status == 201) {
+                            loadingPage(false);
+                            setTimeout(async () => {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Pemberitahuan',
+                                    text: 'Kata sandi berhasil diperbarui!',
+                                    confirmButtonText: 'OK'
+                                }).then(async () => {
+                                    $("#form-update-password").trigger("reset");
+                                });
+                            }, 100);
+                        }
+
                     }
                 }).catch(swal.noop);
             });
         }
-
-
 
         async function initPageLoad() {
             await getData();
