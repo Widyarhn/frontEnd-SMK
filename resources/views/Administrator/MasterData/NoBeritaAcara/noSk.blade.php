@@ -45,19 +45,19 @@
                                     <div class="datatable-top">
                                         <div class="datatable-dropdown">
                                             <label>
-                                                <select class="datatable-selector" id="limitPage" name="per-page" style="width: auto;min-width: unset;">
+                                                <select class="datatable-selector" id="limitPage" name="per-page"
+                                                    style="width: auto;min-width: unset;">
                                                     <option value="5">5</option>
                                                     <option value="10" selected="">10</option>
                                                     <option value="15">15</option>
                                                     <option value="20">20</option>
                                                     <option value="25">25</option>
-                                                </select> 
+                                                </select>
                                             </label>
                                         </div>
                                         <div class="datatable-search">
-                                            <input class="datatable-input search-input" placeholder="Cari..."
-                                                type="search" name="search" title="Search within table"
-                                                aria-controls="pc-dt-simple">
+                                            <input class="datatable-input search-input" placeholder="Cari..." type="search"
+                                                name="search" title="Search within table" aria-controls="pc-dt-simple">
                                         </div>
                                     </div>
                                     <div class="datatable-container">
@@ -74,7 +74,7 @@
                                             <tbody id="listData">
                                             </tbody>
                                         </table>
-                                        
+
 
                                     </div>
                                     <div class="datatable-bottom">
@@ -106,8 +106,8 @@
                         <div class="p-3">
                             <div class="mb-3">
                                 <div class="form-floating mb-0">
-                                    <input type="text" class="form-control" name="input_sk_number"
-                                        id="input_sk_number" placeholder="" required/>
+                                    <input type="text" class="form-control" name="input_sk_number" id="input_sk_number"
+                                        placeholder="" required />
                                     <label for="input_sk_number">No. Berita Acara</label>
                                 </div>
                             </div>
@@ -157,6 +157,7 @@
                 let name = $(this).attr("data-name");
                 let modalTitle = `Form Perbarui ${menu}`;
                 let data = $(this).attr("data");
+                isActionForm = "update";
                 data = JSON.parse(data);
                 let id = $(this).attr("data-id");
 
@@ -164,16 +165,8 @@
                 $("#modal-form").modal("show");
                 $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
 
-
                 $("#input_sk_number").val(data.decree_number);
 
-                let workUnit = data.work_unit.id;
-                $("#input_satuan_kerja_id").val(null).trigger('change');
-                $('#input_satuan_kerja_id').append(new Option(data.work_unit.name, workUnit, true, true));
-                $("#input_satuan_kerja_id").trigger('change');
-
-
-                // $("#form-create").data("action-url", `${env}/internal/admin-panel/sk-number/update`);
                 $("#form-create").data("action-url",
                     `${env}/internal/admin-panel/sk-number/update`);
 
@@ -196,33 +189,31 @@
                 if (id_user) {
                     formData.id = id_user;
                 }
-                let method = isActionForm === "store" ? 'POST' : 'POST';
-                let postDataRest = await CallAPI(method, actionUrl, formData)
-                .then(function(response) {
-                    return response;
-                }).catch(function(error) {
-                    loadingPage(false);
-                    let resp = error.response;
-                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                    $("#modal-form").modal("hide");
-                    return resp;
-                });
+                let postDataRest = await CallAPI('POST', actionUrl, formData)
+                    .then(function(response) {
+                        $("#modal-form").modal("hide");
+                        return response;
+                    }).catch(function(error) {
+                        $("#modal-form").modal("hide");
+                        loadingPage(false);
+                        let resp = error.response;
+                        notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                        return resp;
+                    });
 
-                if (postDataRest.status == 200 || postDataRest.status == 201) {
                     loadingPage(false);
-                    $("form").find("input, select, textarea").val("").prop("checked", false)
-                        .trigger("change");
-                    $("#modal-form").modal("hide");
+                if (postDataRest.status == 200 || postDataRest.status == 201) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Pemberitahuan',
                         text: 'Data berhasil disimpan!',
                         confirmButtonText: 'OK'
                     }).then(async () => {
-                        await initDataOnTable(defaultLimitPage, currentPage,
-                            defaultAscending, defaultSearch);
-                        $(this).trigger("reset");
-                        $("#modal-form").modal("hide");
+                        setTimeout(async () => {
+                            await initDataOnTable(defaultLimitPage, currentPage,
+                                defaultAscending, defaultSearch);
+                            $(this).trigger("reset");
+                        }, 500);
                     });
                 }
             });
@@ -247,8 +238,7 @@
                         let method = 'destroy';
                         const postDataRest = await CallAPI(
                             'POST',
-                            `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/sk-number/${method}`,
-                            {
+                            `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/sk-number/${method}`, {
                                 id: id
                             }
                         ).then(function(response) {
@@ -256,10 +246,11 @@
                         }).catch(function(error) {
                             loadingPage(false);
                             let resp = error.response;
-                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            notificationAlert('info', 'Pemberitahuan', resp.data
+                                .message);
                             return resp;
                         });
-        
+
                         if (postDataRest.status == 200) {
                             loadingPage(false);
                             setTimeout(async () => {
@@ -269,7 +260,8 @@
                                     text: 'Data berhasil dihapus!',
                                     confirmButtonText: 'OK'
                                 }).then(async () => {
-                                    await initDataOnTable(defaultLimitPage,
+                                    await initDataOnTable(
+                                        defaultLimitPage,
                                         currentPage,
                                         defaultAscending,
                                         defaultSearch);
@@ -287,8 +279,7 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/sk-number/list`, 
-                    {
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/sk-number/list`, {
                         page: currentPage,
                         limit: defaultLimitPage,
                         ascending: defaultAscending,
@@ -434,7 +425,7 @@
                     formData.id = id;
                     const postDataRest = await CallAPI(
                         'GET',
-                        `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/sk-number/status`,
+                        `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/sk-number/status`,
                         formData
                     ).then(function(response) {
                         return response;
@@ -444,7 +435,7 @@
                         notificationAlert('info', 'Pemberitahuan', resp.data.message);
                         return resp;
                     });
-    
+
                     if (postDataRest) {
                         loadingPage(false);
                         setTimeout(async () => {
