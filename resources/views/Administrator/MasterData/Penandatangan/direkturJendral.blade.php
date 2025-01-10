@@ -51,7 +51,7 @@
                                                     <option value="15">15</option>
                                                     <option value="20">20</option>
                                                     <option value="25">25</option>
-                                                </select> 
+                                                </select>
                                             </label>
                                         </div>
                                         <div class="datatable-search">
@@ -180,7 +180,7 @@
             try {
                 getDataRest = await CallAPI(
                     'GET',
-                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/list', 
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/direktur-jendral/list',
                     {
                         page: currentPage,
                         limit: defaultLimitPage,
@@ -237,7 +237,7 @@
                                     </div>
                                     <div class="col">
                                         <h6 class="mb-1"><span class="text-truncate w-100">${element.name || '-'}</span></h6>
-                                        <p class="f-12 mb-0"><a href="#!" class="text-muted">${element.work_unit.name || '-'}</a></p>
+                                        <p class="f-12 mb-0"><a href="#!" class="text-muted">${element?.work_unit?.name || '-'}</a></p>
                                     </div>
                                 </div>
                             </td>
@@ -334,9 +334,9 @@
                 $("#input_signer_type_identity").val(data.identity_type);
                 $("#input_signer_identity_number").val(data.identity_number);
 
-                let workUnit = data.work_unit.id;
+                let workUnit = data?.work_unit?.id;
                 $("#input_satuan_kerja_id").val(null).trigger('change');
-                $('#input_satuan_kerja_id').append(new Option(data.work_unit.name, workUnit, true, true));
+                $('#input_satuan_kerja_id').append(new Option(data?.work_unit?.name, workUnit, true, true));
                 $("#input_satuan_kerja_id").trigger('change');
 
                 $("#form-create").data("action-url", `${env}/internal/admin-panel/direktur-jendral/update`);
@@ -374,7 +374,7 @@
                             notificationAlert('info', 'Pemberitahuan', resp.data.message);
                             return resp;
                         });
-        
+
                         if (postDataRest.status == 200) {
                             loadingPage(false);
                             setTimeout(async () => {
@@ -488,7 +488,7 @@
                         notificationAlert('info', 'Pemberitahuan', resp.data.message);
                         return resp;
                     });
-    
+
                     if (postDataRest.status == 200 || postDataRest.status == 201) {
                         loadingPage(false);
                         setTimeout(async () => {
