@@ -232,9 +232,9 @@
 
             loadingPage(false);
             if (getDataRest.status == 200) {
-                let responseData = getDataRest.data;
-                let monitoringElementID = responseData.data.id;
-                let monitoringElement = responseData.data.monitoring_elements;
+                responseData = getDataRest.data;
+                monitoringElementID = responseData.data.id;
+                monitoringElement = responseData.data.monitoring_elements;
                 elementProperties = responseData.data.element_properties;
                 let questionSchema = elementProperties.question_schema.properties;
                 let uiSchema = elementProperties.ui_schema;
@@ -621,45 +621,60 @@
 
         }
 
-        document.getElementById('fCreate').addEventListener("submit", async (e) => {
-            e.preventDefault();
+        const $form = document.getElementById('fCreate')
+        $form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            const formParsley = $('#fCreate').parsley()
 
-            const formParsley = $('#fCreate').parsley();
-            formParsley.validate();
+            formParsley.validate()
 
-            if (!formParsley.isValid()) return false;
+            if (!formParsley.isValid()) return false
 
-            // Membuat schema jawaban
+
+            let answerSchema = buildAnswerSchmema()
+
             let formData = {
                 year: $('#iReportYear').val(),
                 monitoring_element_id: monitoringElementID,
-                answers: buildAnswerSchmema(),
-            };
+                answers: answerSchema,
+            }
 
-            loadingPage(true); // Menampilkan loading page
+            submitData(formData)
 
+        })
+
+
+
+        async function submitData(formData) {
+            loadingPage(true);
             try {
-                // Memanggil API untuk mengirim data
                 const postData = await CallAPI(
                     'POST',
                     '{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/store',
                     formData
                 );
 
-                // Jika sukses, tampilkan notifikasi dan refresh halaman
                 if (postData.status === 200) {
-                    notificationAlert('success', 'Berhasil', "Berhasil melakukan laporan tahunan")
-                        .then(() => {
-                            window.location.reload();
-                        });
+                    notificationAlert('success', 'Berhasil', postData.data.message);
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: successMessage,
+                        icon: 'success',
+                        timer: 5000,
+                        timerProgressBar: true,
+                        showConfirmButton: false,
+                    }).then(() => {
+                        window.location.reload();
+
+                    });
                 }
             } catch (error) {
-                // Menangani error dengan menampilkan notifikasi
-                notificationAlert('info', 'Pemberitahuan', "Error");
+                const resp = error.response;
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
             } finally {
-                loadingPage(false); // Menghilangkan loading page
+                loadingPage(false);
             }
-        });
+        }
 
 
         function buildAnswerSchmema() {

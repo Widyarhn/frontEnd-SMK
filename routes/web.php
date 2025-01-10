@@ -22,9 +22,9 @@ Route::get('/forgot-password', function () {
 
 Route::middleware(Application::class)->group( function(){
 
-    Route::controller(DashbController::class)->group(function () {
-        Route::get('/dashboard', 'index')->name('dashboard');
-    });
+    // Route::controller(DashbController::class)->group(function () {
+    //     Route::get('/dashboard', 'index')->name('dashboard');
+    // });
 
     Route::middleware([RoleMiddleware::class.':internal'])->group(function(){
         Route::prefix('admin')->group(function () {

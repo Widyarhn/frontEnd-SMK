@@ -414,7 +414,8 @@
                                                         <li
                                                             class="d-sm-inline-block d-block mt-1 me-3">
                                                             <i class="fa-solid fa-user-tie me-1"></i>
-                                                            Diverifikasi Oleh <b>${element.diverifikasi_oleh.assessor.name}</b>
+                                                            Diverifikasi Oleh <b>${(element?.diverifikasi_oleh?.assessor?.name ?? "-")}</b>
+
                                                         </li>
                                                     </ul>
                                                     <ul class="list-unstyled mt-2 mb-0 text-muted">
