@@ -236,11 +236,6 @@
                 $("#modal-form").modal("show");
                 $("form").find("input, select, textarea").val("").prop("checked", false).trigger(
                     "change");
-
-                // $("#form-create").data("action-url",
-                //     `${url}/user-management/list/application/provinsi/esmk/add`
-                // );
-                $("#form-create").data("", '');
             });
         }
 

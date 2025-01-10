@@ -212,12 +212,6 @@
                     $('#input_province_id').append(new Option(data.province.name, provinceId, true, true));
                     $("#input_province_id").trigger('change');
     
-    
-                    // $("#input_is_ministry").val(data.is_ministry);
-    
-    
-                    $("#form-create").data("action-url", `${env}/internal/admin-panel/kota/update`);
-                    $("#form-create").data("id", id);
                 }
 
             });

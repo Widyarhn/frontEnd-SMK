@@ -27,8 +27,9 @@
     <div class="col-12 mt-2 infoOss">
         <div class="alert alert-primary d-flex align-items-center" role="alert">
             <i class="fas fa-info-circle me-2"></i>
-            <div>Aktifkan Integrasi Akun OSS pada menu <a href="/admin/pengaturan" class="fw-bold">Pengaturan Aplikasi</a> agar dapat mengelola Master Data KBLI.</div>
-        </div>        
+            <div>Aktifkan Integrasi Akun OSS pada menu <a href="/admin/pengaturan" class="fw-bold">Pengaturan Aplikasi</a>
+                agar dapat mengelola Master Data KBLI.</div>
+        </div>
     </div>
     <div class="row">
         <div class="col-12">
@@ -72,7 +73,7 @@
                                             </thead>
                                             <tbody id="listData"></tbody>
                                         </table>
-                                        
+
                                     </div>
                                     <div class="datatable-bottom">
                                         <div class="datatable-info">Menampilkan <span id="countPage">0</span>
@@ -105,14 +106,14 @@
                             <div class="mb-3">
                                 <div class="form-floating mb-0">
                                     <input type="text" class="form-control" name="input_kode_kbli" id="input_kode_kbli"
-                                        placeholder="kode" required/>
+                                        placeholder="kode" required />
                                     <label for="input_kode_kbli">Kode KBLI</label>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="form-floating mb-0">
                                     <input type="text" class="form-control" name="input_judul_kbli" id="input_judul_kbli"
-                                        placeholder="nama" required/>
+                                        placeholder="nama" required />
                                     <label for="input_judul_kbli">Nama KBLI</label>
                                 </div>
                             </div>
@@ -159,8 +160,6 @@
                 $("#modal-form").modal("show");
                 $("form").find("input, textarea").val("").trigger("change");
 
-                // $("#form-create").data("action-url", `${env}/internal/admin-panel/master-kbli/store`);
-                $("#form-create").data("action-url", ``);
             });
         }
 
@@ -168,19 +167,18 @@
             $(document).on("click", ".edit-data", async function() {
                 let data = $(this).attr("data");
                 data = JSON.parse(data);
-
+                let id = $(this).attr("data-id");
                 $("#modal-title").html("Form Perbarui KBLI");
                 $("#modal-form").modal("show");
                 $("form").find("input, textarea").val("").trigger("change");
-
+                isActionForm = "update";
                 // Populate fields with existing data
                 $("#input_kode_kbli").val(data.kbli);
                 $("#input_judul_kbli").val(data.name);
                 $("#input_deskripsi_kbli").val(data.description);
 
                 // Set form action URL
-                $("#form-create").data("action-url", `${env}/internal/admin-panel/master-kbli/update`);
-                $("#form-create").data("id", data.id);
+                $("#form-create").data("id", id);
             });
         }
 
@@ -200,8 +198,10 @@
                 if (id) {
                     formData.id = id;
                 }
-
                 let method = isActionForm;
+                if (isActionForm == "update") {
+                    method = "update";
+                }
 
                 const postDataRest = await CallAPI(
                     'POST',
@@ -216,8 +216,8 @@
                     return resp;
                 });
 
+                loadingPage(false);
                 if (postDataRest.status == 200) {
-                    loadingPage(false);
                     $("#modal-form").modal("hide");
                     Swal.fire({
                         icon: 'success',
@@ -225,10 +225,13 @@
                         text: 'Data berhasil disimpan!',
                         confirmButtonText: 'OK'
                     }).then(async () => {
-                        await initDataOnTable(defaultLimitPage, currentPage, defaultAscending,
-                            defaultSearch);
-                        $(this).trigger("reset");
-                        $("#modal-form").modal("hide");
+                        setTimeout(async () => {
+                            $(this).trigger("reset");
+                            $("#modal-form").modal("hide");
+                            await initDataOnTable(defaultLimitPage, currentPage,
+                                defaultAscending,
+                                defaultSearch);
+                        }, 500);
                     });
                 }
             });
@@ -265,11 +268,8 @@
                             return resp;
                         });
 
+                        loadingPage(false);
                         if (postDataRest.status == 200) {
-                            loadingPage(false);
-                            $("form").find("input, select, textarea").val("").prop("checked",
-                                    false)
-                                .trigger("change");
                             setTimeout(async () => {
                                 Swal.fire({
                                     icon: 'success',
@@ -283,7 +283,7 @@
                                         defaultAscending,
                                         defaultSearch);
                                 });
-                            }, 100);
+                            }, 500);
                         }
                     }
                 }).catch(swal.noop);
@@ -326,7 +326,7 @@
                     let element = dataList[index];
                     const elementData = JSON.stringify(element);
                     const isActive = element.status_aktif === 1;
-                    let buttonActions = ''; 
+                    let buttonActions = '';
 
                     if (is_active_oss === 1) {
                         buttonActions = `
