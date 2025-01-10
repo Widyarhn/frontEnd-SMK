@@ -59,7 +59,7 @@
         let queryString         = window.location.search;
         let urlParams           = new URLSearchParams(queryString);
         let referenceId         = urlParams.get('id');
-        
+
         async function getListData(id) {
             loadingPage(true);
             const getDataRest = await CallAPI(
@@ -167,7 +167,7 @@
                                 <td>${subCounter + 1}.${subNumber}</td>
                                 <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${detail.title || ''}</td>
                                 <td style="word-wrap: break-word; white-space: normal; max-width: 200px;">${detail.description || ''}</td>
-                                <td>${filesHtml}</td>
+                                <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${filesHtml}</td>
                             </tr>`;
                                     subNumber++;
                                 }
