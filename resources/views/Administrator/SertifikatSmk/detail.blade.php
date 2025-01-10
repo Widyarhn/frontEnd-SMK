@@ -1718,16 +1718,19 @@
                 serviceTypes += `<li>${serviceType.name}</li>`;
             });
 
-            const fileUrl = data.company.nib_file;
-            const splitFileURL = fileUrl.split('/');
-            const fileName = splitFileURL[splitFileURL.length - 1];
-            const fileExtension = fileUrl.substring(fileUrl.lastIndexOf('.'));
+            // const fileUrl = data.company?.nib_file;
 
-            let nibPreview = '';
-            const imageType = ['.jpeg', '.jpg', '.png'];
-            if (imageType.includes(fileExtension)) {
-                nibPreview = `<img class="img-fluid" src="${fileUrl}"/>`;
-            }
+            // if (fileUrl) {
+            //     const splitFileURL = fileUrl.split('/');
+            //     const fileName = splitFileURL[splitFileURL.length - 1];
+            //     const fileExtension = fileUrl.substring(fileUrl.lastIndexOf('.'));
+            // }
+
+            // let nibPreview = '';
+            // const imageType = ['.jpeg', '.jpg', '.png'];
+            // if (imageType.includes(fileExtension)) {
+            //     nibPreview = `<img class="img-fluid" src="${fileUrl}"/>`;
+            // }
 
             const mappingStatusToReadable = {
                 'assessment_revision': 'Revisi Penilaian',
@@ -1797,7 +1800,7 @@
             $('#c_name').text(`${data.company.name} |`);
             $('#c_nib').text('NIB : ' + data.company.nib);
             $('#c_address').text(
-                `${data.company.address} ${data.company.city.name} ${data.company.province.name}`
+                `${data.company.address || "-"} ${data.company.city.name} ${data.company.province.name}`
             );
             $('#c_phone').html(`<i class="fa-solid fa-phone me-1"></i> ${data.company.company_phone_number}`);
             $('#c_email').html(`<i class="fa-regular fa-envelope me-1"></i> ${data.company.email}`);
@@ -1894,7 +1897,8 @@
                     </div>`;
             }
             const existingServiceTypes = data.company.service_types || [];
-            if ((status !== 'disposition' || status !== 'not_passed_assessment_verification') && dispositionTo?.id !== currentUser) {
+            if ((status !== 'disposition' || status !== 'not_passed_assessment_verification') && dispositionTo?.id !==
+                currentUser) {
                 serviceTypeValidation = ``;
             } else {
 
