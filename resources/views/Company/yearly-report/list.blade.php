@@ -36,7 +36,7 @@
                                 <option value="15">15</option>
                                 <option value="20">20</option>
                                 <option value="25">25</option>
-                            </select> 
+                            </select>
                         </label>
                     </div>
                     <div class="datatable-search">
@@ -153,7 +153,7 @@
                         totalPage;
                     let index_loop = display_from;
                     let domTableHtml = "";
-                    
+
 
                     for (let index = 0; index < dataTable.length; index++) {
                         let element = dataTable[index];
@@ -189,7 +189,7 @@
                                 colorBage = 'warning';
                                 break;
                         }
-                        
+
                         let cardClass = element.status === 'verified' ? 'ticket-card close-ticket' :
                             (element.rejection_notes && element.rejection_notes.length > 0 ? 'ticket-card open-ticket' :
                                 'ticket-card');
@@ -220,7 +220,7 @@
                                                     </li>
                                                     <li class="d-sm-inline-block d-block mt-1 me-3">
                                                         <i class="fas fa-user me-1 "></i>
-                                                            Diproses Oleh: <b>${element.assessor.name || '-'}</b>
+                                                            Diproses Oleh: <b>${element?.assessor?.name || '-'}</b>
                                                     </li>
                                                     <li class="d-sm-inline-block d-block mt-1 me-3">
                                                         <i class="material-icons-two-tone text-center f-14 me-1">calendar_today</i>Diajukan ${createdDate}
@@ -274,7 +274,7 @@
                 }
             }
         }
-        
+
 
         function showModalNotes(notes) {
             $('#exampleModalCenter .modal-body').html(`<p>${notes}</p>`);
@@ -292,7 +292,7 @@
             };
 
             await manipulationDataTable(paramsTable, '#pagination', '#limitPage',
-                '#searchInput', getListData); 
+                '#searchInput', getListData);
         }
     </script>
     @include('Company.partial-js')
