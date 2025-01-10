@@ -72,14 +72,15 @@
                                             </thead>
                                             <tbody id="listData"></tbody>
                                         </table>
-                                        <div class="datatable-bottom">
-                                            <div class="datatable-info">Menampilkan <span id="countPage">0</span>
-                                                dari <span id="totalPage">0</span> data</div>
-                                            <nav class="datatable-pagination">
-                                                <ul id="pagination-js" class="datatable-pagination-list">
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        
+                                    </div>
+                                    <div class="datatable-bottom">
+                                        <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                                            dari <span id="totalPage">0</span> data</div>
+                                        <nav class="datatable-pagination">
+                                            <ul id="pagination-js" class="datatable-pagination-list">
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>

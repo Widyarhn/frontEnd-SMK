@@ -12,7 +12,7 @@
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
-    height: 40px;
+    height: 50px;
     display: flex;
     align-items: center;
     padding: 0;
@@ -189,13 +189,35 @@
 .select2-container--default .select2-selection--single {
     background-color: #fff;
     border: 1px solid #aaa;
-    border-radius: 4px
+    border-radius: 8px
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: #444;
-    line-height: 28px
+    line-height: 28px;
+    padding: 6px 12px;
 }
+
+/* Styling untuk hasil yang dipilih dalam dropdown */
+/* .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444; /* Warna teks 
+    line-height: 28px; /* Jarak vertikal antara teks 
+    padding: 6px 12px; /* Menambah padding untuk ruang di sekitar teks 
+    border: 1px solid #ddd; /* Menambah border tipis berwarna abu-abu 
+    border-radius: 4px; /* Membuat border menjadi melengkung 
+    background-color: #f8f9fa; /* Menambah warna latar belakang 
+    font-size: 14px; /* Ukuran font 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan halus di sekitar elemen 
+} */
+
+/* Styling saat seleksi berada dalam keadaan fokus (hover/focus) */
+.select2-container--default .select2-selection--single .select2-selection__rendered:hover,
+.select2-container--default .select2-selection--single .select2-selection__rendered:focus {
+    border-color: #007bff; /* Ubah warna border saat fokus atau hover */
+    background-color: #e9f5ff; /* Ubah warna latar belakang saat hover/focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Tambahkan bayangan biru saat hover/focus */
+}
+
 
 .select2-container--default .select2-selection--single .select2-selection__clear {
     cursor: pointer;
@@ -209,11 +231,13 @@
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 26px;
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    width: 20px
+    position: absolute; /* Gunakan absolute positioning */
+    top: 50%; /* Posisikan secara vertikal di tengah */
+    right: 5px; /* Posisikan 5px dari sisi kanan */
+    transform: translateY(-50%); /* Geser secara vertikal untuk menyeimbangkan posisi tengah */
+    width: 20px;
 }
+
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     border-color: #888 transparent transparent transparent;

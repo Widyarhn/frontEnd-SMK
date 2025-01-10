@@ -74,15 +74,16 @@
                                             <tbody id="listData">
                                             </tbody>
                                         </table>
-                                        <div class="datatable-bottom">
-                                            <div class="datatable-info">Menampilkan <span id="countPage">0</span>
-                                                dari <span id="totalPage">0</span> data</div>
-                                            <nav class="datatable-pagination">
-                                                <ul id="pagination-js" class="datatable-pagination-list">
-                                                </ul>
-                                            </nav>
-                                        </div>
+                                        
 
+                                    </div>
+                                    <div class="datatable-bottom">
+                                        <div class="datatable-info">Menampilkan <span id="countPage">0</span>
+                                            dari <span id="totalPage">0</span> data</div>
+                                        <nav class="datatable-pagination">
+                                            <ul id="pagination-js" class="datatable-pagination-list">
+                                            </ul>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
@@ -152,10 +153,9 @@
                 isActionForm = "store";
                 $("#modal-form").modal("show");
                 $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
-                // $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
 
-                $("#form-create").data("action-url", ``);
-                // $("#form-create").data("action-url", `${env}/internal/admin-panel/sk-number/store`);
+                $("#form-create").data("action-url", `${env}/internal/admin-panel/sk-number/store`);
             });
         }
 
@@ -170,8 +170,7 @@
 
                 $("#modal-title").html(modalTitle);
                 $("#modal-form").modal("show");
-                $("form").find("input, textarea").val("").prop("checked", false).trigger("change");
-                // $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
+                $("form").find("input, select, textarea").val("").prop("checked", false).trigger("change");
 
 
                 $("#input_sk_number").val(data.decree_number);
@@ -184,7 +183,7 @@
 
                 // $("#form-create").data("action-url", `${env}/internal/admin-panel/sk-number/update`);
                 $("#form-create").data("action-url",
-                    `{{ asset('dummy/internal/md-no-ba/edit_noBa.json') }}`);
+                    `${env}/internal/admin-panel/sk-number/update`);
 
                 $("#form-create").data("id_user", id);
             });
@@ -205,12 +204,9 @@
                 if (id_user) {
                     formData.id = id_user;
                 }
-
-                const postDataRest = await CallAPI(
-                    'POST',
-                    `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/sk-number/${isActionForm}`,
-                    formData
-                ).then(function(response) {
+                let method = isActionForm === "store" ? 'POST' : 'POST';
+                let postDataRest = await CallAPI(method, actionUrl, formData)
+                .then(function(response) {
                     return response;
                 }).catch(function(error) {
                     loadingPage(false);
@@ -445,7 +441,7 @@
                     let formData = {};
                     formData.id = id;
                     const postDataRest = await CallAPI(
-                        'get',
+                        'GET',
                         `{{ env("SERVICE_BASE_URL") }}/internal/admin-panel/sk-number/status`,
                         formData
                     ).then(function(response) {
@@ -457,7 +453,7 @@
                         return resp;
                     });
     
-                    if (postDataRest.status == 200 || postDataRest.status == 201) {
+                    if (postDataRest) {
                         loadingPage(false);
                         setTimeout(async () => {
                             Swal.fire({
