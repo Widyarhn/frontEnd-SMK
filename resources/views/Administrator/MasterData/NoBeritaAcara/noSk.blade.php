@@ -105,17 +105,9 @@
                     <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
                         <div class="p-3">
                             <div class="mb-3">
-                                <div class="form">
-                                    <label for="floatingSelect">Satuan Kerja</label>
-                                    <select class="form-control" id="input_satuan_kerja_id"
-                                        name="input_satuan_kerja_id" style="width: 100%;">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3">
                                 <div class="form-floating mb-0">
                                     <input type="text" class="form-control" name="input_sk_number"
-                                        id="input_sk_number" placeholder=""/>
+                                        id="input_sk_number" placeholder="" required/>
                                     <label for="input_sk_number">No. Berita Acara</label>
                                 </div>
                             </div>
