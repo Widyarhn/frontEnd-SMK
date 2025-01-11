@@ -14,6 +14,12 @@
             z-index: 1;
             border-left: 1px solid #dee2e6;
         }
+        @media (max-width: 767px) {
+        .table th.sticky-end,
+        .table td.sticky-end {
+            position: static; /* Disable sticky behavior */
+        }
+    }
     </style>
 @endsection
 
@@ -297,22 +303,16 @@
 
             if (customFilter['start_date']) filterParams['fromdate'] = customFilter['start_date'];
             if (customFilter['end_date']) filterParams['duedate'] = customFilter['end_date'];
+            if (customFilter['province']) filterParams.province = customFilter['province'];
+            if (customFilter['status']) filterParams.status = customFilter['status'];
+            if (customFilter['service_type']) filterParams.service_type = customFilter['service_type'];
 
-            if (customFilter['province']) {
-                filterParams.province = customFilter['province'];
-            }
-            if (customFilter['status']) {
-                filterParams.status = customFilter['status'];
-            }
-            if (customFilter['service_type']) {
-                filterParams.service_type = customFilter['service_type'];
-            }
             const queryParams = new URLSearchParams({
-                page: currentPage,
-                limit: defaultLimitPage,
-                ascending: defaultAscending,
-                search: defaultSearch,
-                ...filterParams,
+                page: page, 
+                limit: limit,
+                ascending: ascending, 
+                search: search, 
+                ...filterParams 
             }).toString();
 
             let getDataRest;
@@ -333,7 +333,7 @@
                 let handleDataArray = await Promise.all(
                     getDataRest.data.data.map(async item => await handleData(item))
                 );
-                
+
                 await setListData(handleDataArray, getDataRest.data.paginate, customFilter);
             } else {
                 getDataTable = `
@@ -414,7 +414,7 @@
                     icon_status: data['exist_spionam'] ? "fa fa-circle-check" : "fa fa-circle-xmark",
                 },
 
-                created_at: dateLanguageFormat(data['created_at']) ?? '-',
+                created_at: data['created_at'] ? (data['created_at']) : '',
 
                 is_active: {
                     init: data['is_active'] ?? '-',
@@ -427,7 +427,7 @@
             return handleData;
         }
 
-        async function setListData(dataList, pagination) {
+        async function setListData(dataList, pagination, customFilter) {
             totalPage = pagination.total;
             let display_from = ((defaultLimitPage * pagination.current_page) + 1) - defaultLimitPage;
             let index_loop = display_from;
@@ -521,7 +521,7 @@
                 </tr>`;
                 $('#countPage').text("0 - 0");
                 $('#totalPage').text("0");
-            } else{
+            } else {
                 $('#totalPage').text(totalPage);
                 $('#countPage').text(`${display_from} - ${display_to}`);
             }
@@ -787,7 +787,7 @@
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
 
-                let customFilter = {
+                customFilter = {
                     'service_type': sourceType,
                     'status': status,
                     'province': province,
@@ -829,7 +829,7 @@
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
 
-                let customFilter = {
+                customFilter = {
                     'service_type': sourceType,
                     'status': status,
                     'province': province,
@@ -874,7 +874,7 @@
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
 
-                let customFilter = {
+                customFilter = {
                     'service_type': sourceType,
                     'status': status,
                     'province': province,
@@ -918,7 +918,7 @@
                 let status = document.getElementById('input-status').value;
                 let province = document.getElementById('input-provinsi').value;
 
-                let customFilter = {
+                customFilter = {
                     'service_type': sourceType,
                     'status': status,
                     'province': province,
@@ -1001,11 +1001,9 @@
         }
 
         async function getChartTipeLayanan(customFilter) {
-            console.log("🚀 ~ getChartTipeLayanan ~ customFilter:", customFilter)
             loadingPage(true);
 
             let yearToUse = new Date(customFilter?.end_date).getFullYear() || new Date().getFullYear();
-            console.log("🚀 ~ getChartTipeLayanan ~ yearToUse:", yearToUse)
 
             let getDataRest = await CallAPI(
                 'GET',
@@ -1028,7 +1026,6 @@
 
 
         async function setChartTipeLayanan(data, year) {
-            console.log("🚀 ~ setChartTipeLayanan ~ data:", data);
 
             if (!data || !Array.isArray(data) || data.length === 0) {
                 console.error("Series data is missing or empty");
@@ -1370,6 +1367,7 @@
             defaultSearch = $('.search-input').val();
             defaultLimitPage = $("#limitPage").val();
             currentPage = 1;
+
             await initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter);
         }
 
