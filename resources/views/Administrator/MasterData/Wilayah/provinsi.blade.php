@@ -295,17 +295,18 @@
                 ).then(function(response) {
                     return response;
                 }).catch(function(error) {
+                    $("#modal-form").modal("hide");
                     loadingPage(false);
                     let resp = error.response;
-                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                    notificationAlert('warning', 'Pemberitahuan', resp.data.message);
                     return resp;
                 });
 
                 if (postDataRest.status == 200) {
-                    loadingPage(false);
+                    $("#modal-form").modal("hide");
                     $("form").find("input, select, textarea").val("").prop("checked", false)
                         .trigger("change");
-                    $("#modal-form").modal("hide");
+                    loadingPage(false);
                     let data = postDataRest.data.data;
                     $("#inputId").val('');
                     $("#input_name").val('');
@@ -355,7 +356,7 @@
                         }).catch(function(error) {
                             loadingPage(false);
                             let resp = error.response;
-                            notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                            notificationAlert('warning', 'Pemberitahuan', resp.data.message);
                             return resp;
                         });
         

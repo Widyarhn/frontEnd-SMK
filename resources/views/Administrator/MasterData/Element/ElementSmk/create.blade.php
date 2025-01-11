@@ -642,7 +642,7 @@
                     }).catch(function(error) {
                         loadingPage(false);
                         let resp = error.response;
-                        notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                        notificationAlert('warning', 'Pemberitahuan', resp.data.message);
                         return resp;
                     });
     
