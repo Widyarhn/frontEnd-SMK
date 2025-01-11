@@ -12,11 +12,32 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: rgba(0, 255, 0, 0.8);
+            background: #228B22;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            z-index: 1;
         }
 
+        #countdown-timer {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 10px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            /* Shadow lebih halus */
+        }
 
         @media (max-width: 767px) {
+            #countdown-card {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto;
+                padding: 15px;
+            }
+
             .profile-avatar {
                 position: relative;
                 top: 0;
@@ -29,15 +50,6 @@
                 align-items: center;
                 justify-content: center;
             }
-
-            #countdown-card {
-                position: relative;
-                top: 0;
-                padding: 15px;
-                right: 0;
-                margin: 0 auto;
-            }
-
         }
     </style>
 @endsection
@@ -84,16 +96,16 @@
                     </div>
                 </div>
 
-
-                <div id="countdown-card" class="card floating-countdown mb-5 mb-lg-0"
-                    style=" width: 250px; padding: 15px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1);
+                <div id="countdown-card" class="card floating-countdown mb-5 mb-lg-0 px-5 mx-2"
+                    style="padding: 20px; box-shadow:0 4px 8px rgba(0, 0, 0, 0.1);
                        border-radius:8px; text-align:center;">
                     <div style="display:flex; align-items:center; gap:10px; justify-content: center;">
-                        <h6 style="margin:0; color:#000000; font-weight:600; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
-                            Laporan Tahunan</h6>
+                        <i id="countdown-icon" class="fa fa-clock" style="font-size:24px; color:#fff;"></i>
+                        <h5 style="margin:0; color:#000000; color: #ffffff; font-weight: 600; font-size: 16px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
+                            Laporan Tahunan</h5>
                     </div>
                     <div id="countdown-timer"
-                        style="font-size:18px; font-weight:700; color:#000000; margin-top:10px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
+                        style="font-size:18px; font-weight:700; color: #ffffff;; margin-top:10px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">
                         00:00:00
                     </div>
                 </div>
@@ -106,7 +118,8 @@
                                 data-bs-toggle="tab" href="#followers" role="tab" aria-selected="false"
                                 tabindex="-1"><i class="ti ti-building me-2"></i> Informasi Perusahaan</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab" data-bs-toggle="tab"
-                                href="#profile" role="tab" aria-selected="true"><i class="ti ti-file-certificate fa-lg me-2"></i>
+                                href="#profile" role="tab" aria-selected="true"><i
+                                    class="ti ti-file-certificate fa-lg me-2"></i>
                                 Sertifikat SMK</a></li>
                     </ul>
                 </div>
@@ -406,7 +419,8 @@
 
             // Cek jika expired sudah lewat
             if (now >= expiredDate) {
-                document.getElementById('countdown-timer').innerHTML = 'Kedaluwarsa';
+                document.getElementById('countdown-timer').innerHTML = 'Kadaluwarsa';
+                document.getElementById('countdown-card').style.background = "rgba(139, 0, 0, 0.9)";
                 return;
             }
 
@@ -415,6 +429,7 @@
 
             if (!nextReportDate) {
                 document.getElementById('countdown-timer').innerHTML = 'Tidak ada laporan tahunan lagi.';
+                document.getElementById('countdown-card').style.background = "rgba(139, 0, 0, 0.9)";
                 return;
             }
 
