@@ -954,30 +954,30 @@
 
                     // Accordion item for each element
                     accordionContent += `
-                            <div class="accordion-item shadow-sm border-0 mb-4">
-                                <h2 class="accordion-header" id="heading-${elementKey}">
-                                    <a class="accordion-button" href="#collapse${numberedElementKey}""
-                                        data-bs-toggle="collapse"
-                                        aria-expanded="true"
-                                        aria-controls="collapse${numberedElementKey}"
-                                        style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-                                        ${questionSchema[elementKey]?.title || 'No Title'}
-                                    </a>
-                                </h2>
-                                <div id="collapse${numberedElementKey}" class="accordion-collapse collapse show" aria-labelledby="heading${numberedElementKey}">
-                                    <div class="accordion-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Uraian</th>
-                                                        <th>Unggahan Perusahaan</th>
-                                                        <th>Nilai</th>
-                                                        <th>Keterangan</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>`;
+                        <div class="accordion-item shadow-sm border-0 mb-4">
+                            <h2 class="accordion-header" id="heading-${elementKey}">
+                                <a class="accordion-button" href="#collapse${numberedElementKey}"
+                                    data-bs-toggle="collapse"
+                                    aria-expanded="true"
+                                    aria-controls="collapse${numberedElementKey}"
+                                    style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                    ${numbering}. ${questionSchema[elementKey]?.title || 'No Title'}
+                                </a>
+                            </h2>
+                            <div id="collapse${numberedElementKey}" class="accordion-collapse collapse show" aria-labelledby="heading-${numberedElementKey}">
+                                <div class="accordion-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Uraian</th>
+                                                    <th>Unggahan Perusahaan</th>
+                                                    <th>Nilai</th>
+                                                    <th>Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>`;
 
                     sortableSubElement.forEach(function(subElement) {
 
@@ -1875,11 +1875,11 @@
                     </div>
                 </div>`;
 
-            if (dispositionTo.name) {
+            if (dispositionTo?.name) {
                 rowDispositionTo = `
                     <div class="row mb-2">
                         <span class="col-5 fw-bold">Dispo ke:</span>
-                        <span class="col-7">${dispositionTo.name}</span>
+                        <span class="col-7">${dispositionTo?.name}</span>
                     </div>`;
             }
 
