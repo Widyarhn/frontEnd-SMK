@@ -12,7 +12,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #228B22;
+            background: #727272;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -381,13 +381,44 @@
         }
 
         // Fungsi menghitung countdown
+        // function updateCountdown(annualReportDates, expiredDate) {
+        //     const now = new Date(); // Waktu saat ini
+
+        //     // Cek jika expired sudah lewat
+        //     if (now >= expiredDate) {
+        //         document.getElementById('countdown-timer').innerHTML = 'Kadaluwarsa';
+        //         document.getElementById('countdown-card').style.background = "rgba(139, 0, 0, 0.9)";
+        //         return;
+        //     }
+
+        //     // Temukan laporan tahunan berikutnya
+        //     let nextReportDate = annualReportDates.find(date => date > now);
+
+        //     if (!nextReportDate) {
+        //         document.getElementById('countdown-timer').innerHTML = 'Tidak ada laporan tahunan lagi.';
+        //         document.getElementById('countdown-card').style.background = "rgba(139, 0, 0, 0.9)";
+        //         return;
+        //     }
+
+        //     // Hitung selisih waktu
+        //     let diff = nextReportDate - now;
+        //     let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        //     let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //     let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        //     let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        //     // Tampilkan countdown
+        //     document.getElementById('countdown-timer').innerHTML =
+        //         `${days} hari, ${hours} jam, ${minutes} menit, ${seconds} detik`;
+        // }
         function updateCountdown(annualReportDates, expiredDate) {
             const now = new Date(); // Waktu saat ini
 
             // Cek jika expired sudah lewat
             if (now >= expiredDate) {
                 document.getElementById('countdown-timer').innerHTML = 'Kadaluwarsa';
-                document.getElementById('countdown-card').style.background = "rgba(139, 0, 0, 0.9)";
+                document.getElementById('countdown-card').style.background =
+                "rgba(139, 0, 0, 0.9)"; // Warna merah untuk kadaluwarsa
                 return;
             }
 
@@ -396,7 +427,8 @@
 
             if (!nextReportDate) {
                 document.getElementById('countdown-timer').innerHTML = 'Tidak ada laporan tahunan lagi.';
-                document.getElementById('countdown-card').style.background = "rgba(139, 0, 0, 0.9)";
+                document.getElementById('countdown-card').style.background =
+                "rgba(139, 0, 0, 0.9)"; // Warna merah jika tidak ada laporan
                 return;
             }
 
@@ -410,7 +442,11 @@
             // Tampilkan countdown
             document.getElementById('countdown-timer').innerHTML =
                 `${days} hari, ${hours} jam, ${minutes} menit, ${seconds} detik`;
+
+            // Set background menjadi hijau jika countdown masih berjalan
+            document.getElementById('countdown-card').style.background = "#228B22"; // Warna hijau saat countdown aktif
         }
+
 
         // Fungsi menghitung daftar tanggal laporan tahunan
         function calculateAnnualReportDates(skIssueDate, expiredDate) {
