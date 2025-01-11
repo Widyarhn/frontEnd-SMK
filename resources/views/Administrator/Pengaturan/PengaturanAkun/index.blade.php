@@ -147,6 +147,7 @@
         let username = @json(request()->user['username']);
         let createdAt = @json(request()->user['created_at']);
         let is_active = @json(request()->user['is_active']);
+        let role = @json(request()->payload['internal_role']);
 
         async function getData() {
             loadingPage(true);
@@ -175,7 +176,7 @@
                 document.getElementById('username').innerText = username ? username : '-';
                 document.getElementById('name').innerText = data.name || '-';
                 document.getElementById('nip').innerText = nip ? nip : '-';
-                document.getElementById('role_name').innerText = data.role || '-';
+                document.getElementById('role_name').innerText = role || '-';
                 document.getElementById('email').innerText = data.email || '-';
 
                 // Menampilkan tanggal terdaftar

@@ -29,8 +29,8 @@
                         <li class="nav-item" role="presentation"><a class="nav-link active" id="profile-tab-1"
                                 data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="true"><i
                                     class="ph-duotone ph-buildings me-2"></i>Profil Perusahaan</a></li>
-                        <li class="nav-item kbli-nav" role="presentation"><a class="nav-link" id="profile-tab-2" data-bs-toggle="tab"
-                                href="#kbli" role="tab" aria-selected="false" tabindex="-1"><i
+                        <li class="nav-item kbli-nav" role="presentation"><a class="nav-link" id="profile-tab-2"
+                                data-bs-toggle="tab" href="#kbli" role="tab" aria-selected="false" tabindex="-1"><i
                                     class="ti ti-file-text me-2"></i>KBLI Perusahaan</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab-3" data-bs-toggle="tab"
                                 href="#profile-3" role="tab" aria-selected="false" tabindex="-1"><i
@@ -431,6 +431,7 @@
         let queryString = window.location.search;
         let urlParams = new URLSearchParams(queryString);
         let referenceId = urlParams.get('id');
+        let is_active_kbli;
 
         async function getPerusahaanData(id) {
             loadingPage(true);
@@ -1062,37 +1063,40 @@
         }
 
         async function getListKbli(limit = 10, page = 1, ascending = 0, search = '', id = referenceId) {
-            loadingPage(true);
-            const getDataRest = await CallAPI(
-                'GET',
-                `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/kbli`, {
-                    id: id,
-                    page: page,
-                    limit: limit,
-                    ascending: ascending,
-                    search: search
-                }
-            ).then(function(response) {
-                return response;
-            }).catch(function(error) {
+            if (is_active_kbli === 1 || is_active_kbli === true) {
+                loadingPage(true);
+                const getDataRest = await CallAPI(
+                    'GET',
+                    `{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/perusahaan/kbli`, {
+                        id: id,
+                        page: page,
+                        limit: limit,
+                        ascending: ascending,
+                        search: search
+                    }
+                ).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    loadingPage(false);
+                    let resp = error.response;
+                    notificationAlert('info', 'Pemberitahuan', resp.data.message);
+                    return resp;
+                });
                 loadingPage(false);
-                let resp = error.response;
-                notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                return resp;
-            });
-            loadingPage(false);
-            if (getDataRest.status == 200) {
-                let handleDataArray = await Promise.all(
-                    getDataRest.data.data.map(async item => await handleKbli(item))
-                );
-                await setListKbli(handleDataArray, getDataRest.data.paginate);
-            } else {
-                getDataTableKbli = `
+                if (getDataRest.status == 200) {
+                    let handleDataArray = await Promise.all(
+                        getDataRest.data.data.map(async item => await handleKbli(item))
+                    );
+                    await setListKbli(handleDataArray, getDataRest.data.paginate);
+                } else {
+                    getDataTableKbli = `
                 <tr class="nk-tb-item">
                     <th class="text-center" colspan="${$('th').length}"> ${errorMessage1} </th>
                 </tr>`;
-                $('#listDataKbli tr').remove();
-                $('#listDataKbli').append(getDataTableKbli);
+                    $('#listDataKbli tr').remove();
+                    $('#listDataKbli').append(getDataTableKbli);
+                }
+
             }
         }
 
@@ -1103,7 +1107,7 @@
                 kbli: data['kbli'] ?? '-',
                 description: data['description'] ?? '-',
                 created_at: data['created_at'] ?? '-',
-                is_match : data['is_match'] ?? '-',
+                is_match: data['is_match'] ?? '-',
             };
 
             return handleData;
@@ -1122,7 +1126,7 @@
             let getDataTableKbli = '';
             for (let index = 0; index < dataList.length; index++) {
                 const element = dataList[index];
-                const textMatch = element.is_match === true || element.is_match === 1 ? 'Sesuai' : 'Tidak Sesuai'; 
+                const textMatch = element.is_match === true || element.is_match === 1 ? 'Sesuai' : 'Tidak Sesuai';
                 const colorMatch = element.is_match === true || element.is_match === 1 ? 'bg-success' : 'bg-danger';
                 getDataTableKbli += `
                 <tr>
@@ -1253,7 +1257,7 @@
 
             if (getDataRest.status == 200) {
                 let data = getDataRest.data.data;
-
+                is_active_kbli = data.is_active;
                 if (data.is_active === 0 || data.is_active === false) {
                     const kbli = document.getElementById('kbli');
                     const kbliNav = document.querySelector('.kbli-nav');
