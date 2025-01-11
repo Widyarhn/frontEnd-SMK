@@ -19,6 +19,10 @@ Route::get('/forgot-password', function () {
     return view('forgotPassword');
 });
 
+Route::get('/change-password', function (){
+    return view('change-password');
+});
+
 
 Route::middleware(Application::class)->group( function(){
 
