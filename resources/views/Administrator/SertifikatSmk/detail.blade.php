@@ -3008,8 +3008,6 @@
             await $('#edit-assessment-interview').modal('show');
             $('#fEditAssessmentInterview button[type="submit"]').prop('disabled', !$('#iEditAssessorHead').val() && !$(
                 '#iEditAssessors').val().length);
-
-
         }
 
         async function lihatBeritaAcara() {
@@ -3420,7 +3418,6 @@
             );
             if (postData.data.error === true) {
                 loadingPage(false);
-                $('#create-record-of-verification').modal('hide');
                 notificationAlert('error', 'Pemberitahuan', postData.data.message);
                 return;
             }
@@ -3885,8 +3882,6 @@
                 }
             });
 
-
-
             $('#validationReason').summernote('disable');
             updateWordAndParagraphCount($('#validationReason').summernote('code'));
 
@@ -3895,11 +3890,6 @@
                 let decodedString = $("<div>").html(dataComment).text();
                 $("#dataCatatanVerifikasi").html(decodedString)
             });
-
-            document.getElementById('edit-assessment-interview').addEventListener('hidden.bs.modal', function() {
-                location.reload();
-            });
-
             $('.photos_of_event').each(function() {
                 uploadFile($(this).attr('id'), $(this).next().attr('id'))
             })
