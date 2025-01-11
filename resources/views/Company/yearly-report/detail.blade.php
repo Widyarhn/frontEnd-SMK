@@ -1,6 +1,13 @@
 @extends('...Company.index', ['title' => 'Detail | Data Perusahaan'])
 @section('asset_css')
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/datepicker-bs5.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/js/libs/filepond/filepond.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         .custom-icon {
             font-size: 30px !important;
@@ -151,14 +158,20 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
-                                aria-labelledby="analytics-tab-1" tabindex="0">
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <form id="fCreate">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="analytics-tab-1-pane" role="tabpanel"
+                                    aria-labelledby="analytics-tab-1" tabindex="0">
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="mt-4 text-center col-12">
+                                <div class="text-center action-button">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -166,12 +179,23 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets') }}/js/plugins/apexcharts.min.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simple-datatables.js"></script>
-    <script src="{{ asset('assets') }}/js/pages/invoice-list.js"></script>
-    <script src="../assets/js/plugins/datepicker-full.min.js"></script>
-    <script src="../assets/js/pages/ac-datepicker.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
+    </script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js">
+    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+    <script
+        src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js">
+    </script>
+    <!-- [Page Specific JS] start -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs/dist/parsley.min.js"></script>
 @endsection
 
 @section('page_js')
@@ -180,214 +204,8 @@
         let urlParams = new URLSearchParams(queryString);
         let referenceId = urlParams.get('id');
         let companyID = urlParams.get('company_id');
-
-        function generateRowOfElementTitle(colSpanTitle, numbering, title) {
-            let $templateRow = `
-                    <div class="accordion-item shadow-sm border-0 mb-4">
-                        <h2 class="accordion-header" id="flush-heading-${numbering}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapse-${numbering}" aria-expanded="false" aria-controls="flush-collapse-${numbering}"
-                                style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%);
-                                color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px;
-                                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-                                <i class="fa-regular fa-file-lines me-2"></i>
-                                <span class="fw-bold me-2 me-lg-0">${numbering}. ${title}</span>
-                            </button>
-                        </h2>
-                        <div id="flush-collapse-${numbering}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${numbering}">
-                            <div class="accordion-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Uraian</th>
-                                                <th>Pertanyaan</th>
-                                                <th>Jawaban</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="body-${numbering}">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`
-
-            return $templateRow;
-        }
-
-        function mappingColumnOfRow(subElementSchema, status, numberColumn) {
-            let $rowTable = ''
-            if (subElementSchema.inputType === 'files') {
-                for (let i in subElementSchema.monitoringProperties) {
-                    let itemKey = Object.keys(subElementSchema.monitoringProperties[i])[0]
-
-                    let newAssessment
-
-                    if (typeof subElementSchema.assessments !== 'undefined') {
-
-                        if (subElementSchema.assessments === null) {
-                            newAssessment = null
-                        } else {
-                            newAssessment = subElementSchema.assessments[i][itemKey]
-                        }
-                    }
-
-
-
-                    let newAnswer
-                    if (typeof subElementSchema.answers[i][itemKey] !== 'undefined') {
-                        newAnswer = subElementSchema.answers[i][itemKey]
-                    }
-
-                    let itemSubElementSchema = {
-                        elementKey: subElementSchema.elementKey,
-                        subElementKey: itemKey,
-                        questionProperties: subElementSchema.questionProperties,
-                        monitoringProperties: subElementSchema.monitoringProperties[i][itemKey],
-                        answers: newAnswer,
-                        assessments: newAssessment,
-                        inputType: subElementSchema.inputType,
-                        lengthOfItems: subElementSchema.monitoringProperties.length
-                    }
-
-                    let newNumber = numberColumn
-
-                    if (i != 0) {
-                        newNumber = ''
-                    }
-                    $rowTable += generateRowsTable(
-                        itemSubElementSchema,
-                        status,
-                        newNumber
-                    )
-
-                }
-            } else {
-                $rowTable += generateRowsTable(
-                    subElementSchema,
-                    status,
-                    numberColumn
-                )
-            }
-
-            return $rowTable
-
-        }
-
-        async function getMonitoringElement() {
-            loadingPage(true);
-            let getDataRest;
-
-            try {
-
-                const baseUrl = `{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/detail`;
-                getDataRest = await CallAPI('GET', baseUrl, {
-                    id: referenceId,
-                    companyID: companyID
-                });
-            } catch (error) {
-                loadingPage(false);
-                const errorMessage = error.response?.data?.message || 'Terjadi kesalahan';
-                console.error('Error response:', error);
-                notificationAlert('info', 'Pemberitahuan', errorMessage);
-                return;
-            }
-
-            loadingPage(false);
-
-            if (getDataRest?.status === 200) {
-                const responseData = getDataRest.data;
-                const {
-                    monitoring_elements: monitoringElements,
-                    element_properties: elementProps,
-                    answers,
-                    assessments,
-                    status
-                } = responseData.data;
-                const {
-                    question_schema: questionSchema,
-                    ui_schema: uiSchema
-                } = elementProps;
-
-
-                const mappingStatus = mappingYearlyReportStatus[status]?.status || 'Unknown';
-                const spanStatus = `
-                    <span class="badge ${mappingYearlyReportStatus[status]?.bgColor || ''} ${mappingYearlyReportStatus[status]?.textColor || ''}">
-                        ${mappingStatus}
-                    </span>`;
-
-                $('#iReportYear').text(responseData.data.year || '-');
-                $('#reportStatus').append(spanStatus);
-
-                let accordionHTML = '';
-                let numbering = 1;
-
-                for (const [elementKey, elementValue] of Object.entries(uiSchema || {})) {
-                    const sortableSubElement = sortableSubElementByUiOrder(uiSchema, elementKey);
-                    const panelId = `panel-${elementKey}`;
-                    accordionHTML += `
-                        <div class="accordion-item shadow-sm border-0 mb-4">
-                            <h2 class="accordion-header" id="heading-${elementKey}">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${panelId}" aria-expanded="true" aria-controls="${panelId}" style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
-                                    ${numbering}. ${questionSchema.properties[elementKey]?.title || 'No Title'}
-                                </button>
-                            </h2>
-                            <div id="${panelId}" class="accordion-collapse show" data-bs-parent="#accordionMonitoring">
-                                <div class="accordion-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th>Uraian Element</th>
-                                                    <th>Pertanyaan</th>
-                                                    <th>Jawaban</th>
-                                                    ${status === 'not_passed' ? '<th>Status Verifikasi</th><th>Revisi Jawaban</th>' : ''}
-                                                </tr>
-                                            </thead>
-                                            <tbody>`;
-
-
-                    let rowIndex = 1;
-                    (sortableSubElement || []).forEach(subElement => {
-                        const subElementSchema = {
-                            elementKey,
-                            subElementKey: subElement[0],
-                            questionProperties: questionSchema.properties[elementKey]?.properties?.[
-                                subElement[0]
-                            ],
-                            monitoringProperties: monitoringElements[elementKey]?.[subElement[0]],
-                            answers: answers[elementKey]?.[subElement[0]],
-                            assessments: assessments?.[elementKey]?.[subElement[0]] || null,
-                            inputType: subElement[1]['ui:widget']
-                        };
-
-                        accordionHTML += mappingColumnOfRow(subElementSchema, status,
-                            `${numbering}.${rowIndex}`);
-                        rowIndex++;
-                    });
-
-                    accordionHTML += `</tbody></table></div></div></div>`;
-                    numbering++;
-                }
-
-                $('#accordionFlushExample').html(accordionHTML);
-
-                $('.pdf-preview').each(function() {
-                    PDFObject.embed(`${$(this).attr('location')}`, `#${$(this).attr('id')}`, {
-                        height: '20em'
-                    });
-                });
-
-                $('.smk-element-file').each(function() {
-                    uploadFile($(this).attr('id'), $(this).next().attr('id'), $(this).next().prop('required'));
-                });
-            }
-        }
-
-
+        let elementProperties;
+        let monitoringElement;
         const mappingRequestStatus = {
             'new_request': {
                 status: 'Pengajuan',
@@ -597,7 +415,6 @@
             'expired': 'Kedaluwarsa'
         }
 
-
         const mappingYearlyReportStatus = {
             request: {
                 status: 'Pengajuan',
@@ -710,6 +527,305 @@
             return `<span>${prosessBy}</span>`
         }
 
+        function generateRowOfElementTitle(colSpanTitle, numbering, title) {
+            let $templateRow = `
+                    <div class="accordion-item shadow-sm border-0 mb-4">
+                        <h2 class="accordion-header" id="flush-heading-${numbering}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapse-${numbering}" aria-expanded="false" aria-controls="flush-collapse-${numbering}"
+                                style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%);
+                                color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px;
+                                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                <i class="fa-regular fa-file-lines me-2"></i>
+                                <span class="fw-bold me-2 me-lg-0">${numbering}. ${title}</span>
+                            </button>
+                        </h2>
+                        <div id="flush-collapse-${numbering}" class="accordion-collapse collapse" aria-labelledby="flush-heading-${numbering}">
+                            <div class="accordion-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Uraian</th>
+                                                <th>Pertanyaan</th>
+                                                <th>Jawaban</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="body-${numbering}">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+
+            return $templateRow;
+        }
+
+        function mappingColumnOfRow(subElementSchema, status, numberColumn) {
+            let $rowTable = ''
+            if (subElementSchema.inputType === 'files') {
+                for (let i in subElementSchema.monitoringProperties) {
+                    let itemKey = Object.keys(subElementSchema.monitoringProperties[i])[0]
+
+                    let newAssessment
+
+                    if (typeof subElementSchema.assessments !== 'undefined') {
+
+                        if (subElementSchema.assessments === null) {
+                            newAssessment = null
+                        } else {
+                            newAssessment = subElementSchema.assessments[i][itemKey]
+                        }
+                    }
+
+
+
+                    let newAnswer
+                    if (typeof subElementSchema.answers[i][itemKey] !== 'undefined') {
+                        newAnswer = subElementSchema.answers[i][itemKey]
+                    }
+
+                    let itemSubElementSchema = {
+                        elementKey: subElementSchema.elementKey,
+                        subElementKey: itemKey,
+                        questionProperties: subElementSchema.questionProperties,
+                        monitoringProperties: subElementSchema.monitoringProperties[i][itemKey],
+                        answers: newAnswer,
+                        assessments: newAssessment,
+                        inputType: subElementSchema.inputType,
+                        lengthOfItems: subElementSchema.monitoringProperties.length
+                    }
+
+                    let newNumber = numberColumn
+
+                    if (i != 0) {
+                        newNumber = ''
+                    }
+                    $rowTable += generateRowsTable(
+                        itemSubElementSchema,
+                        status,
+                        newNumber
+                    )
+
+                }
+            } else {
+                $rowTable += generateRowsTable(
+                    subElementSchema,
+                    status,
+                    numberColumn
+                )
+            }
+
+            return $rowTable
+
+        }
+
+        async function getMonitoringElement() {
+            loadingPage(true);
+            let getDataRest;
+
+            try {
+
+                const baseUrl = `{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/detail`;
+                getDataRest = await CallAPI('GET', baseUrl, {
+                    id: referenceId,
+                    companyID: companyID
+                });
+            } catch (error) {
+                loadingPage(false);
+                const errorMessage = error.response?.data?.message || 'Terjadi kesalahan';
+                console.error('Error response:', error);
+                notificationAlert('info', 'Pemberitahuan', errorMessage);
+                return;
+            }
+
+            loadingPage(false);
+
+            if (getDataRest?.status === 200) {
+                const responseData = getDataRest.data;
+
+                monitoringElement = responseData.data.monitoring_elements
+                elementProperties = responseData.data.element_properties
+
+
+                const {
+                    monitoring_elements: monitoringElements,
+                    element_properties: elementProps,
+                    assessmentStatus = responseData.data.status,
+                    answers,
+                    assessments,
+                    status
+                } = responseData.data;
+                const {
+                    question_schema: questionSchema,
+                    ui_schema: uiSchema
+                } = elementProps;
+
+
+                const mappingStatus = mappingYearlyReportStatus[status]?.status || 'Unknown';
+                const spanStatus = `
+                    <span class="badge ${mappingYearlyReportStatus[status]?.bgColor || ''} ${mappingYearlyReportStatus[status]?.textColor || ''}">
+                        ${mappingStatus}
+                    </span>`;
+
+                $('#iReportYear').text(responseData.data.year || '-');
+                $('#reportStatus').append(spanStatus);
+
+                let accordionHTML = '';
+                let numbering = 1;
+
+                for (const [elementKey, elementValue] of Object.entries(uiSchema || {})) {
+                    const sortableSubElement = sortableSubElementByUiOrder(uiSchema, elementKey);
+                    const panelId = `panel-${elementKey}`;
+                    accordionHTML += `
+                        <div class="accordion-item shadow-sm border-0 mb-4">
+                            <h2 class="accordion-header" id="heading-${elementKey}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#${panelId}" aria-expanded="true" aria-controls="${panelId}" style="background: linear-gradient(90deg, rgb(4, 60, 132) 0%, rgb(69, 114, 184) 100%); color: white; border-radius: 8px; font-weight: bold; padding: 12px 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">
+                                    ${numbering}. ${questionSchema.properties[elementKey]?.title || 'No Title'}
+                                </button>
+                            </h2>
+                            <div id="${panelId}" class="accordion-collapse show" data-bs-parent="#accordionMonitoring">
+                                <div class="accordion-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>Uraian Element</th>
+                                                    <th>Pertanyaan</th>
+                                                    <th>Jawaban</th>
+                                                    ${status === 'not_passed' ? '<th>Status Verifikasi</th><th>Revisi Jawaban</th>' : ''}
+                                                </tr>
+                                            </thead>
+                                            <tbody>`;
+
+
+                    let rowIndex = 1;
+                    (sortableSubElement || []).forEach(subElement => {
+                        const subElementSchema = {
+                            elementKey,
+                            subElementKey: subElement[0],
+                            questionProperties: questionSchema.properties[elementKey]?.properties?.[
+                                subElement[0]
+                            ],
+                            monitoringProperties: monitoringElements[elementKey]?.[subElement[0]],
+                            answers: answers[elementKey]?.[subElement[0]],
+                            assessments: assessments?.[elementKey]?.[subElement[0]] || null,
+                            inputType: subElement[1]['ui:widget']
+                        };
+
+                        accordionHTML += mappingColumnOfRow(subElementSchema, status,
+                            `${numbering}.${rowIndex}`);
+                        rowIndex++;
+                    });
+
+                    accordionHTML += `</tbody></table></div></div></div>`;
+                    numbering++;
+                }
+
+                $('#accordionFlushExample').html(accordionHTML);
+
+                $('.pdf-preview').each(function() {
+                    PDFObject.embed(`${$(this).attr('location')}`, `#${$(this).attr('id')}`, {
+                        height: '20em'
+                    });
+                });
+
+                $('.smk-element-file').each(function() {
+                    uploadFile($(this).attr('id'), $(this).next().attr('id'), $(this).next().prop('required'));
+                });
+
+                let isNeedSubmitButton = false
+                if (assessmentStatus === 'not_passed') {
+                    isNeedSubmitButton = true
+                }
+
+                buildSubmitButton(isNeedSubmitButton)
+            }
+        }
+
+        const $form = document.getElementById('fCreate');
+        $form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formParsley = $('#fCreate').parsley();
+            formParsley.validate();
+
+            if (!formParsley.isValid()) return false;
+
+            let answerSchema = buildAnswerSchmema();
+
+            let formData = {
+                year: $('#iReportYear').val(),
+                answers: answerSchema,
+            };
+            await submitData(formData);
+        });
+
+        async function submitData(formData) {
+            loadingPage(true); // Menampilkan loading
+
+            try {
+                const ajaxResponse = await CallAPI(
+                    'POST',
+                    `{{ env('SERVICE_BASE_URL') }}/company/laporan-tahunan/update`, {
+                        id: referenceId,
+                        companyID: companyID,
+                        ...formData
+                    }
+                );
+
+                if (ajaxResponse.status === 200) {
+                    notificationAlert('success', 'Berhasil', ajaxResponse.data.message);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1200);
+                }
+            } catch (error) {
+                const message = error.response?.data?.message || 'Terjadi kesalahan yang tidak diketahui';
+                notificationAlert('error', 'Error', message);
+            } finally {
+                loadingPage(false); // Menyembunyikan loading
+            }
+        }
+
+        function buildAnswerSchmema() {
+            let elements = {}
+
+            $.each(elementProperties.max_assesment, function(elementKey, elementValue) {
+                const rowData = {}
+
+                $.each(elementValue, function(subElementKey) {
+                    let newData, question = elementProperties['question_schema']['properties'][elementKey][
+                        'properties'
+                    ][subElementKey]
+
+                    if (question['items']) {
+                        newData = []
+
+                        for (let i in question['items']) {
+
+                            let itemKey = Object.keys(question['items'][i])[0],
+                                answerValue = $(`#${elementKey}_${itemKey}`).val()
+
+                            newData.push({
+                                [itemKey]: answerValue
+                            })
+                        }
+                        rowData[subElementKey] = newData
+                    } else {
+                        rowData[subElementKey] = $(`#${elementKey}_${subElementKey}`).val()
+                    }
+
+                })
+                elements[elementKey] = rowData
+            })
+
+            return elements
+        }
+
         function generateRowsTable(subElementSchema, status, numberOfColumn) {
             let numberColumn = '',
                 titleColumn = '',
@@ -783,6 +899,61 @@
                             </button>
         `)
             }
+        }
+
+        function generateInputColumn(assessmentProperties, subElementSchema) {
+            if (typeof assessmentProperties === 'undefined') {
+                return '';
+            }
+
+            let formInputColumn = '';
+
+            if (assessmentProperties.assessmentValue === null || assessmentProperties.assessmentValue) {
+                let assessmentColumn = `
+                    <td>
+                        <input type="hidden"
+                            class="answer-element"
+                            name="${subElementSchema.elementKey}_${subElementSchema.subElementKey}"
+                            id="${subElementSchema.elementKey}_${subElementSchema.subElementKey}"
+                            value="${subElementSchema.answers || ''}">
+                    </td>`;
+                return assessmentColumn;
+            }
+
+            if (!assessmentProperties.assessmentValue) {
+                let formInput = generateFormInput(
+                    `${subElementSchema.elementKey}_${subElementSchema.subElementKey}`,
+                    subElementSchema.inputType,
+                    subElementSchema.answers
+                );
+
+                let customRadioProperties = {
+                    yesOption: {
+                        label: 'Ada Perubahan',
+                        id: `changed-${subElementSchema.subElementKey}`,
+                        value: 'yes'
+                    },
+                    noOption: {
+                        label: 'Sesuai',
+                        id: `noChanged-${subElementSchema.subElementKey}`,
+                        value: 'no'
+                    }
+                };
+
+                let customRadioCheck = '';
+
+                if (!subElementSchema.monitoringProperties.isMandatoryValue) {
+                    customRadioCheck = customRadioCheckHTML(
+                        `isAnyChanged-${subElementSchema.subElementKey}`,
+                        customRadioProperties,
+                        subElementSchema.answers ? 'yes' : 'no'
+                    );
+                }
+
+                formInputColumn = `<td>${customRadioCheck} ${formInput}</td>`;
+            }
+
+            return formInputColumn;
         }
 
         function customRadioCheckHTML(inputName, properties, defaultValue = 'yes') {
@@ -899,6 +1070,70 @@
             return str.replace(/(?:\r\n|\r|\n)/g, '<br>');
         }
 
+        function uploadFile(sourceElement, inputTarget, isRequired) {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content')
+
+            let removeButton = $(`#${sourceElement}`).closest('td').prev().find("[type=radio]")
+            if (removeButton[1]) {
+                removeButton[1].addEventListener('click', () => {
+                    customUpload.removeFiles();
+                })
+            }
+
+            let customUpload = FilePond.create(
+                document.querySelector(`#${sourceElement}`)
+            );
+            customUpload.setOptions({
+                server: {
+                    process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+
+                        const formData = new FormData()
+                        formData.append('file', file, file.name)
+
+                        const request = new XMLHttpRequest()
+                        request.open('POST', '{{ env('SERVICE_BASE_URL') }}/company/documents/upload-file')
+                        request.setRequestHeader('X-CSRF-TOKEN', csrfToken)
+                        request.setRequestHeader('Accept', 'application/json')
+                        request.setRequestHeader('Authorization', `Bearer ${Cookies.get('auth_token')}`);
+                        request.responseType = 'json';
+
+                        request.onload = function() {
+                            if (request.status >= 200 && request.status < 300) {
+                                const resp = request.response
+                                load(request.response);
+
+                                $(`#${inputTarget}`).val(resp.url)
+                            } else {
+                                error('oh no, Internal Server Error');
+                            }
+                        };
+
+                        request.send(formData);
+
+                        return {
+                            abort: () => {
+                                request.abort();
+
+                                abort();
+                            }
+                        }
+                    },
+                    revert: (uniqueFileId, load, error) => {
+                        $(`#${inputTarget}`).val('')
+
+                        error('oh my goodness');
+
+                        load();
+                    }
+                },
+                labelIdle: '<span class="filepond--label-action"> Pilih File </span>',
+                maxFiles: 1,
+                required: isRequired,
+                checkValidity: true,
+            })
+
+        }
+
         function sortableSubElementByUiOrder(uiSchema, elementKey) {
             let sortable = []
 
@@ -914,6 +1149,13 @@
         }
 
         async function initPageLoad() {
+            FilePond.registerPlugin(
+                FilePondPluginFileEncode,
+                FilePondPluginImagePreview,
+                FilePondPluginPdfPreview,
+                FilePondPluginFileValidateSize,
+                FilePondPluginFileValidateType
+            )
             await getMonitoringElement();
             $('.filepond--credits').remove();
         }
