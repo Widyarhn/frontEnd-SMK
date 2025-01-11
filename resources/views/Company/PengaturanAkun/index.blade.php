@@ -1,5 +1,15 @@
 @extends('...Company.index', ['title' => 'Pengaturan Akun | Pengaturan'])
-
+<style>
+    .passcode-switch {
+        color: #6c757d;
+        /* Warna ikon */
+        font-size: 1rem;
+        /* Ukuran ikon */
+        cursor: pointer;
+        z-index: 10;
+        /* Pastikan di atas elemen lain */
+    }
+</style>
 @section('content')
     <div class="page-header">
         <div class="page-block">
@@ -61,12 +71,12 @@
                                         <hr class="my-3 border border-secondary-subtle">
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
                                             <i class="ti ti-mail me-2"></i>
-                                            <p class="mb-0 company-email" style="word-break: break-word; overflow-wrap: anywhere; text-align: left;">anshan@gmail.com</p>
+                                            <p class="mb-0 company-email" style="word-break: break-word; overflow-wrap: anywhere; text-align: left;"></p>
                                         </div>
 
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
                                                 class="ti ti-phone me-2"></i>
-                                            <p class="mb-0 company-phone">(+1-876) 8654 239 581</p>
+                                            <p class="mb-0 company-phone"></p>
                                         </div>
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
                                                 class="ti ti-map-pin me-2"></i>
@@ -74,7 +84,7 @@
                                         </div>
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
                                             <i class="fa-regular fa-calendar-days me-2"></i>
-                                            <p class="mb-0" id="createdAt">Terdaftar: 7 Desember 2024</p>
+                                            <p class="mb-0" id="createdAt"></p>
                                         </div>
                                         {{-- <div class="d-inline-flex align-items-center justify-content-start w-100"><i
                                                 class="ti ti-link me-2"></i> <a href="#" class="link-primary">
@@ -93,26 +103,71 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <div class="mb-3">
+                                                <div class="mb-3 position-relative">
+                                                    <div class="form-floating">
+                                                        <input type="password" class="form-control" id="password-old" name="password-old"
+                                                            placeholder="Kata Sandi" required autocomplete="off" />
+                                                        <label for="password-old">Kata Sandi Lama<sup
+                                                                class="required-pass text-danger ms-1">*</sup></label>
+                                                    </div>
+                                                    <!-- Ikon mata -->
+                                                    <a href="javascript:void(0);" class="passcode-switch position-absolute"
+                                                        onclick="togglePasswordVisibility('password-old', this)"
+                                                        style="right: 10px; top: 50%; transform: translateY(-50%); text-decoration: none;"
+                                                        id="togglePassword">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                                {{-- <div class="mb-3">
                                                     <div class="form-floating mb-0">
                                                         <input type="password" class="form-control" id="password-old"
                                                             placeholder="Masukkan Kata Sandi Lama" />
                                                         <label for="password-old">Kata Sandi Lama</label>
                                                     </div>
+                                                </div> --}}
+                                                <div class="mb-3 position-relative">
+                                                    <div class="form-floating">
+                                                        <input type="password" class="form-control" id="password" name="password"
+                                                            placeholder="Kata Sandi" required autocomplete="off" />
+                                                        <label for="password">Kata Sandi Baru<sup
+                                                                class="required-pass text-danger ms-1">*</sup></label>
+                                                    </div>
+                                                    <!-- Ikon mata -->
+                                                    <a href="javascript:void(0);" class="passcode-switch position-absolute"
+                                                        onclick="togglePasswordVisibility('password', this)"
+                                                        style="right: 10px; top: 50%; transform: translateY(-50%); text-decoration: none;"
+                                                        id="togglePassword">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
                                                 </div>
-                                                <div class="mb-3">
+                                                {{-- <div class="mb-3">
                                                     <div class="form-floating mb-0">
                                                         <input type="password" class="form-control" id="password"
                                                             placeholder="Masukkan Kata Sandi Baru" />
                                                         <label for="password">Kata Sandi Baru</label>
                                                     </div>
-                                                </div>
-                                                <div class="mb-3">
+                                                </div> --}}
+                                                {{-- <div class="mb-3">
                                                     <div class="form-floating mb-0">
                                                         <input type="password" class="form-control" id="confirmPassword"
                                                             placeholder="Masukkan Kata Sandi Baru" />
                                                         <label for="confirmPassword">Konfirmasi Kata Sandi</label>
                                                     </div>
+                                                </div> --}}
+                                                <div class="mb-3 position-relative">
+                                                    <div class="form-floating">
+                                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                                            placeholder="Kata Sandi" required autocomplete="off" />
+                                                        <label for="confirmPassword">Konfirmasi Kata Sandi <sup
+                                                                class="required-pass text-danger ms-1">*</sup></label>
+                                                    </div>
+                                                    <!-- Ikon mata -->
+                                                    <a href="javascript:void(0);" class="passcode-switch position-absolute"
+                                                        onclick="togglePasswordVisibility('confirmPassword', this)"
+                                                        style="right: 10px; top: 50%; transform: translateY(-50%); text-decoration: none;"
+                                                        id="togglePassword">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 mt-5 mt-md-0">
@@ -136,8 +191,6 @@
                                                     </li>
                                                 </ul>
                                             </div>
-
-
                                         </div>
                                     </div>
                                     <div class="card-footer text-end btn-page mb-3">
@@ -158,6 +211,20 @@
         let email = '';
         let exist_spionam = @json(request()->user['exist_spionam']);
 
+        async function togglePasswordVisibility(inputId, toggleElement) {
+            const passwordField = document.getElementById(inputId);
+            const icon = toggleElement.querySelector('i');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
         async function getData() {
             loadingPage(true);
             let getDataRest = await CallAPI(
@@ -174,6 +241,7 @@
             if (getDataRest.status === 200) {
                 let data = getDataRest.data.data;
                 email = data.email;
+                console.log("🚀 ~ getData ~ email:", email)
                 // Set is_active badge
                 let isActiveElement = document.getElementById('is_active');
                 if (exist_spionam === 1 || exist_spionam === true) {
@@ -198,8 +266,6 @@
                 $('.company-user-name').html(data.username);
                 $('.company-user-phone').html(data.phone_number);
                 $('.company-is-active').addClass(`${data.is_active.icon_status} ${data.is_active.color}`);
-
-                document.getElementById('email').innerText = data.email || 'No Email';
 
                 document.getElementById('createdAt').innerText =
                     `Terdaftar: ${data.created_at ? new Date(data.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}`;
@@ -361,6 +427,7 @@
             await getData();
             await handlePasswordInput(); // Menangani input password dinamis
             await submitPasswordForm();
+            await togglePasswordVisibility();
         }
     </script>
 @endsection

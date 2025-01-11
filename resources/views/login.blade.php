@@ -42,6 +42,15 @@
         background-size: 600%;
 
     } */
+    .passcode-switch {
+        color: #6c757d;
+        /* Warna ikon */
+        font-size: 1rem;
+        /* Ukuran ikon */
+        cursor: pointer;
+        z-index: 10;
+        /* Pastikan di atas elemen lain */
+    }
 </style>
 
 <body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr"
@@ -66,9 +75,10 @@
 
     <div class="auth-main">
         <div class="auth-wrapper v2">
-                <div class="auth-sidecontent">
-                    <img src="{{ asset('assets') }}/images/authentication/2.jpg" alt="images" class="img-fluid img-auth-side"/>
-                </div>
+            <div class="auth-sidecontent">
+                <img src="{{ asset('assets') }}/images/authentication/2.jpg" alt="images"
+                    class="img-fluid img-auth-side" />
+            </div>
 
             <div class="auth-form">
                 <div class="card my-5" style="max-width:70%">
@@ -84,18 +94,32 @@
 
                         <div class="mb-3">
                             <div class="form-floating mb-0">
-                                <input type="email" class="form-control" id="email"
-                                    placeholder="Email address" required />
+                                <input type="email" class="form-control" id="email" placeholder="Email address"
+                                    required />
                                 <label for="email">Email</label>
                             </div>
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="password"
                                     placeholder="Password" required />
                                 <label for="password">Kata Sandi</label>
                             </div>
+                        </div> --}}
+                        <div class="mb-3 position-relative">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="password" placeholder="Kata Sandi"
+                                    required />
+                                <label for="password">Kata Sandi</label>
+                            </div>
+                            <!-- Ikon mata -->
+                            <a href="#" class="passcode-switch position-absolute"
+                                style="right: 10px; top: 50%; transform: translateY(-50%); text-decoration: none;"
+                                id="togglePassword">
+                                <i class="fa fa-eye"></i>
+                            </a>
                         </div>
+
                         <div class="d-flex mt-1 justify-content-between align-items-center">
                             <div class="form-check">
                                 <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" />
@@ -106,7 +130,9 @@
                             </h6>
                         </div>
                         <div class="d-grid mt-5">
-                            <a href="javascript:void(0);" onclick="submitLogin()" type="button" class="btn btn-primary" style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Masuk</a>
+                            <a href="javascript:void(0);" onclick="submitLogin()" type="button"
+                                class="btn btn-primary"
+                                style="background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Masuk</a>
                         </div>
                         <div class="d-flex justify-content-center align-items-end mt-3">
                             <h6 class="f-w-500 mb-0 me-2">Belum punya akun?</h6>
@@ -134,23 +160,40 @@
 
     <script>
         loadingPage(false);
+
+        document.getElementById('togglePassword').addEventListener('click', function(e) {
+            e.preventDefault();
+            const passwordField = document.getElementById('password');
+            const icon = this.querySelector('i');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
+
         document.getElementById('email').addEventListener('keydown', (event) => {
-          if (event.key === 'Enter') {
-            submitLogin();
-          }
+            if (event.key === 'Enter') {
+                submitLogin();
+            }
         });
 
         document.getElementById('password').addEventListener('keydown', (event) => {
-          if (event.key === 'Enter') {
-            submitLogin();
-          }
+            if (event.key === 'Enter') {
+                submitLogin();
+            }
         });
 
         function loadingPage(show) {
-            if(show == true) {
-              document.getElementById('preloaderLoadingPage').style.display = '';
+            if (show == true) {
+                document.getElementById('preloaderLoadingPage').style.display = '';
             } else {
-              document.getElementById('preloaderLoadingPage').style.display = 'none';
+                document.getElementById('preloaderLoadingPage').style.display = 'none';
             }
             return;
         }
@@ -166,37 +209,36 @@
         async function submitLogin() {
             loadingPage(true);
             const getDataRest = await CallAPI(
-            'POST',
-            '{{ env("SERVICE_BASE_URL") }}/auth/login',
-            {
-                email : $('#email').val(),
-                password : $('#password').val()
-            }
-            ).then(function (response) {
+                'POST',
+                '{{ env('SERVICE_BASE_URL') }}/auth/login', {
+                    email: $('#email').val(),
+                    password: $('#password').val()
+                }
+            ).then(function(response) {
                 return response;
-            }).catch(function (error) {
+            }).catch(function(error) {
                 loadingPage(false);
                 let resp = error.response;
-                notificationAlert('info','Pemberitahuan',resp.data.message);
+                notificationAlert('info', 'Pemberitahuan', resp.data.message);
                 return resp;
             });
-            if(getDataRest.status == 200) {
+            if (getDataRest.status == 200) {
                 let rest_data = getDataRest.data;
                 let token = rest_data.token;
                 let tokenParse = parseJwt(token);
                 console.log("🚀 ~ submitLogin ~ getDataRest.data:", getDataRest.data)
                 Cookies.remove('auth_token')
                 Cookies.set('auth_token', token, {
-                  expires: tokenParse.exp,
-                  user: rest_data.user
+                    expires: tokenParse.exp,
+                    user: rest_data.user
                 })
-                setTimeout(function(){
+                setTimeout(function() {
                     window.location.href = "{{ route('admin.dashboard') }}"
-                },500);
+                }, 500);
             }
         }
 
-        function parseJwt (token) {
+        function parseJwt(token) {
             var base64Url = token.split('.')[1];
             var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
             var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
