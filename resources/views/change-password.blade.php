@@ -75,26 +75,33 @@
             <div class="auth-form">
                 <div class="card my-5">
                     <div class="card-body">
-                        <div class="text-center">
-                            <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img"
-                                    style="width: 60px;" /></a>
-                        </div>
-                        <h4 class="text-center mt-4">PERIZINAN SMK-TD</h4>
-                        <div class="saprator mb-5">
-                            <span>Dinas Perhubungan</span>
-                        </div>
-                        <a href="#"></a>
-                        <div class="d-flex justify-content-between align-items-end mb-4">
-                            <h3 class="mb-0"><b>Lupa Kata Sandi</b></h3>
-                            <a href="/" class="link-primary">Kembali ke Halaman Masuk</a>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-floating mb-0">
-                                <input type="email" class="form-control" id="email" placeholder="Email address" />
-                                <label for="floatingInput">Email</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png"
+                                            alt="img" style="width: 60px;" /></a>
+                                </div>
+                                <h4 class="text-center mt-4">PERIZINAN SMK-TD</h4>
+                                <div class="saprator mb-5">
+                                    <span>Dinas Perhubungan</span>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-floating mb-0">
+                                        <input type="password" class="form-control" id="newPassword"
+                                            placeholder="Masukkan Kata Sandi Baru" />
+                                        <label for="newPassword">Kata Sandi Baru</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-floating mb-0">
+                                        <input type="password" class="form-control" id="confirmPassword"
+                                            placeholder="Masukkan Kata Sandi Baru" />
+                                        <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <p class="mt-4 text-sm text-muted">*** Jangan lupa cek kotak SPAM.</p>
+
                         <div class="d-grid mt-5">
                             <button href="javascript:void(0);" onclick="submitLogin()" type="button"
                                 class="btn btn-primary"
@@ -122,6 +129,9 @@
     <script src="{{ asset('assets/js/restAPI.js') }}"></script>
 
     <script>
+        let queryString = window.location.search;
+        let urlParams = new URLSearchParams(queryString);
+        let token = urlParams.get('token');
         loadingPage(false);
         document.getElementById('email').addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
@@ -150,8 +160,11 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'POST',
-                '{{ env('SERVICE_BASE_URL') }}/auth/forgot-password', {
-                    email: $('#email').val(),
+                '{{ env('SERVICE_BASE_URL') }}/auth/reset-password', {
+                    token: token,
+                    new_password: $('#newPassword').val(),
+                    confirm_password : $('#confirmPassword').val()
+
                 }
             ).then(function(response) {
                 return response;
