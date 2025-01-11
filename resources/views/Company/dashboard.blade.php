@@ -106,7 +106,7 @@
                                 data-bs-toggle="tab" href="#followers" role="tab" aria-selected="false"
                                 tabindex="-1"><i class="ti ti-building me-2"></i> Informasi Perusahaan</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="profile-tab" data-bs-toggle="tab"
-                                href="#profile" role="tab" aria-selected="true"><i class="ti ti-file me-2"></i>
+                                href="#profile" role="tab" aria-selected="true"><i class="ti ti-file-certificate fa-lg me-2"></i>
                                 Sertifikat SMK</a></li>
                     </ul>
                 </div>
@@ -278,11 +278,8 @@
 
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/date-language-format.js"></script>
-    <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
-    <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script src="https://ableproadmin.com/assets/js/pages/invoice-list.js"></script>
 @endsection
 
 @section('page_js')
@@ -563,35 +560,37 @@
 
         async function syncDataOss() {
             $(document).on("click", "#syncOss", async function() {
-                swal({
-                    title: `Sync data dengan OSS?`,
-                    text: "Data akan diperbaharui",
-                    type: "warning",
+                Swal.fire({
+                    title: `Konfirmasi Sinkronisasi`,
+                    text: "Apakah Anda yakin ingin menyinkronkan data dengan OSS? Proses ini akan mempengaruhi data yang ada.",
+                    icon: "warning",
                     showCancelButton: true,
                     cancelButtonColor: '#6F6F6F',
                     confirmButtonColor: '#28a745    ',
+                    confirmButtonText: 'Ya, Sinkronkan!',
                     cancelButtonText: 'Batal',
-                    confirmButtonText: 'Ya, Saya Yakin',
                 }).then(async (result) => {
-                    loadingPage(true)
-                    let postDataRest = await CallAPI(
-                        'GET',
-                        `{{ env('SERVICE_BASE_URL') }}/company/syncOss`
-                    ).then(function(response) {
-                        loadingPage(false)
-                        return response;
-                    }).catch(function(error) {
-                        loadingPage(false);
-                        let resp = error.response;
-                        notificationAlert('info', 'Pemberitahuan', resp.data
-                            .message);
-                        return resp;
-                    });
+                    if (result.isConfirmed == true) {
+                        loadingPage(true)
+                        let postDataRest = await CallAPI(
+                            'GET',
+                            `{{ env('SERVICE_BASE_URL') }}/company/syncOss`
+                        ).then(function(response) {
+                            loadingPage(false)
+                            return response;
+                        }).catch(function(error) {
+                            loadingPage(false);
+                            let resp = error.response;
+                            notificationAlert('info', 'Pemberitahuan', resp.data
+                                .message);
+                            return resp;
+                        });
 
-                    if (postDataRest.status == 200) {
-                        loadingPage(false);
-                        notificationAlert('success', 'Berhasil', postDataRest.data
-                            .message);
+                        if (postDataRest.status == 200) {
+                            loadingPage(false);
+                            notificationAlert('success', 'Berhasil', postDataRest.data
+                                .message);
+                        }
                     }
                 }).catch(swal.noop);
             })
