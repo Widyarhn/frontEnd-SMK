@@ -165,10 +165,6 @@
                                                     <p class="mb-1 text-muted">Email</p>
                                                     <p class="company-email mb-0">anshan.dh81@gmail.com</p>
                                                 </div>
-                                                <div class="col-md-6 mb-3 mb-md-0">
-                                                    <p class="mb-1 text-muted">Zip Code</p>
-                                                    <p class="mb-0">956 754</p>
-                                                </div>
                                             </div>
                                         </li>
                                         <li class="list-group-item px-0 pb-0">
@@ -347,7 +343,7 @@
                 const certificatePdfContainer = $('#certificate-pdf');
                 certificatePdfContainer.html(`
                     <h4 class="mt-4 fw-semibold">Sertifikat belum ada</h4>
-                    <p class="text-muted mt-3">Silahkan lengkapi proses pengajuan sertifikat SMK <a href="javascript:void(0)">Disini</a></p>
+                    <p class="text-muted mt-3">Silahkan lengkapi proses pengajuan sertifikat SMK <a href="/company/certificate/list">Disini</a></p>
                     <div class="mt-4">
                         <div class="row justify-content-center mt-5 mb-2">
                             <div class="col-sm-7 col-8 mb-4">
@@ -358,6 +354,7 @@
                 `);
                 $('.certificate-number').html('Tidak ditemukan');
                 $('#badgeStatus').hide();
+                $('#countdown-card').hide()
                 return resp;
             });
 
