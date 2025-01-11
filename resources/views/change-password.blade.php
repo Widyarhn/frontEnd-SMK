@@ -67,9 +67,8 @@
 
     <div class="auth-main">
         <div class="auth-wrapper v2">
-            <div class="auth-sidecontent welcome-banner"
-                style="width: 580px; height: 100vh; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); display: flex; justify-content: center; align-items: center; position: relative;">
-                <img src="{{ asset('assets') }}/images/logoapp.png" alt="images" style="width: 150px;" />
+            <div class="auth-sidecontent">
+                <img src="{{ asset('assets') }}/images/authentication/2.jpg" alt="images" class="img-fluid img-auth-side"/>
             </div>
 
             <div class="auth-form">

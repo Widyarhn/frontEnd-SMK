@@ -229,7 +229,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0" id="titleTotalPenilaian">Total Penilaian <p class="fw-normal rentangTanggal"></p>
+                        <h5 class="mb-0" id="titleTotalPenilaian">Total Penilaian <p class="fw-normal rentangTanggal">
+                            </p>
                         </h5>
                     </div>
                     <div class="my-2" id="totalPenilaian" class="chart-container"></div>
@@ -395,8 +396,7 @@
         let isAdmin;
         let chart;
         let role = @json(request()->payload['internal_role']);
-        console.log("🚀 ~ role:", role)
-        
+
         async function getUserData() {
             loadingPage(true);
             let getDataRest = await CallAPI(
@@ -417,7 +417,7 @@
                 console.log("🚀 ~ getUserData ~ userRole:", userRole)
                 isAdmin = userRole.includes('Super Admin');
 
-                if (role === 'Admin' || role === 'Super Admin') {
+                if ((role !== 'Admin') && (role !== 'Super Admin')) {
                     document.getElementById('widget-table-1').style.display = 'none';
                     const infoTableCol = document.getElementById('tahunan');
                     if (infoTableCol) {
@@ -488,7 +488,7 @@
                 // Gunakan querySelectorAll untuk memilih semua elemen dengan kelas 'rentangTanggal' dan iterasi
                 document.querySelectorAll('.rentangTanggal').forEach((element) => {
                     element.innerText =
-                    `${formattedStartDate} - ${formattedEndDate}`; // Gunakan backticks untuk string template
+                        `${formattedStartDate} - ${formattedEndDate}`; // Gunakan backticks untuk string template
                 });
 
 
@@ -810,7 +810,7 @@
 
             // Extract days and the values for each series
             const daysArray = totalPenilaian.map(item => moment(item.date).format(
-            'DD MMM YY')); // Format date to "12 Des 25"
+                'DD MMM YY')); // Format date to "12 Des 25"
             const pengajuanAwalData = totalPenilaian.map(item => item.pengajuan_awal);
             const prosesPengajuanData = totalPenilaian.map(item => item.proses_pengajuan);
             const prosesSelesaiData = totalPenilaian.map(item => item.proses_selesai);

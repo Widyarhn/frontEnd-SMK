@@ -14,37 +14,29 @@
         content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard" />
     <meta name="author" content="Phoenixcoded" />
 
-    <!-- [Favicon] icon -->
     <link rel="icon" href="{{ asset('assets') }}/images/logoapp.png" type="image/x-icon" />
-    <!-- [Font] Family -->
-    <link rel="stylesheet" href="https://ableproadmin.com/assets/fonts/inter/inter.css" id="main-font-link" />
-    <!-- [phosphor Icons] https://phosphoricons.com/ -->
-    <link rel="stylesheet" href="https://ableproadmin.com/assets/fonts/phosphor/duotone/style.css" />
-    <!-- [Tabler Icons] https://tablericons.com -->
-    <link rel="stylesheet" href="https://ableproadmin.com/assets/fonts/tabler-icons.min.css" />
-    <!-- [Feather Icons] https://feathericons.com -->
-    <link rel="stylesheet" href="https://ableproadmin.com/assets/fonts/feather.css" />
-    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/feather.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- [Material Icons] https://fonts.google.com/icons -->
-    <link rel="stylesheet" href="https://ableproadmin.com/assets/fonts/material.css" />
-    <!-- [Template CSS Files] -->
-    <link rel="stylesheet" href="https://ableproadmin.com/assets/css/style.css" id="main-style-link" />
-    <script src="https://ableproadmin.com/assets/js/tech-stack.js"></script>
-    <link rel="stylesheet" href="https://ableproadmin.com/assets/css/style-preset.css" />
-    <link rel="stylesheet" href="{{ asset('assets') }}/css/select2.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/fonts/material.css" />
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css" id="main-style-link" />
+    <script src="{{ asset('assets') }}/js/tech-stack.js"></script>
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/loading.css') }}" />
     <link href="{{ asset('assets/css/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
 
     <script src="{{ asset('assets') }}/js/plugins/jquery-3.7.1.min.js"></script>
 </head>
 <style>
-    .welcome-banner::after {
+    /* .welcome-banner::after {
         opacity: 0.3;
         background-position: bottom;
         background-size: 600%;
 
-    }
+    } */
 </style>
 
 <body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr"
@@ -70,9 +62,9 @@
 
     <div class="auth-main">
         <div class="auth-wrapper v2">
-            <div class="auth-sidecontent welcome-banner"
-                style="width: 580px; height: 100vh; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); display: flex; justify-content: center; align-items: center; position: relative;">
-                <img src="{{ asset('assets') }}/images/logoapp.png" alt="images" style="width: 150px;" />
+            <div class="auth-sidecontent">
+                <img src="{{ asset('assets') }}/images/authentication/2.jpg" alt="images"
+                    class="img-fluid img-auth-side" />
             </div>
             <div class="auth-form">
                 <div class="card my-5" style="max-width:70%">
@@ -82,7 +74,7 @@
                                     style="width: 60px;" /></a>
                         </div>
                         <h4 class="text-center mt-4">DAFTAR SMK-TD</h4>
-                        <div class="saprator mb-5">
+                        <div class="saprator mb-5 text-center">
                             <span>Dinas Perhubungan Kabupaten</span>
                         </div>
 
@@ -120,7 +112,7 @@
                                             <label for="nib">NIB</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-4">
                                         <div class="form-floating mb-0">
                                             <input type="text" class="form-control"
                                                 id="data-perusahaan-nama-perusahaan" placeholder="" />
@@ -130,7 +122,7 @@
                                 </div>
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <div class="mb-3">
+                                        <div class="mb-0">
                                             <div class="form-floating mb-0">
                                                 <input type="number" class="form-control"
                                                     id="data-perusahaan-no-telepon-perusahaan" placeholder="" />
@@ -150,7 +142,7 @@
                                 </div>
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <div class="mb-3">
+                                        <div class="mb-0">
                                             <label class="fw-normal" for="data-perusahaan-provinsi">Provinsi</label>
                                             <select class="form-control form-control-sm"
                                                 name="data-perusahaan-provinsi" id="data-perusahaan-provinsi"
@@ -158,7 +150,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mb-3">
+                                        <div class="mb-4">
                                             <label class="fw-normal" for="data-perusahaan-kota">Kota</label>
                                             <select class="form-control form-control-sm" name="data-perusahaan-kota"
                                                 id="data-perusahaan-kota" required></select>
@@ -178,12 +170,16 @@
                                     <div class="col-md-12">
                                         <label class="fw-normal" for="data-jenis-pelayanan">Jenis Pelayanan</label>
                                         <select class="form-control form-control-sm" name="data-jenis-pelayanan"
-                                            id="data-jenis-pelayanan" required></select>
+                                            id="data-jenis-pelayanan" multiple required></select>
                                     </div>
                                 </div>
                                 <div class="d-grid mt-5">
                                     <button type="submit" class="btn btn-primary mb-2"
                                         style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Selanjutnya</button>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-end mt-3">
+                                    <h6 class="f-w-500 mb-0 me-2">Sudah punya akun?</h6>
+                                    <a href="/" class="link-primary">Masuk Sekarang!</a>
                                 </div>
                             </div>
                             <div class="wizard-step step-3" data-step="3" style="display: none;">
@@ -191,7 +187,7 @@
                                         class="fa-solid fa-circle-info fa-lg me-2"></i>Penanggung Jawab (PIC)</h5>
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <div class="mb-3">
+                                        <div class="mb-0">
                                             <div class="form-floating mb-0">
                                                 <input type="text" class="form-control" id="data-pic-nama"
                                                     placeholder="" />
@@ -200,7 +196,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mb-3">
+                                        <div class="mb-4">
                                             <div class="form-floating mb-0">
                                                 <input type="text" class="form-control" id="data-pic-no-telepon"
                                                     placeholder="" />
@@ -209,19 +205,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-grid mt-5">
-                                    <button type="submit" class="btn btn-primary mb-2"
-                                        style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Selanjutnya</button>
-                                    <button type="button" class="btn btn-outline-secondary prev-btn"
+                                <div class="d-grid mt-4">
+                                    <button type="button" class="btn btn-outline-secondary prev-btn mb-2"
                                         style="border-radius:5px;">Kembali</button>
+                                    <button type="submit" class="btn btn-primary"
+                                        style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">Selanjutnya</button>
                                 </div>
                             </div>
+
                             <div class="wizard-step step-4" data-step="4" style="display: none;">
                                 <h5 class="text-left mb-4" style="color:#214f96;"><i
                                         class="fa-solid fa-circle-info fa-lg me-2"></i>Informasi Akun</h5>
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <div class="mb-3">
+                                        <div class="mb-0">
                                             <div class="form-floating mb-0">
                                                 <input type="text" class="form-control"
                                                     id="data-informasi-akun-username" placeholder="" />
@@ -238,41 +235,44 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="mb-3">
                                     <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <div class="form-floating mb-0">
-                                                <input type="password" class="form-control"
-                                                    id="data-informasi-akun-password" />
-                                                <label for="data-informasi-akun-password">Password</label>
-                                            </div>
+                                        <div class="form-floating mb-0">
+                                            <input type="password" class="form-control"
+                                                id="data-informasi-akun-password" placeholder="" />
+                                            <label for="data-informasi-akun-password">Password</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-flex mt-1 justify-content-between align-items-center">
                                     <div class="form-check">
-                                        <input type="checkbox" class="custom-control-input" name="cp1-save-register"
-                                            id="cp1-save-register" value="1" required />
-                                        <label class="custom-control-label" for="cp1-save-register">Saya menyetujui
+                                        <input class="form-check-input input-primary" type="checkbox"
+                                        name="cp1-save-register" id="cp1-save-register" value="1" required/>
+                                        <label class="form-check-label text-muted" for="cp1-save-register">Saya menyetujui
                                             syarat dan ketentuan yang berlaku.</label>
                                     </div>
+                                    <h6 class="text-secondary f-w-400 mb-0">
+                                        <a href=""> </a>
+                                    </h6>
                                 </div>
-                                <div class="d-grid mt-5">
-                                    <button type="button" class="btn btn-outline-secondary prev-btn"
-                                        style="border-radius:5px;">Kembali</button>
-                                </div>
-                                <div class="d-grid mt-5">
-                                    <button type="button" class="btn mb-2" id="daftar-akun"
+
+                                <div class="d-flex justify-content-center mt-5 flex-column flex-sm-row">
+                                    <button type="button"
+                                        class="btn btn-outline-secondary prev-btn mb-2 mb-md-0 me-0 me-md-3 flex-grow-1"
+                                        style="border-radius:5px;">
+                                        Kembali
+                                    </button>
+                                    <button type="button" class="btn flex-grow-1" id="daftar-akun"
                                         style="border-radius:5px; background: linear-gradient(90deg, rgb(4 60 132) 0%, rgb(69 114 184) 100%); color: white;">
                                         Simpan
                                     </button>
                                 </div>
+
+
                             </div>
                         </form>
 
-                        <div class="d-flex justify-content-center align-items-end mt-3">
-                            <h6 class="f-w-500 mb-0 me-2">Sudah punya akun?</h6>
-                            <a href="/" class="link-primary">Masuk Sekarang!</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -281,12 +281,12 @@
     <!-- [ Main Content ] end -->
 
     <!-- Required Js -->
-    <script src="https://ableproadmin.com/assets/js/plugins/popper.min.js"></script>
-    <script src="https://ableproadmin.com/assets/js/plugins/simplebar.min.js"></script>
-    <script src="https://ableproadmin.com/assets/js/plugins/bootstrap.min.js"></script>
-    <script src="https://ableproadmin.com/assets/js/fonts/custom-font.js"></script>
-    <script src="https://ableproadmin.com/assets/js/pcoded.js"></script>
-    <script src="https://ableproadmin.com/assets/js/plugins/feather.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/popper.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/simplebar.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/bootstrap.min.js"></script>
+    <script src="{{ asset('assets') }}/js/fonts/custom-font.js"></script>
+    <script src="{{ asset('assets') }}/js/pcoded.js"></script>
+    <script src="{{ asset('assets') }}/js/plugins/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.js"></script>
     <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
     <script src="{{ asset('assets') }}/js/select2/select2.full.min.js"></script>
