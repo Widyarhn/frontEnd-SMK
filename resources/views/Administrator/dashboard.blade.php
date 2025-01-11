@@ -45,16 +45,13 @@
                         <div class="col-sm-6">
                             <div class="p-4">
                                 <h2 class="text-white internal-name"></h2>
-                                <p class="text-white" id="deskripsi_aplikasi">Sistem ini dirancang untuk mendukung perusahaan angkutan umum dalam
+                                <p class="text-white" id="deskripsi_aplikasi">Sistem ini dirancang untuk mendukung
+                                    perusahaan angkutan umum dalam
                                     menerapkan dan memantau standar keselamatan operasional. Sistem ini memantau kinerja
                                     keselamatan secara berkelanjutan.
                             </div>
                         </div>
-                        <div class="col-sm-6 text-center">
-                            <div class="img-welcome-banner">
-                                <img src="{{ asset('assets') }}/images/logoapp.png" alt="img" class="img-fluid mt-2"
-                                    style="width: 100px;" />
-                            </div>
+                        <div class="col-sm-6 text-center img-logo-app">
                         </div>
                     </div>
                 </div>
@@ -150,7 +147,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-5">Proses Sertifikasi</h5>
+                        <h5 class="mb-5">Proses Sertifikasi <p class="fw-normal rentangTanggal"></p>
+                        </h5>
                     </div>
 
                     <div class="row g-3 mx-3">
@@ -231,7 +229,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0" id="titleTotalPenilaian">Total Penilaian</h5>
+                        <h5 class="mb-0" id="titleTotalPenilaian">Total Penilaian <p class="fw-normal rentangTanggal"></p>
+                        </h5>
                     </div>
                     <div class="my-2" id="totalPenilaian" class="chart-container"></div>
                 </div>
@@ -242,7 +241,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <div class="flex-grow-1">
-                            <h5 class="mb-0">Tipe Perusahaan</h5>
+                            <h5 class="mb-0">Tipe Perusahaan <p class="fw-normal rentangTanggal"></p>
+                            </h5>
                         </div>
                     </div>
                     <div class="my-2" id="bar-chart-3" class="chart-container"></div>
@@ -254,7 +254,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0">Penilai Dengan Disposisi Terbanyak</h5>
+                        <h5 class="mb-0">Penilai Dengan Disposisi Terbanyak <p class="fw-normal rentangTanggal"></p>
+                        </h5>
                     </div>
                     <div class="table-responsive">
                         <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
@@ -326,7 +327,7 @@
                                     </label>
                                 </div>
                                 <div class="datatable-search">
-                                    <input class="datatable-input .search-input-report" placeholder="Cari..."
+                                    <input class="datatable-input search-input-report" placeholder="Cari..."
                                         type="search" name="search" title="Search within table"
                                         aria-controls="pc-dt-simple">
                                 </div>
@@ -393,7 +394,9 @@
         let getDataRestDashboard;
         let isAdmin;
         let chart;
-
+        let role = @json(request()->payload['internal_role']);
+        console.log("🚀 ~ role:", role)
+        
         async function getUserData() {
             loadingPage(true);
             let getDataRest = await CallAPI(
@@ -411,9 +414,10 @@
                 let handleDataResult = await handleUserData(getDataRest.data.data);
                 await setUserData(handleDataResult);
                 const userRole = handleDataResult.role || [];
+                console.log("🚀 ~ getUserData ~ userRole:", userRole)
                 isAdmin = userRole.includes('Super Admin');
 
-                if (!isAdmin) {
+                if (role === 'Admin' || role === 'Super Admin') {
                     document.getElementById('widget-table-1').style.display = 'none';
                     const infoTableCol = document.getElementById('tahunan');
                     if (infoTableCol) {
@@ -470,6 +474,24 @@
                 let companies = getDataRest.data.data.companies || [];
                 let certificateRequests = getDataRest.data.data.certificate_requests || [];
                 let totalCompany = companies.length;
+                let formattedStartDate = new Date(startDate).toLocaleDateString('id-ID', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                let formattedEndDate = new Date(endDate).toLocaleDateString('id-ID', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+
+                // Gunakan querySelectorAll untuk memilih semua elemen dengan kelas 'rentangTanggal' dan iterasi
+                document.querySelectorAll('.rentangTanggal').forEach((element) => {
+                    element.innerText =
+                    `${formattedStartDate} - ${formattedEndDate}`; // Gunakan backticks untuk string template
+                });
+
+
                 document.getElementById('totalperusahaan').innerText = totalCompany;
 
                 let totalWithoutCertification = companies.filter(company =>
@@ -778,86 +800,87 @@
         }
 
 
-async function setChartTotalPenilaian(totalPenilaian) {
-    console.log("🚀 ~ setChartTotalPenilaian ~ totalPenilaian:", totalPenilaian);
-    // Check if data is available
-    // if (!totalPenilaian || totalPenilaian.length === 0) {
-    //     document.getElementById('totalPenilaian').innerHTML = '<p>No data available for the selected range</p>';
-    //     return;
-    // }
+        async function setChartTotalPenilaian(totalPenilaian) {
+            console.log("🚀 ~ setChartTotalPenilaian ~ totalPenilaian:", totalPenilaian);
+            // Check if data is available
+            // if (!totalPenilaian || totalPenilaian.length === 0) {
+            //     document.getElementById('totalPenilaian').innerHTML = '<p>No data available for the selected range</p>';
+            //     return;
+            // }
 
-    // Extract days and the values for each series
-    const daysArray = totalPenilaian.map(item => moment(item.date).format('DD MMM YY')); // Format date to "12 Des 25"
-    const pengajuanAwalData = totalPenilaian.map(item => item.pengajuan_awal);
-    const prosesPengajuanData = totalPenilaian.map(item => item.proses_pengajuan);
-    const prosesSelesaiData = totalPenilaian.map(item => item.proses_selesai);
+            // Extract days and the values for each series
+            const daysArray = totalPenilaian.map(item => moment(item.date).format(
+            'DD MMM YY')); // Format date to "12 Des 25"
+            const pengajuanAwalData = totalPenilaian.map(item => item.pengajuan_awal);
+            const prosesPengajuanData = totalPenilaian.map(item => item.proses_pengajuan);
+            const prosesSelesaiData = totalPenilaian.map(item => item.proses_selesai);
 
-    // Chart options using the actual data
-    var options = {
-        series: [{
-            name: 'Pengajuan awal',
-            data: pengajuanAwalData // Data for 'Pengajuan awal'
-        }, {
-            name: 'Proses Pengajuan',
-            data: prosesPengajuanData // Data for 'Proses Pengajuan'
-        }, {
-            name: 'Proses Selesai',
-            data: prosesSelesaiData // Data for 'Proses Selesai'
-        }],
-        chart: {
-            type: 'bar',
-            height: 350,
-            toolbar: false,
-        },
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: '55%',
-                borderRadius: 5,
-                borderRadiusApplication: 'end'
-            },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            show: true,
-            width: 2,
-            colors: ['transparent']
-        },
-        xaxis: {
-            categories: daysArray, // Use the formatted dates as categories
-            title: {
-                text: 'Tanggal'
+            // Chart options using the actual data
+            var options = {
+                series: [{
+                    name: 'Pengajuan awal',
+                    data: pengajuanAwalData // Data for 'Pengajuan awal'
+                }, {
+                    name: 'Proses Pengajuan',
+                    data: prosesPengajuanData // Data for 'Proses Pengajuan'
+                }, {
+                    name: 'Proses Selesai',
+                    data: prosesSelesaiData // Data for 'Proses Selesai'
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 350,
+                    toolbar: false,
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '55%',
+                        borderRadius: 5,
+                        borderRadiusApplication: 'end'
+                    },
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                },
+                xaxis: {
+                    categories: daysArray, // Use the formatted dates as categories
+                    title: {
+                        text: 'Tanggal'
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: ''
+                    }
+                },
+                fill: {
+                    opacity: 1
+                },
+                tooltip: {
+                    y: {
+                        formatter: function(val) {
+                            return val + " Permohonan";
+                        }
+                    }
+                },
+                colors: ['#007bff', '#ffc107', '#28a745'], // Define chart colors
+            };
+
+            // Hancurkan chart lama sebelum merender chart baru
+            if (chart) {
+                chart.destroy(); // Hancurkan chart lama jika ada
             }
-        },
-        yaxis: {
-            title: {
-                text: ''
-            }
-        },
-        fill: {
-            opacity: 1
-        },
-        tooltip: {
-            y: {
-                formatter: function(val) {
-                    return val + " Permohonan";
-                }
-            }
-        },
-        colors: ['#007bff', '#ffc107', '#28a745'], // Define chart colors
-    };
 
-    // Hancurkan chart lama sebelum merender chart baru
-    if (chart) {
-        chart.destroy(); // Hancurkan chart lama jika ada
-    }
-
-    // Render the chart
-    chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
-    chart.render();
-}
+            // Render the chart
+            chart = new ApexCharts(document.querySelector("#totalPenilaian"), options);
+            chart.render();
+        }
 
 
         async function fetchData(url, params) {
@@ -1003,7 +1026,7 @@ async function setChartTotalPenilaian(totalPenilaian) {
                                 <td>${element.year || 'N/A'}</td>
                                 <td>${element.due_date || 'N/A'}</td>
                                 <td>
-                                    <a type="button" href="/admin/perusahaan/detail?id=${element.id}" class="avtar avtar-s btn-link-primary">
+                                    <a type="button" href="/admin/perusahaan/detail?id=${element.company.id}" class="avtar avtar-s btn-link-primary">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -1187,7 +1210,8 @@ async function setChartTotalPenilaian(totalPenilaian) {
                     customFilter);
                 await getDataAllCompany(customFilter);
                 await getDataPenilaian(customFilter);
-                await initDataOnTableReport(defaultLimitPageReport, currentPageReport, defaultAscendingReport,
+                await initDataOnTableReport(defaultLimitPageReport, currentPageReport,
+                    defaultAscendingReport,
                     defaultSearchReport);
             });
 
@@ -1202,7 +1226,7 @@ async function setChartTotalPenilaian(totalPenilaian) {
             await getUserData();
             await getDataAllCompany();
             await getDataPenilaian();
-            
+
             await Promise.all([
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch, customFilter),
                 manipulationDataOnTable(),

@@ -14,7 +14,7 @@
     <meta name="author" content="Phoenixcoded" />
 
     <link rel="stylesheet" href="{{ asset('assets') }}/css/plugins/style.css" />
-    <link id="logo_favicon" rel="icon" href="{{ asset('assets') }}/images/logoapp.png" type="image/x-icon"  />
+    <link id="logo_favicon" rel="icon" href="{{ asset('assets') }}/images/logoapp.png" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/inter/inter.css" id="main-font-link" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/phosphor/duotone/style.css" />
     <link rel="stylesheet" href="{{ asset('assets') }}/fonts/tabler-icons.min.css" />
@@ -187,6 +187,17 @@
                 $('.logo_aplikasi').html(
                     `<img src="${appData.logo_aplikasi}" alt="img" style="width: 45px; height: 45px; border-radius: 50%;">`
                 );
+                let imgLogoApp = document.querySelector('.img-logo-app'); // Menggunakan querySelector untuk satu elemen
+
+                if (imgLogoApp) {
+                    imgLogoApp.innerHTML = `
+                    <div class="img-welcome-banner">
+                        <img src="${appData.logo_aplikasi}" alt="img" class="img-fluid mt-2"
+                            style="width: 100px; height: 100px; border-radius: 50%;" />
+                    </div>
+                    `;
+                }
+
 
                 if (appData.logo_favicon) {
                     const favicon = document.getElementById('logo_favicon');
@@ -198,7 +209,8 @@
                 }
                 let logoFooter = document.getElementById('logo_footer');
                 if (logoFooter) {
-                    logoFooter.innerHTML = `<img src="${appData.logo_aplikasi}" alt="Logo" style="width: 45px; height: 45px; border-radius: 50%;">`;
+                    logoFooter.innerHTML =
+                        `<img src="${appData.logo_aplikasi}" alt="Logo" style="width: 45px; height: 45px; border-radius: 50%;">`;
                 }
             }
         }
