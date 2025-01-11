@@ -30,6 +30,10 @@ class Application
         if($getMe['status_code'] == 200){
             $request->user = $getMe['data']['user'];
             $request->payload = $getMe['data']['payload'];
+            $request->payload = $getMe['data']['payload'];
+            if(isset($getMe['data']['permission'])){
+                $request->permission = $getMe['data']['permission'];
+            }
         }
 
         if ($request->is('/')) {
