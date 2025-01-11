@@ -415,6 +415,7 @@
             $(document).on("submit", "#form-create", async function(e) {
                 e.preventDefault();
                 if ($('#password').val() != $('#password-confirm').val()) {
+                    $("#modal-form").modal("hide");
                     notificationAlert('info', 'Pemberitahuan', 'Konfirmasi kata sandi tidak sama.');
                     return;
                 }
@@ -442,10 +443,13 @@
                         return response;
                     }).catch(function(error) {
                         loadingPage(false);
+                        $("form").find("input, select, textarea").val("").prop("checked", false)
+                        .trigger("change");
+                        $("#modal-form").modal("hide");
                         let resp = error.response;
                         notificationAlert('info', 'Pemberitahuan', resp.data.message);
-                        $("#modal-form").modal("hide");
                         return resp;
+                        $(this).trigger("reset");
                     });
 
                 if (postDataRest.status == 200 || postDataRest.status == 201) {
@@ -464,7 +468,6 @@
                         await initDataOnTable(defaultLimitPage, currentPage,
                             defaultAscending, defaultSearch);
                         $(this).trigger("reset");
-                        $("#modal-form").modal("hide");
                     });
                 }
             });

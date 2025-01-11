@@ -1210,6 +1210,7 @@
         }
 
         async function downloadToPDF(data, fromDate, toDate) {
+            console.log("🚀 ~ downloadToPDF ~ data:", data)
             const {
                 jsPDF
             } = window.jspdf;
@@ -1219,13 +1220,14 @@
                 Header1: item.name || '-',
                 Header2: item.nib || '-',
                 Header3: item.service_types || '-',
-                Header4: item.certificate_request_status || '-',
+                Header4: item.certificate_request_status.text || '-',
                 Header5: item.province_name || '-',
                 Header6: item.city_name || '-',
                 Header7: item.address || '-',
                 Header8: item.exist_spionam.text_status || '-',
                 Header9: item.created_at || '-',
             }));
+            console.log("🚀 ~ selectedData ~ selectedData:", selectedData)
 
             let header = [
                 'No.',
