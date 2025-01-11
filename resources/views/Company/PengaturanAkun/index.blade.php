@@ -198,7 +198,8 @@
                 $('.company-user-name').html(data.username);
                 $('.company-user-phone').html(data.phone_number);
                 $('.company-is-active').addClass(`${data.is_active.icon_status} ${data.is_active.color}`);
-                    
+
+                document.getElementById('email').innerText = data.email || 'No Email';
 
                 document.getElementById('createdAt').innerText =
                     `Terdaftar: ${data.created_at ? new Date(data.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) : '-'}`;
@@ -206,7 +207,7 @@
 
             loadingPage(false);
         }
-    
+
         function validatePasswordStrength(password) {
             const minLength = 8;
             const hasUppercase = /[A-Z]/.test(password);
