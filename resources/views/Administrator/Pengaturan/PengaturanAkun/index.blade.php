@@ -43,28 +43,28 @@
                                                 class="rounded-circle img-fluid wid-70"
                                                 src="{{ asset('assets') }}/images/user/user-profil2.jpg" alt="User image">
                                         </div>
-                                        <h5 class="mb-0" id="username">Administrator</h5>
-                                        <p class="text-muted text-sm" id="name">Administrator</p>
+                                        <h5 class="mb-0" id="username"></h5>
+                                        <p class="text-muted text-sm" id="name"></p>
                                         <hr class="my-3 border border-secondary-subtle">
                                         <div class="row g-3">
                                             <div class="col-6">
                                                 <h5 class="mb-0">NIP</h5><small class="text-muted"
-                                                    id="nip">0000000000000001</small>
+                                                    id="nip"></small>
                                             </div>
                                             <div class="col-6 border border-top-0 border-bottom-0"
                                                 style="border-right: 0 !important;">
                                                 <h5 class="mb-0">Peran</h5><small class="text-muted"
-                                                    id="role_name">Admin</small>
+                                                    id="role_name"></small>
                                             </div>
                                         </div>
                                         <hr class="my-3 border border-secondary-subtle">
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3"><i
                                                 class="ti ti-mail me-2"></i>
-                                            <p class="mb-0" id="email">administrator@gmail.com</p>
+                                            <p class="mb-0" id="email"></p>
                                         </div>
                                         <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
                                             <i class="fa-regular fa-calendar-days me-2"></i>
-                                            <p class="mb-0" id="createdAt">Terdaftar: 7 Desember 2024</p>
+                                            <p class="mb-0" id="createdAt"> </p>
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
         let nip = @json(request()->user['nip']);
         let username = @json(request()->user['username']);
         let createdAt = @json(request()->user['created_at']);
-        let createdAt = @json(request()->user['is_active']);
+        let is_active = @json(request()->user['is_active']);
 
         async function getData() {
             loadingPage(true);
@@ -165,7 +165,7 @@
                 let data = getDataRest.data.data.user;
                 email = data.email;
                 let isActiveElement = document.getElementById('is_active');
-                if (is_active === 1) {
+                if (is_active === true || is_active === 1) {
                     isActiveElement.innerHTML = '<span class="badge bg-success">Aktif</span>';
                 } else {
                     isActiveElement.innerHTML = '<span class="badge bg-danger">Tidak Aktif</span>';

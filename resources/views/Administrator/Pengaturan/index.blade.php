@@ -31,9 +31,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex flex-column flex-sm-row align-items-center">
-                        <div class="d-flex justify-content-center mb-3 mb-sm-0">
-                            <a href="#"><img src="{{ asset('assets') }}/images/logoapp.png" alt="img"
-                                    style="width: 60px;" /></a>
+                        <div class="d-flex justify-content-center mb-3 mb-sm-0 logoApp">
                         </div>
                         <div class="flex-grow-1 mx-5 text-center text-sm-start">
                             <!-- Nama Aplikasi -->
@@ -393,6 +391,10 @@
                 document.getElementById('namaInstansi').innerText = appData.nama_instansi;
                 $('#email').html(`<i class="fa fa-envelope me-2"></i>${appData.email}`);
                 $('#noWaHelpdesk').html(`<i class="fa fa-phone me-2"></i>${appData.whatsapp}`);
+                $('.logoApp').html(`
+                <a href="#"><img src="${appData.logo_aplikasi}" alt="img"
+                    style="width: 60px; height: 60px; border-radius: 50%;" /></a>
+                `);
                 $('#alamat').html(`<i class="fa-solid fa-location-dot me-2"></i> ${appData.alamat}`);
 
 
