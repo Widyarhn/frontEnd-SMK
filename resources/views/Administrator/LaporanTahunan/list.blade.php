@@ -186,7 +186,7 @@
                             </label>
                         </div>
                         <div class="datatable-search">
-                            <input class="datatable-input" placeholder="Cari..." type="search"
+                            <input class="datatable-input search-input" placeholder="Cari..." type="search"
                                 title="Search within table" aria-controls="pc-dt-simple-1">
                         </div>
                     </div>

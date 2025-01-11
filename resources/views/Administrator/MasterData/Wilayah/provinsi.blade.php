@@ -144,7 +144,7 @@
                     page: currentPage,
                     limit: defaultLimitPage,
                     ascending: defaultAscending,
-                    search: defaultSearch
+                    keyword: defaultSearch
                 }
             ).then(function(response) {
                 return response;

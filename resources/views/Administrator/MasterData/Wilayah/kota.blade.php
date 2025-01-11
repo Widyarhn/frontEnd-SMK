@@ -335,7 +335,7 @@
                         page: page,
                         limit: limit,
                         ascending: ascending,
-                        search: search
+                        keyword: search
                     }
                 );
             } catch (error) {
