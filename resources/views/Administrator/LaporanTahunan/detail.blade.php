@@ -245,6 +245,8 @@
                     let accordionHTML = '';
                     let numbering = 1;
                     let isNeedSubmitButton = false;
+                    smkElements = responseData.data.element_properties
+                    answerSchema = responseData.data.answers
 
                     for (const [elementKey, elementValue] of Object.entries(uiSchema)) {
                         const sortableSubElement = sortableSubElementByUiOrder(uiSchema, elementKey);
@@ -345,33 +347,35 @@
         }
 
         function mappingCompanyInformation(data) {
-            console.log("🚀 ~ mappingCompanyInformation ~ data:", data)
             let serviceTypes = '';
-            data.company.service_types.forEach((serviceType) => {
-                serviceTypes += `<li>${serviceType.name}</li>`;
-            });
+            if (data.company && Array.isArray(data.company.service_types)) {
+                data.company.service_types.forEach((serviceType) => {
+                    serviceTypes += `<li>${serviceType?.name || '-'}</li>`;
+                });
+            }
 
-            const fileUrl = data.company.nib_file
-            const splitFileURL = fileUrl.split('/')
-            const fileName = splitFileURL[splitFileURL.length - 1]
-            const fileExtension = fileUrl.substring(fileUrl.lastIndexOf("."))
+            const fileUrl = data.company?.nib_file || '';
+            const splitFileURL = fileUrl.split('/');
+            const fileName = splitFileURL[splitFileURL.length - 1] || '-';
+            const fileExtension = fileUrl.substring(fileUrl.lastIndexOf('.')) || '';
 
-            let nibPreview = ''
-            let imageType = ['.jpeg', '.jpg', '.png']
+            let nibPreview = '';
+            const imageType = ['.jpeg', '.jpg', '.png'];
             if (imageType.includes(fileExtension)) {
                 nibPreview = `
-            <img class="img-fluid" src="${fileUrl}"/>
-        `
+            <img class="img-fluid" src="${fileUrl}" alt="Preview NIB"/>
+        `;
             }
+
             let statusLabel = '';
             switch (data.status) {
-                case "request":
+                case 'request':
                     statusLabel = '<span class="badge bg-secondary ms-2">Pengajuan Baru</span>';
                     break;
-                case "revision":
+                case 'revision':
                     statusLabel = '<span class="badge bg-danger ms-2">Revisi</span>';
                     break;
-                case "verified":
+                case 'verified':
                     statusLabel = '<span class="badge bg-success ms-2">Terverifikasi</span>';
                     break;
                 default:
@@ -379,24 +383,28 @@
                     break;
             }
 
-            $('#c_name').text(`${data.company.name} |`)
-            $('#c_nib').text(data.company.nib)
-            // $('#c_nib_file').append(nibPreview)
+            // Update elemen HTML dengan nilai yang sudah diperiksa
+            $('#c_name').text(`${data.company?.name || '-'} |`);
+            $('#c_nib').text(data.company?.nib || '-');
             $('#c_status').html(`${statusLabel}`);
             $('#c_address').text(
-                `${data.company.address} ${data.company.city.name} ${data.company.province.name}`)
-            $('#c_phone').text(data.company.company_phone_number)
-            $('#c_email').text(data.company.email)
-            $('#c_serviceType').append(serviceTypes)
-            $('#pic_name').text(data.company.pic_name)
-            $('#pic_phone').text(data.company.pic_phone)
-            $('#u_name').text(data.company.username)
-            $('#u_email').text(data.company.name)
-            $('#u_phone').text(data.company.phone_number)
-            $('#current_preview').text(data.company.id)
-            $('#establish_date').text(data.company.established ? formatTanggal(data.company.established) : '-')
-            $('#request_date').text(moment(data.company.request_date).format('D/MM/YYYY'))
+                `${data.company?.address || '-'} ${data.company?.city?.name || '-'} ${data.company?.province?.name || '-'}`
+            );
+            $('#c_phone').text(data.company?.company_phone_number || '-');
+            $('#c_email').text(data.company?.email || '-');
+            $('#c_serviceType').append(serviceTypes);
+            $('#pic_name').text(data.company?.pic_name || '-');
+            $('#pic_phone').text(data.company?.pic_phone || '-');
+            $('#u_name').text(data.company?.username || '-');
+            $('#u_email').text(data.company?.email || '-');
+            $('#u_phone').text(data.company?.phone_number || '-');
+            $('#current_preview').text(data.company?.id || '-');
+            $('#establish_date').text(data.company?.established ? formatTanggal(data.company.established) : '-');
+            $('#request_date').text(
+                data.company?.request_date ? moment(data.company.request_date).format('D/MM/YYYY') : '-'
+            );
         }
+
 
         function sortableSubElementByUiOrder(uiSchema, elementKey) {
             let sortable = []
@@ -565,7 +573,7 @@
                                     '<span class="badge p-2 f-12 fw-bold px-3" style="background-color:green; color:white;">Sesuai</span>'
                             } else {
                                 assessmentButtonColumn = '<span class="badge bg-danger">belum Sesuai</span>'
-                                assessmentReasonColumn = subElementSchema.assessments.assessmentReason
+                                assessmentReasonColumn = nl2br(subElementSchema.assessments.assessmentReason)
                             }
 
                         }
@@ -680,7 +688,6 @@
         });
 
         async function submitData(formData, successMessage) {
-            console.log('formData', formData);
             loadingPage(true);
             try {
                 const ajaxResponse = await CallAPI(
@@ -690,7 +697,6 @@
                         ...formData
                     }
                 );
-                console.log(ajaxResponse, 'data');
                 if (ajaxResponse.status === 200) {
                     notificationAlert('success', 'Berhasil', ajaxResponse.data.message);
                     Swal.fire({
@@ -810,7 +816,6 @@
             $('.view-document-print').attr('src', loc);
             await $('#view-document').modal('show')
         }
-
 
         async function showViewDocument(loc) {
             const authToken = Cookies.get('auth_token');
@@ -1163,6 +1168,11 @@
 
             return `<span>${prosessBy}</span>`
         }
+
+        function nl2br(str) {
+            return str.replace(/\n/g, "<br>");
+        }
+
         async function initPageLoad() {
             await getYearlyReportByID();
             $('.filepond--credits').remove();
