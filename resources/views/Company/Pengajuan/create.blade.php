@@ -28,6 +28,7 @@
         .nav-wrapper::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+
         #back-to-top {
             position: fixed;
             /* Agar melayang */
@@ -281,8 +282,7 @@
 @section('scripts')
     <script src="{{ asset('assets') }}/js/plugins/moment.js"></script>
     <script src="{{ asset('assets') }}/js/libs/filepond/filepond.min.js"></script>
-    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js">
-    </script>
+    <script src="{{ asset('assets') }}/js/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
     <script src="{{ asset('assets') }}/js/libs/filepond-plugin-pdf-preview/filepond-plugin-pdf-preview.min.js"></script>
     <script
         src="{{ asset('assets') }}/js/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js">
@@ -308,8 +308,7 @@
             loadingPage(true);
             const getDataRest = await CallAPI(
                 'GET',
-                `{{ env('SERVICE_BASE_URL') }}/company/documents/smk-element`,
-                {}
+                `{{ env('SERVICE_BASE_URL') }}/company/documents/smk-element`, {}
             ).then(function(response) {
                 return response;
             }).catch(function(error) {
@@ -370,7 +369,7 @@
                             <tr>
                                 <td class="text-center">${numbering}.${rowIndex}</td>
                                 <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${questionProperties['title']}</td>
-                                <td style="word-wrap: break-word; white-space: normal; max-width: 180px;">${questionProperties['description'] || 'N/A'}</td>
+                                <td style="word-wrap: break-word; white-space: normal; max-width: 180px;">${questionProperties['description'] || '-'}</td>
                                 <td style="word-wrap: break-word; white-space: normal; max-width: 300px;">${formInputHtml}</td>
                             </tr>
                         `;
@@ -771,46 +770,55 @@
 
 
         function mappingCompanyInformation(data) {
-
             let serviceTypes = '';
-            if (data.company_info.service_types) {
+            if (data.company_info?.service_types?.length > 0) {
                 data.company_info.service_types.forEach((serviceType) => {
-                    serviceTypes += `<li>${serviceType.name}</li>`;
+                    serviceTypes += `<li>${serviceType?.name || '-'}</li>`;
                 });
             } else {
                 serviceTypes = '-';
             }
 
-            const fileUrl = data.company_info.nib_file
-            const splitFileURL = fileUrl.split('/')
-            const fileName = splitFileURL[splitFileURL.length - 1]
-            const fileExtension = fileUrl.substring(fileUrl.lastIndexOf("."))
-
-            let nibPreview = ''
-            let imageType = ['.jpeg', '.jpg', '.png']
-            if (imageType.includes(fileExtension)) {
-                nibPreview = `
-                    <img class="img-fluid" src="${fileUrl}"/>
-                `
+            const fileUrl = data.company_info?.nib_file || '';
+            let fileName = '-';
+            let fileExtension = '';
+            if (fileUrl) {
+                const splitFileURL = fileUrl.split('/');
+                fileName = splitFileURL[splitFileURL.length - 1] || '-';
+                fileExtension = fileUrl.substring(fileUrl.lastIndexOf('.')) || '';
             }
 
-            $('#c_name').text(`${data.company_info.name} |`)
-            $('#c_nib').text(data.company_info.nib)
+            let nibPreview = '';
+            const imageType = ['.jpeg', '.jpg', '.png'];
+            if (imageType.includes(fileExtension)) {
+                nibPreview = `<img class="img-fluid" src="${fileUrl}"/>`;
+            } else {
+                nibPreview = '-';
+            }
+
+            $('#c_name').text(`${data.company_info?.name || '-'} |`);
+            $('#c_nib').text(data.company_info?.nib || '-');
             $('#c_address').text(
-                `${data.company_info.address} ${data.company_info.city?.name || ''} ${data.company_info.province?.name || ''}`)
-            $('#c_phone').text(data.company_info.company_phone_number)
-            $('#c_email').text(data.company_info.email)
-            $('#c_serviceType').append(serviceTypes)
-            $('#pic_name').text(data.company_info.pic_name)
-            $('#pic_phone').text(data.company_info.pic_phone)
-            $('#u_name').text(data.company_info.username)
-            $('#u_email').text(data.company_info.name)
-            $('#u_phone').text(data.company_info.phone_number)
-            $('#current_preview').text(data.company_info.id)
-            $('#establish_date').text(data.company_info.establish ? moment(data.data.company_info.establish).format(
-                'D/MM/YYYY') : '-')
-            $('#request_date').text(moment(data.company_info.request_date).format('D/MM/YYYY'))
+                `${data.company_info?.address || ''} ${data.company_info?.city?.name || ''} ${data.company_info?.province?.name || ''}`
+                .trim() || '-'
+            );
+            $('#c_phone').text(data.company_info?.company_phone_number || '-');
+            $('#c_email').text(data.company_info?.email || '-');
+            $('#c_serviceType').empty().append(serviceTypes);
+            $('#pic_name').text(data.company_info?.pic_name || '-');
+            $('#pic_phone').text(data.company_info?.pic_phone || '-');
+            $('#u_name').text(data.company_info?.username || '-');
+            $('#u_email').text(data.company_info?.email || '-');
+            $('#u_phone').text(data.company_info?.phone_number || '-');
+            $('#current_preview').text(data.company_info?.id || '-');
+            $('#establish_date').text(
+                data.company_info?.establish ? moment(data.company_info.establish).format('D/MM/YYYY') : '-'
+            );
+            $('#request_date').text(
+                data.company_info?.request_date ? moment(data.company_info.request_date).format('D/MM/YYYY') : '-'
+            );
         }
+
 
 
 
