@@ -518,7 +518,7 @@
                     },
                     data: function(params) {
                         let query = {
-                            search: params.term,
+                            keyword: params.term,
                             page: 1,
                             limit: 30,
                             ascending: 1,
@@ -526,17 +526,14 @@
                         return query;
                     },
                     processResults: function(res) {
-                        let filteredData = $.map(res.data, function(item) {
-                            return {
-                                id: item.id,
-                                text: item.name
-                            };
-                        });
+                        let data = res.data;
                         return {
-                            results: filteredData,
-                            pagination: {
-                                more: (res.pagination.current_page < res.pagination.total_pages)
-                            }
+                            results: $.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    text: item.name
+                                };
+                            })
                         };
                     }
                 },
@@ -553,15 +550,16 @@
 
         async function initPageLoad() {
             await Promise.all([
-                selectList('#input_province_id',
-                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/provinsi/list',
-                    'Pilih Provinsi', true),
+                
                 initDataOnTable(defaultLimitPage, currentPage, defaultAscending, defaultSearch),
                 manipulationDataOnTable(),
                 addData(),
                 editData(),
                 submitForm(),
                 deleteData(),
+                selectList('#input_province_id',
+                    '{{ env('SERVICE_BASE_URL') }}/internal/admin-panel/provinsi/list',
+                    'Pilih Provinsi', true),
             ])
         }
     </script>

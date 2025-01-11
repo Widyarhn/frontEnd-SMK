@@ -419,18 +419,20 @@
                         if (element.status.includes('draft')) {
                             colorBage = 'secondary';
                         }
-                        if (element.status.includes('not')) {
+                        if (element.status.includes('cancelled')) {
                             colorBage = 'warning';
                         }
                         if (element.status.includes('expired')) {
                             colorBage = 'dark';
                         }
-                        if (element.status.includes('complete') || element.status.includes('passed_assessment_') ||
+                        if (element.status.includes('complete') || element.status.includes(
+                                'passed_assessment_verification') || element.status == 'passed_assessment' ||
                             element.status == 'certificate_validation') {
                             colorBage = 'success';
                         }
                         if (element.status.includes('expired') ||
-                            element.status.includes('cancelled') ||
+                            element.status.includes('not_passed_assessment') ||
+                            element.status.includes('not_passed_interview') ||
                             element.status.includes('rejected') || (element.rejection_notes && element.rejection_notes
                                 .length > 0)
                         ) {
@@ -538,26 +540,26 @@
                                                     </ul>
                                                 </div>
                                                 ${element.rejection_notes ? `
-                                                                                                                        <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
-                                                                                                                            Catatan Permohonan</div>
-                                                                                                                        <div class="help-md-hidden">
-                                                                                                                            <div class="bg-body mb-3 p-3">
-                                                                                                                                <h6><img src="{{ asset('assets') }}/images/user/"
-                                                                                                                                        alt="" class="wid-20 avatar me-2 rounded">Catatan terakhir dari <a href="#" class="link-secondary">${element.updated_by}</a></h6>
-                                                                                                                                <p class="mb-0">
-                                                                                                                                    ${truncatedNotes}
-                                                                                                                                </p>
-                                                                                                                            </div>
-                                                                                                                        </div>`
+                                                                                                                            <div class="h5 mt-4"><i class="fa-solid fa-note-sticky me-1"></i>
+                                                                                                                                Catatan Permohonan</div>
+                                                                                                                            <div class="help-md-hidden">
+                                                                                                                                <div class="bg-body mb-3 p-3">
+                                                                                                                                    <h6><img src="{{ asset('assets') }}/images/user/"
+                                                                                                                                            alt="" class="wid-20 avatar me-2 rounded">Catatan terakhir dari <a href="#" class="link-secondary">${element.updated_by}</a></h6>
+                                                                                                                                    <p class="mb-0">
+                                                                                                                                        ${truncatedNotes}
+                                                                                                                                    </p>
+                                                                                                                                </div>
+                                                                                                                            </div>`
                                                     : 
                                                 ''}
                                             </div>
                                             <div class="mt-4">
                                                 ${element.rejection_notes ? `
-                                                                                                                    <button type="button" class="me-2 btn btn-sm btn-light-danger"
-                                                                                                                        data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
-                                                                                                                        <i class="ti ti-eye me-1"></i> Lihat Catatan
-                                                                                                                    </button>` : ''}
+                                                                                                                        <button type="button" class="me-2 btn btn-sm btn-light-danger"
+                                                                                                                            data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onclick="showModalNotes('${element.rejection_notes}')" style="border-radius: 5px;">
+                                                                                                                            <i class="ti ti-eye me-1"></i> Lihat Catatan
+                                                                                                                        </button>` : ''}
                                                 <a href="/admin/sertifikat/detail?r=${element.id}" class="me-2 btn btn-sm btn-light-secondary"
                                                     style="border-radius:5px;"><i class="feather icon-eye mx-1 me-2"></i>Lihat
                                                     Detail</a>
