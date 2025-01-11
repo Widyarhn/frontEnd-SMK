@@ -832,7 +832,7 @@
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
-                let customFilter = {
+                customFilter = {
                     'assesor': assesor,
                     'company': company,
                     'status': status,
@@ -864,7 +864,7 @@
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
-                let customFilter = {
+                customFilter = {
                     'status': status,
                     'company': company,
                     'assesor': assesor,
@@ -907,7 +907,7 @@
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
-                let customFilter = {
+                customFilter = {
                     'status': status,
                     'company': company,
                     'assesor': assesor,
@@ -956,7 +956,7 @@
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
-                let customFilter = {
+                customFilter = {
                     'status': status,
                     'company': company,
                     'assesor': assesor,

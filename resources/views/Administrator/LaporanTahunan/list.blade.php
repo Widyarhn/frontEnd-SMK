@@ -888,7 +888,7 @@
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
-                let customFilter = {
+                customFilter = {
                     'status': status,
                     'company': company,
                     'start_date': $("#daterange").val() !== '' ? startDate : '',
@@ -929,7 +929,7 @@
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
-                let customFilter = {
+                customFilter = {
                     'status': status,
                     'company': company,
                     'start_date': $("#daterange").val() !== '' ? startDate : '',
@@ -974,7 +974,7 @@
                 let company = document.getElementById('input-perusahaan').value;
                 let status = document.getElementById('input-status').value;
 
-                let customFilter = {
+                customFilter = {
                     'status': status,
                     'company': company,
 
